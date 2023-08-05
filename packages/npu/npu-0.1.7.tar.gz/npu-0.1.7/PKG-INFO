@@ -1,0 +1,117 @@
+Metadata-Version: 2.1
+Name: npu
+Version: 0.1.7
+Summary: Python client for using npu api
+Home-page: UNKNOWN
+Author: Neuro AI
+Author-email: api@neuro-ai.co.uk
+License: UNKNOWN
+Description: **************
+        API Quickstart
+        **************
+        
+        Follow this steps to get up and running with the NPU API.
+        
+        **Goal of this tutorial:**
+        
+        -  Understand the core functionalities of how to accelerate your AI with the npu python library.
+        -  Get access to our API dashboard.
+        -  Install our npu python library.
+        -  Train your first model with our API.
+        
+        
+        Create an account in the Dashboard
+        -----------------------------------
+        
+        The dashboard allows you to view in one place everything that you are running with our API. Without the dashboard you cannot use our API.
+        Create an account in the `Dashboard <https://dashboard.neuro-ai.co.uk>`__ to access all of the API functionalities.
+        
+        .. Note::
+                 You can learn more about our Dashboard and its functionalities
+                 `in our dedicated page <https://dashboard.neuro-ai.co.uk/home>`_.
+        
+        
+        Install the python library
+        ---------------------------
+        
+        Using Python 3 in your environment run::
+        
+           pip install npu
+        
+        Train your first model
+        -----------------------
+        
+        You will now see how simple it is to train your model.
+        
+        First thing we are going to do is import the npu library, model and dataset. For this tutorial we will be using the resnet18 and the CIFAR10 dataset.
+        
+        .. code-block:: default
+        
+           import npu
+           from npu.vision.models import resnet18
+           from npu.vision.datasets import CIFAR10
+        
+        The npu library contains under the vision package a range of models and datasets without requiring you to have them on your local machine.
+        We provide fresh and pre-trained versions of each model.
+        
+        .. Note::
+                 You can learn more about the vision package
+                 `in our dedicated page <https://dashboard.neuro-ai.co.uk/home>`_.
+        
+        Next, after importing, we are going to enable API access. To access remotely to our accelerator cards 
+        on our cloud, you need to have an API token. This is provided on your dashboard. You can find it in the home page or under your account.
+        Although your token will be different from this one, it should look like this::
+        
+        'qO8teIJLqmVFtGvP1_yaBHIVXOLrf9FJezpW9thstyU'
+        
+        We are gonna take the token and pass it as an argument to our API acces line of code:
+        
+        .. code-block:: default
+        
+           import npu
+           from npu.vision.models import resnet18
+           from npu.vision.datasets import CIFAR10
+        
+           npu.api('qO8teIJLqmVFtGvP1_yaBHIVXOLrf9FJezpW9thstyU')
+        
+        
+        We are now ready to train our first model. We will specify the training and validation data, the loss, the optimiser, the batch size and epochs.
+        
+        .. code-block:: default
+        
+           import npu
+           from npu.vision.models import resnet18
+           from npu.vision.datasets import CIFAR10
+        
+           npu.api('qO8teIJLqmVFtGvP1_yaBHIVXOLrf9FJezpW9thstyU')
+        
+           model_trained = npu.train(resnet18(pretrained=True),
+                                     train_data=CIFAR10.train,
+                                     val_data=CIFAR10.val,
+                                     loss=npu.loss.CrossEntropyLoss,
+                                     optim=npu.optim.SGD(lr=0.01),
+                                     batch_size=100,
+                                     epochs=2)
+        
+        If you run this script you will be able to see how the training evolves, loss is minimised, accuracy is increased and much more at the dashboard. Go to your tasks section at the dashboard and view your first training task.
+        
+        Next Steps
+        ----------
+        
+        #. Follow the tutorials to learn all the features of the npu library
+        
+        #. Check the npu library reference page to learn more about each of the functions
+        
+        #. Check the Dashboard page to learn more about its functionalities
+        
+        
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
