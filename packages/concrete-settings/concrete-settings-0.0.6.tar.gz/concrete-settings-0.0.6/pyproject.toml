@@ -1,0 +1,87 @@
+[tool.poetry]
+name = "concrete-settings"
+version = "0.0.6"
+description = "Concrete Settings facilitates configuration management in big and small projects."
+
+license = "MIT"
+
+authors = [
+    "Zaur Nasibov <comments@znasibov.info>"
+]
+
+readme = 'README.rst'
+
+repository = "https://github.com/basicwolf/concrete-settings"
+homepage = "https://github.com/basicwolf/concrete-settings"
+
+keywords = ['settings', 'configuration']
+
+[tool.poetry.dependencies]
+python = "^3.6"
+sphinx = "^2.3"
+typeguard = "^2.7"
+pyyaml = { version = "^5.3", optional = true }
+typing_extensions = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+django = { version = "^3.0", optional = true }
+pudb = "*"
+factory_boy = "*"
+pytest = "*"
+pytest-mock = "*"
+pytest-pudb = "*"
+tox = "*"
+black = "^18.9b0"
+flake8 = "*"
+flake8-bugbear = "*"
+coverage = "*"
+mkdocs-nature = '*'
+pytest-cov = "*"
+setuptools = "^41.0"
+sphinx = "*"
+pyfakefs = "*"
+pyyaml = "*"
+sphinxcontrib-plantuml = "*"
+safety = "*"
+mypy = "^0.761"
+twine = "^3.1.1"
+poetry-dynamic-versioning = "*"
+
+[tool.poetry.extras]
+pyyaml = ["pyyaml"]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "pep440"
+
+# == Coverage ==
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+ignore_errors = true
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    'pragma: no cover',
+
+    # Don't complain about missing debug-only code:
+    'def __repr__',
+    'if self\.debug',
+
+    # Don't complain if tests don't hit defensive assertion code:
+    'raise AssertionError',
+    'raise NotImplementedError',
+
+    # Don't complain if non-runnable code isn't run:
+    'if 0:',
+    'if __name__ == .__main__.:',
+
+    # Don't complain about type checking blocks
+    'if TYPE_CHECKING:',
+]
+
+[tool.coverage.html]
+directory = 'coverage_html_report'
