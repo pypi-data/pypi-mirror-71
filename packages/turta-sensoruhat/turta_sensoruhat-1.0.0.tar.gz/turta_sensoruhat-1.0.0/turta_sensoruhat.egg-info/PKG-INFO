@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: turta-sensoruhat
+Version: 1.0.0
+Summary: Python Libraries for Turta Sensor uHAT
+Home-page: https://www.turta.io/sensoruhat
+Author: Turta LLC
+Author-email: hello@turta.io
+License: UNKNOWN
+Project-URL: Documentation, https://docs.turta.io/raspberry-pi-hats/sensor-uhat
+Project-URL: GitHub Repository, https://github.com/Turta-io/Sensor-uHAT
+Description: # Turta Sensor uHAT for Raspberry Pi Zero
+        Sensor uHAT is a sensor and IR control board for Raspberry Pi Zero.
+        
+        This repository includes libraries, samples, and component datasheets of Sensor uHAT.
+        
+        ## Features
+        - Measures temperature, relative humidity, air pressure, and calculates altitude via Bosch Sensortec BME280 environmental sensor.
+        - Detects movement and theft attempts via accelerometer and tilt sensor NXP MMA8491Q.
+        - Senses ambient light and UV Index via Silicon Labs SI1133 sensor.
+        - Controls home electronics via IR remote transmitter.
+        - Sensor uHAT has Grove System compatible I2C, UART, and digital ports.
+        - Carries ID EEPROM for Raspberry Pi HAT specification compliance.
+        
+        ## Raspberry Pi Configuration
+        - You should enable I2C from the Raspberry Pi's configuration. To do so, type 'sudo raspi-config' to the terminal, then go to 'Interfacing Options' and enable the I2C.
+        
+        ## Documentation
+        Visit [docs.turta.io](https://docs.turta.io) for documentation.
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Topic :: System :: Hardware
+Description-Content-Type: text/markdown
