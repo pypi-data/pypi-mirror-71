@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: CacheControl-ldax
+Version: 0.12.5.3
+Summary: httplib2 caching for requests
+Home-page: https://github.com/VUIIS/cachecontrol
+Author: Shunxing Bao
+Author-email: onealbao@gmail.com
+License: UNKNOWN
+Keywords: requests http caching web - ldax testing version
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Requires-Dist: requests
+Requires-Dist: msgpack (>=0.5.2)
+Provides-Extra: filecache
+Requires-Dist: lockfile (>=0.9) ; extra == 'filecache'
+Provides-Extra: redis
+Requires-Dist: redis (>=2.10.5) ; extra == 'redis'
+
+The package is hosted at VUIIS github repo, which is a customized package to enable ldax cahce feature (testing only). The project is orginal hosted at https://github.com/ionrock/cachecontrol
+
+
