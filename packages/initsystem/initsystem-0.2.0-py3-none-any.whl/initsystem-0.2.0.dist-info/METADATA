@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: initsystem
+Version: 0.2.0
+Summary: init-system-agnostic way to start, stop and check statuses of services
+Home-page: https://github.com/ewen-lbh/python-initsystem
+License: MIT
+Author: ewen-lbh
+Author-email: ewen.lebihan7@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: System :: Boot :: Init
+Project-URL: Documentation, https://github.com/ewen-lbh/python-initsystem#readme
+Project-URL: Repository, https://github.com/ewen-lbh/python-initsystem
+Description-Content-Type: text/markdown
+
+Manage services.
+Supports SystemV init or systemd.
+
+## Installation
+
+Available [on PyPI](https://pypi.org/project/initsystem):
+
+```
+pip install initsystem
+```
+
+## Example
+
+```python
+>>> from initsystem import Service
+>>> couchdb = Service('couchdb')
+>>> couchdb.is_running()
+False
+>>> couchdb.start()
+>>> couchdb.is_running()
+True
+>>> couchdb.stop()
+>>> couchdb.is_running()
+False
+```
+
