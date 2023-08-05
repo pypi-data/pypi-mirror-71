@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: albertk
+Version: 0.0.1.31
+Summary: Terry albertk
+Home-page: https://terry-toolkit.terrychan.org/zh/master/
+Author: Terry Chan
+Author-email: napoler2008@gmail.com
+License: UNKNOWN
+Description: 
+        
+        
+        
+        #搜索关键词进行聚类
+        
+        from albertk import *
+        model,tokenizer=load_albert("data/albert_tiny")
+        keyword=input("输入关键词：")
+        # keyword="边境牧羊犬智商"
+        klist=run_search_sent(keyword,20,tokenizer,model)
+        print(klist)
+        
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
