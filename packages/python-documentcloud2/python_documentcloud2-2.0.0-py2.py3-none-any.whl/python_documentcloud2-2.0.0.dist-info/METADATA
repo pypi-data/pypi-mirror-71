@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: python-documentcloud2
+Version: 2.0.0
+Summary: A simple Python wrapper for the DocumentCloud API
+Home-page: https://github.com/muckrock/python-documentcloud
+Author: Mitchell Kotler
+Author-email: mitch@muckrock.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Dist: future
+Requires-Dist: listcrunch (>=1.0.1)
+Requires-Dist: python-dateutil
+Requires-Dist: ratelimit
+Requires-Dist: requests
+Requires-Dist: urllib3
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-mock ; extra == 'test'
+Requires-Dist: pytest-recording ; extra == 'test'
+Requires-Dist: vcrpy ; extra == 'test'
+
+UNKNOWN
+
+
