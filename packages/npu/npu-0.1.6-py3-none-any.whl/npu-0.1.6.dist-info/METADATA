@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: npu
+Version: 0.1.6
+Summary: Python client for using npu api
+Home-page: https://github.com/pypa/sampleproject
+Author: Neuro AI
+Author-email: api@neuro-ai.co.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2)
+Requires-Dist: numpy (>=1.18)
+Requires-Dist: dill
+Requires-Dist: bson
+Requires-Dist: progress
+
+# NPU Python Client Package
+
+To install, run:
+
+`pip install npu`
+
+To use in code:
+
+`import npu` 
+
+# Documentation generation
+
+To generate docs, install sphinx:
+
+`pip install sphinx`
+
+Install "read the docs" theme:
+
+`pip install sphinx_rtd_theme`
+
+To regenerate html files, run:
+
+`make clean html` inside documentation folder. Index will be in build folder.
+
+
