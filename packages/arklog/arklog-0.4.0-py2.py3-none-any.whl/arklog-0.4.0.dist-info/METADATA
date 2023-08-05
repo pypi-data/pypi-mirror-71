@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: arklog
+Version: 0.4.0
+Summary: A python logging module with colors.
+Home-page: UNKNOWN
+Author: Arkadiusz Michał Ryś
+Author-email: Arkadiusz.Michal.Rys@gmail.com
+License: MIT license
+Keywords: logging colors
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.8, <4
+Requires-Dist: pyyaml (<6,>=5)
+
+======
+arklog
+======
+
+.. image:: https://img.shields.io/pypi/v/arklog.svg
+        :target: https://pypi.python.org/pypi/arklog
+
+A python logging module with colors.
+
+Example
+-------
+
+.. code-block:: python3
+
+    import arklog
+
+    arklog.set_defaults()
+    arklog.debug("Debug message")
+    arklog.info("Info message")
+    arklog.warning("Warning message")
+    arklog.extra("Extra message")
+    arklog.error("Error message")
+    arklog.success("Success message")
+
+
+=======
+History
+=======
+
+0.4.0 (2020-06-13)
+------------------
+
+* Add exception method.
+
+0.3.0 (2020-06-13)
+------------------
+
+* Fix requirements generation.
+
+0.2.0 (2020-06-03)
+------------------
+
+* Add extra method.
+* Add success method.
+
+0.1.0 (2020-06-03)
+------------------
+
+* Allow direct access to functions.
+
+0.0.1 (2020-06-03)
+------------------
+
+* First release on PyPI.
+
+
