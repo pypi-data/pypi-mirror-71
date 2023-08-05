@@ -1,0 +1,25 @@
+jupyterlab>=1.0.0
+nbval>=0.9.1
+nbconvert
+pytest>=4.4.0
+pytest-cov
+pytest-html>=1.20.0
+flake8
+parameterized
+
+[dev]
+jupyterlab>=1.0.0
+nbval>=0.9.1
+nbconvert
+pytest>=4.4.0
+pytest-cov
+pytest-html>=1.20.0
+flake8
+parameterized
+bump2version
+mock
+autopep8
+beautifulsoup4
+
+[dev:sys_platform != "win32"]
+pytest-xdist
