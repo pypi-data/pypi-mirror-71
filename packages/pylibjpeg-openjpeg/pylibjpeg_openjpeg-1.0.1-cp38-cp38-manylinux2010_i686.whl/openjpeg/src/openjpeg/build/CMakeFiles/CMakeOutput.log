@@ -1,0 +1,613 @@
+The system is: Linux - 5.3.0-1022-azure - i686
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/rh/devtoolset-8/root/usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/2.8.12.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/rh/devtoolset-8/root/usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/2.8.12.2/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1066191327/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1066191327.dir/build.make CMakeFiles/cmTryCompileExec1066191327.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1066191327.dir/testCCompiler.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1066191327.dir/testCCompiler.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec1066191327
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1066191327.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec1066191327.dir/testCCompiler.c.o  -o cmTryCompileExec1066191327 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3379683191/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3379683191.dir/build.make CMakeFiles/cmTryCompileExec3379683191.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec3379683191
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3379683191.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc     -v CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3379683191 -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/opt/rh/devtoolset-8/root/usr/bin/cc
+COLLECT_LTO_WRAPPER=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper
+Target: i686-redhat-linux
+Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/opt/rh/devtoolset-8/root/usr --mandir=/opt/rh/devtoolset-8/root/usr/share/man --infodir=/opt/rh/devtoolset-8/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --with-linker-hash-style=gnu --with-default-libstdcxx-abi=gcc4-compatible --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/isl-install --disable-libmpx --with-mpc=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/mpc-install --with-tune=generic --with-arch=i686 --build=i686-redhat-linux
+Thread model: posix
+gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC) 
+COMPILER_PATH=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/
+LIBRARY_PATH=/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3379683191' '-rdynamic' '-mtune=generic' '-march=i686'
+ /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2 -plugin /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so -plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccABWUz2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_i386 -export-dynamic -dynamic-linker /lib/ld-linux.so.2 -o cmTryCompileExec3379683191 /usr/lib/crt1.o /usr/lib/crti.o /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8 -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../.. CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o /usr/lib/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3379683191' '-rdynamic' '-mtune=generic' '-march=i686'
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec3379683191/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3379683191.dir/build.make CMakeFiles/cmTryCompileExec3379683191.dir/build]
+  ignore line: [gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec3379683191]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3379683191.dir/link.txt --verbose=1]
+  ignore line: [/opt/rh/devtoolset-8/root/usr/bin/cc     -v CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3379683191 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/rh/devtoolset-8/root/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper]
+  ignore line: [Target: i686-redhat-linux]
+  ignore line: [Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/opt/rh/devtoolset-8/root/usr --mandir=/opt/rh/devtoolset-8/root/usr/share/man --infodir=/opt/rh/devtoolset-8/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --with-linker-hash-style=gnu --with-default-libstdcxx-abi=gcc4-compatible --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/isl-install --disable-libmpx --with-mpc=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/mpc-install --with-tune=generic --with-arch=i686 --build=i686-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3379683191' '-rdynamic' '-mtune=generic' '-march=i686']
+  link line: [ /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2 -plugin /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so -plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccABWUz2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_i386 -export-dynamic -dynamic-linker /lib/ld-linux.so.2 -o cmTryCompileExec3379683191 /usr/lib/crt1.o /usr/lib/crti.o /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8 -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../.. CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o /usr/lib/crtn.o]
+    arg [/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccABWUz2.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_i386] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3379683191] ==> ignore
+    arg [/usr/lib/crt1.o] ==> ignore
+    arg [/usr/lib/crti.o] ==> ignore
+    arg [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o] ==> ignore
+    arg [-L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8] ==> dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8]
+    arg [-L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..] ==> dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..]
+    arg [CMakeFiles/cmTryCompileExec3379683191.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o] ==> ignore
+    arg [/usr/lib/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8] ==> [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8]
+  collapse library dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..] ==> [/opt/rh/devtoolset-8/root/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8;/opt/rh/devtoolset-8/root/usr/lib]
+  implicit fwks: []
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2644529330/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2644529330.dir/build.make CMakeFiles/cmTryCompileExec2644529330.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2644529330.dir/testCXXCompiler.cxx.o
+/opt/rh/devtoolset-8/root/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2644529330.dir/testCXXCompiler.cxx.o -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec2644529330
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2644529330.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/c++        CMakeFiles/cmTryCompileExec2644529330.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec2644529330 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1623194734/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1623194734.dir/build.make CMakeFiles/cmTryCompileExec1623194734.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o
+/opt/rh/devtoolset-8/root/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1623194734
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1623194734.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/c++      -v CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1623194734 -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/opt/rh/devtoolset-8/root/usr/bin/c++
+COLLECT_LTO_WRAPPER=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper
+Target: i686-redhat-linux
+Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/opt/rh/devtoolset-8/root/usr --mandir=/opt/rh/devtoolset-8/root/usr/share/man --infodir=/opt/rh/devtoolset-8/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --with-linker-hash-style=gnu --with-default-libstdcxx-abi=gcc4-compatible --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/isl-install --disable-libmpx --with-mpc=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/mpc-install --with-tune=generic --with-arch=i686 --build=i686-redhat-linux
+Thread model: posix
+gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC) 
+COMPILER_PATH=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/
+LIBRARY_PATH=/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1623194734' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=i686'
+ /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2 -plugin /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so -plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper -plugin-opt=-fresolution=/tmp/cceQiJFh.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_i386 -export-dynamic -dynamic-linker /lib/ld-linux.so.2 -o cmTryCompileExec1623194734 /usr/lib/crt1.o /usr/lib/crti.o /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8 -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../.. CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o /usr/lib/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1623194734' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=i686'
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec1623194734/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1623194734.dir/build.make CMakeFiles/cmTryCompileExec1623194734.dir/build]
+  ignore line: [gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/rh/devtoolset-8/root/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1623194734]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1623194734.dir/link.txt --verbose=1]
+  ignore line: [/opt/rh/devtoolset-8/root/usr/bin/c++      -v CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1623194734 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/rh/devtoolset-8/root/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper]
+  ignore line: [Target: i686-redhat-linux]
+  ignore line: [Configured with: ../configure --enable-bootstrap --enable-languages=c,c++,fortran,lto --prefix=/opt/rh/devtoolset-8/root/usr --mandir=/opt/rh/devtoolset-8/root/usr/share/man --infodir=/opt/rh/devtoolset-8/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --with-linker-hash-style=gnu --with-default-libstdcxx-abi=gcc4-compatible --enable-plugin --enable-initfini-array --with-isl=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/isl-install --disable-libmpx --with-mpc=/builddir/build/BUILD/gcc-8.3.1-20190311/obj-i686-redhat-linux/mpc-install --with-tune=generic --with-arch=i686 --build=i686-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.1 20190311 (Red Hat 8.3.1-3) (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/:/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1623194734' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=i686']
+  link line: [ /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2 -plugin /opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so -plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper -plugin-opt=-fresolution=/tmp/cceQiJFh.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_i386 -export-dynamic -dynamic-linker /lib/ld-linux.so.2 -o cmTryCompileExec1623194734 /usr/lib/crt1.o /usr/lib/crti.o /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8 -L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../.. CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o /usr/lib/crtn.o]
+    arg [/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/opt/rh/devtoolset-8/root/usr/libexec/gcc/i686-redhat-linux/8/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cceQiJFh.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_i386] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec1623194734] ==> ignore
+    arg [/usr/lib/crt1.o] ==> ignore
+    arg [/usr/lib/crti.o] ==> ignore
+    arg [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtbegin.o] ==> ignore
+    arg [-L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8] ==> dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8]
+    arg [-L/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..] ==> dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..]
+    arg [CMakeFiles/cmTryCompileExec1623194734.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/crtend.o] ==> ignore
+    arg [/usr/lib/crtn.o] ==> ignore
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse library dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8] ==> [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8]
+  collapse library dir [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8/../../..] ==> [/opt/rh/devtoolset-8/root/usr/lib]
+  implicit libs: [stdc++;m;c]
+  implicit dirs: [/opt/rh/devtoolset-8/root/usr/lib/gcc/i686-redhat-linux/8;/opt/rh/devtoolset-8/root/usr/lib]
+  implicit fwks: []
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1162256296/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1162256296.dir/build.make CMakeFiles/cmTryCompileExec1162256296.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1162256296.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1162256296.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec1162256296
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1162256296.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec1162256296.dir/CheckIncludeFile.c.o  -o cmTryCompileExec1162256296 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec377218700/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec377218700.dir/build.make CMakeFiles/cmTryCompileExec377218700.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec377218700.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec377218700.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec377218700
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec377218700.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec377218700.dir/CheckIncludeFile.c.o  -o cmTryCompileExec377218700 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2541277083/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2541277083.dir/build.make CMakeFiles/cmTryCompileExec2541277083.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2541277083.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2541277083.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec2541277083
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2541277083.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2541277083.dir/CheckIncludeFile.c.o  -o cmTryCompileExec2541277083 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining size of unsigned short passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4234679909/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4234679909.dir/build.make CMakeFiles/cmTryCompileExec4234679909.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4234679909.dir/CMAKE_SIZEOF_UNSIGNED_SHORT.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4234679909.dir/CMAKE_SIZEOF_UNSIGNED_SHORT.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CheckTypeSize/CMAKE_SIZEOF_UNSIGNED_SHORT.c
+Linking C executable cmTryCompileExec4234679909
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4234679909.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec4234679909.dir/CMAKE_SIZEOF_UNSIGNED_SHORT.c.o  -o cmTryCompileExec4234679909 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4066186103/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4066186103.dir/build.make CMakeFiles/cmTryCompileExec4066186103.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4066186103.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4066186103.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec4066186103
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4066186103.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec4066186103.dir/CheckIncludeFile.c.o  -o cmTryCompileExec4066186103 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec999694671/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec999694671.dir/build.make CMakeFiles/cmTryCompileExec999694671.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec999694671.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec999694671.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec999694671
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec999694671.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec999694671.dir/CheckIncludeFile.c.o  -o cmTryCompileExec999694671 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3084157433/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3084157433.dir/build.make CMakeFiles/cmTryCompileExec3084157433.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3084157433.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3084157433.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec3084157433
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3084157433.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec3084157433.dir/CheckIncludeFile.c.o  -o cmTryCompileExec3084157433 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdio.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1542477571/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1542477571.dir/build.make CMakeFiles/cmTryCompileExec1542477571.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1542477571.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1542477571.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec1542477571
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1542477571.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec1542477571.dir/CheckIncludeFile.c.o  -o cmTryCompileExec1542477571 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file math.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec759128203/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec759128203.dir/build.make CMakeFiles/cmTryCompileExec759128203.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec759128203.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec759128203.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec759128203
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec759128203.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec759128203.dir/CheckIncludeFile.c.o  -o cmTryCompileExec759128203 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file float.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2517823573/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2517823573.dir/build.make CMakeFiles/cmTryCompileExec2517823573.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2517823573.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2517823573.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec2517823573
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2517823573.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2517823573.dir/CheckIncludeFile.c.o  -o cmTryCompileExec2517823573 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file time.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec723004534/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec723004534.dir/build.make CMakeFiles/cmTryCompileExec723004534.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec723004534.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec723004534.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec723004534
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec723004534.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec723004534.dir/CheckIncludeFile.c.o  -o cmTryCompileExec723004534 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdarg.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec322131040/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec322131040.dir/build.make CMakeFiles/cmTryCompileExec322131040.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec322131040.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec322131040.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec322131040
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec322131040.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec322131040.dir/CheckIncludeFile.c.o  -o cmTryCompileExec322131040 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file ctype.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3306493598/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3306493598.dir/build.make CMakeFiles/cmTryCompileExec3306493598.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3306493598.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3306493598.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec3306493598
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3306493598.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec3306493598.dir/CheckIncludeFile.c.o  -o cmTryCompileExec3306493598 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file assert.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec582762868/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec582762868.dir/build.make CMakeFiles/cmTryCompileExec582762868.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec582762868.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec582762868.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec582762868
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec582762868.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec582762868.dir/CheckIncludeFile.c.o  -o cmTryCompileExec582762868 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4106967819/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4106967819.dir/build.make CMakeFiles/cmTryCompileExec4106967819.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4106967819.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4106967819.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec4106967819
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4106967819.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec4106967819.dir/CheckIncludeFile.c.o  -o cmTryCompileExec4106967819 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2635705978/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2635705978.dir/build.make CMakeFiles/cmTryCompileExec2635705978.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2635705978.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2635705978.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec2635705978
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2635705978.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2635705978.dir/CheckIncludeFile.c.o  -o cmTryCompileExec2635705978 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2128453488/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2128453488.dir/build.make CMakeFiles/cmTryCompileExec2128453488.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2128453488.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2128453488.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec2128453488
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2128453488.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2128453488.dir/CheckIncludeFile.c.o  -o cmTryCompileExec2128453488 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3186283063/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3186283063.dir/build.make CMakeFiles/cmTryCompileExec3186283063.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3186283063.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3186283063.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec3186283063
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3186283063.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec3186283063.dir/CheckIncludeFile.c.o  -o cmTryCompileExec3186283063 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2643988188/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2643988188.dir/build.make CMakeFiles/cmTryCompileExec2643988188.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2643988188.dir/CheckIncludeFile.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2643988188.dir/CheckIncludeFile.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec2643988188
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2643988188.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2643988188.dir/CheckIncludeFile.c.o  -o cmTryCompileExec2643988188 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files malloc.h exist passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3114567545/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3114567545.dir/build.make CMakeFiles/cmTryCompileExec3114567545.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3114567545.dir/CheckIncludeFiles.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3114567545.dir/CheckIncludeFiles.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec3114567545
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3114567545.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec3114567545.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec3114567545 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the posix_memalign exist passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2453758064/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2453758064.dir/build.make CMakeFiles/cmTryCompileExec2453758064.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2453758064.dir/CheckSymbolExists.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc  -D_POSIX_C_SOURCE=200112L  -o CMakeFiles/cmTryCompileExec2453758064.dir/CheckSymbolExists.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec2453758064
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2453758064.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec2453758064.dir/CheckSymbolExists.c.o  -o cmTryCompileExec2453758064 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+File /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef posix_memalign
+  return ((int*)(&posix_memalign))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the memalign exist passed with the following output:
+Change Dir: /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1240683483/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1240683483.dir/build.make CMakeFiles/cmTryCompileExec1240683483.dir/build
+gmake[1]: Entering directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1240683483.dir/CheckSymbolExists.c.o
+/opt/rh/devtoolset-8/root/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1240683483.dir/CheckSymbolExists.c.o   -c /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1240683483
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1240683483.dir/link.txt --verbose=1
+/opt/rh/devtoolset-8/root/usr/bin/cc       CMakeFiles/cmTryCompileExec1240683483.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1240683483 -rdynamic 
+gmake[1]: Leaving directory `/tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp'
+
+File /tmp/pip-req-build-jgbkd__y/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memalign
+  return ((int*)(&memalign))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
