@@ -1,0 +1,42 @@
+language: python
+dist: xenial
+os: linux
+virtualenv:
+  system_site_packages: false
+jobs:
+  fast_finish: true
+  include:
+  - env: DISTRIB="conda" PYTHON_VERSION="3.7" COVERAGE="true"
+install:
+- source tests/travis_install.sh
+before_script:
+- git config --global user.email "wusher@kth.com"
+- git config --global user.name "Will Usher"
+script:
+- python setup.py install
+- pytest
+- |
+  if [[ "$COVERAGE" == "true" ]]; then
+    pre-commit install
+    pre-commit run --files src
+  fi
+after_success:
+- if [[ "$COVERAGE" == "true" ]]; then coveralls || echo "failed"; fi
+after_script:
+- travis-cleanup
+cache:
+  pip: true
+  directories:
+  - "$HOME/miniconda"
+notifications:
+  email: false
+deploy:
+  edge: true
+  provider: pypi
+  username: __token__
+  password:
+    secure: T7bN/j+SWcfR5uDCCMqlEKZdnXVjZYtwcVckD5tZ3L9rX4WEbfRXOIF6zZIz0VUrdrg7EdQAfeoSE8bPXHv/Ln5imO/+JxiuMabVkvB7mnRL9m1fTAQO/ZMNq3iItwvmYu84QiLyHXEGfPZxQlHAzxW6X99rx91TED49QFjFP6g3j3IzZNvBvsx07UW3oC+EI8A2yhbbBAHCxE9LvdUVpjsiTf3U9L+yadlTUt2o1Qg2BsjvlfLrRfm8wbEO1RmV5xCTUtwlCWg7MCXXK9K/QHB3NaCjd0hNAA6NCihhL9hpcIdLpXxnlyT4MduJ9Ca1Oy6CTI2h0RAh52LIcRMPfKmtHs0Zw916AKsn+RpkA6DTIph8Kd+5ZzgyQFHHL6DNyf0X+qlDrpFeKkz02ChMkYmnBkJZy5zaYAU+3DaTDwhweYIDI8tIyAp8ER3ABMyZFwJQLRXkTSMMpiyTr1z7nEoiEWZ9tQ4aW8BIVYlN2HuIkxBdPk8U7FQBDXSdnicvcbXe/0Lwcb0fttdF/WDp7IrYOyFJY+MIBODCYfkCuIkuzW+iu3/zEJTUiiubEJCIfNZuJv71RFwEPbHPKMEh760pzB5eGnICfL7gihOaphGZ6FNdNY6vaBjj3u2Yx3oTWx5FEVGitxNkxKjFFGaNi8AAF4h/JRxcYLk/DATizT0=
+  on:
+    tags: true
+    all_branches: true
+  cleanup: false
