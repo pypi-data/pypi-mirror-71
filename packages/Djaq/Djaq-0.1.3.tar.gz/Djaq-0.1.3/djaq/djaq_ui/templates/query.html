@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <a href=".">Djaq</a>
+  <a href="https://github.com/paul-wolf/djaq" style="font-size: 80%">(doc)</a>
+  <div style="height:200px;margin-bottom:10px;">
+    <textarea placeholder="Query"
+	      id="query"
+	      style="width:35%;height:100%;border: 2px solid grey;padding: 5px;display:inline-block;"></textarea>
+    <textarea placeholder="Context"
+	      id="context"
+	      style="width:18%;height:100%;border: 2px solid grey;padding: 5px;display:inline-block;"></textarea>
+
+    <div style="display:inline-block;width:25%;">
+      app: <select id="app" onchange="get_models()">
+	<option value="">Choose app</option>
+	{% for app in apps %}
+	<option value="{{app}}">{{app}}</option>
+	{% endfor %}
+      </select>
+      <div id="models" style="width:100%;height:85%;border: 2px solid grey;padding: 5px;overflow:auto">
+	    <div style="position:relative">
+	      <div class="top-right" style="position: absolute;top:0;right:0;left:auto;">models</div>
+	    </div>
+	<ul id="model_list">
+	</ul>
+      </div>
+    </div>
+
+    <div id="fields" style="margin-left:10px;width:15%;height:85%;border: 2px solid grey;padding: 5px;display:inline-block;overflow:auto">
+	    <div style="position:relative">
+	      <div class="top-right" style="position: absolute;top:0;right:0;left:auto;">fields</div>
+	    </div>
+	<ul id="field_list">
+	</ul>
+    </div>
+
+  </div>
+
+  <div class="button"><button title="Send query and retrieve results (Shift-Enter)"
+			      onclick="execute_query();">Send</button></div>
+  <div class="button"><button title="Represent query as json"
+			      onclick="represent_query();">JSON</button></div>
+  <div class="button"><button title="Get SQL for query"
+			      onclick="get_sql();">SQL</button></div>
+  <div class="button"><button title="Get schema for models"
+			      onclick="get_schema();">Schema</button></div>
+  <div class="button"><button title="Get active whitelist"
+			      onclick="get_whitelist();">Whitelist</button></div>
+
+  <div class="field">
+    <label>limit</label>
+    <input type="number" value=100 id="limit"/>
+  </div>
+
+  <div class="field">
+    <label>offset</label>
+    <input type="number" value=0 id="offset"/>
+  </div>
+
+  <textarea id="result" style="width:100%;min-height:500px;margin-top:10px;"></textarea>
+
+<script>
+  function render_query() {
+      var q = $("#query").val();
+      var context = $("#context").val();
+      var limit = $("#limit").val();
+      var offset = $("#offset").val();
+      console.log(context);
+      try {
+	  context = JSON.parse(context);
+      } catch(err) {
+	  console.log(err);
+	  context = {}
+      }
+
+      q =  q.replace(/(\r\n|\n|\r)/gm,"");
+      query = {
+	  q: q,
+	  context: context,
+	  limit: limit,
+	  offset: offset
+      }
+      return {
+	  queries: [
+	      query
+	  ]
+      }
+  }
+
+  function represent_query() {
+      var s = JSON.stringify(render_query(), null, 1);
+      $("#result").val(s);
+  }
+
+  function execute_query() {
+      $("#result").val('working on it...');
+      var url = "/djaq/api/request/"
+      $.ajax({
+          type: "POST",
+	  data: JSON.stringify(render_query()),
+          url: url,
+	  contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function(response) {
+	      $("#result").val(JSON.stringify(response.result, null, 1));
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+  function get_sql() {
+      $("#result").val('working on it...');
+      var url = "/dquery/sql/"
+      $.ajax({
+          type: "POST",
+          data: {
+	      query: $("#query").val(),
+	  },
+          url: url,
+          success: function(response) {
+	      $("#result").val(response.result);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+  function get_schema() {
+      $("#result").val('working on it...');
+      var url = "/djaq/api/schema/"
+      $.ajax({
+          type: "GET",
+          url: url,
+          success: function(response) {
+	      $("#result").val(JSON.stringify(response, null, 1));
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+
+  function get_models() {
+      var appname = $("#app").val();
+      var url = `/dquery/models/${appname}/`
+      $.ajax({
+          type: "GET",
+          url: url,
+          success: function(response) {
+	      $("#model_list").html("");
+	      response.models.forEach(function(element) {
+		  $("#model_list").append(`<li><a href="javascript:void(0);" onclick="get_fields('${element}')">${element}</a></li>`);
+	      });
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+
+  function get_fields(modelname) {
+
+      var url = `/dquery/fields/${modelname}/`
+      $.ajax({
+          type: "GET",
+          url: url,
+          success: function(response) {
+	      $("#result").val(JSON.stringify(response, null, 1));
+	      $("#field_list").html("");
+	      for (let [name, f] of Object.entries(response.fields)) {
+		  $("#field_list").append(`<li><a href="javascript:void(0);" ">${name}: ${f.internal_type}</a></li>`);
+	      }
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+
+  function get_whitelist() {
+
+      var url = `/dquery/whitelist/`
+      $.ajax({
+          type: "GET",
+          url: url,
+          success: function(response) {
+	      $("#result").val(JSON.stringify(response, null, 1));
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              $("#result").val(xhr.responseText);
+          }
+      });
+  }
+
+  function handleEnter(evt) {
+      console.log("handleEnter");
+      if (evt.keyCode == 13 && evt.shiftKey) {
+	  console.log("yes, we have it");
+	  console.log(evt);
+
+	    execute_query(false);
+
+        evt.preventDefault();
+    }
+}
+
+$( document ).ready(function() {
+
+    $(document).on('dblclick', 'ul li', function(){
+
+	var t = $(this).text();
+	console.log($(this).text());
+
+	var parts = t.split(".");
+	console.log(parts);
+	var model_name = parts[parts.length -1]
+	var m = model_name.charAt().toLowerCase();
+	var fields = '';
+	$('ul#field_list li').each(function(i) {
+	    var f = $(this).text().split(":")[0];
+	    fields += `${m}.${f},\n`;
+	});
+	var $txt = jQuery("#query");
+        var caretPos = $txt[0].selectionStart;
+        var textAreaTxt = $txt.val();
+        $txt.val(textAreaTxt.substring(0, caretPos) + `(${fields}) ${t} ${m}` + textAreaTxt.substring(caretPos) );
+    });
+
+    $("#query").keydown(handleEnter).keypress(handleEnter);
+
+});
+
+</script>
+{% endblock %}
