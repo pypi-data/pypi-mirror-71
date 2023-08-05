@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: segy-lite
+Version: 0.0.4
+Summary: Lightweight SEGY Reading and Plotting Tool
+Home-page: https://github.com/adclose/segy_lite
+Author: Aaron Close
+Author-email: adclose@gmail.com
+License: UNKNOWN
+Description: # SEGY reader
+        
+        ### 
+        Designed to be a very light weight seismic reader that is easy and flexible.  
+        
+        Because of the history of SEGY standard there have been lots of places
+         where people tended to use as default byte possitions and data formats,
+         For that reason we do minimal (no) checking to make sure the bit possitions have 
+         the information that is expected.  
+         
+        We instead rely on highly flexable configuration files.
+        the defaule segy 1 and segy 0 files can be extened and adapted with custom config files.
+        If there is something that is missing that is needed you can use a constant and it will override whatever
+        is in the byte possitions.  
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
