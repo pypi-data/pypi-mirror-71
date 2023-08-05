@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: autosentiment
+Version: 0.1.2
+Summary: An automatic sentiment analysis pakage
+Home-page: https://github.com/CodeFighter03/autosentiment
+Author: Sazin Reshed Samin
+Author-email: sazinsamin50@gmail.com
+License: UNKNOWN
+Description: Automate sentiment analysis tool
+        
+        
+        Usage
+        For analysis the seintiment type in positive,negetive or neutral
+        
+        Setup in normal environment and command window:
+        ```
+        pip install automatic_sentiment
+        ```
+        
+        
+        Setup in jupyter notebook:
+        ```
+        !pip install automatic_sentiment
+        ```
+        
+        
+        Import library : 
+        ```
+        import automatic_sentiment as at
+        ```
+        
+        
+        The library is pandas dataframe dependent.
+        ```
+        Have to get dataframe('text columns') and give to command.
+        Like df['text]
+        ```
+        
+        
+        
+        
+        
+        sentiment type pie chart :
+        ```
+        at.pie()
+        ```
+        
+        sentiment type amount : 
+        ```
+        at.number()
+        ```
+        
+        
+        sentiment percentage :
+        ```
+        at.percentage()
+        ```
+        
+        
+        An example
+        ```
+        at.pie(df['text'])
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
