@@ -1,0 +1,3 @@
+#nm_distributions
+Installation
+pip install nm_distributions
