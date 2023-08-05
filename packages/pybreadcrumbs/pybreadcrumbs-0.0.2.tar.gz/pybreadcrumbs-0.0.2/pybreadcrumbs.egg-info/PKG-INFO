@@ -1,0 +1,205 @@
+Metadata-Version: 2.1
+Name: pybreadcrumbs
+Version: 0.0.2
+Summary: A lighweight functional tracer and log enhancer
+Home-page: https://github.com/gofynd/pybreadcrumbs
+Author: Hitesh Jha
+Author-email: hitesh4official@gmail.com
+License: UNKNOWN
+Description: # PyBreadCrumbs
+        pybreadcrumbs is a lightweight function tracer and log enhancer for distributed systems written in python.
+        
+        ## Inspiration
+        * The inspiration for **PyBreadCrumbs** came to solve the daily trouble that we faced in our organisation in searching and sorting system logs that were generated.
+        * It solves this by adding an extra key value pair to the log data which adds tracability to the logs.
+        * It also adds an extra key value pair to add simple time taken based profiling as well.
+        * It doesn't wish to compete with fully functional tracer or profiler nor it is a replacement for them, It's just there to make your logs more streamlined, readable and tracable.
+        
+        ## Getting Started
+        
+        ### Prerequisites
+        A project of course where you want to integrate breadcrumbs.
+        
+        ### Installing
+        * pybreadcrumbs is available on PyPi.
+        * you can use pip to install this using `pip install pybreadcrumbs`
+        * It requires python 3.7 or greater to work.
+        
+        
+        ### Configuring
+        * import the breadcrumbs configuration at the root python file from where the execution starts.
+        * `from breadcrumbs.configuration import breadcrumbs_config`
+        * `breadcrumbs_config` is a config dictionary with following options.
+        * `trace_id_prefix` : the prefix which will be appended to system generated trace id key.
+        * `key_prefix` : the prefix which will be added to every key of breadcrumbs log_payload.
+        * `timezone` : the timezone string for datetime in log_payload. default value is `UTC`
+        * `datetime_format ` : The datetime formate to be used in log_payload default value is `%Y-%m-%d %H:%M:%S.%f`
+        * `additional_keys` : Additional keys that you wish to add to the tracable log payload.
+        * `extraction_fallback_level`: this defines the stack trace level that a trace decorator should look for trace_id before creating a new trace id of it's own.
+        
+        ### Using
+        * Import the decorator `add_bowl` using.
+        * `from breadcrumbs.base import add_bowl`
+        * use the decorator on any function you would like to trace.
+        * the fuction in which it is used needs to accept `kwargs` in function parameters.
+        * to enhance other logging calls inside the function fetch the bowl object using
+        * `breadcrumbs_bowl = kwargs.get("breadcrumbs_bowl")`
+        * then whenever logging something pass `extra=breadcrumbs_bowl.log_payload` in your logging call.
+        * eg. `logger.info("test message that should be tracable", extra=breadcrumbs_bowl.log_payload)`
+        * you can also add a trace_text to your log_payload by using below method.
+        * eg. `logger.info("test message that should be tracable", extra=breadcrumbs_bowl.add_trace_text("CodeEventName"))`
+        * During the function call if you wish to add some meta data to the next logging calls you can store those meta data in the bowl object using add_trace_meta function.
+        * eg. `breadcrumbs_bowl.add_trace_meta(key1="string_value", key2=45)`
+        * The next logging calls using bowl object in the same function will log this meta as well.
+        * NOTE: meta data is never propogated to next called function, only the `trace_id` and keys defined by `additional_keys`
+        
+        ### Advanced Usage
+        * You can pass key value pairs for keys defined under `additional_keys` in the decorator itself.
+        * this way the functional trace log will contain these key value pairs and these will also be added to all the upcoming `breadcrumbs_bowl.log_payload` and `breadcrumbs_bowl.add_trace_text("tTraceText")` calls.
+        * You can pass meta data key value pair in the decorator itself so as to insert meta data from the start itself rather then inside the fucntion manually using `add_trace_meta`.
+        * You can pass custom trace_id of your choice by passing `trace_id` key and it's value in the decorator.
+        * Similarily you can pass custom trace_text for the function tracing logs by passing `trace_text` key and it's value in the decorator.
+        * You can pass python expression in place of value for any key in the decorator to extract value dynamically during a function call.
+        * To do this you need to use `add_bowlv2` decorator instead of `add_bowl` available under  `breadcrumbs.base`
+        * The expression should be a string starting with `@` to signify it's dynamic nature.
+        * The python expression should be one liner and need to do operation on `args` or `kwargs` variable.
+        * All the positional argument passed to the underlying function is stored in args which is a tuple.
+        * All the keyword arguments passed to the underlying function is stored in kwargs which is a dict.
+        * you can use the `|` operator and add two expression so that if first one fails second one can be used.
+        * eg: `add_bowlv2(dynamic_key1='@args[0].attribute1["key1"]')` or `add_bowlv2(dynamic_key1='@kwargs["key1"].attribute1[0]')` or a complex one like `add_bowlv2(dynamic_key1='@args[0]|kwargs["key1"].attribute1[0]')`
+        
+        ## A Code block showing Usage
+        
+            # initialise_project.py
+            from breadcrumbs.configuration import breadcrumbs_config
+        
+            breadcrumbs_config.update({
+                "trace_id_prefix": "test-",
+                "key_prefix": "log_",
+                "timezone": "Asia/Kolkata",
+                "additional_keys": {"key1","key2"}
+            })
+        
+            # test.py
+            from breadcrumbs.base import add_bowl, add_bowlv2
+            import logging
+        
+            logger = logging.getLogger(__name__)
+        
+            @add_bowl(key1="value1", meta_key1="meta_value1")
+            def test_logging(**kwargs):
+                breadcrumbs_bowl = kwargs.get("breadcrumbs_bowl")
+                # some operational statements here
+                test_advanced_logging(a_token="token123")
+                logger.info("Requested action completed", extra=breadcrumbs_bowl.add_trace_text("ActionCompleted"))
+        
+            @add_bowlv2(key1="@kwargs['a_token']", "key2"="value2", trace_text="Advanced Test Called")
+            def test_advanced_logging(**kwargs):
+                breadcrumbs_bowl = kwargs.get("breadcrumbs_bowl")
+                try:
+                    # some operational statements here
+                    breadcrumbs_bowl.add_trace_meta(meta_key2="meta_value2")
+                    logger.info(
+                        "A Major event in test_advanced_logging happened",
+                        extra=breadcrumbs_bowl.add_trace_text("MajorEvent2Completed")
+                    )
+                except Exception as e:
+                    logger.exception(e, extra=breadcrumbs_bowl.log_payload)
+        
+        ## The log output
+        
+            {
+                "msg": "test_logging initialised",
+                "levelname": "INFO",
+                "pathname": "/pybreadcrumbs/base.py",
+                "lineno": 409,
+                "log_trace_text": "pybreadcrumbs.tests.test.test_logging",
+                "log_trace_id": "test-d005ef1c-9f31-11ea-bfee-3e41543b0354",
+                "log_elapsed_time": 0.0008239746,
+                "log_trace_meta": {
+                    "meta_key1": "meta_value1"
+                },
+                "log_key1": "value1",
+                "log_decorator_init_time": 0.000039684,
+                "log_event_datetime": "2020-06-13 14:48:08.096476"
+            },
+            {
+                "msg": "test_advanced_logging initialised",
+                "levelname": "INFO",
+                "pathname": "/pybreadcrumbs/base.py",
+                "lineno": 409,
+                "log_trace_text": "Advanced Test Called",
+                "log_trace_id": "test-d005ef1c-9f31-11ea-bfee-3e41543b0354",
+                "log_elapsed_time": 0.0012239746,
+                "log_trace_meta": {},
+                "log_key1": "token123",
+                "log_key2": "value2",
+                "log_decorator_init_time": 0.000071684,
+                "log_event_datetime": "2020-06-13 14:48:08.116476"
+            },
+            {
+                "msg": "A Major event in test_advanced_logging happened",
+                "levelname": "INFO",
+                "pathname": "/pybreadcrumbs/tests/test.py",
+                "lineno": 36,
+                "log_trace_text": "MajorEvent2Completed",
+                "log_trace_id": "test-d005ef1c-9f31-11ea-bfee-3e41543b0354",
+                "log_elapsed_time": 0.0017239746,
+                "log_trace_meta": {
+                    "meta_key2": "meta_value2"
+                },
+                "log_key1": "token123",
+                "log_key2": "value2",
+                "log_event_datetime": "2020-06-13 14:48:08.146476"
+            },
+            {
+                "msg": "Requested action completed",
+                "levelname": "INFO",
+                "pathname": "/pybreadcrumbs/tests/test.py",
+                "lineno": 12,
+                "log_trace_text": "ActionCompleted",
+                "log_trace_id": "test-d005ef1c-9f31-11ea-bfee-3e41543b0354",
+                "log_elapsed_time": 0.0023239746,
+                "log_trace_meta": {
+                    "meta_key2": "meta_value2"
+                },
+                "log_key1": "value1",
+                "log_event_datetime": "2020-06-13 14:48:08.176476"
+            },
+        
+        * NOTE: the datetime and elapsed time values for representation purpose only, they do not reflect the actual time taken or the actual time on which this code was run.
+        
+        
+        ## Running the tests
+        * will be added
+        
+        ## Built With
+        * python : https://www.python.org/
+        * and some standard library available inside: asyncio, datetime, uuid, inspect and logging
+        * ujson : https://pypi.org/project/ujson/
+        
+        ## Contributing
+        Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+        
+        ## Versioning
+        We use <a href="https://semver.org/">SemVer</a> for versioning. For the versions available, see the tags on this repository.
+        
+        ## Authors
+        * Hitesh Jha
+        
+        * See also the list of contributors who participated in this project.
+        
+        ## License
+        This project is licensed under the MIT License - see the LICENSE file for details
+        
+        ## Future enhancements
+        * Ensure child actions have a refrence to thier parents action.
+        * Ensure correct time taken is calculated when in an async environment.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
