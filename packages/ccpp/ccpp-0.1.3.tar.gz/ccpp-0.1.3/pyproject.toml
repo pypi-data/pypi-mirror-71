@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ccpp"
+version = "0.1.3"
+description = "Cookiecutter template for Python package"
+authors = ["guaifish <guaifish@hotmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/guaifish/ccpp"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cookiecutter = "^1.7.2"
+poetry = "^1.0.9"
+fire = "^0.3.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+
+[tool.poetry.scripts]
+ccpp = "ccpp.main:main"
