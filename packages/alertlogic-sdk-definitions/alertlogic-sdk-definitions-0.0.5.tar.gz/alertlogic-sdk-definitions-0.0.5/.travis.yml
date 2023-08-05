@@ -1,0 +1,16 @@
+language: python
+python:
+- 3.8
+- 3.7
+install: pip install -U tox-travis
+script: tox
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: __token__
+  password:
+    secure: ZNNcmbVAmyqjpidjRMcPYgwVuvbU6AGhkyxPHYZYfo/331YuWp0l904GraqAMX/FnE6mmc30BZFxRs+6uE7cH6zWwD3E3FrMKh+FEimU9JLCv2sd/M2R8Tt6eiFfJbMYj4LB7aL0K57Ou+2uSBfm6UERnm9ERDlpPG9z/6Vg8ZEKBu4QMGULLhDNSdEJJzTgYnyju2panaPfxlEXwtR2I05CaK4q5fZSLN+Fc87rJu/0hK43dC4N5KHskSB+t7Ooj+pzIPDiRguEzDY+PlGGrJyy8eYVs9EHfp4FekeuPQME9qhJiwpQtUBQlVvOjaui8ZxVPCrzk4lkpRMBT1jk5f2/UDppEEtOHztoIob75575NTcN1Fmw6vx6DwFBdgCl6GMwQT58G3iuIjFKKD/ox8S6Y0qat8sExd//smtqGlMTKWfFx0a8b2ptFrkc2y7NYAB5fImgnZxLK97mjU8bvl94theusLah5rSb7T0uPFyypwlgyaMG3iLh3tB02JsCZ+5PCLlzek/YE5ptyZoSSuLkT8qy1FA4XzuJbmur3L6ApkgiUJLclhcCRf6h1TsFNyU8hCUhGcG4NIo+Xsd5ciwDlClHMlbtS2637XUYJII/K8sdxKRL6VyqDcnfYlN0B9Xa7EdQKcj4yuJr9XJSsU4dpUD+OM8LfjbQ47UG0uk=
+  on:
+    tags: true
+    repo: anton-b/alertlogic-sdk-definitions
+    python: 3.8
