@@ -1,0 +1,17 @@
+###########################
+#### WORDPRESS EXAMPLE ####
+###########################
+
+#### WordPress files root
+#    root /usr/share/nginx/html/{{SERVER_NAME}};
+
+#### Configuration for nginx WordPress root location
+#    location / {
+#        try_files $uri $uri/ /index.php$is_args$args;
+#    }
+
+#### Default endpoint for WordPress PHP-FPM proxy
+#    location ~ \.php$ {
+#        include /etc/nginx/sites-enabled/defaults/php-proxy;
+#        fastcgi_pass docker_container_name:9000;
+#    }
