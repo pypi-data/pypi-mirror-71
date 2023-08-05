@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "pytime-converter"
+version = "0.1.7"
+description = "Easily convert differt time-range format to standard ones"
+authors = ["Massimiliano Ceriani <massimiliano.ceriani08@gmail.com>"]
+
+# New attributes
+license = "GPL-3.0-only"
+readme = "README.md"
+homepage = "https://github.com/massicer/PyTime-Converter"
+repository = "https://github.com/massicer/PyTime-Converter"
+keywords = ["env", "converter", "time-range", "time", "python"]
+classifiers = [
+    "Environment :: Plugins",
+    "Operating System :: OS Independent"
+]
+include = [
+    "LICENSE",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3"
+pytest-cov = "^2.8"
+flake8 = "^3.7"
+pylint = "^2.4"
+codecov = "^2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
