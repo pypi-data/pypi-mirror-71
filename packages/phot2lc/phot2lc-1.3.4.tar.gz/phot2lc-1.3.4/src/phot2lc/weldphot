@@ -1,0 +1,90 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import copy
+import numpy as np
+import pandas as pd
+from glob import glob
+import argparse
+
+"""
+A python version of the WQED Weld function for use
+with the output from phot2lc.py
+"""
+
+# Generate arguments for command line parsing
+parser = argparse.ArgumentParser(description='Provide Input & Output Filenames.')
+parser.add_argument('-f', '--infiles',type=str,help="Search string for input files.")
+parser.add_argument('-o', '--outfile',type=str,help="Output filename.")
+parser.add_argument('-b', '--bjdref',type=float,default=0.0,
+                                     help="Optional BJD reference time.")
+args = parser.parse_args()
+
+# Get list of filenames
+filenames = glob(args.infiles)
+
+# Get the BJD of T0 from header
+bjds = []
+names = []
+for f in filenames:
+    header = pd.read_csv(f,header=None,nrows=9,dtype=str).values
+    name_row = header[0][0]
+    bjd_row = header[2][0]
+    bjd = float(bjd_row.split(":")[-1].strip())
+    name = name_row.split(":")[-1].strip()
+    bjds.append(bjd)
+    names.append(name)
+
+# Name Check
+if not all(x == names[0] for x in names):
+    print('WARNING:  Object names in headers do not all match.')
+
+
+# Now Get all of the actual data
+tdata = []  # Combined time data in BJD days
+fdata = []
+nrows = 0
+for i,f in enumerate(filenames):
+    data = np.loadtxt(f)
+    tdata.append(data[:,0]/86400.0 + bjds[i])
+    fdata.append(data[:,1:])
+    nrows += len(data[:,0])
+
+# Reformat tdata and fdata into concatenated numpy arrays
+tdata = np.reshape(np.concatenate((tdata)),(nrows,1))
+fdata = np.vstack((fdata))
+all_data = np.concatenate((tdata,fdata),axis=1)
+nrows = np.shape(fdata)[1]
+output = copy.deepcopy((all_data[all_data[:,0].argsort()]))
+
+# Convert times in seconds to reference the minimum BJD
+if args.bjdref == 0.0:
+    refbjd = min(bjds)
+else:
+    refbjd = args.bjdref
+output[:,0] = (output[:,0] - refbjd) * 86400.0
+
+
+# Create new header for output
+lc_header = 'Welded Light curve for: {}'.format(names[0]) + \
+            '\nEmpty:' + \
+            '\nBJD_TDB of t_0: {:17.9f}'.format(refbjd) + \
+            '\nOptimal Aperture Radius: {}'.format(3.5) + \
+            '\nColumns: Mid-Exposure Time (s), Normalized Flux'
+
+# Save the lightcurve to file
+lc_format = '%11.3f  ' + '%i  '*nrows
+lc_fname = args.outfile
+np.savetxt(lc_fname, output, fmt=lc_format, header=lc_header)
+
+
+
+
+
+
+
+
+
+
+

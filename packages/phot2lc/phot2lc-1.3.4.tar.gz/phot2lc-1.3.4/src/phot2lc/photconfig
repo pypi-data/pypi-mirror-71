@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import sys
+import numpy as np
+from phot2lc.photfunc import reconfig
+
+"""
+Script which runs the reconfig function.
+This will allow a user to change deafult
+phot2lc parameters.
+
+Author: 
+    Zach Vanderbosch
+
+For updates, see version log in phot2lc.py.
+
+"""
+
+reconfig()
+
+
