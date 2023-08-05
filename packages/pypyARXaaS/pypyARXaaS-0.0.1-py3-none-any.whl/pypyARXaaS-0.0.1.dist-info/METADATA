@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: pypyARXaaS
+Version: 0.0.1
+Summary: ARXaaS Python wrapper package
+Home-page: https://github.com/navikt/PyARXaaS
+Author: NAV IKT
+Author-email: anonymization@nav.no
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/navikt/PyARXaaS/issues
+Project-URL: Source, https://github.com/navikt/PyARXaaS
+Keywords: anonymization ARX ARXaaS ARX-as-a-Service
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: uplink (==0.9.0)
+Requires-Dist: pandas (==1.0.3)
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+
+[![CircleCI](https://circleci.com/gh/navikt/PyARXaaS.svg?style=svg)](https://circleci.com/gh/navikt/PyARXaaS)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d4f7e73c09cb1affea99/maintainability)](https://codeclimate.com/github/navikt/PyARXaaS/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d4f7e73c09cb1affea99/test_coverage)](https://codeclimate.com/github/navikt/PyARXaaS/test_coverage)
+[![Documentation Status](https://readthedocs.org/projects/pyarxaas/badge/?version=latest)](https://pyarxaas.readthedocs.io/en/latest/?badge=latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# PyARXaaS
+
+Python Package for interfacing with ARXaaS in Python
+
+Read more about PyARXaaS at: https://pyarxaas.readthedocs.io/
+
+
+## Getting Started
+
+#### Installation
+
+````bash
+pip install pyarxaas
+
+````
+
+#### Basic Usage
+
+````python
+
+   # import dependencies
+   from pyarxaas import ARXaaS
+   from pyarxaas.privacy_models import KAnonymity
+   from pyarxaas import AttributeType
+   from pyarxaas import Dataset
+   import pandas as pd
+
+   arxaas = ARXaaS(url) # url contains url to AaaS web service
+
+   df = pd.read_csv("data.csv")
+
+   # create Dataset
+   dataset = Dataset.from_pandas(df)
+
+
+   # set attribute type
+   dataset.set_attributes(AttributeType.QUASIIDENTIFYING, 'name', 'gender')
+   dataset.set_attribute(AttributeType.IDENTIFYING, 'id')
+
+   # get the risk profle of the dataset
+   risk_profile = arxaas.risk_profile(dataset)
+
+   # get risk metrics
+   re_indentifiation_risk = risk_profile.re_identification_risk
+   distribution_of_risk = risk_profile.distribution_of_risk
+````
+
+
