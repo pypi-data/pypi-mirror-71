@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: ntptimenow
+Version: 0.4
+Summary: Python NTP Time Now
+Home-page: https://github.com/wannaphong/pyntptimenow
+Author: Wannaphong Phatthiyaphaibun
+Author-email: wannaphong@kkumail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Networking :: Time Synchronization
+Description-Content-Type: text/markdown
+Requires-Dist: ntplib
+
+# ntptimenow
+Python NTP time now
+
+## Install
+
+```sh
+pip install ntptimenow
+```
+
+## Used
+
+```python
+from ntptimenow import NTPTimeNow
+
+now = NTPTimeNow().ntp_update() # It's datetime.
+```
+
+**API**
+
+```python
+NTPTimeNow(poolservers:str='time.kku.ac.th',version:int=3)
+```
+- poolservers is `NTP Server`. (default is `time.kku.ac.th`)
+- version is version of  `NTP Server`. (default is `3`)
+
+```python
+ntp_now()
+```
+
+return datetime.datetime
+
