@@ -1,0 +1,3 @@
+
+class AioMQ(object):
+    pass
