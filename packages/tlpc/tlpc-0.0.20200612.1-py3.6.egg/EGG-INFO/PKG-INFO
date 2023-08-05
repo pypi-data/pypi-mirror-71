@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: tlpc
+Version: 0.0.20200612.1
+Summary: High-level synthesis task-level parallelization
+Home-page: https://github.com/Blaok/tlp
+Author: Blaok Chi
+License: UNKNOWN
+Description: # Task-Level Parallelization for HLS
+        
+        ## Feature Synopsis
+        
+        + [x] software simulation (not cycle-accurate)
+        + [x] Xilinx HLS backend
+        + [ ] HeteroCL frontend
+        
+        ## Application Synopsis
+        
+        | App         | Properties       | Details                           | # Streams | # Tasks | # Steps |
+        | ----------- | ---------------- | --------------------------------- | --------- | ------- | ------- |
+        | `bandwidth` | static           | bandwidth test using `async_mmap` | 4         | 4       | 1       |
+        | `cannon`    | static,feedback  | Cannon's algorithm                | 20        | 7       | 1       |
+        | `graph`     | dynamic,feedback | connected components              | 6         | 3       | 1       |
+        | `jacobi`    | static           | 5-point stencil                   | 23        | 17      | 1       |
+        | `vadd`      | static           | naïve vector addition             | 3         | 4       | 1       |
+        
+        ## Getting Started
+        
+        ### Prerequisites
+        
+        + Ubuntu 16.04+
+        
+        ### Install from Binary
+        
+        ```bash
+        ./install.sh
+        ```
+        
+        ### Install from Source
+        
+        #### Build Prerequisites
+        
+        + CMake 3.13+
+        + A C++11 compiler
+        + Google glog library
+        + Clang headers
+        
+        #### Build `tlpcc`
+        
+        ```bash
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+        cd ..
+        sudo ln -s backend/python/tlpc /usr/local/bin/
+        sudo ln -s build/backend/tlpcc /usr/local/bin/
+        ```
+        
+        ## Known Issues
+        
+        + Template functions cannot be tasks
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: System :: Hardware
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
