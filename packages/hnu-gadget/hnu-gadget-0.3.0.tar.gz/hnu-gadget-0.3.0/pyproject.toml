@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "hnu-gadget"
+version = "0.3.0"
+description = ""
+authors = ["renantamashiro <tamashirorenan@gmail.com>"]
+repository = "https://www.github.com/renantamashiro/hnu-gadget"
+readme = "README.rst"
+
+[tool.poetry.scripts]
+hnu-gadget = "hnu_gadget.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.23.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+coverage = {extras = ["toml"], version = "^5.1"}
+pytest-cov = "^2.10.0"
+
+[tool.coverage.paths]
+source = ["hnu_gadget", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["hnu_gadget"]
+
+[tool.coverage.report]
+show_missing = true
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
