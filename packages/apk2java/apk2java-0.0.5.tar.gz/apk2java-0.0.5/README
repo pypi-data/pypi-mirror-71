@@ -1,0 +1,66 @@
+================================================================================
+                                     README
+================================================================================
+
+
+
+================================= GENERAL INFO =================================
+
+
+  Project: Lib to decompile Apk
+
+  Contributors: MadSquirrel
+
+  License: GNU General Public License v3.0
+
+  Version: v1.0
+
+  Date: 04-15-20
+
+
+  
+
+
+===================================== GOAL =====================================
+
+  Decompile APK to java code
+
+
+===================================== USAGE ====================================
+
+  To use as library you just need to:
+
+  ```python3
+  import apk2java
+
+  apk2java.decompile(<apk_path>, <directory_output>)
+  ```
+
+  To use as a program you just need to:
+
+  ```bash
+  apk2java <apk_path> <directory_to_decompiled>
+  ``̀ 
+
+
+
+=================================== EXEMPLE ====================================
+
+  ```python3
+  import apk2java
+
+  apk2java.decompile("my_apk.apk", "temp")
+  ```
+
+=================================== INSTALL ====================================
+
+  ```python3
+  sudo python3 setup.py install
+  sudo apk2java_setup
+  ```
+
+===================================== BUG ======================================
+
+
+=================================== CHANGELOG ==================================
+
