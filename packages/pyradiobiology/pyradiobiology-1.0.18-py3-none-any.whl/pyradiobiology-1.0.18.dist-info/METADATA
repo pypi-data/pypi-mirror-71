@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: pyradiobiology
+Version: 1.0.18
+Summary: pyradiobiology is a package for radiobiological modeling (TCP, NTCP, EUD, gEUD) with Python.
+Home-page: https://www.sachpazidis.com/pyRadioBiology/
+Author: Ilias Sachpazidis
+Author-email: ilias.sachpazidis@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://www.sachpazidis.com/pyRadioBiology/bugs
+Project-URL: Documentation, https://www.sachpazidis.com/pyRadioBiology/docs
+Project-URL: Source Code, https://github.com/isachpaz/pyRadioBiology/
+Keywords: radiation,oncology,radiobiology,linear quadratic,LQ,TCP,NTCP,LKB,relative seriality
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.18)
+
+# pyRadioBiology
+It is a package for radiobiological modeling (TCP, NTCP, EUD, gEUD) with Python.
+pyradiobiology provides:
+- Linear quadratic model for survival fraction and biological effective dose calculation
+- Tumor Control Probability (TCP) models: linear-quadratic Poisson, empirical Poisson
+- Normal Tissue Complication Probability (NTCP) model: Relative seriality (RS), Lyman-Kutcher-Burman (LKB)
+- Generalized Equi-effective Uniform Dose (gEUD), Equi-effective Uniform Dose (EUD)
+
+All pyradiobiology wheels distributed on PyPI are MIT licensed.
+
+
+
