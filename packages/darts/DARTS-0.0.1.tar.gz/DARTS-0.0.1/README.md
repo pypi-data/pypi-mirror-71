@@ -1,0 +1,59 @@
+# DenseUnet-based Automatic Rapid brain Segmentation (DARTS)
+
+## Package
+* Our Dense UNet model performs automated segmentation of 102 brain regions **within a minute** (on a machine with a single GPU). The DARTS package, which utilizes the best-performing model, can be installed using:
+
+```
+pip install DARTS
+```
+
+* Download the pretrained model from [here](https://drive.google.com/file/d/1ux3WEU9_n7hEy6gjZWI7Y0WL9P47D9kx/view?usp=sharing) as follows:
+
+```
+gdown https://drive.google.com/uc?id=1ux3WEU9_n7hEy6gjZWI7Y0WL9P47D9kx
+```
+
+## Usage
+
+Segmentation requires the use of a GPU and takes approximately one minute. For optimal results, input image size should be 256x256x256 mm<sup>3</sup> and in one of the following formats: .mgz, .mgh, .nii.gz or .nii. 
+Follow these steps to perform segmentation:
+
+```
+from DARTS import Segmentation
+seg_obj = Segmentation(input_image_path='PATH_TO_INPUT', output_dir='PATH_TO_OUTPUT_DIRECTORY')
+seg_out = seg_obj.predict(input_image_path='PATH_TO_INPUT')
+```
+
+Function help:
+```
+help(Segmentation)
+
+ |  Methods defined here:
+ |  
+ |  __init__(self, model_wts_path='./dense_unet_back2front_finetuned.pth')
+ |      Initializes the segmentation object (GPU required)
+ |      Parameters
+ |      ----------
+ |      model_wts_path : Path to pre-trained model (default './dense_unet_back2front_finetuned.pth')
+ |  
+ |  predict(self, input_image_path, output_dir='./')
+ |      Segments the input image
+ |      Parameters
+ |      ----------
+ |      input_image_path: Path to input image (can be .mgh, .mgz, .nii or .nii.gz)
+ |      output_dir : Path to save segmentation output and volumes (default './')
+ |      
+ |      Returns
+ |      -------
+ |      Segmented mask (np.array)
+ |  
+```
+
+## Project
+[Here](https://arxiv.org/abs/1911.05567) is the paper describing the project and experiments in detail. We pre-trained our model using the Freesurfer segmentations of 1113 subjects available in the [Human Connectome Project](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release) dataset and fine-tuned the model using 101 manually labeled brain scans from the [Mindboggle](https://mindboggle.info/data.html) dataset. 
+
+## Output segmentation
+The output segmentation has 103 labeled segments, which closely resemble the aseg+aparc segmentation protocol of Freesurfer. We also provide region volumes in .csv format. We exclude four brain regions that are not common to a normal brain: White matter and non-white matter hypointentisites, and the left and right frontal and temporal poles. We also exclude left and right bankssts as there is no widely accepted definition of these segments.
+
+## Contact
+If you have any questions regarding the code, please contact tms598[at]nyu.edu or raise an issue on the github repo.
