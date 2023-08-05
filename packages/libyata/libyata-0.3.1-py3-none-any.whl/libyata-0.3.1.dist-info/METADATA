@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: libyata
+Version: 0.3.1
+Summary: Yet Another Tools for Audio deep learning
+Home-page: http://github.com/HudsonHuang/yata
+Author: HudsonHuang
+Author-email: 790209714@qq.com
+License: MIT
+Keywords: deep learning,audio processing,machine learning
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+
+# yata[WIP]
+Yet Another Tools for Audio deep learning(for myself).
+```
+pip install libyata
+```
+## Usage
+
+```
+import yata
+```
+
+- data augmentation
+  - mixup: [paper](https://arxiv.org/abs/1710.09412) [code](https://github.com/hongyi-zhang/mixup)
+  - SpecAugment: [paper](https://arxiv.org/abs/1904.08779) [code](https://github.com/DemisEom/SpecAugment)
+- feature extraction
+  - PASE: [paper](https://arxiv.org/abs/2001.09239) [code](https://github.com/santi-pdp/pase)
+  - Multi scale MelSpectrogram
+- Tensorflow alternatives
+    - yata.utils.HParams:   
+      An alternative to tf.contrib.training.HParams without Tensorflow dependency
+    - yata.utils.to_categorical:   
+      An alternative to tf.keras.utils.to_categorical without Tensorflow & keras dependency
+- handy tools
+    - yata.utils.new_dir:   
+        Make directory like this `./file_a/tag/1/` with:
+        ```
+        new_dir("file_a", "tag", 1)
+        ```
+    - yata.utils.get_current_date: Get date as string
+
+
+
+
+
