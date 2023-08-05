@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: timed-functions
+Version: 0.1.0
+Summary: Decorator to print how long each decorated function takes to complete.
+Home-page: https://github.com/carloshenrique153/timed-functions
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# timed-functions
+
+Decorator to print how long each decorated function takes to complete.
+
+### Example
+
+```python
+@timing
+def say_hello(name):
+    print(f"Hello {name}")
+```
+
+Output:
+
+```python
+Hello World
+@timing - 'say_hello' function took 0.023 ms
+```
+
