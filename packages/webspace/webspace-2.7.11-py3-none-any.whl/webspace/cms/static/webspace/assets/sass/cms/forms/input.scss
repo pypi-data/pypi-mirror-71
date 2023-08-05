@@ -1,0 +1,84 @@
+.input-img {
+  display: flex;
+  align-items: center;
+  padding: $input-padding;
+  border-radius: $input-border-radius;
+
+  img {
+    width: 25px;
+    height: 25px;
+    padding: 0 10px;
+  }
+
+  @include theme($themes) {
+    background: t('uks');
+  }
+
+  &.inverse {
+    @include theme($themes) {
+      background: t('kaks');
+    }
+  }
+}
+
+textarea {
+  border-radius: 5px;
+  padding: 15px 0 0 15px;
+  box-sizing: border-box;
+}
+
+/* Reset */
+
+input, textarea {
+  -webkit-appearance: none !important;
+  -moz-appearance: none;
+  border: 0;
+  outline: none;
+  width: 100%;
+
+  @include theme($themes) {
+    color: t('colorP');
+    background: t('uks');
+
+    &.inverse {
+      background: t('kaks');
+    }
+
+    &::-webkit-input-placeholder {
+      color: t('colorPlaceholder');
+    }
+    &:-moz-placeholder {
+      color: t('colorPlaceholder');
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      color: t('colorPlaceholder');
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: t('colorPlaceholder');
+    }
+    &::-ms-input-placeholder {
+      color: t('colorPlaceholder');
+    }
+
+    &::placeholder {
+      color: t('colorPlaceholder');
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
