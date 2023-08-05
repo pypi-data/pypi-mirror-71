@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: cleanlog
+Version: 0.1.5
+Summary: Python package for nice colored logs.
+Home-page: https://github.com/dohlee/python-cleanlog
+Author: Dohoon Lee
+Author-email: dohlee.bioinfo@gmail.com
+License: MIT license
+Description: # cleanlog
+        
+        Python package for nice colored logs.
+        
+        ## Installation
+        
+        ```shell
+        pip install cleanlog
+        ```
+        
+        ## At a glance
+        
+        ```python
+        # log.py
+        import cleanlog
+        
+        logger = cleanlog.ColoredLogger('mylogger')
+        # Note that since cleanlog just wraps built-in logging module,
+        # this is equivalent to logger.setLevel(logging.DEBUG).
+        logger.setLevel(cleanlog.DEBUG)
+        
+        logger.critical('A critical message.')
+        logger.error('An error message.')
+        logger.warning('A warning message.')
+        logger.info('An info message.')
+        logger.debug('A debug message.')
+        ```
+        
+        ![log.py](https://cdn.rawgit.com/dohlee/python-cleanlog/develop/img/glance.svg)
+        
+        ### TODO
+        
+        - [x] Implement cleanlog.BasicLogger.
+        
+Keywords: python,logging
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
