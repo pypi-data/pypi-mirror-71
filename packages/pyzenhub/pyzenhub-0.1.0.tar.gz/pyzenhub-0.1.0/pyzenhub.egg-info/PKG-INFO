@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: pyzenhub
+Version: 0.1.0
+Summary: Python bindings to the Zenhub API
+Home-page: https://github.com/goanpeca/pyzenhub
+Author: Gonzalo Pena-Castellanos
+Author-email: goanpeca@gmail.com
+Maintainer: Gonzalo Pena-Castellanos
+Maintainer-email: goanpeca@gmail.com
+License: MIT
+Description: # PyZenHub
+        
+        Python bindings to the Zenhub API
+        
+        ## Usage
+        
+        ```python
+        from zenhub import Zenhub
+        
+        zh = Zenhub(<zenhub_token>)
+        zh.get_epics(<repo_id>)
+        ```
+        
+        ## Documentation
+        
+        See [ZenHub official API docmuentation](https://github.com/ZenHubIO/API).
+        
+Keywords: zenhub api
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
