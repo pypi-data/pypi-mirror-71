@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: gmlp
+Version: 0.2a1
+Summary: Genetic Algorithm for Python
+Home-page: https://github.com/CoderWeird/gmlp
+Author: Drew Montooth
+Author-email: drewmontooth@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
+Requires-Dist: pygame
+
+# Genetic Machine Learning for Python
+GMLP or *Genetic Machine Learning for Python*, is a user friendly python machine learning package. GMLP is intuitive and can be used for lots of Machine Learning Projects.
+## What is GMLP?
+GMLP helps you with your genetic programming! You can turn __90__ lines of code into __18 lines of code!__
+___
+## Examples
+GMLP can be used for evolutionary neural networks, and genetic programming!
+Here are some Examples:
+___
+```python
+# GMLP Example 1. - Phrase Guesser.
+# This Evolutionary Neural Network will have you put in a phrase and the E.N.N will guess it.
+import random
+
+import gmlp as gp
+# Importing our modules.
+
+# Our characters that we will be using.
+characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.?!: '
+
+# We make our characters into a list.
+characters = list(characters)
+
+# The phrase.
+phrase = "Hello World!"
+
+# Making the phrase into numbers by using ord() so working with the phrase will be easier.
+ord_phrase = [ord(target) for target in phrase]
+
+# Having the population generate random letters and turn them into numbers using the ord() function.
+starting_population = [[ord(random.choice(characters))for gene in range(len(ord_phrase))]for pop_size in range(10000)]
+
+print("Our goal phrase is:", phrase)
+# Setting up the enviroment.
+env = gp.Enviroment(ord_phrase, .9)
+
+# Our population.
+population = env.generate_population(settings=starting_population)
+
+# Our fitnesses.
+scores = gp.calculate_fitness(population, env.goal)
+
+# Our maximum number of generations.
+max_generations = 500
+
+for generation in range(max_generations):
+	# Calculating the scores for the population.
+	scores = gp.calculate_fitness(population, env.goal)
+
+	# The best score is the minimum of the scores because the scores are how far you are away from your goal.
+	best = min(scores)
+
+	# getting the score index of the best score.
+	best_score = scores[scores.index(best)]
+
+	# the population organism of the best score index.
+	Output = population[scores.index(best)]
+
+	print("Generation:%1s, Best Score:%2s, Output->%3s"%(generation, str(best_score), ''.join([chr(c) for c in Output])))
+
+	# Our new population is the mutated population of the crossover of the fittest population .
+	population = gp.ValueEncodingMut(env.crossover(env.tournament_selection(population, scores, 3), ord_phrase), .15)
+
+	# If we are 0% away from our goal we print the output and phrase and break the loop.
+	if min(scores) == 0:
+		print(f'Our Output -> {"".join([chr(c) for c in Output])}')
+		print(f'Our Phrase -> {phrase}')
+		break
+```
+___
+## Game
+This Feature is new to GMLP and is still in progress
+___
+
