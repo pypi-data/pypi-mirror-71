@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: aws_azuread_login
+Version: 1.1.0
+Summary: Python 3.6+ library to enable programmatic Azure AD auth against AWS
+Home-page: https://github.com/david-poirier-csn/aws_azuread_login
+Author: David Poirier
+Author-email: david-poirier-csn@users.noreply.github.com
+License: UNKNOWN
+Description: # aws_azuread_login
+        
+        Python 3.6+ library to enable ADFS auth against AWS
+        
+        ## Installation
+        ```
+        pip install aws-azuread-login 
+        ```
+        
+        ## Usage
+        
+        ```python
+        import asyncio
+        
+        import aws_azuread_login
+        
+        roles = asyncio.get_event_loop().run_until_complete(
+            aws_azuread_login.authenticate(
+                'https://account.activedirectory.windowsazure.com/applications/signin/Application/00000000-0000-0000-0000-000000000000?tenantId=00000000-0000-0000-0000-000000000000')
+        for role in roles:
+            credentials = role.get_credentials()
+            client = credentials.get_client('ec2')
+        ```
+        
+        
+Keywords: azure ad,aws,sso
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >= 3.6
+Description-Content-Type: text/markdown
