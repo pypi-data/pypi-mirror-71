@@ -1,0 +1,1 @@
+from timed_functions.timed_functions import timing
