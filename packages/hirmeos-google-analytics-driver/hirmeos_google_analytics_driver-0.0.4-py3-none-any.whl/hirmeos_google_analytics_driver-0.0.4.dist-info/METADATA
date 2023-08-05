@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: hirmeos-google-analytics-driver
+Version: 0.0.4
+Summary: Functions required by google_analytics_driver
+Home-page: https://github.com/hirmeos/google_analytics_driver
+Author: Rowan Hatherley
+Author-email: rowan.hatherley@ubiquitypress.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: hirmeos-clients (>=0.0.6)
+Requires-Dist: google-api-core (>=1.14.3)
+Requires-Dist: google-api-python-client (>=1.7.11)
+Requires-Dist: google-auth (>=1.6.3)
+
+Hirmeos google-analytics-driver Python library
+==============================================
+
+Functions required to run the HIRMEOS google_analytics_driver package developed for the
+OPERAS HIRMEOS project.
+
+
+Starting point:
+https://github.com/hirmeos/google_analytics_driver/tree/e64dd4b33e3c704d3d181db85b2f156a89ae51bf
+
+
+Code for the HIRMEOS project is avaiable at https://github.com/hirmeos
+
+For more information about the OPERAS metrics, go to
+https://metrics.operas-eu.org/
+
+
+-----
+
+Note: We are still in the early stages of this package so there will likely be
+many breaking changes as we go along.
+
+Release Notes:
+==============
+
+[0.0.4] - 2020-06-11
+--------------------
+Changed
+.......
+ - Turn off cache_discovery when running the build() command, which breaks
+   services using oauth2client >= 4.0.0 or google-auth.
+
+[0.0.3] - 2020-03-06
+---------------------
+Changed
+.......
+ - Updated requirements to be more flexible (avoid conflicts with other
+   packages).
+
+
