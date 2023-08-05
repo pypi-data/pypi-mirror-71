@@ -1,0 +1,74 @@
+# RSA Light for IoT
+
+A Python package to implement RSA Lightweight adapted for Public key Cryptography in IoT devices.
+
+
+## Installation
+
+Run the following
+
+```
+pip install RSA-light-iot
+```
+
+
+## Usage
+It is used in establishing secure communication channel using RSA by Key-exchange
+
+Consider a key k to be exchanged over unsecured channel
+
+Generate Prime numbers of minimum length of 32bits
+
+## Example Code
+
+```python
+from RSA_Light.RSA_Light import RSA_Light
+
+key = "6UJ5lOU9ls1ialQ0xIyVkzO-Vg_uBKUDkzaL2Ip83fA="
+print("Let the key to be exchanged is ", key)
+
+SIZE = 32
+
+rsa = RSA_Light(SIZE)
+k_pub, k_prv = rsa.rsalight_keygen()
+print("\nGenerating Public and Private keys.............")
+print("\nThe Public keys are ", k_pub)
+print("The Private keys are ", k_prv)
+
+cip = []
+cip_str = []
+for k in key:
+    asc = ord(k)
+    cipher = rsa.rsalight_encrypt(asc, k_pub)
+    cip.append(cipher)
+    cip_str.append(str(cipher))
+
+cipher = ''.join(cip_str)
+print("\nThe Encrypted key using Public key\n", cipher)
+
+message = []
+for c in cip:
+    msg = rsa.rsalight_decrypt(c, k_prv)
+    message.append(chr(msg))
+
+message = ''.join(message)
+print("\nThe Decrypted key using Private key\n", message)
+```
+
+
+## Pro Features
+* RSA algorithm utilizing three primes as against the standard RSA algorithm of two normal
+primes are utilized to improve the security.
+* Enhances the security of RSA algorithm by keeping it away from few attacks that are
+available on RSA algorithm like chosen cipher-text attack, common modulus attack, known
+plaintext attack, and timing.
+* Speed enhancement on the decryption side of RSA algorithm was introduced by utilizing the
+idea of Chinese remainder theorem.
+* Prevention from mathematical factorization attacks by making the process very hard to
+factorize it and get the original numbers.
+* Despite of a slight increase of time complexity, this modification makes the algorithm more
+secure.
+
+
+## Reference
+> Zaid, Mustafa & Hassan, Soukaena. (2018). Lightweight Rsa Algorithm Using Three Prime Numbers. International Journal of Engineering and Technology(UAE). 7. 293-295. 10.14419/ijet.v7i4.36.23790
