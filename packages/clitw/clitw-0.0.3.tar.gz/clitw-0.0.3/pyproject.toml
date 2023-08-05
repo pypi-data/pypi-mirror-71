@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "clitw"
+version = "0.0.3"
+description = "CUI Twitter Client on Python"
+authors = ["Daisuke Oku <w.40141@gmail.com>"]
+readme = "README.rst"
+license = "MIT"
+homepage = "https://github.com/w40141"
+repository = "https://github.com/w40141/clitw"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+tweepy = "^3.8.0"
+fire = "^0.3.1"
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.15.0"
+pytest = "^5.4.3"
+
+[tool.poetry.scripts]
+tw = 'clitw:main'
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
