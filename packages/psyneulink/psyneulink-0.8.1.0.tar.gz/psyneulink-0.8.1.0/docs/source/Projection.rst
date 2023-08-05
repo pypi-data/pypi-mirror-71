@@ -1,0 +1,14 @@
+Projection
+==========
+
+*Subclasses:*
+
+.. toctree::
+   :maxdepth: 1
+
+   PathwayProjection
+   ModulatoryProjection
+
+.. automodule:: psyneulink.core.components.projections.projection
+   :members:
+   :exclude-members: _is_projection_spec, random, Parameters, ProjectionError, DuplicateProjectionError
