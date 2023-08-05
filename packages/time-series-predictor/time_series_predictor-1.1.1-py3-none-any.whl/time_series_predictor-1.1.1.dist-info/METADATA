@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: time-series-predictor
+Version: 1.1.1
+Summary: Time Series Predictor
+Home-page: https://timeseriespredictor.readthedocs.io/
+Author: Daniel Kaminski de Souza
+Author-email: daniel@kryptonunite.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: torch
+Requires-Dist: psutil
+Requires-Dist: tqdm
+Requires-Dist: skorch
+Requires-Dist: scipy
+Provides-Extra: dev
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: autopep8 ; extra == 'dev'
+Requires-Dist: bumpversion ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: python-dotenv ; extra == 'dev'
+Requires-Dist: python-dotenv[cli] ; extra == 'dev'
+Requires-Dist: lxml ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: rstcheck ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Requires-Dist: nbsphinx ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: pandas ; extra == 'docs'
+Requires-Dist: seaborn ; extra == 'docs'
+Requires-Dist: jupyterlab ; extra == 'docs'
+Requires-Dist: matplotlib ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pandas ; extra == 'test'
+Requires-Dist: seaborn ; extra == 'test'
+Requires-Dist: sklearn ; extra == 'test'
+
+# Time Series Predictor
+
+[![Documentation Status](https://readthedocs.org/projects/timeseriespredictor/badge/?version=latest)](https://timeseriespredictor.readthedocs.io/en/latest/?badge=latest) [![travis](https://travis-ci.org/DanielAtKrypton/time_series_predictor.svg?branch=master)](https://travis-ci.org/github/DanielAtKrypton/time_series_predictor) [![codecov](https://codecov.io/gh/DanielAtKrypton/time_series_predictor/branch/master/graph/badge.svg)](https://codecov.io/gh/DanielAtKrypton/time_series_predictor) [![GitHub license](https://img.shields.io/github/license/DanielAtKrypton/time_series_predictor)](https://github.com/DanielAtKrypton/time_series_predictor)
+
+## Usage
+
+Please refer to the following [jupyter notebook](https://github.com/DanielAtKrypton/time_series_predictor/blob/master/docs/source/notebooks/example_flights_dataset.ipynb) as a usage example.
+
+## Development
+
+### Pre requisistes installation
+
+#### Windows
+
+```powershell
+virtualenv -p python3 .env
+.\.env\Scripts\activate
+pip install -e .[dev]
+```
+
+#### Linux or MacOS
+
+```bash
+virtualenv -p python3 .env
+. .env/bin/activate
+pip install -e .[dev]
+```
+
+------
+
+### Test
+
+```bash
+pip install -e .[test]
+pytest -s
+```
+
+------
+
+### Build docs
+
+```bash
+pip install -e .[docs]
+cd docs
+make html
+```
+
+
