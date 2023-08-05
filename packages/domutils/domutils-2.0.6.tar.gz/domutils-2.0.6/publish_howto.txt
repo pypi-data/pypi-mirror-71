@@ -1,0 +1,79 @@
+
+Notes for me to remember steps involved in publishing this package
+
+- create branch on local machine
+
+- make modifications
+
+- run unitttests
+  python -m unittest discover
+
+- run tests and documentation
+  cd docs/
+  make clean
+  make doctest
+  make html
+
+- If the test makes a figure or that new test data is required
+  the a new test dataset will have to be published in a new version of the repository on zenodo
+  https://doi.org/10.5281/zenodo.3635906    
+  At the moment, only me (dominik) can do that. Contact me and I will do it for you. 
+
+  Updating the dataset version in download_test_data.sh will be necessary
+
+- adjust version number in VERSION
+
+- adjust version numbe in conda_build/domutils/meta.yaml  I need to find a way to automate this
+
+- describe changes in CHANGELOG
+
+- make bundle by running:
+    - You probably want to cleanup
+    python setup.py clean --all
+    rm -rf dist
+
+ python setup.py sdist bdist_wheel
+
+        - upload to TEST pypi
+        twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+- upload to official pypi repo
+twine upload dist/*
+
+- commit everything, push branch to github, open merge/pull request
+
+- check that documentation builds on RTD
+  In admin settings, change default to latest and select new branch
+  "latest" will be built from that branch
+  check if docs renders well
+
+
+- when all the above worked, 
+  add version tag and push to github
+   git checkout master
+   git pull github master
+   git tag -a v2.0.0 -m 'version 2.0.0 with CamelCase removed'
+   git push github --tags
+  "stable" will be build on RTD
+
+
+For CONDA package
+
+- from the root of the repo
+    To load in environment if not already done:
+        conda install anaconda-client conda-build
+conda build conda_build/domutils
+
+conda build domutils
+    this will automatically upload to anaconda.org
+
+        - Can test local build with:
+        conda install -c file:///home/ords/mrd/rpndat/dja001/python_miniconda3/envs/test1/conda-bld/ domutils
+        
+        - test the conda package in a fresh conda environment with:
+        conda install -c dja001 domutils
+
+        - upgrade domutils in an existing environment with:
+        conda upgrade -c dja001 domutils
+
+
