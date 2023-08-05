@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: covid19poland
+Version: 0.0.3
+Summary: Web Scraper for Poland COVID19 data.
+Home-page: https://github.com/martinbenes1996/covid19poland
+Author: Martin Beneš
+Author-email: martinbenes1996@gmail.com
+License: MPL
+Download-URL: https://github.com/martinbenes1996/covid19poland/archive/0.0.3.tar.gz
+Keywords: 2019-nCov,poland,coronavirus,covid-19,covid-data,covid19-data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Database
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: GetOldTweets3
+Requires-Dist: pandas
+Requires-Dist: requests
+
+
+# Web Scraper of COVID-19 data for Poland
+
+Python package [covid19poland](https://pypi.org/project/covid19poland/) provides access to COVID-19 data of Poland.
+
+The data is scraped from Wikipedia.
+
+## Setup and usage
+
+Install from [pip](https://pypi.org/project/covid19poland/) with
+
+```python
+pip install covid19poland
+```
+
+Importing main `fetch()` function with 
+
+```python
+import covid19poland as PL
+
+x = PL.fetch()
+```
+
+Package is regularly updated. Update with
+
+```bash
+pip install --upgrade covid19poland
+```
+
+## Parametrization
+
+### Level
+
+Level is a setting for granularity of data
+
+1. Country level (default)
+2. State level
+
+```python
+import covid19poland as PL
+
+# country level
+x1 = PL.fetch(level = 1)
+# state level
+x2 = PL.fetch(level = 2)
+```
+
+## Contribution
+
+Developed by [Martin Benes](https://github.com/martinbenes1996).
+
+Join on [GitHub](https://github.com/martinbenes1996/covid19poland).
+
+
+
+
+
