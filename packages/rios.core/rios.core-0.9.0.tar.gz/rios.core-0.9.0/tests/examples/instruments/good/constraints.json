@@ -1,0 +1,114 @@
+{
+  "id": "urn:example:good:constraints",
+  "version": "1.0",
+  "title": "An Instrument Title",
+  "types": {
+    "custom_text": {
+      "base": "text",
+      "pattern": "^[abc]+$",
+      "length": {
+        "min": 2,
+        "max": 10
+      }
+    },
+
+    "custom_integer": {
+      "base": "integer",
+      "range": {
+        "min": 2,
+        "max": 10
+      }
+    },
+
+    "custom_float": {
+      "base": "float",
+      "range": {
+        "min": 2,
+        "max": 10
+      }
+    },
+
+    "custom_date": {
+      "base": "date",
+      "range": {
+        "min": "2010-01-01",
+        "max": "2015-01-01"
+      }
+    },
+
+    "custom_time": {
+      "base": "time",
+      "range": {
+        "min": "02:30:00",
+        "max": "04:00:00"
+      }
+    },
+
+    "custom_datetime": {
+      "base": "dateTime",
+      "range": {
+        "min": "2010-01-01T02:30:00",
+        "max": "2014-01-01T04:00:00"
+      }
+    },
+
+    "custom_enumeration": {
+      "base": "enumeration",
+      "enumerations": {
+        "foo": {},
+        "bar": {}
+      }
+    },
+
+    "custom_enumerationset": {
+      "base": "enumerationSet",
+      "enumerations": {
+        "foo": {},
+        "bar": {},
+        "baz": {},
+        "blah": {},
+        "stuff": {}
+      },
+      "length": {
+        "min": 2,
+        "max": 4
+      }
+    },
+
+    "custom_recordlist": {
+      "base": "recordList",
+      "record": [
+        {
+          "id": "subfield1",
+          "type": "text"
+        }
+      ],
+      "length": {
+        "min": 2,
+        "max": 4
+      }
+    },
+
+    "custom_matrix": {
+      "base": "matrix",
+      "rows": [
+        {
+          "id": "row1"
+        }
+      ],
+      "columns": [
+        {
+          "id": "col1",
+          "type": "text"
+        }
+      ]
+    }
+  },
+  "record": [
+    {
+      "id": "field1",
+      "type": "text"
+    }
+  ]
+}
+

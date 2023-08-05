@@ -1,0 +1,116 @@
+{
+  "id": "urn:example:good:text:basic",
+  "version": "1.0",
+  "title": "An Instrument Title",
+  "types": {
+    "test_enumerationset": {
+      "base": "enumerationSet",
+      "enumerations": {
+        "foo": {},
+        "bar": {},
+        "baz": {}
+      }
+    },
+
+    "test_recordlist": {
+      "base": "recordList",
+      "record": [
+        {
+          "id": "subfield1",
+          "type": "text"
+        },
+        {
+          "id": "subfield2",
+          "type": "text"
+        }
+      ]
+    }
+  },
+  "record": [
+    {
+      "id": "field1",
+      "type": {
+        "base": "text",
+        "length": {
+          "min": 2
+        }
+      }
+    },
+    {
+      "id": "field2",
+      "type": {
+        "base": "text",
+        "length": {
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "field3",
+      "type": {
+        "base": "text",
+        "length": {
+          "min": 2,
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "field4",
+      "type": {
+        "base": "test_enumerationset",
+        "length": {
+          "min": 2
+        }
+      }
+    },
+    {
+      "id": "field5",
+      "type": {
+        "base": "test_enumerationset",
+        "length": {
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "field6",
+      "type": {
+        "base": "test_enumerationset",
+        "length": {
+          "min": 2,
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "field7",
+      "type": {
+        "base": "test_recordlist",
+        "length": {
+          "min": 2
+        }
+      }
+    },
+    {
+      "id": "field8",
+      "type": {
+        "base": "test_recordlist",
+        "length": {
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "field9",
+      "type": {
+        "base": "test_recordlist",
+        "length": {
+          "min": 2,
+          "max": 10
+        }
+      }
+    }
+  ]
+}
+

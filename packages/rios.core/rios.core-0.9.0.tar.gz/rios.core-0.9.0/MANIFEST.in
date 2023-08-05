@@ -1,0 +1,6 @@
+global-exclude *.pyc
+include CHANGES.rst LICENSE.rst README.rst NOTICE
+include pyproject.toml requirements.txt tox.ini pbbt-input.yaml pbbt-output.yaml
+recursive-include docs *.rst *.py Makefile
+recursive-include tests *.py *.json
+
