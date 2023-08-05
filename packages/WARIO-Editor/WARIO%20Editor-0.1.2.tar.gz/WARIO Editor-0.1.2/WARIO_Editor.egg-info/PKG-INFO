@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: WARIO-Editor
+Version: 0.1.2
+Summary: Pipeline editor and front end for WARIO
+Home-page: https://github.com/McMasterRS/WARIO-Editor
+Author: Thomas Mudway, Oliver Cook, Ron Harwood
+License: UNKNOWN
+Description: # WARIO - Workplace Automation for Research I/O
+        
+        A flowchart based data pipeline development suit with an interface extended from the [Nodz](https://github.com/LeGoffLoic/Nodz) library.
+        
+        ![Wario Example](https://github.com/McMasterRS/WARIO-Editor/blob/master/docs/Images/WARIO_example.png)
+        
+        ## Features
+        * Easy to use flowchart system to create and connect nodes
+        * Allows for the development of fully working python pipelines 
+        * Supports batch processing and bulk data analysis
+        * Supports the creation of custom node sets with the built in toolkit system
+        * Fully customizable settings UI for all nodes
+        * Global variable system that can be accessed by all nodes during runtime
+        * Signal passing using the [Blinker](https://pythonhosted.org/blinker/) library
+        
+        ## Documentation
+        
+        Documentation is hosted on [readthedocs](https://wario.readthedocs.io/en/latest/) and a local version is accessible from the help menu within the editor
+        
+        ## Prerequisites
+        ```
+        - Python 3
+        - PyQt5
+        - PyQtWebEngine
+        - Blinker
+        - Wario
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
