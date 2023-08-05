@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: noted-notes
+Version: 0.1.4
+Summary: Noted is a cli note taking and todo app similar to google keep or any other note taking service. It is a fork of my previous project keep-cli. Notes appear as cards. You can make lists and write random ideas. 
+Home-page: https://github.com/zack-ashen/noted
+Author: Zachary Ashen
+Author-email: zachary.h.a@gmail.com
+License: MIT
+Keywords: cli notes todo notetaking noted
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: pyfiglet (>=0.8.post1)
+Requires-Dist: PyInquirer (>=1.0.3)
+
+<h1 align="center">Noted</h1>
+<p align="center">Noted is a cli note taking and todo app similar to google keep or any other note taking service. It is a fork of my previous project <a href="https://github.com/zack-ashen/keep-cli">keep-cli.</a></p>
+
+## Setup
+
+### Installation
+
+#### PIP (easiest)
+```sh
+pip3 install noted-notes
+```
+
+### Configuration
+In order to make a note you must have the `$EDITOR` environment variable set to a text editor such as `vim` or `nano`.
+
+## Usage
+
+### Run noted visually:
+```sh
+noted
+```
+#### Skip the intro animation (quick mode):
+```sh
+noted --quick
+```
+#### Make a list or note:
+For a note:
+```sh
+noted --note
+```
+For a list:
+```sh
+noted --list
+```
+## More Info
+<p> This project is still under heavy development, so if you would like to help out feel free to reach out. </p>
+
+
