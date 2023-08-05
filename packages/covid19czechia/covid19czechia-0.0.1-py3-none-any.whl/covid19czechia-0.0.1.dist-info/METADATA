@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: covid19czechia
+Version: 0.0.1
+Summary: Web Scraper for Czechia COVID19 data.
+Home-page: https://github.com/martinbenes1996/covid19czechia
+Author: Martin Beneš
+Author-email: martinbenes1996@gmail.com
+License: MPL
+Download-URL: https://github.com/martinbenes1996/covid19czechia/archive/0.0.4.tar.gz
+Keywords: 2019-nCov,czechia,coronavirus,covid-19,covid-data,covid19-data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Database
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: requests
+
+
+# Web Scraper of COVID-19 data for Czechia
+
+Python package [covid19czechia](https://pypi.org/project/covid19czechia/) provides access to COVID-19 data of Czechia.
+
+The data is scraped from
+
+* Ministery of Health, Czech Republic
+* Czech Statistical Office
+
+## Setup and usage
+
+Install from [pip](https://pypi.org/project/covid19czechia/) with
+
+```python
+pip install covid19czechia
+```
+
+Importing module is done such as
+
+```python
+import covid19czechia as CZ
+
+x = CZ.covid_deaths()
+```
+
+Package is regularly updated. Update with
+
+```bash
+pip install --upgrade covid19czechia
+```
+
