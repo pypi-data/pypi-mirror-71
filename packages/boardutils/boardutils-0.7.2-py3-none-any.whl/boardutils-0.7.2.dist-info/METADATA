@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: boardutils
+Version: 0.7.2
+Summary: set of utilities to integrate with Board CPM and BI toolkit
+Home-page: https://www.board.com
+Author: Board International SA
+Author-email: info@board.com
+License: Usage of the Board API and of boardutils package is granted to Board customers with an active API license
+Keywords: board toolkit api utilities
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7.*
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: azure-storage-file
+
+# BoardUtils
+
+BoardUtils is a set of utilities to integrate custom Python scripts / application with Board toolkit (https://www.board.com)
+This is an example package and should not be used to build production-grade integrations, it is intented to just showcase the functionalities of Board APIs
+
+## Installation
+
+```bash
+pip install boardutils
+```
+
+## Usage
+
+### API Functionalities
+```python
+from boardutils import api
+
+bclient = api.Client("http://your-endpoint.board.com","client_id","client_secret") # create a new api client instance
+
+layout_data = bclient.query("datamodel", "query-name","query-parameters") # return a dictionary with layout query results 
+
+cubes = bclient.cubes("datamodel") # return list of cubes for specified datamodel
+
+entities = bclient.entities("datamodel") # return list of entities for specified datamodel
+
+entity = bclient.entity("datamodel","entity") # return list of members of a specific entity
+```
+### API Functionalities
+```python
+from boardutils import sharedstorage
+
+bss = sharedstorage.client("https://your-board-shared-storage-sas-uri-token.itsaverylongtoken.withlotsofsymbols") # new board shared storage client
+
+bss.delete_file("azure_file","azure_directory") # Delete a file - if azure_directory parameter is missing, file deleted from root
+
+bss.upload_file("azure_file","local_path","azure_directory") # Upload a file - if azure_directory parameter is missing, file upload to root
+
+bss.download_file("azure_file","local_path","azure_directory") # Download a file - if azure_directory parameter is missing, file download from root
+
+bss.download_file("azure_file","local_path","azure_directory") # Download a file - if azure_directory parameter is missing, file download from root
+
+files = bss.list_directories_and_files("azure_directory") # list files and folders in a specified directory (if no path specified, root level). Return list of Azure file objects
+for file in files:
+    file.name #  to return the name of azure file from the azure file class
+
+bss.get_file_size("azure_file","azure_directory") # return file size for specified azure file ((if no path specified, root level).
+```
+
+## License
+The usage of Board API Query engine is subject to licensing from Board (https://www.board.com)
+Please contact your account manager for more information
+
