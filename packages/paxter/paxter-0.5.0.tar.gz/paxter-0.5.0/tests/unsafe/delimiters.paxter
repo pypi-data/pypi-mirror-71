@@ -1,0 +1,22 @@
+@python##"
+    def foo(text):
+        text = flatten(text)
+        return f"({text})"
+"##\
+To escape @"@" sign, you may write @#"@"@""#.
+To write the above snippet, you may write @##"@#"@"@""#"##.
+To write the above snippet, you may write @###"@##"@#"@"@""#"##"###.
+To write the above snippet, you may write @####"@###"@##"@#"@"@""#"##"###"####.
+To write the above snippet, you may write @#####"@####"@###"@##"@#"@"@""#"##"###"####"#####.
+
+Suppose that we define the following function:
+@##"@python##"
+    def foo(text):
+        text = flatten(text)
+        return f"({text})"
+"##"##
+
+Then the code
+    @####"@foo{@foo#{}}#@foo##{}#}##@foo###{}##}###}"####
+will produce
+    @foo{@foo#{}}#@foo##{}#}##@foo###{}##}###}
