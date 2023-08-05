@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: gabriel-server
+Version: 0.1.5
+Summary: Server for Wearable Cognitive Assistance Applications
+Home-page: http://gabriel.cs.cmu.edu
+Author: Roger Iyengar
+Author-email: ri@rogeriyengar.com
+License: Apache
+Description: # Gabriel Server
+        
+        The cognitive_engine module can be used to process incoming data.
+        
+        The local_engine runs the websocket server within the same Python program as the
+        Websocket Server.
+        
+        The network_engine module contains engine_server_shuttle which runs just the
+        Websocket Server. The engine_runner in network_engine runs just a cognitive
+        engine. The engine_server_shuttle and network_engine communicate with each other
+        using zmq.
+        
+        ## Installation
+        Requires Python >= 3.5 
+        
+        Run `pip install gabriel-server`
+        
+        ## Publishing Changes to PyPi
+        
+        Update the version number in setup.py. Then follow [these instructions](https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives).
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
