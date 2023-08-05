@@ -1,0 +1,38 @@
+import absl
+import datetime
+from tfx.orchestration.airflow import airflow_dag_runner
+
+{{ notebook_content }}
+
+# Airflow-specific configs; these will be passed directly to airflow
+_airflow_config = {
+    'schedule_interval': None,
+    'start_date': datetime.datetime(2019, 1, 1),
+}
+
+absl.logging.set_verbosity(absl.logging.INFO)
+
+tfx_pipeline = pipeline.Pipeline(
+    pipeline_name=_pipeline_name,
+    pipeline_root=_pipeline_root,
+    components=components,
+    enable_cache=True,
+    metadata_connection_config=(
+        metadata.sqlite_metadata_connection_config(_metadata_path)),
+
+    # We use `--direct_num_workers=1` by default to launch 1 Beam worker process
+    # during Beam DirectRunner component execution. This mitigates issues with
+    # GPU memory usage when many workers are run sharing GPU resources.  Change
+    # this to `--direct_num_workers=0` to run one worker per available CPU
+    # thread or `--direct_num_workers=$N`, where `$N` is a fixed number of
+    # worker processes.
+    #
+    # TODO(b/142684737): The Beam multi-processing API might change.
+    beam_pipeline_args = ['--direct_num_workers=1'],
+
+    additional_pipeline_args={})
+
+# 'DAG' below needs to be kept for Airflow to detect dag.
+DAG = airflow_dag_runner.AirflowDagRunner(
+    airflow_dag_runner.AirflowPipelineConfig(_airflow_config)).run(
+      tfx_pipeline)
