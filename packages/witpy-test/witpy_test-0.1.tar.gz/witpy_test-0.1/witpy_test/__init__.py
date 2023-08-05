@@ -1,0 +1,1 @@
+from witpy_test.witpy_analyzer import Analyzer
