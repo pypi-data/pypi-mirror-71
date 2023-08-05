@@ -1,0 +1,16 @@
+#########################
+#### BACKEND EXAMPLE ####
+#########################
+
+#### Default endpoint for API calls from frontend
+#    location ^~ /api/ {
+#        include /etc/nginx/sites-enabled/defaults/proxy;
+#        proxy_pass http://docker_container_name:8080/;
+#    }
+
+#### Specific limited API endpoint
+#    location =/api/limited {
+#        limit_req zone=limited_{{SERVER_NAME}};
+#        include /etc/nginx/sites-enabled/defaults/proxy;
+#        proxy_pass http://docker_container_name:8080/limited;
+#    }
