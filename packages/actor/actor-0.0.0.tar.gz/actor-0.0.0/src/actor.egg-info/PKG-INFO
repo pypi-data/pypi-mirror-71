@@ -1,0 +1,80 @@
+Metadata-Version: 1.2
+Name: actor
+Version: 0.0.0
+Summary: A simple actor framework with dynamic parallelism
+Home-page: https://github.com/yasserfarouk/actor
+Author: Yasser Mohammad
+Author-email: yasserfarouk@gmail.com
+License: LGPL-2.1-or-later
+Project-URL: Documentation, https://actor.readthedocs.io/
+Project-URL: Changelog, https://actor.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/yasserfarouk/actor/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        A simple actor framework with dynamic parallelism
+        
+        * Free software: GNU Lesser General Public License v2.1 or later (LGPLv2+)
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install actor
+        
+        You can also install the in-development version with::
+        
+            pip install https://github.com/yasserfarouk/actor/archive/master.zip
+        
+        
+        Documentation
+        =============
+        
+        
+        https://actor.readthedocs.io/
+        
+        
+        Development
+        ===========
+        
+        To run the all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.0.0 (2020-06-16)
+        ------------------
+        
+        * First release on PyPI.
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
