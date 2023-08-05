@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pymaft
+Version: 1.0.1
+Summary: PyMAFT is a numerical library for simulations of Models of Active Field Theories in Python.
+Home-page: https://github.com/rajeshrinet/pymaft
+Author: The PyMAFT team
+License: MIT
+Platform: works on all platforms (such as LINUX
+Platform: macOS
+Platform: and Microsoft Windows)
+Requires-Dist: cython
+Requires-Dist: numpy
+Requires-Dist: scipy
+Provides-Extra: notebook
+Requires-Dist: jupyter ; extra == 'notebook'
+Requires-Dist: nbconvert ; extra == 'notebook'
+Provides-Extra: plotting
+Requires-Dist: matplotlib ; extra == 'plotting'
+
+PyMAFT is a numerical library for simulations of Models of Active Field Theories in Python.                      It constructs differentiation matrices using finite-difference and spectral methods.                       It also allows to solve Stokes equation using a spectral method, which satisfies compressibility exactly.                        The library currently offers support for doing field theoretical simulation and a direct numerical simulation of the Stokes equation                        in both two and three space 
+
+
