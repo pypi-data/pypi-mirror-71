@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: python-cbr
+Version: 0.2.0
+Summary: Read the official exchange rates data from cbr.ru
+Home-page: https://github.com/grunichev/cbr
+Author: Alexey Grunichev
+Author-email: grunichev@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+
+CBR
+===========
+
+Provides functionality to get official CBR (Central Bank of Russia) exchange rates. Typical usage often looks like this:
+
+    #!/usr/bin/env python
+
+    from cbr import get_exchange_rates
+
+    get_exchange_rates('15.05.2010')
+    get_exchange_rates('13.01.2020', codes=['840', '978'])
+    get_exchange_rates('13.01.2020', code='840')
+    get_exchange_rates('13.01.2020', symbols=['USD', 'EUR'])
+    get_exchange_rates('13.01.2020', symbol='JPY')
+
+Result is array like this:
+
+    [{'code': '392', 'symbol': 'JPY', 'amount': 100, 'rate': Decimal('55.9098')}]
+
+(Note amount column, it's not always 1)
+
+
+Русский:
+=========
+
+Библиотека для получения официальных курсов ЦБ на дату (для использования в расчетах деклараций и пр.). 
+
+
