@@ -1,0 +1,76 @@
+# create:
+# conda env create --prefix .sbi_env --file environment.yml
+#
+# update:
+# conda env update --prefix .sbi_env --file environment.yml --prune
+#
+# activate (see below for auto-activation):
+# conda activate ~/path/to/sbi/.sbi_env 
+#
+name: sbi_env
+
+channels:
+  - conda-forge
+  - pytorch
+
+dependencies:
+  - autopep8
+  - autoflake
+  - black
+  - cudatoolkit
+  - flake8
+  - ipywidgets
+  - isort
+  - joblib
+  - jupyterlab
+  - matplotlib
+  - mkdocs
+  - nbconvert
+  - nbstripout
+  - notebook
+  - numpy
+  - pep517
+  - pillow
+  - pip
+  - pip:
+    - mkdocs-material
+    - markdown-include
+    - mkdocs-redirects
+    - mkdocstrings
+    - "pyknos==0.11"
+    - pyro-ppl
+    - torchtestcase
+    - -e .  # Install package in development mode.
+  - pytest
+  - pytest-pep8
+  - "python >= 3.7.0"
+  - pytorch
+  - pyyaml
+  - rope
+  - scikit-learn
+  - scipy
+  - seaborn
+  - tensorboard
+  - tqdm
+  - twine
+ 
+
+# ADDITIONAL INSTRUCTIONS
+#
+# --- Nicer prompt ---
+# $ conda config --set env_prompt '({name}) '
+# (adds in ~/.condarc the line: env_prompt '({name}) ')
+#
+# --- Automatic activation of environments upon cd (bash) ---
+# Add the following in your .bashrc
+# function cd {
+#          builtin cd "$@"
+#          RET=$?
+#          venv
+#          return $RET
+# }
+# venv (){
+#      conda activate $PWD/.${PWD##*/}_env > /dev/null 2>&1
+# }
+
+  
