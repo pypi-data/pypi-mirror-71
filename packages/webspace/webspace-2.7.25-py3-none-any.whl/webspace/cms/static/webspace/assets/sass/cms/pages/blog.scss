@@ -1,0 +1,28 @@
+#block-summary {
+  a {
+    display: inline-block;
+    color: $color-1;
+
+    &:hover {
+      color: $color-2;
+
+      & > p {
+        color: $color-2;
+      }
+    }
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  ul {
+    margin: 0;
+  }
+}
+
+#block-articles-search {
+  .tag {
+    display: inline-block;
+  }
+}
