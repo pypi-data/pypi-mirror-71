@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pygments-httpie
+Version: 0.1
+Summary: A Pygments lexer for the the output of httpie.
+Home-page: https://github.com/realpython/pygments-httpie
+Author: Real Python
+Author-email: info@realpython.com
+License: MIT
+Keywords: lexer,http,httpie
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: pygments
+
+# pygments-http
+
+----
+
+A minimalistic Pygments lexer for the output of [`httpie`](https://github.com/jakubroztocil/httpie).
+
+The main lexer class here borrows code heavily from the `ColorFormatter` class from `httpie`.
+
+The `httpie` license is included in the root of this repository.
+
+
