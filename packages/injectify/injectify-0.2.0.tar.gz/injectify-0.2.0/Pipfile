@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+codecov = "*"
+docutils = "*"
+"flake8" = "*"
+importlib-metadata = {version = "*", markers = "python_version < '3.8'"}
+importlib-resources = {version = "*", markers = "python_version < '3.7'"}
+more-itertools = "*"
+pytest = ">=2.8.0"
+pytest-cov = "*"
+pytest-xdist = "*"
+readme-renderer = "*"
+sphinx = "*"
+sphinx-rtd-theme = ">=0.4.3"
+tox = "*"
+twine = "<=1.15.0"
+watchdog = {extras = ["watchmedo"], version = "*"}
+zipp = {version = "<=1.2.0", markers = "python_version < '3.8'"}
+
+[packages]
+astunparse = ">=1.1.0"
+
+[pipenv]
+allow_prereleases = true
