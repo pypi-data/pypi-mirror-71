@@ -1,0 +1,506 @@
+<?xml version='1.0' encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="1010.000mm" version="1.1" width="210.000mm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <pattern alt="Anhydrite" height="12" id="FillPattern95" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAVklEQVR4nH2RQQ4AIAjDKi/f0z1gjIEhpxlGGXEJAEGKjwbi49Dk7pgyk7VoJpwvdRTkWyaeBp5cy+fuWiVoQb7xbstcqWa6z+iYacnJbQfsDeNf2oUboJQsEiXX+zgAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Anhydritic Clay-Shale" height="12" id="FillPattern53" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nGNk+M9APGDBKcOIVYwUs5kIyDOi2IPNPgiA28mIYBNyCUQpTAMTQhSrTf9R7GHEaiMuN8JUo9qIC8Bcgmojug30CBMAeYQVD4o5gkoAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Anhydritic Limestone" height="12" id="FillPattern19" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARklEQVR4nGNk+P+fAT9gZISrYUKXgJPYAKrq//+RTSKkGqKUBLPhJOUAyZV4XYzNJVhMQwklQqpRQ4kIs5FCiQizGcgNJQARKhwPcs9vVAAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Anhydritic Sandstone" height="12" id="FillPattern81" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAU0lEQVR4nM2QMQ6AMAwDffn/n8uQFlyMBCOeUst1TmFISENTPqdKUn/wKMs51Q4fW6/uVkaJmYxiDotzPl+3O2E9bnR53X9uUpHZiJPwXszuOOEBckQZGAlq4VQAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Anhydritic Siltsone" height="12" id="FillPattern82" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAUUlEQVR4nM1Syw4AIAgC//+f62APirY6xskYITpZAAIFDVo7AkB+UCk7M5AMH12nd8KltJoupTDsOdvz2l0TxrGjQu3+2UmYZkm8JbxMud1FBUXMGBsovyvyAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Argillaceous Dolomite" height="12" id="FillPattern29" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARElEQVR4nK2Q0QoAMAgCFfr/X3avsgy2sXuLDiMpZAj0FX1QUt1gDJgO3hGyswcIKJ8dNfUo+/0NxtYmalLjG9THgjcWe7cSCvbhSg0AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Argillaceous Limestone" height="12" id="FillPattern5" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAPUlEQVR4nGNk+P+fAT9gZISrYSKgFBWwoJiBDLDZyYJfGg2Q5hLSAMK/yH6njktYcMpgCyLcqrG5ipZhAgAYfRATjEDoEAAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Argillaceous Sandstone" height="12" id="FillPattern68" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARklEQVR4nM2POw4AIAhDH8b7XxkHg0GMUeIiC7R8WgAABYVjLQPcROlJQIza1WRvV+ZtnNG19Y/vkhk2HQ3YIvDPXwZpzzfo2Q8YiExSawAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Argillaceous Siltstone" height="12" id="FillPattern67" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQElEQVR4nGP8zwAFjAwI8B+JzcjA8B9OIksQBEzIBiMbjynCQKrZLGh8ZFciW0KO2bR0NxOyYXCEYh4yOWjcDQCBFAwgHEWPsQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Argillaceous and Sandy Dolomite" height="12" id="FillPattern33" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nK2Q0QoAIAgDb9D//7K9xTDDiEYv5jxXCmoJTi2AsINZfUY7oKHeq2DXPghQug1rr3Jl69nvz5Cvbhljt6bEmf3tg5MmPlAXAPSeNDAAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Argillaceous and calcareous Dolomite" height="12" id="FillPattern31" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nK2QMQ4AIAgDj8T/f7lOEmg0DnobUKAQYk/AqQSgVVYJrSE8Lg2v+OyjDgSjGkjURXnxZfbTGWFLL2q6s2ogkeX/PNiYTeAW/2hSCdYAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Argillaceous and calcareous Sandstone" height="12" id="FillPattern72" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAPElEQVR4nGP8z8DAwMDAyMAAYeAHjGj8/6gS/1HZjMQYCQdMJNnOiOwAZNsxXUmuS9A9S4SrsDhjmIQJAAhEEgryKgR1AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Argillaceous and dolomitic Limestone" height="12" id="FillPattern7" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAP0lEQVR4nGNk+P+fAT9gZISrYSKgFBWwIAxABjgsZMEvjQZIcwlpAOFfZL8jyaMI4nUJhn68qjGsIs2XtAwTAMapEg8CuYDQAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Argillaceous and dolomitic Sandstone" height="12" id="FillPattern73" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQElEQVR4nM2QMQ4AMAgCuf7/z3bVit2alMkYchAIFSEdn6w1WZFoN3Ka8FxyeyYZhgOXepZt+0V3P97kwv5nkw3rORYNwNNdvQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Argillaceous and sandy Limestone" height="12" id="FillPattern8" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQklEQVR4nGNk+P+fAT9gZISrYSKgFBWgqmZkZGBkxKOaBYVHyFWkuYQ0gPAvst+p4xIWnDJogfP/P17V2FxFyzABALKBDhX5fG2HAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Arkosic Sandstone" height="12" id="FillPattern74" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAUElEQVR4nJWQMQ4AIAjEiv//sw4kBAEVmSpeoCoTAIEAZYndCeCi/mi8pS9TtUY/uplcBIxjumVS7z1BXp3F3ibh9Q+TMGto15sZz9T8+5MFBPEWEca8V1MAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Basalt" height="12" id="FillPattern99" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATUlEQVR4nKWQUQoAIAhDtZPt6DtaH4HJjIryy23IHjpJu56WBQCJw6nReZwkgMwjMjvNzMYWXSKXzhPJnkpJ8lmVfyR7mEki7fKiF5gOHrNBTZ7KUq8AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Bedded Chert" height="12" id="FillPattern80" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATklEQVR4nI2QwQ3AMAgDz+y/M31EVZIWnLwwiBM2SgAEQxgNxCgJekedntuXQKzoEYjPLQ/E35wBipTOd7nRAWL/qPpWPmXt+x44p1zbBzZvKBUs1RpzAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Bioclastic Limestone" height="12" id="FillPattern16" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAR0lEQVR4nGNk+P+fAT9gZISrYUIIwUncgAldKV4NTAwMDFCLkEl8qolTSjJA+BfZ74RcgtM0FK/jVY0RVnhVY4QVIZdQElYA3+wcDxvV3xQAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Bituminous Clay-Shale" height="12" id="FillPattern56" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMElEQVR4nGNk+M8ABYwMDAwMCC52gFUahx5GksxmJGQ1mim4VGMTJ81s0tw9MsIEAKEAF/lTN2ofAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Bituminous Limestone" height="12" id="FillPattern21" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATElEQVR4nJ2QQQoAIAgE3fD/X7ZDkSa5UXOSnCVWiJlwgOW07RXgQZ1ezIhUH6rvqBfswbXAK943dq9ofJ0OpcxLs1ltnw5V2zHzRwdUshgf/EnncAAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Bituminous Sandstone" height="12" id="FillPattern84" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANklEQVR4nGP8z8DAwMDAyMDAwMAAYZMG/iNpQ2MzkmQ2I34V2E3BZTuaGtLMJs3d2G0cbmECADdBI+1BCY0mAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Bundstone" height="12" id="FillPattern26" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nK2QQQoAIAgENfr/l+0QyeZaEjTHmmxQxUxKVKfWahV4s3vyqUORZKO0cg+EO7NwQq9xHs3OSjydMu5lkX2DuJDa/ssAp9oaDL2GU5YAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Calacareous Dolomite" height="12" id="FillPattern28" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQklEQVR4nGP8z4AdMDIwYEoxYSrCpRSLajxKSQaMRBoDsRCLS9AUMSC5jYBqBkq8gXA3MWYw4Q9gTFcxMFArgNEAANH+DA73HLsfAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Calcareous Clay-Shale" height="12" id="FillPattern38" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMklEQVR4nGNk+M8ABYwMCDYOwIJThpEk1djsYcIvjWYJC1YbcWlmIegzHC4hwpKRESYAweELJQ+2Dv8AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Calcareous Sandstone" height="12" id="FillPattern69" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATUlEQVR4nJWQMQ4AIAgDW+L/v4yLIkHE0ImAXLFUfETA3ggBukFan80We1gLu+trv9Nmx9ueA8/mZZ1KgmmdT5OdhFo4tNjp15dCPgpMCHYRH760x+QAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Calcareous and dolomitic Clay-Shale" height="12" id="FillPattern42" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQUlEQVR4nGNk+M+AAIwMKFwMwIKiFBmgcVFUQ0xFVoHNEiYUOVzOYESjMQFcJyOCy4LfW2guZEKXw2oDzMSRESYA0I8UIIfrpeAAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Calcareous and dolomitic Sandstone" height="12" id="FillPattern71" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAP0lEQVR4nGP8z4AAjAwMyFxMwISsFBkwIonA2Yz/kUwl1uz/SCQaQLaTCauNOJ2Hx2pM5zGhSSMDTOeNjDABAJLuFCBieVyyAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Cargneule" height="12" id="FillPattern34" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARUlEQVR4nJWQSQ4AIAjECv//M14RYdSeCJmUxYKKQXQ14CJ6UtOFANMJgUU3fdrnskl1M2j0uW/uLGh9uek6yv7Evyv/WPAuDwvuO4DZAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Chalk" height="12" id="FillPattern10" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMElEQVR4nGNk+P+fAT9gZISrYSKgFBUMHtUMWHz5/z8UYYgj/Ivsd+q4ZPCoJi1MAAyfG/u/D9DFAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Chert" height="12" id="FillPattern79" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANUlEQVR4nGP8z0ACYELmMBKvmpGB4T8hDUzIpiKTWAEj+e6mr2o0P+BTjRlKOFVjDSVahgkAaqUFHbq6tu0AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Cherty Limestone" height="12" id="FillPattern18" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARklEQVR4nGNk+P+fAT9gZISrYUIRJQRgqiFKCWmAqYbYRchVSC4h6AFSAcK/yH4nwiU4DUR4nZBq1LAipBo1rIhwCdlhBQCwoxQPlzOfUgAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Clay-Shale" height="12" id="FillPattern35" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAJklEQVR4nGNk+M9APGDBKcOIVYwUs5lIUIvdPgjAZictXTIywgQAwXMHEViuCzsAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Coal-LigNite" height="12" id="FillPattern2" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAD0lEQVR4nGNgGAWjgDAAAAIoAAGcWSSWAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Coarse Sand" height="12" id="FillPattern61" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQUlEQVR4nGP8z0ACYIGzGBkYGBgY/uPlMpFiNAMjSS6B2EDAAXAuC5rZ+K0izSWkhQlCNX5L/pPhEsrCBKsD4AAAqOIUE2T8pNYAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Coarse Sandstone" height="12" id="FillPattern65" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALUlEQVR4nGP8z0ACYIGzGBkYGBgY/uPlMpFiNAMjSS6B2EDAAXAuLV0yMsIEALtDDhMr0cX2AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Diatomite" height="12" id="FillPattern77" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANklEQVR4nGP8z0ACYGJgYGBEFWJEItHFsZqNy0JGklxC2DxkcZb/cDdh04MmTppLhmmYoOkBAGgCEgoVn5w0AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Dolomite" height="12" id="FillPattern27" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAOUlEQVR4nGP8z4AdMDIwYEoxEa8Uu2pcSkkGjEQaA7EQu7uxKmUgRjX53kC4mxgzmEiyjokil+EHAM8cDA2YvqCzAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Dolomitic Caly-Shale" height="12" id="FillPattern39" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAP0lEQVR4nGNk+M+AAIwMKFwMwIJTKSMW1YxQFYRMhQAmKI1fKSMajQng+pGsZSRsKpICJnQ5XDYwMDCMlDABAMEnExG7n4N/AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Dolomitic LimeStone" height="12" id="FillPattern4" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAM0lEQVR4nGNk+P+fAT9gZISrYSKgFBXQSDUjI9GqkZxOAkDSRIQBdA0TRkaiVZPnd1wAALR5DBNKlryqAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Dolomitic Marl" height="12" id="FillPattern49" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQ0lEQVR4nLWQORIAMAgC14z//7Ip0nkwNqFUBMQI9vBxY+0sCml2O3vq4PfQnZUkQjZSEkmV2qtOUL965qFq+dQJABcAfg4P4mQE/gAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Dolomitic Sandstone" height="12" id="FillPattern70" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAR0lEQVR4nNWQwQoAIAhD3/r/f7ZDFDJM6NhOQ4c+pgABEABom1LKuxy1E8srquhN47gOwNJKo+wdr/9ueDKMnzppCnG8p04mYK4ZEWJIK0cAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Evaporite" height="12" id="FillPattern93" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAIUlEQVR4nGNgYGBgYGD4z8BADIOJSHUkKEKoHnXJIHYJAPYYO80JpAy3AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Ferruginous Sandstone" height="12" id="FillPattern86" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAWklEQVR4nJWPUQrAMAhDE9n9r+w+ZMFpF1goFFsTn0z8UADgc0p8d/Svq64+wUyLHdBTy5yjO22knLFf9xDhzW4vCoDfMFrgnD1g0pPkyQMg9loqOyQHt5G4byloER1pgAzNAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Fine Sand" height="12" id="FillPattern59" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALklEQVR4nGP8z8DAwMDAyMAAYeBnM8I5xAAmUhQzMDEicQiyaeoSIt3AMILCBAAkSggcF+UiNQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Fine Sandstone" height="12" id="FillPattern63" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALklEQVR4nGP8z8DAwMDAyMAAYeBnM8I5xAAmUhQzMDEicQiyaeoSIt3AMILCBAAkSggcF+UiNQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Glauconitic Sandstone" height="12" id="FillPattern85" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQUlEQVR4nGP8z8DAwMDAyMAAYeAHTHCljDAhRiQ2A6ogI8lmM+BVimwPE5q9mFwURxJ0ALIjmTCtQwPIxo2MMAEAWdARI94gGbQAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Grainstone" height="12" id="FillPattern25" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASUlEQVR4nK2QOQ4AIAzDUsT/v1yGLKGHAAmPYAULgzuOmFEbZ1V4s2fxqLJ3JjsZPfTUjtvlEg9ZJUJVEtL15roSiD/Yr1b2XxZ6YBYPaSFNqQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Granit" height="12" id="FillPattern100" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATElEQVR4nI2RMQ4AIAgDwfjwPt3FodKi3uBQr4RoIjagk+E80RtKPmd721JGtLbmKHtbg/OpHpdLf4S769Y7bNs0Nv7sxwuG/uXdYxbP6RST+Z0ilQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Gypsiferous Clay-Shale" height="12" id="FillPattern55" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAP0lEQVR4nN2QwQ4AIAhCn/7/P9OlNiubnuMEcwLDEBiIicgTaJ0V5OPB2q4AvoVcVjlvNrQyPTb0OlGH+H6TAQy0I/SLHyq4AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Gypsum" height="12" id="FillPattern96" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARElEQVR4nNWQOw4AMAhCKSfn6B2aGP972dQnGA8AIUilY2KaLSgAesKjdUePNm4Jkacns5TJwjQLZsTWcirZ3jfp159cEkocGEBKwAkAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Halite" height="12" id="FillPattern94" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAL0lEQVR4nGP8z0ACYMIvzYhVNSOmQjLMRgMsBFXArf3PwMD4H8MlePzNOBomGAAAhh8IGQlZVrQAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="LimeStone" height="12" id="FillPattern3" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAKElEQVR4nGNk+P+fAT9gZISrYSKgFBUMHtWkAYR/kf1OHZcMHtWkAQCOZggPCrWWVQAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Marl" height="12" id="FillPattern48" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALklEQVR4nGNk+M9AADAywNUw4lTNiFWMoNlIgAm/YUTYBwHY7CTbJURYPzLCBACXSAoMolaWUgAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Medium Sand" height="12" id="FillPattern60" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQklEQVR4nGP8zwAFjAwMDAwM//Gz4aqJAUxwgxmRLGFEUoEiRZLZDP+RGATZZLmbSMCI7B5cAQfn0s0luBxAZpgAAN9DFgfGmhrEAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Medium Sandstone" height="12" id="FillPattern64" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAN0lEQVR4nGP8zwAFjAwMDAwMWLlwNiNcmhjABNHKiGQkI5I0OpdkswmaCmePDHdD9RMToySbDQCyZQ0hqQwZswAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Metamorphic Rocks" height="12" id="FillPattern101" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAZElEQVR4nI1QQQ7AMAiSpf//Mju4qYUumScroFCQjAgA1cRbOakCsGKvyUglyW7yUaQCpqbRiYkfdwKn+tbNiZ77NqYpk1okubaOHvw3HyeC/Up59O2aS9RyOjPIvBd4spqQvAHySX3yFrLg2wAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Monogenic Breccia" height="12" id="FillPattern91" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANklEQVR4nGP8z0AAMDIwwNUwoUlgKkUWZ8IlgRUw4ZFjxGAz/sdmJC7PMBL0JbEuwXTPyAgTACehCB65BHOLAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Monom Conglomerate 2-4 mm" height="12" id="FillPattern89" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATklEQVR4nK2PMQ7AMAgDbdT/f9kZolStMLDkJgSHMBQGCADYWrwtFqoAnWnkVsPTj/VPQqVwDawMux+Vaj/x9pAk37VJqHMXn6LiUhLLAmDpFhDu5/5aAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Monom Conglomerate 4-64 mm" height="12" id="FillPattern87" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARklEQVR4nGP8z0ACYIFQjDA+XDOmCFQ1I6qi/9hEIICJFIcwMP4nxSWMJPmSNJew4LIUq3sYGXB4nwFbyJAeJiS4hKQwAQBgDxUTE0sMfAAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Mudstone" height="12" id="FillPattern22" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQ0lEQVR4nGNk+P+fgSBgZIQoYyKsFAlQqJqRETsbp9kQRRhKMQDEx5gkDLBgDxNkQSQ2ab5kJCq8sZtNyGekuYQ0AAAXgRQN+VTR2gAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Nodular Limestone" height="12" id="FillPattern13" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARUlEQVR4nGNk+P+fAT9gZISrYYHy0QAOI1iQtWI1D1X1//+kmI1bjlKA5D4cbsVwCXZzsHgGh2ocAYVDNY6Awu0SygMKADvSHhlod/v/AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Oolitic Limestone" height="12" id="FillPattern11" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATUlEQVR4nKWQQQoAIAgEd8X/f7kORaihQs0pY5k2iTEAgMRijRbyXGqY3flCnKPDpHPlQXeu6P1M9z//ppaq6JIqHfRuJxmmXtnkc1cTqxkgE5gMqmoAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Organic Shale" height="12" id="FillPattern57" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAI0lEQVR4nGP8//8/AwMDIyMjAwMDfjYDAwMTAylgVPXwUQ0AB0MMFSP+cO0AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Packstone" height="12" id="FillPattern24" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASElEQVR4nJWQSQ4AIAgDwfj/L9cDB5HFhjmSAQoqgFBUTVtcdczsXSw1qoTVbECA29bi51lPWBxLmiokSU+yv+9/bXbZLMmMAzGhFgkmiHnkAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Pelletic Limestone" height="12" id="FillPattern12" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQElEQVR4nGNk+P+fAQ4YGaEMNEEYlwWrKAobCTBhCuEBpKlGcsn//9jdTTbA7TNs9iC5BMUQ7KbQKUyQAVXCBwC4JRwTwH80JgAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Phosphatic Limestone" height="12" id="FillPattern20" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQ0lEQVR4nGNk+P+fAT9gZISrYUIRJQRgqiEGENIAUw1RSshVSC4h6AFSAZLtpLkEp4EIrxNSjRpWhFSjhhURLiE7rABaNhgP4X9LFwAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Plastic Clay-Shale" height="12" id="FillPattern37" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAR0lEQVR4nJWQMQ4AIAgDqfH/X8ZJg0lbpRPDcSkgMlwQFZiW3QsN2rlBoJPBZXkVsE0g3YxOMfMmOnj8O64DPmi+qFJ0PfcC8DsNF7DOhSAAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Polym Conglomerate 2-4 mm" height="12" id="FillPattern90" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAUklEQVR4nJWQSw6AMAgFB+L9r/xcaA2GT3VWpAwNPBMbDIBL8+fJGlWg1XWCVw5Ejrmt9yamtNyAdUY574NKuqS2O+oElYpb0wqVUGz+/si/BE8tkBEWwgrDvwAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Polym Conglomerate 4-64 mm" height="12" id="FillPattern88" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASElEQVR4nJWQSQoAMAgDk+L/v5weitIVGhHccZSCITEMM67hMwOgzYXyCSiVW/e/UA4JrSs9kngtvfIQK6turTXg/8QgsX7SAf0bExKF9esDAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Polymictic Breccia" height="12" id="FillPattern92" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANklEQVR4nGP8z0AAMDIwwNUwoUlgKkUWZ8IlgRUw4ZFjxGAz/sdmJC7PMBL0JbEuwXTPyAgTACehCB65BHOLAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Quartzite" height="12" id="FillPattern66" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARUlEQVR4nGP8zwAFjAwMcDYuwARRBweMSAxMNiNJZpMGsJuNi43T3VjZTAyoziWGTSxgxKoJp7uxhiuyW5HZLHgcR6m7AVtHExUWDGm0AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Radiolarite" height="12" id="FillPattern78" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nJXQWQoAIAgEUCe8/5XtQ4hcJnK+Eh4uwaQPRKy8wbQjzzGL4+C+NGKpDzfbu2alcWDw7l3Pp71/XNbvHTwq5Pw2sz/Z1scPFQSt+eAAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Reefal Limestone" height="12" id="FillPattern15" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAU0lEQVR4nKWQQQrAIAwEJ8H/f3l7KESDiVI6x+COyxoSgBnBewnM4uLzqVQkM2NGI5N9K56+kw5ioHZ0vb+x5HbHNpTTUQ01Ll3zUL2bYqhj7588tSUuD6PAwGkAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Saliferous Clay-Shale" height="12" id="FillPattern54" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAN0lEQVR4nGNk+M9APGBhYGBgYGTAoocRi2pGhv8YErhtYyTJJdjsg9uA4UK8ZmO4kDSXjIwwAQDB7hILdBMh6QAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Saliferous Sandstone" height="12" id="FillPattern83" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nLVOQQoAIAhz/v/Pdih0aSBBDRFxYxtMFiABoxsi5puJFsrGbO+f7dl6g4pp5VKIJ+B974N6wsqdkkMNmlQ69sfed94D0X0NImOsELkAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Sandy Clay-Shale" height="12" id="FillPattern40" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAL0lEQVR4nGNk+M9APGBBMBkZUHQyYlHNSJLZTCSoxW4fBPxHUvIfzqSdS0ZGmAAABcoLEUm6bjkAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Sandy Dolomite" height="12" id="FillPattern30" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQ0lEQVR4nK2Q0QoAMAgCdf//z+1tQd1gxHwsOVSHWJb6a52fyVrvHYDUiYDNPiluudH6xJ7XSPYLI3PjlKWM4+PARRsMxQ8PGOp1HwAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Sandy Limestone" height="12" id="FillPattern6" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQklEQVR4nGNk+P+fAT9gZISrYSKgFBWgqmZkZGBkxKOaBYVHyFWkuYQ0gPAvst+p4xLcqrGFDwtWlQwM2MOHlmECAJZUDBefEMWaAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Sandy and calcareous Clay-Shale" height="12" id="FillPattern43" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANElEQVR4nGNk+M9APGBBMBkZGBgYEJoZsahmJMlsJsJKkCxhwWojipOQAAu1XYJk3MgIEwB9KAogMX8ppwAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Sandy and calcareous Dolomite" height="12" id="FillPattern32" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAASklEQVR4nK1QQQ4AIAhC//9nO7hZQ6214igMATHUECBT6oQsoiwNgZCBX7uHd2DvVgeY56ZwOVjUOHg/1Zje5cAELQfGtsangQkDtU8OEjwAEb4AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Sandy and dolomitic Clay-Shale" height="12" id="FillPattern44" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAARUlEQVR4nK2QQQoAIAzDUvH/X54ncYLKCva0y9oQEfgJ1lu+96jaLQiaRaAX217skACYJGn3pxNAdRJB0K9WTps1kmlwAPkbEwRrX37hAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Sandy and dolomitic Limestone" height="12" id="FillPattern9" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQUlEQVR4nGNk+P+fAT9gZISrYSKgFBWgqmZkZGBkxKOaBYVHyFWkuYQ0gPAvst+R5FEE8boEQz9e1RhWURLe1AUAVMIQETu29e4AAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Sandy, calcareous and dolomitic Clay-Shale" height="12" id="FillPattern46" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMUlEQVR4nGNk+M9AADAywNUwIlQjiUK5WDQSNBsJMOE3DNNROAA2F5LtEiKsHxlhAgDbkA4MbSio3wAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Shelly Limestone" height="12" id="FillPattern14" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAR0lEQVR4nKWQSQ4AIAgDC+H/X8aLETQWjc55WFqBO2pEhqMHdUb7dN7EMQBwD6l8zG6kRyJvzs546IQeXrsyqmLTVWnjr6sGwxsUFwL9UYIAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Shelly Sandstone" height="12" id="FillPattern75" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAL0lEQVR4nGP8z0AK+A8j/yNxcTEYIRxGVAlcgJEclyA7Bo/z8JmN6TyyXDLMwwQAVEUn5dyYZycAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Shelly Siltstone" height="12" id="FillPattern76" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAATklEQVR4nKWRSQ4AIAgDB///Z7yh1D32YIwlzVDNeVABDOIUiWU+2J4vu2wHy6O9q9kHbiWb4q64RYF3Na0k5O7GNj+2vIlsj32vq58KVdIZDiJU/WEjAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Silicified Claystone" height="12" id="FillPattern52" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAK0lEQVR4nGNk+M9APGDBKcOIVYwUs5mgZsBNQuMStg8CsNlJqktIASMjTADJrwcZZSLwFgAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Silicified Limestone" height="12" id="FillPattern17" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAANklEQVR4nGNk+P+fAT9gZISrYSKgFBXQQzUjI04GHGCK4AcI/yL7nZBLiAO0VY3H73jChxgAAJtOCB+XiwIpAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Silt" height="12" id="FillPattern58" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALklEQVR4nGP4z8DAwMDwH4YYkEhMEUYIi0jABKEYkUg8IqSbTdBIBDnqbgrdDQA+eBAaMK21ZAAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Siltstone" height="12" id="FillPattern62" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAL0lEQVR4nGP8z4AAjAwM/2EkAzZxRjQJ/ICJEaYbDWAVJ9FsguYhi4+6G1OcNLMB5r8KIK4wHFcAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Silty Clay-Shale" height="12" id="FillPattern41" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAALUlEQVR4nGNk+M9APGCB0owMUG3IDAzASJLZTCSoxQf+w5z0H8GlpUtGRpgAAEJhEwel2CwqAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Silty Marl" height="12" id="FillPattern50" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMElEQVR4nGNk+M9AADAyIKn5D+NgMrBoJGg2EmBCsZF8gOwwGJdsl+ACKC4cCWECAFFIG/TvFDT2AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Silty dolomitic Marl" height="12" id="FillPattern51" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAUElEQVR4nJ2QSQ7AMAgDx1X+/2V6SdSEJULlAhY2BoTRjzGzmLK9KNnRIfN8DqSc1AhbSvugusME5ja5UoOjKxJVbNS3Ds/j31uyDds/AeAF/kAdAP0L+PQAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Silty, calcareous and dolomitic Clay-Shale" height="12" id="FillPattern47" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAMElEQVR4nGNk+M9AADAyIKn5D+NgMrBoJGg2EmBCsZF8gOwwGJdsl+ACKC4cCWECAFFIG/TvFDT2AAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Slaty Shale" height="12" id="FillPattern36" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAFklEQVR4nGNgIAUwMvwnSf2o2cPFbABujgYBlSHfbwAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern alt="Sylvite" height="12" id="FillPattern97" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAO0lEQVR4nGNsYMAOMMUbGBhYcEmgiUPYLJgmNWAw4ACLalwiDAwMjFhFcQEmUhSTqJoFl0QDNpGhGoIAAZsMpDuBJngAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Void" height="12" id="FillPattern1" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAF0lEQVR4nGP8//8/A9GAiXilo6qHlWoAh/ADFdofhqIAAAAASUVORK5CYII="/>
+    </pattern>
+    <pattern alt="Volcanic Rock" height="12" id="FillPattern98" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAXUlEQVR4nH1QwQ0AMQjCTsbojnYPL4YorZ9KCoJGZgIgCaD6gt1rRT37b+h/9sDbRGFoEmuiGp/E5iY5k7wF5+Hb8TybpI7cgrD3vkU6jcfVutTBb3mzmls2z275AT0VUFEc1K2XAAAAAElFTkSuQmCC"/>
+    </pattern>
+    <pattern alt="Wackstone" height="12" id="FillPattern23" patternUnits="userSpaceOnUse" viewBox="0 0 15 12" width="15">
+      <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAIAAAAyIHCzAAAAQ0lEQVR4nGNk+P+fgSBgZIQoYyKsFAlQqJqRETubDLNRAcTHmCTcMvQwgdj+/z+CQcAl2EzFYTZegGo2RiDgVU1dAABPyBgGdo0uhQAAAABJRU5ErkJggg=="/>
+    </pattern>
+  </defs>
+  <rect fill="url(#FillPattern95)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="10.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="8.000mm">Anhydrite</text>
+  <rect fill="url(#FillPattern53)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="10.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="8.000mm">Anhydritic Clay-Shale</text>
+  <rect fill="url(#FillPattern19)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="10.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="8.000mm">Anhydritic Limestone</text>
+  <rect fill="url(#FillPattern81)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="10.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="8.000mm">Anhydritic Sandstone</text>
+  <rect fill="url(#FillPattern82)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="50.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="48.000mm">Anhydritic Siltsone</text>
+  <rect fill="url(#FillPattern29)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="50.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="48.000mm">Argillaceous Dolomite</text>
+  <rect fill="url(#FillPattern5)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="50.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="48.000mm">Argillaceous Limestone</text>
+  <rect fill="url(#FillPattern68)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="50.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="48.000mm">Argillaceous Sandstone</text>
+  <rect fill="url(#FillPattern67)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="90.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="88.000mm">Argillaceous Siltstone</text>
+  <rect fill="url(#FillPattern33)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="90.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="88.000mm">Argillaceous and Sandy Dolomite</text>
+  <rect fill="url(#FillPattern31)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="90.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="88.000mm">Argillaceous and calcareous Dolomite</text>
+  <rect fill="url(#FillPattern72)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="90.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="88.000mm">Argillaceous and calcareous Sandstone</text>
+  <rect fill="url(#FillPattern7)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="130.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="128.000mm">Argillaceous and dolomitic Limestone</text>
+  <rect fill="url(#FillPattern73)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="130.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="128.000mm">Argillaceous and dolomitic Sandstone</text>
+  <rect fill="url(#FillPattern8)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="130.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="128.000mm">Argillaceous and sandy Limestone</text>
+  <rect fill="url(#FillPattern74)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="130.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="128.000mm">Arkosic Sandstone</text>
+  <rect fill="url(#FillPattern99)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="170.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="168.000mm">Basalt</text>
+  <rect fill="url(#FillPattern80)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="170.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="168.000mm">Bedded Chert</text>
+  <rect fill="url(#FillPattern16)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="170.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="168.000mm">Bioclastic Limestone</text>
+  <rect fill="url(#FillPattern56)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="170.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="168.000mm">Bituminous Clay-Shale</text>
+  <rect fill="url(#FillPattern21)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="210.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="208.000mm">Bituminous Limestone</text>
+  <rect fill="url(#FillPattern84)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="210.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="208.000mm">Bituminous Sandstone</text>
+  <rect fill="url(#FillPattern26)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="210.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="208.000mm">Bundstone</text>
+  <rect fill="url(#FillPattern28)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="210.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="208.000mm">Calacareous Dolomite</text>
+  <rect fill="url(#FillPattern38)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="250.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="248.000mm">Calcareous Clay-Shale</text>
+  <rect fill="url(#FillPattern69)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="250.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="248.000mm">Calcareous Sandstone</text>
+  <rect fill="url(#FillPattern42)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="250.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="248.000mm">Calcareous and dolomitic Clay-Shale</text>
+  <rect fill="url(#FillPattern71)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="250.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="248.000mm">Calcareous and dolomitic Sandstone</text>
+  <rect fill="url(#FillPattern34)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="290.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="288.000mm">Cargneule</text>
+  <rect fill="url(#FillPattern10)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="290.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="288.000mm">Chalk</text>
+  <rect fill="url(#FillPattern79)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="290.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="288.000mm">Chert</text>
+  <rect fill="url(#FillPattern18)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="290.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="288.000mm">Cherty Limestone</text>
+  <rect fill="url(#FillPattern35)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="330.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="328.000mm">Clay-Shale</text>
+  <rect fill="url(#FillPattern2)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="330.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="328.000mm">Coal-LigNite</text>
+  <rect fill="url(#FillPattern61)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="330.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="328.000mm">Coarse Sand</text>
+  <rect fill="url(#FillPattern65)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="330.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="328.000mm">Coarse Sandstone</text>
+  <rect fill="url(#FillPattern77)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="370.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="368.000mm">Diatomite</text>
+  <rect fill="url(#FillPattern27)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="370.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="368.000mm">Dolomite</text>
+  <rect fill="url(#FillPattern39)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="370.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="368.000mm">Dolomitic Caly-Shale</text>
+  <rect fill="url(#FillPattern4)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="370.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="368.000mm">Dolomitic LimeStone</text>
+  <rect fill="url(#FillPattern49)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="410.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="408.000mm">Dolomitic Marl</text>
+  <rect fill="url(#FillPattern70)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="410.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="408.000mm">Dolomitic Sandstone</text>
+  <rect fill="url(#FillPattern93)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="410.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="408.000mm">Evaporite</text>
+  <rect fill="url(#FillPattern86)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="410.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="408.000mm">Ferruginous Sandstone</text>
+  <rect fill="url(#FillPattern59)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="450.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="448.000mm">Fine Sand</text>
+  <rect fill="url(#FillPattern63)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="450.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="448.000mm">Fine Sandstone</text>
+  <rect fill="url(#FillPattern85)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="450.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="448.000mm">Glauconitic Sandstone</text>
+  <rect fill="url(#FillPattern25)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="450.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="448.000mm">Grainstone</text>
+  <rect fill="url(#FillPattern100)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="490.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="488.000mm">Granit</text>
+  <rect fill="url(#FillPattern55)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="490.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="488.000mm">Gypsiferous Clay-Shale</text>
+  <rect fill="url(#FillPattern96)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="490.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="488.000mm">Gypsum</text>
+  <rect fill="url(#FillPattern94)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="490.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="488.000mm">Halite</text>
+  <rect fill="url(#FillPattern3)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="530.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="528.000mm">LimeStone</text>
+  <rect fill="url(#FillPattern48)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="530.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="528.000mm">Marl</text>
+  <rect fill="url(#FillPattern60)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="530.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="528.000mm">Medium Sand</text>
+  <rect fill="url(#FillPattern64)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="530.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="528.000mm">Medium Sandstone</text>
+  <rect fill="url(#FillPattern101)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="570.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="568.000mm">Metamorphic Rocks</text>
+  <rect fill="url(#FillPattern91)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="570.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="568.000mm">Monogenic Breccia</text>
+  <rect fill="url(#FillPattern89)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="570.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="568.000mm">Monom Conglomerate 2-4 mm</text>
+  <rect fill="url(#FillPattern87)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="570.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="568.000mm">Monom Conglomerate 4-64 mm</text>
+  <rect fill="url(#FillPattern22)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="610.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="608.000mm">Mudstone</text>
+  <rect fill="url(#FillPattern13)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="610.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="608.000mm">Nodular Limestone</text>
+  <rect fill="url(#FillPattern11)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="610.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="608.000mm">Oolitic Limestone</text>
+  <rect fill="url(#FillPattern57)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="610.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="608.000mm">Organic Shale</text>
+  <rect fill="url(#FillPattern24)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="650.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="648.000mm">Packstone</text>
+  <rect fill="url(#FillPattern12)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="650.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="648.000mm">Pelletic Limestone</text>
+  <rect fill="url(#FillPattern20)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="650.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="648.000mm">Phosphatic Limestone</text>
+  <rect fill="url(#FillPattern37)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="650.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="648.000mm">Plastic Clay-Shale</text>
+  <rect fill="url(#FillPattern90)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="690.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="688.000mm">Polym Conglomerate 2-4 mm</text>
+  <rect fill="url(#FillPattern88)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="690.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="688.000mm">Polym Conglomerate 4-64 mm</text>
+  <rect fill="url(#FillPattern92)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="690.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="688.000mm">Polymictic Breccia</text>
+  <rect fill="url(#FillPattern66)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="690.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="688.000mm">Quartzite</text>
+  <rect fill="url(#FillPattern78)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="730.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="728.000mm">Radiolarite</text>
+  <rect fill="url(#FillPattern15)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="730.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="728.000mm">Reefal Limestone</text>
+  <rect fill="url(#FillPattern54)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="730.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="728.000mm">Saliferous Clay-Shale</text>
+  <rect fill="url(#FillPattern83)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="730.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="728.000mm">Saliferous Sandstone</text>
+  <rect fill="url(#FillPattern40)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="770.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="768.000mm">Sandy Clay-Shale</text>
+  <rect fill="url(#FillPattern30)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="770.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="768.000mm">Sandy Dolomite</text>
+  <rect fill="url(#FillPattern6)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="770.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="768.000mm">Sandy Limestone</text>
+  <rect fill="url(#FillPattern43)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="770.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="768.000mm">Sandy and calcareous Clay-Shale</text>
+  <rect fill="url(#FillPattern32)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="810.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="808.000mm">Sandy and calcareous Dolomite</text>
+  <rect fill="url(#FillPattern44)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="810.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="808.000mm">Sandy and dolomitic Clay-Shale</text>
+  <rect fill="url(#FillPattern9)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="810.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="808.000mm">Sandy and dolomitic Limestone</text>
+  <rect fill="url(#FillPattern46)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="810.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="808.000mm">Sandy, calcareous and dolomitic Clay-Shale</text>
+  <rect fill="url(#FillPattern14)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="850.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="848.000mm">Shelly Limestone</text>
+  <rect fill="url(#FillPattern75)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="850.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="848.000mm">Shelly Sandstone</text>
+  <rect fill="url(#FillPattern76)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="850.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="848.000mm">Shelly Siltstone</text>
+  <rect fill="url(#FillPattern52)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="850.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="848.000mm">Silicified Claystone</text>
+  <rect fill="url(#FillPattern17)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="890.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="888.000mm">Silicified Limestone</text>
+  <rect fill="url(#FillPattern58)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="890.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="888.000mm">Silt</text>
+  <rect fill="url(#FillPattern62)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="890.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="888.000mm">Siltstone</text>
+  <rect fill="url(#FillPattern41)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="890.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="888.000mm">Silty Clay-Shale</text>
+  <rect fill="url(#FillPattern50)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="930.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="928.000mm">Silty Marl</text>
+  <rect fill="url(#FillPattern51)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="930.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="928.000mm">Silty dolomitic Marl</text>
+  <rect fill="url(#FillPattern47)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="930.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="928.000mm">Silty, calcareous and dolomitic Clay-Shale</text>
+  <rect fill="url(#FillPattern36)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="930.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="928.000mm">Slaty Shale</text>
+  <rect fill="url(#FillPattern97)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="10.000mm" y="970.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="30.000mm" y="968.000mm">Sylvite</text>
+  <rect fill="url(#FillPattern1)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="60.000mm" y="970.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="80.000mm" y="968.000mm">Void</text>
+  <rect fill="url(#FillPattern98)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="110.000mm" y="970.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="130.000mm" y="968.000mm">Volcanic Rock</text>
+  <rect fill="url(#FillPattern23)" height="30.000mm" stroke="black" stroke-width="2.0" width="40.000mm" x="160.000mm" y="970.000mm"/>
+  <text font-family="Helvetica" font-size="10" text-anchor="middle" x="180.000mm" y="968.000mm">Wackstone</text>
+</svg>
