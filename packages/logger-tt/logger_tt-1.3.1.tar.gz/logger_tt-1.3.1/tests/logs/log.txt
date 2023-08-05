@@ -1,0 +1,1030 @@
+[2020-06-14 18:44:04] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:44:04] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├ my_function = <function my_function at 0x000001DA556EB438>
+     ├ a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001DA55AC4A88>>
+     ├ my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├ self.value = 3
+     ├ self.non_exist = '!!! Not Exists'
+     ├ self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:46:41] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:46:41] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├ my_function = <function my_function at 0x0000022BEB91B438>
+     ├ a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000022BEBCB4E48>>
+     ├ my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├ self.value = 3
+     ├ self.non_exist = '!!! Not Exists'
+     ├ self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:46:55] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:46:55] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├ my_function = <function my_function at 0x0000019ECE41B438>
+     ├ a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000019ECE7F4C08>>
+     └ my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├ self.value = 3
+     ├ self.non_exist = '!!! Not Exists'
+     └ self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:48:30] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:48:30] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     -> my_function = <function my_function at 0x0000025A4C99B438>
+     -> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     -> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000025A4CD52AC8>>
+     -> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     -> self.value = 3
+     -> self.non_exist = '!!! Not Exists'
+     -> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:48:56] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:48:56] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x0000019A8FEDB438>
+     │-> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000019A902B5AC8>>
+     │-> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:49:31] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:49:31] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │> my_function = <function my_function at 0x0000017D1332B438>
+     │> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000017D15434A48>>
+     │> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │> self.value = 3
+     │> self.non_exist = '!!! Not Exists'
+     │> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:49:37] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:49:37] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000001D63E50B438>
+     │-> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001D63E8C5B08>>
+     │-> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:50:32] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:50:32] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x0000012304B2B438>
+     │-> a = Dummy(my dummy class)
+       │=> __name__ = '__main__'
+       │=> __doc__ = None
+       │=> __package__ = None
+       │=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x00000123049D2688>
+       │=> __spec__ = None
+       │=> __annotations__ = {}
+       │=> __builtins__ = <module 'builtins' (built-in)>
+       │=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+       │=> __cached__ = None
+       │=> setup_logging = <function setup_logging at 0x0000012304EF78B8>
+       │=> getLogger = <function getLogger at 0x0000012304D5F0D8>
+       │=> __author__ = 'Duc Tin'
+       │=> logger = <ExceptionLogger __main__ (DEBUG)>
+       │=> Base = <class '__main__.Base'>
+       │=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000012304EF3AC8>>
+     │-> my_local_var = 345
+       │=> var_in = Dummy(my dummy class)
+       │=> arg = (456, 789)
+       │=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+       │=> self = Dummy(my dummy class)
+       │=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:50:52] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:50:52] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x0000028CF6CEB438>
+     │-> a = Dummy(my dummy class)
+     │=> __name__ = '__main__'
+     │=> __doc__ = None
+     │=> __package__ = None
+     │=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000028CF6B92688>
+     │=> __spec__ = None
+     │=> __annotations__ = {}
+     │=> __builtins__ = <module 'builtins' (built-in)>
+     │=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     │=> __cached__ = None
+     │=> setup_logging = <function setup_logging at 0x0000028CF70A88B8>
+     │=> getLogger = <function getLogger at 0x0000028CF6F1F0D8>
+     │=> __author__ = 'Duc Tin'
+     │=> logger = <ExceptionLogger __main__ (DEBUG)>
+     │=> Base = <class '__main__.Base'>
+     │=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000028CF70A4AC8>>
+     │-> my_local_var = 345
+     │=> var_in = Dummy(my dummy class)
+     │=> arg = (456, 789)
+     │=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     │=> self = Dummy(my dummy class)
+     │=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:51:15] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:51:15] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000001D873BBB438>
+     │-> a = Dummy(my dummy class)
+     ║=> __name__ = '__main__'
+     ║=> __doc__ = None
+     ║=> __package__ = None
+     ║=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001D873A62688>
+     ║=> __spec__ = None
+     ║=> __annotations__ = {}
+     ║=> __builtins__ = <module 'builtins' (built-in)>
+     ║=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ║=> __cached__ = None
+     ║=> setup_logging = <function setup_logging at 0x000001D873F888B8>
+     ║=> getLogger = <function getLogger at 0x000001D873DEF0D8>
+     ║=> __author__ = 'Duc Tin'
+     ║=> logger = <ExceptionLogger __main__ (DEBUG)>
+     ║=> Base = <class '__main__.Base'>
+     ║=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001D873F83A48>>
+     │-> my_local_var = 345
+     ║=> var_in = Dummy(my dummy class)
+     ║=> arg = (456, 789)
+     ║=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     ║=> self = Dummy(my dummy class)
+     ║=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:51:25] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:51:25] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000001F5206AB438>
+     │-> a = Dummy(my dummy class)
+      ║=> __name__ = '__main__'
+      ║=> __doc__ = None
+      ║=> __package__ = None
+      ║=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001F51E902688>
+      ║=> __spec__ = None
+      ║=> __annotations__ = {}
+      ║=> __builtins__ = <module 'builtins' (built-in)>
+      ║=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+      ║=> __cached__ = None
+      ║=> setup_logging = <function setup_logging at 0x000001F520A688B8>
+      ║=> getLogger = <function getLogger at 0x000001F5208DF0D8>
+      ║=> __author__ = 'Duc Tin'
+      ║=> logger = <ExceptionLogger __main__ (DEBUG)>
+      ║=> Base = <class '__main__.Base'>
+      ║=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001F520A64B08>>
+     │-> my_local_var = 345
+      ║=> var_in = Dummy(my dummy class)
+      ║=> arg = (456, 789)
+      ║=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+      ║=> self = Dummy(my dummy class)
+      ║=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:51:46] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:51:46] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x00000207C100B438>
+     │-> a = Dummy(my dummy class)
+     ║=> __name__ = '__main__'
+     ║=> __doc__ = None
+     ║=> __package__ = None
+     ║=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x00000207C0EB2648>
+     ║=> __spec__ = None
+     ║=> __annotations__ = {}
+     ║=> __builtins__ = <module 'builtins' (built-in)>
+     ║=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ║=> __cached__ = None
+     ║=> setup_logging = <function setup_logging at 0x00000207C13D88B8>
+     ║=> getLogger = <function getLogger at 0x00000207C123F0D8>
+     ║=> __author__ = 'Duc Tin'
+     ║=> logger = <ExceptionLogger __main__ (DEBUG)>
+     ║=> Base = <class '__main__.Base'>
+     ║=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x00000207C13D3A48>>
+     │-> my_local_var = 345
+     ║=> var_in = Dummy(my dummy class)
+     ║=> arg = (456, 789)
+     ║=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     ║=> self = Dummy(my dummy class)
+     ║=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:53:28] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:53:28] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │· my_function = <function my_function at 0x0000018A4834B438>
+     │· a = Dummy(my dummy class)
+     ║=> __name__ = '__main__'
+     ║=> __doc__ = None
+     ║=> __package__ = None
+     ║=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000018A481F2688>
+     ║=> __spec__ = None
+     ║=> __annotations__ = {}
+     ║=> __builtins__ = <module 'builtins' (built-in)>
+     ║=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ║=> __cached__ = None
+     ║=> setup_logging = <function setup_logging at 0x0000018A487278B8>
+     ║=> getLogger = <function getLogger at 0x0000018A4857F0D8>
+     ║=> __author__ = 'Duc Tin'
+     ║=> logger = <ExceptionLogger __main__ (DEBUG)>
+     ║=> Base = <class '__main__.Base'>
+     ║=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │· var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000018A48723AC8>>
+     │· my_local_var = 345
+     ║=> var_in = Dummy(my dummy class)
+     ║=> arg = (456, 789)
+     ║=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │· self.value = 3
+     │· self.non_exist = '!!! Not Exists'
+     │· self.base.name = 'Nested dot'
+     ║=> self = Dummy(my dummy class)
+     ║=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:53:45] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:53:45] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │· my_function = <function my_function at 0x0000021BDAB6B438>
+     │· a = Dummy(my dummy class)
+     ║· __name__ = '__main__'
+     ║· __doc__ = None
+     ║· __package__ = None
+     ║· __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000021BDAA12688>
+     ║· __spec__ = None
+     ║· __annotations__ = {}
+     ║· __builtins__ = <module 'builtins' (built-in)>
+     ║· __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ║· __cached__ = None
+     ║· setup_logging = <function setup_logging at 0x0000021BDAF268B8>
+     ║· getLogger = <function getLogger at 0x0000021BDAD9F0D8>
+     ║· __author__ = 'Duc Tin'
+     ║· logger = <ExceptionLogger __main__ (DEBUG)>
+     ║· Base = <class '__main__.Base'>
+     ║· Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │· var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000021BDAF21A48>>
+     │· my_local_var = 345
+     ║· var_in = Dummy(my dummy class)
+     ║· arg = (456, 789)
+     ║· kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │· self.value = 3
+     │· self.non_exist = '!!! Not Exists'
+     │· self.base.name = 'Nested dot'
+     ║· self = Dummy(my dummy class)
+     ║· arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:54:17] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:54:17] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     · my_function = <function my_function at 0x000002A6E78EB438>
+     · a = Dummy(my dummy class)
+     · __name__ = '__main__'
+     · __doc__ = None
+     · __package__ = None
+     · __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000002A6E7792688>
+     · __spec__ = None
+     · __annotations__ = {}
+     · __builtins__ = <module 'builtins' (built-in)>
+     · __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     · __cached__ = None
+     · setup_logging = <function setup_logging at 0x000002A6E7CA78B8>
+     · getLogger = <function getLogger at 0x000002A6E7B1F0D8>
+     · __author__ = 'Duc Tin'
+     · logger = <ExceptionLogger __main__ (DEBUG)>
+     · Base = <class '__main__.Base'>
+     · Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     · var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000002A6E7CA3A88>>
+     · my_local_var = 345
+     · var_in = Dummy(my dummy class)
+     · arg = (456, 789)
+     · kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     · self.value = 3
+     · self.non_exist = '!!! Not Exists'
+     · self.base.name = 'Nested dot'
+     · self = Dummy(my dummy class)
+     · arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:54:43] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:54:43] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     · my_function = <function my_function at 0x000001B3376DB438>
+     · a = Dummy(my dummy class)
+     ■ __name__ = '__main__'
+     ■ __doc__ = None
+     ■ __package__ = None
+     ■ __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001B337582688>
+     ■ __spec__ = None
+     ■ __annotations__ = {}
+     ■ __builtins__ = <module 'builtins' (built-in)>
+     ■ __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ■ __cached__ = None
+     ■ setup_logging = <function setup_logging at 0x000001B337AB78B8>
+     ■ getLogger = <function getLogger at 0x000001B33790F0D8>
+     ■ __author__ = 'Duc Tin'
+     ■ logger = <ExceptionLogger __main__ (DEBUG)>
+     ■ Base = <class '__main__.Base'>
+     ■ Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     · var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001B337AB3AC8>>
+     · my_local_var = 345
+     ■ var_in = Dummy(my dummy class)
+     ■ arg = (456, 789)
+     ■ kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     · self.value = 3
+     · self.non_exist = '!!! Not Exists'
+     · self.base.name = 'Nested dot'
+     ■ self = Dummy(my dummy class)
+     ■ arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:56:13] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:56:13] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000001E92A0DB438>
+     │-> a = Dummy(my dummy class)
+     ║=> __name__ = '__main__'
+     ║=> __doc__ = None
+     ║=> __package__ = None
+     ║=> __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001E929F82648>
+     ║=> __spec__ = None
+     ║=> __annotations__ = {}
+     ║=> __builtins__ = <module 'builtins' (built-in)>
+     ║=> __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     ║=> __cached__ = None
+     ║=> setup_logging = <function setup_logging at 0x000001E92A4B88B8>
+     ║=> getLogger = <function getLogger at 0x000001E92A30F0D8>
+     ║=> __author__ = 'Duc Tin'
+     ║=> logger = <ExceptionLogger __main__ (DEBUG)>
+     ║=> Base = <class '__main__.Base'>
+     ║=> Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001E92A4B4A88>>
+     │-> my_local_var = 345
+     ║=> var_in = Dummy(my dummy class)
+     ║=> arg = (456, 789)
+     ║=> kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     ║=> self = Dummy(my dummy class)
+     ║=> arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:56:57] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:56:57] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000002218C0DB438>
+     │-> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000002218A352688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x000002218C4A88B8>
+     => getLogger = <function getLogger at 0x000002218C30F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000002218C4A3AC8>>
+     │-> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:57:39] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:57:39] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000002982292B438>
+     │-> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000029822CA6AC8>>
+     │-> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:59:11] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:59:11] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─ my_function = <function my_function at 0x0000025BD1C7B438>
+     ├─ a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000025BD2032A08>>
+     ├─ my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─ self.value = 3
+     ├─ self.non_exist = '!!! Not Exists'
+     ├─ self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 18:59:43] [root DEBUG] _________________New log started__________________
+[2020-06-14 18:59:43] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─ my_function = <function my_function at 0x000001D73EADB438>
+     ├─ a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001D73E982688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x000001D73EE648B8>
+     => getLogger = <function getLogger at 0x000001D73ED0F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001D73EE65A88>>
+     ├─ my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─ self.value = 3
+     ├─ self.non_exist = '!!! Not Exists'
+     ├─ self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:00:19] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:00:19] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─> my_function = <function my_function at 0x000002150302B438>
+     ├─> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000021501292688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x00000215033E78B8>
+     => getLogger = <function getLogger at 0x000002150325F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x00000215033E3AC8>>
+     ├─> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─> self.value = 3
+     ├─> self.non_exist = '!!! Not Exists'
+     ├─> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:00:29] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:00:29] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─ my_function = <function my_function at 0x000001DF26CEB438>
+     ├─ a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001DF26B92688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x000001DF270978B8>
+     => getLogger = <function getLogger at 0x000001DF26F1F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001DF27093A08>>
+     ├─ my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─ self.value = 3
+     ├─ self.non_exist = '!!! Not Exists'
+     ├─ self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:01:14] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:01:14] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─ my_function = <function my_function at 0x00000239F054B438>
+     ├─ a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x00000239F03F2688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x00000239F08F48B8>
+     => getLogger = <function getLogger at 0x00000239F077F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─ var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x00000239F08F5AC8>>
+     ├─ my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─ self.value = 3
+     ├─ self.non_exist = '!!! Not Exists'
+     ├─ self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:02:33] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:02:33] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     │-> my_function = <function my_function at 0x000001A82E6EB438>
+     │-> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001A82E592648>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x000001A82EAC88B8>
+     => getLogger = <function getLogger at 0x000001A82E91F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     │-> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001A82E6F1E08>>
+     │-> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     │-> self.value = 3
+     │-> self.non_exist = '!!! Not Exists'
+     │-> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:03:41] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:03:41] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     -> my_function = <function my_function at 0x0000027CAB63B438>
+     -> a = Dummy(my dummy class)
+       => __name__ = '__main__'
+       => __doc__ = None
+       => __package__ = None
+       => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000027CA9892688>
+       => __spec__ = None
+       => __annotations__ = {}
+       => __builtins__ = <module 'builtins' (built-in)>
+       => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+       => __cached__ = None
+       => setup_logging = <function setup_logging at 0x0000027CAB9E78B8>
+       => getLogger = <function getLogger at 0x0000027CAB86F0D8>
+       => __author__ = 'Duc Tin'
+       => logger = <ExceptionLogger __main__ (DEBUG)>
+       => Base = <class '__main__.Base'>
+       => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     -> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000027CAB9E1B08>>
+     -> my_local_var = 345
+       => var_in = Dummy(my dummy class)
+       => arg = (456, 789)
+       => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     -> self.value = 3
+     -> self.non_exist = '!!! Not Exists'
+     -> self.base.name = 'Nested dot'
+       => self = Dummy(my dummy class)
+       => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:03:59] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:03:59] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─> my_function = <function my_function at 0x00000222DF11B438>
+     ├─> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x00000222DEFC2688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x00000222DF4D78B8>
+     => getLogger = <function getLogger at 0x00000222DF34F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x00000222DF4D3A88>>
+     ├─> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─> self.value = 3
+     ├─> self.non_exist = '!!! Not Exists'
+     ├─> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:06:10] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:06:10] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─> my_function = <function my_function at 0x000001EFC0F6B438>
+     ├─> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x000001EFC0E12688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x000001EFC13178B8>
+     => getLogger = <function getLogger at 0x000001EFC119F0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x000001EFC1311E08>>
+     ├─> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─> self.value = 3
+     ├─> self.non_exist = '!!! Not Exists'
+     ├─> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:06:28] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:06:28] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─> my_function = <function my_function at 0x00000157F909B438>
+     ├─> a = Dummy(my dummy class)
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x00000157F9455BC8>>
+     ├─> my_local_var = 345
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─> self.value = 3
+     ├─> self.non_exist = '!!! Not Exists'
+     ├─> self.base.name = 'Nested dot'
+AttributeError: 'Dummy' object has no attribute 'non_exist'
+[2020-06-14 19:08:13] [root DEBUG] _________________New log started__________________
+[2020-06-14 19:08:13] [root ERROR] Uncaught exception:
+Traceback (most recent call last):
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 37, in <module>
+    my_function(a, 456, 789, my_kw='hello', another_kw='world')
+     ├─> my_function = <function my_function at 0x0000020E9D4CB438>
+     ├─> a = Dummy(my dummy class)
+     => __name__ = '__main__'
+     => __doc__ = None
+     => __package__ = None
+     => __loader__ = <_frozen_importlib_external.SourceFileLoader object at 0x0000020E9D372688>
+     => __spec__ = None
+     => __annotations__ = {}
+     => __builtins__ = <module 'builtins' (built-in)>
+     => __file__ = 'D:/PycharmProject/logger_tt/tests/exception_multiline.py'
+     => __cached__ = None
+     => setup_logging = <function setup_logging at 0x0000020E9D8748B8>
+     => getLogger = <function getLogger at 0x0000020E9D6FF0D8>
+     => __author__ = 'Duc Tin'
+     => logger = <ExceptionLogger __main__ (DEBUG)>
+     => Base = <class '__main__.Base'>
+     => Dummy = <class '__main__.Dummy'>
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 32, in my_function
+    var_in.details_with_multiline(my_local_var)
+     ├─> var_in.details_with_multiline = <bound method Dummy.details_with_multiline of <__main__.Dummy object at 0x0000020E9D875BC8>>
+     ├─> my_local_var = 345
+     => var_in = Dummy(my dummy class)
+     => arg = (456, 789)
+     => kwargs = {'my_kw': 'hello', 'another_kw': 'world'}
+
+  File "D:/PycharmProject/logger_tt/tests/exception_multiline.py", line 22, in details_with_multiline
+    print(f'{self.value} '
+          f'{self.non_exist} '
+          f'{self.base.name}')
+     ├─> self.value = 3
+     ├─> self.non_exist = '!!! Not Exists'
+     ├─> self.base.name = 'Nested dot'
+     => self = Dummy(my dummy class)
+     => arg = 345
+AttributeError: 'Dummy' object has no attribute 'non_exist'
