@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: ishutin-otus-homework1-cli-searcher
+Version: 0.1
+Summary: Allow to make web search requests from command line
+Home-page: https://github.com/petrishutin/OTUS_Homework/tree/master/Homework1_CLI_Search
+Author: Petr_Ishutin
+Author-email: ishutin.petr@yandex.ru
+License: GNU General Public License v3.0
+Keywords: web search,cli web search
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: astroid (>=2.4.2)
+Requires-Dist: beautifulsoup4 (>=4.9.1)
+Requires-Dist: bs4 (>=0.0.1)
+Requires-Dist: certifi (>=2020.4.5.1)
+Requires-Dist: chardet (>=3.0.4)
+Requires-Dist: idna (>=2.9)
+Requires-Dist: isort (>=4.3.21)
+Requires-Dist: lazy-object-proxy (>=1.4.3)
+Requires-Dist: requests (>=2.23.0)
+Requires-Dist: selenium (>=3.141.0)
+Requires-Dist: six (>=1.15.0)
+Requires-Dist: soupsieve (>=2.0.1)
+Requires-Dist: toml (>=0.10.1)
+Requires-Dist: typed-ast (>=1.4.1)
+Requires-Dist: urllib3 (>=1.25.9)
+Requires-Dist: wrapt (>=1.12.1)
+
+#####Установить пакет: $ pip install ishutin_otus_homework1_cli_searcher
+
+#####Как пользоваться: $ searcher -h
+
+ Задача: Создать программу поисковик (консольную) 
+ Пользователь вводит:
+  - текст запроса, DONE
+  - поисковую систему (google.com, yandex.ru, ...), DONE
+  - количество результатов, DONE
+  - рекурсивный поиск или нет, DONE
+  - формат вывода (в консоль, в файл json, в csv) DONE
+
+  Программа находит в интернете начиная от стартовой точки все ссылки на веб-странице в заданном количестве (название ссылки и саму ссылку) Если поиск не рекурсивный, то берем ссылки только из поисковика, если рекурсивный, то берем первую ссылку, переходим, находим там ссылки, переходим, ... В зависимости от выбранного формата вывода сохраняем результат (текст ссылки: ссылка) либо в консоль либо в файл выбранного формата
+
+
+
