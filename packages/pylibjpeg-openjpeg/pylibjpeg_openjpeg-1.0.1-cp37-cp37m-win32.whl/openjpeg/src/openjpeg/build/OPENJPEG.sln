@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{95B28885-759A-3DA5-9F0A-824E87CCF2E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF} = {2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		MinSizeRel|x64 = MinSizeRel|x64
+		RelWithDebInfo|x64 = RelWithDebInfo|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95B28885-759A-3DA5-9F0A-824E87CCF2E5}.Debug|x64.ActiveCfg = Debug|x64
+		{95B28885-759A-3DA5-9F0A-824E87CCF2E5}.Release|x64.ActiveCfg = Release|x64
+		{95B28885-759A-3DA5-9F0A-824E87CCF2E5}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{95B28885-759A-3DA5-9F0A-824E87CCF2E5}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.Debug|x64.ActiveCfg = Debug|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.Debug|x64.Build.0 = Debug|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.Release|x64.ActiveCfg = Release|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.Release|x64.Build.0 = Release|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{2BCD5384-5710-32A0-B2E5-CCCBC0AFCDCF}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {049382D7-0385-36E9-8FB1-7371FEE4DCF9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
