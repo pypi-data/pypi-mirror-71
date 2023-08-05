@@ -1,0 +1,30 @@
+#!python
+import click
+import pipeline.cli
+
+@click.group()
+def cli():
+    pass
+
+@click.command()
+@click.argument('task')
+def run(task: str):
+    pipeline.cli.run(task)
+cli.add_command(run)
+
+
+@click.command()
+@click.argument('task')
+def build(task: str):
+    pipeline.cli.build(task)
+cli.add_command(build)
+
+
+@click.command()
+@click.argument('task')
+def push(task: str):
+    pipeline.cli.push(task)
+cli.add_command(push)
+    
+if __name__ == '__main__':
+    cli()
