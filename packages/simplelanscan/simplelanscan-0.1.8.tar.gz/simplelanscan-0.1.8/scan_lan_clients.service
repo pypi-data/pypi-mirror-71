@@ -1,0 +1,16 @@
+[Unit]
+Description=Scan LAN Clients Service
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/simplelanscan.py
+
+# Disable Python's buffering of STDOUT and STDERR, so that output from the
+# service shows up immediately in systemd's logs
+Environment=PYTHONUNBUFFERED=1
+
+# Automatically restart the service if it crashes
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
