@@ -1,0 +1,14 @@
+clabe<1.2.0,>=1.1.0
+pydantic<1.6,>=1.5
+
+[:python_version < "3.7"]
+dataclasses>=0.6
+
+[test]
+black
+coverage<5
+flake8
+isort[pipfile]
+pytest
+pytest-cov
+mypy
