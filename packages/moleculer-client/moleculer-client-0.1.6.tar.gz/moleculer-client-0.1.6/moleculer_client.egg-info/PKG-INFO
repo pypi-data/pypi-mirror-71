@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: moleculer-client
+Version: 0.1.6
+Summary: Simple Client in python to communicate with MoleculerJs Microservices using NATS
+Home-page: https://github.com/CaioFilus/moleculer-client
+Author: Caio Filus Felisbino
+Author-email: caio.filus@gmail.com
+License: MIT
+Description: Simple Client in python to communicate with MoleculerJs Microservices using NATS.
+        
+        ## Example
+        
+        ```
+        from moleculer_client import MoleculerClient
+        
+        moleculer = MoleculerClient(node_id='python-node', moleculer_nodeID="node-1", url='nats://127.0.0.1:4222')
+        print(moleculer.discover())
+        moleculer.emit('client.alive')
+        print(moleculer.call('microservice.action', {'data': 'moleculer test'}))
+        ```
+Keywords: python,microservices,NATs
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
