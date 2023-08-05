@@ -1,0 +1,85 @@
+{% extends 'main_header.html' %}
+{% block body %}
+
+<script type="text/javascript" src="{{ url_for('scheduler/static', file='js/d3-5.14.2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('scheduler/static', file='js/d3-scale.v2.2.2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('flow/static', file='js/dagre-d3-0.6.3.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('flow/static', file='js/flow_viewer.js') }}"></script>
+
+{#<script type="text/javascript" src="{{ url_for('scheduler/static', file='js/tiles.js') }}"></script>#}
+{#<script type="text/javascript" src="{{ url_for('scheduler/static', file='js/mx_page.js') }}"></script>#}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('scheduler/static', file='css/composite-processing-chart.css') }}">
+<script type="text/javascript" src="{{ url_for('scheduler/static', file='js/composite-processing-chart.js') }}"></script>
+
+<div class="page-title-bar">
+    {% import 'block_enable_auto_refresh.html' as block_enable_refresh %}
+    {{ block_enable_refresh.enable_auto_refresh() }}
+</div>
+
+<div class="container" >
+    {% import 'block_time_window_selector.html' as block_time_window %}
+    {{ block_time_window.time_window_selector(details, null) }}
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        if ('{{ details.is_request_valid }}' === 'False') {
+            // simulate "click" on the Refresh button, should the page be rendered for the first time
+            document.getElementById('refresh_button_selector_panel').click();
+            return;
+        }
+
+        let formData = new FormData(document.getElementById('form_time_window'));
+        function getJobs() {
+            const response_text = $.ajax({
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: formData,
+                type: 'POST',
+                url: '/scheduler/jobs/',
+                cache: false,
+                async: false
+            }).responseText;
+            return JSON.parse(response_text);
+         }
+
+        function getTrees() {
+            const response_text = $.ajax({
+                data: {mx_page: null},
+                dataType: 'json',
+                type: 'GET',
+                url: '/scheduler/trees/',
+                cache: false,
+                async: false
+            }).responseText;
+            return JSON.parse(response_text);
+        }
+
+        {#const jobs = {{ details.jobs|jsonify|safe }};#}
+        const jobs = getJobs();
+        const mx_trees = getTrees();
+
+        // collect timeperiods
+        const timeperiodsSet = new Set();
+        for (const [process_name, jobList] of Object.entries(jobs)) {
+            for (const jobObj of jobList) {
+                timeperiodsSet.add(jobObj.timeperiod);
+            }
+        }
+        const timeperiods = Array.from(timeperiodsSet);
+        timeperiods.sort();
+
+        // Compile list of process names
+        let processNames = [];
+        for (const [mx_tree_name, tree_obj] of Object.entries(mx_trees)) {
+            processNames = processNames.concat(tree_obj.sorted_process_names);
+        }
+
+        initChartDimensions(timeperiods.length, processNames.length);
+        renderCompositeProcessingChart(processNames, timeperiods, jobs, mx_trees);
+    });
+</script>
+
+{% endblock %}

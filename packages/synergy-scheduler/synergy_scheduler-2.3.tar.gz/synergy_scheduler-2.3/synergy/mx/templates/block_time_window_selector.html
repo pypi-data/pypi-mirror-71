@@ -1,0 +1,78 @@
+{% macro time_window_selector(details, number_sorted_columns) -%}
+{% set days_1_selected = 'selected' if not details.is_request_valid or details.time_window == '1' else '' %}
+{% set days_7_selected = 'selected' if details.time_window == '7' else '' %}
+{% set days_30_selected = 'selected' if details.time_window == '30' else '' %}
+
+{%- if number_sorted_columns -%}
+    {% set running_checked = 'checked' if details.is_request_valid and details.is_include_running == True else 'checked' if not details.is_request_valid else '' %}
+    {% set processed_checked = 'checked' if details.is_include_processed == True else '' %}
+    {% set noop_checked = 'checked' if details.is_include_noop == True else '' %}
+    {% set failed_checked = 'checked' if details.is_request_valid or details.is_include_failed == True else 'checked' if not details.is_include_failed else '' %}
+    {% set disabled_checked = 'checked' if selected_by_default or details.is_include_disabled == True else '' %}
+{% else %}
+    {% set running_checked = 'checked' %}
+    {% set processed_checked = 'checked' %}
+    {% set noop_checked = 'checked' %}
+    {% set failed_checked = 'checked' %}
+    {% set disabled_checked = 'checked' %}
+{% endif %}
+
+<form class="table-filter-form" data-form_initial_load="{{ 'true' if details.is_request_valid else 'false' }}"
+    method="get" id="form_time_window">
+    <div class="table-filter-container">
+        <div class="filter">
+            <input type="search" id="table-search" placeholder="search process name" />
+        </div>
+
+        <div class="time-window">
+            <select name="time_window" id="time_window">
+                <option value="1" {{ days_1_selected }}>today</option>
+                <option value="7" {{ days_7_selected }}>last 7 days</option>
+                <option value="30" {{ days_30_selected }}>last 30 days</option>
+            </select>
+        </div>
+
+        <div class="include">
+            <div id="include" class="inline" align="middle">
+                <label class="inline"><input type="checkbox" name="include_running" id="include_running" {{ running_checked }} />
+                    <span class="label-body">running</span>
+                </label>
+                <label class="inline"><input type="checkbox" name="include_processed" id="include_processed" {{ processed_checked }} />
+                    <span class="label-body">processed</span>
+                </label>
+                <label class="inline"><input type="checkbox" name="include_noop" id="include_noop" {{ noop_checked }} />
+                    <span class="label-body">noop</span>
+                </label>
+                <label class="inline"><input type="checkbox" name="include_failed" id="include_failed" {{ failed_checked }} />
+                    <span class="label-body">failed</span>
+                </label>
+                <label class="inline"><input type="checkbox" name="include_disabled" id="include_disabled" {{ disabled_checked }} />
+                    <span class="label-body">disabled</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="refresh-button">
+            <button type="submit" class="action_button btn-center" title="Refresh" id="refresh_button_selector_panel"><i class="fa fa-refresh"></i>
+                <span>Refresh</span></button>
+        </div>
+    </div>
+</form>
+
+{%- if number_sorted_columns -%}
+    {% set sorted_columns = [] %}
+    {%- for i in range(number_sorted_columns) %}
+        {% do sorted_columns.append([i + 1, "asc"]) %}
+    {%- endfor %}
+
+    <script type="text/javascript">
+        $(function () {
+            loadDataset('#form_time_window', 'form_initial_load', {{ sorted_columns| safe }});
+            $('#table-search').on('keyup change clear', function () {
+                $('.synergy-datatable').DataTable().search(this.value).draw()
+            })
+        });
+    </script>
+{%- endif -%}
+
+{%- endmacro %}
