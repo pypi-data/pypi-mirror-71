@@ -1,0 +1,10 @@
+-----BEGIN PGP MESSAGE-----
+
+owGbwMvMwCW2Ttv9l9wXfy7G025JDHFP+3ZapKSam6eZpRmlmpqkGBsmmaWkJpkY
+G6eamBkZJZsbW5oaGFiYWiYbGloYGRtZWBgYpQF1pCUnJplbppkbmpp3lLIwiHEx
+yIopshj+PeM/M3H9miCtuY4we1iZQJYwcHEKwETuL2T4Zz7/U763z0UL13OTFrw/
+ZHmVh3fD3bsmi7ZeWHpJUNxGP5fhv0/JwxfNe9L8iyKZOQ/kbfo4QcPKKtCiIWhF
+1Kez18oecgEA
+=w3g3
+-----END PGP MESSAGE-----
+
