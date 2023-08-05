@@ -1,0 +1,123 @@
+#!/usr/bin/env python
+
+import re
+import os.path
+from sys import exit
+from argparse import ArgumentParser,FileType
+from pioton import _translate_print,\
+           _translate_for,\
+           _translate_and,\
+           _translate_or,\
+           _translate_bools,\
+           _translate_def,\
+           _translate_if,\
+           _translate_with_as,\
+           _translate_open_close,\
+           _translate_none,\
+           _translate_assert,\
+           _translate_imports,\
+           _translate_await,\
+           _translate_break,\
+           _translate_del,\
+           _translate_async,\
+           _translate_class,\
+           _translate_continue,\
+           _translate_raise,\
+           _translate_try_except_finally,\
+           _translate_global,\
+           _translate_not,\
+           _translate_is,\
+           _translate_pass,\
+           _translate_while,\
+           _translate_yield,\
+           show_syntax
+
+parser = ArgumentParser("""
+Is tiomsaitheoir píotón seo, 
+léann sé comhaid '.pag' (píotón / Python as Gaelige) isteach agus 
+cuireann sé comhaid '.py' (Python as Bearla) amach.
+-----------------------------------------------------------------
+This is a píotón compiler,
+it reads in '.pag' (píotón / Python as Gaeilge) files and
+outputs '.py' (valid Python in English).
+-----------------------------------------------------------------
+Mar shampla | For Example:
+$ ls
+file1.pag # i bpíotón | in píotón
+file2.pag
+
+$ tiomsaitheoir file1.pag file2.pag
+
+$ ls
+file1.pag # i bpíotón | in píotón
+file2.pag  
+file1.py # i bPython | in Python
+file2.py
+""")
+
+parser.add_argument("input_names", type=str, help='ainm(neacha) na comha(i)d | name(s) of file(s)', nargs='*')
+parser.add_argument("--syntax", "-s", action='store_true', help='Display píotón syntax. Cancels transpilation')
+
+def do_stuff():
+    args = parser.parse_args()
+    
+    if args.syntax:
+        show_syntax()
+        exit(0)
+
+    else:
+        if len(args.input_names)==0:
+            print("If you're not using this to view the syntax descriptions, you must supply one or more .pag files")
+            exit(0)
+
+    changes = [_translate_print,
+            _translate_for,
+            _translate_and,
+            _translate_or,
+            _translate_bools,
+            _translate_def,
+            _translate_if,
+            _translate_with_as,
+            _translate_open_close,
+            _translate_none,
+            _translate_assert,
+            _translate_imports,
+            _translate_await,
+            _translate_break,
+            _translate_del,
+            _translate_async,
+            _translate_class,
+            _translate_continue,
+            _translate_raise,
+            _translate_try_except_finally,
+            _translate_global,
+            _translate_not,
+            _translate_is,
+            _translate_pass,
+            _translate_while,
+            _translate_yield]
+
+    print('Ag seiceáil na comhaid... | Checking the files...',flush=True)
+
+    for i in args.input_names:
+        if not i.endswith('.pag'):
+            print("You should save your píotón files with .pag extensions")
+            break
+
+    for i in args.input_names:
+        if os.path.isfile(i.replace('.pag','.py')):
+            raise FileExistsError("cannot convert {} as {} already exists - delete or rename this first".format(i, i.replace('.pag','.py')))
+
+    print('Ag tosú... | Starting...',flush=True)
+    for i in args.input_names:
+        with open(i,'r') as f:
+            lines = f.readlines()
+            for change in changes:
+                lines = change(lines)
+        with open(i.replace('.pag','.py'), 'w') as fout:
+            fout.writelines(lines)
+        print("Rinne é le {0} | Done with {0}".format(i))
+
+if __name__=="__main__":
+    do_stuff()
+
