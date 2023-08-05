@@ -1,0 +1,360 @@
+Metadata-Version: 2.1
+Name: kingston
+Version: 0.6.6
+Summary: Some Python nicieties
+Home-page: https://www.414soft.com/kingston
+Author: Jacob Oscarson
+Author-email: jacob@414soft.com
+License: MIT
+Description: Funcy Kingston
+        ==============
+        
+        I use the excellent `Funcy <https://funcy.readthedocs.io/>`__ library
+        for Python a lot. This is my collection of extras that I have designed
+        to work closely together with funcy. Funcy Kingston (Reference, see
+        `here <https://youtu.be/U79o7qwul48>`__).
+        
+        Kingston is auto-formatted using
+        `yapf <https://github.com/google/yapf>`__.
+        
+        `Run on Repl.it <https://repl.it/@jacob414/kingston>`__
+        
+        Nice things
+        -----------
+        
+        dig()
+        ~~~~~
+        
+        CSS selector like deep value grabbing from almost any object.
+        
+        .. code:: python
+        
+           >>> from kingston import dig
+           >>> dig.xget((1, 2, 3), 1)
+           2
+           >>> dig.xget({'foo': 'bar'}, 'foo')
+           'bar'
+           >>> dig.dig({'foo': 1, 'bar': [1,2,3]}, 'bar.1')
+           2
+           >>> dig.dig({'foo': 1, 'bar': [1,{'baz':'jox'},3]}, 'bar.1.baz')
+           'jox'
+           >>>
+        
+        The difference between ``dig.dig()`` and ``funcy.get_in()`` is that you
+        can use shell-like blob patterns to get several values keyed by similar
+        names:
+        
+        .. code:: python
+        
+           >>> from kingston import dig
+           >>> res = dig.dig({'foo': 1, 'foop': 2}, 'f*')
+           >>> res
+           [foo=1:int, foop=2:int]
+           >>> # (textual representation of an indexable object)
+           >>> res[0]
+           foo=1:int
+           >>> res[1]
+           foop=2:int
+           >>>
+        
+        Pattern matching using extended ``dict``'s
+        ------------------------------------------
+        
+        ``match.Match`` objects are callable objects using a ``dict`` semantic
+        that also matches calls based on the type of the calling parameters:
+        
+        .. code:: python
+        
+           >>> from kingston import match
+           >>> foo = match.Match({int: lambda x: x*100, str: lambda x: f'Hello {x}'})
+           >>> foo(10)
+           1000
+           >>> foo('bar')
+           'Hello bar'
+           >>>
+        
+        .. code:: python
+        
+           >>> from kingston import match
+           >>> foo = match.Match({
+           ...     int: lambda x: x * 100,
+           ...     str: lambda x: f'Hello {x}',
+           ...     (int, int): lambda a, b: a + b
+           ... })
+           >>> foo(10)
+           1000
+           >>> foo('bar')
+           'Hello bar'
+           >>>
+           >>> foo(1, 2)
+           3
+           >>>
+        
+        You can use ``typing.Any`` as a wildcard:
+        
+        .. code:: python
+        
+           >>> from typing import Any
+           >>> from kingston import match
+           >>> foo = match.Match({
+           ...     int: lambda x: x * 100,
+           ...     str: (lambda x: f"Hello {x}"),
+           ...     (int, Any): (lambda num, x: num * x)
+           ... })
+           >>> foo(10)
+           1000
+           >>> foo('bar')
+           'Hello bar'
+           >>> foo(3, 'X')
+           'XXX'
+           >>> foo(10, 10)
+           100
+           >>>
+        
+        Match by value(s)
+        ~~~~~~~~~~~~~~~~~
+        
+        ``match.VMatch`` will use the *values* of the parameters to do the same
+        as as ``match.Match``:
+        
+        .. code:: python
+        
+           >>> from kingston import match
+           >>> foo = match.VMatch({'x': (lambda: 'An x!'), ('x', 'y'): (lambda x,y: 3*(x+y))})
+           >>> foo('x')
+           'An x!'
+           >>> foo('x', 'y')
+           'xyxyxy'
+           >>>
+        
+        Same as with the type matcher above, ``typing.Any`` works as a wildcard
+        with the value matcher as well:
+        
+        .. code:: python
+        
+           >>> from kingston import match
+           >>> from typing import Any
+           >>> foo = match.VMatch({
+           ...     'x': lambda x: 'An X!',
+           ...     ('y', Any): lambda x, y: 3 * (x + y)
+           ... })
+           >>> foo('x')
+           'An X!'
+           >>> foo('y', 'x')
+           'yxyxyx'
+           >>>
+        
+        Narrowable collections
+        ----------------------
+        
+        Uses indexes to narrow collections to fewer values. You can narrow by
+        type, a predicate function or value equality. The return value is always
+        a new ``Narrowable`` derived type from the initial value. Therefore, you
+        can chain several narrowing operations in the same expression.
+        
+        Errors raised by the narrowing predicates are considered misses.
+        
+        Some examples:
+        
+        Narrow by type
+        ~~~~~~~~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1,2,3,'foo', 'bar'))[int]
+           (1, 2, 3)
+           >>>
+        
+        Narrow by callable
+        ~~~~~~~~~~~~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1, 2, 3))[lambda x: x > 1]
+           (2, 3)
+           >>>
+           >>> narrowable((1,2,3,'foo', 'bar'))[int]
+           (1, 2, 3)
+           >>> narrowable((1,2,3,'foo', 'bar'))[lambda x: x > 1]
+           (2, 3)
+           >>> # Note, swallows ValueError raised by 'foo' > 1 etc
+           >>>
+        
+        Supress empty iterable objects
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable([[1], [2], [], []])[lambda x: x[0]]
+           [[1], [2]]
+           >>>
+        
+        Narrow using exact match
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1, 2, 3, 'foo'))['foo']
+           ('foo',)
+           >>>
+        
+        Narrow using a regexp
+        ~~~~~~~~~~~~~~~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> import re
+           >>> narrowable(('foo', 'fom', 'jox', 8, 'fim'))[re.compile('fo.*').match]
+           ('foo', 'fom')
+           >>>
+        
+        Combine
+        ~~~~~~~
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1,2,3,'foo', 'bar'))[str]['foo']
+           ('foo',)
+           >>>
+        
+        Go deeper
+        ---------
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1, 2, 3, (41, 42, 43)))[tuple][0][lambda x: x > 41]
+           (42, 43)
+           >>>
+        
+        No matches found
+        ~~~~~~~~~~~~~~~~
+        
+        If no element matches, an empty version of the collection parameter will
+        be returned:
+        
+        .. code:: python
+        
+           >>> from kingston.primitives import narrowable
+           >>> narrowable((1,2,3))[lambda x: x > 3]
+           ()
+           >>>
+        
+        Programmatic class creation
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Programmatic creation of arbitrary named classes in module definition,
+        add methods using a decorator notation:
+        
+        .. code:: python
+        
+           >>> from kingston import lang
+           >>> mystuff = (('Foo', 1), ('Bar', 2))
+           >>> for name, num in mystuff: locals()[name] = lang.mkclass(name, **{'num': num})
+           >>> Foo
+           <class 'kingston.lang.Foo'>
+           >>> Foo.num
+           1
+           >>> \
+           ... @Foo.classmethod
+           ... def myclassmethod(cls, x):
+           ...     return x + 1
+           >>> Foo.myclassmethod(1)
+           2
+           >>>
+           >>> \
+           ... @Foo.staticmethod
+           ... def mystaticmethod(x, y):
+           ...     return x + y
+           >>> Foo.mystaticmethod(1, 2)
+           3
+           >>> \
+           ... @Foo.method
+           ... def mymethod(self, x):
+           ...     self.y = self.num + x
+           ...     return self.y
+           >>> foo = Foo()
+           >>> foo.mymethod(1)
+           2
+           >>> foo.y
+           2
+           >>>
+        
+        kingston module with developer convenience tools
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        The ``kingston.microscope`` module contains utilities that aid
+        development. It has to ways to inspect live objects:
+        
+        #. Via 'AbneuYAML'
+        
+           AbneuYAML is *“Almost, but not entirely unlike YAML”*. Objects dumped
+           to ‘AbneuYAML’ should be easy to get a visual overview of for humans.
+        
+           To dump any object:
+        
+           .. code:: python
+        
+              >>> from kingston import microscope
+              >>> class Cls: pass
+              ...
+              >>> c = Cls()
+              >>> c.foo, c.bar = 1, 2
+              >>> c.sub = Cls()
+              >>> c.sub.foo, c.sub.bar, c.sub.baz = 3, 4, [1, 2]
+              >>> encoded = microscope.abneuyaml(c)
+              >>> print(encoded) #doctest: +ELLIPSIS
+              <__main__.Cls object at 0x...>:Cls
+                foo=1:int
+                bar=2:int
+                sub=<__main__.Cls object at 0x...>:Cls
+                  foo=3:int
+                  bar=4:int
+                  baz=[1, 2]:list
+              >>>
+        
+        A simple way of creating small DSL's using Python operator overloading.
+        -----------------------------------------------------------------------
+        
+        .. code:: python
+        
+           >>> from kingston import lang
+           >>> \
+           ... class PipingExample(lang.Piping):
+           ...     def __add__(self, value) -> lang.Piping:
+           ...         self.queue(lambda a, b: a + b, value)
+           ...         return self
+           ...
+           >>> simplest_pipe = PipingExample(10)
+           >>> res = simplest_pipe + 10 + 20
+           >>> res()
+           40
+           >>>
+        
+        Mostly, you'll want to use the pipe operator to define simple
+        composition:
+        
+        .. code:: python
+        
+           >>> from kingston import lang
+           >>> incr = lambda x: x + 1
+           >>> showr = "It is {}!".format
+           >>> (lang.ComposePiping(5) >> incr >> incr >> showr)()
+           'It is 7!'
+           >>>
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Provides-Extra: test
