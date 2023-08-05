@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "lifx-wrapper"
+version = "0.1.4"
+description = "A python wrapper for the Lifx REST API"
+authors = ["Harry Cooper <harry.coop99@gmail.com>"]
+license = "MIT"
+packages = [
+    { include = "lifx", from = "." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.23.0"
+mypy = "^0.770"
+pydantic = "^1.5.1"
+pytest = "^5.4"
+responses = "^0.10.14"
+sphinx = "^3.0"
+sphinx_autodoc_typehints = "^1.10"
+black = {version = "^18.3-alpha.0", allow-prereleases = true}
+typing_extensions = "^3.7"
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
