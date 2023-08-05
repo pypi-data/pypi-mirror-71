@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: translate_util
+Version: 1.0.1
+Summary: 翻译工具类
+Home-page: https://github.com/abo123456789/RedisQueue
+Author: cc
+Author-email: abcdef123456chen@sohu.com
+Maintainer: cc
+Maintainer-email: abcdef123456chen@sohu.com
+License: MIT License
+Description: 
+        translate utils support google,baidu,iciba,youdao
+        ##### [introduction]
+        
+        * support version: python 3.0+
+        
+        ### down install
+        
+        * pip install:
+        ```shell
+        pip install translate_util
+        ```
+        
+        ### DEMO
+        
+        ##### 1.发布消费字符串类型任务
+        ```python
+            content = 'china'
+            for plat in ['google', 'baidu', 'iciba', 'youdao']:
+                print(f'{plat}:{translate_other2cn(content, plat)}')
+        
+            content = '中国'
+            for plat in ['google', 'baidu', 'iciba', 'youdao']:
+                print(f'{plat}:{translate_other2en(content, plat)}')
+        ```
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
