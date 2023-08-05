@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: k3proc
+Version: 0.2.5
+Summary: easy to use `Popen`
+Home-page: https://github.com/drmingdrmer/k3proc
+Author: Zhang Yanpo
+Author-email: drdr.xp@gmail.com
+License: MIT
+Description: # k3proc
+        
+        [![Build Status](https://travis-ci.com/pykit3/k3proc.svg?branch=master)](https://travis-ci.com/pykit3/k3proc)
+        [![Documentation Status](https://readthedocs.org/projects/k3proc/badge/?version=stable)](https://k3proc.readthedocs.io/en/stable/?badge=stable)
+        [![Package](https://img.shields.io/pypi/pyversions/k3proc)](https://pypi.org/project/k3proc)
+        
+        easy to use `Popen`
+        
+        k3proc is a component of [pykit3] project: a python3 toolkit set.
+        
+        
+        # Install
+        
+        ```
+        pip install k3proc
+        ```
+        
+        # Synopsis
+        
+        ```python
+        >>> returncode, out, err = k3proc.shell_script('ls / | grep bin')
+        
+        ```
+        
+        #   Author
+        
+        Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
+        
+        #   Copyright and License
+        
+        The MIT License (MIT)
+        
+        Copyright (c) 2015 Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
+        
+        
+        [pykit3]: https://github.com/pykit3
+Keywords: subprocess,popen
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
