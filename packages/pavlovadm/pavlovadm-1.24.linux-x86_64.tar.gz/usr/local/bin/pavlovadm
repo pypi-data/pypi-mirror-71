@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'pavlovadm==1.24','console_scripts','pavlovadm'
+__requires__ = 'pavlovadm==1.24'
+import re
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(
+        load_entry_point('pavlovadm==1.24', 'console_scripts', 'pavlovadm')()
+    )
