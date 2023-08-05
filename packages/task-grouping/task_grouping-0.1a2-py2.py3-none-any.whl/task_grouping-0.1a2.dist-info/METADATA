@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: task-grouping
+Version: 0.1a2
+Summary: Task Grouping
+Home-page: https://github.com/DataBooster/PyWebApi
+Author: Abel Cheng
+Author-email: abelcys@gmail.com
+License: MIT
+Keywords: grouping,tasks,parallel,serial,pipeline,arguments,container,loader,JSON,tree
+Platform: any
+Requires-Python: >=3.5
+
+
+task_grouping - Task Grouping
+
+----
+
+This module provides a basic class library for task grouping, includes 2 classes:
+
+-   **TaskContainer**
+
+    Organizes a batch of task groups, including the serial/parallel structures, and carries the arguments information for each task unit to run.
+
+-   **ITaskLoader**
+
+    This is an abstract base class for implementing a concrete loader class to load a task tree from Dict/JSON to ``TaskContainer``.
+
+For detailed usage, see the practice sample code: https://github.com/DataBooster/PyWebApi/blob/master/Sample/UserApps/ServicesGrouping/rest_grouping.py
+
+and its product documentation: https://github.com/DataBooster/PyWebApi#services-grouping
+
+----
+
+| Homepage and documentation: https://github.com/DataBooster/PyWebApi
+| Copyright (c) 2020 Abel Cheng
+| License: MIT
+
+
