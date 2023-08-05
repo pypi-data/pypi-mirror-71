@@ -1,0 +1,74 @@
+CHANGES
+=======
+
+1.0.3
+-----
+
+* Checks that Mpath devices are even, as usually odd means that there are missing paths
+* Check if system is virtual and has virtual-guest profile in use
+* Add extraplugintree to magui (for compatibility with citellus extraplugintree)
+* Minor fixes in docs
+* Fix URL for Contributing
+* Allow hooks to use extra options
+* Allows to specify extra plugin tree root for out-of-tree plugins
+* Update Citellus Logo
+* Handle read line by line to workaround invalid json
+* Use shfmt with pre-commit
+* Add beautysh to precommit
+* Update authors and branch protection
+* Use pre-commit on repository
+* Add fields for plugin source
+* Use file glob
+* Fix if for magui comparison
+* Document releasing process
+* Add json parser for insights results
+* Show container stats
+* Separate profiles into table
+* Use LEN on dict to get total amount
+* Ensure maxhosts is not a string
+* Exclude missing package messages
+* Add F31 to lifecycle
+* Update contributors
+* Test print of results
+* Initial version of events generator
+* Update tools from other repos
+* Use black suggestions
+* [general] Black formatting recommendations
+* [tests] Test against jsons for correct behavior
+* [tests] Skip metadata plugins for check as it's ok for them to output on stdout
+* Update contributors
+* Adapt to python3 refresh-contributors
+* Run DMIDECODE coverage
+
+1.0.2
+-----
+
+* Update token
+
+1.0.1
+-----
+
+* [travis] Automatic Github build and PyPI on tags
+* Add profile and checks for CCN-STIC-619 standard
+* Update contributors
+* Define OSP Stein EOL
+* Adjust repo with 'latest' tripleo-common-healthcheck and node-problem-detector
+* Fix colours to match new labels
+* Adjust labels
+* Hide pie when there's no data at all
+* Update online sample of citellus execution
+* Add charts for profiles
+* Optimize more loops
+* Optimize loops for faster generation
+* Add support for Node Problem Detector checks: https://github.com/kubernetes/node-problem-detector/
+* Add placeholder for folder
+* Fix more var names
+* Fix var names
+* Report on OSP14 EOL
+* Use LC\_ALL for dates
+* Rewrite functions to use the first\_available one
+* Add first\_file\_available function
+* Use latest PF
+* Changes to services based on systemctl
+* Fix is\_enabled to check correct file instead of array
+* Check leapp issues with separated / and /var
