@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: django-inlinecss-redux
+Version: 0.1.4
+Summary: A Django app useful for inlining CSS (primarily for e-mails)
+Home-page: https://github.com/WhyNotHugo/django-inlinecss-redux
+Author: Philip Kimmey
+Author-email: philip@rover.com
+Maintainer: Hugo Osvaldo Barrera
+Maintainer-email: hugo@barrera.io
+License: BSD
+Keywords: html,css,inline,style,email
+Platform: UNKNOWN
+Classifier: Environment :: Other Environment
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Communications :: Email
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Requires-Dist: Django
+Requires-Dist: pynliner
+Requires-Dist: mock
+
+django-inlinecss-redux
+======================
+
+This project was born in 2017 when ``django-inlinecss`` was inactive. I needed
+to fix a bug, so I make my own fork in order to push this to PyPI.
+
+Since then, upstream has come back to life, and fixed the issue I had.
+This project is therefore redundant. Please use `django-inlinecss
+<https://github.com/roverdotcom/django-inlinecss>`_.
+
+
