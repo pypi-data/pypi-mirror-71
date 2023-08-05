@@ -1,0 +1,73 @@
+// A precedence climbing grammar is used for expressions
+
+root : (WS_ALL statement [WS] [COMMENT] [WS_ALL])+
+
+statement: assignment
+         | logical_if
+         | block_if
+
+assignment: variable [WS] "=" [WS] expression
+
+block_if: block_if_start block_if_elseif* block_if_else? block_if_end
+block_if_start: [WS] "IF" [WS] "(" logical_expression ")" [WS] "THEN" WS_ALL ([WS] assignment WS_ALL)+
+block_if_else: [WS] "ELSE" WS_ALL ([WS] assignment WS_ALL)+
+block_if_elseif: [WS] "ELSE" [WS] "IF" [WS] "(" logical_expression ")" [WS] "THEN" WS_ALL ([WS] assignment WS_ALL)+
+block_if_end: [WS] "END IF" [WS]
+
+logical_if: "IF" [WS] "(" logical_expression ")" [WS] assignment
+logical_expression: or_term (or_op or_term)?
+or_term: and_term (and_op and_term)? -> logical_expression
+and_term: (not_op)? not_term -> logical_expression
+not_term: eq_term (eq_op eq_term)? -> logical_expression
+eq_term: rel_term (rel_op rel_term)? -> logical_expression
+rel_term: expression -> expression
+
+or_op: (".OR.") -> logical_operator
+and_op: (".AND.") -> logical_operator
+eq_op: ("==" | ".EQ.") -> logical_operator
+      | ("/=" | ".NE.") -> logical_operator
+rel_op: (".LT." | "<" | ".LE." | "<=" | ".GT." | ">" | ".GE." | ">=") -> logical_operator
+not_op: ".NOT." -> logical_operator
+
+expression: term (add_op [WS] term)*
+?term: factor (mul_op factor)* -> expression
+?factor: _atom -> expression
+       | power
+?power: _atom ("**" factor)?
+
+add_op: "+" -> operator
+      | "-" -> operator
+mul_op: "*" -> operator
+      | "/" -> operator
+ 
+
+_atom: [WS] (func | func2 | symbol | number | "(" expression ")") [WS]
+
+func: intrinsic_func "(" expression ")"
+func2: "MOD" "(" expression "," expression ")"
+
+intrinsic_func: "LOG" | "LOG10" | "EXP" | "SQRT" | "SIN" | "COS" | "ABS" | "TAN" | "ASIN" | "ACOS" | "ATAN" | "INT" | "GAMLN"
+
+variable: NAME
+
+symbol: parameter | NAME
+
+parameter: (THETA | ETA | EPS | OMEGA | SIGMA) subscript
+         | (OMEGA | SIGMA) double_subscript
+
+subscript: [WS] "(" [WS] INTEGER [WS] ")"
+double_subscript: [WS] "(" [WS] INTEGER [WS] "," [WS] INTEGER [WS] ")"
+
+number: INTEGER | FLOAT
+
+NAME: /[A-Za-z_]\w*/
+
+INTEGER: /[-+]?\d+/
+FLOAT: /[-+]?((\d+\.\d*|\.\d+)([ed][-+]?\d+)?|\d+([ed][-+]?\d+))/i
+THETA: "THETA"
+ETA: "ETA"
+EPS: "EPS" | "ERR"
+OMEGA: "OMEGA"
+SIGMA: "SIGMA"
+
+%import .definitions (COMMENT, WS, WS_ALL)
