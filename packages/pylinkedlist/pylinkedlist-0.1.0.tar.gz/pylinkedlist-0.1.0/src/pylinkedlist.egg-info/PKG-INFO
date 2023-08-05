@@ -1,0 +1,99 @@
+Metadata-Version: 2.1
+Name: pylinkedlist
+Version: 0.1.0
+Summary: A Python package to work with LinkedList.
+Home-page: https://github.com/HiteshAgarwal1/Python-LinkedList
+Author: Hitesh Agarwal
+Author-email: contact@hiteshagarwal.com
+License: MIT
+Download-URL: https://github.com/HiteshAgarwal1/Python-LinkedList/archive/0.0.1.tar.gz
+Description: # Python-LinkedList
+        Linkedlist data structure to work with python.
+        <br>
+        
+        ### Installation
+        ```python
+        pip install pylinkedlist
+        ```
+        <br>
+        
+        ### Uninstallation
+        ```python
+        pip uninstall pylinkedlist
+        ```
+        <br>
+        
+        ### Importing Package
+        ```python
+        import pylinkedlist as llist
+        ```
+        <br>
+        
+        ### Initializing A LinkedList
+        Initialize a variable var with Linkedlist data structure.
+        ```python
+        var = llist.LinkedList()
+        ```
+        <br>
+        
+        ### Adding Element in the LinkedList
+        #### Appending at the end
+        Add element[s] at the end of linkedlist
+        ```python
+        # x can be a list or single elememnt
+        var.add(x)
+        ```
+        #### Adding in the front
+        Add element[s] at the front of linkedlist
+        ```python
+        # x can be a list or single elememnt
+        var.addleft(x)
+        ```
+        <br>
+        
+        ### Count of Nodes in the LinkedList
+        ```python
+        count = var.getcount()
+        ```
+        <br>
+        
+        ### Reference of Node in the LinkedList
+        ```python
+        count = var.getnode()
+        ```
+        <br>
+        
+        ### Find Middle Element in the LinkedList
+        ```python
+        count = var.getmid()
+        ```
+        <br>
+        
+        ### Delete A Node From LinkedList
+        ```python
+        count = var.delete_from_mid(x)
+        ```
+        <br>
+        
+        
+        ### Insert At Mid
+        ```python
+        var.insert_at_mid(x)
+        ```
+        <br>
+        
+        ### Element at Given Position
+        ```python
+        element = var.at(x)
+        ```
+Keywords: linked list,list,python linked list
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Description-Content-Type: text/markdown
