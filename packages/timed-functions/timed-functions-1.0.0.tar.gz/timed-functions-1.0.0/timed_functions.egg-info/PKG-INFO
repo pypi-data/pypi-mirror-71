@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: timed-functions
+Version: 1.0.0
+Summary: Decorator to print how long each decorated function takes to complete.
+Home-page: https://github.com/carloshenrique153/timed-functions
+License: UNKNOWN
+Description: # timed-functions
+        
+        Decorator to print how long each decorated function takes to complete.
+        
+        ### How to use
+        
+        ```python
+        from timed_functions import timing
+        
+        @timing
+        def say_hello(name):
+            print(f"Hello {name}")
+        ```
+        
+        Output:
+        
+        ```python
+        Hello World
+        @timing - 'say_hello' function took 0.023 ms
+        ```
+        
+        ### How to deploy
+        
+        ```
+        python3 -m pip install --user --upgrade setuptools wheel
+        python3 -m pip install --user --upgrade twine
+        
+        rm -rf build dist timed_functions.egg-info
+        python3 setup.py sdist bdist_wheel
+        python3 -m twine upload dist/*
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
