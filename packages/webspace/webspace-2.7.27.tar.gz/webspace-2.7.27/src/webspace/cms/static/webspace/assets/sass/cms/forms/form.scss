@@ -1,0 +1,42 @@
+$input-border-radius: 100px;
+$input-padding: 7px;
+
+form {
+  &.regular {
+    width: 100%;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  &.max {
+    max-width: 400px;
+  }
+
+  .form-group {
+    padding: 10px 0;
+
+    label, small {
+      display: block;
+      margin-left: 15px;
+      padding: 5px;
+    }
+  }
+
+  .form-submit {
+    padding: 20px 0;
+
+    &.center {
+      text-align: center;
+    }
+  }
+
+  fieldset {
+    border-radius: 15px;
+    padding: 20px 10px;
+    margin: 10px 0;
+
+    legend {
+      padding: 0 10px;
+    }
+  }
+}
