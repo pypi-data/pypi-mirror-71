@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: eresponses
+Version: 1.0
+Summary: UNKNOWN
+Home-page: http://github.com/Beaxhem/eresponse
+Author: beaxhem
+Author-email: senchukov02@gmail.com
+License: mit
+Description: # EResponse
+        This is a simple package to form json response easily.
+        
+        ## Usage
+        
+        ```python
+        from eresponse import new_success_message, new_error_message
+        
+        def example():
+            try:
+                res = {
+                    "key": 1
+                }
+                return new_success_message("Success text", test=res)
+            except Exception as e:
+                return new_error_message("Error text")
+        ```
+        
+        What it looks like in response
+        
+        ### Success
+        ```json
+        {
+          "ok": true,
+          "message": "Success text",
+          "test": {
+            "key": 1
+          }
+        }
+        
+        ```
+        
+        ### Error
+        ```json
+        {
+          "ok": false,
+          "error": "Error text"
+        }
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
