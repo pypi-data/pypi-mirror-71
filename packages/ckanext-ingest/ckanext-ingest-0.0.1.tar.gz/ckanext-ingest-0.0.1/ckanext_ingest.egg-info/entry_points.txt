@@ -1,0 +1,10 @@
+
+        [ckan.plugins]
+        ingest=ckanext.ingest.plugin:IngestPlugin
+        ingest_flask=ckanext.ingest.plugin.flask_plugin:IngestFlaskPlugin
+        ingest_pylons=ckanext.ingest.plugin.pylons_plugin:IngestPylonsPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+
+    
