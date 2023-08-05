@@ -1,0 +1,115 @@
+Metadata-Version: 1.1
+Name: django-markdown-view
+Version: 0.0.1
+Summary: Serve .md pages as Django templates.
+Home-page: http://github.com/rgs258/django-markdown-view
+Author: Ryan J. Sullivan
+Author-email: ryanj@ryanjsullivan.com
+License: BSD
+Description: Django Markdown View
+        ====================
+        
+        **Serve .md pages as Django templates.**
+        
+        .. contents:: Contents
+            :depth: 5
+        
+        .. note::
+            * Tested with section describes aspirational goals.
+            * Really, all directions describe aspirational goals.
+        
+        Requirements
+        ------------
+        
+        Tested with:
+        
+        * Python: 3.5, 3.6, 3.7, 3.8
+        * Django: 2.0, 2.1, 2.2, 3.0
+        
+        
+        .. note::
+            * Django 2.2 requires SQLite 3.8.3
+            * Django 2.2 supports Python 3.5, 3.6, and 3.7.
+            * Django 3.0 supports Python 3.6, 3.7 and 3.8.
+        
+            We highly recommend and only officially support the latest release of each series.
+        
+        
+        Installation
+        ------------
+        
+        #. Install with ``pip install django-markdown-view``.
+        
+        #. Add ``'markdown_view'`` to your ``INSTALLED_APPS`` setting.
+        
+            .. code-block:: python
+        
+                INSTALLED_APPS = [
+                    ...,
+                    'markdown_view',
+                    ...
+                ]
+        
+        #. (OPTIONAL) Add ``BASE_DIR`` setting (dictionary of app base), for example:
+        
+            .. code-block:: python
+        
+                BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        
+        
+        Usage
+        -----
+        
+        Views
+        ~~~~~~
+        
+        Use one of ``MarkdownView``,  ``LoggedInMarkdownView``, or ``StaffMarkdownView``
+        to serve a .md file
+        
+        .. code-block:: python
+        
+            from markdown_view import StaffMarkdownView
+        
+            path('readme/',
+                StaffMarkdownView.as_view(file_name='my_app/README.md'),
+                name="readme"),
+        
+        
+        
+        Authors
+        =======
+        
+        Wharton Computing
+        -------------------
+        * Ryan J. Sullivan
+        
+        
+        Other
+        -----
+        
+        
+        Changelog
+        =========
+        
+        0.0.1 (2020-06-16)
+        ------------------
+        #. Initial release.
+        
+Keywords: django,markdown,markdown view,md
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
