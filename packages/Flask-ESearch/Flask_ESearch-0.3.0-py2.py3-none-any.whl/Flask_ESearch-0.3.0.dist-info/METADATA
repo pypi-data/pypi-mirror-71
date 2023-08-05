@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: Flask-ESearch
+Version: 0.3.0
+Summary: Extension of Elasticsearch for Flask with a simple integration
+Home-page: https://github.com/dymmond/flask-esearch
+Author: Tiago Silva & Pedro Correia
+Author-email: mail@tiagoasilva.com
+License: MIT
+Platform: any
+Classifier: Framework :: Flask
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: Flask (>=1.1.2)
+Requires-Dist: Elasticsearch (<=7.7.1,>=6.4.6)
+Requires-Dist: Elasticsearch-dsl (<=7.2.1,>=6.4.6)
+
+# Flask-ESearch
+
+This is a Flask extension proving simple integration with Elasticsearch using python 3
+
+## Requirements
+
+ 1. Flask >= 1.XXX
+ 2. Elasticsearch>=6.4.6, <=7.7.1
+ 3. Python 3.6 or later
+
+## How to use
+
+ 1. Install the package:
+
+    ```shell script
+    pip install Flask-ESearch
+    ```
+
+ 2. In your main app file:
+
+    ```python
+    from datetime import datetime
+
+    from flask import Flask, make_response
+    from flask_esearch import ESearch
+
+    app = Flask(__name__)
+
+    # CREATE A ESearch CLIENT
+    es = ESearch()
+    es.init_app(app)
+
+
+    @app.route('/')
+    def hello_world():
+        doc = {
+            'author': 'kimchy',
+            'text': 'Elasticsearch: cool. bonsai cool.',
+            'timestamp': datetime.now(),
+        }
+        try:
+            res = es.index(index="test-index", id=1, body=doc)
+            return make_response(print(res['result']), 200)
+        except Exception:
+            res = es.get(index="test-index", id=1)
+            return make_response(res['_source'], 200)
+
+
+    app.run(debug=True, port=5001)
+
+    ```
+
+The above is an example of a Flask app integrating Flask-ESearch and an endpoint
+
+ 1. The instance allows to perform Elasticsearch queries. More info [here](https://elasticsearch-py.readthedocs.io/en/master/).
+ 2. Testing access `http://127.0.0.1:5001/`.
+    1. If is the first access, will show `Created` or else the record inserted
+
+## Custom Settings
+
+In order to add your elasticsearch settings, the package allows to change those 2 properties and override them in your settings file.
+
+| Name          | Type          | Default Value  |
+| ------------- |:-------------:| -----:|
+| ELASTICSEARCH_HOST  | string | localhost:9200 |
+| ELASTICSEARCH_HTTP_AUTH  | string | None |
+
+
