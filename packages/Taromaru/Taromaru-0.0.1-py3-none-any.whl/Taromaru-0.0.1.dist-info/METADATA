@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: Taromaru
+Version: 0.0.1
+Summary: A package to use my API with Python!
+Home-page: https://github.com/DoggoTaco/taromaru
+Author: Doggotaco
+Author-email: minecraftmanlover100@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+#### A package for the Taromaru API.
+
+
+##### Image Example:
+
+```py
+    from taromaru import taromaruInit
+
+    taromaru = taromaruInit()
+    taromaru.setapikey("YOUR API KEY HERE")
+
+    results = await taromaru.image(type="kanna")
+
+    print(results)
+```
+
+if above does not work, try this
+```py
+    from taromaru import taromaruInit
+    import asyncio
+
+    taromaru = taromaruInit()
+    taromaru.setapikey("$2y$10$QsYwpCdEL04W4M6gh7CtOOV7NlUhjbIrGG7GTcx6R.FabclrVuG4m")
+
+    loop = asyncio.get_event_loop()
+    results = loop.run_until_complete(taromaru.image(type="kanna"))
+
+    print(results)
+```
+
+:>
+
