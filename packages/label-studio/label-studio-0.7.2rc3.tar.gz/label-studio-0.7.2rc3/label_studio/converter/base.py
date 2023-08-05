@@ -1,0 +1,3 @@
+class SchemaParser(object):
+
+    def
