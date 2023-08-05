@@ -1,0 +1,60 @@
+# dj-happy-quotas
+
+Transaction-based quotas for Django.
+
+## Introduction
+
+Believe it or not, but some users really don't enjoy signing up for monthly or annual subscription plans. And for some applications such subscriptions also don't really make much sense, like when they are best used ocassionally by means of single-fire transactions.
+
+This package provides handling of transaction-like quotas that a user can fill up on demand.
+
+Handling of pricing plans and payments are not subject of this package.
+
+## Use
+
+Install:
+
+```console
+poetry add dj-happy-quotas
+```
+
+(A mere `pip install dj-happy-quotas` might work as well.)
+
+Add to `INSTALLED_APPS` in `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'dj-happy-quotas',
+    ...
+]
+```
+
+Run database migrations:
+
+```
+python manage.py migrate dj-happy-quotas
+```
+
+## Publishing a new release
+
+```sh
+# Update version number in pyproject.toml and happy_quotas/__init__.py
+
+# Check that everything looks ok
+poetry config --list
+poetry check
+
+# Publish
+poetry build
+poetry publish
+```
+
+## Related projects
+
+* [django-billing](https://github.com/gabrielgrant/django-billing) for a very similar approach to this one here but being more generic in targetting recurring billing on top.
+* [django-flexible-subscriptions](https://github.com/studybuffalo/django-flexible-subscriptions) for handling of subscriptions where authentication is plugged via Django's standard groups.
+* [django-plans](https://github.com/django-getpaid/django-plans) for subscription pricing plans including quotas and account expiration.
+* [django-subscriptions](https://github.com/kogan/django-subscriptions) A django package for managing the status and terms of a subscription.
+* [django-paddle](https://github.com/kennell/django-paddle) Django models and helpers for integrating paddle subscriptions.
+* [dj-paddle](https://github.com/paddle-python/dj-paddle) for subscriptions-related paddle integration.

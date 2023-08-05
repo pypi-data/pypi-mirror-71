@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "dj-happy-quotas"
+version = "0.1.0"
+description = "Transaction-based quotas for Django"
+readme = "README.md"
+authors = ["Señor Rolando <rolando@buechergefahr.de>"]
+maintainers = ["Señor Rolando <rolando@buechergefahr.de>"]
+homepage = "https://codeberg.org/buechergefahr/dj-happy-quotas"
+repository = "https://codeberg.org/buechergefahr/dj-happy-quotas"
+keywords = ["quotas", "credits", "saas"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Django :: 3.0",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3"
+]
+packages = [{include = "happy_quotas"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://codeberg.org/buechergefahr/dj-happy-quotas/issues"
