@@ -1,0 +1,100 @@
+{
+  "src/lib/components/DashMentionInput.react.jsx": {
+    "description": "DashMentionInput is a text area component with @mention support.",
+    "displayName": "DashMentionInput",
+    "methods": [
+      {
+        "name": "handleChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "event",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "submitChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "data",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "fetchData",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "url",
+            "type": null
+          },
+          {
+            "name": "topic",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The value displayed in the input.",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Initial hine (placeholder) to be shown in the area."
+      },
+      "mentions_config": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "The list of mentions configurations."
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "{\n    control: {\n        backgroundColor: '#fff',\n\n        fontSize: 14,\n        fontWeight: 'normal',\n    },\n\n    highlighter: {\n        overflow: 'hidden',\n    },\n\n    input: {\n        margin: 0,\n    },\n\n    '&singleLine': {\n        control: {\n            display: 'inline-block',\n\n            width: 130,\n        },\n\n        highlighter: {\n            padding: 1,\n            border: '2px inset transparent',\n        },\n\n        input: {\n            padding: 1,\n\n            border: '2px inset',\n        },\n    },\n\n    '&multiLine': {\n        control: {\n            fontFamily: 'monospace',\n            border: '1px solid silver',\n        },\n\n        highlighter: {\n            padding: 9,\n        },\n\n        input: {\n            padding: 9,\n            minHeight: 63,\n            outline: 0,\n            border: 0,\n        },\n    },\n\n    suggestions: {\n        list: {\n            backgroundColor: 'white',\n            border: '1px solid rgba(0,0,0,0.15)',\n            fontSize: 14,\n        },\n\n        item: {\n            padding: '5px 15px',\n            borderBottom: '1px solid rgba(0,0,0,0.15)',\n\n            '&focused': {\n                backgroundColor: '#aaaaaa',\n            },\n        },\n    },\n}",
+          "computed": false
+        }
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+      }
+    }
+  }
+}
