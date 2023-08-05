@@ -1,0 +1,6 @@
+{
+  "html": "<p>Install our Python SDK using <a href=\"https://pip.pypa.io/en/stable/\"><code class=\"highlighter-rouge\">pip</code></a>:</p>\n\n<pre class=\"highlight\"><code><span class=\"nv\">$ </span>pip <span class=\"nb\">install</span> <span class=\"nt\">--upgrade</span> sentry-sdk<span class=\"o\">==</span>0.14.4\n</code></pre>\n\n      \n\n\n\n\n        <p>Import and initialize the Sentry SDK early in your application\u2019s setup:</p>\n\n<pre class=\"highlight\"><code><span class=\"kn\">import</span> <span class=\"nn\">sentry_sdk</span>\n<span class=\"n\">sentry_sdk</span><span class=\"o\">.</span><span class=\"n\">init</span><span class=\"p\">(</span><span class=\"s\">\"___PUBLIC_DSN___\"</span><span class=\"p\">)</span>\n</code></pre>\n\n      \n\n\n\n        <p>One way to verify your setup is by intentionally sending an event that breaks your application.</p>\n\n<p>Raise an unhandled Python exception by inserting a divide by zero expression\ninto your application:</p>\n\n<pre class=\"highlight\"><code><span class=\"n\">division_by_zero</span> <span class=\"o\">=</span> <span class=\"mi\">1</span> <span class=\"o\">/</span> <span class=\"mi\">0</span>\n</code></pre>", 
+  "link": "https://docs.sentry.io/error-reporting/quickstart/?platform=python", 
+  "id": "python", 
+  "name": "Python"
+}

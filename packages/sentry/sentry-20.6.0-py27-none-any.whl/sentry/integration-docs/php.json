@@ -1,0 +1,6 @@
+{
+  "html": "<p>To install the SDK you will need to be using <code class=\"highlighter-rouge\">composer</code> in your project. If you\nare not already using Composer please see the <a href=\"https://getcomposer.org/download/\">Composer documentation</a>.</p>\n\n<pre class=\"highlight\"><code>composer require sentry/sdk:2.1.0\n</code></pre>\n\n      \n\n\n\n\n        <p>To capture all errors, even the one during the startup of your application, you should initialize the Sentry PHP SDK as soon as possible.</p>\n\n<pre class=\"highlight\"><code><span class=\"nx\">Sentry\\init</span><span class=\"p\">([</span><span class=\"s1\">'dsn'</span> <span class=\"o\">=&gt;</span> <span class=\"s1\">'___PUBLIC_DSN___'</span> <span class=\"p\">]);</span>\n</code></pre>\n\n      \n\n\n\n        <p>One way to verify your setup is by intentionally sending an event that breaks your application.</p>\n\n<p>You can throw an exception in your PHP application:</p>\n\n<pre class=\"highlight\"><code><span class=\"k\">throw</span> <span class=\"k\">new</span> <span class=\"nx\">Exception</span><span class=\"p\">(</span><span class=\"s2\">\"My first Sentry error!\"</span><span class=\"p\">);</span>\n</code></pre>", 
+  "link": "https://docs.sentry.io/error-reporting/quickstart/?platform=php", 
+  "id": "php", 
+  "name": "PHP"
+}

@@ -1,0 +1,20 @@
+export var FieldType = [
+    'array',
+    'bool',
+    'boolean',
+    'choice_mapper',
+    'email',
+    'hidden',
+    'multichoice',
+    'number',
+    'radio',
+    'rich_list',
+    'secret',
+    'separator',
+    'string',
+    'text',
+    'url',
+    'table',
+    'project_mapper',
+];
+//# sourceMappingURL=type.jsx.map
