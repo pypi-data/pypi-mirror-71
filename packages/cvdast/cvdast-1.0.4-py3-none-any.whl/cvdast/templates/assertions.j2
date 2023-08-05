@@ -1,0 +1,17 @@
+
+from dictor import dictor
+
+{% for api,info in assertions.items() %}
+
+def assert_for{{ api }}(req, resp):
+    assert resp.status_code == 200{% for param,param_info in info.items() %}{% for req_path in param_info.get("req") %}{% for rsp_path in param_info.get("resp") %}
+    assert req['{{ req_path }}'] == resp['{{ rsp_path }}']{% endfor %}{% endfor %}{% endfor %}
+{% endfor %}
+
+def assert_for_negative_scenarios(req, resp):
+    if resp.status_code != 200:
+        print("----------------------")
+        print("Request: "+str(req))
+        print("Response: "+str(resp))
+        print("----------------------")
+    assert resp.status_code != 200
