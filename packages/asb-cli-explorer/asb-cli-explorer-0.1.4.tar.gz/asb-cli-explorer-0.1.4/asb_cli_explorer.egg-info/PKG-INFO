@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: asb-cli-explorer
+Version: 0.1.4
+Summary: Explore Azure service bus from command line
+Home-page: https://github.com/cackharot/asb-cli-explorer
+License: MIT
+Description: # Command line Azure ServiceBus Explorer
+        
+        Explore Azure Service Bus on command line. You can send, receive, peek message from topic/subscriptions.
+        
+        ## Quick start
+        
+        Send a messge.
+        
+        ```bash
+        asb-tour send --topic=test-topic key1=va1,key2=value2 '{"hello":"world"}'
+        ```
+        
+        Peek/stream messge from a subscription asynchronously forever.
+        
+        ```bash
+        asb-tour peek --topic test-topic --subscription log --show-user-props
+        
+        # optionaly pipe it to `jq` to get pretty printing and futher transformations
+        asb-tour peek --topic test-topic --subscription log --show-user-props | jq
+        ```
+        
+Keywords: service bus,servicebus,azure,azure service bus,messaging,amqp
+Platform: Python3
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7.4
+Description-Content-Type: text/markdown
