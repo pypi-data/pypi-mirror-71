@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: pymachinery
+Version: 0.1.0
+Summary: Python workers for RichardKnop/machinery
+Home-page: https://github.com/nmcapule/pymachinery
+Author: Nathaniel M. Capule
+Author-email: nmcapule@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pymongo
+Requires-Dist: redis
+
+# Machinery Python SDK
+
+[PyPI](https://pypi.org/project/pymachinery/)
+
+This is a subset Python implementation of a worker for `RichardKnop/machinery`.
+
+## Limitations
+
+- Broker is strictly only for Redis
+- BackendResult is strictly only for MongoDB
+
+## Development Environment
+
+Use `venv` with python 3.
+
+```shell
+# ---- Setup
+$ sudo apt install python3 python3-venv
+$ python3 -m venv ~/.venv/simcel
+# ---- Activate venv
+$ source ~/.venv/simcel/bin/activate
+(simcel) $ pip3 install -r requirements.txt
+# ---- Running
+(simcel) $ python3 main.py
+```
+
+## Usage
+
+To start up machinery instance for Python:
+
+```python
+from machinery import Value, Machinery
+
+def add(a: Value, b: Value):
+    return (Value("int64", a.value() + b.value()))
+
+def multiply(a: Value, b: Value):
+    return (Value("int64", a.value() * b.value()))
+
+def worker(name: Value, delayms: Value):
+    return (
+        Value("string", f"hello {name.value()}"),
+        Value("int64", delayms),
+    )
+
+machinery = Machinery(
+    broker_uri="redis://:helloworld@localhost:6379",
+    backend_uri="mongodb://mongo:moonbucks@localhost:27017/?authSource=admin",
+    queue="machinery_tasks",
+)
+machinery.register_callback("add", add)
+machinery.register_callback("multiply", multiply)
+machinery.register_callback("hello", worker)
+# Note that start() is a blocking function.
+machinery.start()
+```
+
+To send a machinery task and receive its results:
+
+```python
+task = machinery.send_task(queue, "add", [
+    Value("int64", 30),
+    Value("int64", 50)
+])
+# Note that wait_for_results() is a blocking function.
+results = machinery.wait_for_results(task)
+print(results)      # [ Value("int64", 80) ]
+```
+
+### Creating a Worker
+
+Workers have these restrictions:
+
+- Inputs should be of type pymachinery.Value
+- Outputs should be of type pymachinery.Value, or a tuple of pymachinery.Value
+
+
