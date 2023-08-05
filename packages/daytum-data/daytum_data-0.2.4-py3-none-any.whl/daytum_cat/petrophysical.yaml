@@ -1,0 +1,109 @@
+# Copyright 2019-2020 Daytum
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+sources:
+  poro_perm:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/poro_perm.csv' 
+    description: 'Porosity and permeability from samples'
+    driver: intake.source.csv.CSVSource
+    metadata: 
+      fields:
+          porosity:
+              label: 'Porosity'
+          permeability:
+              label: 'Permeability'
+              unit: 'mD'
+      plots:
+          my_scatter:
+              kind: scatter
+              x: porosity
+              y: permeability
+              width: 800
+              height: 600
+  MV_2D_200wells:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/2D_MV_200wells.csv' 
+    description: 'Facies threshold, porosity and permeability from 200 samples'
+    driver: intake.source.csv.CSVSource
+    metadata: 
+      fields:
+          facies_threshold_0.3:
+              label: 'Facies Threshold 0.3'
+          porosity:
+              label: 'Porosity'
+          permeability:
+              label: 'Permeability'
+              unit: 'mD'
+          acoustic_impedance:
+              label: 'Acoustic Impedance'
+  unconv_MV:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/unconv_MV.csv' 
+    description: 'Multivariate data from 1000 wells'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  unconv_MV_v4:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/unconv_MV_v4.csv' 
+    description: 'Clone of GeostatsGuys unconv_MV_v4 dataset'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  Density_Por_data:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/Density_Por_data.csv' 
+    description: 'Density and porosity data from 105 wells'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  sample_data_biased:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/sample_data_biased.csv' 
+    description: ''
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  sample_data_MV_biased:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/sample_data_MV_biased.csv' 
+    description: 'Clone of GeostatsGuys sample_data_MV_biased'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  sample_data:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/sample_data.csv' 
+    description: 'Clone of GeostatsGuys sample_data'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  sample_data_12:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/sample_data_12.csv' 
+    description: 'Clone of GeostatsGuys 12_sample_data.csv'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  porosity_1D:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/1D_Porosity.csv' 
+    description: 'Clone of GeostatsGuys 1D_Porosity.csv'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  nonlinear_facies_v1:
+    args:
+      urlpath: '{{ CATALOG_DIR }}/data/nonlinear_facies_v1.csv' 
+    description: 'Clone of GeostatsGuys nonlinear_facies_v1.csv'
+    driver: intake.source.csv.CSVSource
+    metadata: {}
+  nonlinear_facies_v2:
+    args:
+      urlpath: '{{ CwTALOG_DIR }}/data/nonlinear_facies_v2.csv' 
+    description: 'Clone of GeostatsGuys nonlinear_facies_v2.csv'
+    driver: intake.source.csv.CSVSource
+    metadata: {}

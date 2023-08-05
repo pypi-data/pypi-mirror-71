@@ -1,0 +1,180 @@
+# Copyright 2019 Daytum
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+sources:
+  tickers_by_state:
+    args:
+      sql_expr: SELECT DISTINCT parent_ticker FROM {{schema}}.{{table}} WHERE state='{{state}}' AND parent_ticker IS NOT NULL ORDER BY parent_ticker LIMIT {{limit}}
+      uri: postgresql://{{bazean_postgres_username}}:{{bazean_postgres_password}}@{{subdomain}}.bazean.com:5432/{{database}}
+    description: 'A list of all operators in a given state listed by stock ticker'
+    driver: intake_sql.intake_sql.SQLSource
+    metadata: {}
+    parameters:
+      bazean_postgres_username:
+        description: "PostgresSQL username for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_USERNAME)"
+      bazean_postgres_password:
+        description: "PostgresSQL password for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_PASSWORD)"
+      subdomain:
+        description: "Bazean PostgresSQL subdomain name"
+        type: str
+        default: "daytum-server"
+      database:
+        description: "Bazean PostgresSQL database name"
+        type: str
+        default: "daytum"
+      table:
+        description: "Bazean PostgresSQL database table name"
+        type: str
+        default: "well_all"
+      schema:
+        description: "Bazean PostgresSQL database schema"
+        type: str
+        default: "public"
+      state:
+        description: "State to query tickers"
+        type: str
+        allowed: ['OH', 'MI', 'WV', 'CA', 'ND', 'BC', 'KS', 'MT', 'UT', 'PA', 'AR', 'LA', 'WY', 'OK', 'TX', 'CO', 'NM', 'GM']
+        default: "NM"
+      limit:
+        description: "Query limit"
+        type: int
+        default: 9223372036854775807
+  well_location_by_ticker_and_state:
+    args:
+      sql_expr: SELECT api,latitude_surface_hole,longitude_surface_hole FROM {{schema}}.{{table}} WHERE state='{{state}}' AND parent_ticker='{{ticker}}' LIMIT {{limit}}
+      uri: postgresql://{{bazean_postgres_username}}:{{bazean_postgres_password}}@{{subdomain}}.bazean.com:5432/{{database}}
+    description: 'Latitude and longitude for wells in given state and ticker'
+    driver: intake_sql.intake_sql.SQLSource
+    metadata: {}
+    parameters:
+      bazean_postgres_username:
+        description: "PostgresSQL username for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_USERNAME)"
+      bazean_postgres_password:
+        description: "PostgresSQL password for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_PASSWORD)"
+      subdomain:
+        description: "Bazean PostgresSQL subdomain name"
+        type: str
+        default: "daytum-server"
+      database:
+        description: "Bazean PostgresSQL database name"
+        type: str
+        default: "daytum"
+      table:
+        description: "Bazean PostgresSQL database table name"
+        type: str
+        default: "well_all"
+      schema:
+        description: "Bazean PostgresSQL database schema"
+        type: str
+        default: "public"
+      state:
+        description: "State to get wells"
+        type: str
+        allowed: ['OH', 'MI', 'WV', 'CA', 'ND', 'BC', 'KS', 'MT', 'UT', 'PA', 'AR', 'LA', 'WY', 'OK', 'TX', 'CO', 'NM', 'GM']
+      ticker:
+        description: "Ticker to get wells in state"
+        type: str
+      limit:
+        description: "Query limit"
+        type: int
+        default: 9223372036854775807
+  well_location_by_api:
+    args:
+      sql_expr: SELECT latitude_surface_hole,longitude_surface_hole FROM {{schema}}.{{table}} WHERE api='{{api}}' LIMIT {{limit}}
+      uri: postgresql://{{bazean_postgres_username}}:{{bazean_postgres_password}}@{{subdomain}}.bazean.com:5432/{{database}}
+    description: 'Latitude and longitude for well with given API number'
+    driver: intake_sql.intake_sql.SQLSource
+    metadata: {}
+    parameters:
+      bazean_postgres_username:
+        description: "PostgresSQL username for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_USERNAME)"
+      bazean_postgres_password:
+        description: "PostgresSQL password for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_PASSWORD)"
+      subdomain:
+        description: "Bazean PostgresSQL subdomain name"
+        type: str
+        default: "daytum-server"
+      database:
+        description: "Bazean PostgresSQL database name"
+        type: str
+        default: "daytum"
+      table:
+        description: "Bazean PostgresSQL database table name"
+        type: str
+        default: "well_all"
+      schema:
+        description: "Bazean PostgresSQL database schema"
+        type: str
+        default: "public"
+      api:
+        description: "API number to get latitude and longitude"
+        type: int
+      limit:
+        description: "Query limit"
+        type: int
+        default: 9223372036854775807
+  well_columns:
+    args:
+      sql_expr: SELECT {{columns}} FROM {{schema}}.{{table}} WHERE {{where}} LIMIT {{limit}}
+      uri: postgresql://{{bazean_postgres_username}}:{{bazean_postgres_password}}@{{subdomain}}.bazean.com:5432/{{database}}
+    description: 'Generic Postgres query to SELECT columns from table well_all with supplied WHERE statement'
+    driver: intake_sql.intake_sql.SQLSource
+    metadata: {}
+    parameters:
+      bazean_postgres_username:
+        description: "PostgresSQL username for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_USERNAME)"
+      bazean_postgres_password:
+        description: "PostgresSQL password for accessing Bazean Database"
+        type: str
+        default: "env(BAZEAN_POSTGRES_PASSWORD)"
+      subdomain:
+        description: "Bazean PostgresSQL subdomain name"
+        type: str
+        default: "daytum-server"
+      database:
+        description: "Bazean PostgresSQL database name"
+        type: str
+        default: "daytum"
+      table:
+        description: "Bazean PostgresSQL database table name"
+        type: str
+        default: "well_all"
+      schema:
+        description: "Bazean PostgresSQL database schema"
+        type: str
+        default: "public"
+      columns:
+        description: "Postgres table Columns to SELECT"
+        type: str
+        default: "*"
+      where:
+        description: "Postgres WHERE statement"
+        type: str
+      limit:
+        description: "Query limit"
+        type: int
+        default: 9223372036854775807
