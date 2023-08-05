@@ -1,0 +1,65 @@
+Metadata-Version: 2.0
+Name: solan
+Version: 0.1.1
+Summary: Solan
+Home-page: https://github.com/OpenCode/solan
+Author: Francesco Apruzzese
+Author-email: cescoap@gmail.com
+License: AGPL
+Keywords: solan share sharing lan
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Topic :: Communications :: File Sharing
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: click
+Requires-Dist: pyngrok
+
+Share your files in LAN
+-----------------------
+
+Solan is a simple and basic system to share files with other people in the same LAN
+
+Installation
+------------
+
+Clone repository on your system and install it
+
+::
+
+    $ python3 setup.py install
+
+Usage
+-----
+
+::
+
+    $ solan [path_to_share]
+
+and then open your browser and visit the url printed in your terminal
+
+Examples:
+
+::
+
+    $ solan /tmp
+
+or you can define a different port (standard is 8000)
+
+::
+
+    $ solan ~/Example/Share -p 8004
+
+Remote access
+=============
+
+Enable remote with -r parameter
+
+::
+
+    $ solan -r /tmp
+
+
