@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: google-services-api
+Version: 0.0.2
+Summary: Google services extractor by OutScraper API
+Home-page: http://github.com/outscraper/google-services-api-pyhton
+Author: OutScraper
+Author-email: team@outscraper.com
+License: MIT
+Description: Google services API in Python
+        =============================
+        
+        Python sdk that allows extracting data from Google services via
+        `OutScraper API <http://outscraper.com>`__.
+        
+        Installation
+        ------------
+        
+        Python 3+
+        
+        .. code:: bash
+        
+            pip install google-services-api
+        
+        `Link to the python package
+        page <https://pypi.org/project/google-services-api/>`__
+        
+        Quick start
+        -----------
+        
+        .. code:: python
+        
+            from outscraper import ApiClient
+            api_cliet = ApiClient(api_key='SECRET_API_KEY')
+            maps_result = api_cliet.google_maps_search('restaurants brooklyn usa')
+            search_result = api_cliet.google_search('bitcoin')
+        
+        
+Keywords: extractor google api maps search json scrape parser
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Description-Content-Type: text/x-rst
