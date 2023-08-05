@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: milian-blockchain-sdk
+Version: 1.0.1
+Summary: 链盟 Python SDK
+Home-page: UNKNOWN
+Author: 杭州米链科技有限公司
+Author-email: hzqixunda@163.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: pycryptodome
+Requires-Dist: eth-account
+Requires-Dist: eth-utils
+
+# UN链盟 Python SDK
+欢迎使用UN链盟 SDK. UN链盟 SDK 让您不用复杂编程即可部署、调用、查询合约等服务. 这里向您介绍如何获取UN链盟 Python SDK 并开始调用. 
+
+如果您在使用 SDK 的过程中遇到任何问题, 欢迎通过我们 [UN链盟服务平台](http://chainun.milianblock.cn/technicalbase) 提问. 亦可在当前 GitHub 提交 Issues. 
+
+## 环境准备
+
+1. 要使用UN链盟 Python SDK, 您需要一个 APPID 和 一个 Public Key. 请在UN链盟控制台中的 [控制台](http://chainun.milianblock.cn/console/log) 上创建和查看项目的 APPID, 或者联系您的系统管理员. 
+2. 要使用UN链盟 Python SDK 在某个区块链进行上链, 您需要在 [控制台](http://chainun.milianblock.cn/console/log) 的项目中添加该区块链平台. 
+
+## SDK 获取和安装
+
+### 使用 pip 安装
+```bash
+pip install milian-blockchain-sdk
+```
+
+## 开始调用
+以下这个代码示例向您展示了调用UN链盟 SDK 的4个主要步骤: 
+
+1. 创建请求类 LMChainRequest 实例 (根据使用情况实例其子类)
+2. 为实例化的请求类的属性赋值
+3. 创建服务类 LMChainService 实例
+4. 根据使用情况调用服务类实例中相应的方法并处理结果
+
+```python
+# -- coding:utf-8 --
+# 此处以在 `ETH` 上 `部署合约` 为例
+import json
+from lm_sdk import LMChainDeployRequest, LMChainService
+
+# 创建部署合约请求类实例
+lm_deployReq = LMChainDeployRequest()
+
+# 为请求类实例属性赋值
+lm_deployReq.appId = "UN链盟控制台中项目的 APPID"
+lm_deployReq.chainType = "ETH"  # 要上的区块链的代码
+lm_deployReq.hostUrl = "API域名"
+lm_deployReq.publicKey = "UN链盟控制台中项目的 Public Key"
+lm_deployReq.contractData = "要部署的合约的 Data"
+lm_deployReq.inputParams = "合约中构造函数的入参"
+lm_deployReq.ethAddress = "以太坊账户地址"
+lm_deployReq.privateKey = "以太坊账户的私钥"
+
+# 创建服务类 LMChainService 实例
+lm_sevice = LMChainService()
+
+# 调用部署函数, 并打印返回值
+result = lm_sevice.chainDeploy(lm_deployReq)
+print(json.loads(result))
+```
+
