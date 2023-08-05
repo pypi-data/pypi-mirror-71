@@ -1,0 +1,10 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+
+{% block branding_logo %}
+    <!--ADD LOGO HERE-->
+{% endblock %}
+
+{% block extra_css %}
+    <link href="/static/dist/css/wagtail{{ request.version }}.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
