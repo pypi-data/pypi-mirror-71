@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "pykebab"
+version = "0.2.5"
+description = ""
+authors = ["Yangming Huang <leonmax@gmail.com>"]
+packages = [
+    { include = "kebab" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyyaml = "^5.1"
+click = "^7.1.2"
+six = "^1.14.0"
+jmespath = "^0.10.0"
+boto3 = { version = "^1.13.12", optional = true }
+oss2 = { version = "^2.11.0", optional = true }
+alibaba-cloud-python-sdk-v2 = { version = "^1.0.6", optional = true }
+kubernetes = { version = "^11.0.0", optional = true }
+
+[tool.poetry.extras]
+k8s = ["kubernetes"]
+aws = ["boto3"]
+ali = ["oss2", "alibaba-cloud-python-sdk-v2"]
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+pytest-cov = "^2.10.0"
+mock = "^4.0.2"
+
+[tool.poetry.scripts]
+kebab = 'kebab.cli:run'
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
