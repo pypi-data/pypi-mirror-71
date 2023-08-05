@@ -1,0 +1,20 @@
+parser:
+  module: conventional.parser.conventional_commits
+  name: ConventionalCommitParser
+
+  config:
+    types: [build, chore, ci, docs, feat, fix, perf, refactor, style, test]
+
+tags:
+  exclude: []
+
+template:
+  package: conventional
+  name: changelog.md
+
+  include-unparsed: false
+
+  config:
+    types:
+      feat: Features
+      fix: Fixes
