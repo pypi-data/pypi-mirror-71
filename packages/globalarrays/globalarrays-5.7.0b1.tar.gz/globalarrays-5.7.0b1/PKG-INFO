@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: globalarrays
+Version: 5.7.0b1
+Summary: globalarrays: Global Arrays Toolkit
+Home-page: https://hpc.pnl.gov/globalarrays/
+Author: Jarek Nieplocha, Bruce Palmer, Vinod Tipparaju, Manojkumar Krishnan, Harold Trease, and Edo Apra
+Author-email: hpctools@googlegroups.com
+Maintainer: Roberto Vidmar
+Maintainer-email: rvidmar@inogs.it
+License: BSD
+Download-URL: https://hpc.pnl.gov/globalarrays/download.shtml
+Description: # globalarrays #
+        A Python package that contains the
+        [Global Arrays Toolkit](https://hpc.pnl.gov/globalarrays)
+        *shared libraries*. The library will be compiled during the installation
+        process. It **cannot** be imported directly in Python.
+        
+        Python access to the library will be ensured by the
+        [miniga4py](https://pypi.org/project/miniga4py) package if installed.
+        
+        [globalarrays](https://pypi.org/project/globalarrays)
+        has been developed to be used in [LARGE](https://bitbucket.org/ncreati/large).
+        
+        ### Install the package ###
+            pip3 install globalarrays
+        
+        Or download the whole repository:
+        
+            git clone https://bitbucket.org/bvidmar/globalarrays
+        
+        and then
+        
+            cd globalarrays
+        
+        and install as preferred:
+        
+        * python3 setup.py install
+        * pip3 install
+        
+        ----
+        **WARNING**
+        
+        This is *beta* code, use at your own risk.
+        
+        ----
+        
+        ### The Author ###
+        * [Roberto Vidmar](mailto://rvidmar@inogs.it)
+        
+        ### The mantainers ###
+        * [Roberto Vidmar](mailto://rvidmar@inogs.it)
+        * [Nicola Creati](mailto://ncreati@inogs.it)
+        
+Keywords: GlobalArrays,MPI
+Platform: POSIX
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: C
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Fortran
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
