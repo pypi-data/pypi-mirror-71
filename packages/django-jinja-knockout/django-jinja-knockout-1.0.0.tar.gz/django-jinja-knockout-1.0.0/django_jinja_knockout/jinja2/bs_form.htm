@@ -1,0 +1,17 @@
+{% macro bs_form(form, action, opts, method='post') -%}
+{% if not opts -%}
+    {% set opts = {} -%}
+{% endif -%}
+{% if not opts.class -%}
+    {% do opts.update({'class': ''}) -%}
+{% endif -%}
+{{ render_form(request, 'standalone', form, {
+    'action': action,
+    'caller': caller,
+    'opts': opts,
+    'method': method,
+}) }}
+{% endmacro -%}
+{% if _render_ -%}
+{{ bs_form(form, action, opts) }}
+{% endif -%}
