@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: pydelighted
+Version: 0.0.5
+Summary: A Delighted connector
+Home-page: https://github.com/dacker-team/pydelighted
+Author: Dacker
+Author-email: hello@dacker.co
+License: UNKNOWN
+Description: # pydelighted
+        
+        
+        This is pydelighted, a python package to import your data from the delighted API
+        
+        --> How to write the config file :
+        
+            schema_prefix: schema_name
+            endpoints:
+                endpoint_name:
+                    table: 'table_name'
+                    date_fields:
+                        - 'created_at'
+                        - 'updated_at' 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
