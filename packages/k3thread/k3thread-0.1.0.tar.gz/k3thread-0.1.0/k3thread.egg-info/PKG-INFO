@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: k3thread
+Version: 0.1.0
+Summary: utility to create thread.
+Home-page: https://github.com/drmingdrmer/k3thread
+Author: Zhang Yanpo
+Author-email: drdr.xp@gmail.com
+License: MIT
+Description: # k3thread
+        
+        [![Build Status](https://travis-ci.com/pykit3/k3thread.svg?branch=master)](https://travis-ci.com/pykit3/k3thread)
+        [![Documentation Status](https://readthedocs.org/projects/k3thread/badge/?version=stable)](https://k3thread.readthedocs.io/en/stable/?badge=stable)
+        [![Package](https://img.shields.io/pypi/pyversions/k3thread)](https://pypi.org/project/k3thread)
+        
+        utility to create thread.
+        
+        k3thread is a component of [pykit3] project: a python3 toolkit set.
+        
+        
+        # Install
+        
+        ```
+        pip install k3thread
+        ```
+        
+        # Synopsis
+        
+        ```python
+        >>> th = daemon(lambda :1, after=0.2)
+        
+        ```
+        
+        #   Author
+        
+        Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
+        
+        #   Copyright and License
+        
+        The MIT License (MIT)
+        
+        Copyright (c) 2015 Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
+        
+        
+        [pykit3]: https://github.com/pykit3
+Keywords: thread
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
