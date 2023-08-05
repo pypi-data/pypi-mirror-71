@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: fractalize-nlp
+Version: 0.0.3
+Summary: Fractalize NLP Tools
+Home-page: https://github.com/fractal-dataminds/fractalize_nlp
+Author: Fractal Dataminds
+Author-email: gireesh@fractal-data.com
+License: UNKNOWN
+Description: #Fractalize NLP
+        A group of Modules encompassing common components that are used in all Fractalize NLP products and deployments
+        
+        ###string_generators####
+        Module that enables encoding of structured domain knowledge into a conditional processing graph. The conditional
+        processing graph is used to generate random samples of unstructured strings which represent natural language
+        invocations of the underlying domain knowledge
+        
+        ### __Building the package__
+        To build a deployable binary excluding source files, execute:
+        ```console
+        $ python setup.py bdist_egg --exclude-source-files
+        ```
+        This will produce fractalize_nlp/dist/fractalize_nlp-0.0.1-py3.7.egg
+        
+        ### __Using the package in other repositories
+        To use the built binary as an import in other repositories, run the following commands
+        ### __Running Test Suite__
+        To run the test suite, run either:
+        ```console
+        $ pytest 
+        ```
+        or
+        ```console
+        $ coverage run -m pytest
+        ```
+        To generate the coverage report, the test suite must be invoked via coverage first. Then, run:
+        ```console
+        $ coverage report -m <module_name>/<relevant_script>.py
+        ```
+        To generate the full coverage report, run:
+        ```console
+        $ coverage report -m
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
