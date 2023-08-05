@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: systemctl-mqtt
+Version: 0.1.0
+Summary: MQTT client triggering shutdown on systemd-based systems
+Home-page: https://github.com/fphammerle/systemctl-mqtt
+Author: Fabian Peter Hammerle
+Author-email: fabian@hammerle.me
+License: GPLv3+
+Project-URL: Changelog, https://github.com/fphammerle/systemctl-mqtt/blob/master/CHANGELOG.md
+Keywords: IoT,automation,home-assistant,home-automation,mqtt,shutdown,systemd
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Home Automation
+Description-Content-Type: text/markdown
+Requires-Dist: dbus-python (<2)
+Requires-Dist: paho-mqtt (<2)
+
+# systemctl-mqtt
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![CI Pipeline Status](https://github.com/fphammerle/systemctl-mqtt/workflows/tests/badge.svg)](https://github.com/fphammerle/systemctl-mqtt/actions)
+[![Coverage Status](https://coveralls.io/repos/github/fphammerle/systemctl-mqtt/badge.svg?branch=master)](https://coveralls.io/github/fphammerle/systemctl-mqtt?branch=master)
+[![Last Release](https://img.shields.io/pypi/v/systemctl-mqtt.svg)](https://pypi.org/project/systemctl-mqtt/#history)
+[![Compatible Python Versions](https://img.shields.io/pypi/pyversions/systemctl-mqtt.svg)](https://pypi.org/project/systemctl-mqtt/)
+
+MQTT client triggering shutdown on [systemd](https://freedesktop.org/wiki/Software/systemd/)-based systems
+
+## Setup
+
+```sh
+$ pip3 install --user --upgrade systemctl-mqtt
+$ systemctl-mqtt --mqtt-host HOSTNAME_OR_IP_ADDRESS
+```
+
+On debian-based systems, dependencies can optionally be installed via:
+```sh
+$ sudo apt-get install --no-install-recommends python3-dbus python3-paho-mqtt
+```
+
+Schedule poweroff by sending a MQTT message to topic `systemctl/hostname/poweroff`.
+
+```sh
+$ mosquitto_pub -h MQTT_BROKER -t systemctl/hostname/poweroff -n
+```
+
+## Home Assistant 🏡
+
+### Sample Setup
+
+```yaml
+# https://www.home-assistant.io/docs/mqtt/broker/#configuration-variables
+mqtt:
+  broker: BROKER_HOSTNAME_OR_IP_ADDRESS
+  # credentials, additional options…
+
+script:
+  poweroff_raspberry_pi:
+    sequence:
+      service: mqtt.publish
+      data:
+        topic: systemctl/raspberrypi/poweroff
+
+homeassistant:
+  customize:
+    script.poweroff_raspberry_pi:
+      friendly_name: poweroff pi
+      icon: mdi:power
+```
+
+## Docker 🐳
+
+1. Clone this repository.
+2. Edit `docker-compose.yml`.
+3. Load [AppArmor](https://en.wikipedia.org/wiki/AppArmor) profile:
+   `sudo apparmor_parser ./docker-apparmor-profile`
+4. `sudo docker-compose up --build`
+
+## MQTT Authentication
+
+```sh
+systemctl-mqtt --mqtt-username me --mqtt-password secret …
+# or
+systemctl-mqtt --mqtt-username me --mqtt-password-file /var/lib/secrets/mqtt/password …
+```
+
+
