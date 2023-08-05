@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: giant-news
+Version: 0.1.0
+Summary: A small reusable package that adds a News app to a project
+Home-page: https://github.com/giantmade/giant-news
+License: MIT
+Keywords: news,app
+Author: Will-Hoey
+Author-email: will.hoey@giantmade.com
+Requires-Python: >=3.6,<4.0
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: django-filer (>=1.7.1,<2.0.0)
+Requires-Dist: giant-mixins (>=0.1.1,<0.2.0)
+Project-URL: Repository, https://github.com/giantmade/giant-news
+Description-Content-Type: text/markdown
+
+# Giant Newsletter
+
+A re-usable package which can be used in any project that requires a generic `News` app. 
+
+This will include the basic formatting and functionality such as model creation via the admin.
+
+## Installation
+
+To install with the package manager, run:
+
+    $ poetry add giant-news
+
+You should then add `"news", "easy_thumbnails" and "filer"` to the `INSTALLED_APPS` in `base.py`.  
+
+
