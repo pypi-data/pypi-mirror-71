@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: arduino-udev
+Version: 0.2.5
+Summary: Get and set information by querying serial devices
+Home-page: https://github.com/strawlab/arduino-udev
+Maintainer: Andrew Straw
+Maintainer-email: strawman@astraw.com
+License: MIT
+Description: # arduino-udev
+        
+        Get and set information by querying serial devices
+        
+        ## testing udev rules
+        
+        On linux:
+        
+            udevadm test $(udevadm info -q path -n /dev/ttyUSB0)
+            udevadm control --reload-rules
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
