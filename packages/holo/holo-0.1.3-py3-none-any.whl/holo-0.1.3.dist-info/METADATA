@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: holo
+Version: 0.1.3
+Summary: Holo is a library provides overload like cpp
+Home-page: https://github.com/Na0ture/holo
+Keywords: overload
+Author: lvzhi
+Author-email: 279094354@qq.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Project-URL: Repository, https://github.com/Na0ture/holo
+Description-Content-Type: text/markdown
+
+# holo
+Holo is a library provides overload like cpp
+
+## Installation
+
+```py
+pip install holo
+```
+
+
+## A Simple Example
+
+```py
+from holo import overload
+
+@overload
+def add(l, r):
+    return l + r
+
+@overload
+def add(l):
+    return l + 2
+
+add(3)
+#>5
+add(3, 4)
+#>7
+
+class Foo:
+    def __init__(self, l):
+        self.l = l
+
+    @overload
+    def add(self):
+        return self.l + 2
+
+    @overload
+    def add(self, r):
+        return self.l + r
+
+f = Foo(3)
+f.add()
+#>5
+f.add(4)
+#>7
+```
