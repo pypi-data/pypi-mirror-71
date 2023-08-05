@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "aiocronjob"
+version = "0.2.3"
+description = "Schedule async tasks and manage them using a REST API or WEB UI"
+readme = "README.md"
+repository = "https://github.com/devtud/aiocronjob"
+homepage = "https://github.com/devtud/aiocronjob"
+keywords = ["async tasks", "crontab", "rest api"]
+authors = ["devtud <devtud@gmail.com>"]
+maintainers = ["devtud <devtud@gmail.com>"]
+license = "MIT"
+include = ["README.md", "src/aiocronjob/build/**/*"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+fastapi = "^0.55.1"
+uvicorn = "^0.11.5"
+crontab = "^0.22.8"
+pytz = "^2020.1"
+importlib_metadata = {version = "^1.6.1", python = "<3.8"}
+aiofiles = "^0.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+pytest-mock = "^3.1.0"
+coverage = {extras = ["toml"], version = "^5.1"}
+pytest-cov = "^2.9.0"
+requests = "^2.23.0"
+nox = "^2020.5.24"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["aiocronjob"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
