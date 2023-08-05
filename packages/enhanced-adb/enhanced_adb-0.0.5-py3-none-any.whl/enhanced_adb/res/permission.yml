@@ -1,0 +1,108 @@
+---
+version: 1
+data:
+  android.permission.INTERNET:
+    level: 0
+    description: 基础权限，如果App需要访问互联网，就会有这个权限请求
+  android.permission.EXPAND_STATUS_BAR:
+    level: 0
+    description: 允许一个程序扩展收缩在状态栏,android开发网提示应该是一个类似Windows Mobile中的托盘程序
+  android.permission.FACTORY_TEST:
+    level: 0
+    description: 作为一个工厂测试程序，运行在root用户
+  android.permission.FLASHLIGHT:
+    level: 0
+    description: 访问闪光灯,android开发网提示HTC Dream不包含闪光灯
+  android.permission.FORCE_BACK:
+    level: 0
+    description: 允许程序强行一个后退操作是否在顶层activities
+  android.permission.FOTA_UPDATE:
+    level: 0
+    description: 暂时不了解这是做什么使用的，android开发网分析可能是一个预留权限.
+  android.permission.GET_ACCOUNTS:
+    level: 0
+    description: 访问一个帐户列表在Accounts Service中
+  android.permission.GET_PACKAGE_SIZE:
+    level: 0
+    description: 允许一个程序获取任何package占用空间容量
+  android.permission.GET_TASKS:
+    level: 0
+    description: 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等
+  android.permission.HARDWARE_TEST:
+    level: 0
+    description: 允许访问硬件
+  android.permission.INJECT_EVENTS:
+    level: 0
+    description: 允许一个程序截获用户事件如按键、触摸、轨迹球等等到一个时间流，android 开发网提醒算是hook技术吧
+  android.permission.INSTALL_PACKAGES:
+    level: 0
+    description: 允许一个程序安装packages
+  android.permission.INTERNAL_SYSTEM_WINDOW:
+    level: 0
+    description: 允许打开窗口使用系统用户界面
+  android.permission.ACCESS_CHECKIN_PROPERTIES:
+    level: 0
+    description: 允许读写访问“properties”表在checkin数据库中，改值可以修改上传。
+  android.permission.ACCESS_COARSE_LOCATION:
+    level: 0
+    description: 允许一个程序访问CellID或WiFi热点来获取粗略的位置
+  android.permission.ACCESS_FINE_LOCATION:
+    level: 0
+    description: 允许一个程序访问精良位置(如GPS)
+  android.permission.WRITE_CONTACTS:
+    level: 0
+    description: 允许程序写入但不读取用户联系人数据
+  android.permission.WRITE_GSERVICES:
+    level: 0
+    description: 允许程序修改Google服务地图
+  android.permission.WRITE_OWNER_DATA:
+    level: 0
+    description: 允许一个程序写入但不读取所有者数据
+  android.permission.ACCESS_NETWORK_STATE:
+    level: 0
+    description: 允许程序访问有关GSM网络信息
+  android.permission.CALL_PHONE:
+    level: 1
+    description: 允许一个程序初始化一个电话拨号不需通过拨号用户界面需要用户确认
+  android.permission.VIBRATE:
+    level: 0
+    description: 允许振动
+  com.android.vending.BILLING:
+    level: 1
+    description: 集成了应用内付费才会有权限
+  android.permission.READ_LOGS:
+    level: 2
+    description: Google Feature 禁止这个权限出现
+  android.permission.CALL_PRIVILEGED:
+    level: 0
+    description: 拨打电话权限
+  android.permission.CAMERA:
+    level: 0
+    description: 允许访问摄像头进行拍照
+  android.permission.CHANGE_COMPONENT_ENABLED_STATE:
+    level: 0
+    description: 改变组件是否启用状态
+  android.permission.ACCESS_WIFI_STATE:
+    level: 0
+    description: 获取当前WiFi接入的状态以及WLAN热点的信息
+  android.permission.READ_PHONE_STATE:
+    level: 0
+    description: 读取电话状态
+  android.permission.WRITE_EXTERNAL_STORAGE:
+    level: 0
+    description: 允许程序写入外部存储，如SD卡上写文件
+  android.permission.READ_EXTERNAL_STORAGE:
+    level: 0
+    description: 允许程序读取外部存储，如SD卡上读文件
+  android.permission.RECEIVE_BOOT_COMPLETED:
+    level: 0
+    description: 允许程序开机自动运行
+  com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE:
+    level: 0
+    description: 谷歌Play服务自动添加
+  android.permission.WAKE_LOCK:
+    level: 0
+    description: 允许程序在手机屏幕关闭后后台进程仍然运行
+  com.google.android.c2dm.permission.RECEIVE:
+    level: 0
+    scription: 在 Android 应用程序处理已收到的任何推送通知之前，需要配置 Google Play Services 支持
