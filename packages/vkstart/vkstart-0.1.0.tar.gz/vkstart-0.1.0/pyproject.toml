@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "vkstart"
+version = "0.1.0"
+description = ""
+authors = ["LooPeKa <loudmaks10@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.23.0"
+vk_api = "^11.8.0"
+vkcoin = "^2.0.4"
+hashlib = "^20081119"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
