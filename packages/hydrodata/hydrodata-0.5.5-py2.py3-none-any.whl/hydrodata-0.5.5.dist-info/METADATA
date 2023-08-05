@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: hydrodata
+Version: 0.5.5
+Summary: A portal to hydrology and climatology databases in Python
+Home-page: https://github.com/cheginit/hydrodata
+Author: Taher Chegini
+Author-email: cheginit@gmail.com
+License: MIT license
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: pip
+Requires-Dist: owslib
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: numba
+Requires-Dist: matplotlib
+Requires-Dist: descartes
+Requires-Dist: xarray
+Requires-Dist: dask
+Requires-Dist: netCDF4
+Requires-Dist: bottleneck
+Requires-Dist: lxml
+Requires-Dist: geopandas
+Requires-Dist: folium
+Requires-Dist: rasterio
+Requires-Dist: pyproj
+Requires-Dist: proj
+Requires-Dist: gdal
+Requires-Dist: networkx
+Requires-Dist: geojson
+Requires-Dist: simplejson
+Requires-Dist: tables
+Requires-Dist: defusedxml
+Requires-Dist: pqdm
+Requires-Dist: arcgis2geojson
+
+
+**hydrodata** is an open source project and Python package designed to aid in
+watershed analysis.    Hydrodata is capable of downloading, preprocessing, and visualizing
+climatological,    hydrological, and geographical datasets pertaining to a given watershed.
+Supported datasets include: Daymet climate, USGS streamflow, NLCD land use, land cover,
+NHDPlus V2 though NLDI, OpenTopography DEM, and actual EvapoTranspiration data through
+SSEBopwith with further additions planned.
+
+Why Hydrodata?
+--------------
+Hydordata provides a unified interface to access various databases with the minimum
+input data required. With just specifying a coordinate or a geometry in the US and
+data range all the supported databases can be accessed. The point data are returned
+as a Pandas dataframe and the gridded data are returned as xarray DataArrays.
+
+Learn more
+----------
+- Documentation: `<https://hydrodata.readthedocs.io/en/latest/>`_
+- Issue tracker: `<http://github.com/cheginit/hydrodata/issues>`_
+- Source code: `<http://github.com/cheginit/hydrodata>`_
+
