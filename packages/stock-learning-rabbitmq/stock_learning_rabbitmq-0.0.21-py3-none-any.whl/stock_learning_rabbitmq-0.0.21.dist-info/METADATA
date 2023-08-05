@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: stock-learning-rabbitmq
+Version: 0.0.21
+Summary: This is a package that includes all RabbitMQ handled messages by the stock-learning infrastructure
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# stock-learning-rabbitmq
+
+### Rodando o projeto
+Tendo o node instalado na sua mÃ¡quina, basta rodar um `python -m pip install pika`
+
+### Publicando uma versÃ£o no PyPI
+
+- Inicialmente deve-se rodar os dois comandos abaixo, para instalar as bibliotecas que publicam o cÃ³digo ao PyPI
+- `python -m pip install --user --upgrade setuptools wheel`
+- `python -m pip install --user --upgrade twine`
+- Logo em seguida devem ser rodados os dois comandos abaixo, para efetivamente gerar uma versÃ£o e upar ao PyPI
+- `python setup.py sdist bdist_wheel`
+- `python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*`
+- Ao ser requisitado por credenciais, digite `__token__` no username, e requisite o token de acesso aos administradores do sistema
+
+
