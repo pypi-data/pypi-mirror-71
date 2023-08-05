@@ -1,0 +1,38 @@
+---
+
+before_script:
+  - zypper --non-interactive install git python3-pytest python3-pytest-cov python3-pytest-flake8 python3-pytest-mock  python3-pytest-runner python3-setuptools python3-setuptools_scm python3-wheel zypper-lifecycle-plugin zypper-needs-restarting
+  - python3 setup.py dist_info
+
+stages:
+  - test
+  - publish
+
+test-leap-15.1:
+  image: opensuse/leap:15.1
+  stage: test
+  script:
+    - PYTHONPATH=. pytest
+
+test-leap-15.2:
+  image: opensuse/leap:15.2
+  stage: test
+  script:
+    - PYTHONPATH=. pytest
+
+test-tumbleweed:
+  image: opensuse/tumbleweed
+  stage: test
+  script:
+    - PYTHONPATH=. pytest
+
+publish:
+  image: opensuse/leap
+  stage: publish
+  before_script:
+    - zypper --non-interactive install git python3-setuptools_scm python3-twine python3-wheel
+  script:
+    - SOURCE_DATE_EPOCH="$(git log -1 --format=format:%ct)" python3 setup.py sdist bdist_wheel
+    - twine upload dist/*
+  only:
+    - tags
