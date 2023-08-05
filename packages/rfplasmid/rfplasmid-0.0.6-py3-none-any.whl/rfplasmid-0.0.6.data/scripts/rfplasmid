@@ -1,0 +1,3 @@
+#!/bin/bash
+rfplasmidpath=`python3 -c "import rfplasmid as _; print(_.__path__)"|sed 's/^\[.//' |sed 's/.\]$//'`
+python3 "$rfplasmidpath"/rfplasmid.py $@
