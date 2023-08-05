@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: carbonpy
+Version: 0.52
+Summary: A Python package which gives IUPAC names of chemical compounds, classifies them and more.
+Home-page: https://github.com/harshil21/carbonpy
+Author: Harshil Mehta
+Author-email: ilovebhagwan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+# Carbonpy
+A module which names straight/branched chain organic compounds, suggests conversions from one type to another, etc.
+
+## Usage-
+
+### Naming compounds-
+Instantiate the class `Namer()` , which takes a string which contains the hydrocarbon (condensed form) and then call it with a method named `analyser()` to get the IUPAC name of the compound.
+
+Example:
+```
+a = Namer('CH~CH')
+a.analyser()
+>>> Ethyne
+```
+
+Due to limitations in expressing a hydrocarbon easily, we have selected this path  
+Single bond:- -  
+Double bond:- =  
+Triple bond:- ~  
+Branches:- -([compound] (more branches...))([another branch from same carbon])- and so on  
+(Branches support coming soon)
+
+You can also get the molecular formula of the compound:
+```
+compound = Namer('CH~C-C~C-CH=C=C=CH2')
+compound.molecular_formula()
+>>> Câ‚ˆHâ‚„
+```
+Example- 2-Methylpropane would be expressed as (once branches are supported):
+```
+a = Namer('CH3-CH(CH3)-CH3').analyser()
+>>> 2-Methylpropane
+```
+
+Will support naming with functional groups in the future.
+
+
