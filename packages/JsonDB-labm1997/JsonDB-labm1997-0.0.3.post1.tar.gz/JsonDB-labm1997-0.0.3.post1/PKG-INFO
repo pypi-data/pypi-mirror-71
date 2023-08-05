@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: JsonDB-labm1997
+Version: 0.0.3.post1
+Summary: This is a simple I/O JSON handler that allows direct operations on JSONs and with a single call to `JsonDB.flushAll`you can save them all on permanent memory.
+Home-page: https://gitlab.com/unball/jsondb
+Author: Luiz Antônio Borges Martins
+Author-email: labm1997@gmail.com
+License: UNKNOWN
+Description: ## JsonDB
+        
+        This is a simple I/O JSON handler that allows direct operations on JSONs and with a single call to `JsonDB.flushAll`you can save them all on permanent memory.
+        
+        
+        
+        ## Example
+        
+        ```python
+        from JsonDB import JsonDB
+        
+        class Foo:
+            def __init__(self):
+                self.db = JsonDB("Foo.json", {"param1": [1,2,3,4], "param2": {"a": 1, "b": 2}})
+                self.params = self.db.getJSON()
+        
+            def changeParam1(self, value):
+                self.params["param1"] = value
+        
+            def changeParam2(self, value):
+                self.params["param2"] = value
+        
+        foo = Foo()
+        
+        foo.changeParam1([1,2,3])
+        foo.changeParam2(14)
+        
+        # Save all JSON on respective files
+        JsonDB.flushAll()
+        ```
+        
+        
+        
+        ## Tests
+        
+        Automated tests can be run with `pytest-3 test.py`.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
