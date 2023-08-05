@@ -1,0 +1,30 @@
+# Flit
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "hor2vec"
+author = "Frank Jheng"
+author-email = "m157q.tw@gmail.com"
+home-page = "https://github.com/M157q/hor2vec"
+description-file="README.md"
+classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
+
+[tool.flit.scripts]
+hor2vec = "hor2vec.__main__:main"
+
+
+# Tox
+[tool.tox]
+legacy_tox_ini = """
+
+[tox]
+isolated_build = True
+skipsdist = true
+envlist = py34,py35,py36,py37,py38
+
+[testenv]
+deps=-rrequirements-test.txt
+commands = python -m pytest -vv --flake8 --cov hor2vec/ --cov-report html --cov-report term --junitxml=test-reports/junit.xml --flake8
+"""
