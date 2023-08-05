@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: corc
+Version: 0.0.0a9
+Summary: A tool for managing cloud resources and scheduling compute tasks
+Home-page: https://github.com/rasmunk/corc
+Author: Rasmus Munk
+Author-email: munk1@live.dk
+License: MIT
+Keywords: Cloud,Orchstration,Compute
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: oci
+Requires-Dist: ansible
+Requires-Dist: kubernetes
+Requires-Dist: PyYAML
+Requires-Dist: boto3
+Provides-Extra: dev
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: black ; extra == 'test'
+
+.. image:: https://travis-ci.org/rasmunk/corc.svg?branch=master
+    :target: https://travis-ci.org/rasmunk/corc
+
+====
+corc
+====
+
+corc is a cloud orchestration tool for managing cloud resources,
+including VM's, virtual networks and container clusters.
+
+In addition, corc provides the capability to schedule job on orchestrated resources
+
+The current implementation only supports the `OCI <https://en.wikipedia.org/wiki/Oracle_Cloud>`_ backend.
+Future plans includes expanding this to support AWS as well.
+
+In alpha development, not ready for anything
+
+------------
+Installation
+------------
+
+Installation from pypi::
+
+    pip install corc
+
+
+Installation from local git repository::
+
+    cd corc
+    pip install .
+
+
