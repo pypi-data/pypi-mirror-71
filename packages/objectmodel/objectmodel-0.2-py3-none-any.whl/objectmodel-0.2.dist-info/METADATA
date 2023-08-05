@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: objectmodel
+Version: 0.2
+Summary: Python typed object schema validation
+Home-page: https://github.com/bshishov/objectmodel
+Author: Boris Shishov
+Author-email: borisshishov@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+
+# objectmodel
+Python typed object model for schema creation and validation
+
+A bit unpythonic object definition, but sometimes things should be strict and typed :)
+Ideal for protocols and schemas.
+
+Objects populated by ObjectModel class guarantee to match the desired state and fully serializable at any time.
+
+# Installation
+
+This library is still in a development state, so please dont use it right away - the API might change at any time
+```
+pip install objectmodel
+```
+
+
+# TODO
+
+* Performance benchmarks (ObjectModel vs plain object, namedtuple, dict)
+* `__state__: Dict[str, Any]` vs dynamically populated `__slots__`
+* Better validation and state ensurance
+* Strict collections (`ObjectModelList` and `ObjectModelDict`)?
+  * Separate key and value validation for collections
+* Better field API
+  * Predefined fields (`StringField`, `IntField`, `FloatField`)
+* Proxy fields:
+   * `MethodField` or `ComputedField`
+* Readonly fields
+* More tests!
+* More examples
+* Auto-deployment to PyPI
+
+
