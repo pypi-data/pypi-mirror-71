@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: saqqarah
+Version: 0.9.7
+Summary: Calculation pyramid generator
+Home-page: https://framagit.org/ycombe/saqqarah
+Author: Yves Combe
+Author-email: yves@ycombe.net
+License: UNKNOWN
+Keywords: mathematics,addition,pyramid,school
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Intended Audience :: Education
+Classifier: License :: DFSG approved
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: Education
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Pillow
+Requires-Dist: PySide2
+Requires-Dist: numpy
+
+# Saqqarah
+
+## Description
+This little software creates calculation pyramids puzzles (mainly addition).
+
+![Screenshot of Saqqarah with the clickodrome UI](screenshot_2020-06-06-010211.png "Saqqarah")
+
+
+Principle for addition pyramid:
+Boxes should contain numbers, if a box is on top of two boxes it contains 
+the sum of the two boxes below.
+
+### Exemple of Saqqarah run
+![Exemple of pyramid puzzle created by Saqqarah](pyramide-Puzzle.png "Puzzle")
+
+### With solution
+![The solution created by Saqqarah](pyramide-Solution.png "Puzzle")
+
+## Features
+- Window (Qt5 Based) interface or command line interface, at your preference
+- Output modes: 
+  -- image, with as default png format (others format are possible: see the Python Image Library PIL documentation)
+  -- Tikz code (for inclusion in latex documents)
+- Choice of size of the pyramid.
+- Choice of numbers range for the base line.
+- Choice of seed for the random generator This allows you redo the same pyramid multiple times.
+- Choice of difficulty level.
+- Choice of resolution (ignored in tikz mode)
+
+## Warning
+If you choose an important size, 10 or more, the creation can be long: saqqarah looks for solution randomly until it find the wanted difficulty.
+
+
+## Usage
+    saqqarah -h
+give you a brief summary usage
+
+
+
+
