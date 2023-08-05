@@ -1,0 +1,1570 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session optdewakss :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session optdewakss
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+#+title: DEWAKSS on Arisdakessian2019 -- GSE102827
+
+
+* Apply DEWAKSS to cite:Hrvatin2018 also analysed in cite:Arisdakessian2019
+
+Previous analysis code https://zenodo.org/record/3459902, and raw data https://www.omicsdi.org/dataset/geo/GSE102827.
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+import scanpy as sc
+gitbranch = os.path.join(gitbranch, 'Arisdakessian2019')
+
+figdir = os.path.join("..", "img", gitbranch)
+datadir = os.path.join("..", "data", gitbranch)
+
+sc.settings.figdir = os.path.join(figdir)
+sc.settings.file_format_figs = "svg"
+
+import scprocessing.pipeline as scpipe
+import scprocessing.preprocessing as scpp
+import scprocessing.preprocessing.Svensson2019 as Svensson2019
+import scprocessing.plotting.anndata as scpl
+import dewakss.decomposition as dede
+import dewakss.denoise as dewakss
+#+end_src
+
+** Load data
+
+#+name: load-data-arisdakessian2019-convert-to-anndata
+#+begin_src ipython
+import scprep
+from scipy.sparse import csr
+
+adata = sc.read_csv(os.path.join(datadir, 'GSE102827', 'GSE102827_merged_all_raw.csv')).T
+
+df = pd.read_csv(os.path.join(datadir, 'GSE102827', 'GSE102827_cell_type_assignments.csv.gz'), sep=',', index_col=0)
+
+df.index.name = 'barcode'
+
+adata.obs = df
+
+adata.X = csr.csr_matrix(adata.X)
+
+adata.write(os.path.join(datadir, "converted_to_adata.h5ad"))
+#+end_src
+
+#+name: reload-adata
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "converted_to_adata.h5ad"))
+
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+#+end_src
+
+#+name: plot-count-distribution
+#+begin_src ipython :results output drawer replace
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 4), facecolor='w', edgecolor='k')
+ax.scatter(adata.obs['n_genes'], adata.obs['n_counts'], cmap='viridis', alpha=1, s=10)
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+# ncl = np.percentile(adata.obs['n_counts'], 1)
+
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+ngl = np.percentile(adata.obs['n_genes'], 0.5)
+
+xl = ax.get_xlim()
+yl = ax.get_ylim()
+# ax.hlines(ncu, *xl, linestyles='--')
+ax.vlines(ngl, *yl, linestyles='--')
+# ax.hlines(ncl, *xl, linestyles='--')
+ax.vlines(ngu, *yl, linestyles='--')
+# ax.vlines(ngl, *yl, linestyles='--')
+# ax.set_xlim(*xl)
+# ax.set_ylim(*yl)
+# ax.set_xscale('log')
+# ax.set_yscale('log')
+xl = ax.get_xlim()
+yl = ax.get_ylim()
+ax.set_title('')
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlabel('# genes')
+ax.set_ylabel('UMI count')
+ax.set_title('cell UMI and gene counts')
+ax.grid(which='both')
+sns.despine()
+fig.tight_layout()
+
+fname='count_distribution_cell_vs_genes_'
+fdir = os.path.join(figdir, 'statistics')
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-count-distribution
+:results:
+[[file:../img/master/Arisdakessian2019/statistics/count_distribution_cell_vs_genes_figure.png]]
+:end:
+
+#+name: process-and-fiter-arisdakessian2019
+#+begin_src ipython
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+ngl = np.percentile(adata.obs['n_genes'], 0.5)
+
+keep_cells = (adata.obs['n_genes'] > ngl).values & (adata.obs['n_genes'] < ngu).values
+adata = adata[keep_cells, :].copy()
+
+# sc.pp.filter_cells(adata, min_counts=1000)
+sc.pp.filter_genes(adata, min_cells=10)
+adata.layers['counts'] = adata.X.copy()
+sc.pp.normalize_per_cell(adata)
+dede.ftt(adata)
+sc.pp.highly_variable_genes(adata)
+adata.raw = adata
+
+adata.write(os.path.join(datadir, "filtered_data.h5ad"))
+#+end_src
+
+#+name: plot-highly-variable
+#+begin_src ipython :results output drawer replace
+sc.pl.highly_variable_genes(adata)
+fig = plt.gcf()
+ax = fig.get_axes()
+
+for axis in ax:
+    axis.grid()
+
+ax[0].legend(title=f"#hv = {adata.var['highly_variable'].sum()}")
+sns.despine()
+fig.tight_layout()
+
+fname='highly_variable_genes_'
+fdir = os.path.join(figdir, 'statistics')
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-highly-variable
+:results:
+[[file:../img/master/Arisdakessian2019/statistics/highly_variable_genes_figure.png]]
+:end:
+
+** Load Seurat normalized
+
+#+name: load-seurat-norm-and-convert-to-anndata
+#+begin_src ipython
+from scipy.sparse import csr
+
+adata = sc.read_csv(os.path.join(datadir, 'GSE102827', 'GSE102827_seurat_normed.csv.gz')).T
+
+df = pd.read_csv(os.path.join(datadir, 'GSE102827', 'GSE102827_cell_type_assignments.csv.gz'), sep=',', index_col=0)
+
+df.index.name = 'barcode'
+
+adata.obs = df.loc[adata.obs_names]
+
+adata.X = csr.csr_matrix(adata.X)
+
+adata.write(os.path.join(datadir, "seurat_converted_to_adata.h5ad"))
+#+end_src
+
+** Compute basic stats and pipeline
+
+#+name: reload-data
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "filtered_data.h5ad"))
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: arisdakessian2019-check-basic-count-stats
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=np.append(adata.uns['phi_hat'], 0.5), logrange=(-4,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'])
+
+fdir = figdir
+fname = f"hrvatin2018_NB_statistics_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: arisdakessian2019-check-basic-count-stats
+:results:
+[[file:../img/master/Arisdakessian2019/hrvatin2018_NB_statistics_figure.png]]
+:end:
+
+#+name: remove-unannotated-celltypes
+#+begin_src ipython
+adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+#+end_src
+
+#+name: find-optimal-n-pcs
+#+begin_src ipython
+from sklearn.decomposition import TruncatedSVD
+
+DeTSVD = dede.decomposition_wrapper(TruncatedSVD)
+rescaler = {sc.pp.normalize_per_cell: {"copy": True}, scpp.ftt: {'copy': True}}
+
+dpcahv = DeTSVD(strategy='binomial', rescaler=rescaler, n_components=50, subsample=None, test_size=None)
+
+dpcahv.fit(adata.layers['counts'].copy(), use_genes=adata.var['highly_variable'].values)
+
+dpca = DeTSVD(strategy='binomial', rescaler=rescaler, n_components=50, subsample=None, test_size=None)
+
+dpca.fit(adata.layers['counts'].copy())
+
+#+end_src
+
+#+name: select-optimal-n_pca-arisdakessian2019
+#+begin_src ipython :results output drawer replace
+metric = 'mse'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpca.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'Prediction error ({metric.upper()})')
+fig.suptitle(f"Hrvatin et. al. 2018\nOptimal # PCs = {dpca.optimal_}")
+
+fdir = figdir
+fname = f"hrvatin2018_selecting_npcs_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print()
+
+metric = 'evr'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpca.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'EV ratio')
+fig.suptitle(f"Hrvatin et. al. 2018\nOptimal # PCs = {dpca.optimal_}")
+
+fdir = figdir
+fname = f"hrvatin2018_selecting_npcs_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: select-optimal-n_pca-arisdakessian2019
+:results:
+[[file:../img/master/Arisdakessian2019/hrvatin2018_selecting_npcs_MSE_figure.png]]
+[[file:../img/master/Arisdakessian2019/hrvatin2018_selecting_npcs_EVR_figure.png]]
+:end:
+
+#+name: select-optimal-n_pca-highly-variable-arisdakessian2019
+#+begin_src ipython :results output drawer replace
+metric = 'mse'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpcahv.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'Prediction error ({metric.upper()})')
+fig.suptitle(f"Hrvatin et. al. 2018\nOptimal # PCs = {dpcahv.optimal_}, HV")
+
+fdir = figdir
+fname = f"hrvatin2018_selecting_npcs_hv_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print()
+
+metric = 'evr'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpcahv.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'EV ratio')
+fig.suptitle(f"Hrvatin et. al. 2018\nOptimal # PCs = {dpcahv.optimal_}, HV")
+
+fdir = figdir
+fname = f"hrvatin2018_selecting_npcs_hv_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: select-optimal-n_pca-highly-variable-arisdakessian2019
+:results:
+[[file:../img/master/Arisdakessian2019/hrvatin2018_selecting_npcs_hv_MSE_figure.png]]
+[[file:../img/master/Arisdakessian2019/hrvatin2018_selecting_npcs_hv_EVR_figure.png]]
+:end:
+
+# Note that fewer knn seem to genereate higher number of smoothings as optimal.
+#+name: run-pipeline-with-optimal-npcs
+#+begin_src ipython
+scpipe.base_computations(adata, npcs=31, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+scpipe.rank_genes_groups(adata, groupby='leiden')
+adata.write(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+#+end_src
+
+#+name: plot-umap-projection
+#+begin_src ipython :results output drawer replace
+# fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'stim', 'sample', 'maintype', 'celltype'], representations={'umap'}, figsize=(12,16), legend_loc='on data')
+sc.pl.umap(adata, color='celltype', palette=sns.color_palette("husl", len(adata.obs['celltype'].cat.categories)))
+
+for r in ['leiden', 'stim', 'maintype', 'celltype']:
+    fig, ax, __ = scpl.visualize_cell_scatter(adata, [r], representations={'umap'}, figsize=(8,6), legend_loc='on data')
+
+    fname = f'all_cells_umap_{r}_'
+    fdir = os.path.join(figdir, "clustering")
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print()
+
+#+end_src
+
+#+RESULTS: plot-umap-projection
+:results:
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_leiden_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_stim_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_maintype_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_celltype_figure.png]]
+:end:
+
+#+name: run-pipeline-with-optimal-npcs-hv
+#+begin_src ipython
+scpipe.base_computations(adata, npcs=20, nneighbors=15, min_dist=0.5, use_highly_variable=True)
+scpipe.rank_genes_groups(adata, groupby='leiden')
+adata.write(os.path.join(datadir, "precomputed_pipeline_hv.h5ad"))
+#+end_src
+
+#+name: plot-umap-projection_hv
+#+begin_src ipython :results output drawer replace
+# fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'stim', 'sample', 'maintype', 'celltype'], representations={'umap'}, figsize=(12,16), legend_loc='on data')
+sc.pl.umap(adata, color='celltype', palette=sns.color_palette("husl", len(adata.obs['celltype'].cat.categories)))
+
+for r in ['leiden', 'stim', 'maintype', 'celltype']:
+    fig, ax, __ = scpl.visualize_cell_scatter(adata, [r], representations={'umap'}, figsize=(8,6), legend_loc='on data')
+
+    fname = f'all_cells_umap_hv_{r}_'
+    fdir = os.path.join(figdir, "clustering")
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print()
+
+#+end_src
+
+#+RESULTS: plot-umap-projection_hv
+:results:
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_hv_leiden_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_hv_stim_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_hv_maintype_figure.png]]
+[[file:../img/master/Arisdakessian2019/clustering/all_cells_umap_hv_celltype_figure.png]]
+:end:
+
+** Find optimal denosing parameters
+
+#+name: reload-data
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), "filtered_data.h5ad"))
+adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+sc.pp.filter_genes(adata, min_cells=10)
+#+end_src
+
+The denoising is done on the preprocessed data and with the DEWAKSS algorithm.
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+from dewakss import denoise as dewakss
+
+modes = ['connectivities', 'distances']
+denoisetypes = ['mean']
+iterations = 1
+neigbours = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 150, 200, 400]
+npcss = [20, 50, 90, 100, 110, 150]
+
+sc.pp.pca(adata, n_comps=max(npcss), random_state=0)
+hyperp = []
+for denoiset in denoisetypes:
+    for pcs in npcss:
+        sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs)
+        for m in modes:
+            print(m, pcs, denoiset)
+
+            dewaxer = dewakss.DEWAKSS(adata, n_neighbors=neigbours, iterations=iterations, denoise_type=denoiset, mode=m, verbose=False, use_global_err=True)
+
+            dewaxer.fit(adata)
+
+            performance = pd.DataFrame(dewaxer.global_err_).T
+            # colms = performance.columns.tolist()
+            # colms[0] = 'neighbors'
+            # colms[1] = 'iteration'
+            # performance.columns = colms
+            performance.index.name = "iteration"
+            performance.columns = ['MSE', "R2"]
+            performance = performance.reset_index()
+            performance['CMSE'] = dewaxer._local_err_
+            performance['mode'] = m
+            performance['pcs'] = pcs
+            performance['denoisetype'] = denoiset
+            hyperp.append(performance)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+colms = performance_data.columns.tolist()
+colms[0] = 'neighbors'
+colms[1] = 'iteration'
+performance_data.columns = colms
+
+performance_data.to_csv(os.path.join(datadir, "dewakss_optimal_parameter_data.tsv.gz"), sep='\t', compression='gzip')
+
+#+end_src
+
+#+name: load-performance-data
+#+begin_src ipython
+performance_data = pd.read_csv(os.path.join(datadir, "dewakss_optimal_parameter_data.tsv.gz"), sep='\t', index_col=0)
+# tmp = pd.read_csv(os.path.join(datadir, "TVC514_TVC_dewakss_optimal_parameter_data_max_pcs.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp])
+#+end_src
+
+#+name: plot-tvc-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+dosave = False
+# pdata = performance_data[performance_data['symmetrize'] == True]
+pdata = performance_data[performance_data['neighbors'] != 0]
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors']].drop_duplicates()
+
+    fig = plt.figure(figsize=(16, 8), constrained_layout=True)
+
+    fold = 3
+    ax = fig.subplots(fold, combos.shape[0]//fold + combos.shape[0]%fold, sharex=True, sharey='row').flatten(order='C')
+
+    nonused = ax[combos.shape[0]:]
+    ax = ax[:combos.shape[0]]
+    
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors'])
+
+    labels = []
+    max_xticks = 0
+    for (neighbors, pcs), subdf in df.groupby(['neighbors', 'pcs']):
+        axes = combos.loc[neighbors][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        lab = axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+
+        if ax[0] == axes:
+            labels.append(lab[0])
+
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        if subdf['iteration'].values.max() > max_xticks:
+             axes.set_xticks(subdf['iteration'].values)
+             max_xticks = subdf['iteration'].values.max()
+
+        # axes.set_xticks(subdf['iteration'].values)
+        axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    nonused[0].legend(labels, [l._label for l in labels],  title='PCs', ncol=2, loc='upper center')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors'])[metric].max()
+        
+    optit = df.set_index(['neighbors'])
+    for neighbors, value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors]
+        opts = (optit.loc[neighbors][metric] == minmse).values
+        its = optit.loc[neighbors][opts]['iteration'].values[0]
+        optpcs = optit.loc[neighbors][opts]['pcs'].values[0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    for x in nonused:
+        #     x.axis('off')
+        
+        shax = x.get_shared_x_axes()
+        # shay = x.get_shared_y_axes()
+        shax.remove(x)
+        # shay.remove(x)
+        # x.clear()
+        x.set_frame_on('off')
+        x.spines['top'].set_visible(False)
+        x.spines['right'].set_visible(False)
+        # x.spines['left'].set_visible(False)
+        # x.spines['bottom'].set_visible(False)
+        # x.set_xticks([])
+        # x.set_yticks([])
+        
+
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"TVC514_denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+
+#+end_src
+
+#+name: performance-trends
+#+begin_src ipython :results output drawer replace
+doplot = True
+metric = 'MSE'
+pdata = performance_data[performance_data['neighbors'] != 0]
+pdata = pdata.groupby(['mode', 'denoisetype', 'pcs', 'neighbors'])[metric].min().reset_index()
+pdata = pdata[pdata['neighbors'] != 0]
+# pdata = pdata.groupby(['mode', 'denoisetype', 'pcs', 'neighbors'])['MSE'].min().reset_index()
+
+for dt, df in pdata.groupby(['denoisetype']):
+    # g = sns.lmplot(x="pcs", y=metric, hue="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+    g = sns.lmplot(hue="pcs", y=metric, x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+
+
+    ymin = df[metric].min()
+    ymax = df[metric].max()
+    xmin = df['neighbors'].min()
+    xmax = df['neighbors'].max()
+    for ax in g.axes.flatten():
+        ax.grid()
+        ax.set_xscale('log')
+        ax.set_xlim([xmin-1,xmax+100])
+        ax.set_ylim([ymin-(ymax-ymin)*0.05,ymax+(ymax-ymin)*0.05])
+
+    fig = g.fig
+    fig.suptitle(f"Denoise type={dt}")
+
+    if doplot:
+        fdir = figdir
+        fname = f"TVC514_denoise_type_{dt}_{metric}_minimal_trend_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+name: get-optimal-parameters
+#+begin_src ipython :results output drawer replace
+print(performance_data.loc[performance_data['CMSE'].argmin()+1])
+#+end_src
+
+#+RESULTS: get-optimal-parameters
+:results:
+neighbors             10
+iteration              1
+MSE                0.142
+R2                 0.444
+CMSE               0.134
+mode           distances
+pcs                  110
+denoisetype         mean
+Name: 155, dtype: object
+:end:
+
+
+** Vizsualize optimal denoising
+
+#+name: load-performance-data
+#+begin_src ipython
+performance_data = pd.read_csv(os.path.join(datadir, "aris_unnormalised_results.csv"), sep='\t', index_col=0)
+# del performance_data['Unnamed: 0.1']
+#+end_src
+
+#+name: plot-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+dosave = True
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy().sort_values(['neighbors', 'iteration'])
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors']].drop_duplicates()
+
+    fig = plt.figure(figsize=(14, 3.5), constrained_layout=True)
+
+    fold = 1
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors'])
+
+    max_xticks = 0
+    for (neighbors, pcs), subdf in df.groupby(['neighbors', 'pcs']):
+        axes = combos.loc[neighbors][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        if subdf['iteration'].values.max() > max_xticks:
+            axes.set_xticks(subdf['iteration'].values)
+            max_xticks = subdf['iteration'].values.max()
+
+        axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[-1].legend(title='PCs', loc='center right')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors'])[metric].max()
+        
+    optit = df.set_index(['neighbors'])
+    for (neighbors), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors]
+        opts = (optit.loc[neighbors][metric] == minmse).values
+        its = optit.loc[neighbors][opts]['iteration'][neighbors]
+        optpcs = optit.loc[neighbors][opts]['pcs'][neighbors]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'].iloc[0]:.4f}, it={opte['iteration'].iloc[0]}, PCs={opte['pcs'].iloc[0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+
+#+RESULTS: plot-performance-hyper-parameters
+:results:
+[[file:../img/master/Arisdakessian2019/denoise_type_mean_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Arisdakessian2019/denoise_type_mean_distances_MSE_hyper_paramters_figure.png]]
+:end:
+
+#+name: performance-trends
+#+begin_src ipython :results output drawer replace
+doplot = True
+metric = 'MSE'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+pdata = pdata.groupby(['mode', 'denoisetype', 'pcs', 'neighbors'])[metric].min().reset_index()
+
+for dt, df in pdata.groupby(['denoisetype']):
+    g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+
+    for ax in g.axes.flatten():
+        ax.grid()
+        ax.set_ylim([df['MSE'].min()-df['MSE'].min()/500, df['MSE'].max()+df['MSE'].min()/500])
+        ax.set_xlim([30, 500])
+        ax.set_xscale('log')
+
+    fig = g.fig
+    fig.suptitle(f"Denoise type={dt}")
+
+    if doplot:
+        fdir = figdir
+        fname = f"denoise_type_{dt}_{metric}_minimal_trend_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: performance-trends
+:results:
+[[file:../img/master/Arisdakessian2019/denoise_type_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: get-optimal-parameters
+#+begin_src ipython :results output drawer replace
+print(performance_data.loc[performance_data['MSE'].argmin()])
+#+end_src
+
+#+RESULTS: get-optimal-parameters
+:results:
+Dataset        aris_dataset
+MSE                   0.132
+R2                    0.073
+denoisetype            mean
+iteration                 1
+mode              distances
+neighbors               150
+pcs                     100
+time               5.27e+03
+Name: 171, dtype: object
+:end:
+
+** Compute DEWAKSS, MAGIC and DeepImpute
+
+#+name: load-inhouse-pre-processing
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+#+end_src
+
+#+name: dewakss-inhouse-filtered
+#+begin_src ipython
+# adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+adata = sc.read(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), "filtered_data.h5ad"))
+adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+sc.pp.filter_genes(adata, min_cells=10)
+
+# tmpadata = adata.copy()
+pcs = 110
+# N = 150
+neigbours = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 150, 200, 400]
+sc.pp.pca(adata, n_comps=pcs)
+sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs)
+
+denoiseer = dewakss.DEWAKSS(adata, mode='distances', use_global_err=False, n_neighbors=neigbours)
+denoiseer.fit(adata)
+denoiseer.transform(adata, copy=False)
+adata.X = adata.layers['Ms'].toarray() if sp.sparse.issparse(adata.layers['Ms']) else adata.layers['Ms']
+del adata.layers['Ms']
+adata.write(os.path.join(datadir, "precomputed_dewakss_mean_lDW.h5ad"))
+
+# denoiseer.transform(tmpadata, copy=False, transformtype='median')
+# adata.X = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+
+# adata.write(os.path.join(datadir, "precomputed_dewakss_median.h5ad"))
+
+# del tmpadata
+#+end_src
+
+#+name: run-magic-on-pp
+#+begin_src ipython
+import magic
+adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+
+magic_op = magic.MAGIC()
+magic_imp_pre_comp = magic_op.fit_transform(adata.X, genes=None)
+
+# np.linalg.matrix_rank(magic_imp_pre_comp) # 
+
+adata.X = magic_imp_pre_comp.copy()
+del magic_imp_pre_comp
+
+scpipe.base_computations(adata, npcs=31, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+
+adata.write(os.path.join(datadir, "precomputed_pipeline_magic.h5ad"))
+# scores_c = evaluate(adata, 'counts')
+#+end_src
+
+#+name: run-deepimpute-on-pp
+#+begin_src ipython
+from deepimpute.multinet import MultiNet
+adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+
+model = MultiNet(ncores=12)
+imputed = model.fit(pd.DataFrame(adata.X.A)).predict(pd.DataFrame(adata.X.A))
+
+adata.X = imputed.copy()
+del imputed
+
+scpipe.base_computations(adata, npcs=31, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+
+adata.write(os.path.join(datadir, "precomputed_pipeline_deepimpute.h5ad"))
+#+end_src
+
+#+name: run-deepimpute-on-counts
+#+begin_src ipython
+from deepimpute.multinet import MultiNet
+adata = sc.read(os.path.join(datadir, "converted_to_adata.h5ad"))
+adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+
+model = MultiNet(ncores=12)
+imputed = model.fit(pd.DataFrame(adata.X.A)).predict(pd.DataFrame(adata.X.A))
+
+adata.X = imputed.copy()
+del imputed
+
+adata.X = csr.csr_matrix(adata.X)
+adata.layers['counts'] = adata.X.copy()
+
+sc.pp.filter_genes(adata, min_cells=10)
+sc.pp.normalize_per_cell(adata)
+dede.ftt(adata)
+
+scpipe.base_computations(adata, npcs=31, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+
+adata.write(os.path.join(datadir, "raw_counts_deepimpute_pp.h5ad"))
+#+end_src
+
+#+name: load-and-pp-with-seurat-wrapper
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "converted_to_adata.h5ad"))
+adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+
+# adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+# adata.X = adata.layers['counts'].copy()
+
+sc.pp.recipe_seurat(adata)
+
+adata.X[np.isnan(adata.X)] = 0
+adata.X[np.isinf(adata.X)] = 0    
+
+adata.write(os.path.join(datadir, "seurat_pipeline.h5ad"))
+
+#+end_src
+
+#+name: run-magic-on-seurat
+#+begin_src ipython
+import magic
+adata = sc.read(os.path.join(datadir, "seurat_pipeline.h5ad"))
+
+magic_op = magic.MAGIC()
+magic_imp_pre_comp = magic_op.fit_transform(adata.X, genes=None)
+
+# np.linalg.matrix_rank(magic_imp_pre_comp) # 
+
+adata.X = magic_imp_pre_comp.copy()
+del magic_imp_pre_comp
+
+scpipe.base_computations(adata, npcs=50, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+
+adata.write(os.path.join(datadir, "seurat_pipeline_magic.h5ad"))
+#+end_src
+
+#+name: run-magic-on-R-seurat
+#+begin_src ipython
+import magic
+adata = sc.read(os.path.join(datadir, "seurat_converted_to_adata.h5ad"))
+
+magic_op = magic.MAGIC()
+magic_imp_pre_comp = magic_op.fit_transform(adata.X, genes=None)
+
+# np.linalg.matrix_rank(magic_imp_pre_comp) # 
+
+adata.X = magic_imp_pre_comp.copy()
+del magic_imp_pre_comp
+
+scpipe.base_computations(adata, npcs=50, nneighbors=15, min_dist=0.5, use_highly_variable=False)
+
+adata.write(os.path.join(datadir, "seurat_R_magic.h5ad"))
+#+end_src
+
+
+** Compute clustering performance 
+
+Purity score: https://stats.stackexchange.com/questions/95731/how-to-calculate-purity
+
+#+name: define-evaluation-function
+#+begin_src ipython
+def evaluate(adata, imputation_name, npcs=None, output='', plotu=True, color='leiden'):
+    from scipy.sparse import issparse
+    import sklearn.metrics as metrics
+    from pprint import pprint
+    def purity_score(y_true, y_pred, axis=0):
+        # compute contingency matrix (also called confusion matrix)
+        contingency_matrix = metrics.cluster.contingency_matrix(y_true, y_pred)
+        # return purity
+        return np.sum(np.amax(contingency_matrix, axis=axis)) / np.sum(contingency_matrix) 
+
+    nc = adata.obs['celltype'].cat.categories.shape[0]
+    k = adata.uns['neighbors']['params']['n_neighbors']
+    npcs = adata.uns['neighbors']['params']['n_pcs']
+
+    truth = adata.obs['celltype'].values
+    pred = adata.obs[color].values
+    X_umap = adata.obsm["X_umap"]
+    X_diffmap = adata.obsm["X_diffmap"][:,1:]
+    X_pca = adata.obsm["X_pca"][:, :npcs]
+
+    scores = {
+        # 'adjusted_rand_score': metrics.adjusted_rand_score(truth, pred),
+        # 'adjusted_mutual_info_score': metrics.adjusted_mutual_info_score(truth, pred),
+        'Fowlkes-Mallows': metrics.fowlkes_mallows_score(truth, pred),
+        # 'Purity': purity_score(truth, pred, axis=0),
+        # 'Inverse_Purity': purity_score(truth, pred, axis=1),
+        # 'silhouette_score_X': metrics.silhouette_score(adata.X if issparse(adata.X) else adata.X.A, truth.tolist()),  # To computationally expencive.
+        'silhouette_score_umap': metrics.silhouette_score(X_umap, truth.tolist()),
+        # 'silhouette_score_diffmap': metrics.silhouette_score(X_diffmap, truth.tolist()),
+        'silhouette_score_pca': metrics.silhouette_score(X_pca, truth.tolist()),
+        'Leiden clusters': adata.obs[color].cat.categories.shape[0]}
+
+    pprint(scores)
+    # 'print(scores)
+    nc = adata.obs['leiden'].cat.categories.shape[0]
+    if plotu:
+        fig, ax, __ = scpl.visualize_cell_scatter(adata, [color], representations={'umap'}, figsize=(6,4), legend_loc='on data', size=25)
+        ax[0].set_title(f"{imputation_name}, #C={nc}, PCs={npcs}, k={k}", fontsize=16)
+        ax[0].set_xlabel('')
+        ax[0].set_ylabel('')
+        sns.despine(left=True, bottom=True)
+
+        fname = f'all_cells_umap_{imputation_name}_{color}_pcs_{npcs}_k_{k}_{int(nc)}_'
+        fdir = os.path.join(figdir, "clustering")
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print()
+
+        fig, ax, __ = scpl.visualize_cell_scatter(adata, ['celltype'], representations={'umap'}, figsize=(6,4), legend_loc='on data', size=25)
+        ax[0].set_title(f"{imputation_name}, #C={nc}, PCs={npcs}, k={k}", fontsize=16)
+        ax[0].set_xlabel('')
+        ax[0].set_ylabel('')
+        sns.despine(left=True, bottom=True)
+
+        fname = f'all_cells_umap_{imputation_name}_celltype_pcs_{npcs}_k_{k}_{int(nc)}_'
+        fdir = os.path.join(figdir, "clustering")
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print()
+
+    if os.path.exists(output):
+        scores_df = pd.read_csv(output,index_col=0)
+    else:
+        scores_df = pd.DataFrame(columns=list(scores.keys()))
+
+    scores_df.loc[imputation_name] = pd.Series(scores)
+    
+    scores_df.index.name = "imputation"
+    # scores_df.to_csv(output)
+    return scores_df
+
+#+end_src
+
+#+name: compute-scores
+#+begin_src ipython
+from time import time
+pcs = [100, 100, 10, 10]
+N = [150, 15, 150, 15]
+# nc preprocessed: 21, 20, 20, 23
+all_scores = []
+
+runconfig = {'preprocessed (pp)': {'resolution': [[3.1, 1],[2.1, 1], [2.7, 1], [2, 1]], 'dataset': "precomputed_pipeline.h5ad"}, 'DEWAKSS': {'resolution': [[1.25, 0.29], [0.75, 0.18], [1.05, 0.32], [0.55, 0.2]], 'dataset': "precomputed_dewakss_mean.h5ad"}, 'MAGIC': {'resolution': [[0.75, 0.145], [0.45, 0.1], [0.7, 0.2], [0.3, 0.1]], 'dataset': "precomputed_pipeline_magic.h5ad"}, 'DeepImpute': {'resolution': [[2.65, 1.0], [2.65, 1.0], [2.65, 1.0], [2.65, 1.0]], 'dataset': "raw_counts_deepimpute_pp.h5ad"}}
+
+mind = 0.5
+random_state = 42
+t0 = time()
+for method in runconfig.keys():
+    method = 'MAGIC'
+    dpath = runconfig[method]['dataset']
+    adata = sc.read(os.path.join(datadir.replace('simplify-dewakss', 'master'), dpath))
+    sc.tl.pca(adata, svd_solver='randomized', n_comps=max(pcs), use_highly_variable=False, random_state=random_state)
+    print(f'computed PCs {method}')
+    resolution = runconfig[method]['resolution']
+    for i, (npcs, k, res) in enumerate(zip(pcs, N, resolution)):
+        # npcs = 100
+        # k = 150
+        sc.pp.neighbors(adata, n_neighbors=k, metric='euclidean', n_pcs=npcs, random_state=random_state)
+        print(f'computed neighbors {method}')
+        sc.tl.umap(adata, spread=1, min_dist=mind, random_state=random_state)
+        sc.tl.diffmap(adata)
+        print(f'Computed projections, {method}')
+        for r in res:
+            # r = 1.0
+            sc.tl.leiden(adata, resolution=r, random_state=random_state)
+            print(f'computed clusters {method}, {r}, n = {adata.obs["leiden"].cat.categories.shape[0]}')
+
+            scores = evaluate(adata, method)
+            scores['resolution'] = r
+            scores['PCs'] = npcs
+            scores['k'] = k
+            scores['Leiden clusters'] = scores['Leiden clusters'].astype(int)
+            print(f'computed scores {method}, {r}')
+            #####################
+            print(f"{time() - t0:.2f}")
+            all_scores.append(scores)
+
+    break
+
+print(pd.concat(all_scores))
+# pd.concat(all_scores).to_csv('/home/at145/Desktop/temp.tsv', sep='\t')
+#+end_src
+
+#+name: deprecated-config-run
+#+begin_src ipython
+# adata = sc.read(os.path.join(datadir, "precomputed_pipeline.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False, resolution=2.8)
+# scores = evaluate(adata, 'preprocessed (pp)')
+# #####################
+
+# adata = sc.read(os.path.join(datadir, "precomputed_dewakss_mean.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False, resolution=1.2)
+# scores_dwmean = evaluate(adata, 'DEWAKSS mean')
+# #####################
+
+# adata = sc.read(os.path.join(datadir, "seurat_converted_to_adata.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# scores_R_seurat = evaluate(adata, 'R Seurat')
+# #####################
+
+# adata = sc.read(os.path.join(datadir, "precomputed_pipeline_magic.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False, resolution=0.7)
+# # sc.tl.leiden(adata, resolution=0.7)
+# scores_ppm = evaluate(adata, 'pp MAGIC')
+# #####################
+
+# # adata = sc.read(os.path.join(datadir, "precomputed_dewakss_median.h5ad"))
+# # scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# # scores_dwmedian = evaluate(adata, 'DEWAKSS median')
+# # # #####################
+
+# # adata = sc.read(os.path.join(datadir, "precomputed_pipeline_hv.h5ad"))
+# # scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# # scores_hv = evaluate(adata, 'pp hv')
+# # #####################
+
+# # adata = sc.read(os.path.join(datadir, "converted_to_adata.h5ad"))
+# # adata = adata[(~(adata.obs['celltype'] == 'nan')).values, :].copy()
+# # scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# # scores_c = evaluate(adata, 'counts')
+# # #####################
+
+# # adata = sc.read(os.path.join(datadir, "seurat_pipeline.h5ad"))
+# # scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# # scores_seurat = evaluate(adata, 'seurat (scanpy)')
+# # #####################
+
+# # adata = sc.read(os.path.join(datadir, "seurat_pipeline_magic.h5ad"))
+# # scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# # scores_seuratm = evaluate(adata, 'seurat (scanpy) magic')
+# # #####################
+
+# adata = sc.read(os.path.join(datadir, "seurat_R_magic.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# scores_R_seurat_magic = evaluate(adata, 'R Seurat MAGIC')
+# #####################
+
+# adata = sc.read(os.path.join(datadir, "raw_counts_deepimpute_pp.h5ad"))
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# scores_dipp = evaluate(adata, 'counts DeepImpute pp')
+# #####################
+
+# adata = sc.read(os.path.join(datadir, "raw_counts_deepimpute_pp.h5ad"))
+# adata.X = adata.layers['counts'].copy()
+# scpipe.base_computations(adata, npcs=npcs, nneighbors=k, min_dist=mind, use_highly_variable=False)
+# scores_di_counts = evaluate(adata, 'DeepImpute counts')
+# #####################
+#+end_src
+
+#+name: combine-scores
+#+begin_src ipython
+scores_combined = pd.concat([scores,
+                             scores_R_seurat,
+                             scores_dipp,
+                             scores_dwmean,
+                             scores_c,
+                             # scores_seurat,
+                             scores_di_counts,
+                             scores_ppm,
+                             scores_R_seurat_magic,
+                             # scores_seuratm,
+                             ],
+                             0)
+
+fname=f'GSE102827_Hrvatin_clustering_performance_pcs_{npcs}_k_{k}_'
+scores_combined.to_csv(os.path.join(datadir, fname + '.tsv'), sep='\t')
+
+# scores_combined = scores_combined[~scores_combined.index.isin(['counts deepimpute pp'])]
+#+end_src
+
+#+name: load-scores
+#+begin_src ipython
+npcs = [10, 50, 100, 100, 200]
+ks = [20, 20, 100, 150, 100]
+
+scoretab = []
+for i, j in zip(ks, npcs):
+    fname=f'GSE102827_Hrvatin_clustering_performance_pcs_{j}_k_{i}_'
+    __  = pd.read_csv(os.path.join(datadir.replace('simplify-dewakss', 'master'), fname + '.tsv'), sep='\t')
+    __['PCs'] = j
+    __['k'] = i
+    scoretab.append(__)
+    
+
+scores_combined = pd.concat(scoretab).reset_index()
+del scores_combined['index']
+
+showcase_methods = ['DEWAKSS', 'preprocessed (pp)', 'R Seurat MAGIC', 'counts deepimpute pp']
+
+scores_combined.columns = [score.replace("_","\n") for score in scores_combined.columns]
+scores_combined = scores_combined[~scores_combined['imputation'].str.contains('scanpy')]
+scores_combined['imputation'] = scores_combined['imputation'].str.replace(' mean', '')
+scores_combined['imputation'] = scores_combined['imputation'].str.replace('dewakss', 'DEWAKSS')
+scores_combined['imputation'] = scores_combined['imputation'].str.replace('magic', 'MAGIC')
+
+scores_combined = scores_combined[scores_combined['imputation'].isin(showcase_methods)]
+
+# metrics2use = ['imputation', 'Fowlkes-Mallows', 'silhouette\nscore\numap', 'silhouette\nscore\npca', 'Leiden clusters',  'PCs', 'k']
+
+# scores_combined = scores_combined[metrics2use]
+#+end_src
+
+#+name: plot-raw-clustering-results
+#+begin_src ipython :results output drawer replace
+def change_alpha(ax, new_value) :
+    for patch in ax.patches :
+        current_alpha = patch.get_alpha()
+        patch.set_alpha(new_value)
+        # diff = current_width - new_value
+
+        # we change the bar width
+        # patch.set_width(new_value)
+
+        # we recenter the bar
+        # patch.set_x(patch.get_x() + diff * .5)
+
+doasave = True
+used_metrics = ['imputation', 'Leiden clusters', 'Fowlkes-Mallows', 'silhouette\nscore\numap', 'silhouette\nscore\npca']
+
+for (npcs, k), df in scores_combined.groupby(['PCs', 'k']):
+    nlc = df.set_index('imputation')['Leiden clusters'].astype(int)
+    df = df[used_metrics]
+    # del df['PCs']
+    # del df['k']
+    # df = df.sort_values('imputation')
+
+    df = df.set_index('imputation')
+    scores_df = pd.melt(df.iloc[:,(~df.columns.isin(['Leiden clusters']))].reset_index(), id_vars="imputation")
+
+    # scores_df[~(scores_df['variable'] == 'Leiden clusters')]
+
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 4), facecolor='w', edgecolor='k')
+    # ax.scatter(adata.obs['n_genes'], adata.obs['n_counts'], cmap='viridis', alpha=1, s=10)
+
+    # colors = ["windows blue", "amber", "faded green", 'rose', "amber", "greyish", "pale red", "denim blue", "medium green", "dusty purple", 'olive']
+    colors = ["light grey", 'faded green', "windows blue", "amber", 'pale red', "greyish", "pale red", "medium green", 'olive']
+    pal = sns.xkcd_palette(colors)
+
+    sns.barplot(x="variable",
+                y="value",
+                hue="imputation",
+                # hue_order=showcase_methods,
+                palette=pal,
+                data=scores_df,
+                ax=ax,
+                edgecolor = 'w')
+
+    ax.set_xlabel("")
+    ax.set_ylabel("Score", fontsize=10)
+    ax.set_yticks(np.arange(0, 1.1, step=0.1))
+    
+    # change_alpha(ax, .5)
+
+    # for bar in ax.patches:
+    #     bar.set_width(0.5)
+
+    ax.grid(axis='y')
+    L = ax.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5), title='method, clusters')
+
+    labels = [", ".join(str(s) for s in i) for i in nlc.iteritems()]
+    for l, t in zip(labels, L.get_texts()):
+        t.set_text(l)
+
+    ax.set_title(f'GSE102827_Hrvatin pcs={npcs} k={k}', fontsize=10, fontweight="bold")
+
+    sns.despine()
+    fig.tight_layout()
+
+    if doasave:
+        fname=f'GSE102827_Hrvatin_clustering_performance_pcs_subset_{npcs}_k_{k}_'
+        fdir = os.path.join(figdir, 'statistics')
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print()
+#+end_src
+
+#+RESULTS: plot-raw-clustering-results
+:results:
+[[file:../img/simplify-dewakss/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_10_k_20_figure.png]]
+[[file:../img/simplify-dewakss/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_50_k_20_figure.png]]
+[[file:../img/simplify-dewakss/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_100_k_100_figure.png]]
+[[file:../img/simplify-dewakss/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_100_k_150_figure.png]]
+[[file:../img/simplify-dewakss/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_200_k_100_figure.png]]
+:end:
+
+#+name: plot-raw-clustering-results
+#+begin_src ipython :results output drawer replace
+doasave = False
+used_metrics = ['imputation', 'Leiden clusters', 'Fowlkes-Mallows', 'silhouette\nscore\numap', 'silhouette\nscore\npca']
+
+for (npcs, k), df in scores_combined.groupby(['PCs', 'k']):
+    nlc = df.set_index('imputation')['Leiden clusters'].astype(int)
+    df = df[used_metrics]
+
+    df = df.set_index('imputation')
+    scores_df = pd.melt(df.iloc[:,(~df.columns.isin(['Leiden clusters']))].reset_index(), id_vars="imputation")
+
+    # scores_df[~(scores_df['variable'] == 'Leiden clusters')]
+
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 4), facecolor='w', edgecolor='k')
+    # ax.scatter(adata.obs['n_genes'], adata.obs['n_counts'], cmap='viridis', alpha=1, s=10)
+
+    colors = ["windows blue", "amber", "faded green", 'rose', "amber", "greyish", "pale red", "denim blue", "medium green", "dusty purple", 'olive']
+    pal = sns.xkcd_palette(colors)
+
+    sns.barplot(x="variable",
+                y="value",
+                hue="imputation",
+                palette=pal,
+                data=scores_df,
+                ax=ax)
+
+    ax.set_xlabel("")
+    ax.set_ylabel("Score", fontsize=10)
+    ax.set_yticks(np.arange(0, 1.1, step=0.1))
+
+    # for bar in ax.patches:
+    #     bar.set_width(0.5)
+
+    ax.grid(axis='y')
+    L = ax.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5), title='method, clusters')
+
+    labels = [", ".join(str(s) for s in i) for i in nlc.iteritems()]
+    for l, t in zip(labels, L.get_texts()):
+        t.set_text(l)
+
+    ax.set_title(f'GSE102827_Hrvatin pcs={npcs} k={k}', fontsize=10, fontweight="bold")
+
+    sns.despine()
+    fig.tight_layout()
+
+    if doasave:
+        fname=f'GSE102827_Hrvatin_clustering_performance_pcs_{npcs}_k_{k}_'
+        fdir = os.path.join(figdir, 'statistics')
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+#+end_src
+
+#+name: compute-scores-version2
+#+begin_src ipython
+from time import time
+pcs = [300, 150, 100, 50, 10]
+N = [150, 100, 50, 10]
+# nc preprocessed: 21, 20, 20, 23
+all_scores = []
+
+runconfig = {'preprocessed (pp)': {'dataset': "precomputed_pipeline.h5ad"}, 'DEWAKSS': {'dataset': "precomputed_dewakss_mean.h5ad"}, 'DEWAKSS local': {'dataset': "precomputed_dewakss_mean_lDW.h5ad"}, 'MAGIC': {'dataset': "seurat_R_magic.h5ad"}, 'DeepImpute': {'dataset': "raw_counts_deepimpute_pp.h5ad"}}
+
+mind = 0.5
+random_state = 42
+# for method in runconfig.keys():
+for method in ['DEWAKSS local']:
+    t0 = time()
+    dpath = runconfig[method]['dataset']
+    # adata = sc.read(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), dpath))
+    adata = sc.read(os.path.join(datadir, dpath))
+    sc.tl.pca(adata, svd_solver='randomized', n_comps=max(pcs), use_highly_variable=False, random_state=random_state)
+    print(f'computed PCs {method}')
+    for npcs in pcs:
+        for k in N:
+            sc.pp.neighbors(adata, n_neighbors=k, metric='euclidean', n_pcs=npcs, random_state=random_state)
+            print(f'computed neighbors {method}, pcs={npcs}, k={k}')
+            sc.tl.umap(adata, spread=1, min_dist=mind, random_state=random_state)
+            sc.tl.diffmap(adata)
+            print(f'Computed projections, {method}')
+            r = 0.5 if method == 'MAGIC' else 1
+            r = 2 if method in ['preprocessed (pp)', 'DeepImpute'] else r
+            sc.tl.leiden(adata, resolution=r, random_state=random_state)
+            print(f'computed clusters {method}, {r}, n = {adata.obs["leiden"].cat.categories.shape[0]}')
+
+            scores = evaluate(adata, method, npcs=npcs, plotu=True)
+            scores['resolution'] = r
+            scores['PCs'] = npcs
+            scores['k'] = k
+            scores['Leiden clusters'] = scores['Leiden clusters'].astype(int)
+            print(f'computed scores {method}, {r}')
+            #####################
+            print(f"{time() - t0:.2f}")
+            all_scores.append(scores)
+
+print(pd.concat(all_scores))
+pd.concat(all_scores).to_csv(os.path.join(datadir, 'clustering_benchmark_double_resolution_lDW.tsv'), sep='\t')
+#+end_src
+
+#+name: reload-scores-data
+#+begin_src ipython
+fname = 'clustering_benchmark'
+all_scores  = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'simplify-dewakss'), fname + '.tsv'), sep='\t')
+
+all_scores = all_scores[(all_scores['imputation'] != 'DeepImpute') & (all_scores['imputation'] != 'preprocessed (pp)')]
+
+di = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'simplify-dewakss'),  'clustering_benchmark_double_resolution_di.tsv'), sep='\t')
+
+pp = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'simplify-dewakss'),  'clustering_benchmark_double_resolution_pp.tsv'), sep='\t')
+
+pp = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'simplify-dewakss'),  'clustering_benchmark_double_resolution_pp.tsv'), sep='\t')
+
+ldw = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'cell_vise_mse'),  'clustering_benchmark_double_resolution_lDW.tsv'), sep='\t')
+
+all_scores = pd.concat([all_scores, di, pp, ldw])
+
+all_scores = all_scores.reset_index()
+del all_scores['index']
+
+tmp = {i:j for i,j in all_scores.groupby('imputation')}
+
+all_scores = pd.concat([tmp['preprocessed (pp)'], tmp['DeepImpute'], tmp['DEWAKSS'], tmp['DEWAKSS local'], tmp['MAGIC']])
+del tmp
+
+colors = ["light grey", 'faded green', "windows blue", 'ocean blue', "amber"]
+pal = sns.xkcd_palette(colors)
+
+cmap = {}
+for i, j in zip(all_scores['imputation'].unique(), pal):
+    cmap[i] = j
+    
+all_scores['color'] = all_scores['imputation'].map(cmap)
+
+#+end_src
+
+#+name: plot-systematic-scores-overview
+#+begin_src ipython :results output drawer replace
+doasave = True
+pltdata = all_scores.groupby(['k', 'PCs'])
+# pltdata = all_scores.groupby(['k'])
+
+# style_label = ('fivethirtyeight', 'default')
+scores = ['Fowlkes-Mallows', 'silhouette_score_pca', 'silhouette_score_umap']
+
+for score in scores:
+    fig, axes = plt.subplots(nrows=len(pltdata)//5, ncols=len(pltdata)//4, figsize=(12, 8), facecolor='w', edgecolor='k', sharex=True, sharey=False)
+    # fig, axes = plt.subplots(nrows=len(pltdata), ncols=1, figsize=(12, 8), facecolor='w', edgecolor='k', sharex=True, sharey=False)
+    axes = axes.flatten()
+
+    # for (k, pltd), ax in zip(pltdata, axes):
+    for ((k, pcs), pltd), ax in zip(pltdata, axes):
+        g = sns.barplot(x='imputation',
+                        y=score,
+                        # hue='imputation',
+                        palette=pltd['color'],
+                        # palette=pal,
+                        data=pltd,
+                        ax=ax) # ,
+        # edgecolor = 'w')
+
+        ax.set_xlabel("")
+
+        # ax.set_ylabel(f"{score}", fontsize=10)
+        # ax.set_yticks(np.append(np.arange(0, 0.6, step=0.2), np.arange(0.6, 1.01, step=0.1)))
+        ax.set_yticks(np.arange(0, 1.01, step=0.2))
+
+        ax.grid(axis='y')
+        ax.set_ylabel(f'k={k}', fontsize=10, fontweight="bold")
+
+        if pcs == 10:
+            ax.set_ylabel(f'k={k}', fontsize=10, fontweight="bold")
+        else:
+            ax.set_ylabel("")
+
+        if k == 10:
+            ax.set_title(f'PCs={pcs}', fontsize=10, fontweight="bold")
+
+        # ax.set_ylabel(f'k={k}', fontsize=10, fontweight="bold")
+        # L = ax.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5), title='method, clusters')
+
+        # labels = [", ".join(str(s) for s in i) for i in nlc.iteritems()]
+        # for l, t in zip(labels, L.get_texts()):
+        #     t.set_text(l)
+
+        sns.despine()
+        fig.tight_layout()
+
+        rects = ax.patches
+        for rect, label, imp in zip(rects, pltd['Leiden clusters'].tolist(), pltd['imputation'].tolist()):
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width() / 2, 0.001, label, ha='center', va='bottom', color='w' if imp in ['DEWAKSS', 'DEWAKSS local'] else 'k')
+
+    fig.autofmt_xdate(rotation=45)
+    fig.suptitle(f"{score.replace('_', ' ')}", y=1.02)
+
+    if doasave:
+        fname=f'GSE102827_Hrvatin_clustering_performance_{score}_all_methods_params_'
+        fdir = os.path.join(figdir, 'statistics')
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print()
+
+#+end_src
+
+#+RESULTS: plot-systematic-scores-overview
+:results:
+[[file:../img/cell_vise_mse/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_Fowlkes-Mallows_all_methods_params_figure.png]]
+[[file:../img/cell_vise_mse/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_silhouette_score_pca_all_methods_params_figure.png]]
+[[file:../img/cell_vise_mse/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_silhouette_score_umap_all_methods_params_figure.png]]
+:end:
+
+#+name: plot-dewakss-selected
+#+begin_src ipython :results output drawer replace
+doasave = True
+npcs = 300
+k = 150
+df = all_scores[(all_scores['k'] == k) & (all_scores['PCs'] == npcs)]
+
+df.columns = df.columns.str.replace('_', '\n')
+nlc = df.set_index('imputation')['Leiden clusters'].astype(int)
+    
+del df['k']
+del df['PCs']
+del df['resolution']
+df = df.set_index(['imputation'])
+scores_df = pd.melt(df.iloc[:,(~df.columns.isin(['Leiden clusters']))].reset_index(), id_vars=["imputation", 'color'])
+
+# scores_df[~(scores_df['variable'] == 'Leiden clusters')]
+
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 4), facecolor='w', edgecolor='k')
+# ax.scatter(adata.obs['n_genes'], adata.obs['n_counts'], cmap='viridis', alpha=1, s=10)
+
+sns.barplot(x="variable",
+            y="value",
+            hue="imputation",
+            # hue_order=showcase_methods,
+            palette=pal,
+            data=scores_df,
+            ax=ax,
+            edgecolor = 'w')
+
+ax.set_xlabel("")
+ax.set_ylabel("Score", fontsize=10)
+ax.set_yticks(np.arange(0, 1.1, step=0.1))
+
+# change_alpha(ax, .5)
+
+# for bar in ax.patches:
+#     bar.set_width(0.5)
+
+ax.grid(axis='y')
+L = ax.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5), title='method, clusters')
+labels = [", ".join(str(s) for s in i) for i in nlc.iteritems()]
+for l, t in zip(labels, L.get_texts()):
+    t.set_text(l)
+
+ax.set_title(f'GSE102827_Hrvatin pcs={npcs} k={k}', fontsize=10, fontweight="bold")
+
+sns.despine()
+fig.tight_layout()
+
+if doasave:
+    fname=f'GSE102827_Hrvatin_clustering_performance_pcs_subset_{npcs}_k_{k}_'
+    fdir = os.path.join(figdir, 'statistics')
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print()
+
+#+end_src
+
+#+RESULTS: plot-dewakss-selected
+:results:
+[[file:../img/cell_vise_mse/Arisdakessian2019/statistics/GSE102827_Hrvatin_clustering_performance_pcs_subset_300_k_150_figure.png]]
+:end:
+
+#+name: plot-by-method
+#+begin_src ipython
+# for m, df in all_scores.groupby(['k', 'PCs']):
+#     print(m)
+
+#     pltvar = df.groupby(['k', 'PCs'])
+#     # pal = sns.xkcd_palette(colors)
+
+#     axes = axes.flatten()
+
+#     for (k, pltd), ax in zip(pltvar, axes):
+#         sns.barplot(x="PCs",
+#                     y=score,
+#                     # hue_order=showcase_methods,
+#                     palette=pltd['color'],
+#                     data=pltd,
+#                     ax=ax,
+#                     edgecolor = 'w')
+
+#         ax.set_xlabel("")
+#         ax.set_ylabel(f"{score}", fontsize=10)
+#         ax.set_yticks(np.arange(0, 1.1, step=0.2))
+
+
+#         # for bar in ax.patches:
+#         #     bar.set_width(0.5)
+
+#         ax.grid(axis='y')
+#         # L = ax.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5), title='method, clusters')
+
+#         # labels = [", ".join(str(s) for s in i) for i in nlc.iteritems()]
+#         # for l, t in zip(labels, L.get_texts()):
+#         #     t.set_text(l)
+
+#         ax.set_title(f'k={k}', fontsize=10, fontweight="bold")
+
+#         sns.despine()
+#         fig.tight_layout()
+
+#         rects = ax.patches
+#         for rect, label in zip(rects, pltd['Leiden clusters'].tolist()):
+#             height = rect.get_height()
+#             # ax.text(rect.get_x() + rect.get_width() / 2, max([height, 0]) + 0.001, label, ha='center', va='bottom')
+#             ax.text(rect.get_x() + rect.get_width() / 2, 0.001, label, ha='center', va='bottom', color='w' if m in ['DEWAKSS', 'DeepImpute'] else 'k')
+
+
+#     fig.suptitle(f'{m}, k={k}, GSE102827 Hrvatin')
+#+end_src
+
+** Convert figures to pdf
+
+#+name: convert-figures
+#+begin_src sh :shebang "#!/bin/bash -l" :tangle ../convert_files.sh
+
+FEND='.svg'
+for f in $(ls $1/*.svg);
+do
+    FFILE=`basename $f`
+    FNAME=`basename $FFILE $FEND`
+
+    # echo $FFILE
+    echo "Working on:"
+    echo $FNAME
+    inkscape -D -z --file=$f --export-pdf=figures/$FNAME.pdf
+done
+#+end_src
+

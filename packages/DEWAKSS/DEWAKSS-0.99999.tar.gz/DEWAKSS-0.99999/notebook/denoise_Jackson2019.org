@@ -1,0 +1,2116 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session dewakss :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session dewakss
+#+PROPERTY: header-args:R :shebang "#!/usr/bin/env R" :session dewakss
+#
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+#+title: Analysis of dataset in Jackson et. al. 2019
+
+
+* Introduction
+The dataset is in Yeast and have the metadata of different growth factors as well as different perturbations.
+
+
+* Analysis pipeline
+
+** Analysis setup
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+gitbranch = os.path.join(gitbranch, 'Jackson2019')
+import scanpy.api as sc
+import scprocessing.plotting.anndata as scpl
+from tabulate import tabulate
+figdir = os.path.join("..", "img", gitbranch)
+datadir = os.path.join("..", "data", gitbranch)
+sc.settings.figdir = figdir
+sc.settings.file_format_figs = "svg"
+
+import scprocessing.pipeline as scpipe
+import scprocessing.preprocessing as scpp
+import scprocessing.preprocessing.Svensson2019 as Svensson2019
+import scprocessing.plotting.anndata as scpl
+import dewakss.decomposition as dede
+import dewakss.denoise as dewakss
+#+end_src
+
+* All cells
+
+** extract statistics and preprocess
+
+#+name: load-data
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "loaded_data.h5ad"))
+#+end_src
+
+#+name: add-statistics
+#+begin_src ipython
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+
+medians = adata.obs.groupby('Condition')['n_counts'].apply(np.median)
+adata.obs['Cond_n_counts'] = adata.obs['Condition'].replace(medians)
+#+end_src
+
+#+name: plot-count-distribution
+#+begin_src ipython :results output drawer replace
+doaplot = False
+
+coloring = 'Condition'
+nc = range(len(adata.obs[coloring].cat.categories))
+color = adata.obs[coloring].replace(adata.obs[coloring].cat.categories, nc)
+
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 4), facecolor='w', edgecolor='k')
+ax.scatter(adata.obs['n_genes'], adata.obs['n_counts'], cmap='Set2', alpha=1, s=10, c=color)
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+# ncl = np.percentile(adata.obs['n_counts'], 1)
+
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+# ngl = np.percentile(adata.obs['n_genes'], 1)
+
+xl = list(ax.get_xlim())
+yl = list(ax.get_ylim())
+xl[0] = max(xl[0], 150)
+yl[0] = max(yl[0], 200)
+ax.hlines(ncu, *xl, linestyles='--')
+# ax.hlines(ncl, *xl, linestyles='--')
+ax.vlines(ngu, *yl, linestyles='--')
+# ax.vlines(ngl, *yl, linestyles='--')
+ax.set_xlim(*xl)
+ax.set_ylim(*yl)
+xl = ax.get_xlim()
+yl = ax.get_ylim()
+ax.set_title('')
+ax.set_xlabel('# genes')
+ax.set_ylabel('UMI count')
+ax.set_title('cell UMI and gene counts')
+ax.grid(which='both')
+sns.despine()
+fig.tight_layout()
+ax.set_xscale('log')
+ax.set_yscale('log')
+
+
+if doaplot:
+    fname='count_distribution_cell_vs_genes_'
+    fdir = os.path.join(figdir, 'statistics')
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-count-distribution
+:results:
+[[file:../img/master/Jackson2019/statistics/count_distribution_cell_vs_genes_figure.png]]
+:end:
+
+#+name: filter-cell-data
+#+begin_src ipython
+def normalize_total_obs(adata, obs=None):
+
+    newadata = []
+    if obs is not None:
+        for cond, df in adata.obs.groupby(obs):
+            data = adata[df.index, :].copy()
+            sc.pp.normalize_total(data)
+            newadata.append(data)
+
+
+    return sc.AnnData.concatenate(*newadata)
+
+
+adata.layers['counts'] = adata.X.copy()
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+cell_filter = ((adata.obs['n_genes'] < ngu) & (adata.obs['n_counts'] < ncu)).values
+adata = adata[cell_filter, :].copy()
+
+# adata = adata[adata.obs['Condition'] == 'YPD', :]
+
+sc.pp.filter_genes(adata, min_counts=30)
+sc.pp.filter_genes(adata, min_cells=30)
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+# sc.pp.normalize_per_cell(adata, )
+adata = normalize_total_obs(adata, obs='Condition')
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+scpp.ftt(adata)
+adata.raw = adata
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions of negative binomial distribution. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: check-basic-stats
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-4,3))
+
+fdir = os.path.join(figdir, 'statistics')
+fname = f"NB_statistics_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: check-basic-stats
+:results:
+[[file:../img/master/Jackson2019/statistics/NB_statistics_figure.png]]
+:end:
+
+#+name: plot-nnz-expression-dist
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata)
+
+fname = 'expression_distribution_ftt_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-nnz-expression-dist
+:results:
+[[file:../img/master/Jackson2019/statistics/expression_distribution_ftt_figure.png]]
+:end:
+
+#+name: save-normalized-computed
+#+begin_src ipython
+adata.write(os.path.join(datadir, "normalized_data.h5ad"))
+#+end_src
+
+** Find optimal denosing parameters
+
+#+name: load-data
+#+begin_src ipython
+subset = 'all'
+adata = sc.read(os.path.join(datadir, "normalized_data.h5ad"))
+#+end_src
+
+The denoising is done on the preprocessed data and with the DEWAKSS algorithm.
+#+name: apply-optimal-dewakss
+#+begin_src ipython
+import scipy as sp
+import dewakss.denoise as dewakss
+
+metric = 'euclidean'
+neigbours = np.flip([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 250, 300, 350, 400])
+npcss = [75, 100, 125, 150, 200]
+neighbor_args = {'metric': metric}
+
+denoiseer = dewakss.DEWAKSS(adata, n_pcs=npcss , n_neighbors=neigbours, use_global_err=False, neighbor_args=neighbor_args)
+denoiseer.fit(adata)
+denoiseer.transform(adata, copy=False)
+
+#+end_src
+
+#+name: plot-performance-metrics
+#+begin_src ipython :results output drawer replace
+fig, ax = denoiseer.plot_global_performance()
+fdir = os.path.join(figdir, 'dewakss')
+fname = f"Global_performance_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+fig, ax = denoiseer.plot_local_performance()
+fdir = os.path.join(figdir, 'dewakss')
+fname = f"Local_performance_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-performance-metrics
+:results:
+[[file:../img/master/Jackson2019/dewakss/Global_performance_all_figure.png]]
+[[file:../img/master/Jackson2019/dewakss/Local_performance_all_figure.png]]
+:end:
+
+#+name: save-denoised-computed-subset
+#+begin_src ipython
+distance=metric
+adata.write(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{distance}.h5ad"))
+#+end_src
+
+** Simple Clustering and overview
+
+#+name: load-data
+#+begin_src ipython
+subset = 'all'
+distance = 'euclidean'
+adata = sc.read(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{distance}.h5ad"))
+
+genesets = {"RTG1_1": ["RTG1", "CIT1", "CIT2"],
+            "RTG1_2": ["CIT2", "IDP1", "RTG3"],
+            "RTG3_1": ["PYC1", "PYC2", "RTG3"],
+            "RTG3_2": ["RTG1", "PYC1", "RTG3"],
+            "GCN4_1": ["GCN4", "ARG4", "RIB5"],
+            "GCN4_2": ["LYS1", "LYS2", "CPA2"],
+            "CC1": ["CLB1", 'CLB5', 'SIC1'],
+            "CC2": ['SIC1', 'CLB1', 'SWI5'],
+            "CC3": ['CDC6', 'SWI5', 'SIC1'],
+            "CC4": ['SIC1', 'CDC20', 'CLB1']}
+
+#+end_src
+
+#+name: reset-X-to-denoised
+#+begin_src ipython
+X = adata.X.copy()
+adata.X = adata.layers['Ms'].copy()
+del adata.layers['Ms']
+adata.layers['norm'] = X
+del X
+#+end_src
+
+#+name: calculate-pipeline
+#+begin_src ipython
+spread = 1
+min_dist = 0.01
+rs = 42
+sc.pp.pca(adata, n_comps=125)
+sc.pp.neighbors(adata, n_neighbors=70, n_pcs=125)
+
+sc.tl.umap(adata, spread=spread, min_dist=min_dist, random_state=rs)
+sc.tl.leiden(adata, random_state=rs)
+# sc.tl.tsne(adata, n_pcs=125, random_state=rs)
+# sc.tl.diffmap(adata)
+#+end_src
+
+#+name: save-pipline-computed
+#+begin_src ipython
+adata.write(os.path.join(datadir, f"Jackson2019_pipeline_computed_{subset}_distance_{distance}.h5ad"))
+#+end_src
+
+#+name: load-pipeline-computed
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, f"Jackson2019_pipeline_computed_{subset}_distance_{distance}.h5ad"))
+#+end_src
+
+#+name: plot-initial-cluster-overview
+#+begin_src ipython :results output drawer replace
+# adata.obs['n_counts'] = pd.Categorical(adata.obs['n_counts'])
+fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'Condition', 'Genotype_Group', 'n_counts'], figsize=(12,18), legend_loc='on data', representations={'umap', 'pca'})
+
+fname = 'all_cells_umap_tsne_'
+fdir = os.path.join(figdir, "clustering")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-initial-cluster-overview
+:results:
+[[file:../img/master/Jackson2019/clustering/all_cells_umap_tsne_figure.png]]
+:end:
+
+#+name: plot-distance-distributions
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata.uns['neighbors']['distances'])
+
+fname = 'distance_distribution_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata.uns['neighbors']['connectivities'])
+
+fname = 'connectivities_distribution_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-distance-distributions
+:results:
+[[file:../img/master/Jackson2019/statistics/distance_distribution_figure.png]]
+[[file:../img/master/Jackson2019/statistics/connectivities_distribution_figure.png]]
+:end:
+
+#+name: plot-marker-genes-norm-expression
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+# key1 = 'RTG3_1'
+key1 = 'GCN4_1'
+genes2use = np.flip(genesets[key1])
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False)
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].X[gc]
+g2 = adata[:, genes2use[0]].X[gc]
+g3 = adata[:, genes2use[2]].X[gc]
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap='viridis', s=0.1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Normalized Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_denoise_{key1}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+key2 = 'CC2'
+genes2use = genesets[key2]
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False)
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].X[gc]
+g2 = adata[:, genes2use[0]].X[gc]
+g3 = adata[:, genes2use[2]].X[gc]
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap='viridis', s=0.1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Normalized Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_denoise_{key2}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-marker-genes-norm-expression
+:results:
+[[file:../img/master/Jackson2019/clustering/markergenes_denoise_GCN4_1_figure.png]]
+[[file:../img/master/Jackson2019/clustering/markergenes_denoise_CC2_figure.png]]
+:end:
+
+#+name: plot-marker-genes-raw-expression
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+# key1 = 'RTG3_1'
+key1 = 'GCN4_1'
+genes2use = np.flip(genesets[key1])
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, layer='norm')
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].layers['norm'][gc].A.flatten()
+g2 = adata[:, genes2use[0]].layers['norm'][gc].A.flatten()
+g3 = adata[:, genes2use[2]].layers['norm'][gc].A.flatten()
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap='viridis', s=0.1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Normalized Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_raw_{key1}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+key2 = 'CC2'
+genes2use = genesets[key2]
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False)
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].layers['norm'][gc].A.flatten()
+g2 = adata[:, genes2use[0]].layers['norm'][gc].A.flatten()
+g3 = adata[:, genes2use[2]].layers['norm'][gc].A.flatten()
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap='viridis', s=0.1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Normalized Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_raw_{key2}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-marker-genes-raw-expression
+:results:
+[[file:../img/master/Jackson2019/clustering/markergenes_raw_GCN4_1_figure.png]]
+[[file:../img/master/Jackson2019/clustering/markergenes_raw_CC2_figure.png]]
+:end:
+
+** Extract statistics and preprocess
+
+#+name: load-data
+#+begin_src ipython
+from scprocessing.datasets import Jackson2019
+cc = Jackson2019.load_go_terms(gaf="../../single_cell_analysis/data/Jackson2019/SD1/data/go_slim_mapping.tab", grabfor="cell cycle")
+
+adata = sc.read(os.path.join("..", "data", "master", "Jackson2019", "loaded_data.h5ad"))
+genesets = {"RTG1_1": ["RTG1", "CIT1", "CIT2"],
+            "RTG1_2": ["CIT2", "IDP1", "RTG3"],
+            "RTG3_1": ["PYC1", "PYC2", "RTG3"],
+            "RTG3_2": ["RTG1", "PYC1", "RTG3"],
+            "GCN4_1": ["GCN4", "ARG4", "RIB5"],
+            "GCN4_2": ["LYS1", "LYS2", "CPA2"],
+            "CC1": ["CLB1", 'CLB5', 'SIC1'],
+            "CC2": ['SIC1', 'CLB1', 'SWI5'],
+            "CC3": ['CDC6', 'SWI5', 'SIC1'],
+            "CC4": ['SIC1', 'CDC20', 'CLB1']}
+subset='all'
+#+end_src
+
+#+name: add-statistics
+#+begin_src ipython
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+#+end_src
+
+#+name: load-cell-phase-genes
+#+begin_src ipython
+phasedata = pd.read_csv(os.path.join("..", "data", "master", "Jackson2019", 'STable6.tsv'), sep='\t')
+
+phgenes = {}
+for g in phasedata['Group'].unique():
+    genes = phasedata['Gene'][phasedata['Group'].isin([g])]
+    genes = adata.var_names[adata.var['SystematicName'].isin(genes).values]
+    phgenes[g] = genes.tolist()
+#+end_src
+
+#+name: filter-cell-data
+#+begin_src ipython
+adata.layers['counts'] = adata.X.copy()
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+cell_filter = ((adata.obs['n_genes'] < ngu) & (adata.obs['n_counts'] < ncu)).values
+adata = adata[cell_filter, :].copy()
+
+# adata = adata[adata.obs['Condition'] == subset, :].copy()
+
+sc.pp.filter_genes(adata, min_counts=30)
+sc.pp.filter_genes(adata, min_cells=100)
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+scpp.ftt(adata)
+adata.raw = adata
+cc_genes = adata.var_names[adata.var['SystematicName'].isin(cc).values]
+del cc
+
+sc.pp.highly_variable_genes(adata)
+
+phglist = []
+for gl in ['G1', 'S', 'G2', 'M', 'M/G1', 'iESR', 'RP']:
+    phglist.extend(phgenes[gl])
+
+adata.var['highly_variable'] = adata.var_names.isin(phglist)
+
+# sc.pl.highly_variable_genes(adata)
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions of negative binomial distribution. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: check-basic-stats-subset-all
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-3,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'], p_var=adata.uns['ks_p_value'], p_zero=adata.uns['ks_zero_p_value'])
+
+fdir = os.path.join(figdir, 'statistics')
+fname = f"NB_statistics_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: check-basic-stats-subset-all
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/statistics/NB_statistics_all_figure.png]]
+:end:
+
+#+name: plot-nnz-expression-dist-subset-all
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata)
+
+fname = f'expression_distribution_ftt_{subset}_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+** Recomputed PCA and clustering
+
+Increasing number of neighbours, same number of PCs. 
+#+name: recompute-pipeline
+#+begin_src ipython
+# adata.X = adata.layers['Ms']
+# scpipe.base_computations(adata, npcs=100, nneighbors=128, recompute_pca=True)
+# adata.layers['Ms'] = sc.pp.scale(adata.layers['Ms'].toarray(), copy=True, zero_center=False)
+#+end_src
+
+#+name: plot-jackson-marker-genes-denoised-recomputed-all
+#+begin_src ipython :results output drawer replace
+doasave = True
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+
+color_map = 'viridis'
+
+key1 = 'RTG3_1'
+genes2use = genesets[key1]
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap=color_map, ax=ax[i], layer='Ms', use_raw=False)
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].layers["Ms"].flatten())
+g1 = adata[:, genes2use[1]].layers["Ms"][gc].flatten()
+g2 = adata[:, genes2use[0]].layers["Ms"][gc].flatten()
+g3 = adata[:, genes2use[2]].layers["Ms"][gc].flatten()
+
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap=color_map, s=1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Denoised Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+if doasave:
+    fdir = os.path.join(figdir, "clustering")
+    fname = f"markergenes_{subset}_denoised_recomputed_PCA_{key1}_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+
+
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+
+color_map = 'viridis'
+
+key1 = 'CC2'
+# genes2use = np.flip(genesets[key2])
+genes2use = genesets[key1]
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.umap(adata, color=g, cmap=color_map, ax=ax[i], layer='Ms', use_raw=False)
+    ax[i].set_title(g)
+
+gc = np.argsort(adata[:, genes2use[2]].layers["Ms"].flatten())
+g1 = adata[:, genes2use[1]].layers["Ms"][gc].flatten()
+g2 = adata[:, genes2use[0]].layers["Ms"][gc].flatten()
+g3 = adata[:, genes2use[2]].layers["Ms"][gc].flatten()
+
+cax2 = ax[3].scatter(g1, g2, c=g3, cmap=color_map, s=1)
+
+ax[3].set_xlabel(genes2use[1])
+ax[3].set_ylabel(genes2use[0])
+ax[3].set_title('Denoised Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+if doasave:
+    fdir = os.path.join(figdir, "clustering")
+    fname = f"markergenes_{subset}_denoised_recomputed_PCA_{key1}_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: plot-jackson-marker-genes-denoised-recomputed-all
+:results:
+[[file:../img/master/Jackson2019/clustering/markergenes_all_denoised_recomputed_PCA_RTG3_1_figure.png]]
+[[file:../img/master/Jackson2019/clustering/markergenes_all_denoised_recomputed_PCA_CC2_figure.png]]
+:end:
+
+#+name: plot-initial-cluster-overview-subset-all
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'Condition', 'Genotype_Group'], representations={'umap', 'pca'}, figsize=(12,16), legend_loc='on data')
+
+fname = f'all_cells_umap_diffmap_{subset}_'
+fdir = os.path.join(figdir, "clustering")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-initial-cluster-overview-subset-all
+:results:
+[[file:../img/master/Jackson2019/clustering/all_cells_umap_diffmap_all_figure.png]]
+:end:
+
+
+* YPD
+
+** extract statistics and preprocess
+
+#+name: load-data
+#+begin_src ipython
+from scprocessing.datasets import Jackson2019
+cc = Jackson2019.load_go_terms(gaf="../../single_cell_analysis/data/Jackson2019/SD1/data/go_slim_mapping.tab", grabfor="cell cycle")
+
+adata = sc.read(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), "loaded_data.h5ad"))
+genesets = {"RTG1_1": ["RTG1", "CIT1", "CIT2"],
+            "RTG1_2": ["CIT2", "IDP1", "RTG3"],
+            "RTG3_1": ["PYC1", "PYC2", "RTG3"],
+            "RTG3_2": ["RTG1", "PYC1", "RTG3"],
+            "GCN4_1": ["GCN4", "ARG4", "RIB5"],
+            "GCN4_2": ["LYS1", "LYS2", "CPA2"],
+            "CC1": ["CLB1", 'CLB5', 'SIC1'],
+            "CC2": ['SIC1', 'CLB1', 'SWI5'],
+            "CC3": ['CDC6', 'SWI5', 'SIC1'],
+            "CC4": ['SIC1', 'CDC20', 'CLB1']}
+subset='YPD'
+#+end_src
+
+#+name: add-statistics
+#+begin_src ipython
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+#+end_src
+
+#+name: load-cell-phase-genes
+#+begin_src ipython
+phasedata = pd.read_csv(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), 'STable6.tsv'), sep='\t')
+
+phgenes = {}
+for g in phasedata['Group'].unique():
+    genes = phasedata['Gene'][phasedata['Group'].isin([g])]
+    genes = adata.var_names[adata.var['SystematicName'].isin(genes).values]
+    phgenes[g] = genes.tolist()
+#+end_src
+
+#+name: filter-cell-data
+#+begin_src ipython
+adata.layers['counts'] = adata.X.copy()
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+cell_filter = ((adata.obs['n_genes'] < ngu) & (adata.obs['n_counts'] < ncu)).values
+adata = adata[cell_filter, :].copy()
+
+adata = adata[adata.obs['Condition'] == subset, :].copy()
+
+sc.pp.filter_genes(adata, min_counts=30)
+sc.pp.filter_genes(adata, min_cells=30)
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+scpp.ftt(adata)
+adata.raw = adata
+cc_genes = adata.var_names[adata.var['SystematicName'].isin(cc).values]
+del cc
+
+sc.pp.highly_variable_genes(adata)
+
+phglist = []
+# for gl in ['G1', 'S', 'G2', 'M', 'M/G1']:
+for gl in ['G1', 'S', 'G2', 'M', 'M/G1', 'iESR', 'RP']:
+    phglist.extend(phgenes[gl])
+
+adata.var['highly_variable'] = adata.var_names.isin(phglist)
+
+# sc.pl.highly_variable_genes(adata)
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions of negative binomial distribution. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: check-basic-stats-subset
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-3,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'], p_var=adata.uns['ks_p_value'], p_zero=adata.uns['ks_zero_p_value'])
+
+fdir = os.path.join(figdir, 'statistics')
+fname = f"NB_statistics_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: check-basic-stats-subset
+:results:
+[[file:../img/master/Jackson2019/statistics/NB_statistics_YPD_figure.png]]
+:end:
+
+#+name: plot-nnz-expression-dist-subset
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata)
+
+fname = f'expression_distribution_ftt_{subset}_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-nnz-expression-dist-subset
+:results:
+[[file:../img/master/Jackson2019/statistics/expression_distribution_ftt_YPD_figure.png]]
+:end:
+
+** Find optimal denosing parameters
+
+The denoising is done on the preprocessed data and with the DEWAKSS algorithm.
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+import time
+hyperp = {}
+metric = 'euclidean'
+# neigbours = [10, 20, 50, 100, 200, 500]
+neigbours = np.flip([10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 175, 200, 225, 300, 400])
+npcss = [20, 50, 75, 100, 125, 150, 200, 250, 500, 600]
+# npcss = [300, 400, 500]
+hvg = False
+sc.pp.pca(adata, n_comps=max(npcss), random_state=0, use_highly_variable=hvg)
+hyperp = []
+st = time.time()
+for pcs in npcss:
+    sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs, metric=metric)
+    print(pcs)
+
+    dewaxer = dewakss.DEWAKSS(adata, iterations=1, n_neighbors=neigbours, verbose=False)
+
+    dewaxer.fit(adata)
+
+    performance = pd.DataFrame(dewaxer.global_err_).T
+    performance.index.name = "iteration"
+    performance.columns = ['MSE', "R2"]
+    performance = performance.reset_index()
+    performance['pcs'] = pcs
+    performance['CMSE'] = dewaxer._local_err_
+    performance['metric'] = metric
+    performance['highly variable'] = hvg
+
+    hyperp.append(performance)
+    print(time.time() - st)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+colms = performance_data.columns.tolist()
+colms[0] = 'neighbors'
+colms[1] = 'iteration'
+performance_data.columns = colms
+
+performance_data.to_csv(os.path.join(datadir, f"dewakss_optimal_parameter_all_data_{subset}_hvg_{str(hvg)}_m_{metric}_lDW.tsv.gz"), sep='\t', compression='gzip')
+
+#+end_src
+
+#+name: load-performance-data
+#+begin_src ipython
+# performance_data = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_all_data_{subset}_dt_mean.tsv.gz"), sep='\t', index_col=0)
+
+performance_data = pd.read_csv(os.path.join(datadir, f"dewakss_optimal_parameter_all_data_{subset}_dt_{denoisetypes[0]}_hvg_{str(hvg)}_m_{metric}.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.read_csv(os.path.join(datadir, "Jackson2019_dewakss_optimal_parameter_data_dt_mean.tsv.gz"), sep='\t', index_col=0)
+# tmp = pd.read_csv(os.path.join(datadir, "Jackson2019_dewakss_optimal_parameter_data_k100_dt_mean.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp], 0)
+
+# performance_data = pd.read_csv(os.path.join(datadir, "Jackson2019_dewakss_optimal_parameter_data_kfill_dt_mean.tsv.gz"), sep='\t', index_col=0)
+
+# tmp = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_kfill_pc300500_dt_mean.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp], 0)
+
+performance_data = performance_data.reset_index()
+del performance_data['index']
+
+#+end_src
+
+#+name: plot-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+dosave = False
+subset = 'YPD'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(16, 4), constrained_layout=True)
+
+    fold = 1
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors', 'decay'])
+
+    max_xticks = 0
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+        axes = combos.loc[neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        # axes.set_xticks(subdf['iteration'].values)
+        if subdf['iteration'].values.max() > max_xticks:
+            axes.set_xticks(subdf['iteration'].values)
+            max_xticks = subdf['iteration'].values.max()
+
+        axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[0].legend(title='PCs')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors', 'decay'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors', 'decay'])[metric].max()
+        
+    optit = df.set_index(['neighbors', 'decay'])
+    for (neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors, decay]
+        opts = (optit.loc[neighbors, decay][metric] == minmse).values
+        its = optit.loc[neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"Jackson2019_{subset}_denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: plot-performance-hyper-parameters
+:results:
+[[file:../img/master/Jackson2019/Jackson2019_YPD_denoise_type_mean_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Jackson2019/Jackson2019_YPD_denoise_type_mean_distances_MSE_hyper_paramters_figure.png]]
+:end:
+
+#+name: performance-trends-ypd
+#+begin_src ipython :results output drawer replace
+doplot = False
+metric = 'MSE'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+pdata = pdata.groupby(['pcs', 'neighbors'])[metric].min().reset_index()
+pdata = pdata[pdata['neighbors'] != 0]
+# for dt, df in pdata.groupby(['denoisetype']):
+#     g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+style_label = ('seaborn-poster') # Does not work here.
+
+with plt.style.context(style_label):
+
+    g = sns.lmplot(hue="pcs", y=metric, x="neighbors", truncate=True, data=pdata, ci=None, fit_reg=False, height=6, aspect=1.0)
+
+    ymin = pdata[metric].min()
+    ymax = pdata[metric].max()
+    for ax in g.axes.flatten():
+        ax.grid()
+        ax.set_xscale('log')
+        ax.set_xlim([9, 500])
+        ax.set_ylim([ymin-(ymax-ymin)*0.05,ymax+(ymax-ymin)*0.05])
+
+    fig = g.fig
+    # fig.suptitle(f"Denoise type={dt}")
+
+    g = sns.scatterplot(hue="pcs", y='C'+metric, x="neighbors", data=pdata, ax=ax, markers='.')
+
+if doplot:
+    fdir = figdir
+    fname = f"Jackson2019_{subset}_{metric}_minimal_trend_hyper_paramters_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: performance-trends-ypd
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/Jackson2019_YPD_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: optimal-setting-ypd
+#+begin_src ipython :results output drawer replace
+print(performance_data.iloc[performance_data['MSE'].argmin()])
+#+end_src
+
+#+RESULTS: optimal-setting-ypd
+:results:
+neighbors                100
+iteration                  1
+MSE                    0.211
+R2                     0.807
+pcs                      100
+CMSE                    0.21
+metric             euclidean
+highly variable        False
+Name: 77, dtype: object
+:end:
+
+#+name: apply-optimal-dewakss
+#+begin_src ipython
+import scipy as sp
+import dewakss.denoise as dewakss
+tmpadata = adata.copy()
+pcs = 100
+N = neigbours = np.flip([10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 175, 200, 225, 300, 400])
+
+hvg = False
+metric='euclidean'
+sc.pp.pca(tmpadata, n_comps=pcs, use_highly_variable=hvg)
+sc.pp.neighbors(tmpadata, n_neighbors=max(N), n_pcs=pcs, metric=metric)
+
+denoiseer = dewakss.DEWAKSS(tmpadata, mode='distances', n_neighbors=N, use_global_err=False)
+denoiseer.fit(tmpadata)
+denoiseer.transform(tmpadata, copy=False)
+adata.layers['Ms'] = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+
+del tmpadata
+#+end_src
+
+#+name: save-denoised-computed-subset
+#+begin_src ipython
+adata.write(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_{metric}_lDW.h5ad"))
+#+end_src
+
+** Simple Clustering and overview
+
+#+name: load-pipeline-computed-subset
+#+begin_src ipython
+subset='YPD'
+metric='euclidean'
+adata = sc.read(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_{metric}.h5ad"))
+#+end_src
+
+#+name: reset-X-to-denoised
+#+begin_src ipython
+X = adata.X.copy()
+adata.X = adata.layers['Ms'].copy()
+del adata.layers['Ms']
+adata.layers['X'] = X
+del X
+#+end_src
+
+#+name: compute-pipeline-subset
+#+begin_src ipython
+n_comps = 100
+hvg = True
+N = 100
+sc.pp.pca(adata, n_comps=n_comps, use_highly_variable=hvg, svd_solver='randomized')
+
+scpipe.base_computations(adata, npcs=n_comps, nneighbors=N, recompute_pca=False, min_dist=0.01, use_highly_variable=hvg, metric=metric, svd_solver='randomized')
+
+# scpipe.rank_genes_groups(adata)
+#+end_src
+
+#+name: plot-initial-cluster-overview-subset-ypd
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'Condition', 'Genotype_Group'], representations={'umap', 'diffmap'}, figsize=(12,16), legend_loc='on data')
+
+fname = f'all_cells_umap_diffmap_{subset}_'
+fdir = os.path.join(figdir, "clustering")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-initial-cluster-overview-subset-ypd
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/all_cells_umap_diffmap_YPD_figure.png]]
+:end:
+
+#+name: plot-marker-genes-raw-expression-subset-ypd
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    # cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=50)
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20)
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].X[gc]
+g2 = adata[:, genes2use[0]].X[gc]
+g3 = adata[:, genes2use[2]].X[gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_denoised_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+adata.layers['X'] = adata.layers['X'].toarray() if sp.sparse.issparse(adata.layers['X']) else adata.layers['X']
+
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20, layer='X')
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].layers['X'].flatten())
+g1 = adata[:, genes2use[1]].layers['X'][gc]
+g2 = adata[:, genes2use[0]].layers['X'][gc]
+g3 = adata[:, genes2use[2]].layers['X'][gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+
+# scpl.versus(adata, genes2use[1], genes2use[0], color=genes2use[2], color_map='viridis', layer='X')
+
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_raw_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-marker-genes-raw-expression-subset-ypd
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_denoised_YPD_figure.png]]
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_raw_YPD_figure.png]]
+:end:
+
+#+RESULTS: plot-marker-genes-raw-expression-subset
+:results:
+[[file:../img/test_sparse_mm/Jackson2019/clustering/markergenes_denoised_YPD_figure.png]]
+[[file:../img/test_sparse_mm/Jackson2019/clustering/markergenes_raw_YPD_figure.png]]
+:end:
+
+* YPDRapa
+
+** extract statistics and preprocess
+
+#+name: load-data
+#+begin_src ipython
+from scprocessing.datasets import Jackson2019
+cc = Jackson2019.load_go_terms(gaf="../../single_cell_analysis/data/Jackson2019/SD1/data/go_slim_mapping.tab", grabfor="cell cycle")
+
+adata = sc.read(os.path.join("..", "data", "master", "Jackson2019", "loaded_data.h5ad"))
+genesets = {"RTG1_1": ["RTG1", "CIT1", "CIT2"],
+            "RTG1_2": ["CIT2", "IDP1", "RTG3"],
+            "RTG3_1": ["PYC1", "PYC2", "RTG3"],
+            "RTG3_2": ["RTG1", "PYC1", "RTG3"],
+            "GCN4_1": ["GCN4", "ARG4", "RIB5"],
+            "GCN4_2": ["LYS1", "LYS2", "CPA2"],
+            "CC1": ["CLB1", 'CLB5', 'SIC1'],
+            "CC2": ['SIC1', 'CLB1', 'SWI5'],
+            "CC3": ['CDC6', 'SWI5', 'SIC1'],
+            "CC4": ['SIC1', 'CDC20', 'CLB1']}
+subset='YPDRapa'
+#+end_src
+
+#+name: add-statistics
+#+begin_src ipython
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+#+end_src
+
+#+name: load-cell-phase-genes
+#+begin_src ipython
+phasedata = pd.read_csv(os.path.join("..", "data", "master", "Jackson2019", 'STable6.tsv'), sep='\t')
+
+phgenes = {}
+for g in phasedata['Group'].unique():
+    genes = phasedata['Gene'][phasedata['Group'].isin([g])]
+    genes = adata.var_names[adata.var['SystematicName'].isin(genes).values]
+    phgenes[g] = genes.tolist()
+#+end_src
+
+#+name: filter-cell-data
+#+begin_src ipython
+adata.layers['counts'] = adata.X.copy()
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+cell_filter = ((adata.obs['n_genes'] < ngu) & (adata.obs['n_counts'] < ncu)).values
+adata = adata[cell_filter, :].copy()
+
+adata = adata[adata.obs['Condition'] == subset, :].copy()
+
+sc.pp.filter_genes(adata, min_counts=30)
+sc.pp.filter_genes(adata, min_cells=30)
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+scpp.ftt(adata)
+adata.raw = adata
+cc_genes = adata.var_names[adata.var['SystematicName'].isin(cc).values]
+del cc
+
+sc.pp.highly_variable_genes(adata)
+
+phglist = []
+# for gl in ['G1', 'S', 'G2', 'M', 'M/G1']:
+for gl in ['G1', 'S', 'G2', 'M', 'M/G1', 'iESR', 'RP']:
+    phglist.extend(phgenes[gl])
+
+adata.var['highly_variable'] = adata.var_names.isin(phglist)
+
+# sc.pl.highly_variable_genes(adata)
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions of negative binomial distribution. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: check-basic-stats-subset-2
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-3,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'], p_var=adata.uns['ks_p_value'], p_zero=adata.uns['ks_zero_p_value'])
+
+fdir = os.path.join(figdir, 'statistics')
+fname = f"NB_statistics_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: check-basic-stats-subset-2
+:results:
+[[file:../img/master/Jackson2019/statistics/NB_statistics_YPEtOH_figure.png]]
+:end:
+
+#+name: plot-nnz-expression-dist-subset-2
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata)
+
+fname = f'expression_distribution_ftt_{subset}_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-nnz-expression-dist-subset-2
+:results:
+[[file:../img/master/Jackson2019/statistics/expression_distribution_ftt_YPEtOH_figure.png]]
+:end:
+
+** Find optimal denosing parameters
+
+The denoising is done on the preprocessed data and with the DEWAKSS algorithm.
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+import time
+modes = ['distances']
+symmetrize = [True]
+hyperp = {}
+metric = 'euclidean'
+# neigbours = [10, 20, 50, 100, 200, 500]
+neigbours = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 175, 200, 225, 300, 400]
+npcss = [20, 50, 75, 100, 125, 150, 200, 250, 500, 600]
+# npcss = [300, 400, 500]
+hvg = False
+sc.pp.pca(adata, n_comps=max(npcss), random_state=0, use_highly_variable=hvg)
+hyperp = []
+st = time.time()
+for pcs in npcss:
+    sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs, metric=metric)
+    for N in neigbours:
+        for m in modes:
+            for s in symmetrize:
+                print(m, s, N, pcs)
+
+                dewaxer = dewakss.DEWAKSS(adata, iterations=1, n_neighbors=N, init_diag=0, set_diag=0, run2best=False, mode=m, symmetrize=s, verbose=False)
+
+                dewaxer.fit(adata)
+
+                performance = pd.DataFrame(dewaxer.prediction_).T
+                performance.index.name = "iteration"
+                performance.columns = ['MSE', "R2"]
+                performance = performance.reset_index()
+                performance['mode'] = m
+                performance["symmetrize"] = s
+                performance['neighbors'] = N
+                performance['pcs'] = pcs
+                performance['metric'] = metric
+                performance['highly variable'] = hvg
+
+                hyperp.append(performance)
+                print(time.time() - st)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+performance_data.to_csv(os.path.join(datadir, f"dewakss_optimal_parameter_all_data_{subset}_hvg_{str(hvg)}_m_{metric}.tsv.gz"), sep='\t', compression='gzip')
+
+#+end_src
+
+#+name: load-performance-data
+#+begin_src ipython
+subset = 'YPDRapa'
+performance_data = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_mean_hvg_{str(hvg)}_metric_{metric}.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_mean.tsv.gz"), sep='\t', index_col=0)
+
+# tmp = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_pc300_mean.tsv.gz"), sep='\t', index_col=0)
+
+# tmp2 = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_pc400500_mean.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp, tmp2], 0)
+
+performance_data = performance_data.reset_index()
+del performance_data['index']
+#+end_src
+
+#+name: plot-performance-hyper-parameters-v2
+#+begin_src ipython :results output drawer replace
+dosave = False
+pdata = performance_data.copy()
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(16, 4), constrained_layout=True)
+
+    fold = 1
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors', 'decay'])
+
+    max_xticks = 0
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+        axes = combos.loc[neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        # axes.set_xticks(subdf['iteration'].values)
+        if subdf['iteration'].values.max() > max_xticks:
+            axes.set_xticks(subdf['iteration'].values)
+            max_xticks = subdf['iteration'].values.max()
+        axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[0].legend(title='PCs')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors', 'decay'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors', 'decay'])[metric].max()
+        
+    optit = df.set_index(['neighbors', 'decay'])
+    for (neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors, decay]
+        opts = (optit.loc[neighbors, decay][metric] == minmse).values
+        its = optit.loc[neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"Jackson2019_{subset}_denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: plot-performance-hyper-parameters-v2
+:results:
+[[file:../img/master/Jackson2019/Jackson2019_YPDRapa_denoise_type_mean_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Jackson2019/Jackson2019_YPDRapa_denoise_type_mean_distances_MSE_hyper_paramters_figure.png]]
+:end:
+
+#+name: performance-trends-ypdrapa
+#+begin_src ipython :results output drawer replace
+doplot = True
+metric = 'MSE'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+pdata = pdata.groupby(['mode', 'pcs', 'neighbors'])[metric].min().reset_index()
+
+# for dt, df in pdata.groupby(['denoisetype']):
+#     g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+style_label = ('seaborn-poster') # Does not work here.
+
+with plt.style.context(style_label):
+
+    g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=pdata, ci=None, fit_reg=False, height=6, aspect=1.0)
+
+    ymin = pdata[metric].min()
+    ymax = pdata[metric].max()
+    for ax in g.axes.flatten():
+        ax.grid()
+        ax.set_xscale('log')
+        ax.set_xlim([9, 500])
+        ax.set_ylim([ymin-(ymax-ymin)*0.05,ymax+(ymax-ymin)*0.05])
+
+    fig = g.fig
+    # fig.suptitle(f"Denoise type={dt}")
+
+if doplot:
+    fdir = figdir
+    fname = f"Jackson2019_{subset}_{metric}_minimal_trend_hyper_paramters_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: performance-trends-ypdrapa
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/Jackson2019_YPDRapa_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: optimal-setting-2
+#+begin_src ipython :results output drawer replace
+print(performance_data.iloc[performance_data['MSE'].argmin()])
+#+end_src
+
+#+RESULTS: optimal-setting-2
+:results:
+iteration                  1
+MSE                    0.253
+R2                     0.685
+mode               distances
+symmetrize              True
+neighbors                100
+pcs                       75
+metric             euclidean
+highly variable        False
+Name: 75, dtype: object
+:end:
+
+#+name: apply-optimal-dewakss
+#+begin_src ipython
+import scipy as sp
+import dewakss.denoise as dewakss
+tmpadata = adata.copy()
+pcs = 75
+N = 100
+hvg=False
+metric='euclidean'
+sc.pp.pca(tmpadata, n_comps=pcs, use_highly_variable=hvg)
+sc.pp.neighbors(tmpadata, n_neighbors=N, n_pcs=pcs, metric=metric)
+
+denoiseer = dewakss.DEWAKSS(tmpadata, mode='distances')
+denoiseer.fit(tmpadata)
+denoiseer.transform(tmpadata, copy=False)
+adata.layers['Ms'] = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+
+del tmpadata
+#+end_src
+
+#+name: save-denoised-computed-subset
+#+begin_src ipython
+adata.write(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{metric}.h5ad"))
+#+end_src
+
+** Simple Clustering and overview
+
+#+name: load-pipeline-computed-subset
+#+begin_src ipython
+subset = 'YPDRapa'
+distance = 'euclidean'
+adata = sc.read(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{distance}.h5ad"))
+#+end_src
+
+#+name: set-denoised-data-as-X
+#+begin_src ipython
+X = adata.X.copy()
+adata.X = adata.layers['Ms'].copy()
+del adata.layers['Ms']
+adata.layers['X'] = X
+del X
+#+end_src
+
+#+name: calculate-pipeline-subset
+#+begin_src ipython
+n_comps = 75
+N = 100
+hvg = True
+distance = 'euclidean'
+sc.pp.pca(adata, n_comps=n_comps, use_highly_variable=hvg, svd_solver='randomized')
+
+scpipe.base_computations(adata, npcs=n_comps, nneighbors=N, recompute_pca=False, min_dist=0.05, use_highly_variable=hvg, metric=distance)
+
+scpipe.rank_genes_groups(adata)
+#+end_src
+
+#+name: plot-initial-cluster-overview-subset-2
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'Genotype_Group'], representations={'umap', 'diffmap'}, figsize=(12,12), legend_loc='on data')
+
+fname = f'all_cells_umap_diffmap_{subset}_'
+fdir = os.path.join(figdir, "clustering")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-initial-cluster-overview-subset-2
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/all_cells_umap_diffmap_YPDRapa_figure.png]]
+:end:
+
+#+name: plot-marker-genes-raw-expression-subset-2
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    # cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=50)
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20)
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].X.flatten())
+g1 = adata[:, genes2use[1]].X[gc]
+g2 = adata[:, genes2use[0]].X[gc]
+g3 = adata[:, genes2use[2]].X[gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_denoised_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+adata.layers['X'] = adata.layers['X'].A if sp.sparse.issparse(adata.layers['X']) else adata.layers['X']
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20, layer='X')
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].layers['X'].flatten())
+g1 = adata[:, genes2use[1]].layers['X'][gc]
+g2 = adata[:, genes2use[0]].layers['X'][gc]
+g3 = adata[:, genes2use[2]].layers['X'][gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+
+# scpl.versus(adata, genes2use[1], genes2use[0], color=genes2use[2], color_map='viridis', layer='X')
+
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_raw_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-marker-genes-raw-expression-subset-2
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_denoised_YPDRapa_figure.png]]
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_raw_YPDRapa_figure.png]]
+:end:
+
+
+* YPEtOH
+
+** extract statistics and preprocess
+
+#+name: load-data
+#+begin_src ipython
+from scprocessing.datasets import Jackson2019
+cc = Jackson2019.load_go_terms(gaf="../../single_cell_analysis/data/Jackson2019/SD1/data/go_slim_mapping.tab", grabfor="cell cycle")
+
+adata = sc.read(os.path.join("..", "data", "master", "Jackson2019", "loaded_data.h5ad"))
+genesets = {"RTG1_1": ["RTG1", "CIT1", "CIT2"],
+            "RTG1_2": ["CIT2", "IDP1", "RTG3"],
+            "RTG3_1": ["PYC1", "PYC2", "RTG3"],
+            "RTG3_2": ["RTG1", "PYC1", "RTG3"],
+            "GCN4_1": ["GCN4", "ARG4", "RIB5"],
+            "GCN4_2": ["LYS1", "LYS2", "CPA2"],
+            "CC1": ["CLB1", 'CLB5', 'SIC1'],
+            "CC2": ['SIC1', 'CLB1', 'SWI5'],
+            "CC3": ['CDC6', 'SWI5', 'SIC1'],
+            "CC4": ['SIC1', 'CDC20', 'CLB1']}
+subset='YPEtOH'
+#+end_src
+
+#+name: add-statistics
+#+begin_src ipython
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+#+end_src
+
+#+name: load-cell-phase-genes
+#+begin_src ipython
+phasedata = pd.read_csv(os.path.join("..", "data", "master", "Jackson2019", 'STable6.tsv'), sep='\t')
+
+phgenes = {}
+for g in phasedata['Group'].unique():
+    genes = phasedata['Gene'][phasedata['Group'].isin([g])]
+    genes = adata.var_names[adata.var['SystematicName'].isin(genes).values]
+    phgenes[g] = genes.tolist()
+#+end_src
+
+#+name: filter-cell-data
+#+begin_src ipython
+adata.layers['counts'] = adata.X.copy()
+ncu = np.percentile(adata.obs['n_counts'], 99.5)
+ngu = np.percentile(adata.obs['n_genes'], 99.5)
+cell_filter = ((adata.obs['n_genes'] < ngu) & (adata.obs['n_counts'] < ncu)).values
+adata = adata[cell_filter, :].copy()
+
+adata = adata[adata.obs['Condition'] == subset, :].copy()
+
+sc.pp.filter_genes(adata, min_counts=30)
+sc.pp.filter_genes(adata, min_cells=30)
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+scpp.ftt(adata)
+adata.raw = adata
+cc_genes = adata.var_names[adata.var['SystematicName'].isin(cc).values]
+del cc
+
+sc.pp.highly_variable_genes(adata)
+
+phglist = []
+for gl in ['G1', 'S', 'G2', 'M', 'M/G1', 'iESR', 'RP']:
+    phglist.extend(phgenes[gl])
+
+adata.var['highly_variable'] = adata.var_names.isin(phglist)
+
+# sc.pl.highly_variable_genes(adata)
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions of negative binomial distribution. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: check-basic-stats-subset-ypetoh
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-3,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'], p_var=adata.uns['ks_p_value'], p_zero=adata.uns['ks_zero_p_value'])
+
+fdir = os.path.join(figdir, 'statistics')
+fname = f"NB_statistics_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: check-basic-stats-subset-ypetoh
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/statistics/NB_statistics_YPEtOH_figure.png]]
+:end:
+
+#+name: plot-nnz-expression-dist-subset-ypetoh
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.plot_nnz_expr_distribution(adata)
+
+fname = f'expression_distribution_ftt_{subset}_'
+fdir = os.path.join(figdir, "statistics")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-nnz-expression-dist-subset-ypetoh
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/statistics/expression_distribution_ftt_YPEtOH_figure.png]]
+:end:
+
+** Find optimal denosing parameters
+
+The denoising is done on the preprocessed data and with the DEWAKSS algorithm.
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+hyperp = {}
+neigbours = [10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 300, 400]
+npcss = [10, 20 ,30 ,40, 50, 60, 70, 80, 90, 100, 250, 500]
+
+metric = 'euclidean'
+hvg = False
+
+sc.pp.pca(adata, n_comps=max(npcss), random_state=0, use_highly_variable=hvg)
+hyperp = []
+for pcs in npcss:
+    sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs, metric=metric)
+    for N in neigbours:
+        # tmpadata = adata.copy()
+        # sc.pp.neighbors(adata, n_neighbors=N, n_pcs=pcs, metric=metric)
+        print(N, pcs)
+
+        dewaxer = dewakss.DEWAKSS(adata, iterations=1, n_neighbors=N, run2best=False, verbose=False)
+        dewaxer.fit(adata)
+        # break
+
+        performance = pd.DataFrame(dewaxer.prediction_).T
+        performance.index.name = "iteration"
+        performance.columns = ['MSE', "R2"]
+        performance = performance.reset_index()
+        performance['neighbors'] = N
+        performance['pcs'] = pcs
+        performance['metric'] = metric
+        performance['highly variable'] = hvg
+        hyperp.append(performance)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+performance_data.to_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_{denoisetypes[0]}_hvg_{str(hvg)}_metric_{metric}_test.tsv.gz"), sep='\t', compression='gzip')
+
+#+end_src
+
+#+name: load-performance-data
+#+begin_src ipython
+subset = 'YPEtOH'
+performance_data = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_mean_hvg_{str(hvg)}_metric_{metric}.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_mean.tsv.gz"), sep='\t', index_col=0)
+
+# tmp = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_pc300_mean.tsv.gz"), sep='\t', index_col=0)
+
+# tmp2 = pd.read_csv(os.path.join(datadir, f"Jackson2019_dewakss_optimal_parameter_data_{subset}_cosine_pc400500_mean.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp, tmp2], 0)
+
+performance_data = performance_data.reset_index()
+del performance_data['index']
+#+end_src
+
+#+name: plot-performance-hyper-parameters-v3
+#+begin_src ipython :results output drawer replace
+dosave = False
+pdata = performance_data.copy()
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(16, 4), constrained_layout=True)
+
+    fold = 5
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors', 'decay'])
+
+    max_xticks = 0
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+        axes = combos.loc[neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        # axes.set_xticks(subdf['iteration'].values)
+        if subdf['iteration'].values.max() > max_xticks:
+            axes.set_xticks(subdf['iteration'].values)
+            max_xticks = subdf['iteration'].values.max()
+        axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[0].legend(title='PCs')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors', 'decay'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors', 'decay'])[metric].max()
+        
+    optit = df.set_index(['neighbors', 'decay'])
+    for (neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors, decay]
+        opts = (optit.loc[neighbors, decay][metric] == minmse).values
+        its = optit.loc[neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"Jackson2019_{subset}_denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+name: performance-trends-4
+#+begin_src ipython :results output drawer replace
+doplot = True
+# metric = 'R2'
+metric = 'MSE'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+pdata = pdata.groupby(['mode', 'denoisetype', 'pcs', 'neighbors'])[metric].min().reset_index()
+
+for dt, df in pdata.groupby(['denoisetype']):
+    g = sns.lmplot(hue="pcs", y=metric, x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+
+    ymin = df[metric].min()
+    ymax = df[metric].max()
+    for ax in g.axes.flatten():
+        ax.grid()
+        ax.set_xscale('log')
+        ax.set_xlim([8,900])
+        # ax.set_ylim([ymin-(ymax-ymin)*0.05,ymax+(ymax-ymin)*0.05])
+
+    fig = g.fig
+    fig.suptitle(f"Denoise type={dt}")
+
+    if doplot:
+        fdir = figdir
+        fname = f"Jackson2019_{subset}_denoise_type_{dt}_{metric}_minimal_trend_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: performance-trends-4
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/Jackson2019_YPEtOH_denoise_type_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: optimal-setting-4
+#+begin_src ipython :results output drawer replace
+print(performance_data.iloc[performance_data['MSE'].argmin()])
+#+end_src
+
+#+RESULTS: optimal-setting-4
+:results:
+iteration                  1
+MSE                    0.338
+R2                     0.658
+decay                      1
+mode               distances
+symmetrize              True
+diag                       0
+neighbors                 60
+pcs                       50
+denoisetype             mean
+metric             euclidean
+highly variable        False
+Name: 227, dtype: object
+:end:
+
+#+name: apply-optimal-dewakss
+#+begin_src ipython
+import scipy as sp
+import dewakss.denoise as dewakss
+tmpadata = adata.copy()
+pcs = 50
+N = 60
+hvg=False
+metric='euclidean'
+sc.pp.pca(tmpadata, n_comps=pcs, use_highly_variable=hvg)
+sc.pp.neighbors(tmpadata, n_neighbors=N, n_pcs=pcs, metric=metric)
+
+denoiseer = dewakss.DEWAKSS(tmpadata, mode='distances')
+denoiseer.fit(tmpadata)
+denoiseer.transform(tmpadata, copy=False)
+adata.layers['Ms'] = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+
+del tmpadata
+#+end_src
+
+#+name: save-denoised-computed-subset
+#+begin_src ipython
+adata.write(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{metric}.h5ad"))
+#+end_src
+
+** Simple Clustering and overview
+
+#+name: load-pipeline-computed-subset
+#+begin_src ipython
+subset = 'YPEtOH'
+distance = 'euclidean'
+adata = sc.read(os.path.join(datadir, f"Jackson2019_denoised_data_{subset}_distance_{distance}.h5ad"))
+#+end_src
+
+#+name: set-denoised-data-as-X
+#+begin_src ipython
+X = adata.X.copy()
+adata.X = adata.layers['Ms'].copy()
+del adata.layers['Ms']
+adata.layers['X'] = X
+del X
+#+end_src
+
+#+name: calculate-pipeline-subset
+#+begin_src ipython
+n_comps = 40
+N = 60
+hvg = True
+distance = 'euclidean'
+sc.pp.pca(adata, n_comps=n_comps, use_highly_variable=hvg)
+
+scpipe.base_computations(adata, npcs=n_comps, nneighbors=N, recompute_pca=False, min_dist=0.05, use_highly_variable=hvg, metric=distance)
+
+scpipe.rank_genes_groups(adata)
+#+end_src
+
+#+name: plot-initial-cluster-overview-subset-4
+#+begin_src ipython :results output drawer replace
+fig, ax, __ = scpl.visualize_cell_scatter(adata, ['leiden', 'Genotype_Group'], representations={'umap', 'diffmap'}, figsize=(12,12), legend_loc='on data')
+
+fname = f'all_cells_umap_diffmap_{subset}_'
+fdir = os.path.join(figdir, "clustering")
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: plot-initial-cluster-overview-subset-4
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/all_cells_umap_diffmap_YPEtOH_figure.png]]
+:end:
+
+#+name: plot-marker-genes-raw-expression-subset-4
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    # cax2 = sc.pl.umap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=50)
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20)
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].X)
+g1 = adata[:, genes2use[1]].X[gc]
+g2 = adata[:, genes2use[0]].X[gc]
+g3 = adata[:, genes2use[2]].X[gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_denoised_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+adata.layers['X'] = adata.layers['X'].A if sp.sparse.issparse(adata.layers['X']) else adata.layers['X']
+fig = plt.figure(figsize=(9,8), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+# genes2use = ['SIC1', 'CDC20', 'CLB1']
+
+key1 = 'CC2'
+genes2use = genesets[key1]
+
+for i, g in enumerate(genes2use):
+    cax2 = sc.pl.diffmap(adata, color=g, cmap='viridis', ax=ax[i], use_raw=False, size=20, layer='X')
+    ax[i].set_title(g)
+
+
+gc = np.argsort(adata[:, genes2use[2]].layers['X'])
+g1 = adata[:, genes2use[1]].layers['X'][gc]
+g2 = adata[:, genes2use[0]].layers['X'][gc]
+g3 = adata[:, genes2use[2]].layers['X'][gc]
+cax2 = ax[3].scatter(g2, g1, c=g3, cmap='viridis', s=5)
+
+ax[3].set_xlabel(genes2use[0])
+ax[3].set_ylabel(genes2use[1])
+ax[3].set_title('Denoised Data', fontsize=14)
+
+# scpl.versus(adata, genes2use[1], genes2use[0], color=genes2use[2], color_map='viridis', layer='X')
+
+cbar = fig.colorbar(cax2, ax=ax[3], label=genes2use[2], aspect=30)
+
+fdir = os.path.join(figdir, 'clustering')
+fname = f"markergenes_raw_{subset}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-marker-genes-raw-expression-subset-4
+:results:
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_denoised_YPEtOH_figure.png]]
+[[file:../img/simplify-dewakss/Jackson2019/clustering/markergenes_raw_YPEtOH_figure.png]]
+:end:
+
+#+RESULTS: plot-marker-genes-raw-expression-subset-3
+:results:
+[[file:../img/master/Jackson2019/clustering/markergenes_denoised_YPDRapa_figure.png]]
+[[file:../img/master/Jackson2019/clustering/markergenes_raw_YPDRapa_figure.png]]
+:end:
+
+* Test denoising
+
+#+begin_src ipython
+import time
+modes = ['distances']
+symmetrize = [True]
+hyperp = {}
+metric = 'euclidean'
+# neigbours = [10, 20, 50, 100, 200, 500]
+neigbours = np.flip([10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 175, 200, 225, 300, 400])
+npcss = [20, 50, 75, 100, 125, 150, 200, 250, 500, 600]
+# npcss = [300, 400, 500]
+hvg = False
+sc.pp.pca(adata, n_comps=max(npcss), random_state=0, use_highly_variable=hvg)
+hyperp = []
+st = time.time()
+for pcs in npcss:
+    sc.pp.neighbors(adata, n_neighbors=max(neigbours), n_pcs=pcs, metric=metric)
+    for N in neigbours:
+        for m in modes:
+            for s in symmetrize:
+                print(m, s, N, pcs)
+
+                dewaxer = dewakss.DEWAKSS(adata, iterations=1, n_neighbors=N, init_diag=0, set_diag=0, run2best=False, mode=m, symmetrize=s, verbose=False)
+
+                dewaxer.fit(adata)
+
+                performance = pd.DataFrame(dewaxer.global_err_).T
+                performance.index.name = "iteration"
+                performance.columns = ['MSE', "R2"]
+                performance = performance.reset_index()
+                performance['mode'] = m
+                performance["symmetrize"] = s
+                performance['neighbors'] = N
+                performance['pcs'] = pcs
+                performance['metric'] = metric
+                performance['highly variable'] = hvg
+
+                hyperp.append(performance)
+                print(time.time() - st)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+tmp = performance_data.columns.tolist()
+
+tmp[0] = 'N'
+tmp[1] = 'iterations'
+
+performance_data.columns = tmp
+
+# dewaxer = dewakss.DEWAKSS(adata, iterations=1, n_neighbors=[400, 100, 20], init_diag=0, set_diag=0, run2best=False, mode=m, symmetrize=s, verbose=False)
+#+end_src

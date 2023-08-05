@@ -1,0 +1,1522 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session dewakss :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session dewakss
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+#+title: DEWAKSS on Paul et al 2015
+
+
+* Apply DEWAKSS to cite:Paul2015
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+import scanpy as sc
+gitbranch = os.path.join(gitbranch, 'Paul2015')
+
+figdir = os.path.join("..", "img", gitbranch)
+datadir = os.path.join("..", "data", gitbranch)
+
+sc.settings.figdir = os.path.join(figdir)
+sc.settings.file_format_figs = "svg"
+
+import scprocessing.pipeline as scpipe
+import scprocessing.preprocessing as scpp
+import scprocessing.preprocessing.Svensson2019 as Svensson2019
+import scprocessing.plotting.anndata as scpl
+import dewakss.decomposition as dede
+import dewakss.denoise as dewakss
+#+end_src
+
+** Load and convert data format
+
+#+name: load-data-paul2015-convert-to-anndata
+#+begin_src ipython
+import scprep
+from scipy.sparse import csr
+
+bmmsc_data = scprep.io.load_csv('https://github.com/KrishnaswamyLab/PHATE/raw/master/data/BMMC_myeloid.csv.gz')
+
+# Convert to scanpy
+adata = sc.AnnData(csr.csr_matrix(bmmsc_data.values), obs=bmmsc_data.index, var=bmmsc_data.columns)
+adata.var.columns = ['ID']
+adata.obs.columns = ['barcode']
+adata.write(os.path.join(datadir, "loaded_data.h5ad"))
+#+end_src
+
+** Find optimal hyper parameters
+
+#+name: reload-and-preproces-paul2015
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), "loaded_data.h5ad"))
+
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+
+sc.pp.filter_cells(adata, min_counts=1000)
+sc.pp.filter_genes(adata, min_cells=10)
+adata.layers['counts'] = adata.X.copy()
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+dede.ftt(adata)
+adata.raw = adata
+# adata.X = sc.pp.scale(adata.X.T, copy=True, zero_center=False).T
+#+end_src
+
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+iterations = 1
+neigbours = [5, 10, 20, 50, 75, 100, 125, 150, 200]
+npcss = [5, 10, 15, 20, 25, 50, 100, 200]
+
+dewaxer = dewakss.DEWAKSS(adata, n_pcs=npcss,  n_neighbors=neigbours, iterations=iterations, run2best=False)
+dewaxer.fit(adata)
+
+# performance_data = pd.concat(hyperp)
+# performance_data = performance_data.reset_index(drop=True)
+
+# # del performance_data['neighbors']
+# colms = performance_data.columns.tolist()
+# colms[0] = 'neighbors'
+# colms[1] = 'iteration'
+# performance_data.columns = colms
+
+# performance_data.to_csv(os.path.join(datadir, f"Paul2015_dewakss_optimal_parameter_data_tmp_symboth_{denoisetypes[0]}_test.tsv.gz"), sep='\t', compression='gzip')
+
+#+end_src
+
+#+name: load-performance-data
+#+begin_src ipython
+denoisetypes = 'mean'
+# performance_data = pd.read_csv(os.path.join(datadir, f"Paul2015_dewakss_optimal_parameter_data_tmp_symboth_{denoisetypes}.tsv.gz"), sep='\t', index_col=0)
+
+performance_data = pd.read_csv(os.path.join(datadir.replace('simplify-dewakss', 'master'), f"Paul2015_dewakss_optimal_parameter_data_dt_{denoisetypes}.tsv.gz"), sep='\t', index_col=0)
+
+# tmp = pd.read_csv(os.path.join(datadir, "TVC514_TVC_dewakss_optimal_parameter_data_max_pcs.tsv.gz"), sep='\t', index_col=0)
+
+# performance_data = pd.concat([performance_data, tmp])
+#+end_src
+
+#+name: plot-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+dosave = False
+pdata = performance_data[performance_data['symmetrize'] == True]
+pdata = pdata[pdata['neighbors'] != 0]
+for (mode, dt), df in pdata.groupby(['mode', 'denoisetype']):
+
+    metric = 'MSE'
+    combos = df[['neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(16, 6), constrained_layout=True)
+
+    fold = 1
+    # ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey=True).flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors', 'decay'])
+
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+        axes = combos.loc[neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        axes.set_xticks(subdf['iteration'].values)
+        axes.set_title(f"k={neighbors}, decay={decay}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[0].legend(title='PCs')
+
+    if metric == 'MSE':
+        optind = df.groupby(['neighbors', 'decay'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['neighbors', 'decay'])[metric].max()
+
+    optit = df.set_index(['neighbors', 'decay'])
+    for (neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors, decay]
+        opts = (optit.loc[neighbors, decay][metric] == minmse).values
+        its = optit.loc[neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+
+    fig.suptitle(f"Denoise type={dt}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    if dosave:
+        fdir = figdir
+        fname = f"Paul2015_denoise_type_{dt}_{mode}_{metric}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: plot-performance-hyper-parameters
+:results:
+[[file:../img/cell_vise_mse/Paul2015/Paul2015_denoise_type_mean_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/cell_vise_mse/Paul2015/Paul2015_denoise_type_mean_distances_MSE_hyper_paramters_figure.png]]
+:end:
+
+#+name: performance-trends
+#+begin_src ipython :results output drawer replace
+doplot = False
+metric = 'MSE'
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+pdata = pdata.groupby(['mode', 'denoisetype', 'symmetrize', 'pcs', 'neighbors'])[metric].min().reset_index()
+# plt.style.available
+style_label = ('seaborn-poster')
+
+for (dt, sym), df in pdata.groupby(['denoisetype', 'symmetrize']):
+
+    with plt.style.context(style_label):
+
+        g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=6, aspect=0.6)
+
+        for ax in g.axes.flatten():
+            ax.grid()
+            ax.set_xscale('log')
+            ax.set_xlim(2, 300)
+            ax.set_ylim(0.31, 0.325)
+            ax.set_title(ax.get_title() + f'\n sym = {sym}')
+
+        fig = g.fig
+        # fig.suptitle(f"Denoise type={dt}")
+
+    if doplot:
+        fdir = figdir
+        fname = f"Paul2015_denoise_type_{dt}_sym_{sym}_{metric}_minimal_trend_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: performance-trends
+:results:
+[[file:../img/cell_vise_mse/Paul2015/Paul2015_denoise_type_mean_sym_False_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/cell_vise_mse/Paul2015/Paul2015_denoise_type_mean_sym_True_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: optimal-hp-setting
+#+begin_src ipython :results output drawer replace
+print(performance_data.iloc[performance_data['MSE'].argmin()])
+#+end_src
+
+#+RESULTS: optimal-hp-setting
+:results:
+iteration              1
+MSE                0.311
+R2                  0.54
+decay                  1
+mode           distances
+symmetrize          True
+diag                   0
+neighbors             75
+pcs                   50
+denoisetype         mean
+Name: 173, dtype: object
+:end:
+
+#+name: plot-diffuse-trend
+#+begin_src ipython :results output drawer replace
+doplot = False
+# style_list = ['default', 'classic'] + sorted(style for style in plt.style.available if style != 'classic')
+# style_label = 'fivethirtyeight'
+style_label = ('seaborn-poster', 'bmh')
+colors = ["windows blue", "faded green", 'rose', "amber", "greyish", "pale red", "dusty purple", "denim blue", "medium green", 'olive']
+pal = sns.xkcd_palette(colors)
+
+pcs = [10, 50, 200]
+for npcs in pcs:
+    opt_pcs = performance_data[performance_data['pcs'] == npcs]
+    # opt_pcs = performance_data.copy()
+    opt_pcs = opt_pcs[opt_pcs['mode'] == 'distances']
+    opt_pcs = opt_pcs[opt_pcs['decay'] == 1]
+
+    with plt.style.context(style_label):
+        fig = plt.figure(figsize=(7, 4), constrained_layout=True)
+        axes = fig.subplots(1, 1)
+
+        i = 0
+        for (neighbors, pcs, decay), subdf in opt_pcs.groupby(['neighbors', 'pcs', 'decay']):
+            subdf = subdf[~(subdf['iteration'] == 0)]
+
+            axes.plot(subdf['iteration'].values, subdf[metric].values, zorder=neighbors-1000, linewidth=2, color=pal[i]) # , color=pal[i]
+            mini = subdf[metric].values.argmin()
+            axes.scatter(subdf['iteration'].values[mini], subdf[metric].values[mini], s=100, zorder=neighbors-1000, label=neighbors, color=pal[i]) # , color=pal[i]
+
+            i=i+1
+
+        axes.set_xlabel('diffusion step')
+        axes.set_ylabel(f"{metric}")
+
+        axes.set_xticks(subdf['iteration'].values)
+        axes.set_title(f'# PCs = {npcs}')
+
+        axes.set_xlim([0.5,19.5])
+        axes.set_ylim([0.309, 0.335])
+        axes.legend(title='neighbors', loc='center left', bbox_to_anchor=(1, 0.5))
+
+        # sns.despine(offset=10)
+        sns.despine()
+        # axes.grid(linewidth=0.5, linestyle='--', zorder=10000)
+        # axes.label_outer()
+
+    if doplot:
+        fdir = figdir
+        fname = f"Paul2015_denoise_type_{dt}_{metric}_npcs_{npcs}_neighbours_diffuse_trend_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: plot-diffuse-trend
+:results:
+[[file:../img/simplify-dewakss/Paul2015/Paul2015_denoise_type_mean_MSE_npcs_10_neighbours_diffuse_trend_figure.png]]
+[[file:../img/simplify-dewakss/Paul2015/Paul2015_denoise_type_mean_MSE_npcs_50_neighbours_diffuse_trend_figure.png]]
+[[file:../img/simplify-dewakss/Paul2015/Paul2015_denoise_type_mean_MSE_npcs_200_neighbours_diffuse_trend_figure.png]]
+:end:
+
+*** COMMENT Old analysis
+
+#+name: iterate-hyper-parameters
+#+begin_src ipython
+decay = [1, 2, 4, 10]
+set_diags = [0]
+modes = ['connectivities', 'distances']
+symmetrize = [True, False]
+hyperp = {}
+n = 0
+neigbours = [5, 10, 20, 50]
+npcss = [dpca.optimal_, 5, 20, 49]
+
+hyperp = []
+for N in neigbours:
+    for pcs in npcss:
+        for d in decay:
+            for m in modes:
+                for s in symmetrize:
+                    for I in set_diags:
+                        print(d, m, s, I, N, pcs)
+                        tmpadata = adata.copy()
+                        sc.pp.neighbors(tmpadata, n_neighbors=N, n_pcs=pcs)
+
+                        dewaxer = dewakss.DEWAKSS(tmpadata, iterations=20, init_diag=I, set_diag=(I if I==0 else None), run2best=False, denoise_type='mean', decay=d, mode=m, symmetrize=symmetrize, verbose=False)
+
+                        dewaxer.fit(tmpadata)
+
+                        performance = pd.DataFrame(dewaxer.prediction_).T
+                        performance.index.name = "iteration"
+                        performance.columns = ['MSE', "R2"]
+                        performance = performance.reset_index()
+                        performance['decay'] = d
+                        performance['mode'] = m
+                        performance["symmetrize"] = s
+                        performance["diag"] = I
+                        performance['neighbors'] = N
+                        performance['pcs'] = pcs
+                        hyperp.append(performance)
+
+
+performance_data = pd.concat(hyperp)
+performance_data = performance_data.reset_index(drop=True)
+
+performance_data.to_csv(os.path.join(datadir, "paul2015_dewakss_optimal_pca_performance_data.tsv.gz"), sep='\t', compression='gzip')
+#+end_src
+
+#+name: reload-performance-data
+#+begin_src ipython
+performance_data = pd.read_csv(os.path.join(datadir.replace('simplify-dewakss', 'master'), "paul2015_dewakss_optimal_pca_performance_data.tsv.gz"), sep='\t', index_col=0)
+#+end_src
+
+#+name: plot-paul2015-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+
+for (sym, mode), df in performance_data.groupby(['symmetrize','mode']):
+
+    metric = 'MSE'
+    combos = df[['neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(12, 12), constrained_layout=True)
+
+    fold = 4
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey='row').flatten(order='F')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['neighbors', 'decay'])
+
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+        axes = combos.loc[neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        # subdf.plot(x='iteration', y=metric, ax=axes, label=", ".join([str(neighbors), str(pcs)]), zorder=-name+1000, linewidth=2, alpha=0.8)
+        # subdf.plot(x='iteration', y=metric, ax=axes, zorder=-pcs+1000, linewidth=2, alpha=0.8)
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        axes.set_xticks(subdf['iteration'].values)
+        axes.set_title(f"k={neighbors}, decay={decay}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[0].legend(title='PCs')
+    # ax[-1].legend(title='neighbors, pcs', bbox_to_anchor=(1.0, 2.0))
+
+    optind = df.groupby(['neighbors', 'decay'])[metric].min()
+    optit = df.set_index(['neighbors', 'decay'])
+    for (neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[neighbors, decay]
+        opts = (optit.loc[neighbors, decay][metric] == minmse).values
+        its = optit.loc[neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        ylims = np.array(axes.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+
+        axes.text(xl, ylims[1], f"MSE={minmse:.4f}\nPCs={optpcs}", ha=hl, va='top')
+        axes.set_ylim(*ylims)
+
+    opte = optit[optit['MSE'] == optind.min()]
+
+    fig.suptitle(f"Sym={sym}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, decay={opte.index.values[0][1]}")
+
+    fdir = figdir
+    fname = f"paul2015_denoise_Sym{sym}_{mode}_{metric}_hyper_paramters_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: plot-paul2015-performance-hyper-parameters
+:results:
+/home/at145/.virtualenvs/intel_default/lib/python3.6/site-packages/ipykernel_launcher.py:38: PerformanceWarning: indexing past lexsort depth may impact performance.
+/home/at145/.virtualenvs/intel_default/lib/python3.6/site-packages/ipykernel_launcher.py:39: PerformanceWarning: indexing past lexsort depth may impact performance.
+/home/at145/.virtualenvs/intel_default/lib/python3.6/site-packages/ipykernel_launcher.py:40: PerformanceWarning: indexing past lexsort depth may impact performance.
+[[file:../img/master/Paul2015/paul2015_denoise_SymFalse_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Paul2015/paul2015_denoise_SymFalse_distances_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Paul2015/paul2015_denoise_SymTrue_connectivities_MSE_hyper_paramters_figure.png]]
+[[file:../img/master/Paul2015/paul2015_denoise_SymTrue_distances_MSE_hyper_paramters_figure.png]]
+:end:
+
+** On MAGIC example
+
+The data from cite:Paul2015 are compared and analysed in cite:MAGIC and cite:Batson2019Noise2SelfBDPP [[https://nbviewer.jupyter.org/github/KrishnaswamyLab/magic/blob/master/python/tutorial_notebooks/bonemarrow_tutorial.ipynb][here]] and [[https://github.com/czbiohub/noise2self/blob/master/notebooks/Single%2520Cell%2520-%2520Figure.ipyb][here]] respectively.
+
+#+name: reload-and-preproces-paul2015
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "loaded_data.h5ad"))
+
+adata.obs['n_counts'] = adata.X.sum(axis=1).A1
+adata.obs['n_genes'] = adata.X.astype(bool).sum(axis=1).A1
+
+sc.pp.filter_cells(adata, min_counts=1000)
+sc.pp.filter_genes(adata, min_cells=10)
+adata.layers['counts'] = adata.X.copy()
+# sc.pp.normalize_per_cell(adata, counts_per_cell_after=np.median(adata.obs['n_counts']))
+sc.pp.normalize_per_cell(adata)
+dede.ftt(adata)
+adata.raw = adata
+# adata.X = sc.pp.scale(adata.X.T, copy=True, zero_center=False).T
+#+end_src
+
+First lets check if the dataset is highly enriched for zero counts given our assumptions. I'm using the approach of cite:Svensson2019 where red line indicate our predicted distribution and with fitting of the model of over dispersion. The parameter \(\phi\) is fitted to the data. The first plot (left) plots the variance versus mean of the observed data compared to the predicted and the second plot (right) plots the probability of zeros given for our data compared to the predicted.
+#+name: paul2015-check-basic-count-stats
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='counts', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-3,2), rho_var=adata.uns['var_corr'], rho_zero=adata.uns['zero_corr'])
+
+fdir = figdir
+fname = f"Paul2015_NB_statistics_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: paul2015-check-basic-count-stats
+:results:
+[[file:../img/master/Paul2015/Paul2015_NB_statistics_figure.png]]
+:end:
+
+#+name: find-optimal-n-pcs
+#+begin_src ipython
+from sklearn.decomposition import TruncatedSVD
+
+DeTSVD = dede.decomposition_wrapper(TruncatedSVD)
+rescaler = {sc.pp.normalize_per_cell: {"copy": True}, scpp.ftt: {'copy': True}}
+
+dpca = DeTSVD(strategy='binomial', rescaler=rescaler, n_components=50, subsample=None, test_size=None)
+
+dpca.fit(adata.layers['counts'].copy())
+#+end_src
+
+#+name: select-optimal-n_pca-paul2015
+#+begin_src ipython :results output drawer replace
+metric = 'mse'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpca.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'Prediction error ({metric.upper()})')
+fig.suptitle(f"Paul et. al. 2015\nOptimal # PCs = {dpca.optimal_}")
+
+fdir = figdir
+fname = f"Paul2015_selecting_npcs_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print()
+
+metric = 'evr'
+
+fig = plt.figure(figsize=(5,3), constrained_layout=True)
+ax = fig.subplots(1, 1, sharex=True)
+dpca.plot(ax=ax, verbose=False, metric=metric)
+
+sns.despine()
+ax.set_ylabel(f'EV ratio')
+fig.suptitle(f"Paul et. al. 2015\nOptimal # PCs = {dpca.optimal_}")
+
+fdir = figdir
+fname = f"Paul2015_selecting_npcs_{metric.upper()}_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+#+end_src
+
+#+RESULTS: select-optimal-n_pca-paul2015
+:results:
+[[file:../img/master/Paul2015/Paul2015_selecting_npcs_MSE_figure.png]]
+[[file:../img/master/Paul2015/Paul2015_selecting_npcs_EVR_figure.png]]
+:end:
+
+# Note that fewer knn seem to genereate higher number of smoothings as optimal.
+#+name: run-pipeline-with-optimal-npcs
+#+begin_src ipython
+scpipe.base_computations(adata, npcs=dpca.optimal_, nneighbors=15, min_dist=0.5)
+scpipe.rank_genes_groups(adata, groupby='leiden')
+g1 = adata.var[adata.var['ID'] == 'Klf1'].index[0]
+g2 = adata.var[adata.var['ID'] == 'Mpo'].index[0]
+g3 = adata.var[adata.var['ID'] == 'Ifitm1'].index[0]
+
+gene_mapping = {'Klf1': g1, 'Mpo': g2, 'Ifitm1': g3}
+#+end_src
+
+#+name: paul2015-distance-distribution
+#+begin_src ipython :results output drawer replace
+modes = ['distances', 'connectivities']
+decays = [1, 3]
+
+for mode in modes:
+    for decay in decays:
+
+        dwx = dewakss.DEWAKSS(adata, mode=mode, decay=decay)
+        D = dwx.get_connectivities(adata)
+
+        fig, ax, __ = scpl.plot_nnz_expr_distribution(D, figsize=(6,3))
+        fig.suptitle(f'{mode.capitalize()}, k={dwx.n_neighbors}, decay={decay}', fontsize=10, x = 0.15, y = 1.005)
+        fig.tight_layout()
+
+        fdir = figdir
+        fname = f"Paul2015_{mode}_distribution_decay_{decay}_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+
+#+end_src
+
+#+RESULTS: paul2015-distance-distribution
+:results:
+[[file:../img/master/Paul2015/Paul2015_distances_distribution_decay_1_figure.png]]
+[[file:../img/master/Paul2015/Paul2015_distances_distribution_decay_3_figure.png]]
+[[file:../img/master/Paul2015/Paul2015_connectivities_distribution_decay_1_figure.png]]
+[[file:../img/master/Paul2015/Paul2015_connectivities_distribution_decay_3_figure.png]]
+:end:
+
+#+name: plot-paul2015-marker-genes-raw
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(6,5), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+
+for i, (g, v) in enumerate(gene_mapping.items()):
+    # sc.pl.umap(adata[~adata.obs['leiden'].isin(['13']), :], color=v, cmap='inferno', ax=ax[i])
+    sc.pl.umap(adata, color=v, cmap='inferno', ax=ax[i])
+    # sc.pl.pca(adata, color=v, cmap='inferno', ax=ax[i])
+    ax[i].set_title(g)
+    # for i, j in enumerate([0, 2, 4]):
+    #     ax[j].set_title(list(gene_mapping.keys())[i])
+
+__ = list(gene_mapping.values())
+
+cax2 = ax[3].scatter(adata[:, __[1]].X, adata[:, __[0]].X, c=adata[:, __[2]].X, cmap='inferno', s=1)
+__ = list(gene_mapping.keys())
+ax[3].set_xlabel(__[1])
+ax[3].set_ylabel(__[0])
+ax[3].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=__[2], aspect=30)
+
+fdir = figdir
+fname = f"paul2015_markergenes_raw_umap_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+
+fig = plt.figure(figsize=(6,5), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+
+for i, (g, v) in enumerate(gene_mapping.items()):
+    sc.pl.pca(adata, color=v, cmap='inferno', ax=ax[i])
+    ax[i].set_title(g)
+
+__ = list(gene_mapping.values())
+
+cax2 = ax[3].scatter(adata[:, __[1]].X, adata[:, __[0]].X, c=adata[:, __[2]].X, cmap='inferno', s=1)
+__ = list(gene_mapping.keys())
+ax[3].set_xlabel(__[1])
+ax[3].set_ylabel(__[0])
+ax[3].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=__[2], aspect=30)
+
+fdir = figdir
+fname = f"paul2015_markergenes_raw_pca_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-paul2015-marker-genes-raw
+:results:
+[[file:../img/master/Paul2015/paul2015_markergenes_raw_umap_figure.png]]
+[[file:../img/master/Paul2015/paul2015_markergenes_raw_pca_figure.png]]
+:end:
+
+** Evaluate self supervised denoising
+
+To Evaluate the effect of the nose2self method we first run a comparison to see the behaviour of predicting the central node.
+
+#+name: apply-optimal-dewakss
+#+begin_src ipython
+import scipy as sp
+import dewakss.denoise as dewakss
+tmpadata = adata.copy()
+pcs = 50
+N = 100
+sc.pp.pca(tmpadata, n_comps=pcs)
+sc.pp.neighbors(tmpadata, n_neighbors=N, n_pcs=pcs)
+
+denoiseer = dewakss.DEWAKSS(tmpadata, mode='distances')
+denoiseer.fit(tmpadata)
+denoiseer.transform(tmpadata, copy=False)
+adata.layers['Ms'] = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+
+del tmpadata
+#+end_src
+
+#+name: run-denoiser-noise2self-comparison
+#+begin_src ipython
+# import dewax.denoise as dewax
+dewaxer = dewakss.DEWAKSS(adata, init_diag=0, set_diag=0, iterations=20, run2best=False)
+dewaxer.fit(adata)
+dewaxer_1 = dewakss.DEWAKSS(adata, init_diag=1, set_diag=None, iterations=20, run2best=False)
+dewaxer_1.fit(adata)
+#+end_src
+
+#+name: plot-denoising-performance-0v1
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(8,3), constrained_layout=True)
+ax = fig.subplots(1, 2, sharex=True).flatten()
+
+dewaxer.plot(ax[0], metric='mse', verbose=False)
+# dewaxer.plot(ax[2], metric='r2', verbose=False)
+ax[0].set_title('keep 0 diagonal')
+# ax[0].set_xlabel("")
+# ax[2].set_title('keep 0 diagonal')
+
+dewaxer_1.plot(ax[1], metric='mse', verbose=False)
+# dewaxer_1.plot(ax[3], metric='r2', verbose=False)
+ax[1].set_title('initial 1 diagonal')
+# ax[1].set_xlabel("")
+# ax[3].set_title('initial 1 diagonal')
+
+fdir = figdir
+fname = f"paul2015_single_run_0v1_diagonal_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-denoising-performance-0v1
+:results:
+[[file:../img/master/Paul2015/paul2015_single_run_0v1_diagonal_figure.png]]
+:end:
+
+#+name: plot-paul2015-marker-genes-pca-denoised
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(6,5), constrained_layout=True)
+ax = fig.subplots(2, 2).flatten()
+
+adata_dn = adata.copy()
+adata_dn.X = adata.layers['Ms'].copy()
+sc.pp.pca(adata_dn)
+
+for i, (g, v) in enumerate(gene_mapping.items()):
+    # cax2 = sc.pl.umap(adata, color=v, cmap='inferno', ax=ax[i], layer='Ms', use_raw=False)
+    cax2 = sc.pl.pca(adata_dn, color=v, cmap='inferno', ax=ax[i], layer='Ms', use_raw=False)
+    ax[i].set_title(g)
+
+__ = list(gene_mapping.values())
+
+cax2 = ax[3].scatter(adata[:, __[1]].layers["Ms"], adata[:, __[0]].layers["Ms"], c=adata[:, __[2]].layers["Ms"], cmap='inferno', s=1)
+__ = list(gene_mapping.keys())
+ax[3].set_xlabel(__[1])
+ax[3].set_ylabel(__[0])
+ax[3].set_title('Denoise Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[3], label=__[2], aspect=30)
+
+fdir = figdir
+fname = f"paul2015_markergenes_denoised_pca_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-paul2015-marker-genes-pca-denoised
+:results:
+[[file:../img/master/Paul2015/paul2015_markergenes_denoised_pca_figure.png]]
+:end:
+
+#+name: plot-single-color-pca
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(6,3), constrained_layout=True)
+ax = fig.subplots(1, 2).flatten()
+
+adata_dn = adata.copy()
+adata_dn.X = adata.layers['Ms'].copy()
+sc.pp.pca(adata_dn)
+
+cax2 = sc.pl.scatter(adata_dn, basis='pca', color='#3778bf', ax=ax[0], use_raw=False)
+ax[0].set_title('Denoised')
+cax2 = sc.pl.scatter(adata, basis='pca', color='#3778bf', ax=ax[1], use_raw=False)
+ax[1].set_title('Initial')
+
+fdir = figdir
+fname = f"paul2015_denoised_pca_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-single-color-pca
+:results:
+[[file:../img/master/Paul2015/paul2015_denoised_pca_figure.png]]
+:end:
+
+#+call: load-performance-data()
+
+#+name: apply-over-smoothing
+#+begin_src ipython
+metric = 'MSE'
+optmse = performance_data.groupby(['symmetrize','mode'])[metric].min().min()
+pm = performance_data[performance_data[metric] == optmse].iloc[0]
+
+tmpadata = adata.copy()
+sc.pp.pca(tmpadata, n_comps=pm['pcs'])
+sc.pp.neighbors(tmpadata, n_neighbors=pm['neighbors'], n_pcs=pm['pcs'])
+sc.tl.umap(tmpadata)
+
+dewaxer = dewakss.DEWAKSS(tmpadata, init_diag=0, set_diag=0,  iterations=10, decay=pm['decay'], thresholding=False, run2best=True, mode=pm['mode'])
+dewaxer.fit(tmpadata)
+MS = dewaxer.transform(tmpadata.X.copy())
+tmpadata.layers['Ms'] = MS.toarray() if sp.sparse.issparse(MS) else MS
+del MS
+
+# performance_data.set_index(['neighbors', 'decay'])
+
+dewaxer = dewakss.DEWAKSS(tmpadata, init_diag=0, set_diag=0,  iterations=20, decay=pm['decay'], thresholding=False, run2best=False, mode=pm['mode'])
+dewaxer.fit(tmpadata, iterations=5)
+MS = dewaxer.transform(tmpadata.X.copy())
+tmpadata.layers['Ms_over'] = MS.toarray() if sp.sparse.issparse(MS) else MS
+del MS
+# adata.layers['Ms_over'] = sc.pp.scale(adata.layers['Ms_over'], zero_center=False, copy=True)
+#+end_src
+
+#+name: plot-paul2015-marker-genes-denoised-over-smoothing
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(12,4), constrained_layout=True)
+ax = fig.subplots(1, 3).flatten(order='F')
+
+# for i, (g, v) in enumerate(gene_mapping.items()):
+#     cax2 = sc.pl.umap(tmpadata, color=v, cmap='inferno', ax=ax[i], layer='Ms_over', use_raw=False)
+#     ax[i].set_title(g)
+
+__ = list(gene_mapping.values())
+
+cax1 = ax[1].scatter(tmpadata[:, __[1]].layers["Ms_over"], tmpadata[:, __[0]].layers["Ms_over"], c=tmpadata[:, __[2]].layers["Ms_over"], cmap='inferno', s=1)
+
+cax0 = ax[0].scatter(tmpadata[:, __[1]].layers["Ms"], tmpadata[:, __[0]].layers["Ms"], c=tmpadata[:, __[2]].layers["Ms"], cmap='inferno', s=1)
+# cax2 = ax[3].scatter(tmpadata[:, __[1]].layers["Ms"], tmpadata[:, __[0]].layers["Ms"], c=tmpadata[:, __[2]].layers["Ms"], cmap='inferno', s=1)
+__ = list(gene_mapping.keys())
+ax[0].set_xlabel(__[1])
+ax[0].set_ylabel(__[0])
+ax[0].set_title('Optimal denoised data', fontsize=14)
+
+
+ax[1].set_xlabel(__[1])
+ax[1].set_ylabel(__[0])
+ax[1].set_title('Over denoised data', fontsize=14)
+cbar = fig.colorbar(cax1, ax=ax[1], label=__[2], aspect=30)
+cbar = fig.colorbar(cax0, ax=ax[0], label=__[2], aspect=30)
+
+dewaxer.plot(ax=ax[2], verbose=False)
+# dewaxer.plot(ax=ax[5], metric='r2', verbose=False)
+
+fdir = figdir
+fname = f"paul2015_markergenes_denoised_vs_over_smoothing_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-paul2015-marker-genes-denoised-over-smoothing
+:results:
+[[file:../img/master/Paul2015/paul2015_markergenes_denoised_vs_over_smoothing_figure.png]]
+:end:
+
+#+name: optimal-setting
+#+begin_src ipython :results output drawer replace
+print(opte)
+#+end_src
+
+#+RESULTS: optimal-setting
+:results:
+                 iteration    MSE     R2       mode  symmetrize  diag  pcs  \
+neighbors decay
+100       1              1  0.311  0.039  distances       False     0   50
+
+                denoisetype
+neighbors decay
+100       1            mean
+:end:
+
+
+*** COMMENT Old analysis
+
+#+name: smooth-paul2015-with-optimal
+#+begin_src ipython
+optind = optimal.groupby(['diag', 'mode', 'gathering_steps', 'decay'])['mse'].min()[0]
+optimal_params = optind[optind == optind.min()]
+optimal_params = optimal_params.reset_index().T.to_dict()[0]
+del optimal_params['mse']
+
+set_diag = 0
+symmetrize = False
+smoothed_adata = dpv.local_smoothing(adata, weighted=True, thresholding=False, set_diag=set_diag, copy=True, symmetrize=symmetrize, **optimal_params)
+gene_data = smoothed_adata[:, smoothed_adata.var_names.isin(list(gene_mapping.values()))].copy()
+#+end_src
+
+#+name: plot-sample-genes
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(14,5), constrained_layout=True)
+ax = fig.subplots(1, 2)
+
+cax = ax[1].scatter(gene_data[:, g2].layers['Ms'], gene_data[:, g1].layers['Ms'], c=gene_data[:, g3].layers['Ms'], cmap='inferno', s=1)
+ax[1].set_xlabel('Mpo')
+ax[1].set_ylabel('Klf1')
+ax[1].set_title('Smoothed Data', fontsize=14)
+cbar = fig.colorbar(cax, ax=ax[1], label='Ifitm1', aspect=50)
+
+cax2 = ax[0].scatter(gene_data[:, g2].X, gene_data[:, g1].X, c=gene_data[:, g3].X, cmap='inferno', s=1)
+ax[0].set_xlabel('Mpo')
+ax[0].set_ylabel('Klf1')
+ax[0].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[0], label='Ifitm1', aspect=50)
+
+fig.text(0.90, 0.8, "\n".join([k + ": " + str(v) for k, v in optimal_params.items()]), fontsize=14, horizontalalignment='right')
+
+fdir = os.path.join("img", gitbranch, "noise2self")
+fname = f"paul2015_sample_genes_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-sample-genes
+:results:
+[[file:img/master/GSE99844/noise2self/paul2015_sample_genes_figure.png]]
+:end:
+
+#+name: plot-paul2015-cell-landscape-smoothed
+#+begin_src ipython :results output drawer replace
+sc.pl.scatter(smoothed_adata, basis='tsne', color=list(gene_mapping.values()), color_map='inferno', layers='Ms', use_raw=False)
+fig = plt.gcf()
+ax = fig.get_axes()
+for i, j in enumerate([0, 1, 2]):
+    ax[j].set_title(list(gene_mapping.keys())[i])
+
+fdir = os.path.join("img", gitbranch, "noise2self")
+fname = f"paul2015_markergenes_smoothed_tsne_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+# sc.pl.scatter(smoothed_adata, basis='tsne', color=list(gene_mapping.values()), color_map='inferno', use_raw=False)
+#+end_src
+
+#+RESULTS: plot-paul2015-cell-landscape-smoothed
+:results:
+[[file:img/master/GSE99844/noise2self/paul2015_markergenes_smoothed_tsne_figure.png]]
+:end:
+
+#+name: smooth-more
+#+begin_src ipython
+set_diag = 0
+symmetrize = False
+smoothed_adata = dpv.local_smoothing(adata, weighted=True, thresholding=False, set_diag=set_diag, copy=True, symmetrize=symmetrize, decay=1, mode='connectivities', gathering_steps=10)
+gene_data = smoothed_adata[:, smoothed_adata.var_names.isin(list(gene_mapping.values()))].copy()
+#+end_src
+
+#+name: plot-sample-genes-oversmoothing-connectivities
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(14,5), constrained_layout=True)
+ax = fig.subplots(1, 2)
+
+cax = ax[1].scatter(gene_data[:, g2].layers['Ms'], gene_data[:, g1].layers['Ms'], c=gene_data[:, g3].layers['Ms'], cmap='inferno', s=1)
+ax[1].set_xlabel('Mpo')
+ax[1].set_ylabel('Klf1')
+ax[1].set_title('Smoothed Data', fontsize=14)
+cbar = fig.colorbar(cax, ax=ax[1], label='Ifitm1', aspect=50)
+
+cax2 = ax[0].scatter(gene_data[:, g2].X, gene_data[:, g1].X, c=gene_data[:, g3].X, cmap='inferno', s=1)
+ax[0].set_xlabel('Mpo')
+ax[0].set_ylabel('Klf1')
+ax[0].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[0], label='Ifitm1', aspect=50)
+
+optimal_params['gathering_steps'] = 10
+fig.text(0.90, 0.8, "\n".join([k + ": " + str(v) for k, v in optimal_params.items()]), fontsize=14, horizontalalignment='right')
+
+fdir = os.path.join("img", gitbranch, "noise2self")
+fname = f"paul2015_sample_genes_oversmoothing_connectivities_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-sample-genes-oversmoothing-connectivities
+:results:
+[[file:img/master/GSE99844/noise2self/paul2015_sample_genes_oversmoothing_connectivities_figure.png]]
+:end:
+
+
+#+name: smooth-more-distances
+#+begin_src ipython
+set_diag = 0
+symmetrize = False
+smoothed_adata = dpv.local_smoothing(adata, weighted=True, thresholding=False, set_diag=set_diag, copy=True, symmetrize=symmetrize, decay=1, mode='distances', gathering_steps=10)
+gene_data = smoothed_adata[:, smoothed_adata.var_names.isin(list(gene_mapping.values()))].copy()
+#+end_src
+
+#+name: plot-sample-genes-oversmoothing-distances
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(14,5), constrained_layout=True)
+ax = fig.subplots(1, 2)
+
+cax = ax[1].scatter(gene_data[:, g2].layers['Ms'], gene_data[:, g1].layers['Ms'], c=gene_data[:, g3].layers['Ms'], cmap='inferno', s=1)
+ax[1].set_xlabel('Mpo')
+ax[1].set_ylabel('Klf1')
+ax[1].set_title('Smoothed Data', fontsize=14)
+cbar = fig.colorbar(cax, ax=ax[1], label='Ifitm1', aspect=50)
+
+cax2 = ax[0].scatter(gene_data[:, g2].X, gene_data[:, g1].X, c=gene_data[:, g3].X, cmap='inferno', s=1)
+ax[0].set_xlabel('Mpo')
+ax[0].set_ylabel('Klf1')
+ax[0].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[0], label='Ifitm1', aspect=50)
+
+optimal_params['gathering_steps'] = 10
+optimal_params['mode'] = 'distances'
+fig.text(0.90, 0.8, "\n".join([k + ": " + str(v) for k, v in optimal_params.items()]), fontsize=14, horizontalalignment='right')
+
+fdir = os.path.join("img", gitbranch, "noise2self")
+fname = f"paul2015_sample_genes_oversmoothing_distances_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-sample-genes-oversmoothing-distances
+:results:
+[[file:img/master/GSE99844/noise2self/paul2015_sample_genes_oversmoothing_distances_figure.png]]
+:end:
+
+#+name: smooth-optimal-distances
+#+begin_src ipython
+set_diag = 0
+symmetrize = False
+optimal_params['gathering_steps'] = 5
+optimal_params['mode'] = 'distances'
+smoothed_adata = dpv.local_smoothing(adata, weighted=True, thresholding=False, set_diag=set_diag, copy=True, symmetrize=symmetrize, decay=1, mode='distances', gathering_steps=5)
+gene_data = smoothed_adata[:, smoothed_adata.var_names.isin(list(gene_mapping.values()))].copy()
+#+end_src
+
+#+name: plot-sample-genes-optimal-distances
+#+begin_src ipython :results output drawer replace
+fig = plt.figure(figsize=(14,5), constrained_layout=True)
+ax = fig.subplots(1, 2)
+
+cax = ax[1].scatter(gene_data[:, g2].layers['Ms'], gene_data[:, g1].layers['Ms'], c=gene_data[:, g3].layers['Ms'], cmap='inferno', s=1)
+ax[1].set_xlabel('Mpo')
+ax[1].set_ylabel('Klf1')
+ax[1].set_title('Smoothed Data', fontsize=14)
+cbar = fig.colorbar(cax, ax=ax[1], label='Ifitm1', aspect=50)
+
+cax2 = ax[0].scatter(gene_data[:, g2].X, gene_data[:, g1].X, c=gene_data[:, g3].X, cmap='inferno', s=1)
+ax[0].set_xlabel('Mpo')
+ax[0].set_ylabel('Klf1')
+ax[0].set_title('Raw Data', fontsize=14)
+cbar = fig.colorbar(cax2, ax=ax[0], label='Ifitm1', aspect=50)
+
+textobj = fig.text(0.90, 0.8, "\n".join([k + ": " + str(v) for k, v in optimal_params.items()]), fontsize=14, horizontalalignment='right')
+
+fdir = os.path.join("img", gitbranch, "noise2self")
+fname = f"paul2015_sample_genes_optimal_smoothing_distances_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=150)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-sample-genes-optimal-distances
+:results:
+[[file:img/master/GSE99844/noise2self/paul2015_sample_genes_optimal_smoothing_distances_figure.png]]
+:end:
+
+** Compare dimensionality reduction on data, DEWAKSS to MAGIC
+
+#+name: calculate-dewakss-singular-values
+#+begin_src ipython
+from sklearn.preprocessing import StandardScaler
+StS = StandardScaler()
+
+mode = 'distances'
+names = {'optimal': [None, 1, True], 'oversmoothed': [5, 1, False], 'robust': [None, 1, True], 'robust_oversmoothed': [10, 1, True],'high_decay': [None, 5, True], 'X_base': [None, 1, True], 'magic_like': [10, 1, True]}
+
+Sx = np.linalg.svd(StS.fit_transform(adata.X.A), compute_uv=False)
+sc.pp.pca(adata, n_comps=100)
+sc.pp.neighbors(adata, n_neighbors=100, n_pcs=100)
+
+SV = []
+SV.append(Sx)
+MSE = []
+MSE.append(np.var(adata.X.A))
+VAR = []
+VAR.append(np.var(adata.X.A))
+for n, v in names.items():
+
+    tmpadata = adata.copy()
+    if  n == "robust" or n == 'robust_oversmoothed':
+        sc.pp.neighbors(tmpadata, n_neighbors=10, n_pcs=13)
+
+    elif n == 'X_base':
+        sc.pp.neighbors(tmpadata, n_neighbors=100, use_rep='X')
+    elif n == 'magic_like':
+        sc.pp.neighbors(tmpadata, n_neighbors=15, n_pcs=100)
+
+    dewaksser = dewakss.DEWAKSS(tmpadata, init_diag=0, set_diag=0, iterations=10, run2best=v[2], decay=v[1], mode=mode)
+    dewaksser.fit(tmpadata, v[0])
+    tmpadata = dewaksser.transform(tmpadata)
+    tmpadata.layers['Ms'] = tmpadata.layers['Ms'].toarray() if sp.sparse.issparse(tmpadata.layers['Ms']) else tmpadata.layers['Ms']
+    # Ms = Ms.toarray() if sp.sparse.issparse(Ms) else Ms
+    Sx = np.linalg.svd(StS.fit_transform(tmpadata.layers['Ms']), compute_uv=False)
+
+    SV.append(Sx)
+
+    l = list(dewaksser.prediction_.values())
+    mse = min(list(map(list, zip(*l)))[0])
+    MSE.append(mse)
+    VAR.append(tmpadata.uns['variance'])
+
+singular_vals = pd.DataFrame(SV, index=['X'] + list(names.keys())).T
+MSE = pd.DataFrame(MSE, index=['X'] + list(names.keys())).T
+VAR = pd.DataFrame(VAR, index=['X'] + list(names.keys())).T
+
+MSEVAR = pd.concat([MSE, VAR]).T
+MSEVAR.columns = ['MSE', 'VAR']
+
+singular_vals.to_csv(os.path.join(datadir, 'DEWAKSS_paul2015_normalized_singular_vals.tsv.gz'), compression='gzip', sep='\t')
+MSEVAR.to_csv(os.path.join(datadir, 'DEWAKSS_paul2015_MSE_VAR.tsv.gz'), compression='gzip', sep='\t')
+#+end_src
+
+#+name: load-magic-singular-values
+#+begin_src ipython
+singular_vals = pd.read_csv(os.path.join(datadir.replace('simplify-dewakss', 'master'), 'DEWAKSS_paul2015_normalized_singular_vals.tsv.gz'), sep='\t', index_col=0)
+
+magic_singular_values = pd.read_csv(os.path.join('..', 'data', 'temporary', 'MAGIC', 'MAGIC_paul2015_normalized_singular_vals_V2.tsv.gz'), sep='\t', index_col=0)
+
+svuse = ['X',  'optimal',  'oversmoothed',  'robust', 'X_base']
+msvuse = ['MAGIC',  'MAGIC_t1',  'MAGIC_d30']
+
+singular_vals = singular_vals[svuse]
+magic_singular_values = magic_singular_values[msvuse]
+#+end_src
+
+#+name: calc-explained-variance-spectra
+#+begin_src ipython
+# deltaS_dewax = singular_vals/ singular_vals.sum()
+# deltaS_magic = magic_singular_values / magic_singular_values.sum()
+rank_thresholds = singular_vals.max() * singular_vals.shape[0] * np.finfo(singular_vals.values.dtype).eps
+singular_vals[singular_vals <= rank_thresholds[2]] = np.nan
+
+rank_thresholds = magic_singular_values.max() * magic_singular_values.shape[0] * np.finfo(magic_singular_values.values.dtype).eps
+magic_singular_values[magic_singular_values <= rank_thresholds[2]] = np.nan
+
+deltaS_dewax = singular_vals**2/ (singular_vals**2).sum()
+deltaS_magic = magic_singular_values**2 / (magic_singular_values**2).sum()
+#+end_src
+
+#+name: plot-explained-variance-spectra
+#+begin_src ipython :results output drawer replace
+doasave = True
+
+# style_label = ('seaborn-poster','ggplot')
+style_label = ('seaborn-poster','bmh')
+
+with plt.style.context(style_label):
+    fig = plt.figure(figsize=(15, 8), constrained_layout=True)
+    ax = fig.subplots(2, 2, sharex='col').flatten()
+
+    colormap = mpl.cm.tab20.colors
+
+    linelist = np.unique(deltaS_dewax.columns.tolist() + deltaS_magic.columns.tolist())
+
+    linelist = {l: colormap[i] for i, l in enumerate(linelist)}
+
+    nev_dewax = (deltaS_dewax.cumsum() < 0.99).sum()
+
+    nev_magic = (deltaS_magic.cumsum() < 0.99).sum()
+
+    nev = pd.concat([nev_dewax, nev_magic])
+
+    n = -1
+
+    for i in deltaS_dewax:
+        data = deltaS_dewax[i]
+        ax[0].semilogy(data[:n].values, label=i, c=linelist[i])
+
+    for i in deltaS_magic:
+        if i == 'raw':
+            continue
+
+        data = deltaS_magic[i]
+        ax[0].semilogy(data[:n].values, label=i, c=linelist[i])
+
+    for i in deltaS_dewax:
+        data = deltaS_dewax[i].cumsum()
+        ax[2].plot(data[:n].values, label=i, c=linelist[i])
+
+    for i in deltaS_magic:
+        if i == 'raw':
+            continue
+
+        data = deltaS_magic[i].cumsum()
+        ax[2].plot(data[:n].values, label=i, c=linelist[i])
+
+
+    n = 100
+    for i in deltaS_dewax:
+        data = deltaS_dewax[i]
+        ax[1].semilogy(data[:n].values, label=i, c=linelist[i])
+
+    for i in deltaS_magic:
+        if i == 'MAGIC_d1':
+            continue
+        if i == 'raw':
+            continue
+        data = deltaS_magic[i]
+        ax[1].semilogy(data[:n].values, label=i, c=linelist[i])
+
+    for i in deltaS_dewax:
+        if i == 'raw':
+            continue
+        data = deltaS_dewax[i].cumsum()
+        ax[3].plot(data[:n].values, label=f"{i}, {nev[i]}", c=linelist[i])
+
+    for i in deltaS_magic:
+        if i == 'raw':
+            continue
+        data = deltaS_magic[i].cumsum()
+        ax[3].plot(data[:n].values, label=f"{i}, {nev[i]}", c=linelist[i])
+
+    ax[0].set_ylabel('$\eta^2$', fontsize=24)
+    ax[2].set_xlabel('$\Sigma$', fontsize=24)
+
+    ax[1].set_ylabel('$\eta^2$', fontsize=24)
+    ax[3].set_xlabel('$\Sigma$', fontsize=24)
+
+    L = ax[3].legend(title='algorithm, n $\Sigma$s | cumsum($\eta^2$) < 0.99', loc='center left', bbox_to_anchor=(1, 0.5), fontsize=20)
+
+    L.get_title().set_fontsize(20)
+
+    ax[2].set_ylabel('cumsum($\eta^2$)', fontsize=24)
+    ax[3].set_ylabel('cumsum($\eta^2$)', fontsize=24)
+
+    # for x in ax:
+    #     x.grid()
+
+if doasave:
+    fdir = figdir
+    fname = f"paul2015_DEWAX_vs_MAGIC_explained_variance_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+
+#+end_src
+
+#+RESULTS: plot-explained-variance-spectra
+:results:
+[[file:../img/simplify-dewakss/Paul2015/paul2015_DEWAX_vs_MAGIC_explained_variance_figure.png]]
+:end:
+
+#+name: plot-bar-components-with-variance
+#+begin_src ipython :results output drawer replace
+doasave = True
+nev_dewax = (deltaS_dewax.cumsum() < 0.99).sum()
+nev_magic = (deltaS_magic.cumsum() < 0.99).sum()
+# del nev_magic['raw']
+nev = pd.DataFrame(pd.concat([nev_dewax, nev_magic]), columns=['components'])
+nev['EV'] = '0.99'
+nev = nev.drop(['X'])
+
+nc = deltaS_dewax.shape[0]
+
+nev_dewax = (deltaS_dewax.cumsum() < 0.9).sum()
+nev_magic = (deltaS_magic.cumsum() < 0.9).sum()
+# del nev_magic['raw']
+__ = pd.DataFrame(pd.concat([nev_dewax, nev_magic]), columns=['components'])
+__['EV'] = '0.9'
+__ = __.drop(['X'])
+
+nev = pd.concat([nev, __]).reset_index()
+
+nev['Denoise setting'] = nev['index'].str.replace('_', '\n')
+nev['log(components)'] = np.log10(nev['components']+1)
+nev[f'components of total ({nc})'] = nev['components']/nc
+nev['Algorithm config'] = nev['Denoise setting'] + '\n' + nev['components'].astype(str)
+
+
+style_label = ('seaborn-poster')
+
+with plt.style.context(style_label):
+
+    g = sns.catplot(x="Denoise setting", y=f"components of total ({nc})", hue="EV", data=nev,
+                    height=4, aspect=2.5, kind="bar", palette="muted", legend_out=False, hue_order=['0.99', '0.9'])
+    g.despine()
+    ax = g.fig.gca()
+    ax.grid(axis='y')
+
+    rects = ax.patches
+
+    # Make some labels.
+    labels = ["%d" % nev['components'].values[i] for i in range(len(rects))]
+
+    for rect, label in zip(rects, labels):
+        height = rect.get_height()
+        # print(height)
+        # ax.text(rect.get_x() + rect.get_width() / 2, height + 5, label, ha='center', va='bottom')
+        ax.text(rect.get_x() + rect.get_width() / 2.0, height, label, ha='center', va='bottom', fontsize=16)
+
+if doasave:
+    fdir = figdir
+    fname = f"paul2015_DEWAX_vs_MAGIC_EV_nComponents_"
+    fnames = scpl.save_figure(g.fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: plot-bar-components-with-variance
+:results:
+[[file:../img/simplify-dewakss/Paul2015/paul2015_DEWAX_vs_MAGIC_EV_nComponents_figure.png]]
+:end:
+
+#+name: plot-rank
+#+begin_src ipython :results output drawer replace
+doasave = True
+style_label = ('seaborn-poster')
+with plt.style.context(style_label):
+
+    nc = deltaS_dewax.shape[0]
+    dewax_rank = (~deltaS_dewax.isna()).sum()
+    magic_rank = (~deltaS_magic.isna()).sum()
+    # del magic_rank['raw']
+    ranks = pd.DataFrame(pd.concat([dewax_rank, magic_rank]), columns=['rank'])
+
+    colormap = mpl.cm.tab20.colors
+    linelist = np.unique(ranks.index)
+    linelist = {l: colormap[i] for i, l in enumerate(linelist)}
+
+    ranks['color'] = 1
+    ranks['color'] = ranks['color'].astype(object)
+    for k, v in linelist.items():
+
+        ranks.at[k, 'color'] = v
+
+    ranks = ranks.reset_index()
+    ranks.columns = ['algorithm', 'rank', 'color']
+    ranks['Denoise setting'] = ranks['algorithm'].str.replace('_', '\n')
+    ranks['log(rank)'] = np.log10(ranks['rank'])
+
+    g = sns.catplot(x='Denoise setting', y='log(rank)', data=ranks, height=4, aspect=2.5, kind="bar", palette=[sns.color_palette('muted')[0]], legend_out=False)
+    # g = sns.barplot(x='Denoise setting', y='log(rank)', data=ranks)
+
+    g.despine()
+    ax = g.fig.gca()
+    ax.grid(axis='y')
+
+if doasave:
+    fdir = figdir
+    fname = f"paul2015_DEWAX_vs_MAGIC_Rank_"
+    fnames = scpl.save_figure(g.fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: plot-rank
+:results:
+/home/at145/.virtualenvs/intel_default/lib/python3.6/site-packages/matplotlib/__init__.py:886: MatplotlibDeprecationWarning:
+examples.directory is deprecated; in the future, examples will be found relative to the 'datapath' directory.
+  "found relative to the 'datapath' directory.".format(key))
+[[file:../img/simplify-dewakss/Paul2015/paul2015_DEWAX_vs_MAGIC_Rank_figure.png]]
+:end:
+
+#+name: calc-condition-number-spectra
+#+begin_src ipython
+deltaS_dewax = singular_vals.loc[0]/ singular_vals / singular_vals.shape[0]
+deltaS_magic = magic_singular_values.loc[0] / magic_singular_values / magic_singular_values.shape[0]
+
+N = 100
+S = []
+for i in range(0, N):
+    Sx = np.linalg.svd(np.random.randn(deltaS_dewax.shape[0], deltaS_dewax.shape[0]), compute_uv=False)
+    # K.append([np.linalg.cond(np.random.randn(n, n)) for n in sizes])
+    S.append(Sx)
+
+S = np.array(S)
+SR = (S[:,0].T / S.T / deltaS_dewax.shape[0]).mean(1)
+# plt.plot(S.mean(1))
+
+N = 100
+sizes = np.round(np.exp(np.arange(2,9,0.5))).astype(int)
+sizes[sizes > deltaS_dewax.shape[0]] = deltaS_dewax.shape[0]
+sizes = np.unique(sizes)
+k = np.zeros(sizes.shape)
+K = []
+for i in range(0, N):
+    K.append([np.linalg.cond(np.random.randn(n, n)) for n in sizes])
+
+K = np.array(K)
+#+end_src
+
+#+name: plot-condition-number-spectra
+#+begin_src ipython :results output drawer replace
+doasave = False
+fig = plt.figure(figsize=(12,5), constrained_layout=True)
+ax = fig.subplots(1, 2, sharex='col').flatten()
+
+colormap = mpl.cm.tab20.colors
+
+linelist = np.unique(deltaS_dewax.columns.tolist() + deltaS_magic.columns.tolist())
+
+linelist = {l: colormap[i] for i, l in enumerate(linelist)}
+
+nev_dewax = (deltaS_dewax < 1).sum()
+
+nev_magic = (deltaS_magic < 1).sum()
+
+nev = pd.concat([nev_dewax, nev_magic])
+
+n = -1
+
+for i in deltaS_dewax:
+    data = deltaS_dewax[i]
+    # ax[0].semilogy(data[:n].values, label=i, c=linelist[i])
+    ax[0].semilogy(data[:n].values, label=f"{i}, {nev[i]}", c=linelist[i])
+
+
+for i in deltaS_magic:
+    if i == 'raw':
+        continue
+
+    data = deltaS_magic[i]
+    # ax[0].semilogy(data[:n].values, label=i, c=linelist[i])
+    ax[0].semilogy(data[:n].values, label=f"{i}, {nev[i]}", c=linelist[i])
+
+# ax[0].semilogy(SR, label='random, @size($\Sigma$)', c='r', linestyle='--', linewidth=0.5)
+# ax[0].semilogy(sizes, (K/sizes).T.mean(1), label='random, @size(N)', c='k', linestyle='--', linewidth=0.5)
+
+n = 100
+for i in deltaS_dewax:
+    data = deltaS_dewax[i]
+    ax[1].semilogy(data[:n].values, label=i, c=linelist[i])
+
+for i in deltaS_magic:
+    if i == 'raw':
+        continue
+    data = deltaS_magic[i]
+    ax[1].semilogy(data[:n].values, label=i, c=linelist[i])
+
+# ax[1].semilogy(SR[:n], c='r', linestyle='--', linewidth=0.5)
+# ax[1].semilogy(sizes[sizes < n], (K/sizes).T.mean(1)[sizes < n], c='k', linestyle='--', linewidth=0.5)
+
+ax[0].set_ylabel('$|\kappa_i|/N$')
+ax[0].set_xlabel('$\Sigma$')
+
+ax[1].set_ylabel('$|\kappa_i|/N$')
+ax[1].set_xlabel('$\Sigma$')
+
+ax[0].legend(title="algorithm, n $\kappa_i$'s | $|\kappa_i/N$ < 1")
+
+for x in ax:
+    x.grid()
+
+if doasave:
+    fdir = figdir
+    fname = f"paul2015_DEWAX_vs_MAGIC_condition_number_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="")
+    print("")
+#+end_src
+
+#+RESULTS: plot-condition-number-spectra
+:results:
+[[file:../img/master/Paul2015/paul2015_DEWAX_vs_MAGIC_condition_number_figure.png]]
+:end:
+
+#+name: plot-kappa-bar
+#+begin_src ipython :results output drawer replace
+nev_dewax = (deltaS_dewax < 1).sum()
+nev_magic = (deltaS_magic < 1).sum()
+del nev_magic['raw']
+
+# nev = pd.concat([nev_dewax, nev_magic])
+
+nev = pd.DataFrame(pd.concat([nev_dewax, nev_magic]), columns=['Condition number'])
+
+colormap = mpl.cm.tab20.colors
+linelist = np.unique(nev.index)
+linelist = {l: colormap[i] for i, l in enumerate(linelist)}
+
+nev['color'] = 1
+nev['color'] = nev['color'].astype(object)
+for k, v in linelist.items():
+
+    nev.at[k, 'color'] = v
+
+nev = nev.reset_index()
+nev.columns = ['algorithm', 'Components', 'color']
+nev['Denoise setting'] = nev['algorithm'].str.replace('_', '\n')
+nev['log(Components)'] = np.log10(nev['Components'])
+
+g = sns.catplot(x='Denoise setting', y='Components', data=nev, height=4, aspect=2.5, kind="bar", palette=[sns.color_palette('muted')[0]], legend_out=False)
+# nev['color'].tolist()
+
+g.despine()
+ax = g.fig.gca()
+ax.grid(axis='y')
+ax.set_ylabel('Components($|\kappa_i|/N$)')
+
+fdir = figdir
+fname = f"paul2015_DEWAX_vs_MAGIC_normalized_kappa_"
+fnames = scpl.save_figure(g.fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-kappa-bar
+:results:
+[[file:../img/master/Paul2015/paul2015_DEWAX_vs_MAGIC_normalized_kappa_figure.png]]
+:end:
+
+** Visualize fig
+
+#+begin_src ipython
+subadata = sc.pp.subsample(tmpadata, n_obs=40, random_state=42, copy=True)
+sc.pp.neighbors(subadata, use_rep='X', n_neighbors=3)
+sc.pp.pca(subadata)
+sc.tl.umap(subadata)
+sc.pl.scatter(subadata, basis='pca', size=200, edges=True, color='#0078D7', components='1,2')
+#+end_src
+
+
+** Convert figures to pdf
+
+#+name: convert-figures
+#+begin_src sh :shebang "#!/bin/bash -l" :tangle ../convert_files.sh
+
+FEND='.svg'
+for f in $(ls $1/*.svg);
+do
+    FFILE=`basename $f`
+    FNAME=`basename $FFILE $FEND`
+
+    # echo $FFILE
+    echo "Working on:"
+    echo $FNAME
+    inkscape -D -z --file=$f --export-pdf=figures/$FNAME.pdf
+done
+#+end_src

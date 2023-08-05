@@ -1,0 +1,320 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session dewakss :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session dewakss
+#+PROPERTY: header-args:R :shebang "#!/usr/bin/env R" :session dewakss
+#
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+#+title: DEWAKSS on TVC 6-14 HPF cells
+
+
+* Introduction
+
+
+* Analysis pipeline
+
+** Analysis setup
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+gitbranch = os.path.join(gitbranch, 'TVC514')
+import scanpy.api as sc
+import scprocessing.plotting.anndata as scpl
+from tabulate import tabulate
+figdir = os.path.join("..", "img", gitbranch, 'TVC')
+datadir = os.path.join("..", "data", gitbranch)
+sc.settings.figdir = figdir
+sc.settings.file_format_figs = "svg"
+
+import scprocessing.pipeline as scpipe
+import scprocessing.preprocessing as scpp
+import scprocessing.preprocessing.Svensson2019 as Svensson2019
+import scprocessing.plotting.anndata as scpl
+import dewakss.decomposition as dede
+import dewakss.denoise as dewakss
+#+end_src
+
+** Load data
+
+The data here are the selected cells specific to the TVC trajectory.
+#+name: load-data
+#+begin_src ipython
+adata = sc.read(os.path.join(datadir, "adata_TVC_pseudotime_annotated.h5ad"))
+adata = adata[adata.obs['dpt_order_indices'].sort_values().index, :].copy()
+del adata.uns['leiden_colors']
+hpf_colors = adata.uns['hpf_colors']
+#+end_src
+
+This results in src_ipython[:exports results :results replace output]{print(", ".join([str(i) for i in adata.shape]))} {{{results(=702\, 4944=)}}} cells and genes respectively.
+
+** Run default DEWAKSS
+
+Here I recompute the most informative first principle components for downstream analysis.
+#+name: find-optimal-pcs
+#+begin_src ipython
+from sklearn.decomposition import TruncatedSVD
+
+DeTSVD = dede.decomposition_wrapper(TruncatedSVD)
+rescaler = {sc.pp.normalize_per_cell: {"copy": True}, dede.ftt: {'copy': True}}
+dpca = DeTSVD(strategy='binomial', rescaler=rescaler, n_components=50, subsample=None, test_size=None)
+dpca.fit(adata.layers['counts'].copy())
+#+end_src
+After running noise2self on the count matrix split we get src_ipython[:exports results :results replace output]{print(f"{dpca.optimal_}")} {{{results(=11=)}}} components.
+
+To utilize dewakss we need to find the neighbourhood graph. Here I use the =scanpy= implementation of the UMAP algorithm for finding the kNN-G.
+#+name: calculate-neighbours-umap
+#+begin_src ipython
+del adata.obsm['X_diffmap']
+sc.pp.pca(adata, random_state=42)
+sc.pp.neighbors(adata, n_neighbors=10,  n_pcs=dpca.optimal_, random_state=42)
+#+end_src
+Here I make a few choices. I pick \(k=10\) nearest neighbors. The first argument will also affect the projection and change the structure of the graph. However we will test the consequences of this later.
+
+Lets look at the pca projection on the first two components. This will give us a sense of the data in absence of any non-linear transformation.
+#+name: plot-pca-projection
+#+begin_src ipython :results output drawer replace
+representation = 'pca'
+colors = ['hpf', 'tvc_clusters']
+for color in colors:
+    fig, ax, __ = scpl.visualize_cell_scatter(adata, [color], representations={representation}, figsize=(4,4), order='F', legend_loc='on data')
+
+    fdir = os.path.join(figdir, 'projection')
+    fname = f"TVC514_TVC_{representation}_{color}_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="\n")
+#+end_src
+
+I color the projection with the annotade time points. and there is a clear path going from 6-14 hpf with unknown marked with -1.
+#+RESULTS: plot-pca-projection
+:results:
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_pca_hpf_figure.png]]
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_pca_tvc_clusters_figure.png]]
+:end:
+
+To get an idea of the data structure and the kNN-G plot the umap projection with edges overlayed.
+#+name: plot-umap-projection
+#+begin_src ipython :results output drawer replace
+representation = 'umap'
+colors = ['hpf', 'tvc_clusters']
+for color in colors:
+    fig, ax, __ = scpl.visualize_cell_scatter(adata, [color], representations={representation}, figsize=(4,6), order='F', legend_loc='on data', scatterargs={'edges': True})
+
+    fdir = os.path.join(figdir, 'projection')
+    fname = f"TVC514_TVC_{representation}_{color}_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="\n")
+#+end_src
+
+It is clear that the outlier cells connect the beginning and end of the trajectory through the kNN-G.
+#+RESULTS: plot-umap-projection
+:results:
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_umap_hpf_figure.png]]
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_umap_tvc_clusters_figure.png]]
+:end:
+
+Now we can apply dewakss on the data with the kNN-G provided
+#+name: apply-dewakss
+#+begin_src ipython
+denoiseer = dewakss.DEWAKSS(adata)
+denoiseer.fit(adata)
+adata_dn = denoiseer.transform(adata, copy=True)
+adata_dn.X = adata_dn.layers['Ms'].toarray() if sp.sparse.issparse(adata_dn.layers['Ms']) else adata_dn.layers['Ms']
+#+end_src
+
+By default denoiseer runs until optimal performance has been found but the number of iterations can be set to a fixed value if needed. If a =AnnData= object is provided the nessessary information will be fetch from it and when run will be added to it.
+Running dewakss determines the optimal neighbour distance as src_ipython[:exports results :results replace output]{print(f"{denoiseer.opt_iterations}")} {{{results(=3=)}}} iterations.
+
+To keep all info lets reshuffle our datastructure a little
+#+name: compute-pca-on-dewakssed
+#+begin_src ipython
+sc.pp.pca(adata_dn)
+#+end_src
+
+#+name: plot-dewakssed-pca-projection
+#+begin_src ipython :results output drawer replace
+representation = 'pca'
+colors = ['hpf', 'tvc_clusters']
+for color in colors:
+    fig, ax, __ = scpl.visualize_cell_scatter(adata_dn, [color], representations={representation}, figsize=(4,4), order='F', legend_loc='on data')
+
+    fdir = os.path.join(figdir, 'projection')
+    fname = f"TVC514_TVC_dewakssed_{representation}_{color}_"
+    fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+    print_file = "[[file:" + fnames[0] + "]]"
+    print(print_file, sep=",", end="\n")
+#+end_src
+
+#+RESULTS: plot-dewakssed-pca-projection
+:results:
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_dewakssed_pca_hpf_figure.png]]
+[[file:../img/master/TVC514/TVC/projection/TVC514_TVC_dewakssed_pca_tvc_clusters_figure.png]]
+:end:
+
+Now we can look at before and after mean vs variance distributions.
+#+name: nb-stats
+#+begin_src ipython :results output drawer replace
+adata = Svensson2019.add_statistics(adata, use_layer='X', copy=True)
+# fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=adata.uns['phi_hat'], logrange=(-1,1.5))
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata.var[['mean_', 'var_', 'frac_zero']], phi_vec=[], logrange=(-1,1.5))
+
+fdir = figdir
+fname = f"NB_statistics_transformed_counts_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+
+adata_dn = Svensson2019.add_statistics(adata_dn, use_layer='Ms', copy=True)
+fig, ax = Svensson2019.stats_vs_mean(scatter_data = adata_dn.var[['mean_', 'var_', 'frac_zero']], phi_vec=[], logrange=(-3,2))
+
+fdir = figdir
+fname = f"NB_statistics_denoised_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: nb-stats
+:results:
+[[file:../img/master/TVC514/TVC/NB_statistics_transformed_counts_figure.png]]
+[[file:../img/master/TVC514/TVC/NB_statistics_denoised_figure.png]]
+:end:
+
+#+name: plot-dn-vs-transformed
+#+begin_src ipython :results output drawer replace
+figsize = (8, 4)
+fig = plt.figure(None, figsize=figsize, constrained_layout=True)
+ax = fig.subplots(1, 2)
+
+cm = adata.copy()
+cm.X = adata.layers['counts']
+sc.pp.highly_variable_genes(cm, n_top_genes=100)
+hv = cm.var['highly_variable'].values
+
+ax[0].loglog(adata.var['var_'].values[~hv], adata_dn.var['var_'].values[~hv], 'gray', linestyle='', marker='.', markersize=4)
+ax[0].loglog(adata.var['var_'].values[hv], adata_dn.var['var_'].values[hv], linestyle='', marker='o', label='100 top variable')
+ax[0].loglog([0, max(ax[0].get_xlim()[1], ax[0].get_ylim()[1])], [0, max(ax[0].get_xlim()[1], ax[0].get_ylim()[1])], 'k', linestyle='--', label='Identity')
+
+ax[0].grid()
+ax[0].set_xlabel('Variance')
+ax[0].set_ylabel('Denoised Variance')
+ax[0].legend()
+
+lrg = stats.linregress(np.log10(adata.var['mean_'].values), np.log10(adata_dn.var['mean_'].values))
+
+ax[1].loglog(adata.var['mean_'].values[~hv], adata_dn.var['mean_'].values[~hv], 'gray', linestyle='', marker='.', markersize=4)
+ax[1].loglog(adata.var['mean_'].values[hv], adata_dn.var['mean_'].values[hv], linestyle='', marker='o', label='100 top variable')
+x = np.array([0.1, max(ax[1].get_xlim()[1], ax[1].get_ylim()[1])])
+y = lrg.intercept + lrg.slope*x
+ax[1].loglog(x, y, 'k', linestyle='--', label=rf'$\beta$ = {lrg.slope:.3g}', zorder=-10)
+
+ax[1].grid()
+ax[1].legend(title=f'R = {lrg.rvalue:.3e}\nstderr = {lrg.stderr:.3e}')
+# ax[1].legend()
+xl = ax[1].set_xlabel('Mean')
+yl = ax[1].set_ylabel('Denoised Mean')
+
+fdir = figdir
+fname = f"statistics_transformed_vs_denoised_"
+fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+print_file = "[[file:" + fnames[0] + "]]"
+print(print_file, sep=",", end="")
+print("")
+#+end_src
+
+#+RESULTS: plot-dn-vs-transformed
+:results:
+[[file:../img/master/TVC514/TVC/statistics_transformed_vs_denoised_figure.png]]
+:end:
+
+** TODO revealed-co-expression
+
+#+name: revealed-co-expression
+#+begin_src ipython
+fix, ax = scpl.versus(adata, 'DDRGK1', 'FOXF1/2', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'DDRGK1', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+fix, ax = scpl.versus(adata, 'DDR/1/2', 'FOXF1/2', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'CDC25A', 'WEE/1', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'CDC25A', 'WEE/1', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'MYCN', 'WEE/1', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'E2F/1/2/3', 'CCND1/2/3', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'E2F/1/2/3', 'CCND1/2/3', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+
+fix, ax = scpl.versus(adata_dn, 'GATA4/5/6', 'DDR/1/2', layer='Ms', color='#3778bf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+fix, ax = scpl.versus(adata, 'GATA4/5/6', 'DDR/1/2', layer='Ms', color='#3778bf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'FOXF1/2', 'GATA4/5/6', layer='Ms', color='#3778bf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+fix, ax = scpl.versus(adata, 'FOXF1/2', 'GATA4/5/6', layer='Ms', color='#3778bf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+# "HES1/4/5","NOTCH1/4","FZD5/8","VANGL1/2"
+# "KH2013:KH.C4.697_ALD4/5/6"
+
+fix, ax = scpl.versus(adata_dn, 'KH2013:KH.C4.697_ALD4/5/6', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'KH2013:KH.C4.697_ALD4/5/6', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+fix, ax = scpl.versus(adata_dn, 'KH2013:KH.C4.697_ALD4/5/6', 'VANGL1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'KH2013:KH.C4.697_ALD4/5/6', 'VANGL1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+
+fix, ax = scpl.versus(adata_dn, 'NOTCH1/4', 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'NOTCH1/4', 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'FZD5/8', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'FZD5/8', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+fix, ax = scpl.versus(adata_dn, 'CDC25A', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'CDC25A', 'FOXF1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'CDC25A', 'CCND1/2/3', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'CDC25A', 'CCND1/2/3', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata_dn, 'COL13A1', 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+fix, ax = scpl.versus(adata, 'COL13A1', 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+
+
+for g in adata.var_names[[i.startswith('FOX') for i in adata.var_names]].values:
+    fix, ax = scpl.versus(adata_dn, g, 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+    fix, ax = scpl.versus(adata, g, 'DDR/1/2', layer='Ms', color='hpf', x0=False, lfit=True, figsize=(5, 4), grid='both', markerscale=2)
+#+end_src
+
+
+** Evaluate parameter robustness DEWAKSS
+

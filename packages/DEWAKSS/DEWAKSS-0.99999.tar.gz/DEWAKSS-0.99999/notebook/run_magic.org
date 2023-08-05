@@ -1,0 +1,418 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session MAGIC :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session MAGIC
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+#+title: MAGIC matrix svd rank calculations
+
+
+* Run MAGIC
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+gitbranch = os.path.join(gitbranch, 'MAGIC')
+
+figdir = os.path.join("..", "img", gitbranch)
+datadir = os.path.join("..", "data", gitbranch)
+#+end_src
+
+** on cite:Paul2015
+
+#+name: import-magic
+#+begin_src ipython
+import os
+import numpy as np
+import pandas as pd
+import magic
+import scprep
+datadir = "../data/temporary/MAGIC"
+#+end_src
+
+#+name: preprocess-paul2015
+#+begin_src ipython
+bmmsc_data = scprep.io.load_csv('https://github.com/KrishnaswamyLab/PHATE/raw/master/data/BMMC_myeloid.csv.gz')
+bmmsc_data = scprep.filter.filter_library_size(bmmsc_data, cutoff=1000)
+bmmsc_data = scprep.filter.filter_rare_genes(bmmsc_data, min_cells=10)
+bmmsc_data = scprep.normalize.library_size_normalize(bmmsc_data)
+bmmsc_data = scprep.transform.sqrt(bmmsc_data)
+#+end_src
+
+#+name: run-magic-tuned-paul2015
+#+begin_src ipython :results output drawer replace
+magic_op = magic.MAGIC()
+bmmsc_magic = magic_op.fit_transform(bmmsc_data, genes=None)
+
+# magic_op = magic.MAGIC(t=1)
+magic_op = magic_op.set_params(t=1)
+bmmsc_magic_t1 = magic_op.transform()
+
+# magic_op = magic.MAGIC(decay=1)
+magic_op = magic_op.set_params(decay=1, t='auto')
+bmmsc_magic_d1 = magic_op.transform()
+
+# magic_op = magic.MAGIC(decay=30)
+magic_op.set_params(decay=30)
+bmmsc_magic_d30 = magic_op.transform()
+
+# magic_op = magic.MAGIC(decay=15, knn=100, n_pca=50)
+magic_op = magic_op.set_params(decay=15, knn=100, n_pca=50)
+bmmsc_magic_dewakss = magic_op.transform()
+
+magic_op = magic_op.set_params(decay=15, knn=5, n_pca=100)
+bmmsc_magic_lowknn = magic_op.transform()
+#+end_src
+
+#+RESULTS: run-magic-tuned-paul2015
+:results:
+Calculating MAGIC...
+  Running MAGIC on 2416 cells and 10782 genes.
+  Calculating graph and diffusion operator...
+    Calculating PCA...
+    Calculated PCA in 1.14 seconds.
+    Calculating KNN search...
+    Calculated KNN search in 0.66 seconds.
+    Calculating affinities...
+    Calculated affinities in 0.38 seconds.
+  Calculated graph and diffusion operator in 2.26 seconds.
+  Calculating imputation...
+    Automatically selected t = 10
+  Calculated imputation in 0.79 seconds.
+Calculated MAGIC in 3.57 seconds.
+Calculating imputation...
+Calculated imputation in 0.03 seconds.
+Running MAGIC on 2416 cells and 10782 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 1.17 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 0.65 seconds.
+  Calculating affinities...
+  Calculated affinities in 1.28 seconds.
+Calculated graph and diffusion operator in 3.32 seconds.
+Calculating imputation...
+  Automatically selected t = 5
+Calculated imputation in 1.39 seconds.
+Running MAGIC on 2416 cells and 10782 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 1.16 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 0.67 seconds.
+  Calculating affinities...
+  Calculated affinities in 0.04 seconds.
+Calculated graph and diffusion operator in 1.95 seconds.
+Calculating imputation...
+  Automatically selected t = 10
+Calculated imputation in 0.29 seconds.
+Running MAGIC on 2416 cells and 10782 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 0.82 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 0.76 seconds.
+  Calculating affinities...
+  Calculated affinities in 0.34 seconds.
+Calculated graph and diffusion operator in 2.02 seconds.
+Calculating imputation...
+  Automatically selected t = 10
+Calculated imputation in 0.73 seconds.
+Running MAGIC on 2416 cells and 10782 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 1.19 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 0.64 seconds.
+  Calculating affinities...
+  Calculated affinities in 0.46 seconds.
+Calculated graph and diffusion operator in 2.38 seconds.
+Calculating imputation...
+  Automatically selected t = 10
+Calculated imputation in 0.61 seconds.
+:end:
+
+#+name: print-r2-paul2015
+#+begin_src ipython :results output drawer replace
+from sklearn.metrics import r2_score
+
+print(r2_score(bmmsc_data, bmmsc_magic))
+print(r2_score(bmmsc_data, bmmsc_magic_t1))
+print(r2_score(bmmsc_data, bmmsc_magic_d1))
+print(r2_score(bmmsc_data, bmmsc_magic_d30))
+print(r2_score(bmmsc_data, bmmsc_magic_dewakss))
+print(r2_score(bmmsc_data, bmmsc_magic_lowknn))
+
+#+end_src
+
+#+RESULTS: print-r2-paul2015
+:results:
+0.029948999556204746
+0.07278897297353606
+-5.539264669247102e-05
+0.03531967047207982
+0.025179781279267354
+0.033375913556688876
+:end:
+
+#+name: save-singular-values
+#+begin_src ipython
+from sklearn.preprocessing import StandardScaler
+
+StS = StandardScaler()
+# S = np.linalg.svd(bmmsc_data.values, compute_uv=False)
+# Sm = np.linalg.svd(bmmsc_magic.values, compute_uv=False)
+# Smt1 = np.linalg.svd(bmmsc_magic_t1.values, compute_uv=False)
+# Smt4 = np.linalg.svd(bmmsc_magic_t4.values, compute_uv=False)
+# Smd1 = np.linalg.svd(bmmsc_magic_d1.values, compute_uv=False)
+
+S = np.linalg.svd(StS.fit_transform(bmmsc_data.values), compute_uv=False)
+Sm = np.linalg.svd(StS.fit_transform(bmmsc_magic.values), compute_uv=False)
+Smt1 = np.linalg.svd(StS.fit_transform(bmmsc_magic_t1.values), compute_uv=False)
+Smt4 = np.linalg.svd(StS.fit_transform(bmmsc_magic_d30.values), compute_uv=False)
+Smd1 = np.linalg.svd(StS.fit_transform(bmmsc_magic_d1.values), compute_uv=False)
+Smdw = np.linalg.svd(StS.fit_transform(bmmsc_magic_dewakss.values), compute_uv=False)
+
+singular_vals = pd.DataFrame([S, Sm, Smt1, Smt4, Smd1, Smdw], index=['raw', 'MAGIC', 'MAGIC_t1', 'MAGIC_d30', 'MAGIC_d1', 'MAGIC_dewakss']).T
+
+singular_vals.to_csv(os.path.join(datadir, 'MAGIC_paul2015_normalized_singular_vals_V2.tsv.gz'), compression='gzip', sep='\t')
+#+end_src
+
+#+name: illustrative-plot
+#+begin_src ipython
+fig, (ax1, ax2) = plt.subplots(1,2, figsize=(16, 6))
+
+scprep.plot.scatter(x=bmmsc_data['Mpo'], y=bmmsc_data['Klf1'], c=bmmsc_data['Ifitm1'],  ax=ax1,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='Before MAGIC')
+
+scprep.plot.scatter(x=bmmsc_magic['Mpo'], y=bmmsc_magic['Klf1'], c=bmmsc_magic['Ifitm1'], ax=ax2,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='After MAGIC')
+
+plt.tight_layout()
+#+end_src
+
+#+name: singular-value-spectral-plot
+#+begin_src ipython
+sr = [S[0]/ i for i in S]
+smr = [Sm[0]/ i for i in Sm]
+smt4r = [Smt4[0]/ i for i in Smt4]
+
+n = 200
+plt.semilogy(sr[:n])
+plt.semilogy(smr[:n])
+plt.semilogy(smt4r[:n])
+
+plt.plot(sr[:n])
+plt.plot(smr[:n])
+plt.plot(smt4r[:n])
+#+end_src
+
+
+** on EMT
+
+#+name: import-magic
+#+begin_src ipython
+import os
+import numpy as np
+import pandas as pd
+import magic
+import scprep
+datadir = "../data/temporary/MAGIC"
+#+end_src
+
+No data transformation for this dataset. 
+#+name: preprocess-EMT
+#+begin_src ipython
+emt_data = scprep.io.load_tsv("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE114397&format=file&file=GSE114397_HMLE_TGFb.tsv.gz")
+# emt_data = scprep.filter.filter_library_size(emt_data, cutoff=1500)
+emt_data = scprep.normalize.library_size_normalize(emt_data)
+emt_data = scprep.transform.sqrt(emt_data)
+#+end_src
+
+#+name: run-magic
+#+begin_src ipython
+magic_op = magic.MAGIC()
+emt_magic = magic_op.fit_transform(emt_data, genes=None)
+
+magic_op.set_params(knn=15)
+emt_magic_knn15 = magic_op.transform()
+
+magic_op.set_params(knn=100, n_pca=1000)
+emt_magic_knn100_pcs1000 = magic_op.transform()
+
+magic_op.set_params(knn=100, n_pca=100)
+emt_magic_dewakss = magic_op.transform()
+
+magic_op.set_params(knn=15, n_pca=100, t=1)
+emt_magic_t1 = magic_op.transform()
+
+magic_op.set_params(knn=15, n_pca=100, t=7)
+emt_magic_t7 = magic_op.transform()
+#+end_src
+
+#+name: copy-pasted-results
+#+begin_results
+Calculating MAGIC...
+  Running MAGIC on 7523 cells and 28910 genes.
+  Calculating graph and diffusion operator...
+    Calculating PCA...
+    Calculated PCA in 9.15 seconds.
+    Calculating KNN search...
+    Calculated KNN search in 5.44 seconds.
+    Calculating affinities...
+    Calculated affinities in 8.78 seconds.
+  Calculated graph and diffusion operator in 24.10 seconds.
+  Calculating imputation...
+    Automatically selected t = 11
+  Calculated imputation in 3.55 seconds.
+Calculated MAGIC in 32.11 seconds.
+Running MAGIC on 7523 cells and 28910 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 9.29 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 5.74 seconds.
+  Calculating affinities...
+  Calculated affinities in 10.21 seconds.
+Calculated graph and diffusion operator in 26.02 seconds.
+Calculating imputation...
+  Automatically selected t = 11
+Calculated imputation in 4.18 seconds.
+Running MAGIC on 7523 cells and 28910 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 33.76 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 59.38 seconds.
+  Calculating affinities...
+  Calculated affinities in 64.22 seconds.
+Calculated graph and diffusion operator in 160.18 seconds.
+Calculating imputation...
+  Automatically selected t = 15
+Calculated imputation in 399.02 seconds.
+Running MAGIC on 7523 cells and 28910 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 9.72 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 8.15 seconds.
+  Calculating affinities...
+  Calculated affinities in 4.53 seconds.
+Calculated graph and diffusion operator in 23.72 seconds.
+Calculating imputation...
+  Automatically selected t = 10
+Calculated imputation in 8.46 seconds.
+Running MAGIC on 7523 cells and 28910 genes.
+Calculating graph and diffusion operator...
+  Calculating PCA...
+  Calculated PCA in 9.49 seconds.
+  Calculating KNN search...
+  Calculated KNN search in 5.62 seconds.
+  Calculating affinities...
+  Calculated affinities in 9.81 seconds.
+Calculated graph and diffusion operator in 25.72 seconds.
+Calculating imputation...
+Calculated imputation in 0.34 seconds.
+#+end_results
+
+#+name: print-r2
+#+begin_src ipython :results output drawer replace
+from sklearn.metrics import r2_score
+
+print(r2_score(emt_data, emt_magic))
+print(r2_score(emt_data, emt_magic_knn15))
+print(r2_score(emt_data, emt_magic_knn100_pcs1000))
+print(r2_score(emt_data, emt_magic_dewakss))
+print(r2_score(emt_data, emt_magic_t1))
+print(r2_score(emt_data, emt_magic_t7))
+#+end_src
+
+#+RESULTS: print-r2
+:results:
+0.00403996689360455
+0.003753603503695439
+-0.00030902896965062426
+0.0017572540064614871
+0.01591901512236444
+0.0049518236090201435
+:end:
+
+#+name: save-singular-values
+#+begin_src ipython
+from sklearn.preprocessing import StandardScaler
+
+StS = StandardScaler()
+
+S = np.linalg.svd(StS.fit_transform(emt_data.values), compute_uv=False)
+Sm = np.linalg.svd(StS.fit_transform(emt_magic.values), compute_uv=False)
+Smknn15 = np.linalg.svd(StS.fit_transform(emt_magic_knn15.values), compute_uv=False)
+Smknn1001000 = np.linalg.svd(StS.fit_transform(emt_magic_knn100_pcs1000.values), compute_uv=False)
+Smknn_dwks = np.linalg.svd(StS.fit_transform(emt_magic_dewakss.values), compute_uv=False)
+Smknn15_t1 = np.linalg.svd(StS.fit_transform(emt_magic_t1.values), compute_uv=False)
+Smknn15_t7 = np.linalg.svd(StS.fit_transform(emt_magic_t7.values), compute_uv=False)
+
+singular_vals = pd.DataFrame([S, Sm, Smknn15, Smknn1001000, Smknn_dwks, Smknn15_t1, Smknn15_t7], index=['raw', 'MAGIC', 'MAGIC_knn15', 'MAGIC_knn100_pcs1000', 'MAGIC_dewakss', 'MAGIC_t1', 'MAGIC_t7']).T
+
+singular_vals.to_csv(os.path.join(datadir, 'MAGIC_EMT_normalized_singular_vals_V2.tsv.gz'), compression='gzip', sep='\t')
+#+end_src
+
+#+name: illustrative-plot
+#+begin_src ipython
+genes=['VIM', 'CDH1', 'ZEB1']
+fig, (ax1, ax2) = plt.subplots(1,2, figsize=(16, 6))
+
+scprep.plot.scatter(x=emt_data[genes[0]], y=emt_data[genes[1]], c=emt_data[genes[2]],  ax=ax1,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='Before MAGIC')
+
+scprep.plot.scatter(x=emt_magic_t7[genes[0]], y=emt_magic_t7[genes[1]], c=emt_magic_t7[genes[2]], ax=ax2,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='After MAGIC')
+
+plt.tight_layout()
+#+end_src
+
+#+name: illustrative-plot-2
+#+begin_src ipython
+genes=['VIM', 'CDH1', 'ZEB1']
+fig, (ax1, ax2) = plt.subplots(1,2, figsize=(16, 6))
+
+scprep.plot.scatter(x=emt_data[genes[0]], y=emt_data[genes[1]], c=emt_data[genes[2]],  ax=ax1,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='Before MAGIC')
+
+scprep.plot.scatter(x=emt_magic_t1[genes[0]], y=emt_magic_t1.mean(1), c=emt_magic_t1[genes[2]], ax=ax2,
+                    xlabel='Mpo', ylabel='Klf1', legend_title="Ifitm1", title='After MAGIC')
+
+plt.tight_layout()
+#+end_src
+
+#+name: singular-value-spectral-plot
+#+begin_src ipython
+sr = [S[0]/ i for i in S]
+smr = [Sm[0]/ i for i in Sm]
+smrknn15 = [Smknn15[0]/ i for i in Smknn15]
+
+n = 400
+plt.semilogy(sr[:n])
+plt.semilogy(smr[:n])
+plt.semilogy(smrknn15[:n])
+
+# sr = [i/S.sum() for i in S]
+# smr = [i/Sm.sum() for i in Sm]
+# smrknn15 = [i/Smknn15.sum() for i in Smknn15]
+
+# plt.plot(sr[:n])
+# plt.plot(smr[:n])
+# plt.plot(smrknn15[:n])
+#+end_src
+

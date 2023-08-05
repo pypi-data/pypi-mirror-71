@@ -1,0 +1,424 @@
+#+OPTIONS: toc:nil tex:t H:6 date:t author:nil tags:nil num:nil
+#+OPTIONS: html5-fancy:t
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+STARTUP: hideblocks
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport deprecated
+#+PROPERTY: header-args :session plot_preprocessed :results silent :exports both :eval never-export :comments link
+#+PROPERTY: header-args:ipython :shebang "#!/usr/bin/env python" :session plot_preprocessed
+#+PROPERTY: header-args:R :shebang "#!/usr/bin/env R" :session plot_preprocessed
+#
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage[nomarkers,figuresonly]{endfloat}
+
+
+* Introduction
+
+cite:Tian2019
+
+* Analysis pipeline
+
+** Analysis setup
+
+Initialize a reasonable python session.
+#+name: initiate-sc-session
+#+begin_src ipython :exports code :results silent :noweb yes
+%matplotlib tk
+%load_ext autoreload
+%autoreload 2
+<<initialize-ob-ipython-session>>
+<<load-ob-ipython-libraries>>
+<<set-ob-ipython-default-plot-configs>>
+<<get-branch-in-git>>
+gitbranch = os.path.join(gitbranch, 'Tian2019')
+import scanpy.api as sc
+import scprocessing.plotting.anndata as scpl
+from tabulate import tabulate
+figdir = os.path.join("..", "img", gitbranch)
+datadir = os.path.join("..", "data", gitbranch)
+sc.settings.figdir = figdir
+sc.settings.file_format_figs = "svg"
+
+import scprocessing.pipeline as scpipe
+import scprocessing.preprocessing as scpp
+import scprocessing.preprocessing.Svensson2019 as Svensson2019
+import scprocessing.plotting.anndata as scpl
+import dewakss.decomposition as dede
+import dewakss.denoise as dewakss
+#+end_src
+
+** Load data
+
+#+name: load-data
+#+begin_src ipython
+from glob import glob
+# performance_data = pd.read_csv(os.path.join(datadir, 'agg_stats.csv'))
+
+performance_file = glob(os.path.join(datadir.replace(gitbranch.split('/')[0], 'master'), 'results', '*'))
+performance_file = [i for i in performance_file if not i.split('/')[-1].startswith('best')]
+
+pdata = []
+for pf in performance_file:
+    performance_data = pd.read_csv(pf, sep='\t')
+    del performance_data['Unnamed: 0']
+    performance_data['DS'] = pf.split('/')[-1].split('_')[1]
+    pdata.append(performance_data)
+
+performance_data = pd.concat(pdata, 0)
+performance_data = performance_data.rename(columns = {'Dataset':'Normalisation'})
+performance_data = performance_data.rename(columns = {'DS':'Dataset'})
+
+performance_data['decay'] = 1
+
+performance_data = performance_data[~(performance_data['neighbors'] < 3)]
+
+performance_data = performance_data.sort_values(['mode', 'Dataset', 'Normalisation', 'neighbors', 'pcs', 'iteration'])
+
+#+end_src
+
+* plot results
+
+#+name: plot-performance-hyper-parameters
+#+begin_src ipython :results output drawer replace
+dosave = False
+# pdata = performance_data[performance_data['symmetrize'] == False]
+pdata = performance_data.copy()
+
+for (dfn, norms, mode, dt), df in pdata.groupby(['Dataset', 'Normalisation', 'mode', 'denoisetype']):
+# for (dfn, mode, dt), df in pdata.groupby(['Dataset', 'mode', 'denoisetype']):
+
+    metric = 'MSE'
+    # combos = df[['neighbors', 'decay']].drop_duplicates()
+    combos = df[['Normalisation', 'neighbors', 'decay']].drop_duplicates()
+
+    fig = plt.figure(figsize=(14, 3), constrained_layout=True)
+
+    # fold = 1
+    fold = df['Normalisation'].unique().shape[0]
+    ax = fig.subplots(fold, combos.shape[0]//fold, sharex=True, sharey=True).flatten(order='C')
+
+    combos['axes'] = ax
+    combos = combos.set_index(['Normalisation', 'neighbors', 'decay'])
+
+    for (neighbors, pcs, decay), subdf in df.groupby(['neighbors', 'pcs', 'decay']):
+    # for (norms, neighbors, pcs, decay), subdf in df.groupby(['Normalisation', 'neighbors', 'pcs', 'decay']):
+        axes = combos.loc[norms, neighbors, decay][0]
+        subdf = subdf[~(subdf['iteration'] == 0)]
+        axes.plot(subdf['iteration'].values, subdf[metric].values, label=pcs, zorder=-pcs+1000, linewidth=2)
+        # axes.legend().set_visible(False)
+        axes.set_xlabel('iteration')
+        axes.set_ylabel(f"{metric}")
+
+        axes.set_xticks(subdf['iteration'].values)
+        # axes.set_title(f"k={neighbors}")
+        axes.grid(linewidth=0.5, linestyle='--')
+        axes.label_outer()
+
+    ax[-1].legend(title='PCs', bbox_to_anchor=(1.1, 1))
+
+    if metric == 'MSE':
+        optind = df.groupby(['Normalisation', 'neighbors', 'decay'])[metric].min()
+    elif metric == 'R2':
+        optind = df.groupby(['Normalisation', 'neighbors', 'decay'])[metric].max()
+        
+    optit = df.set_index(['Normalisation', 'neighbors', 'decay'])
+    for (norms, neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[norms, neighbors, decay]
+        opts = (optit.loc[norms, neighbors, decay][metric] == minmse).values
+        its = optit.loc[norms, neighbors, decay][opts]['iteration'][0]
+        optpcs = optit.loc[norms, neighbors, decay][opts]['pcs'][0]
+        sns.despine()
+        # ylims = np.array(axes.get_ylim())
+        # axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        hl = 'left' if its < 10 else 'right'
+        xl = its+1 if its < 10 else its-1
+        axes.set_title(f"optMSE={minmse:.4f}\nk={neighbors}, PCs={optpcs}")
+
+    lastax = axes
+    for (norms, neighbors, decay), value in combos.iterrows():
+        axes = value[0]
+        minmse = optind.loc[norms, neighbors, decay]
+        opts = (optit.loc[norms, neighbors, decay][metric] == minmse).values
+        its = optit.loc[norms, neighbors, decay][opts]['iteration'][0]
+        ylims = np.array(lastax.get_ylim())
+        axes.vlines([its, its], *(ylims), zorder=500, linestyle=':')
+        axes.set_ylim(lastax.get_ylim())
+        
+    if metric == 'MSE':
+        opte = optit[optit[metric] == optind.min()]
+    elif metric == 'R2':
+        opte = optit[optit[metric] == optind.max()]
+    
+    fig.suptitle(f"Denoise type={dt}, {norms}, {mode}\nOptimal: MSE={opte['MSE'][0]:.4f}, it={opte['iteration'][0]}, PCs={opte['pcs'][0]}, k={opte.reset_index()['neighbors'][0]}")
+
+    # lines_labels = ax[0].get_legend_handles_labels()
+    # lines, labels = [sum(lol, []) for lol in zip(lines_labels[0], lines_labels[1])]
+    # fig.legend(title='PCs', bbox_to_anchor=(1.2, 5))
+    # fig.legend(lines_labels[0], lines_labels[1], title='PCs', bbox_to_anchor=(1.2, 0.5))
+    # fig.legend(lines_labels[0], lines_labels[1], title='PCs', bbox_to_anchor=(1.08, 0.5))
+
+    if dosave:
+        fdir = os.path.join(figdir, 'method_dataset_dewakssed')
+        fname = f"Tian2019_denoise_type_{dt}_{mode}_{metric}_{norms}_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+
+    break
+#+end_src
+
+#+name: performance-trends
+#+begin_src ipython :results output drawer replace
+doplot = True
+metric = 'MSE'
+norm_methods = ['none', 'ftt', 'linnorm', 'deseq2']
+pdata = performance_data[performance_data['Normalisation'].isin(norm_methods)]
+pdata = pdata.groupby(['Dataset', 'Normalisation', 'mode', 'denoisetype', 'pcs', 'neighbors'])[metric].min().reset_index()
+style_label = ('seaborn-poster')
+
+for (data, norms, dt), df in pdata.groupby(['Dataset', 'Normalisation', 'denoisetype']):
+
+    df = df[(df['MSE'] < df['MSE'].sort_values().values[-4]).values]
+    with plt.style.context(style_label):
+
+        g = sns.lmplot(hue="pcs", y="MSE", x="neighbors", col='mode', truncate=True, data=df, ci=None, fit_reg=False, height=5, aspect=0.6, legend=False, palette='coolwarm', hue_order=np.flip(df['pcs'].unique()))
+
+        argmin = df[metric].argmin()
+        vals = df.loc[argmin]
+
+        ymin = df[metric].min()
+        ymax = df[metric].max()
+
+        for ax in g.axes.flatten():
+            ax.grid()
+            ax.set_xscale('log')
+            ax.set_xlim([2.5, 250])
+            ax.set_ylim([ymin-(ymax-ymin)*0.05,ymax+(ymax-ymin)*0.05])
+            # ax.set_ylim([ymin-(ymax-ymin)*0.01, 0.51])
+
+        for idx, val in vals.iloc[:-2].iteritems():
+            df = df[df[idx] == val]
+
+        pltx = 1 if (df['mode'].unique()[0] == 'distances') else 0
+        ax = g.axes.flatten()[pltx]
+        ax.plot(df['neighbors'].values, df[metric].values, color='k', label=f'{vals["pcs"]}')
+        ax.vlines(vals['neighbors'], *ax.get_ylim(), linestyles='--')
+
+        fig = g.fig
+        L = g.axes[0][1].legend(title='PCs', ncol=2, bbox_to_anchor=(1, 1.1), borderpad=0., columnspacing=0.5, labelspacing=0.15)
+        L.get_title().set_fontsize(16)
+
+        fig.suptitle(f"{data}, {norms}, Denoise type={dt}\nmin MSE={vals[metric]:.2f}, k={vals['neighbors']}, PCs={vals['pcs']}", y=1.08, fontsize=16)
+
+    if doplot:
+        fdir = os.path.join(figdir, 'neighbors_trend')
+        fname = f"Tian2019_denoise_type_{data}_{norms}_{dt}_{metric}_minimal_trend_hyper_paramters_"
+        fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+        print_file = "[[file:" + fnames[0] + "]]"
+        print(print_file, sep=",", end="")
+        print("")
+#+end_src
+
+#+RESULTS: performance-trends
+:results:
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_celseq2_deseq2_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_celseq2_ftt_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_celseq2_linnorm_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_celseq2_none_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_sortseq_deseq2_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_sortseq_ftt_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_sortseq_linnorm_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+[[file:../img/simplify-dewakss/Tian2019/neighbors_trend/Tian2019_denoise_type_sortseq_none_mean_MSE_minimal_trend_hyper_paramters_figure.png]]
+:end:
+
+#+name: optimal-performance-table
+#+begin_src ipython :results output drawer replace
+from tabulate import tabulate
+# df = pdata.groupby(['Dataset', 'Normalisation', 'mode', 'denoisetype'])['MSE'].min()
+pdata = performance_data.copy()
+
+df = pdata.groupby(['Dataset', 'Normalisation'])['MSE'].min()
+
+optdata = pdata[pdata['MSE'].isin(df.values)]
+del optdata['R2'], optdata['decay']
+
+optdata = optdata.sort_values(['Dataset','Normalisation'])
+
+print(tabulate(optdata.values, optdata.columns, tablefmt="orgtbl"))
+#+end_src
+
+#+RESULTS: optimal-performance-table
+:results:
+| Normalisation | Dataset | iteration | mode           | neighbors | pcs | denoisetype |    time |       MSE |
+|---------------+---------+-----------+----------------+-----------+-----+-------------+---------+-----------|
+| deseq2        | celseq2 |         1 | distances      |       120 |   3 | mean        | 2.67207 |  0.466183 |
+| ftt           | celseq2 |         1 | distances      |        90 |   5 | mean        | 2.01959 |  0.878274 |
+| linnorm       | celseq2 |         1 | distances      |       110 |   4 | mean        | 1.30024 |  0.066826 |
+| logcpm        | celseq2 |         1 | distances      |       100 |   6 | mean        | 2.22413 |   4.56798 |
+| none          | celseq2 |         1 | connectivities |        14 | 120 | mean        | 2.00269 |   4.42847 |
+| scone         | celseq2 |         1 | distances      |       120 |   4 | mean        | 1.56128 |  0.445408 |
+| scran         | celseq2 |         1 | distances      |       130 |   3 | mean        | 1.40699 |  0.484366 |
+| tmm           | celseq2 |         1 | distances      |        50 |   6 | mean        | 1.73393 |  0.378915 |
+| deseq2        | sortseq |         1 | distances      |       100 |   3 | mean        | 1.95995 |  0.513253 |
+| ftt           | sortseq |         1 | distances      |        80 |   4 | mean        | 2.70147 |   1.12703 |
+| linnorm       | sortseq |         1 | distances      |       100 |   4 | mean        | 1.99757 | 0.0830647 |
+| logcpm        | sortseq |         1 | distances      |        80 |  13 | mean        | 3.07732 |   4.68469 |
+| none          | sortseq |         1 | distances      |        10 |  17 | mean        | 2.20547 |   5.32178 |
+| scone         | sortseq |         1 | distances      |       100 |   4 | mean        | 2.53743 |  0.484694 |
+| scran         | sortseq |         1 | distances      |       120 |   3 | mean        | 1.93448 |  0.536291 |
+| tmm           | sortseq |         1 | distances      |        50 |   6 | mean        |  3.0103 |  0.412512 |
+:end:
+
+#+name: print-latex-table
+#+begin_src ipython
+print(tabulate(optdata.values, optdata.columns, tablefmt="latex_raw"))
+print(tabulate(optdata.values, optdata.columns, tablefmt="latex_booktabs"))
+#+end_src
+
+#+name: plot-diffuse-trend-with-optima
+#+begin_src ipython :results output drawer replace
+doplot = True
+metric = 'MSE'
+dt = 'mean'
+# style_list = ['default', 'classic'] + sorted(style for style in plt.style.available if style != 'classic')
+# style_label = 'fivethirtyeight'
+style_label = ('seaborn-poster', 'seaborn-deep')
+
+# cmname = 'cividis_r'
+cmname = 'copper_r'
+cmname2 = 'Greys'
+# cmname = 'rainbow_r'
+# cmname = 'jet_r'
+# cmname = 'viridis_r'
+# cmname = 'gist_earth'
+cmap = plt.get_cmap(cmname)
+cmap2 = plt.get_cmap(cmname2)
+
+# colors = ["windows blue", "faded green", 'rose', "amber", "greyish", "pale red", "dusty purple", "denim blue", "medium green", 'olive', 'deep red']
+# pal = sns.xkcd_palette(colors)
+norm_methods = [ 'deseq2', 'linnorm', 'none', 'ftt']
+
+pcs = [4, 5, 6, 17]
+for normm in norm_methods:
+    for npcs in pcs:
+        opt_pcs = performance_data[performance_data['pcs'] == npcs]
+        opt_pcs = opt_pcs[opt_pcs['Normalisation'].isin([normm])]
+
+        # opt_pcs = performance_data.copy()
+        opt_pcs = opt_pcs[opt_pcs['mode'] == 'distances']
+        opt_pcs = opt_pcs[opt_pcs['Dataset'] == 'sortseq']
+        opt_pcs = opt_pcs[opt_pcs['decay'] == 1]
+        nlines = opt_pcs['neighbors'].unique().shape[0]
+        minE = opt_pcs[metric].min()
+
+        with plt.style.context(style_label):
+            fig = plt.figure(figsize=(9, 4.5), constrained_layout=True)
+            axes = fig.subplots(1, 1)
+
+            i = 0
+            mine = []
+            for (neighbors, pcss, decay), subdf in opt_pcs.groupby(['neighbors', 'pcs', 'decay']):
+                subdf = subdf[~(subdf['iteration'] == 0)]
+
+                axes.plot(subdf['iteration'].values, subdf[metric].values, zorder=neighbors-1000, linewidth=2, color=cmap2(i/nlines), alpha=0.1) # , color=pal[i]
+                mini = subdf[metric].values.argmin()
+                E = subdf[metric].values[mini]
+                itter = subdf['iteration'].values[mini]
+                clr = 'g' if (itter < 2 and E > minE) else 'g' if (E == minE) else 'k'
+                # color = 'r' if (E == minE) else cmap(i/nlines)
+                color = cmap(i/nlines) if (E == minE) else cmap(i/nlines)
+                marker = 'D' if (E == minE) else None
+                axes.scatter(itter, E, s=100, zorder=-E, label=neighbors, color=color, edgecolors=clr, linewidth=1, marker=marker)
+
+                mine.append(E)
+                i=i+1
+
+            mine = np.array(mine)[np.argsort(mine)]
+            miny = mine[0]
+            maxy = mine[-3]
+            axes.set_xlabel('diffusion step')
+            axes.set_ylabel(f"{metric}")
+
+            axes.set_xticks(subdf['iteration'].values)
+            axes.set_title(f'# PCs = {npcs}, {normm}')
+
+            # axes.set_xlim([0.5,19.5])
+            # axes.set_ylim([opt_pcs['MSE'].min()-opt_pcs['MSE'].min()*0.005, 0.9])
+            L = axes.legend(title='neighbors', loc='center left', bbox_to_anchor=(1, 0.5), ncol=2,  borderpad=0., columnspacing=0.5, labelspacing=0.1)
+            L.get_title().set_fontsize(16)
+
+            sns.despine(offset=10)
+            axes.grid(linewidth=0.5, linestyle='--', zorder=10000)
+            # axes.label_outer()
+
+        if doplot:
+            fdir = os.path.join(figdir, 'diffusion_trend')
+            fname = f"Tian2019_denoise_type_{dt}_{metric}_norm_{normm}_npcs_{npcs}_neighbours_diffuse_trend_"
+            fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+            print_file = "[[file:" + fnames[0] + "]]"
+            print(print_file, sep=",", end="")
+            print("")
+
+        axes.set_ylim([miny-(maxy-miny)*0.05, maxy+(maxy-miny)*0.05])
+
+        if doplot:
+            fdir = os.path.join(figdir, 'diffusion_trend')
+            fname = f"Tian2019_denoise_type_{dt}_{metric}_norm_{normm}_npcs_{npcs}_neighbours_diffuse_trend_zoom_"
+            fnames = scpl.save_figure(fig, fdir, fname=fname, dpi=300)
+            print_file = "[[file:" + fnames[0] + "]]"
+            print(print_file, sep=",", end="")
+            print("")
+#+end_src
+
+#+RESULTS: plot-diffuse-trend-with-optima
+:results:
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_4_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_4_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_5_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_5_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_6_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_6_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_17_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_deseq2_npcs_17_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_4_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_4_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_5_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_5_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_6_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_6_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_17_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_linnorm_npcs_17_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_4_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_4_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_5_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_5_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_6_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_6_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_17_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_none_npcs_17_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_4_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_4_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_5_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_5_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_6_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_6_neighbours_diffuse_trend_zoom_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_17_neighbours_diffuse_trend_figure.png]]
+[[file:../img/cell_vise_mse/Tian2019/diffusion_trend/Tian2019_denoise_type_mean_MSE_norm_ftt_npcs_17_neighbours_diffuse_trend_zoom_figure.png]]
+:end:
+
+
+* bibliography                                                       :ignore:
+
+[[bibliographystyle:citestyle]]
+[[bibliography:~/research/bibliography.bib]]
+
+* Javascript                                                         :ignore:
+
+#+begin_export html
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+#+end_export
+
