@@ -1,0 +1,69 @@
+# PyBreadCrumbs
+pybreadcrumbs is a lightweight function tracer and log enhancer for distributed systems written in python.
+
+## Inspiration
+* The inspiration for **PyBreadCrumbs** came to solve the daily trouble that we faced in our organisation in searching and sorting system logs that were generated.
+* It solves this by adding an extra key value pair to the log data which adds tracability to the logs.
+* It also adds an extra key value pair to add simple time taken based profiling as well.
+* It doesn't wish to compete with fully functional tracer or profiler nor it is a replacement for them, It's just there to make your logs more streamlined, readable and tracable.
+
+## Getting Started
+
+### Prerequisites
+A project of course where you want to integrate breadcrumbs.
+
+### Installing
+* To be added
+
+### Configuring
+* import the breadcrumbs configuration at the root python file from where the execution starts.
+* `from breadcrumbs.configuration import breadcrumbs_config`
+* `breadcrumbs_config` is a config dictionary with following options.
+* `trace_id_prefix` : the prefix which will be appended to system generated trace id.
+* `key_prefix` : the prefix which will be added to the keys of breadcrumbs log_payload.
+* `timezone` : the timezone string for datetime in log_payload. default value is `UTC`
+* `datetime_format ` : The datetime formate to be used in log_payload default value is `%Y-%m-%d %H:%M:%S.%f`
+* `additional_keys` : Additional keys that you wish to add to the tracable log payload.
+* `extraction_fallback_level`: this defines the stack trace level that a trace decorator should look for trace_id before creating a new trace id of it's own.
+
+### Using
+* Import the decorators `add_bowl` using.
+* `from breadcrumbs.base import add_bowl`
+* use the decorator on any function you would like to trace.
+* the fuction in which it is used needs to accept `kwargs` in function parameters.
+* to enhance other logging calls inside the function fetch the bowl object using
+* `breadcrumbs_bowl = kwargs.get("breadcrumbs_bowl")`
+* then whenever logging something pass `extra=breadcrumbs_bowl.log_payload` in your logging call.
+* eg. `logger.info("test message that should be tracable", extra=breadcrumbs_bowl.log_payload)`
+* you can also add a trace_text to your log_payload by using below method.
+* eg. `logger.info("test message that should be tracable", extra=breadcrumbs_bowl.add_trace_text("CodeEventName"))`
+* During the function call if you wish to add some meta data to the next logging call you can store those meta data in the bowl object using add_trace_meta function.
+* eg. `breadcrumbs_bowl.add_trace_meta(key1="string_value", key2=45)`
+* The next logging call using bowl object in the same function will log this meta as well.
+
+## Running the tests
+* will be added
+
+## Built With
+* python : https://www.python.org/
+* and some standard library available inside: asyncio, datetime, uuid, inspect and logging
+* ujson : https://pypi.org/project/ujson/
+
+## Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+We use <a href="https://semver.org/">SemVer</a> for versioning. For the versions available, see the tags on this repository.
+
+## Authors
+* Hitesh Jha
+
+* See also the list of contributors who participated in this project.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details
+
+## Future enhancements
+* Ensure child actions have a refrence to thier parents action.
+* Ensure correct time taken is calculated when in an async environment.
+
