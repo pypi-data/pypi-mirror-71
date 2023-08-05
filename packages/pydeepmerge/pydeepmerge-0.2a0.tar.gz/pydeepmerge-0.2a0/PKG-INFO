@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pydeepmerge
+Version: 0.2a0
+Summary: A lightweight library to perform deep merges of python dictionaries
+Home-page: https://github.com/taliamax/pydeepmerge
+Maintainer: Natalia Maximo
+Maintainer-email: iam@natalia.dev
+License: MIT
+Description: # DeepMerge
+        
+        A simple python package for performing deep-merges of python dictionaries
+        
+        Usage is simple:
+        
+        ```python
+        from pydeepmerge import deep_merge
+        
+        > some_data = {'foo': {'bar': 'baz', 'spam': 'eggs'}, 'ham': 'eggs'}
+        > more_data = {'spam': {'eggs': 'ham'}, 'foo': {'baz': 'bar', 'bar': 'foo'}}
+        > deep_merge(some_data, more_data)
+        {'foo': {'bar': 'foo', 'baz': 'bar', 'spam': 'eggs'}, 'spam': {'eggs': 'ham'}, 'ham': 'eggs'}
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
