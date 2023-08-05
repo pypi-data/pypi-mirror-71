@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: thmcli
+Version: 0.1.0
+Summary: TryHackMe CLI
+Home-page: https://github.com/szymex73/thmcli
+Author: Szymon Borecki
+Author-email: self@szymex.pw
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: argh (==0.26.2)
+Requires-Dist: thmapi (==0.8.0)
+Requires-Dist: requests
+Requires-Dist: chardet (<4,>=3.0.2)
+Requires-Dist: idna (<3,>=2.5)
+Requires-Dist: urllib3 (!=1.25.0,!=1.25.1,<1.26,>=1.21.1)
+Requires-Dist: certifi (>=2017.4.17)
+
+# thmcli
+[![PyPI version](https://badge.fury.io/py/thmcli.svg)](https://badge.fury.io/py/thmcli)  
+TryHackMe CLI
+
+## Installation
+```sh
+pip install thmcli
+```
+
+## Usage
+```
+$ thm
+```
+
+## Contributing
+You're welcome to create Issues/Pull Requests with features you'd want to see
+
+## License
+[MIT LICENSE](https://github.com/szymex73/py-thmapi/blob/master/LICENSE)
+
+
