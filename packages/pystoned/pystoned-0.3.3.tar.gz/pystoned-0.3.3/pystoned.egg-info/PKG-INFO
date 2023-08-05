@@ -1,0 +1,214 @@
+Metadata-Version: 2.1
+Name: pystoned
+Version: 0.3.3
+Summary: A Package for Stochastic Nonparametric Envelopment of Data (StoNED) in Python
+Home-page: https://github.com/ds2010/StoNED-Python
+Author: Sheng Dai, Timo Kuosmanen
+Author-email: sheng.dai@aalto.fi
+License: GPLv3
+Download-URL: https://pypi.org/project/pystoned/
+Description: # StoNED-Python
+        
+        `StoNED-Python` project provides the python codes for estimating Convex Nonparametric Least Square (`CNLS`), Stochastic Nonparametric Envelopment of Data (`StoNED`), and other different `StoNED`-related variants. It allows the user to estimate the CNLS/StoNED models in an open-access environment rather than in commercial software, e.g., GAMS, MATLAB. The `StoNED-Python` project is built based on the [PYOMO](http://www.pyomo.org/). 
+        
+        # Installation
+        
+        We have published a beta version [`pyStoNED`](https://pypi.org/project/pystoned/) package on PyPI. Please feel free to download and test it. We welcome any bug reports and feedback.
+        
+        #### PyPI [![PyPI version](https://img.shields.io/pypi/v/pystoned.svg?maxAge=3600)](https://pypi.org/project/pystoned/) [![Downloads](https://pepy.tech/badge/pystoned/month)](https://pepy.tech/project/pystoned/month) [![Downloads](https://pepy.tech/badge/pystoned)](https://pepy.tech/project/pystoned)
+        
+            pip install pystoned
+        
+        # [Tutorials](https://github.com/ds2010/StoNED-Python/tree/master/Tutorials)
+        
+        A number of Jupyter Notebooks are provided in the repository [pyStoNED-Tutorials](https://github.com/ds2010/pyStoNED-Tutorials), and more detailed technical reports are currently under development.
+          
+        # Authors
+        
+         + [Timo Kuosmanen](https://people.aalto.fi/timo.kuosmanen), Professor, Aalto University School of Business.
+         + [Sheng Dai](https://www.researchgate.net/profile/Sheng_Dai8), Ph.D. candidate, Aalto University School of Business.
+        
+        # To do list
+        - [x]  `CNLS`/`StoNED`
+           - [x] Production function estimation
+           - [x] Cost function estimation
+           - [x] variables returns to scale (`VRS`) model
+           - [x] constant returns to scale (`CRS`) model
+           - [x] Additive composite error term
+           - [x] Multiplicative composite error term
+           - [x] Residuals decomposition by method of moments(`MoM`) 
+           - [x] Residuals decomposition by quasi-likelihood estimation(`QLE`)
+           - [x] Residuals decomposition by nonparametric kernel deconvolution (`NKD`)
+        - [x] `StoNEZD` (contextual variables)
+        - [x] Convex quantile regression (`CQR`)
+        - [x] Convex expectile regression (`CER`)
+        - [x] Isotonic CNLS (`ICNLS`)
+        - [ ] Isotonic convex quantile regression (`ICQR`)
+        - [ ] Isotonic convex expectile regression (`ICER`)
+        - [x] Corrected convex nonparametric least squares (C<sup>2</sup>NLS)
+        - [x] Multiple outputs (CNLS-DDF formulation)
+           - [x] with undesirable outputs
+           - [x] without undesirable outputs
+        - [x] Multiple outputs (CQR/CER-DDF formulation)
+           - [x] with undesirable outputs
+           - [x] without undesirable outputs   
+        - [x] Basic Data Envelopment Analysis (`DEA`) models
+           - [x] Radial input oriented model: CRS and VRS
+           - [x] Radial output oriented model: CRS and VRS
+           - [x] Directional model: CRS and VRS
+           - [x] Directional model with undesirable outputs: CRS and VRS         
+        - [ ] Representation of `StoNED`-related frontier/quantile function
+           - [x] one input and one output
+           - [ ] two inputs and one output 
+           - [ ] three inputs and one output 
+        
+        
+        # Change log
+        
+        ## [0.3.3] - 2020-06-16
+        ### Changed
+        - `CNLSDDF()`
+        - `CQRDDF()`
+        - `CERDDF()`
+        
+        ## [0.3.2] - 2020-06-16
+        ### Changed
+        - `CNLSDDF()`
+        - `CQRDDF()`
+        - `CERDDF()`
+        
+        ## [0.3.1] - 2020-06-16
+        ### Changed
+        - `kde()`
+        - `CNLSDDF()`
+        
+        ## [0.3.0] - 2020-06-12
+        ### Changed
+        - `DEA()`
+        - `CQER()`
+        - `CQEDDF()`
+        
+        ## [0.2.9] - 2020-06-10
+        ### Added
+        - `DEA()`
+        
+        ## [0.2.8] - 2020-06-04
+        ### Added
+        - `CQRDDF()`
+        - `CERDDF()`
+        
+        ### Changed
+        - `directV()`
+        
+        ## [0.2.7] - 2020-05-24
+        ### Added
+        - `CNLSPLOT()`
+        
+        ### Changed
+        - adjust the argument `pps` to `rts`
+        - adjust the argument `func` to `fun`
+        - adjust the argument `crt` to `cet`
+        - `CNLSDDF()`
+        
+        ### Removed
+        - `CNLSDDFB()`
+        
+        ## [0.2.6] - 2020-05-05
+        ### Changed
+        - `qle()`
+        - `stoned()`
+        - LICENSE
+        
+        ## [0.2.5] - 2020-05-01
+        ### Added
+        - `ked()`
+        
+        ### Changed
+        - `CNLSDDFb()`
+        - `directV()`
+        - `stoned()`
+        - HISTORY.md
+        
+        ### Removed
+        - `directVb()`
+        
+        ## [0.2.4] - 2020-04-30
+        
+        ### Changed
+        - `qlle()`
+        - `stoned()`
+        
+        ## [0.2.3] - 2020-04-27
+        
+        ### Added
+        - `cnlsddfb()`
+        - `directVb()`
+        
+        ### Changed
+        - `cnlsddf()`
+        - `directV()`
+        
+        ## [0.2.2] - 2020-04-26
+        
+        ### Added
+        - `cnlsddf()`
+        - `directV()`
+        
+        ### Changed
+        - `cnls()`
+        - `ceqr()`
+        - `cnlsz()`
+        - `icnls()`
+        
+        ## [0.2.1] - 2020-04-23
+        
+        ### Added
+        - `icnls()`
+        - `bimatp()`
+        
+        ### Changed
+        - REDAME.md
+        - All functions
+        
+        ## [0.2.0] - 2020-04-19
+        
+        ### Added
+        - `ccnls()`
+        - `ccnls2()`
+        - `cnlsz()`
+        
+        ### Changed
+        - REDAME.md
+        - `cqer()`
+        
+        ## [0.0.7] - 2020-04-18
+        
+        ### Changed
+        - `cnls()`
+        
+        ## [0.0.6] - 2020-04-17
+        
+        ### Added
+        - README.md
+        - LICENSE.txt
+        - HISTORY.md
+        
+        ## [0.0.2] - 2020-04-17
+        
+        ### Added
+        - `cqer()`
+        - `qllf()`
+        
+        ## [0.0.1] - 2020-04-01
+        
+        ### Added
+        - `stoned()`
+        - `cnls()`
+Keywords: StoNED,CNLS,CER,CQR,Z-variables
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
