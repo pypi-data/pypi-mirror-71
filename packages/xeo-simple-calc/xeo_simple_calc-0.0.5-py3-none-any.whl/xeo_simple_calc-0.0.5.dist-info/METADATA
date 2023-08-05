@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: xeo-simple-calc
+Version: 0.0.5
+Summary: A small basic calculator
+Home-page: https://github.com/XeoPlay/xeo-simple-calc
+Author: XeoPlay
+Author-email: xeoplay123456@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# xeo-simple-calc
+This is my first python library. It is a simple calculator.
+
+## How to use
+First, install the library
+```python
+pip install xeo-simple-calc
+```
+Next, import it
+```python
+from xeosimplecalc import *
+```
+## Commands
+```python
+add(a,b)
+subtract(a,b)
+multiply(a,b)
+float_divide(a,b)
+int_divide(a,b)
+```
+```python
+float_divide()
+``` 
+returns a float
+```python
+int_divide()
+``` 
+returns an int
+
+Change Log
+==========
+
+0.0.5 (12.06.2020)
+------------------
+- Fixed mistake in README.md
+
