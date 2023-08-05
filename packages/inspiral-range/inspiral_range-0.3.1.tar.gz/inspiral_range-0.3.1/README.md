@@ -1,0 +1,142 @@
+# GW detector inspiral range calculation tools
+
+The `inspiral_range` package provides tools for calculating various
+binary inspiral range measures useful as figures of merit for
+gravitational wave detectors characterized by a strain noise spectral
+density.
+
+It includes a command-line tool for calculating various inspiral
+ranges from a supplied file of detector noise spectral density (either
+ASD or PSD).
+
+See the following references for more information:
+
+* https://dcc.ligo.org/LIGO-P1600071 (https://arxiv.org/abs/1709.08079)
+* https://dcc.ligo.org/LIGO-T1500491
+* https://dcc.ligo.org/LIGO-T1100338
+* https://dcc.ligo.org/LIGO-T030276
+
+Authors:
+
+* Jameson Rollins <jameson.rollins@ligo.org>
+* Jolien Creighton <jolien.creighton@ligo.org>
+
+
+## Dependencies
+
+`inspiral_range` depends on a couple of non-standard packages for
+cosmology calculations and waveform generation, as well as `scipy` for
+various optimization routines.  These dependencies can be met in a
+couple different ways, but please note the caveats described below.
+
+The LAL dependencies (both `lal` and `lalsimulation`) can be found in
+the `lalsuite` dependency in pip.
+
+
+### cosmology
+
+`inspiral_range` needs to calculate luminosity distance and
+differential comoving volume as a function of redshift, which requires
+specifying a cosmology model.  Two different packages are supported
+for these cosmological calculations:
+
+* `lal`: not pure python so not as accessible, but much faster
+* `astropy`: pure python and widely available, but slow
+
+
+### waveform generation
+
+`inspiral_range` needs the amplitude of strain waveforms of binary
+inspiral signals in order to calculate the detection SNR for a given
+detector noise spectrum.  Included in the package is a cached
+interpolant for equal mass, non-spinning BBH systems.  For range
+calculations for other systems (BNS, non-equal mass, including spin)
+the `lalsimulation` package is required for waveform calculation.
+
+
+## Usage
+
+### library usage
+
+The package includes multiple functions for calculating various range
+measures for a given PSD.
+
+Analytical methods:
+
+* sensemon_range
+* int73
+
+Cosmologically-corrected measures (see arxiv:1709.08079):
+
+* horizon (Mpc)
+* horizon_redshift (z)
+* volume (Mpc^3)
+* range (Mpc)
+* response_frac (Mpc)
+* response_frac_redshift (z)
+* reach_frac (Mpc)
+* reach_frac_redshift (z)
+
+By default, all functions calculate measures for 1.4/1.4 M_sol BNS
+inspirals:
+
+    >>> import inspiral_range
+    >>> freq, psd = np.loadtxt('PSD.txt')
+    >>> range_bns = inspiral_range.range(freq, psd)
+
+Other masses can be calculated as well:
+
+    >>> range_bbh = inspiral_range.range(freq, psd, m1=30, m2=30)
+
+When calculating multiple measures together it is more efficient to
+generate the fiducial waveform first and then pass it to the various
+functions:
+
+    >>> H = inspiral_range.CBCWaveform(freq, m1=30, m2=30)
+    >>> horizon = inspiral_range.horizon(freq, psd, H=H)
+    >>> range = inspiral_range.range(freq, psd, H=H)
+
+The cosmology being used can be modified with the Cosmology class:
+
+    >>> cosmo = inspiral_range.Cosmology(h=70.0)
+    >>> H = inspiral_range.CBCWaveform(freq, cosmo=cosmo)
+
+The 'cosmo' parameter can also be supplied directly to the range
+calculator:
+
+    >>> range = inspiral_range.range(freq, psd, cosmo=cosmo)
+
+A convenience function `all_ranges` is included that calculates most
+of the range metrics together in an efficient way (all return values
+in Mpc):
+
+* horizon
+* range
+* response_50
+* response_10
+* reach_50
+* reach_90
+* sensemon_range
+* sensemon_horizon
+
+e.g.:
+
+    >>> metrics, H = inspiral_range.all_ranges(freq, psd)
+
+
+### command line interface
+
+The package also include a command line interface for easily
+calculating ranges for a given ASD or PSD specified in a two-column
+text file:
+
+    $ python3 -m inspiral_range -p PSD.txt m1=30 m2=30
+
+
+## Tests
+
+The packages includes a test interface that can compare the range
+calculations from the current source for various canonical detector
+ASDs against those calculated from an earlier git commit:
+
+    $ python3 -m inspiral_range.test --help
