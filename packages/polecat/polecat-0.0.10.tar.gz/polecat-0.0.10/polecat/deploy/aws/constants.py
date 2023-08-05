@@ -1,0 +1,15 @@
+POLECAT_BASE = 'PolecatBase'
+POLECAT_ADMINISTRATOR = 'PolecatAdministrator'
+
+PROJECT_REGISTRY = '/polecat/projectRegistry'
+PROJECT_PREFIX = '/polecat/projects/{}/'
+DEPLOYMENT_REGISTRY = PROJECT_PREFIX + 'deploymentRegistry'
+DEPLOYMENT_PREFIX = PROJECT_PREFIX + 'deployments/{}/'
+SECRET_PREFIX = DEPLOYMENT_PREFIX + 'secrets/'
+SECRET_NAME = SECRET_PREFIX + '{}'
+DOMAIN_PREFIX = DEPLOYMENT_PREFIX + 'domains/{}/'
+CERTIFICATE = DOMAIN_PREFIX + 'certificate'
+ZONE = DOMAIN_PREFIX + 'zone'
+
+SERVER_CODE = 'projects/{}/code/{}/server.zip'
+MEDIA_PREFIX = 'projects/{}/deployments/{}/media/'
