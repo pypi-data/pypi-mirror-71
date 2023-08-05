@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: symnum
+Version: 0.1.1
+Summary: Symbolically construct NumPy functions and their derivatives
+Home-page: https://github.com/matt-graham/symnum.git
+Author: Matt Graham
+License: MIT
+Keywords: sympy numpy differentiation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.6
+Requires-Dist: numpy (>=1.15)
+Requires-Dist: sympy (>=1.5)
+
+SymNum is a Python package that acts a bridge between NumPy and SymPy,providing a NumPy-like interface that can be used to symbolically define functions which take arrays as arguments and return arrays or scalars as values. A series of Autograd style functional differential operators are also provided to construct derivatives of symbolic functions, with the option to generate NumPy code to numerically evaluate these derivative functions.
+
+
