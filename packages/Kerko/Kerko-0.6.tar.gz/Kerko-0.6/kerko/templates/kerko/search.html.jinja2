@@ -1,0 +1,215 @@
+{% extends config.KERKO_TEMPLATE_LAYOUT %}
+{% from "kerko/_badges.html.jinja2" import badges %}
+
+{%- set show_print_link = config.KERKO_PRINT_CITATIONS_MAX_COUNT == 0 or total_count <= config.KERKO_PRINT_CITATIONS_MAX_COUNT %}
+{%- set show_print_link = show_print_link and config.KERKO_PRINT_CITATIONS_LINK %}
+{%- set show_download_link = config.KERKO_DOWNLOAD_CITATIONS_MAX_COUNT == 0 or total_count <= config.KERKO_DOWNLOAD_CITATIONS_MAX_COUNT %}
+{%- set show_download_link = show_download_link and config.KERKO_DOWNLOAD_CITATIONS_LINK and config.KERKO_COMPOSER.citation_formats %}
+
+{%- block metas %}
+    {{- super() }}
+    {%- include "kerko/_search-metas.html.jinja2" %}
+{%- endblock metas %}
+
+{%- block content_header %}
+    <div class="my-2 row">
+        <h1 class="{% block search_heading_classes %}h2 col-auto pr-1 mr-auto d-inline{% endblock %}{% if not is_searching %} d-print-none{% endif %}">{% if is_searching %}{{ _("Your search") }}{% else %}{{ _("Search") }}{% endif %}</h1>
+        {%- if is_searching or facet_results %}
+            <div class="col-auto pl-0 ml-auto text-right">
+                <div class="{% block help_link_wrapper_classes %}d-inline-block d-print-none mt-1 mb-2{% endblock %}">
+                    <button class="{% block help_btn_classes %}btn btn-light{% endblock %}" data-toggle="modal" data-target="#search-help">
+                        <span class="fas fa-question-circle" aria-hidden="true"></span> {{ _("Help") }}
+                    </button>
+                </div>
+                {%- if facet_results and search_results %}
+                    <div class="{% block facets_link_wrapper_classes %}d-inline-block d-lg-none d-print-none mt-1 mb-2{% endblock %}">
+                        <button id="facets-modal-toggle" class="{% block facets_btn_classes %}btn btn-primary{% endblock %}" data-target="#facets-modal">
+                            <span class="fas fa-compass" aria-hidden="true"></span> {{ _("Explore") }}
+                        </button>
+                    </div>
+                {%- endif %}
+                {%- if is_searching %}
+                    <div class="{% block reset_link_wrapper_classes %}d-inline-block d-print-none mt-1 mb-2{% endblock %}">
+                        <a class="{% block reset_btn_classes %}btn btn-danger{% endblock %}" href="{{ url_for('kerko.search') }}">
+                            <span class="fas fa-trash-alt" aria-hidden="true"></span> {{ _("Reset search") }}
+                        </a>
+                    </div>
+                {%- endif %}
+            </div>
+        {%- endif %}
+    </div>
+    {%- block search_help %}
+        {%- include "kerko/_search-help.html.jinja2" %}
+    {%- endblock search_help %}
+{%- endblock content_header %}
+
+{%- block content_inner %}
+    {%- block search_criteria %}
+        <div class="{% block search_criteria_wrapper_classes %}card breadbox mb-4{% endblock %}{% if not is_searching %} d-print-none{% endif %}">
+            <div class="card-body">
+                {%- include "kerko/_breadbox.html.jinja2" %}
+                {%- include "kerko/_search-form.html.jinja2" %}
+            </div>
+        </div>
+    {%- endblock search_criteria %}
+    {%- block search_results %}
+        <div class="my-2 row">
+            <div class="col-auto mr-auto">
+                <h2 class="{% block results_heading_classes %}d-inline mb-2{% endblock %}">{{ title }}
+                    {%- if search_results %}
+                        <span class="badge badge-light">{% trans count=total_count, count_formatted=total_count_formatted|safe %}{{ count_formatted }} resource{% pluralize %}{{ count_formatted }} resources{% endtrans %}</span>
+                    {%- endif %}
+                </h2>
+            </div>
+            {%- if search_results %}
+                <div class="{% block sorter_wrapper_classes %}col-auto pl-0 ml-auto mt-1 mb-2 text-right{% endblock %}">
+                    <div class="d-inline-block d-print-none">
+                        {%- include "kerko/_sorter.html.jinja2" %}
+                    </div>
+                </div>
+            {%- endif %}
+        </div>
+        {%- if search_results %}
+            {%- block pager_top %}
+                {%- include "kerko/_pager.html.jinja2" %}
+            {%- endblock pager_top %}
+            <ul class="mb-4 list-unstyled">
+                {%- for result in search_results %}
+                    <li class="search-item break-word">
+                        {%- if print_preview -%}
+                            {{- badges(result, mode='result') -}}
+                            {{- result.bib|safe -}}
+                        {%- else -%}
+                            <div class="d-flex">
+                                <a class="d-block mw-100 mr-auto" href="{{ result.url }}" title="{{ _('View details') }}">
+                                    {{- badges(result, mode='result') -}}
+                                    {{- result.bib|safe -}}
+                                </a>
+                                {%- if result.attachments|length > 1 %}
+                                    <div class="d-print-none ml-2">
+                                        <div class="dropdown">
+                                            <button class="{% block attachment_links_btn_classes %}btn btn-primary dropdown-toggle text-nowrap{% endblock %}" type="button" id="attachment-options-{{ result.id|escape }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{ _('Read document') }}">
+                                                <span class="fas fa-file text-white" aria-hidden="true"></span>
+                                                <span class="d-none d-md-inline text-white">{{ _('Read') }}</span>
+                                            </button>
+                                            <span class="dropdown-menu dropdown-menu-right dropdown-width-300" aria-labelledby="attachment-options-{{ result.id|escape }}">
+                                                {%- for attachment in result.attachments %}
+                                                    <a class="dropdown-item" href="{{ url_for('kerko.item_attachment_download', item_id=result.id, attachment_id=attachment['id'], attachment_filename=attachment['filename']) }}"{% if config.KERKO_DOWNLOAD_ATTACHMENT_NEW_WINDOW %} target="_blank"{% endif %} title="{{ _('Read this document') }}">
+                                                        {{- attachment.filename|escape }}
+                                                    </a>
+                                                {%- endfor %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {%- elif result.attachments|length == 1 %}
+                                    <div class="d-print-none ml-2">
+                                        <a class="{% block attachment_link_btn_classes %}btn btn-primary text-nowrap{% endblock %}" href="{{ url_for('kerko.item_attachment_download', item_id=result.id, attachment_id=result.attachments[0]['id'], attachment_filename=result.attachments[0]['filename']) }}"{% if config.KERKO_DOWNLOAD_ATTACHMENT_NEW_WINDOW %} target="_blank"{% endif %} title="{{ _('Read document') }}">
+                                            <span class="fas fa-file text-white" aria-hidden="true"></span>
+                                            <span class="d-none d-md-inline text-white">{{ _('Read') }}</span>
+                                        </a>
+                                    </div>
+                                {%- endif %}
+                                <span>{{- result.coins|safe -}}</span>
+                            </div>
+                        {%- endif -%}
+                        {%- if config.KERKO_RESULTS_ABSTRACT %}
+                            <p class="search-abstract pre-line">{{ result.data['abstractNote']|escape|urlize(target='_blank') }}</p>
+                        {%- endif %}
+                    </li>
+                {%- endfor %}
+            </ul>
+            {%- block pager_bottom %}
+                {%- include "kerko/_pager.html.jinja2" %}
+            {%- endblock pager_bottom %}
+            {%- block search_results_footer scoped %}
+                {%- if show_print_link or show_download_link %}
+                    <div class="row">
+                        <div class="col-auto ml-auto mb-4 text-right">
+                            {%- if show_print_link %}
+                                <div class="{% block print_link_wrapper_classes %}d-none d-md-inline-block d-print-none mb-1{% endblock %}">
+                                    <button id="print-link" class="{% block print_btn_classes %}btn btn-light{% endblock %}" type="button" data-url="{{ print_url }}">
+                                        <span class="fas fa-print" aria-hidden="true"></span> {% trans count=total_count, count_formatted=total_count_formatted|safe %}Print this citation{% pluralize %}Print {{ count_formatted }} citations{% endtrans %}
+                                    </button>
+                                </div>
+                            {%- endif %}
+                            {%- if show_download_link %}
+                                <div class="{% block download_link_wrapper_classes %}d-inline-block d-print-none mb-1{% endblock %}">
+                                    <div class="dropdown">
+                                        <button class="{% block download_btn_classes %}btn btn-secondary btn-light dropdown-toggle{% endblock %}" type="button" id="download-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="fas fa-download" aria-hidden="true"></span> {% trans count=total_count, count_formatted=total_count_formatted|safe %}Download this citation{% pluralize %}Download {{ count_formatted }} citations{% endtrans %}
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-width-300" aria-labelledby="download-options">
+                                            {%- for citation_format in config.KERKO_COMPOSER.get_ordered_specs('citation_formats') %}
+                                                <a class="dropdown-item" href="{{ download_urls[citation_format.key] }}" rel="nofollow" title="{% trans download_option=citation_format.label|escape %}Download in {{ download_option }} format{% endtrans %}">
+                                                    {{- citation_format.label -}}
+                                                </a>
+                                                <p class="px-4 text-muted">{{ citation_format.help_text }}</p>
+                                            {%- endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {%- endif %}
+                        </div>
+                    </div>
+                    <div class="text-right mb-4 text-muted d-print-none">
+                        {%- if config.DEBUG %}{% trans time="%.2f"|format(time) %}Processing time: {{time}} seconds{% endtrans %} &mdash;{% endif %}
+                        {{ _("Last update from database: {}").format(last_sync) }}
+                    </div>
+                {%- endif %}
+            {%- endblock search_results_footer %}
+        {%- else %}
+            {%- trans %}
+                <p>Suggestions:</p>
+                <ul>
+                    <li>Make sure that all words are spelled correctly.</li>
+                    <li>Try different words.</li>
+                    <li>Try more general terms.</li>
+                </ul>
+            {%- endtrans %}
+        {%- endif %}
+    {%- endblock search_results %}
+{%- endblock content_inner %}
+
+{%- block sidebar_inner %}
+    {%- block facet_results %}
+        {%- if facet_results and search_results %}
+            <div class="d-none d-lg-block d-print-none">
+                <h2 class="{% block facets_heading_classes %}mt-2 mb-4{% endblock %}">{{ _("Explore") }}</h2>
+                <div class="facets">
+                    {%- for f in config.KERKO_COMPOSER.get_ordered_specs('facets') %}
+                        {{ f.render(facet_results[f.key], 'search') }}
+                    {%- endfor %}
+                </div>
+            </div>
+            <div id="facets-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="facets-modal-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="facets-modal-label" class="modal-title">{{ _("Explore") }}</h2>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" title="{{ _('Close Explore panel') }}">
+                                <span class="fas fa-times" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="my-3 text-right">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ _("Close") }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%- endif %}
+    {%- endblock facet_results %}
+{%- endblock sidebar_inner %}
+
+{%- block body_scripts %}
+    {{- super() }}
+    {%- block kerko_search_js %}
+        <script src="{{ url_for('kerko.static', filename='kerko/js/search.js') }}"></script>
+    {%- endblock kerko_search_js %}
+    {%- block kerko_print_js %}
+        {%- if show_print_link %}
+            <script src="{{ url_for('kerko.static', filename='kerko/js/print.js') }}"></script>
+        {%- endif %}
+    {%- endblock kerko_print_js %}
+{%- endblock body_scripts %}
