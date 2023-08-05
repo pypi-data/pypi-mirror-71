@@ -1,0 +1,88 @@
+{
+    "resourceTypes":{
+		"classification": {
+			"sheetRegex":"^classification.*",
+			"propertyMaps":[
+				{"regex":"resource|type","property":"resourceType"},
+				{"regex":"import","property":"import"}
+				]
+			},
+		"code": {
+			"sheetRegex":"^code.*",
+			"propertyMaps":[
+			{"regex":"classification","property":"bank"},
+			{"regex":"level","property":"level"},
+			{"regex":"parent","property":"parent"},
+			{"regex":"code|value","property":"value","rml":"*"},
+			{"regex":"missing","property":"isMissing"},
+			{"regex":"missingType|missType","property":"missingType"}
+			]
+		},
+		"layout": {
+			"sheetRegex":"^layout.*",
+			"propertyMaps":[
+			{"regex":"record","property":"bank"},
+			{"regex":"variable","property":"name"}
+			]
+		},
+		"record": {
+			"sheetRegex":"^record.*",
+			"propertyMaps":[
+			{"regex":"unit|units","property":"unit"},
+			{"regex":"pk|primary","property":"pk"},
+			{"regex":"fk|foreign","property":"fk"}
+		]
+		},
+		"rule": {
+			"sheetRegex":"^rule.*",
+			"propertyMaps":[
+			{"regex":"assert","property":"assert","rml":"*"},
+			{"regex":"condition","property":"condition","rml":"*"},
+			{"regex":"context|contextMessage|contextVars","property":"contextVariables","rml":"*"},
+			{"regex":"onpass|pass","property":"onPass","rml":"*"},
+			{"regex":"onfail|fail","property":"onFail","rml":"*"},
+			{"regex":"resource","property":"resource","rml":"*"}
+			]
+		},
+		"variable": {
+			"sheetRegex":"^variable.*",
+			"propertyMaps":[
+			{"regex":"classification","property":"classification","rml":"*","rds":"*"},
+			{"regex":"^datatype(\\[(?P<facets>.*)\\])?$","property":"datatype","rml":"*","rds":"*"},
+			{"regex":"decimals|dcml","property":"decimals","rds":"*"},
+			{"regex":"isDimension","property":"isDimension","rds":"*"},
+			{"regex":"isIdentifier","property":"isIdentifier","rds":"*"},
+			{"regex":"isGeospatial","property":"isGeospatial","rds":"*"},
+			{"regex":"isMeasure","property":"isMeasure","rds":"*"},
+			{"regex":"isTemporal","property":"isTemporal","rds":"*"},
+			{"regex":"isWeight","property":"isWeight","rds":"*"},
+			{"regex":"end","property":"end","rml":"endPosition"},
+			{"regex":"^group(\\[(?P<facets>.*)\\])?$","property":"group","rml":"*","rds":"*"},
+			{"regex":"^mock(\\[(?P<facets>.*)\\])?$","property":"mock"},
+			{"regex":"profile","property":"profile","rds":"*"},
+			{"regex":"question","property":"description[question]","rml":"question","rds":"question"},
+			{"regex":"releaseLevel","property":"releaseLevel","rml":"*"},
+			{"regex":"start","property":"start","rml":"startPosition"},
+			{"regex":"^units(\\[(?P<facets>.*)\\])?$","property":"units"},
+			{"regex":"format","property":"format","rml":"format","rds":"*"},
+			{"regex":"width","property":"width","rml":"fixedStorageWidth","rds":"*"}
+			]
+		}
+    },
+    "propertyMaps":[
+		{"regex":"abbr|abbreviation","property":"name[abbreviation]","rml":"*"},
+		{"regex":"basis","property":"basis","rml":"*"},
+		{"regex":"bank","property":"bank","rml":"*"},
+		{"regex":"clbank|classbank|classfnbank","property":"clbank"},
+		{"regex":"^definition(\\[(?P<facets>.*)\\])?$","property":"definition","rml":"*","rds":"*"},
+		{"regex":"^description(\\[(?P<facets>.*)\\])?$","property":"description","rml":"*","rds":"*"},
+		{"regex":"externalResource|url","property":"externalResource","rml":"*"},
+		{"regex":"exclusion","property":"description[exclusion]","rml":"*"},
+		{"regex":"isPublic|public","property":"isPublic","rml":"*"},
+		{"regex":"^id(\\[(?P<facets>.*)\\])?$","property":"id","rml":"*","rds":"*"},
+		{"regex":"^name(\\[(?P<facets>.*)\\])?$","property":"name","rml":"*","rds":"*"},
+		{"regex":"label","property":"name[label]","rml":"*","rds":"label"},
+		{"regex":"rbank|recbank|rlbank","property":"rlbank"},
+		{"regex":"vbank|varbank","property":"varbank"}
+    ]
+}
