@@ -1,0 +1,20 @@
+bagit
+marshmallow
+rdflib
+rdflib-jsonld
+invenio-celery
+invenio-db[versioning]
+invenio-deposit
+invenio-files-rest
+invenio-jsonschemas
+invenio-records-files
+invenio-records-rest
+rfc6266-parser
+sword3common
+
+[:python_version < "3.8"]
+typing-extensions
+
+[test]
+pytest
+pytest-httpserver
