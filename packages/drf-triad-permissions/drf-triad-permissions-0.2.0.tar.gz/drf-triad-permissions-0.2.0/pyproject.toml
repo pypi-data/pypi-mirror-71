@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "drf-triad-permissions"
+version = "0.2.0"
+description = "Django Rest Framework viewset permissions through triads"
+license = "MIT"
+authors = ["Lorenzo Peña <lorinkoz@gmail.com>"]
+readme = "README.rst"
+repository = "https://github.com/lorinkoz/drf-triad-permissions"
+keywords = ["django", "djangorestframework", "permissions"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Django",
+    "Framework :: Django :: 2.0",
+    "Framework :: Django :: 2.1",
+    "Framework :: Django :: 2.2",
+    "Framework :: Django :: 3.0",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+django = ">=2.0,<4.0"
+djangorestframework = "^3.11.0"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+coverage = {extras = ["toml"], version = "^5.1"}
+
+[tool.black]
+line-length = 120
+
+[tool.coverage.run]
+source = ["drf_triad_permissions"]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
