@@ -1,0 +1,29 @@
+name: {name}
+recipe: drupal8
+
+services:
+  appserver:
+    type: php:7.4
+    via: nginx
+  database:
+    type: mariadb:10.4
+    app_mount: disabled
+    overrides:
+      image: bitnami/mariadb:10.4
+{services}
+tooling:
+  drush:
+    service: appserver
+    cmd: /app/vendor/bin/drush
+  drupal:
+    service: appserver
+    cmd: /app/vendor/bin/drupal
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit
+{tooling}
+config:
+  webroot: {docroot}
+  via: nginx
+  conf:
+    php: .lando/php.ini
