@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pyfe
+Version: 0.0.1
+Summary: Functional Encryption on Tensors
+Home-page: https://github.com/OpenMined/PyFE
+Author: Théo Ryffel, S.P. Sharan, Sukhad Joshi
+Author-email: contact@openmined.org
+License: Apache-2.0
+Keywords: cryptography privacy secure cryptography privacy secure
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (~=1.18.1)
+Provides-Extra: dev
+Requires-Dist: black (>=10.3b0) ; extra == 'dev'
+Requires-Dist: pre-commit (>=1.16.1) ; extra == 'dev'
+Requires-Dist: pyopenssl (>=19.0.0) ; extra == 'dev'
+Requires-Dist: pytest-randomly (~=3.2.1) ; extra == 'dev'
+Requires-Dist: pytest (>=5.4.1) ; extra == 'dev'
+Requires-Dist: setuptools (>=41.0.0) ; extra == 'dev'
+
+# PyFE
+A library for running Functional Encryption on tensors
+
+
