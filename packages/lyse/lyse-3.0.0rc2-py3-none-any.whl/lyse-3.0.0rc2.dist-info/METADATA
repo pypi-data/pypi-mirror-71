@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: lyse
+Version: 3.0.0rc2
+Summary: Automated analysis queue for labscript suite experiments
+Home-page: http://labscriptsuite.org
+Author: The labscript suite community
+Author-email: labscriptsuite@googlegroups.com
+License: BSD
+Project-URL: Source Code, https://github.com/labscript-suite/lyse
+Project-URL: Download, https://github.com/labscript-suite/lyse/releases
+Project-URL: Tracker, https://github.com/labscript-suite/lyse/issues
+Keywords: experiment analysis automation
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: desktop-app (>=0.1.2)
+Requires-Dist: h5py
+Requires-Dist: importlib-metadata
+Requires-Dist: labscript-utils (>=2.14.0)
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas (>=0.21)
+Requires-Dist: qtutils (>=2.2.2)
+Requires-Dist: runmanager
+Requires-Dist: scipy
+Requires-Dist: tzlocal
+Requires-Dist: zprocess (>=2.2.2)
+Provides-Extra: pyqt
+Requires-Dist: PyQt5 ; extra == 'pyqt'
+
+# lyse
+
+lyse is an analysis framework. It coordinates the running of python analysis scripts on experiment data as it becomes availiable, updating plots in real time.
+
+([view on Github](https://github.com/labscript-suite/lyse))
+
+
+
