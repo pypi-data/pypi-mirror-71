@@ -1,0 +1,15 @@
+#!python
+
+import sys
+import scruf.main
+
+
+def main():
+    try:
+        sys.exit(scruf.main.run(sys.argv))
+    except KeyboardInterrupt:
+        pass
+
+
+if __name__ == "__main__":
+    main()

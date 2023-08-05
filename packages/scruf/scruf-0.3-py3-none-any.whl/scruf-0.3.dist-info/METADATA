@@ -1,0 +1,248 @@
+Metadata-Version: 2.1
+Name: scruf
+Version: 0.3
+Summary: Functional testing for command line applications
+Home-page: https://gitlab.com/matthewhughes/scruf
+Author: Matthew Hughes
+License: GNU GPLv3
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.6
+
+=====
+Scruf
+=====
+
+.. image:: https://gitlab.com/matthewhughes/scruf/badges/master/pipeline.svg
+    :target: https://gitlab.com/group-name/project-name/commits/master
+    :alt: pipeline status
+
+.. image:: https://gitlab.com/matthewhughes/scruf/badges/master/coverage.svg
+   :target: https://gitlab.com/matthewhughes/scruf/-/commits/master)
+   :alt: coverage report
+
+Scruf is a functional testing framework for command line applications. It is
+heavily inspired by cram_. This is currently early in development and while I
+aim to maintain the current interface breaking changes may occur.
+
+::
+
+   usage: scruf [-h] [--no-cleanup] [-s SHELL] [-i INDENT] FILE [FILE ...]
+
+   positional arguments:
+     FILE                  Files to be tested
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     --no-cleanup          Avoid cleaning up temporary test directory
+     -s SHELL, --shell SHELL
+                           Path to shell to be used to run tests with. Default is
+                           '/bin/sh'
+     -i INDENT, --indent INDENT
+                           String to be used for detecting indentation when
+                           parsing tests. Default is 4 spaces, use a literal '\t'
+                           to denote a tab character
+
+Example test::
+
+   # in my_test.scf
+   # the following line is a test description
+   Verify 'cat' reads file contents
+
+   # Run some commands to setup environment
+   $ echo 'some text' > test.txt
+   $ echo '1234' >> test.txt
+
+   # The command to test (note indentation)
+       $ cat test.txt
+       some text
+       [RE] ^\d+$
+
+Running::
+
+   scruf my_test.scf
+   # Testing: my_test.scf
+   1..1
+   ok 1 - Verify 'cat' reads file contents
+
+.. _cram: https://bitheap.org/cram/
+
+Test Structure
+==============
+
+This is a summary of the structure of tests expected by ``scruf``, these tests
+contain:
+
+* A optional description_ lines, followed by
+* Optional `setup command`_ to run, followed by
+* A test `test command`_ to run, followed by
+* Optional `output specification`_ to compare against the result of running
+  the command.
+
+There are examples, run as part of the test suite, present under ``examples/``
+
+Comments
+--------
+
+Any line beginning with a ``#`` is treated as a comment, as is ignored.
+
+.. _description:
+
+Test Descriptions
+-----------------
+
+Non-comment lines beginning with anything other than a space of ``$`` are
+interpreted as descriptions. These are used as descriptions in the test output
+
+For example::
+
+   # This is a comment
+   This would be be a test description
+
+.. _setup command:
+
+Setup Command
+-------------
+
+Lines beginning with a ``$`` are interpreted as setup commands, these are
+commands to be run before the actual test and whose output is not used as part
+of a test. If one of these commands fails (i.e. returns a non-zero value) the
+test is marked as failed. e.g.::
+
+   # This is a comment
+   This would be a test description
+   # Add some content to 'my_file'
+   $ echo 'some content' > my_file
+
+.. _test command:
+
+Test Commands
+-------------
+
+Commands are specified by a line indented (by default with 4 spaces, but this
+can be configured with the ``--indent`` option) followed by ``$``. Building on
+our example::
+
+   # This is a comment
+   This would be a test description
+   # Add some content to 'my_file'
+   $ echo 'some content' > my_file
+        $ cat my_file
+
+Commands can continued over more than one lines, such continuations are marked
+by an indented line beginning with ``>``, e.g.::
+
+   Concatentate two files
+       $ cat first_file
+       > second_file
+
+This would be equivalent to::
+
+   Concatenate two files
+       $ cat first_file second_file
+
+.. _output specification:
+
+Testing Output
+--------------
+
+Output is defined by a indented line beginning with anything other than ``$``
+or ``>``. The simplest comparison that can be made on output is a direct
+comparison on contents, our complete test is then::
+
+   # This is a comment
+   This would be a test description
+   # Add some content to 'my_file'
+   $ echo 'some content' > my_file
+        $ cat my_file
+        some content
+
+Stream Specification
+~~~~~~~~~~~~~~~~~~~~
+
+The output stream, standard out or standard error, can be specified by
+prefixing an output line with ``1:`` or ``2:`` respectively, for example::
+
+   'printf' prints to stdout
+       $ printf "Off I go\n"
+       1: Off I go
+
+   Output can be redirected
+       $ printf "Error!\n" >&2
+       2: Error!
+
+Regex Comparisons
+~~~~~~~~~~~~~~~~~
+
+Output can be compared against a provided regex using the flag: ``[RE]``, for
+example::
+
+   Printing numbers
+       $ echo '1234'
+       [RE] ^\d+$
+
+To combine this with stream specification simply specify the stream before the
+regex flag::
+
+   Numbers to stderr
+       $ echo '1234' >&2
+       2:[RE] ^\d+$
+
+
+Comparisons Without End-Of-Line Characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An output line without a line ending can be tested using the No End of Line
+flag: ``[NEoL]``, for example::
+
+   'printf' doesn't add newlines
+       $ printf "Hello, world"
+       [NEoL] Hello, world
+
+
+Exit Code Comparisons
+~~~~~~~~~~~~~~~~~~~~~
+
+Line's which contain only an integer contained in ``[]`` are used to test the
+exit code of a command, for example::
+
+   # Intentionally disregard output
+   'echo' exits with 0 on success
+       $ echo "Everything is ok"
+       [0]
+
+   'exit' sets the exit code
+       $ exit 1
+       [1]
+
+Combining Comparisons
+~~~~~~~~~~~~~~~~~~~~~
+
+Any combination of comparisons can be used within a single test::
+
+   Printf with varied output   
+       $ printf "Lots of interesting output\n12345\nIn this test"
+       1: Lots of interesting output
+       [RE] ^[0-9]+$
+       [NEoL] In this test
+       [0]
+
+Scruf Output
+============
+
+By default ``scruf`` will output results following TAP_ (Test Anything
+Protocol). Other formats, e.g. JUnit should be coming in the future.
+
+.. _TAP: http://testanything.org
+
+
