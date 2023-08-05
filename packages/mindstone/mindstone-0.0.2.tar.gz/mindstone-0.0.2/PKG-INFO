@@ -1,0 +1,160 @@
+Metadata-Version: 2.1
+Name: mindstone
+Version: 0.0.2
+Summary: The mindstone package offers an easy to use framework for creating control systems.
+Home-page: https://github.com/joshuasello/mindstone
+Author: Joshua Sello
+Author-email: joshuasello@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/joshuasello/mindstone/archive/0.0.2.tar.gz
+Description: # Mindstone
+        
+        The mindstone package offers an easy to use framework for creating control systems.
+        This package houses a collection of tools that make it possible
+        for a remote processing source to control a local actor.
+        
+        The package defines two entities. The first being whats known as a driver. This entity
+        interfaces directly with a given platform, such as a Raspberry Pi micro-controller,
+        and acts as a bridge between said platform and a higher functioning controller.
+        The other entity is the controller. The controller handles most of the processing and 
+        defines the behaviours and protocols by which a driver operates. The controller does
+        this by processing objects called gates. These gates are connected to each other to form a network.
+        Gates represent simple processes that can be ordered and arranged in
+        different ways to produce different behaviours. Gates also allow users to extend the 
+        functions of a control system by allowing users to embed their own custom-made functions
+        and operations into the network.
+        
+        
+        ## Installing
+        Install and update using [pip](https://pip.pypa.io/en/stable/quickstart/)
+        ```commandline
+        pip install mindstone
+        ```
+        
+        Clone from Github
+        ```commandline
+        git clone https://github.com/joshuasello/mindstone.git
+        ```
+        
+        ## Basic Usage
+        
+        ### Creating a driver
+        On the driver's platform, the mindstone package can be
+        create a new driver in the following way:
+        ```python
+        from mindstone.embedded import start_driver
+        
+        if __name__ == '__main__':
+            start_driver("raspberry", hostname="10.0.0.1", port=50000)
+        ```
+        This will start the connection on the driver's side, allowing 
+        for a new controller to connect to it. In this case, the platform
+        used by the driver is the Raspberry Pi platform.
+        
+        ### Creating a Controller
+        ```python
+        
+        from mindstone.control import *
+        
+        
+        def change_servo_angle(**kwargs):
+            return {"test_component_1": {"angle": 90, "is_active": True}}
+        
+        
+        gates = [
+            RootGate("host_1", {
+                "my_component": ("servo", {"model": "SG90", "trigger": 8})
+            }),
+            FunctionGate(change_servo_angle),
+            ConfigGate("host_1")
+        ]
+        
+        connections = [
+            (0, 1),
+            (1, 2)
+        ]
+        
+        hosts = {
+            "host_1": ("10.0.0.1", 50000)
+        }
+        
+        my_controller = Controller(gates, connections, hosts)
+        final_received_data = my_controller.run()
+        ```
+        
+        1. **Importing the controller tools**
+            
+            Before we can start creating our controller we need to import all the
+            necessary tools: 
+            
+            ```python
+           from mindstone.control import *
+            ```
+           
+        2. **Setting up the gates and gate connections** 
+        
+            ```python
+            gates = [
+                RootGate("host_1", {
+                    "my_component": ("servo", {"model": "SG90", "trigger": 8})
+                }),
+                FunctionGate(change_servo_angle),
+                ConfigGate("host_1")
+            ]
+        
+            connections = [
+                (0, 1),
+                (1, 2)
+            ]
+           
+            hosts = {
+                "host_1": (get_hostname(), 50000)
+            }
+            ```
+           
+            Each gate performs a specific task when activated.
+            The root gate ```RootGate()``` is where it all begins. When activated, it initializes the 
+            connection with the driver. During this connection, it tells the driver what components
+            the driver should register with the platform it is on, and receives information about
+            the connected driver that can be used by the rest of the gates in the network.
+            
+            The function gate ```FunctionGate()``` executes a callable when triggered. This callable
+            takes in the data received from the previous gate and outputs new 
+            data in the form of a python dictionary.
+            
+            Lastly, the configuration gate ```ConfigGate()``` is used to communicate new configurations for
+            components that are in use by the driver. This will send the data from the previous gate as a
+            new configuration to the connected driver. Essentially, if you are only connecting to one host,
+            during the runtime of your network, only one configuration gate is needed.
+            
+            To connect the gates to each other to form the network, the indices of the the gates in the 
+            list that holds them are used to identify each gate. Alternatively, a dictionary could also
+            be used where keywords are instead used to identify gates.
+            
+            For gates that need to communicate with the driver (like the root gate and the configuration gate), a
+            host needs to be attached so that the gate knows where it should connect to. these hosts are defined
+            using a dictionary object, such as the one used in the above example. It is then passed into the controller,
+            along with the gates and connection, when the controller is being initialized.
+            It is important to make sure that any host a gate uses in the network is listed in this dictionary. 
+        
+        3. **Initializing the controller**
+            ```python
+            my_controller = Controller(gates, connections, hosts)
+            final_received_data = my_controller.run()
+            ```
+           
+            Now that everything has been set up, we can finally initialize the controller object. 
+            once initialized, the controller can be activated using the ```run()``` method.
+            
+        
+        
+        ## Contributers
+        - Joshua Sello
+Keywords: raspberrypi,micro-controller,robots
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
