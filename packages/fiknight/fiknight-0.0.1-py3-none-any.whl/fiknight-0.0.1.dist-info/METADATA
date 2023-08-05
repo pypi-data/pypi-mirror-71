@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: fiknight
+Version: 0.0.1
+Summary: A simple package implementing a finite state machine.
+Home-page: https://gitlab.com/Trijeet/fiknight
+Author: Trijeet Sethi
+Author-email: trijeets@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# FiKnight
+
+FiKnight is a simple implementation of a Finite State Machine implemented in Python. There are five essential moving parts, each of these is its own object:
+
+<ol>
+    <li>Machine</li>
+    <li>State</li>
+    <li>Event</li>
+    <li>Transition Table</li>
+    <li>Display</li>
+</ol>
+
+The chain of belonging is as follows:
+Machine > State > Transition Table > Event --> All events are designed to be triggered from the display and also change items on the display.
+
+## Example usage:
+```python
+##Imports
+from fiknight.fsm.core import *
+from fiknight.fsm.common.events import *
+
+##Instantiate the machine
+fsm = Machine(name='Prototype')
+
+##Define the states:
+s1 = State(name="Stage_1", machine=fsm)
+s2 = State(name="Stage_2", machine=fsm)
+s3 = State(name="Stage_3", machine=fsm)
+
+##Define the events that carry the transitions from common events:
+s1.addEvent(clickEvent(name="clickEvent", destinations=s2))
+s2.addEvent(clickEvent(name="clickEvent", destinations=s3))
+s3.addEvent(clickEvent(name="clickEvent", destinations=s1))
+
+##Compile the states into the machine:
+fsm.addState(s1) #the first state that you add is the initial state.
+fsm.addState(s2)
+fsm.addState(s3)
+
+##Execute each event
+for i in range(3):
+    fsm.current_state.resolveEventTransition("clickEvent")
+    print(fsm.current_state.name)
+    print(fsm.history)
+```
+
+### At any point, you can view the transition tables with some rudimentary print modification:
+```python
+##Walk through the machine:
+for ev in fsm.state_stack:
+    ev.transitions.showTable()
+```
+
+## Instead of creating a machine piece-by-piece, some boilerplates have been built in:
+```python
+##Imports
+from fiknight.fsm.core import *
+from fiknight.fsm.common.events import *
+from fiknight.fsm.common.generator import *
+
+##Build a three cycle machine.
+fsm = sequentialMachine("Prototype", n_states=3)
+
+##Walk through the machine.
+for i in range(3):
+    fsm.current_state.resolveEventTransition("baseTransition")
+    print(fsm.current_state.name)
+    print(fsm.history)
+```
+
+## Instead of creating a machine piece-by-piece, some boilerplates have been built in:
+```python
+##Imports
+from fiknight.fsm.core import *
+from fiknight.fsm.common.events import *
+from fiknight.fsm.common.generator import *
+
+##Build a three cycle machine.
+fsm = sequentialMachine("Prototype", n_states=3)
+
+##Walk through the machine.
+for i in range(3):
+    fsm.current_state.resolveEventTransition("baseTransition")
+    print(fsm.current_state.name)
+    print(fsm.history)
+```      
+
+## A state machine can also be connected and translated to NetworkX easily:
+```python
+##Imports
+from fiknight.fsm.core import *
+from fiknight.fsm.common.events import *
+from fiknight.fsm.common.generator import *
+from fiknight.fsm.export.networkx import *
+
+##Build a three cycle machine.
+fsm = sequentialMachine("Prototype", n_states=3)
+
+##Walk through the machine.
+for i in range(3):
+    fsm.current_state.resolveEventTransition("baseTransition")
+    print(fsm.current_state.name)
+    print(fsm.history)
+
+##Get a nx object for algorithms or inference:
+toNetworkx(fsm)
+##Just access the nx graphing mechanisms:
+getGraph(machine=fsm, output="../test.png")
+```     
+
+## Support for saving a machine forthcoming
+
+## Support for GUI creation of events forthcoming
+
