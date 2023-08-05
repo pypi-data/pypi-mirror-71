@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: brunette
+Version: 0.1.2
+Summary: Google/Excel Sheets API Python.
+Home-page: https://github.com/ODwyerSoftware/brunette
+Author: O'Dwyer Software
+Author-email: hello@odwyer.software
+License: Apache 2.0
+Description: # brunette
+        
+        [![PyPI version](https://badge.fury.io/py/brunette.svg)](https://pypi.org/project/brunette/)
+        
+        This is the [black](https://github.com/psf/black) formatter but with some improvements:
+        
+        1. `--config` option supports `setup.cfg` format.
+        2. Adds `single-quotes` option to enable single quotes as the preferred.
+        
+        ## Installation
+        
+        ```bash
+        pip install brunette
+        ```
+        
+        ## Usage
+        
+        Use in the same way you would the 'black' formatter.
+        
+        ```bash
+        brunette *.py --config=setup.cfg
+        ```
+        
+        Example `setup.cfg`:
+        
+        ```
+        [tool:brunette]
+        line-length = 79
+        verbose = true
+        single-quotes = false
+        ```
+        
+        ## Why does this need to exist?
+        
+        - The current maintainer of black, [refuses](https://github.com/psf/black/pull/633#issuecomment-445477386) to allow a single-quotes option. Due to his own *personal* preference (a preference which most of the Python community do not share).
+        
+        - The current maintainer of black, [refuses](https://github.com/psf/black/issues/683#issuecomment-542731068) to add setup.cfg support. Setup.cfg is the most widely used configuration file for Python projects. The maintainer of that library prefers "project.tolm" few people use at this time due to it's inflexibility and it requiring you to use Peotry, whatever that is.
+        
+        
+        
+        Release History
+        ===============
+        
+        0.1.2 (2020-06-16)
+        ------------------
+        
+        - Added `__main__` for CLI exec.
+        
+        
+        0.1.1 (2020-06-15)
+        ------------------
+        
+        - Adds wheels.
+        
+        
+        0.1.0 (2020-06-15)
+        ------------------
+        
+        -   Initial release.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
