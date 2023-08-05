@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "{{ cookiecutter.repo }}"
+version = "0.1.0"
+description = ""
+authors = ["{{ cookiecutter.user }} <{{ cookiecutter.email }}>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/{{ cookiecutter.user }}/{{ cookiecutter.repo }}"
+{% if cookiecutter.repo != cookiecutter.repo_src %}
+include=["{{ cookiecutter.repo_src }}"]
+{% endif %}
+
+[tool.poetry.dependencies]
+python = "^3.6"
+fire = "^0.3.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+{{ cookiecutter.repo }} = "{{ cookiecutter.repo_src }}.main:main"
