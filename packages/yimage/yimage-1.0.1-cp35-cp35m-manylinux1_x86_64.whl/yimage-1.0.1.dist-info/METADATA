@@ -1,0 +1,185 @@
+Metadata-Version: 2.0
+Name: yimage
+Version: 1.0.1
+Summary: A friendly remote sensing data library
+Home-page: UNKNOWN
+Author: Xuan Yang
+Author-email: yangxuan.ac@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Platform: linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Requires-Dist: Cython (>=0.29.0)
+Requires-Dist: numpy (>=1.16.0)
+Requires-Dist: opencv-python (>=4.0.0)
+
+yimage 1.0.1
+============
+
+*Author:* Xuan Yang
+
+*E-mail:* yangxuan.ac#gmail.com
+
+**yimage** is a friendly remote sensing data library for Python. It
+encapsulates OpenCV library and GDAL library, and uses OpenCV data
+format as a standard to provide a convenient remote sensing data I/O
+interface.
+
+Installation
+------------
+
+``pip install yimage``
+
+Prerequisites
+-------------
+
+-  Numpy
+
+   -  ``pip install numpy``
+
+-  OpenCV
+
+   -  ``pip install opencv-python``
+
+-  GDAL
+
+   -  ``pip install GDAL``
+   -  ``conda install GDAL`` (We recommand this one)
+   -  (if missing libpoppler.so when import gdal, try running
+      ``conda install "poppler<0.62"``)
+
+-  Cython
+
+   -  ``pip install Cython``
+
+Document
+--------
+
+*<package>* **yimage**
+~~~~~~~~~~~~~~~~~~~~~~
+
+use ``import yimage`` to import this package.
+
+use ``yimage.__version__`` to check the version.
+
+*<class>* **io**
+~~~~~~~~~~~~~~~~
+
+``yimage.io.read_image(filename, driver='GDAL', read_range=None, with_geo_info=False)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reading an image file from disk by GDAL or OpenCV.
+
+image array format: (H, W) or (H, W, C). band order: (b, g, r, nir, …)
+
+Return: [numpy array] or [numpy array, geo info dict]
+
+filename: [filename]
+
+driver: [GDAL], [OpenCV]
+
+read_range: [None] if you want to load the whole image, [(xoff, yoff,
+xsize, ysize)] if you want to load the part of image (same parameters as
+ReadAsArray method of GDAL library)
+
+with_geo_info: [False] only returns the numpy array, [True] returns
+numpy array and geo info dict (‘proj’ and ‘coord’)
+
+``img_ordered_by_band_list(img, band_list)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reordering bands by a list.
+
+Return: [reordered numpy array]
+
+img: [numpy array]
+
+band_list: [list] e.g. [1, 2, 3] for true color image, [2, 3, 4] for
+pseudo color image
+
+``write_image(filename, img, driver, dtype='uint8', gdal_driver='GTiff', img_geo_info=None, color_table=None, no_data_value=None)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Writing an image file to disk by GDAL or OpenCV.
+
+image array format: (H, W) or (H, W, C). band order: (b, g, r, nir, …)
+
+Return: [True] for success, [False] for failed.
+
+filename: [filename]
+
+img: [numpy array]
+
+driver: [GDAL], [OpenCV]
+
+dtype: [uint8], [uint16], [int16], [uint32], [int32], [float32],
+[float64]
+
+gdal_driver: [Gtiff] GeoTIFF format, [ENVI] ENVI Standard foemat, [HFA]
+ERDAS format, and also, supports all formats that supported by GDAL
+library, please see the docs of GDAL for more driver name string.
+
+img_geo_info: [None], [geo info dict] dict (‘proj’ and ‘coord’)
+
+color_table: [None], [color tabel list] for coloring single band image
+
+no_data_value: [None], [an integer] for setting NoDataValue
+
+``polygonize(raster_filename, shapefile_filename, band=None, layer_name=None)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Polygonize a raster data.
+
+Return: [True] for success, [False] for failed.
+
+raster_filename: [filename for raster data]
+
+shapefile_filename: [filename for ESRI shapefile]
+
+band: [None] polygonize the 1st band, [an integer] polygonize that band
+
+layer_name: [None] the layer name of shapefile will be ‘polygon’, [name
+string]
+
+``load_color_table_file(filename)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Load color table from file.
+
+Return: [color table list]
+
+filename: [filename for color table file]
+
+file format: one color RGB value with comment per line. Demo:
+
+``255 / 0 / 0 # Color 1``
+
+``0 / 255 / 0 # Color 2``
+
+``0 / 0 / 255 # Color 3``
+
+Updates
+-------
+
+Version 1.0.1 (06/12/2020)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  offset method in write_image is deprecated
+
+Version 1.0.0 (06/12/2020)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Support reading and writing remote sensing data
+-  Support reordering bands of data
+-  Support polygonizing the raster data
+-  Support processing color table file
+
+
