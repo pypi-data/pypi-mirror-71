@@ -1,0 +1,3 @@
+
+class AioMQError(RuntimeError):
+    pass
