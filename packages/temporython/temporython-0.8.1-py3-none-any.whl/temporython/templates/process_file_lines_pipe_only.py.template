@@ -1,0 +1,36 @@
+#! /usr/bin/env python3
+
+# a quick script that reads lines from stdin and processes those lines.
+# initially generated using `temporython`.
+
+# nice reference for Python 3 text processing: https://docs.python.org/3/library/text.html
+import string
+import textwrap
+import re
+
+$INCLUDE_TEMPORYTHON_PROCESS_PIPE_LIBRARY
+
+
+### custom processing #########################################################
+
+class LineProcessor:
+    def __init__(self):
+        """
+        called before processing begins
+        """
+        pass
+
+    def process_line(self, filename, line_number, line):
+        # NOTE: filename can be '-' if processing stdin.
+        line = line.strip()
+        print(line)
+
+    def post_process(self):
+        """
+        called once after all lines in all files have been processed.
+        """
+        pass
+
+
+if __name__ == '__main__':
+    pipe_main(LineProcessor)
