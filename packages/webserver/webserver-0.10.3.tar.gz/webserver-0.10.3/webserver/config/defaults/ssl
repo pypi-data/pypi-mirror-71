@@ -1,0 +1,23 @@
+#### Use HTTP/2 and modern TLS versions
+listen 443 ssl http2;
+ssl_protocols TLSv1.2 TLSv1.3;
+
+#### Do not send nginx version
+server_tokens off;
+
+#### Use strong, PFS and TLSv1.3 compatible ciphers and let user choose between them
+ssl_ciphers "EECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305";
+ssl_prefer_server_ciphers off;
+ssl_ecdh_curve secp384r1;
+
+#### Reuse SSL session parameters to avoid SSL handshakes for parallel and subsequent connections
+ssl_session_timeout 1h;
+ssl_session_cache shared:SSL:10m;
+ssl_session_tickets off;
+
+#### Security headers (for browsers)
+add_header Strict-Transport-Security "max-age=63072000" always;
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-XSS-Protection "1; mode=block" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
