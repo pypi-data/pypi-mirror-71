@@ -1,0 +1,32 @@
+#!/bin/sh -e
+
+REPO_DIR="$(git rev-parse --show-toplevel)"
+
+touch "$REPO_DIR"/.git/hooks/pre-commit
+chmod +x "$REPO_DIR"/.git/hooks/pre-commit
+
+PRE_COMMIT_SCRIPT="#!/usr/bin/env python3
+
+import os
+from pathlib import Path
+
+from lg_linter.src.lg_linter import LinterConfig, lint
+
+
+def main():
+    repo_path = Path(__file__).parent.parent.parent.resolve()
+
+    config = LinterConfig(repo_path, False)
+
+    linted_successfully = lint(config)
+
+    if not linted_successfully:
+        return 1
+
+    return 0
+
+if __name__ == '__main__':
+    exit(main())
+"
+
+echo "$PRE_COMMIT_SCRIPT" > "$REPO_DIR"/.git/hooks/pre-commit
