@@ -1,0 +1,197 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GaussianDust &#8212; so_pysm_models v0.4.dev210</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GaussianSynchrotron" href="so_pysm_models.GaussianSynchrotron.html" />
+    <link rel="prev" title="COLines" href="so_pysm_models.COLines.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">so_pysm_models</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="so_pysm_models.GaussianSynchrotron.html" title="GaussianSynchrotron">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="so_pysm_models.COLines.html" title="COLines">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">so_pysm_models v0.4.dev210</a>
+	 &#187;
+      </li>
+      
+      <li>GaussianDust</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gaussiandust">
+<h1>GaussianDust<a class="headerlink" href="#gaussiandust" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="so_pysm_models.GaussianDust">
+<em class="property">class </em><code class="descclassname">so_pysm_models.</code><code class="descname">GaussianDust</code><span class="sig-paren">(</span><em>target_nside</em>, <em>has_polarization=True</em>, <em>pixel_indices=None</em>, <em>TT_amplitude=350.0</em>, <em>Toffset=18.0</em>, <em>EE_amplitude=100.0</em>, <em>rTE=0.35</em>, <em>EtoB=0.5</em>, <em>alpha=-0.42</em>, <em>beta=1.53</em>, <em>temp=19.6</em>, <em>nu_0=353</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/so_pysm_models/dust.html#GaussianDust"><span class="viewcode-link">[source]</span></a><a class="reference external" href="http://github.com/simonsobs/so_pysm_models/tree/master/so_pysm_models/dust.py#L11" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#so_pysm_models.GaussianDust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gaussian dust model</p>
+<p>See more details at <a class="reference external" href="https://so-pysm-models.readthedocs.io/en/latest/so_pysm_models/models.html">https://so-pysm-models.readthedocs.io/en/latest/so_pysm_models/models.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>target_nside</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">HEALPix NSIDE of the output maps</p>
+</dd>
+<dt><strong>has_polarization</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">whether or not to simulate also polarization maps
+Default: True</p>
+</dd>
+<dt><strong>pixel_indices</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray of ints</span></dt>
+<dd><p class="first last">Outputs partial maps given HEALPix pixel indices in RING ordering</p>
+</dd>
+<dt><strong>TT_amplitude</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">amplitude of synchrotron TT power spectrum (D_ell) at at the reference
+frequency and ell=80, in muK^2 and thermodinamic units.
+Default: 350. from the amplitude of PySM-d0 dust model at 353GHz
+in the region covered by SO-SAT.</p>
+</dd>
+<dt><strong>Toffset</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">offset to be applied to the temperature map in muK in RJ units.
+Default: 18 from the mean value of the T PySM-s0 synch map at 23GHz
+in the region covered by SO-SAT</p>
+</dd>
+<dt><strong>EE_amplitude</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Amplitude of EE modes D_ell at reference frequency at ell=80
+Default: 100. from the amplitude of HFI-353 E-modes spectrum in the
+region covered by SO-SAT</p>
+</dd>
+<dt><strong>EtoB: float</strong></dt>
+<dd><p class="first last">ratio between E and B-mode amplitude for dust.
+Default: 0.5 from Planck 2018 IX</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier-delimiter">:</span> <span class="classifier">same as alpha_sync for dust.</span></dt>
+<dd><p class="first last">Default: -0.42 from Planck 2018 IX</p>
+</dd>
+<dt><strong>beta</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">dust spectral index.
+Default: 1.53 from Planck 2018 IX</p>
+</dd>
+<dt><strong>temp</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">dust temperature.
+Default: 19.6 from Planck 2018 IX</p>
+</dd>
+<dt><strong>nu0</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">dust reference frequency in GHz.
+Default: 353</p>
+</dd>
+<dt><strong>seed</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">seed for random realization of map
+Default: None</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#so_pysm_models.GaussianDust.signal" title="so_pysm_models.GaussianDust.signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signal</span></code></a>(nu,&nbsp;**kwargs)</td>
+<td>Return map in uK_RJ at given frequency or array of frequencies</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="so_pysm_models.GaussianDust.signal">
+<code class="descname">signal</code><span class="sig-paren">(</span><em>nu</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/so_pysm_models/dust.html#GaussianDust.signal"><span class="viewcode-link">[source]</span></a><a class="reference external" href="http://github.com/simonsobs/so_pysm_models/tree/master/so_pysm_models/dust.py#L86" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#so_pysm_models.GaussianDust.signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return map in uK_RJ at given frequency or array of frequencies</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">GaussianDust</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="http://github.com/simonsobs/so_pysm_models/tree/master/docs/api/so_pysm_models.GaussianDust.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/so_pysm_models.GaussianDust.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2019, A. Zonca.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 1.8.5. &nbsp;
+    Last built 17 May 2019. <br/>
+  </p>
+</footer>
+  </body>
+</html>

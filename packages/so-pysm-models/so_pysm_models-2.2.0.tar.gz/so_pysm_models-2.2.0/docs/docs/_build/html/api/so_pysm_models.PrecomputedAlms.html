@@ -1,0 +1,216 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PrecomputedAlms &#8212; so_pysm_models v0.4.dev210</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="UnsupportedPythonError" href="so_pysm_models.UnsupportedPythonError.html" />
+    <link rel="prev" title="InterpolatingComponent" href="so_pysm_models.InterpolatingComponent.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">so_pysm_models</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="so_pysm_models.UnsupportedPythonError.html" title="UnsupportedPythonError">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="so_pysm_models.InterpolatingComponent.html" title="InterpolatingComponent">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">so_pysm_models v0.4.dev210</a>
+	 &#187;
+      </li>
+      
+      <li>PrecomputedAlms</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="precomputedalms">
+<h1>PrecomputedAlms<a class="headerlink" href="#precomputedalms" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="so_pysm_models.PrecomputedAlms">
+<em class="property">class </em><code class="descclassname">so_pysm_models.</code><code class="descname">PrecomputedAlms</code><span class="sig-paren">(</span><em>filename</em>, <em>input_units='uK_CMB'</em>, <em>input_reference_frequency_GHz=None</em>, <em>target_nside=None</em>, <em>target_shape=None</em>, <em>target_wcs=None</em>, <em>precompute_output_map=True</em>, <em>has_polarization=True</em>, <em>pixel_indices=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/so_pysm_models/alms.html#PrecomputedAlms"><span class="viewcode-link">[source]</span></a><a class="reference external" href="http://github.com/simonsobs/so_pysm_models/tree/master/so_pysm_models/alms.py#L11" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#so_pysm_models.PrecomputedAlms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generic component based on Precomputed Alms</p>
+<p>Load a set of Alms from a FITS file and generate maps at the requested
+resolution and frequency assuming the CMB black body spectrum.
+A single set of Alms is used for all frequencies requested by PySM,
+consider that PySM expects the output of components to be in uK_RJ.</p>
+<p>See more details at <a class="reference external" href="https://so-pysm-models.readthedocs.io/en/latest/so_pysm_models/models.html">https://so-pysm-models.readthedocs.io/en/latest/so_pysm_models/models.html</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd><p class="first last">Path to the input Alms in FITS format</p>
+</dd>
+<dt><strong>input_units</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd><p class="first last">Input unit strings as defined by pysm.convert_units, e.g. K_CMB, uK_RJ, MJysr</p>
+</dd>
+<dt><strong>input_reference_frequency_GHz</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">If input units are K_RJ or Jysr, the reference frequency</p>
+</dd>
+<dt><strong>target_nside</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">HEALPix NSIDE of the output maps</p>
+</dd>
+<dt><strong>precompute_output_map</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">If True (default), Alms are transformed into a map in the constructor,
+if False, the object only stores the Alms and generate the map at each
+call of the signal method, this is useful to generate maps convolved
+with different beams</p>
+</dd>
+<dt><strong>has_polarization</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">whether or not to simulate also polarization maps
+Default: True</p>
+</dd>
+<dt><strong>pixel_indices</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray of ints</span></dt>
+<dd><p class="first last">Output a partial maps given HEALPix pixel indices in RING ordering</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#so_pysm_models.PrecomputedAlms.compute_output_map" title="so_pysm_models.PrecomputedAlms.compute_output_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_output_map</span></code></a>(alm)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#so_pysm_models.PrecomputedAlms.signal" title="so_pysm_models.PrecomputedAlms.signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signal</span></code></a>([nu,&nbsp;fwhm_arcmin,&nbsp;output_units])</td>
+<td>Return map in uK_RJ at given frequency or array of frequencies</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="so_pysm_models.PrecomputedAlms.compute_output_map">
+<code class="descname">compute_output_map</code><span class="sig-paren">(</span><em>alm</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/so_pysm_models/alms.html#PrecomputedAlms.compute_output_map"><span class="viewcode-link">[source]</span></a><a class="reference external" href="http://github.com/simonsobs/so_pysm_models/tree/master/so_pysm_models/alms.py#L77" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#so_pysm_models.PrecomputedAlms.compute_output_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="so_pysm_models.PrecomputedAlms.signal">
+<code class="descname">signal</code><span class="sig-paren">(</span><em>nu=[148.0], fwhm_arcmin=None, output_units='uK_RJ', **kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/so_pysm_models/alms.html#PrecomputedAlms.signal"><span class="viewcode-link">[source]</span></a><a class="reference external" href="http://github.com/simonsobs/so_pysm_models/tree/master/so_pysm_models/alms.py#L90" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#so_pysm_models.PrecomputedAlms.signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return map in uK_RJ at given frequency or array of frequencies</p>
+<p>If nothing is specified for nu, we default to providing an unmodulated map
+at 148 GHz. The value 148 Ghz does not matter if the output is in
+uK_RJ.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>nu</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or ndarray</span></dt>
+<dd><p class="first last">Frequency or frequencies in GHz at which compute the signal</p>
+</dd>
+<dt><strong>fwhm_arcmin</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float (optional)</span></dt>
+<dd><p class="first last">Smooth the input alms before computing the signal, this can only be used
+if the class was initialized with <code class="xref py py-obj docutils literal notranslate"><span class="pre">precompute_output_map</span></code> to False.</p>
+</dd>
+<dt><strong>output_units</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Output units, as defined in <code class="xref py py-obj docutils literal notranslate"><span class="pre">pysm.convert_units</span></code>, by default this is
+“uK_RJ” as expected by PySM.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>output_maps</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd><p class="first last">Output maps array with the shape (num_freqs, 1 or 3 (I or IQU), npix)</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">PrecomputedAlms</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="http://github.com/simonsobs/so_pysm_models/tree/master/docs/api/so_pysm_models.PrecomputedAlms.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/so_pysm_models.PrecomputedAlms.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2019, A. Zonca.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 1.8.5. &nbsp;
+    Last built 17 May 2019. <br/>
+  </p>
+</footer>
+  </body>
+</html>
