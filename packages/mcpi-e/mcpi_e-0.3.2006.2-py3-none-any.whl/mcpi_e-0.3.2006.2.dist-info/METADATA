@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: mcpi-e
+Version: 0.3.2006.2
+Summary: [for python education] Python library for the Minecraft Pi edition and RaspberryJuice API Modified version
+Home-page: https://github.com/stoneskin/mcpi-e
+Author: stoneskin
+Author-email: stoneskin@hotmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Education
+Classifier: Topic :: Games/Entertainment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+# Minecraft: Pi edition API Python Library
+This project `mcpi-e` is a fork from mcpi project [https://github.com/martinohanlon/mcpi]
+`mcpi-e` Python library for communicating with [Minecraft: Pi edition](https://minecraft.net/en-us/edition/pi/) and [RaspberryJuice](https://github.com/zhuowei/RaspberryJuice).
+
+Visit [github.com/stoneskin/mcpi-e](https://github.com/stoneskin/mcpi-e) for more information.
+## Installation
+
+### Windows
+
+```
+pip3 install --upgrade mcpi-e
+```
+
+*Note: you could use `py` or `python -m` to speify the python in your system*
+
+```
+py -m pip install --upgrade mcpi-e
+```
+
+### Linux / MacOS
+
+```bash
+sudo pip3 install --upgrade mcpi-e
+```
+
+## Usage
+
+```
+from mcpi_e.minecraft import Minecraft
+...
+mc = Minecraft.create(servername,4711,playerName)
+
+```
+
+## `mcpi-e` Change log
+
+### 1. Enhancement for using `mcpi` in server with multiple users
+
+- User could pass player username as 3rd parameter when create a new Minecraft api instense.
+
+   ex:
+   `mc=Minecraft.create(address,port,name)`
+
+- Change mc.Player to use entity so it will not pick the first user in the server.
+
+### 2. Limit the Usage of `mcpi`  
+
+- Add the _send command 0.05s interval to slow down the speed
+- limit the useage of setBlocks 
+- todo: limit the script usage range (x,y,z)
+
+### 3. Some improvement
+- Add BlockEnum, Logger, Settings
+    ex:
+    ```
+    mc.settings.SHOW_DEBUG=True
+    print("Is show debug msg",mc.settings.SHOW_DEBUG)
+    print("Is show log msg",mc.settings.SHOW_Log)
+    print("system speed:",mc.settings.SYS_SPEED)
+    mc.settings.SYS_SPEED=mc.settings.Speed.FAST
+    (x,y,z)=pos=mc.player.getTilePos()
+    debug("this is debug msg")
+    log(pos)
+    warn("warn")
+    ```
+
+
