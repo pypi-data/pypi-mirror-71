@@ -1,0 +1,16 @@
+<script type="text/template" id="legend-template">
+    <div class="legend-timestamp">
+        <span></span><span></span>
+    </div>
+    <div class="legend-items"></div>
+</script>
+
+<script type="text/template" id="legend-item-template">
+    <div class="legend-item <%- model.get('id') %> <%- model.get('css_class') %>">
+        <span class="legend-name">
+            <input id="<%- id %>" data-index="<%- index %>" class="switch" type="checkbox" <% if (model.get('visible')) { %>checked<% } %>>
+            <label for="<%- id %>" style="background: <%- model.get('color') %>;"><%= model.get('label') %></label>
+        </span>
+        <span class="legend-value"></span>
+    </div>
+</script>
