@@ -1,0 +1,7 @@
+connectors:
+storage: {max_records_count: 100000, read_records_count: 100, type: memory}
+wthings:
+  host: testthings.xiaobodata.com
+  port: 1883
+  remoteConfiguration: true
+  security: {accessToken: PUT_YOUR_GW_ACCESS_TOKEN_HERE}
