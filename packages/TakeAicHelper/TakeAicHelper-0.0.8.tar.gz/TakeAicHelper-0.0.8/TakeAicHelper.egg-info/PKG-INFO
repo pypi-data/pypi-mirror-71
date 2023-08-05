@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: TakeAicHelper
+Version: 0.0.8
+Summary: Pacote para auxiliar na geração de métricas para analisar dados conversacionais
+Home-page: UNKNOWN
+Author: Caio Souza
+Author-email: caios@take.net
+License: UNKNOWN
+Description: # TakeAicHelper
+        
+        
+        ### Instanciando a classe
+        
+        ```Python
+        from TakeAicHelper.metrics import Metrics
+        
+        analyse = Metrics(path=r'C:\Users\base.csv', encoding='utf-8', sep=';', minimunScore=0.6)
+        analyse.overview()
+        ```
+        
+        * Obter e manipular o tamanho da base de entrada (o nÃºmero de inputs), a quantidade de intenÃ§Ãµes, 
+        a Taxa de CompreensÃ£o Geral (TCG) e a quantidade de inputs reconhecidos com o score maior e menor que o mÃ­nimo.
+        
+        >`analyse.overview()`
+        
+        * Obter e manipular somente o valor da Taxa de CompreensÃ£o Geral.
+        
+        >`analyse.tcg()`
+          
+        * Obter um ranking das entidades reconhecidas.
+        
+        >`analyse.intentDetails("NOME_DA_INTENÃ‡ÃƒO")`
+          
+        * analyse.entities(n=0, mode=None, intentName=None)
+        
+        >`n = 0` - Mostra todas as entidades
+        >`n > 0` - Top > n  entidades reconheidas
+        >`n < 0` - Top < n  entidades reconheidas
+        
+        >`mode = total` - Reconhecidas em geral (Considerando se reconhecidas junto com outras entidades)
+        >`mode = individual` - Reconhecidas em geral (ignorando se reconhecidas junto com outras entidades)
+        
+        >``intentName = NOME_DE_UMA_INTENCAO` -  (Caso queira analisar as entidades reconhecidas numa intenÃ§Ã£o especÃ­fica)
+        
+        
+        * Salvar arquivos em csv separados por intenÃ§Ã£o:
+        
+        >``analyse.csvByIntentions(output, sep)`
+        
+        >`output = diretÃ³rio do nome da pasta`
+        >`sep = separador do arquivo`
+        
+        
+        **obs**: No databricks, para salvar mais tabelas, Ã© utilizado a funÃ§Ã£o `analyse.tableByIntentions()`
+        
+        * Com a funÃ§Ã£o tr() (Taxa de Reconhecimento) e tci() (Taxa de CompreensÃ£o Interna) Ã© possÃ­vel obter trÃªs visualizaÃ§Ãµes (dataframe,tabela ou grÃ¡fico)
+        
+        >`analyse.tr(figure, valueType, order)`
+        >`analyse.tci(figure, valueType, order, minimunScore=0.6)`
+        
+        >`figure = 'dataframe', 'chart' (grÃ¡fico), 'table' (tabela)`
+        >`valueType = '%' (porcecntagem) , 'total' (nÃºmero inteiro)`
+        >`order = 'asc' (crescente) , 'desc' (decrescente)`
+        >`minimunScore (apenas na tci) = score mÃ­nimo a ser a analisado, por default Ã© 0.6`
+        
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
