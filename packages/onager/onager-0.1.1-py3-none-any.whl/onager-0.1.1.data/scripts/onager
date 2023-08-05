@@ -1,0 +1,33 @@
+#!python
+import os
+
+from onager import frontend
+from onager import meta_launcher, launcher, constants, cancel, config
+from onager import list as list_
+
+if __name__ == '__main__':
+    args, other_args = frontend.parse_args()
+    os.makedirs(constants.default_logs_folder, exist_ok=True)
+    os.makedirs(constants.default_scripts_folder, exist_ok=True)
+
+    if args.subcommand == 'prelaunch':
+        meta_launcher.meta_launch(args)
+    elif args.subcommand == 'launch':
+        launcher.launch(args, other_args)
+    elif args.subcommand == 'list':
+        list_.list_commands(args)
+    elif args.subcommand == 'cancel':
+        cancel.cancel(args)
+    elif args.subcommand == 'config':
+        config.config(args)
+    elif args.subcommand == 'help':
+        if args.help_command == 'prelaunch':
+            frontend.parse_args(['prelaunch', '+h'])
+        elif args.help_command == 'help':
+            frontend.parse_args(['help', '--help'])
+        elif args.help_command in [None]:
+            frontend.parse_args(['--help'])
+        else:
+            frontend.parse_args([args.help_command, '-h'])
+    else:
+        raise ValueError("'{}' is not a valid command. See 'onager --help'.")
