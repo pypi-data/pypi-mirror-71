@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: plone.gallery
+Version: 1.0a1
+Summary: Photo gallery for Plone CMS.
+Home-page: https://github.com/collective/plone.gallery
+Author: Maik Derstappen
+Author-email: md@derico.de
+License: GPL version 2
+Project-URL: Source, https://github.com/collective/plone.gallery
+Project-URL: Tracker, https://github.com/collective/plone.gallery/issues
+Project-URL: PyPI, https://pypi.python.org/pypi/plone.gallery
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        =============
+        plone.gallery
+        =============
+        
+        A photo gallery view for Plone CMS.
+        
+        Features
+        --------
+        
+        
+        Shows photos of different sizes nicely and allows to zoom and browse thru the photos. It uses the libraries `spotlight <https://github.com/nextapps-de/spotlight>`_ and `flexbin <https://github.com/guoyunhe/flexbin>`_ in combination for that.
+        
+        
+        
+        
+        Translations
+        ------------
+        
+        This product has been translated into
+        
+        - German (MrTango)
+        
+        
+        Installation
+        ------------
+        
+        Install plone.gallery by adding it to your buildout::
+        
+            [buildout]
+        
+            ...
+        
+            eggs =
+                plone.gallery
+        
+        
+        and then running ``bin/buildout``
+        
+        TODO
+        ----
+        
+        - add some more tests for the view
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/plone/plone.gallery/issues
+        - Source Code: https://github.com/plone/plone.gallery
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Contributors
+        ============
+        
+        - Maik Derstappen, md@derico.de
+        
+        
+        Changelog
+        =========
+        
+        
+        1.0a1 (2020-06-11)
+        ------------------
+        
+        - Initial release.
+          [MrTango]
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Plone :: 5.2
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Requires-Python: ==2.7, >=3.6
+Provides-Extra: test
