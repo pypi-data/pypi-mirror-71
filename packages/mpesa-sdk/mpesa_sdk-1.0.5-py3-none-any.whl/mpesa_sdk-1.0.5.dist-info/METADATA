@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: mpesa-sdk
+Version: 1.0.5
+Summary: Mpesa API SDK
+Home-page: https://github.com/sartim/mpesa-sdk
+Author: sartim
+Author-email: write2sartim@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: python-dotenv
+Requires-Dist: requests
+Requires-Dist: tox
+
+**MPESA REST SDK**
+
+[![Language](https://img.shields.io/badge/language-python-green.svg)](https://github.com/sartim/mpesa-sdk)
+![Build Status](https://github.com/sartim/mpesa-sdk/workflows/Publish%20Python%20Mpesa%20SDK%20distribution%20to%20PyPI/badge.svg)
+
+Pure python sdk for [MPESA API](https://developer.safaricom.co.ke/docs#authentication).
+
+
+**Features**
+
+* Generate Token
+* C2B Register Url
+* C2B Simulate Transaction
+* C2B Simulate Transaction
+* B2B Payment Request
+* B2C Payment Request
+* Transaction Status
+* Account Balance
+* Reversal Request
+
+***Installation***
+
+    $ pip install mpesa-sdk
+
+***Running tests***
+
+Create .env file from [example](https://github.com/sartim/mpesa-sdk/blob/master/.env.example) then run
+
+    $ pip install pytest
+    $ pytest
+
+To test for different python environments use
+
+    $ pip install tox
+    $ tox
+
+Read more on [wiki](https://github.com/sartim/mpesa-sdk/wiki).
+
+
