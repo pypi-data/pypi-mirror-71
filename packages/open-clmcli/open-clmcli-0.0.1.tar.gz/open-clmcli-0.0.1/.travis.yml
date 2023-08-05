@@ -1,0 +1,38 @@
+language: python
+
+python:
+  - '3.6'
+  - '3.7'
+
+before_install:
+  - export PATH=$PWD/bats-0.4.0/bin:$PATH
+  - bats -v
+
+install:
+  - virtualenv .venv
+  - . ./.venv/bin/activate
+  - pip install -r requirements.txt
+  - pip install -r test-requirements.txt
+  - pip install -e .
+
+script:
+  - export PATH=$PWD/bats-0.4.0/bin:$PATH
+
+sudo: false
+
+jobs:
+  include:
+    - stage: build
+      python: "3.7"
+      script: echo "Starting Pypi build"
+      deploy:
+        edge: true
+        provider: pypi
+        user: "__token__"
+        password:
+          secure: ONoaeki7zRk7Wq3F8yh1cgHCDfRFgHR3/jriELXFz4YRdiKC3lMRYTgqtHfTUJAmCS1PqxkHkyO7LPbrjc9VVK9GnXuGTItAY24oV+47b9O8MzTjKLsY546nGoEttKgEt9U0sFCKW28uNJOjjPiTkcEFKbkI6QHtqgV/Phx89TfKtYq6GTXiBR0AwgwLPGEIm9eyvpiJVJ+cwktXFQhaYLsQNfj7iXNYMiElcnfgfQcTeBow1ByhyojScw4wUagb9a62ehVqPBJDB3NBVk2Y834Y9zVHpVqFEU7XErKuhs32QN0/MjTMlRwbDgxSfMNT38SkBr/i2291CGozVmpDc7IT7zbFh0zd0Y8PbfN5bTYv4ySRgeEzhBrx8w9EYt3TNk/GYwF48zyaluqEF6GQ47OqTL2I97JOSmXVU95jyOl9Y59XFuHDW1CiwhTKAPa2BdYwMF+50siIQAazl2hoXJ3FPRgA4bH5Rzbxc8u/yVwR4XQ9bqEqMd6DzcZSBHZFKsZLkPTIYgXu1GLhEPhbmYcFwBWZjOCu0raxTuLnalWHbR8PpwdOmfayYTaZHbyfA/zgNJp0Uq0Dd06JWhSIlA8D3M3J0Or9hHPy4sxwJUmeqr4b3amg7qhOE7FXRbsPTOggCydl5re5NO5T2ygjg+yZoLhJz9i/DYB5VZDeJ/I=
+        on:
+          tags: true
+          branch: master
+          repo: maxiterr/openclm
+        skip_existing: true
