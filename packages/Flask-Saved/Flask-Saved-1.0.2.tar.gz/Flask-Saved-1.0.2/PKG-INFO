@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: Flask-Saved
+Version: 1.0.2
+Summary: flask文件存储器扩展
+Home-page: https://source.dingdao.net.cn/flask-save/
+Author: renjianguo
+Author-email: renjianguo@kanhebei.cn
+License: MIT
+Description: flask-save
+        
+        flask-save是一个flask的存储扩展
+        
+        **使用方式**
+        
+        pip install flask-save
+        
+        from flask_save import Storage
+        
+        storage = Storage(app) or storage = Storage.init_app(app)
+        
+        storage.save(file)
+        
+        **目前实现了local（本地） oss（阿里云）的存储方式**
+        
+        **公共配置项**
+        
+        STORAGE_COMMON_EXTENSIONS
+        
+        默认值：('jpg', 'jpe', 'jpeg', 'png', 'gif')
+        
+        STORAGE_COMMON_FILE_MAX
+        
+        默认值： 1024 * 1024 * 10
+        
+        **local 配置项**
+        
+        STORAGE_LOCAL_BASE_PATH
+        
+        说明：
+        
+        本地存储基本的路径
+        
+        比如 upload 目录
+        
+        STORAGE_LOCAL_BASE_PATH = 'upload'
+        
+        相对路径。。相对与当前应用的目录
+        
+        STORAGE_LOCAL_BASE_PATH = '../upload'
+        
+        相对路径。。相对与当前应用目录的上层目录
+        
+        STORAGE_LOCAL_BASE_URL
+        
+        说明：
+        
+        本地存储基本url
+        
+        STORAGE_LOCAL_BASE_URL = 'http://picture.domain.com'
+        
+        
+        **oss 配置项**
+        
+        STORAGE_OSS_ACCESS_KEY
+        
+        STORAGE_OSS_SECRET_KEY
+        
+        STORAGE_OSS_ENDPOINT
+        
+        STORAGE_OSS_BUCKET
+        
+        STORAGE_OSS_CNAME
+        
+        STORAGE_OSS_DOMIAN
+        
+        STORAGE_OSS_BASE_PATH
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
