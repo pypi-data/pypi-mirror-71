@@ -1,0 +1,489 @@
+# Dynamixel MX-28T/R/AT/AR servo
+# https://emanual.robotis.com/docs/en/dxl/mx/mx-28/#control-table
+# multi-turn operation not yet supported
+#
+registers:
+  model_number:
+    address: 0
+    size: 2
+    default: 29
+
+  firmware:
+    address: 2
+    maxim: 254
+
+  id:
+    address: 3
+    maxim: 252
+    default: 1
+# ID is technically RW but we don't support changing it from roboglia
+# use Dynamixel tools like DynamixelWizard
+
+  baud_rate:
+    class: RegisterWithMapping
+    address: 4
+    access: RW
+    default: 34
+    mapping:
+      0: 2000000
+      1: 1000000
+      3: 500000
+      4: 400000
+      7: 250000
+      9: 200000
+      16: 115200
+      34: 57600
+      103: 19200
+      207: 9600
+      250: 2250000
+      251: 2500000
+      252: 3000000
+
+  return_delay_time:
+    class: RegisterWithConversion
+    address: 5
+    access: RW
+    default: 250
+    maxim: 254
+    factor: 0.5
+
+  cw_angle_limit:
+    address: 6
+    size: 2
+    maxim: 4095
+    access: RW
+
+  cw_angle_limit_deg:
+    class: RegisterWithConversion
+    address: 6
+    clone: True
+    size: 2
+    access: RW
+    factor: 11.375
+    offset: 2048
+
+  cw_angle_limit_rad:
+    class: RegisterWithConversion
+    address: 6
+    clone: True
+    size: 2
+    access: RW
+    factor: 651.7394919613114
+    offset: 2048
+
+  ccw_angle_limit:
+    address: 8
+    size: 2
+    maxim: 4095
+    access: RW
+    default: 4095
+
+  ccw_angle_limit_deg:
+    class: RegisterWithConversion
+    address: 8
+    clone: True
+    size: 2
+    access: RW
+    factor: 11.375
+    offset: 2048
+
+  ccw_angle_limit_rad:
+    class: RegisterWithConversion
+    address: 8
+    clone: True
+    size: 2
+    access: RW
+    factor: 651.7394919613114
+    offset: 2048
+
+  temperature_limit:
+    address: 11
+    access|: RW
+    default: 80
+    maxim: 150
+
+  min_voltage_limit:
+    class: RegisterWithConversion
+    address: 12
+    access: RW
+    min: 50
+    maxim: 160
+    factor: 10.0
+    default: 60
+
+  max_voltage_limit:
+    class: RegisterWithConversion
+    address: 13
+    access: RW
+    min: 50
+    maxim: 160
+    factor: 10.0
+    default: 160
+
+  max_torque:
+    address: 14
+    size: 2
+    access: RW
+    maxim: 1023
+    default: 1023
+
+  max_torque_perc:
+    class: RegisterWithConversion
+    address: 14
+    clone: True
+    size: 2
+    access: RW
+    factor: 10.23
+
+  status_return_level:
+    address: 16
+    access: RW
+    maxim: 2
+    default: 2
+
+  alarm_led:
+    address: 17
+    access: RW
+    default: 32
+
+  alarm_instruction_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b01000000
+
+  alarm_overload_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00100000
+
+  alarm_checksum_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00010000
+
+  alarm_range_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00001000
+
+  alarm_overheating_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000100
+
+  alarm_anglelimit_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000010
+
+  alarm_inputvoltage_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000001
+
+  shutdown:
+    address: 18
+    access: RW
+    default: 32
+
+  shutdown_instruction_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b01000000
+
+  shutdown_overload_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00100000
+
+  shutdown_checksum_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00010000
+
+  shutdown_range_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00001000
+
+  shutdown_overheating_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000100
+
+  shutdown_anglelimit_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000010
+
+  shutdown_inputvoltage_error:
+    address: 17
+    clone: True
+    class: BoolRegister
+    access: RW
+    bits: 0b00000001
+
+  torque_enable:
+    class: BoolRegister
+    address: 24
+    access: RW
+
+  led:
+    class: BoolRegister
+    address: 25
+    access: RW
+
+  d_gain:
+    address: 26
+    access: RW
+
+  kd_gain:
+    address: 26
+    clone: True
+    access: RW
+    class: RegisterWithConversion
+    factor: 250.0
+
+  i_gain:
+    address: 27
+    access: RW
+
+  ki_gain:
+    address: 27
+    clone: True
+    access: RW
+    class: RegisterWithConversion
+    factor: 2.048
+
+  p_gain:
+    address: 28
+    access: RW
+    default: 32
+
+  kp_gain:
+    address: 28
+    clone: True
+    access: RW
+    class: RegisterWithConversion
+    factor: 8.0
+
+  goal_position:
+    address: 30
+    size: 2
+    access: RW
+    maxim: 4095
+
+  goal_position_deg:
+    class: RegisterWithConversion
+    address: 30
+    clone: True
+    size: 2
+    access: RW
+    factor: 11.375
+    offset: 2048
+
+  goal_position_rad:
+    class: RegisterWithConversion
+    address: 30
+    clone: True
+    size: 2
+    access: RW
+    factor: 651.7394919613114
+    offset: 2048
+
+  moving_speed:
+    address: 32
+    size: 2
+    access: RW
+    maxim: 1023
+
+  moving_speed_rpm:
+    # rotations per minute
+    class: RegisterWithConversion
+    address: 32
+    clone: True
+    size: 2
+    access: RW
+    factor: 8.772080260675699
+
+  moving_speed_dps:
+    # degrees per second
+    class: RegisterWithConversion
+    address: 32
+    clone: True
+    size: 2
+    access: RW
+    factor: 1.462013376779283
+
+  moving_speed_rps:
+    # radians per second
+    class: RegisterWithConversion
+    address: 32
+    clone: True
+    size: 2
+    access: RW
+    factor: 83.767196081122275
+
+  torque_limit:
+    address: 34
+    size: 2
+    access: RW
+    maxim: 1023
+
+  torque_limit_perc:
+    class: RegisterWithConversion
+    address: 34
+    clone: True
+    size: 2
+    access: RW
+    factor: 10.23
+
+  present_position:
+    address: 36
+    size: 2
+    access: R
+    maxim: 4095
+
+  present_position_deg:
+    class: RegisterWithConversion
+    address: 36
+    clone: True
+    size: 2
+    access: R
+    factor: 11.375
+    offset: 2048
+
+  present_position_rad:
+    class: RegisterWithConversion
+    address: 36
+    clone: True
+    size: 2
+    access: R
+    factor: 651.7394919613114
+    offset: 2048
+
+  present_speed:
+    address: 38
+    size: 2
+    access: R
+    maxim: 2047
+
+  present_speed_rpm:
+    class: RegisterWithThreshold
+    address: 38
+    clone: True
+    size: 2
+    access: R
+    factor: 8.772080260675699
+    threshold: 1024
+
+  present_speed_dps:
+    # degrees per second
+    class: RegisterWithThreshold
+    address: 38
+    clone: True
+    size: 2
+    access: RW
+    factor: 1.462013376779283
+    threshold: 1024
+
+  present_speed_rps:
+    # radians per second
+    class: RegisterWithConversion
+    address: 38
+    clone: True
+    size: 2
+    access: RW
+    factor: 83.767196081122275
+    threshold: 1024
+
+  present_load:
+    address: 40
+    size: 2
+    access: R
+    maxim: 2047
+
+  present_load_perc:
+    class: RegisterWithThreshold
+    address: 40
+    clone: True
+    size: 2
+    access: R
+    factor: 10.23
+    threshold: 1024
+
+  present_voltage:
+    class: RegisterWithConversion
+    address: 42
+    access: R
+    factor: 10.0
+
+  present_temperature:
+    address: 43
+    access: R
+
+  registered_instruction:
+    class: BoolRegister
+    address: 44
+    access: R
+
+  moving:
+    class: BoolRegister
+    address: 46
+    access: R
+
+  locking:
+    class: BoolRegister
+    address: 47
+    access: RW
+
+  punch:
+    address: 48
+    size: 2
+    access: RW
+    min: 32
+    maxim: 1023
+    default: 32
+
+  realtime_tick:
+    address: 50
+    size: 2
+    access: R
+
+  goal_acceleration:
+    address: 73
+    access: RW
+    maxim: 254
+
+  goal_acceleration_dps2:
+    address: 73
+    clone: True
+    access: RW
+    class: RegisterWithConversion
+    factor: 0.11651376146789
