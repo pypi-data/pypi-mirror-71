@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: acct_backends
+Version: 0.1
+Summary: Backends for acct authentication in idem/POP
+Home-page: https://gitlab.com/Akm0d/acct-backends
+Author: Tyler Johnson
+Author-email: tjohnson@saltstack.com
+License: UNKNOWN
+Description: =============
+        ACCT-BACKENDS
+        =============
+        
+        ============
+        INSTALLATION
+        ============
+        
+        `acct-backends` can be installed via pip:
+        `pip install acct-backends`
+        
+        ============================
+        INSTALLATION FOR DEVELOPMENT
+        ============================
+        
+        1. Clone the `acct-backends` repository and install with pip:
+        `pip install -r requirements.txt`
+        2. Run `pip install -e <path to provider>` from your project's root directory
+        
+        You are now fully set up to begin developing acct plugins.
+        
+        ===
+        USE
+        ===
+        
+        After installation new acct backends can be specified in your encrypted acct profile::
+        
+            acct-backend:
+                lastpass:
+                    username: user@example.com
+                    password: password
+                    folder_key: acct-provider-
+                keybase:
+                    username: user
+                    password: password
+        
+        
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
