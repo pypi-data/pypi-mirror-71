@@ -1,0 +1,12 @@
+#!python
+
+from f1.schedule import get_current_schedule
+
+schedule = get_current_schedule()
+
+races = schedule.races
+
+print('Season : ' + schedule.season)
+
+for race in races:
+    print(race.race_name)
