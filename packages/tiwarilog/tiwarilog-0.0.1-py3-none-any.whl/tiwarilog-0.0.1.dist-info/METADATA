@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: tiwarilog
+Version: 0.0.1
+Summary: module to log requests and response
+Home-page: UNKNOWN
+Author: Priyansh
+Author-email: 17bcs140@ietdavv.edu.in
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+to install logover use
+    pip install logover 
+once you install the package goto logover package and cut config.json file and put it into your folders main directory and change the "END_POINT" to wherever you want to dump your data and change "END_POINT_TO_SIMULATE_DB" to endpoint from where you will fetch includes and levels.
+config.json
+{
+    "buffer_size":"5",
+    "timer":"10",
+    "END_POINT":"https://httpdump.io/bpmpg",
+    "END_POINT_TO_SIMULATE_DB":"http://127.0.0.1:9000/",
+    "time_to_refresh_cofg_file" : "30"
+}
+
+in place of "END_POINT" put your own end point where you want to dumb the data. in include array you need to pass the route which you allow to log. If you put "*" it means you want to allow all the route. Do same configuration for levels.
+once you done with config file just put the code below to the end of all your route so that it will process all your route. (REMEMBER:- put this at the end of all your route. )
+@app.before_request
+def start_timer():
+    print('before every request')
+    g.start = time.time()
+
+
+@app.after_request
+def fun(response):
+    myRouteLog.log_request(response)
+    return response
+
+now in the last step :-
+if you want to use logger for specific task like INFO,ERROR,WARNING use like :-
+logover.info('your message')
+logover.error('your message')
+logover.warn('your message')
+
+by default buffersize is 5 and time out is 30sec, if you want to change it just change in config.json file and restart the server.
+
+
