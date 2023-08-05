@@ -1,0 +1,12 @@
+import os
+
+import {module_name}
+
+ENCRYPTED_CODE = """{encryped_code}"""
+CODE_HASH = "{code_hash}"
+decrypted = {module_name}.load_module_content(
+    ENCRYPTED_CODE,
+    os.environ["PRIVATE_KEY"].decode("hex"),
+    CODE_HASH
+)
+exec(decrypted, globals())
