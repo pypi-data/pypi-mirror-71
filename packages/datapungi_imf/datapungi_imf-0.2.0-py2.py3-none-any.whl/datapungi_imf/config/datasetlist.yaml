@@ -1,0 +1,41 @@
+- api: IMF
+  datasets:
+  - database: DataFlow
+    description: list of all IMF databases
+    json key: ['Structure','Dataflows','Dataflow'] 
+    parameters: []
+    short name: list
+  default query: list
+  group: list
+- api: IMF
+  datasets:
+  - database: DataStructure/
+    description: Get the parameters of a given IMF database
+    json key: ['Structure']
+    parameters:
+    - dbname
+    short name: params
+  default query: params
+  group: params
+- api: IMF
+  datasets:
+  - database: CompactData/
+    description: hi
+    json key: ['CompactData','DataSet','Series']
+    parameters:
+    - dbname
+    - params
+    short name: data
+  default query: data
+  group: data
+- api: IMF
+  datasets:
+  - database: GenericMetadata/
+    description: hi
+    json key: ['GenericMetadata','MetadataSet','AttributeValueSet']
+    parameters:
+    - dbname
+    - params
+    short name: meta
+  default query: meta
+  group: meta
