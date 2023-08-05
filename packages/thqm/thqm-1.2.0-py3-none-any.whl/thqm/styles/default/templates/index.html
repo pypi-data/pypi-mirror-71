@@ -1,0 +1,76 @@
+{# thqm template
+    args:
+        title (str): page title.
+        qrcode_button (bool): show qrcode button.
+        shutdown_button (bool): show shutdown button.
+        events (list): list of strings.
+#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/png" href="static/favicon.png" sizes='32x32'/>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/index.css">
+    <script src="static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <title>{{ title }}</title>
+  </head>
+
+  <body class='bg-dark'>
+    <header>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+          <a href='/' tabindex='-1' class="navbar-brand">{{ title }}</a>
+        {% if qrcode_button or shutdown_button %}
+        <div class="my-2 my-sm-0">
+        {% if qrcode_button %}
+          <button id='qrcode-btn' tabindex='-1' type='button' class='btn btn-secondary btn-lg' title='Show QR code' data-toggle='modal' data-target='#qrcode'>
+            <img src='static/qrcode-icon.svg' width=20 height=20>
+          </button>
+        {% endif %}
+        {% if shutdown_button %}
+          <a id='shutdown-btn' class="btn btn-secondary btn-lg text-light" onclick='fetch("?shutdown");' role="button">
+            <img src='static/power-off-icon.svg' width=20 height=20>
+          </a>
+        {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </header>
+    {% if qrcode_button %}
+    <!-- Modal -->
+    <div class="modal fade" id="qrcode" tabindex="-1" role="dialog" aria-labelledby="modalQRCode" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-body text-center">
+              <img src='../static/qr_code.svg' style="width: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% for e in events %}
+    <div class='my-2 mx-2 disable-dbl-tap-zoom'>
+      <a class='btn btn-secondary event-content' tabindex=0 role='button' onclick="fetch('./' + '{{ e }}')">
+        <pre class='my-0 text-light'>{{ e|safe }}</pre>
+      </a>
+    </div>
+    {% endfor %}
+  </body>
+  <script>
+    // Get the event buttons
+    var button = Array.from(document.getElementsByClassName("event-content"));
+    function addEnterToClick(element) {
+      element.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          element.click();
+        }
+      });
+    }
+    // add the eventListener to all the buttons
+    button.map(addEnterToClick);
+  </script>
+</html>
