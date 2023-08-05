@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: graphene-django-hook
+Version: 0.4.0
+Summary: Generate graphql schema.
+Home-page: https://github.com/jackton1/graphene-django-precommit-hook
+Author: Tonye Jack
+Author-email: tonyejck@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.1
+Description-Content-Type: text/markdown
+
+![Upload Python Package](https://github.com/jackton1/graphene-django-precommit-hook/workflows/Upload%20Python%20Package/badge.svg)
+# graphene-django-precommit-hook
+pre-commit hook to generate `.graphql` | `.json` graphql schema for [graphene-django](https://github.com/graphql-python/graphene-django).
+
+
+## As a pre-commit hook
+
+See [pre-commit](https://github.com/pre-commit/pre-commit) for instructions
+
+
+Sample basic `.pre-commit-config.yaml`
+
+```yaml
+-   repo: https://github.com/jackton1/graphene-django-precommit-hook
+    rev: v0.1.0
+    hooks:
+      - id: graphene-django-hook
+        stages: [commit]
+```
+
+
+Sample complex `.pre-commit-config.yaml`
+
+```yaml
+-   repo: https://github.com/jackton1/graphene-django-precommit-hook
+    rev: v0.1.0
+    hooks:
+      - id: graphene-django-hook
+        stages: [commit]
+        args: [
+          '--managepy-path',
+          '/path/to/manage.py', # Defaults to: manage.py
+          '--settings',
+          'project.settings'. # Defaults to: DJANGO_SETTINGS_MODULE
+          '--indent',
+          '4' # See https://docs.graphene-python.org/projects/django/en/latest/introspection/
+          '--out',
+          'path/to/schema.graphql',
+          '--schema',
+          'module.path.to.schema',
+          '--verbosity', # OR '-v'
+          '2', # Set the verbosity level {0,1,2,3}
+        ]
+```
+
+
