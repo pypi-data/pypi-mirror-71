@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "magic-kind"
+version = "0.2.1"
+description = "The MagicKind type is a simpler alternative to Enum types for groups of related magic values when order is not important."
+authors = ["andr3738 <andr3738@rackspace.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/aallaire/magic-kind"
+repository = "https://github.com/aallaire/magic-kind"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[[tool.poetry.source]]
+name = "prod"
+url = "https://artifacts.rackspace.net/artifactory/api/pypi/pypi/simple"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
