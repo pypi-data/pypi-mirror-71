@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: pytest-briefcase
+Version: 0.1.1
+Summary: A pytest plugin for running tests on a Briefcase project.
+Home-page: UNKNOWN
+Author: Russell Keith-Magee
+Author-email: russell@keith-magee.com
+Maintainer: Russell Keith-Magee
+Maintainer-email: russell@keith-magee.com
+License: BSD-3
+Project-URL: Funding, https://beeware.org/contributing/membership/
+Project-URL: Tracker, https://github.com/beeware/pytest-briefcase/issues
+Project-URL: Source, https://github.com/beeware/pytest-briefcase
+Keywords: pytest
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: !=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*
+Description-Content-Type: text/x-rst; charset=UTF-8
+Requires-Dist: pytest (>=3.5.0)
+Requires-Dist: briefcase (>=0.3.1)
+
+================
+pytest-briefcase
+================
+
+.. image:: https://img.shields.io/pypi/v/pytest-briefcase.svg
+    :target: https://pypi.org/project/pytest-briefcase
+    :alt: PyPI version
+
+.. image:: https://img.shields.io/pypi/pyversions/pytest-briefcase.svg
+    :target: https://pypi.org/project/pytest-briefcase
+    :alt: Python versions
+
+.. image:: https://img.shields.io/pypi/l/pytest-briefcase.svg
+    :target: https://github.com/freakboy3742/pytest-briefcase/blob/master/LICENSE
+    :alt: License
+
+.. image:: https://github.com/beeware/pytest-briefcase/workflows/CI/badge.svg?branch=master
+   :target: https://github.com/beeware/pytest-briefcase/actions
+   :alt: Build Status
+
+
+A `pytest`_ plugin for running tests on a Briefcase project.
+
+Installation
+------------
+
+You can install "pytest-briefcase" via `pip`_ from `PyPI`_::
+
+    $ pip install pytest-briefcase
+
+Then you can just run your test suite as normal::
+
+    $ pytest
+
+.. _`pytest`: https://github.com/pytest-dev/pytest
+.. _`pip`: https://pypi.org/project/pip/
+.. _`PyPI`: https://pypi.org/project
+
+
