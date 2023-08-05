@@ -1,0 +1,48 @@
+Metadata-Version: 1.1
+Name: Zenity
+Version: 1.0.0
+Summary: lightweight and full featured library to display dialogs with python.
+Home-page: https://github.com/Ksengine/Zenity
+Author: Kavindu Santhusa
+Author-email: kavindusanthusa@gmail.com
+License: MIT
+Download-URL: https://pypi.python.org/pypi/Zenity
+Description: zenity - display dialogs with python
+        DESCRIPTION
+        zenity  is a Python library that will display GTK+ dialogs using zanity 
+        tool, and return (eitherin the return code, or on standard output) the 
+        users input. This allows you to present information, and ask for infor
+        mation from the user.
+        
+        For example, zenity.show(zenity.question) will return either 0, 1 or 5,  depending
+        on  whether  the  user  pressed OK, Cancel or timeout has been reached.
+        zenity.show(zenity.entry) will output on standard output what the user typed  into
+        the text entry field.
+        Comprehensive documentation is coming soon.
+        
+        ENVIRONMENT
+        Normally, zenity detects the window from which it was launched
+        and keeps itself above that window.  This behavior can be  disabled  by
+        unsetting the WINDOWID environment variable.
+        
+        AUTHOR
+        Original Zenity was written by Glynn Foster <glynn.foster@sun.com>.
+        This tool is written by Kavindu Santhusa <kavindusanthusa@gmail.com>
+        
+Keywords: GUI,dialog,lightweight,full,featured,full-featured,library,to,display dialogs,display dialog,dialogs,python
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3
+Provides: Zenity
