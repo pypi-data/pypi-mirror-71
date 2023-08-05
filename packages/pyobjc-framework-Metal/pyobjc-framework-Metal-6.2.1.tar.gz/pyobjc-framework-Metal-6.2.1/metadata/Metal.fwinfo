@@ -1,0 +1,1136 @@
+// objective.metadata exceptions file, see its document
+// for information on how to update this file.
+{
+ "definitions": {
+  "expressions": {
+   "MTLTextureSwizzleChannelsDefault": { "value": "MTLTextureSwizzleChannelsMake(MTLTextureSwizzleRed, MTLTextureSwizzleGreen, MTLTextureSwizzleBlue, MTLTextureSwizzleAlpha)" },
+   "MTLResourceCPUCacheModeMask": { "value": "0xf << MTLResourceCPUCacheModeShift" },
+   "MTLResourceStorageModeMask": { "value": "0xf << MTLResourceStorageModeShift" },
+   "MTLResourceHazardTrackingModeMask": { "value": "0x3 << MTLResourceHazardTrackingModeShift" }
+  },
+  "enum": {
+   "MTLCounterErrorValue": { "value": 18446744073709551615 },
+   "MTLCounterDontSample": { "value": 18446744073709551615 }
+  },
+  "classes": {
+   "MTLRasterizationRateMapDescriptor": {
+    "methods": [
+     {
+      "selector": "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:",
+      "class_method": false,
+      "args": {
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      }
+     }
+    ]
+   },
+   "MTLRasterizationRateLayerDescriptor": {
+    "methods": [
+     {
+      "selector": "initWithSampleCount:horizontal:vertical:",
+      "class_method": false,
+      "args": {
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 0 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 0 }
+      }
+     },
+     {
+      "selector": "horizontalSampleStorage",
+      "class_method": false,
+      "retval": { "c_array_of_variable_length": true }
+     },
+     {
+      "selector": "verticalSampleStorage",
+      "class_method": false,
+      "retval": { "c_array_of_variable_length": true }
+     }
+    ]
+   },
+   "NSObject": {
+    "methods": [
+     {
+      "selector": "setVertexAmplificationCount:viewMapping:",
+      "class_method": false,
+      "args": {
+       "0": { "type_override": "Q" },
+       "1": { "type_override": "{_MTLVertexAmplificationViewMapping=II}" }
+      }
+     },
+     {
+      "selector": "addPresentedHandler:",
+      "class_method": false,
+      "args": {
+       "0": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      }
+     },
+     {
+      "selector": "presentAfterMinimumDuration:",
+      "class_method": false,
+      "args": {
+       "0": { "type_override": "d" }
+      }
+     },
+     {
+      "selector": "drawableID",
+      "class_method": false,
+      "retval": { "type_override": "Q" }
+     },
+     {
+      "selector": "presentedTime",
+      "class_method": false,
+      "retval": { "type_override": "d" }
+     },
+     {
+      "selector": "supportsVertexAmplificationCount:",
+      "class_method": false,
+      "retval": { "type_override": "Z" },
+      "args": {
+       "0": { "type_override": "Q" }
+      }
+     },
+     {
+      "selector": "supportsRasterizationRateMapWithLayerCount:",
+      "class_method": false,
+      "retval": { "type_override": "Z" },
+      "args": {
+       "0": { "type_override": "Q" }
+      }
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "useHeaps:count:stages:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "memoryBarrierWithResources:count:afterStages:beforeStages:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setViewports:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setScissorRects:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentBytes:length:atIndex:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setFragmentBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setVertexBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o" },
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "sampleTimestamps:gpuTimestamp:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newCounterSampleBufferWithDescriptor:error:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "getDefaultSamplePositions:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "memoryBarrierWithResources:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "useHeaps:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "useResources:count:usage:"
+     },
+     {
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newComputePipelineStateWithDescriptor:options:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newComputePipelineStateWithFunction:options:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "1": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newComputePipelineStateWithFunction:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newRenderPipelineStateWithDescriptor:options:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "1": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newRenderPipelineStateWithDescriptor:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      },
+      "selector": "newLibraryWithSource:options:completionHandler:",
+      "class_method": false
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newDefaultLibraryWithBundle:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithFile:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithURL:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithData:error:"
+     },
+     {
+      "args": {
+       "2": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithSource:options:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newRenderPipelineStateWithDescriptor:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newRenderPipelineStateWithDescriptor:options:reflection:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithFunction:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithFunction:options:reflection:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithDescriptor:options:reflection:error:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 },
+       "3": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "n^v" },
+          "2": { "type": "Q" }
+         },
+         "retval": { "type": "v" }
+        }
+       }
+      },
+      "class_method": false,
+      "selector": "newBufferWithBytesNoCopy:length:options:deallocator:"
+     },
+     {
+      "args": {
+       "2": { "type_override": "z" }
+      },
+      "class_method": false,
+      "selector": "fillBuffer:range:value:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "newBufferWithBytes:length:options:"
+     },
+     {
+      "args": {
+       "2": { "type_modifier": "n", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "replaceRegion:mipmapLevel:withBytes:bytesPerRow:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "getBytes:bytesPerRow:fromRegion:mipmapLevel:"
+     },
+     {
+      "args": {
+       "3": { "type_modifier": "n", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:"
+     },
+     {
+      "class_method": false,
+      "retval": { "c_array_of_variable_length": true },
+      "selector": "contents"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setIndirectCommandBuffers:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setRenderPipelineStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setBytes:length:atIndex:"
+     },
+     {
+      "class_method": false,
+      "selector": "addCompletedHandler:",
+      "args": {
+       "0": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "addScheduledHandler:",
+      "args": {
+       "0": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "notifyListener:atValue:block:",
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "Q" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "newFunctionWithName:constantValues:completionHandler:",
+      "args": {
+       "2": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "@" },
+          "2": { "type": "@" }
+         },
+         "retval": { "type": "v" }
+	}
+       }
+      }
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexBytes:length:atIndex:"
+     },
+     {
+      "args": {
+       "2": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newFunctionWithName:constantValues:error:"
+     }
+    ]
+   },
+   "MTLCaptureManager": {
+    "methods": [
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "startCaptureWithDescriptor:error:"
+     }
+    ]
+   },
+   "MTLFunctionConstantValues": {
+    "methods": [
+     {
+      "args": {
+       "0": {}
+      },
+      "class_method": false,
+      "selector": "setConstantValue:type:atIndex:"
+     },
+     {
+      "args": {
+       "0": {}
+      },
+      "class_method": false,
+      "selector": "setConstantValues:type:withRange:"
+     },
+     {
+      "args": {
+       "0": {}
+      },
+      "class_method": false,
+      "selector": "setConstantValue:type:withName:"
+     }
+    ]
+   },
+   "MTLRenderPassDescriptor": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setSamplePositions:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_length_in_arg": 1, "c_array_length_in_result": true }
+      },
+      "class_method": false,
+      "selector": "getSamplePositions:count:"
+     }
+    ]
+   }
+  },
+  "formal_protocols": {
+   "MTLArgumentEncoder": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setSamplerStates:withRange:"
+     },
+     {
+      "class_method": false,
+      "retval": {},
+      "selector": "constantDataAtIndex:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setRenderPipelineStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setIndirectCommandBuffers:withRange:"
+     }
+    ]
+   },
+   "MTLBuffer": {
+    "methods": [
+     {
+      "class_method": false,
+      "retval": { "c_array_of_variable_length": true },
+      "selector": "contents"
+     }
+    ]
+   },
+   "MTLComputeCommandEncoder": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setBytes:length:atIndex:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "useResources:count:usage:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "useHeaps:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "memoryBarrierWithResources:count:"
+     }
+    ]
+   },
+   "MTLDevice": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1  }
+      },
+      "class_method": false,
+      "selector": "newBufferWithBytes:length:options:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 },
+       "3": {
+        "callable": {
+         "arguments": {
+          "0": { "type": "^v" },
+          "1": { "type": "n^v" },
+          "2": { "type": "Q" }
+         },
+         "retval": { "type": "v" }
+        }
+       }
+      },
+      "class_method": false,
+      "selector": "newBufferWithBytesNoCopy:length:options:deallocator:"
+     },
+     {
+      "args": {
+       "1": {}
+      },
+      "class_method": false,
+      "selector": "newTextureWithDescriptor:iosurface:plane:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newDefaultLibraryWithBundle:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithFile:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithURL:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithData:error:"
+     },
+     {
+      "args": {
+       "2": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newLibraryWithSource:options:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newRenderPipelineStateWithDescriptor:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newRenderPipelineStateWithDescriptor:options:reflection:error:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithFunction:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithFunction:options:reflection:error:"
+     },
+     {
+      "args": {
+       "2": {},
+       "3": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newComputePipelineStateWithDescriptor:options:reflection:error:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "getDefaultSamplePositions:count:"
+     },
+     {
+      "args": {
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newCounterSampleBufferWithDescriptor:error:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o" },
+       "1": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "sampleTimestamps:gpuTimestamp:"
+     }
+    ]
+   },
+   "MTLFunction": {
+    "methods": [
+     {
+      "args": {
+       "1": {}
+      },
+      "class_method": false,
+      "selector": "newArgumentEncoderWithBufferIndex:reflection:"
+     }
+    ]
+   },
+   "MTLLibrary": {
+    "methods": [
+     {
+      "args": {
+       "2": { "type_modifier": "o" }
+      },
+      "class_method": false,
+      "selector": "newFunctionWithName:constantValues:error:"
+     }
+    ]
+   },
+   "MTLRenderCommandEncoder": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexBytes:length:atIndex:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setVertexBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setVertexSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setViewports:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setScissorRects:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentBytes:length:atIndex:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 2 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 2 }
+      },
+      "class_method": false,
+      "selector": "setFragmentBuffers:offsets:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentTextures:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "setFragmentSamplerStates:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "1": { "type_modifier": "n", "c_array_length_in_arg": 3 },
+       "2": { "type_modifier": "n", "c_array_length_in_arg": 3 }
+      },
+      "class_method": false,
+      "selector": "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "useResources:count:usage:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "useResources:count:usage:stages:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "useHeaps:count:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "useHeaps:count:stages:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "n", "c_array_length_in_arg": 1 }
+      },
+      "class_method": false,
+      "selector": "memoryBarrierWithResources:count:afterStages:beforeStages:"
+     }
+    ]
+   },
+   "MTLTexture": {
+    "methods": [
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:"
+     },
+     {
+      "args": {
+       "3": { "type_modifier": "n", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:"
+     },
+     {
+      "args": {
+       "0": { "type_modifier": "o", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "getBytes:bytesPerRow:fromRegion:mipmapLevel:"
+     },
+     {
+      "args": {
+       "2": { "type_modifier": "o", "c_array_of_variable_length": true }
+      },
+      "class_method": false,
+      "selector": "replaceRegion:mipmapLevel:withBytes:bytesPerRow:"
+     },
+     {
+      "class_method": false,
+      "retval": {},
+      "selector": "iosurface"
+     }
+    ],
+    "properties": [
+     {
+      "attributes": [
+       "readonly"
+      ],
+      "name": "iosurface"
+     }
+    ]
+   }
+  },
+  "functions": {
+   "MTLCreateSystemDefaultDevice": {
+    "retval": { "already_retained": true }
+   },
+   "MTLCopyAllDevices": {
+    "retval": { "already_retained": true }
+   },
+   "MTLCopyAllDevicesWithObserver": {
+    "retval": { "already_retained": true },
+    "args": {
+     "0": { "type_modifier": "o" },
+     "1": {
+      "callable": {
+       "arguments": {
+        "0": { "type": "^v" },
+        "1": { "type": "@" },
+        "2": { "type": "@" }
+       },
+       "retval": { "type": "v" }
+      }
+     }
+    }
+   }
+  },
+  "informal_protocols": {}
+ }
+}
