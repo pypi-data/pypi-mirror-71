@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: hipdf
+Version: 0.1.0
+Summary: Highlight the first word of English sentences in PDF file.
+Home-page: https://github.com/CarlHey/hipdf
+Author: heyy
+Author-email: hey.ing@qq.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: PyMuPDF
+
+
+# hipdf - pdf highlighter
+
+Highlight the first word of English sentences in PDF file.
+
+## Installation
+```commandline
+pip install hipdf
+```
+
+## Usage
+
+* Basic usage:
+
+```commandline
+hipdf <path_to_file>
+```
+
+Hipdf will save the highlighted file in the same folder of the original file, with prefix like "[highlighted.{count}][{time}]" 
+
+* Specify an out name:
+
+```commandline
+hipdf <path_to_file> -o <out_path>
+```
+
+The `out_path` is relative to the current working directory. Examples: `../my docs/highlighted.pdf` or `./highlighted/doc.pdf` 
+
+* Specify a prefix:
+
+```commandline
+hipdf <path_to_file> -p <prefix>
+```
+
+or with `-o`:
+
+```commandline
+hipdf <path_to_file> -o <out_path> -p <prefix>
+```
+
+prefix will only affect filename but not file path.
+
+
