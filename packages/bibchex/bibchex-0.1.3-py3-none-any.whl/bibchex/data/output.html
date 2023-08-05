@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<style>
+			td.indent {
+					width: 50px;
+			}
+
+			td.data {
+					
+			}
+			tr.sep td {
+					border-top: 1px solid black;
+			}
+
+			.entryspace {
+					padding-top: 20px;
+			}
+
+			.entryspace table {
+					width: 100%;
+			}
+
+			.entrytable {
+					border-collapse: collapse;
+			}
+
+			.entrytable td {
+					padding: 3px;
+			}
+			
+			tr.entrysep {
+					height: 20pt;
+			}
+
+			tr.entrysep td {
+					border-top: 1px solid black;
+					border-bottom: 1px solid black;
+			}
+
+			td.left {
+					border-left: 1px solid black;
+			}
+
+			td.right {
+					border-right: 1px solid black;
+			}
+
+			tr.firstrow td {
+					border-top: 1px solid black;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<p>Total entries: {{ total_entries }}</p>
+
+
+
+		<div class="entryspace" />
+		<table class="entrytable">
+
+			
+			{% for entry in entries %}
+			{% if not loop.first %}
+			<tr class="entrysep"><td colspan="4" class=""></td></tr>
+			{% endif %}
+			
+			<tr class="{% if loop.first %}firstrow{% endif %}">
+				<td class="key left" colspan="2">Title:</td><td class="data right" colspan="2">{{entry.title}}</td>
+			</tr>
+			<tr>
+				<td class="key left" colspan="2">Key:</td><td class="data right" colspan="2">{{entry.key}}</td>
+			</tr>
+
+			<!-- --- Problems --- -->
+
+			{% if entry.problems|length > 0 %}
+			<tr class="subheader problems">
+				<td colspan="4" class="left right"> Detected Problems </td>
+			</tr>
+			<tr>
+				<td class="space indent left" rowspan="{{ entry.problem_rowspan }}"></td><td class="rule right" colspan="3"></td>
+			</tr>
+			{% endif %}
+			
+			{% for problem in entry.problems %}
+			<tr class="problem sep"><td colspan="4" class="right" /></tr>
+			
+			<tr class="problem">
+				<td class="subkey">Problem</td><td class="data right" colspan="2">{{problem.problem_type}}</td>
+			</tr>
+			<tr class="problem">
+				<td class="subkey">Message</td><td class="data right" colspan="2">{{problem.message}}</td>
+			</tr>
+			<tr class="problem">
+				<td class="subkey">Details</td><td class="data right" colspan="2">{{problem.details}}</td>
+			</tr>
+			{% endfor %}
+
+			<!-- --- Differences --- -->
+			{% if entry.differences|length > 0 %}
+			<tr class="subheader diffs">
+				<td colspan="4" class="left right"> Detected Differences </td>
+			</tr>
+			<tr>
+				<td class="space indent left" rowspan="{{ entry.diff_rowspan }}"></td><td class="rule right" colspan="3"></td>
+			</tr>
+			{% endif %}
+			
+			{% for diff in entry.differences %}
+			<tr class="diff sep"><td colspan="4" class="right" /></tr>
+			
+			<tr class="diff">
+				<td class="subkey">Field</td><td class="data right" colspan="2">{{diff.field}}</td>
+			</tr>
+			<tr class="diff">
+				<td class="subkey">Suggestion</td><td class="data right" colspan="2">
+					{%- if diff.suggestion is iterable and diff.suggestion is not string %}
+					{%- if diff.suggestion|length > 1 %}
+					<ul>
+					  {% for sugg in diff.suggestion %}
+					  <li>{{sugg}}</li>
+					  {% endfor %}
+					</ul>
+					{% else %}
+					{{diff.suggestion[0]}}
+					{% endif %}
+					{% else %}					
+					{{diff.suggestion}}
+					{% endif %}</td>
+			</tr>
+			<tr class="diff">
+				<td class="subkey">Old Value</td><td class="data right" colspan="2">{% if diff.old|length > 0 %}{{diff.old}}{% else %}(empty){% endif %}</td>
+			</tr>
+			<tr class="diff">
+				<td class="subkey">Source</td><td class="data right" colspan="2">{{diff.source}}</td>
+			</tr>
+			{% endfor %}
+
+			{% endfor %}
+
+		</table>
+</div> <!-- Entryspace -->
+
+<div class="global-problems">
+	{% for problem in global_problems %}
+	<div class="global-problem">
+		{{problem.message}}
+	</div>
+	{% endfor %}
+</div>
+
+</body>
+</html>
