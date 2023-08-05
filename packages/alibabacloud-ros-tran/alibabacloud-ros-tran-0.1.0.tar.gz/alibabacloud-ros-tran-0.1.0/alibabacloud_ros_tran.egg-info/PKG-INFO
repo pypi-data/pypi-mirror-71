@@ -1,0 +1,47 @@
+Metadata-Version: 1.1
+Name: alibabacloud-ros-tran
+Version: 0.1.0
+Summary: Resource Orchestration Service Template Transformer.
+Home-page: https://www.alibabacloud.com/product/ros
+Author: AlibabaCloud
+Author-email: aliyun-developers-efficiency@list.alibaba-inc.com
+License: Apache License 2.0
+Description: # ROS Template Transformer
+        [ROS(Resource Orchestration Service)](https://www.alibabacloud.com/product/ros) Template Transformer
+        is a tool for transforming **Excel** template to **ROS** template.
+        
+        ## Requirements
+        Python 3.6+
+        
+        ## Installation
+        ```bash
+        pip3 install alibabacloud-ros-tran
+        ```
+        
+        ## Usage
+        ### Transform
+        Using `transform` command to transform a given template to ROS template in default format(YAML):
+        ```bash
+        rostran transform templates/excel/EcsInstance.xlsx
+        ```
+        
+        You can also specify the ROS template format with `--target-format`. For example in JSON format:
+        ```bash
+        rostran transform templates/excel/EcsInstance.xlsx --target-format json
+        ```
+        
+        ### Help
+        Using `--help` to see more help information:
+        ```bash
+        rostran --help
+        ```
+        
+Keywords: alibabacloud,aliyun,ros,transformer,template
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
