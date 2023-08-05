@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: lovebrew
+Version: 0.2.5
+Summary: Löve Potion Game Helper
+Home-page: https://github.com/TurtleP/lovebrew
+Author: TurtleP
+Author-email: jpostelnek@outlook.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+Requires-Dist: toml (>=0.10)
+
+# Installation
+
+## GitHub
+To get the latest version from Github, just run
+```
+sudo pip3 install -U git + git://github.com/TurtleP/lovebrew.git
+```
+
+## PyPi
+To get the latest version from PyPi, just run
+```
+sudo pip3 install lovebrew
+```
+and you should be able to run `lovebrew -h`!
+
+# Usage
+
+Once the application is installed, just run `lovebrew` in a directory with your game content that also has `lovebrew.toml` inside.
+
+## Options
+```
+usage: lovebrew [-h] [-v] [--version] [-c] [-i]
+
+Löve Potion Game Helper
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --verbose  Show logging output.
+  --version      show program's version number and exit
+  -c, --clean    Clean the directory
+  -i, --init     Initialize a lovebrew config in the current directory
+```
+
+
