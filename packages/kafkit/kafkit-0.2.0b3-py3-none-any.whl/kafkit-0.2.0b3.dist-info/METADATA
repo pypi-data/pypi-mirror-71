@@ -1,0 +1,143 @@
+Metadata-Version: 2.1
+Name: kafkit
+Version: 0.2.0b3
+Summary: Kafkit helps you write Kafka producers and consumers in Python with asyncio.
+Home-page: https://kafkit.lsst.io
+Author: Association of Universities for Research in Astronomy, Inc. (AURA)
+Author-email: sqre-admin@lists.lsst.org
+License: UNKNOWN
+Project-URL: Change log, https://kafkit.lsst.io/changelog.html
+Project-URL: Source code, https://github.com/lsst-sqre/kafkit
+Project-URL: Issue tracker, https://github.com/lsst-sqre/kafkit/issues
+Keywords: lsst,kafka
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: uritemplate
+Requires-Dist: fastavro
+Requires-Dist: importlib-metadata ; python_version < "3.8"
+Provides-Extra: aiohttp
+Requires-Dist: aiohttp ; extra == 'aiohttp'
+Provides-Extra: dev
+Requires-Dist: pytest (==5.3.5) ; extra == 'dev'
+Requires-Dist: pytest-asyncio (==0.10.0) ; extra == 'dev'
+Requires-Dist: coverage[toml] (==5.0.3) ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'dev'
+Requires-Dist: mypy (==0.761) ; extra == 'dev'
+Requires-Dist: documenteer (<0.6,>=0.5) ; extra == 'dev'
+Requires-Dist: lsst-sphinx-bootstrap-theme (<0.3) ; extra == 'dev'
+Requires-Dist: sphinx-prompt ; extra == 'dev'
+Requires-Dist: sphinx-automodapi (==0.12) ; extra == 'dev'
+Requires-Dist: holdup ; extra == 'dev'
+
+######
+Kafkit
+######
+
+Kafkit helps you write Kafka producers and consumers in Python with asyncio:
+
+- Kafkit provides a client for the Confluent Schema Registry's HTTP API.
+  The ``RegistryApi`` client includes both high-level methods for managing subjects and schemas in a Registry, and direct low-level access to HTTP methods (GET, POST, PUT, PATCH, and DELETE).
+  The high-level methods use caching so you can use the client as an integral part of your application's schema management.
+  ``RegistryApi`` is implemented around aiohttp_, but since the base class is designed with a `sans IO architecture <https://sans-io.readthedocs.io>`__, a Registry client can be implemented with any asyncio HTTP library.
+
+- Kafkit provides Avro message serializers and deserializers that integrate with the `Confluent Schema Registry`_: ``Deserializer``, ``Serializer``, and ``PolySerializer``.
+
+- The ``RecordNameSchemaManager`` is a streamlined tool for serializing messages using the schemas maintained by your app, while also integrating with the `Confluent Schema Registry`_.
+
+- The ``kafkit.ssl`` module helps you connect to SSL-secured Kafka brokers.
+
+Learn more about Kafkit at https://kafkit.lsst.io.
+
+.. _aiohttp: https://aiohttp.readthedocs.io/en/stable/
+.. _aiokafka: https://aiokafka.readthedocs.io/en/stable/
+.. _Confluent Schema Registry: https://docs.confluent.io/current/schema-registry/docs/index.html
+
+##########
+Change log
+##########
+
+0.2.0 (unreleased)
+==================
+
+- Python versions 3.6 and earlier are no longer supported because Kafkit is adopting the ``annotations`` import from ``__future__``.
+  Kafkit is explicitly tested with Python 3.7 and 3.8.
+
+- We've added a ``kafkit.ssl`` module to help connect to Kafka brokers over TLS.
+  The associated documentation includes a tutorial for working with the SSL certificates generated in a Kafka cluster managed by `Strimzi <https://strimzi.io>`__.
+
+- The brand-new ``kafkit.registry.manager.RecordNameSchemaManager`` provides a streamlined workflow for serializing Avro messages using Avro schemas that are maintained in your app's codebase.
+  The manager handles schema registration for you.
+  To serialize a message, you simply need to provide the data and the name of the schema.
+
+- A new ``kafkit.registry.sansio.CompatibilityType`` Enum helps you write use valid Schema Registry compatibility types.
+
+- We've significantly improved Kafkit's packaging and infrastructure:
+
+  - Migrate packaging metadata from ``setup.py`` to ``setup.cfg``.
+  - Support PEP 518 with ``pyproject.toml`` (Kafkit continues to be a setuptools-based project).
+  - Tox now runs tasks like tests, in conjunction with the existing Pytest set up.
+  - Pre-commit hooks lint and format the code base.
+  - Code style is now handled by Black (and in the documentation with blacken-docs).
+  - **Full support for type annotations!** ``tox -e typing`` validates Kafkit's type annotations with Mypy.
+  - We've migrated from Travis CI to GitHub Actions.
+
+- The documentation now includes a development guide.
+
+0.1.1 (2019-02-13)
+==================
+
+Several fixes:
+
+- ``RegistryApi.put`` was doing a ``PATCH`` behind the scenes. That's fixed now.
+- The ``RegistryApi.put``, ``patch``, and ``delete`` methods weren't returning data. That's fixed now as well.
+- All of the RegistryApi's low-level HTTP methods have more thorough unit testing now to avoid these issues in the future.
+
+0.1.0 (2019-01-30)
+==================
+
+Initial release of Kafkit!
+
+This release includes the ``kafkit.registry`` package with a working `Confluent Schema Registry`_ API client implemented with a sans I/O design.
+There are two client implementations.
+One is designed for aiohttp_ users (``kafkit.registry.aiohttp.RegistryClient``), and the other is for I/O-free unit testing (``kafkit.registry.sansio.MockRegistryApi``).
+The clients include schema caches so they can be used as both local stores of schemas, in addition to accessors for remote schemas.
+The release also includes a suite of Avro message serializers and deserializers that integrate with `Confluent Schema Registry`_ and the Confluent Wire Format (``kafkit.registry.serializer``).
+
+.. _aiohttp: https://aiohttp.readthedocs.io/en/stable/
+.. _Confluent Schema Registry: https://docs.confluent.io/current/schema-registry/docs/index.html
+
+MIT License
+
+Copyright (c) 2019-2020 Association of Universities for Research in Astronomy (AURA), Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
