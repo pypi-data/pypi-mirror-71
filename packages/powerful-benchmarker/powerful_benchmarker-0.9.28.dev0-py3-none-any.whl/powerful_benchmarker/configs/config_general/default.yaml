@@ -1,0 +1,15 @@
+training_method: MetricLossOnly
+testing_method: GlobalEmbeddingSpaceTester
+meta_testing_method: 
+  - meta_SeparateEmbeddings
+  - meta_ConcatenateEmbeddings
+
+num_epochs_train: 1000
+iterations_per_epoch: 100
+save_interval: 2
+
+dataloader_num_workers: 2
+check_untrained_accuracy: True
+skip_eval_if_already_done: True
+skip_meta_eval_if_already_done: True
+patience: 9
