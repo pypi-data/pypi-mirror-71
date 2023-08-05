@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Bot Action Server
+  description: Allows custom Rocket League bots to accept tactical suggestions in
+    the middle of a game.
+  contact:
+    email: rlbotofficial@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.1.0
+externalDocs:
+  description: Find out more about RLBot
+  url: http://www.rlbot.org/
+servers:
+- url: /
+tags:
+- name: action
+  description: Actions that the bot can take
+paths:
+  /action/currentlyAvailable:
+    get:
+      tags:
+      - action
+      operationId: get_actions_currently_available
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                description: If an action server is associated with multiple distinct
+                  bots or script entities, it can return an AvailableActions for each.
+                items:
+                  $ref: '#/components/schemas/AvailableActions'
+                x-content-type: application/json
+      x-openapi-router-controller: rlbot_action_server.controllers.action_controller
+  /action/choose:
+    post:
+      tags:
+      - action
+      operationId: choose_action
+      requestBody:
+        description: Action to choose
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionChoice'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: rlbot_action_server.controllers.action_controller
+components:
+  schemas:
+    StrategicCategory:
+      type: string
+      enum:
+      - neutral
+      - offense
+      - defense
+    BotAction:
+      required:
+      - actionType
+      type: object
+      properties:
+        description:
+          type: string
+          example: Demolish enemy bot named SomeBot
+        actionType:
+          type: string
+          example: demolishEnemy
+        strategicCategory:
+          $ref: '#/components/schemas/StrategicCategory'
+        data:
+          type: object
+          additionalProperties: true
+      example:
+        actionType: demolishEnemy
+        data: ""
+        description: Demolish enemy bot named SomeBot
+        strategicCategory: neutral
+    AvailableActions:
+      type: object
+      properties:
+        entityName:
+          type: string
+          description: The name of the bot or script that these actions are associated
+            with.
+          example: SomeBot
+        currentAction:
+          $ref: '#/components/schemas/BotAction'
+        availableActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BotAction'
+      example:
+        availableActions:
+        - null
+        - null
+        entityName: SomeBot
+        currentAction:
+          actionType: demolishEnemy
+          data: ""
+          description: Demolish enemy bot named SomeBot
+          strategicCategory: neutral
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 200
+        message:
+          type: string
+          example: Succesfully processed operation
+      example:
+        code: 200
+        message: Succesfully processed operation
+    ActionChoice:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/BotAction'
+        entityName:
+          type: string
+          description: The name of the bot or script that this action is associated
+            with.
+          example: SomeBot
+
