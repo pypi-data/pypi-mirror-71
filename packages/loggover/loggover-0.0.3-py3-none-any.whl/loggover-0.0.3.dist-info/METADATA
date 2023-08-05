@@ -1,0 +1,183 @@
+Metadata-Version: 2.1
+Name: loggover
+Version: 0.0.3
+Summary: module to log requests and response
+Home-page: UNKNOWN
+Author: Priyansh
+Author-email: 17bcs140@ietdavv.edu.in
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.0
+Description-Content-Type: text/markdown
+
+<h2>Documentation</h2>
+
+In order to use this logger , all you need to do is to import it in your machine using:
+<pre>
+    <code>
+        pip install loggover
+    </code>
+</pre>
+
+After installation here comes the configuration part , one need to do in order to use this logger in flask application. There are basically 5 configurable parameters are there in the logger named: 
+    <p>1.buffer size</p>
+    <p>2.buffer time-out time</p>
+    <p>3.project id(from viasocket)</p>
+    <p>4.auth key(from viasocket)</p>
+    <p>5.END_POINT_TO_SIMULATE_DB (this the end point , from where logger gets two parameters called includes (it is list of routes whose logges to be send) and second is levels (it is list of logging levels whose logs to be send) )</p>
+
+<i><b>Note: Property number 3, 4 and 5 are mandatory to set, otherwise you will get error.</b></i>
+
+Refer below code snippet to configure above parameters in your flask application:
+<pre>
+    <code>
+loggover.set_buffer_size(2)
+loggover.set_buffer_timeout(2)
+loggover.set_project_id('szfb72eUt5eRaWxaXE6J')
+loggover.set_auth_key('ucdPnQgLqT2GPsquD9xv')
+loggover.set_END_POINT_TO_SIMULATE_DB("http://127.0.0.1:9000/")
+    </code>
+</pre>
+
+<h2>WAIT A MIN!!!</H2>
+<H3>Before you move further , please make sure that you have a endpoint which returns two lists , includes and levels.</H3>
+For your reference , below is sample application which does the required function. For now you can create a app "simulating_db.py" in your system and paste the below code.
+<pre><code>
+from flask import Flask,jsonify, request
+import json
+
+
+
+app = Flask(__name__)
+
+@app.route("/", methods=["POST","GET"])
+def setName():
+    if request.method == 'GET':
+        includes = ['/login']
+        levels=['WARN']
+        res = [includes,levels]
+        print(res)
+        return jsonify(res)
+</code></pre>
+
+We are not yet done with this step , before running main application , start this app:
+
+go to path where you created above file->
+>run "set flask_app=simulating_db.py"
+
+>run "set flask_env=development"
+
+>run "flask run --port=9000"
+
+<h5><i>hasshh!! we are done with this. Lets move forward.</i></h5>
+
+After successfully completing above step , lets move to the core functionality of our logger i.e logging request and response data. For this copy and paste below code in the end of your flask application.
+<pre><code>
+@app.before_request
+def start_timer():
+    print('before every request')
+    g.start = time.time()
+
+@app.after_request
+def fun(response):
+    loggover.log_request(response)
+    return response
+</code></pre>
+
+<h2>Heads up!! We are done.</h2>
+
+logger does not stop serving here only , it has something more for you. Apart from request and response logs  , if you want to log info or error or warning logs then for this logger has three more methods. you can use this methods anywhere you want.
+
+for reference see below snippet.
+<pre>
+<h3>info() method</h3><code>loggover.info('Information message')
+</code>
+</pre>
+
+<pre>
+<h3>warn() method</h3><code>loggover.warn('Warning!!')
+</code>
+</pre>
+
+<pre>
+<h3>error() method</h3><code>loggover.error('Opps!!Error!')
+</code>
+</pre>
+
+<h4>we are almost done now...but for better understanding about how to use this logger, have a look at complete flask application which uses this logger.</h4>
+
+<pre><code>
+import datetime
+import time
+import json
+
+import loggover
+
+from flask import Flask, g, request
+
+
+loggover.set_buffer_size(2)
+loggover.set_buffer_timeout(2)
+loggover.set_project_id('szfb72eUt5eRaWxaXE6J')
+loggover.set_auth_key('ucdPnQgLqT2GPsquD9xv')
+loggover.set_END_POINT_TO_SIMULATE_DB("http://127.0.0.1:9000/")
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def index():
+    loggover.info('inside index')
+    print("index is running!")
+    return "Hello world"
+
+@app.route("/login")
+def login():
+    loggover.error('inside login')
+    print("on login page!")
+    return "login page"
+
+@app.route("/register")
+def register():
+    loggover.warn('inside register')
+    print("on register page!")
+    return "register page"
+
+@app.route("/logout")
+def logout():
+    loggover.info('inside logout')
+    print("on logout page!")
+    return "logout page"
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+@app.before_request
+def start_timer():
+    print('before every request')
+    g.start = time.time()
+
+
+@app.after_request
+def fun(response):
+    loggover.log_request(response)
+    return response
+
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
