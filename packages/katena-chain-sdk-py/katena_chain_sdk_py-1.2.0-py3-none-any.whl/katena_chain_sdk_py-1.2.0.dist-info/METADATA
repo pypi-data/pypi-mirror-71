@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: katena-chain-sdk-py
+Version: 1.2.0
+Summary: A SDK client for Katena Chain by Transchain
+Home-page: https://github.com/katena-chain/sdk-py
+Author: Transchain
+Author-email: devops@transchain.fr
+License: Apache-2.0
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: pynacl (==1.3.0)
+Requires-Dist: marshmallow (==3.2.1)
+
+# SDK Python
+
+## Requirements
+
+- Python >= 3.X
+
+## Install
+
+```bash
+pip install katena-chain-sdk-py
+```
+
+## Usage
+
+To rapidly interact with our API, you can use our `Transactor` helper. It handles all the steps needed to correctly
+format, sign and send a tx.
+
+Feel free to explore and modify its code to meet your expectations.
+
+## Examples
+
+Detailed examples are provided in the `examples` folder to explain how to use our `Transactor` helper methods.
+
+You can change various settings in the `examples/common/settings.py` file.
+
+Available examples:
+* Send a `Certificate` transaction
+* Send a `Secret` transaction
+* Send a `KeyCreate` transaction
+* Send a `KeyRotate` transaction
+* Send a `KeyRevoke` transaction
+* Retrieve `Certificate` related transactions
+* Retrieve `Secret` related transactions
+* Retrieve `Key` related transactions and its state
+* Retrieve a list of `Key` states for a company
+
+For instance, to send a certificate:
+```bash
+python examples/send_certificate_raw.py
+```
+
+## Katena documentation
+
+For more information, check the [katena documentation](https://doc.katena.transchain.io).
+
+
