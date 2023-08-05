@@ -1,0 +1,69 @@
+author: James Otterson
+email: jjotterson@gmail.com
+
+url: https://github.com/jjotterson/datapungi_imf
+shortDescription: 'Access data from the International Monetary Fund (IMF)'
+projectName: datapungi_imf
+importAs: dpi
+sorceUrl : http://dataservices.imf.org/REST/SDMX_JSON.svc/
+sourceName : IMF
+sourceNameShort: IMF
+
+baseRequest:             #see mainSubGeneral's base request fun 
+howToCallKey: api_key    # how site calls an api key
+example: a text maybe
+drivers:
+  - api : IMF
+    group: list                       #equivalent to IMF's DataFlow and DataStructure
+    default query: get  
+    datasets:
+        - short name:  get           # list of IMF databases
+          database:    DataFlow       # an extension that will be added to the url above
+          json key:    categories     # key in the reques json result to look into
+          description: list of all IMF databases            # 
+          parameters:  []              # include api_key, and file_type (json) which will be removed, but can be passed anyways be user.
+  - api : IMF
+    group: params
+    default query: get 
+    datasets:
+        - short name: get      # how to call it in code
+          database:   DataStructure/       # an extension that will be added to the url above
+          json key:   categories     # key in the reques json result to look into
+          description: Get the parameters of a given IMF database            # 
+          parameters: [dbname]
+  - api : IMF
+    group: data
+    default query: get 
+    datasets:
+        - short name: get      # how to call it in code
+          database:   CompactData/       # an extension that will be added to the url above
+          json key:   categories     # key in the reques json result to look into
+          description: given database name and paraameter, returns data (IMF name CompactData)           # 
+          parameters: [dbname,params]
+  - api : IMF
+    group: metastruct
+    default query: get 
+    datasets:
+        - short name: get      # how to call it in code
+          database:   MetadataStructure/       # an extension that will be added to the url above
+          json key:   categories     # key in the reques json result to look into
+          description: MetadataStructure method returns the metadata structure of the dataset.            # 
+          parameters: [dbname]          
+  - api : IMF
+    group: meta
+    default query: get 
+    datasets:
+        - short name: get      # how to call it in code
+          database:   GenericMetadata/       # an extension that will be added to the url above
+          json key:   categories     # key in the reques json result to look into
+          description: MetadataStructure method returns the metadata structure of the dataset.            # 
+          parameters: [dbname,params]
+  - api : IMF
+    group: codelist
+    default query: get 
+    datasets:
+        - short name: get      # how to call it in code
+          database:   CodeList/      # an extension that will be added to the url above
+          json key:   categories     # key in the reques json result to look into
+          description: GetCodeList method returns the description of CodeLists           # 
+          parameters: [dbname,params]          
