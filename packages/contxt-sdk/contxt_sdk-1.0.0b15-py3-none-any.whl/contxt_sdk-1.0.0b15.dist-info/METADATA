@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: contxt-sdk
+Version: 1.0.0b15
+Summary: Contxt SDK from </ndustrial.io>
+Home-page: https://github.com/ndustrialio/contxt-sdk-python
+License: ISC
+Author: ndustrial.io
+Author-email: dev@ndustrial.io
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: auth0-python (>=3,<4)
+Requires-Dist: dataclasses; python_version < "3.7"
+Requires-Dist: pyjwt[crypto] (>=1,<2)
+Requires-Dist: requests (>=2,<3)
+Requires-Dist: tabulate
+Project-URL: Repository, https://github.com/ndustrialio/contxt-sdk-python
+Description-Content-Type: text/markdown
+
+# Contxt Python SDK
+
+[![build status](https://github.com/ndustrialio/contxt-sdk-python/workflows/build/badge.svg)](https://github.com/ndustrialio/contxt-sdk-python/actions)
+[![pypi version](https://img.shields.io/pypi/v/contxt-sdk.svg)](https://pypi.org/project/contxt-sdk/)
+![python](https://img.shields.io/badge/python-3.6+-blue.svg)
+
+## Installation
+
+```sh
+pip install contxt-sdk
+```
+
+## CLI Usage
+
+```sh
+contxt --help
+```
+
+## Documentation
+
+- [CLI](docs/cli.md)
+- [Worker](docs/worker.md)
+
+## Contributing
+
+Please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+
