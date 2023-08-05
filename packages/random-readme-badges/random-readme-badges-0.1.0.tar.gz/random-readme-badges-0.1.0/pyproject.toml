@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "random-readme-badges"
+version = "0.1.0"
+description = "Get random badges for badges' sake"
+authors = ["Justine Kizhakkinedath <justine@kizhak.com>"]
+license = "MIT License"
+readme = "README.md"
+homepage = "https://justine.kizhak.com/projects/random-readme-badges"
+repository = "https://gitlab.com/justinekizhak/random-readme-badges"
+keywords = [
+  "readme badges"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.7",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+jupyterlab = "^2.1.4"
+
+[tool.poetry.scripts]
+rrb = 'random_readme_badges.main:main'
+
+[tool.poetry.urls]
+"Bug Reports" = "https://gitlab.com/justinekizhak/random-readme-badges/issues"
+"Say Thanks!" = "https://saythanks.io/to/justine%40kizhak.com"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
