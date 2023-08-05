@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: gilbert
+Version: 0.5.2
+Summary: A simple, extensible static site generator.
+Home-page: https://github.com/funkybob/gilbert
+License: MIT
+Author: Curtis Maloney
+Author-email: curtis@tinbrain.net
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: aiohttp (>=3.6.2,<4.0.0)
+Requires-Dist: aionotify (>=0.2.0,<0.3.0)
+Requires-Dist: libsass (>=0.19.4,<0.20.0)
+Requires-Dist: markdown (>=3.2.1,<4.0.0)
+Requires-Dist: pyyaml (>=5.3.1,<6.0.0)
+Requires-Dist: stencil-template (>=4.2.1,<5.0.0)
+Project-URL: Documentation, https://gilbert.readthedocs.io/en/latest/
+Project-URL: Repository, https://github.com/funkybob/gilbert
+Description-Content-Type: text/markdown
+
+# Gilbert
+
+Another static site generator.
+
+https://en.wikipedia.org/wiki/William_Gilbert_(astronomer)
+
+This README contains a brief introduction to the project. Full documentation
+[is available here](https://gilbert.readthedocs.io/en/latest/).
+
+# Quick Start
+
+Install gilbert:
+
+    $ pip install gilbert
+
+Create a gilbert project:
+
+    $ gilbert --root mysite init
+
+(You can omit `--root` if it's the current directory.)
+
+Create page files in mysite/pages/
+
+Render your site:
+
+    $ gilbert --root mysite render
+
+Have gilbert serve your site:
+
+    $ gilbert --root mysite serve
+
+Serve your site and re-render on changes:
+
+    $ gilbert --root mysite serve --watch
+
+Finally, list all loaders and plugins:
+
+    $ gilbert --root mysite plugins
+
+
+## Installation requirements
+
+Gilbert current requires Python 3.7 or greater.
+
