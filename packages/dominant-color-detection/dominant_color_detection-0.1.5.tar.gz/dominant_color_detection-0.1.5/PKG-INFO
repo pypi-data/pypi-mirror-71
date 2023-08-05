@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: dominant_color_detection
+Version: 0.1.5
+Summary: Detects dominant color of an image
+Home-page: UNKNOWN
+Author: Hynek Davídek
+Author-email: hynek.davidek@biano.com
+License: MIT
+Description: # Dominant color detection
+        
+        Simple package which detects colors in a provided image.
+        Works best with already segmented images.
+        
+        ## Usage
+        
+        ```
+        from dominant_color_detection import detect_colors
+        k = 3
+        img_path = '/path/to/your/image.jpg'
+        
+        colors, ratios = detect_colors(img_path, k)
+        ```
+        
+Keywords: image,color,detection,dominant,kmeans
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
