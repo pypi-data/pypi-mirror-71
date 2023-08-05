@@ -1,0 +1,61 @@
+CHANGES
+=======
+
+* #13: Added unit test and fixed a bug with incorrect RKD\_DEPTH incrementation
+* #13: Added unit test
+* Clean up
+* #15: Added unit tests coverage
+* #16: Unit tests to cover --help
+* #16: Functional test test to cover --help
+* Resolve failing tests
+* #12, #10: Resolved an issue, where the exit code is "120" when turning on capturing output to logs
+* #12, #10: Resolved an issue, where the exit code is "120" when turning on capturing output to logs
+* #10: Update docs
+* #10: Docs for audit logging
+* #16: Show full task description in --help
+* #15: "tabulate" integration
+* #13: Corrections to the RKD\_DEPTH support, it should be now supported not only in YAML syntax
+* #10: Proper logging + initial audit logs
+* #12: Fix the logging level of FATAL, add is\_log\_level\_at\_least()
+* #11: Resolve issue with dot-env loading in correct order
+* #9: Resolve issue with filesystem usage in JINJA2
+* #6: Update docs
+* #6: Update docs
+* #6: UI toggling via env variable
+* #6: UI toggling via env variable
+* #8: Resolve binary finding issue
+* Add "./src" to sys.path by default
+* Add environment management component
+* #7: Bugfixes to the group name showing in the :tasks
+* Resolve ValueError in :version
+
+v0.8.0.0b1
+----------
+
+* #7: Correct support for [global] group in RKD\_WHITELIST\_GROUPS
+* #7: Implement feature "Alias Groups" and "Hide Groups"
+* Introducing %RKD% to shell commands
+* Add support for RKD\_WHITELIST\_GROUPS
+* Support for .env loading
+
+v0.7.0.0b1
+----------
+
+* Docs fix
+* Docs fix for readthedocs.org
+* Update docs
+* #4 and #5: Fix typo
+* #4 and #5: Fix publication credentials
+* #4 and #5: Add requirements.txt for rkd\_python subpackage
+* #4 and #5: Fix PublishTaskTest
+* #4 and #5: Correct PYTHONPATH in rkd\_python
+* #4 and #5: Correct task name
+* #4 and #5: Add correct PYTHONPATH to build modules together
+* #4 and #5: Add correct PYTHONPATH to build modules together
+* #4 and #5: Travis syntax retry, by the way migrate CI scripts to Makefile
+* #4: Travis syntax retry
+* #4: Attempt to extract Python building tasks to the rkd\_python subpackage
+* Correct context building from YAML - add possibility to import modules without subpaths eg. \`rkd\_python\` - previously only eg. \`rkd\_python.something\` was possible to use
+* #1: Turn off COMPAT by default
+* #1: Potentially resolve problems with not shown output (turn off Python buffering to avoid double-buffering)
+* Add tests coverage
