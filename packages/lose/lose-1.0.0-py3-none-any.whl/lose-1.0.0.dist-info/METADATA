@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: lose
+Version: 1.0.0
+Summary: A helper package for handling data using hdf5 format
+Home-page: https://github.com/okawo80085/lose
+Author: okawo
+Author-email: okawo.198@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: tables
+
+# lose
+
+lose, but in particular `lose.LOSE`, is a helper class for handling data using `hdf5` file format and `PyTables`
+
+```python
+>>> from lose import LOSE
+>>> LOSE()
+<lose hdf5 data handler, fname=None, atom=Float32Atom(shape=(), dflt=0.0)>
+generator parameters: iterItems=None, iterOutput=None, batch_size=1, limit=None, loopforever=False, shuffle=False
+```
+
+## installation
+```python
+pip3 install -U lose
+```
+or
+```python
+pip install -U lose
+```
+
+# documentation
+[documentation](https://github.com/okawo80085/lose/blob/master/README.md), [change log](https://github.com/okawo80085/lose/blob/master/changeLog.md)
+
+# bugs/issues
+if you find any, raise an issue [here](https://github.com/okawo80085/lose/issues)
+
