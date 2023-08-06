@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: anyfig
+Version: 0.1.0
+Summary: Create modular and scaleable configurations at runtime
+Home-page: https://github.com/OlofHarrysson/anyfig
+Author: Olof Harrysson
+Author-email: harrysson.olof@gmail.com
+License: MIT license
+Keywords: config,configurations,configuration-management,argparse-alternative,settings,command line parsing,python classes,dynamic,runtime
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Requires-Dist: fire
+Requires-Dist: typeguard
+Requires-Dist: dataclasses ; python_version == "3.6"
+
+======
+Anyfig
+======
+
+
+.. image:: https://img.shields.io/pypi/v/anyfig.svg
+        :target: https://pypi.python.org/pypi/anyfig
+
+.. image:: https://img.shields.io/pypi/pyversions/anyfig.svg
+        :target: https://pypi.org/project/anyfig/
+
+.. image:: https://img.shields.io/travis/OlofHarrysson/anyfig.svg?logo=travis
+        :target: https://travis-ci.com/OlofHarrysson/anyfig
+
+
+Anyfig is a Python library for creating configurations (settings) at runtime. Anyfig utilizes Python classes which empowers the developer to put anything, from strings to custom objects in the config. Hence the name Any(con)fig.
+
+Please read more at our website [https://anyfig.now.sh/](https://anyfig.now.sh/)
+
+* Free software: MIT license
+
+
