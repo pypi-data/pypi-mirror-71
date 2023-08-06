@@ -1,0 +1,32 @@
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class='row'>
+                <div class="col-md-10">
+                    <strong>{{ stat_data.title|default:"Oxidized Stats"}}</strong>
+                </div>
+                <div class="col-md-2 text-right">    
+                    <span class='glyphicon glyphicon-cloud-download'></span>
+                    <span class='glyphicon glyphicon-th-list'></span>
+                    <span class='glyphicon glyphicon-refresh'></span>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover panel-body attr-table">
+            <tr>
+                <td>Last Check</td>
+                <td>{{stat_data.time}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{ stat_data.status }}</td>
+            </tr>
+            <tr>
+                <td>Last Modified</td>
+                <td>{{stat_data.mtime}}</td>
+            </tr>
+            <tr>
+                <td>Last Runtime</td>
+                <td>{{stat_data.runtime}} seconds</td>
+            </tr>
+        </table>
+    </div>
