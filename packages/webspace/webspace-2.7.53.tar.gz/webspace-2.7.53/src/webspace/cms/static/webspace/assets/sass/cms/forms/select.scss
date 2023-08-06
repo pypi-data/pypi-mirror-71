@@ -1,0 +1,83 @@
+.select {
+
+  .regular__input {
+    padding-left: 5px;
+  }
+
+  .regular__control, .regular__menu {
+    z-index: 9;
+    border: 0;
+
+    @include theme($themes) {
+      background-color: t('uks');
+    }
+  }
+
+  .regular__control {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .regular__option, .regular__placeholder {
+    @include theme($themes) {
+      background-color: t('uks');
+      color: t('colorP');
+    }
+  }
+
+  .regular__placeholder {
+    padding: 5px;
+  }
+
+  .regular__option--is-selected {
+    @include theme($themes) {
+      background-color: t('kaks');
+      color: t('colorP');
+    }
+  }
+
+  .regular__control {
+    box-shadow: none;
+
+    @include theme($themes) {
+      .regular__single-value {
+        color: t('colorP');
+      }
+      .regular__indicator-separator {
+        background-color: t('colorP');
+      }
+
+      svg {
+        fill: t('colorP');
+      }
+    }
+  }
+
+  .regular__input {
+    @include theme($themes) {
+      color: t('colorP') !important;
+    }
+  }
+
+  .regular__multi-value {
+    margin: 0 0 0 10px;
+    @include theme($themes) {
+      background-color: t('uks');
+      border: 0;
+
+      .regular__multi-value__label {
+        color: t('colorP') !important;
+        font-size: 16px;
+        padding: 5px;
+      }
+    }
+  }
+
+  .regular__value-container {
+    padding: 0;
+  }
+
+  .regular__single-value {
+    margin-left: 20px;
+  }
+}
