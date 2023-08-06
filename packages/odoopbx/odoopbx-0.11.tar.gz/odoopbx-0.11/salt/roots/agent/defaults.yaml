@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+agent:
+  enable: True
+  confdir: /etc/asterisk/agent
+  log_format: '%(lineno)s - %(levelname)s - %(message)s'
+  console:
+    enable: True
+    service_state: running # running / dead
+    listen_address: 127.0.0.1
+    listen_port: 8001
+    odoo_url: http://127.0.0.1
