@@ -1,0 +1,119 @@
+Metadata-Version: 2.1
+Name: htexpr
+Version: 0.1.0
+Summary: htexpr compiles an html string into a Python expression
+Home-page: https://github.com/jkseppan/htexpr
+Author: Jouni K. Seppänen
+Author-email: jks@iki.fi
+License: MIT license
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Web Environment
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Framework :: Dash
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: parsimonious (~=0.8.1)
+Requires-Dist: toolz (<0.11,>=0.9)
+Provides-Extra: dev
+Requires-Dist: pytest (~=5.4.3) ; extra == 'dev'
+Requires-Dist: pytest-cov (<2.11.0,>=2.8.1) ; extra == 'dev'
+Requires-Dist: pytest-sugar (~=0.9.3) ; extra == 'dev'
+Requires-Dist: dash-core-components (<1.11,>=0.44) ; extra == 'dev'
+Requires-Dist: dash[testing] (<1.14,>=1.0.0) ; extra == 'dev'
+Requires-Dist: dash-html-components (<1.1,>=0.14) ; extra == 'dev'
+Requires-Dist: dash-renderer (<1.6,>=0.20) ; extra == 'dev'
+Requires-Dist: dash-table (<4.9,>=3.6) ; extra == 'dev'
+Requires-Dist: dash-bootstrap-components (<0.11,>=0.7.2) ; extra == 'dev'
+Requires-Dist: requests (<2.25,>=2.23) ; extra == 'dev'
+Provides-Extra: examples
+Requires-Dist: dash-core-components (<1.11,>=0.44) ; extra == 'examples'
+Requires-Dist: dash (<1.14,>=0.39) ; extra == 'examples'
+Requires-Dist: dash-html-components (<1.1,>=0.14) ; extra == 'examples'
+Requires-Dist: dash-renderer (<1.6,>=0.20) ; extra == 'examples'
+Requires-Dist: dash-table (<4.9,>=3.6) ; extra == 'examples'
+Requires-Dist: dash-bootstrap-components (<0.11,>=0.7.2) ; extra == 'examples'
+
+htexpr: Templating for Dash
+===========================
+
+[![PyPI](https://img.shields.io/pypi/v/htexpr)](https://pypi.org/project/htexpr/)
+[![MIT License](https://img.shields.io/pypi/l/htexpr?color=brightgreen)](https://github.com/jkseppan/htexpr/blob/master/LICENSE)
+[![CircleCI](https://img.shields.io/circleci/build/github/jkseppan/htexpr)](https://circleci.com/gh/jkseppan/htexpr/tree/master)
+[![Github CI](https://github.com/jkseppan/htexpr/workflows/CI/badge.svg)](https://github.com/jkseppan/htexpr/actions?query=workflow%3ACI)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://black.readthedocs.io/)
+
+`htexpr` compiles an html-like template syntax into Python
+expressions, allowing embedded Python expressions in attributes and
+content. It is inspired by [JSX]() and intended to complement the
+excellent [Dash]() package, which allows you to write single-page
+React apps in Python. For motivation and further instructions, see the
+[documentation](https://htexpr.readthedocs.io/en/latest/).
+
+[JSX]: https://reactjs.org/docs/introducing-jsx.html
+[Dash]: https://dash.plot.ly
+
+Example
+-------
+
+A Unicode table::
+
+    import dash
+    import dash_core_components as dcc
+    import dash_html_components as html
+    from dash.dependencies import Input, Output, State
+
+    from htexpr import compile
+    import unicodedata
+
+    app = dash.Dash()
+    app.layout = compile("""
+    <div>
+      <table style={"margin": "0 auto"}>
+        <tr><th>char</th><th>name</th><th>category</th></tr>
+           [
+             (<tr style={'background-color': '#eee' if line % 2 else '#ccc'}>
+                <td>{ char }</td>
+                <td>{ unicodedata.name(char, '???') }</td>
+                <td>{ unicodedata.category(char) }</td>
+              </tr>)
+             for line, char in enumerate(chr(i) for i in range(32, 128))
+           ]
+      </table>
+    </div>
+    """).run()
+
+    app.run_server(debug=True)
+
+Further demonstrations:
+
+* a larger [Unicode table](examples/unicode_table.py)
+* a [Bootstrap example](examples/bootstrap.py)
+
+
+Development status
+------------------
+
+I wrote this to help me with a particular project where I kept making
+[bracketing mistakes](https://htexpr.readthedocs.io/en/latest/motivation.html).
+The code works for that project, but there are likely to be corner
+cases I haven't considered.
+
+The Python grammar used here is quite simplistic: it recognizes
+strings and variously parenthesized expressions. By understanding more
+Python it would probably be possible to disambiguate between
+comparison operators and tags, and thus drop the requirement to
+enclose nested expressions in parentheses.
+
+The error messages are not always helpful, and in particular the code
+objects don't yet have reliable line-number data.
+
+
