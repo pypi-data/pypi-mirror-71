@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: fdroid-mirror-monitor
+Version: 0.3.2
+Summary: monitoring of known https://f-droid.org mirrors
+Home-page: https://gitlab.com/marzzzello/mirror-monitor/
+Author: marzzzello
+Author-email: 853485-marzzzello@users.noreply.gitlab.com
+License: AGPL-3.0
+Description: # Mirror Monitor
+        
+        Monitor the status of known mirrors F-Droid Mirrors.
+        Live demo: https://marzzzello.gitlab.io/mirror-monitor/
+        
+        
+        ## Active Mirrors of https://f-droid.org/
+        
+        ### repo + archive
+        * https://f-droid.org/
+        * rsync://fdroid-mirror@mirror.f-droid.org/ RSYNC_PASSWORD=dont-abuse-me-please
+        * https://fdroid.tetaneutral.net/fdroid/
+        * https://bubu1.eu/fdroid/
+        * https://fdroid.swedneck.xyz/fdroid/
+        * https://ftp.fau.de/fdroid/
+        * rsync://ftp.fau.de/fdroid/
+        * http://fauftpffbmvh3p4h.onion/fdroid/
+        * https://plug-mirror.rcac.purdue.edu/fdroid/
+        * rsync://plug-mirror.rcac.purdue.edu/fdroid/
+        * https://mirrors.tuna.tsinghua.edu.cn/fdroid/
+        * rsync://mirrors.tuna.tsinghua.edu.cn/fdroid/
+        
+        ### repo only
+        * https://mirror.cyberbits.eu/fdroid/
+        * rsync://mirror.cyberbits.eu/fdroid/
+        * https://ftp.osuosl.org/pub/fdroid/
+        * https://mirror.scd31.com/fdroid/
+        * https://fdroid.fi-do.io/fdroid/
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: System :: Archiving :: Mirroring
+Classifier: Topic :: System :: Archiving :: Packaging
+Classifier: Topic :: System :: Networking :: Monitoring
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: tests
