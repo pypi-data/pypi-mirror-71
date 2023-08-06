@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: endless-sky-parse
+Version: 0.1.2
+Summary: A working, tested Python conversion of the C++ parser for Endless Sky DataFiles
+Home-page: https://gitlab.com/spaceschluffi/endless-sky-parse
+Author: SpaceSchluffi
+Author-email: tr-gitlab-spaceschluffi@digital-trauma.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: flake9 ; extra == 'test'
+
+# endless-sky-parse
+
+A working, tested Python conversion of the C++ parser for Endless Sky DataFiles
+
+## How to install
+
+```console
+$ pip install endless-sky-parse
+```
+
+## How to use
+
+```python
+from endless_sky.datafile import DataFile
+
+f = DataFile("/usr/share/games/endless-sky/data/human/ships.txt")
+it = f.root.filter(["ship", "Blackbird"])
+ship = next(it)
+ship.children[0]
+# DataNode(tokens=['sprite', 'ship/blackbird'], children=[])
+next(ship.filter_first("description")).tokens[1][:80]
+# 'The Tarazed Blackbird is a high-class passenger transport, designed to move larg'
+```
+
+
+## Development
+
+
+```console
+$ python -m venv venv && . venv/bin/activate
+$ pip install -r dev_requirements.txt
+```
+
+Run tests with
+
+```console
+$ python setup.py test
+```
+
+
+
