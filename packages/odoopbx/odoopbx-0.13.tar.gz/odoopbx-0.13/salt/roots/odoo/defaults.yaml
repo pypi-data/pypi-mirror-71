@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+odoo:
+  rev: 13.0
+  admin_password: CHANGEME-NennultInIo
+  user:  odoo
+  dbname: odoo
+  dbpassword: CHANGEME-Leuchukewv
+  venv: /srv/odoo-venv
+  addons: /srv/odoo-addons
+  srcdir: /srv/odoo
+  datadir: /var/lib/odoo
+  logdir: /var/log/odoo
+  confdir: /etc/odoo
+  enable: True
