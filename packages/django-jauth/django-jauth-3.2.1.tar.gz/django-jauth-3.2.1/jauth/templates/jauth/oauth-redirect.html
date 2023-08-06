@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OAuth2 redirect return</title>
+</head>
+<body>
+
+<script>
+    var result = {
+        status : "{{ status }}",
+        data: {{ auth_result_json | safe }},
+    };
+
+    if (window.opener) {
+        window.opener.postMessage(JSON.stringify(result), '*');
+        console.log("Posted OAuth2 authentication result to window.opener");
+    }
+    if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(JSON.stringify(result));
+        console.log("Posted OAuth2 authentication result to window.ReactNativeWebView");
+    }
+
+    console.log("OAuth2 authentication done");
+</script>
+
+OAuth2 redirect return.
+
+Authentication result:
+<code>
+var result = {
+    status : "{{ status }}",
+    data: {{ auth_result_json | safe }},
+};
+</code>
+
+</body>
+</html>
