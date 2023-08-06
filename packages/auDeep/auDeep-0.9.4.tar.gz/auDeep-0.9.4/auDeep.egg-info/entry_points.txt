@@ -1,0 +1,26 @@
+[audeep.commands]
+export = audeep.cli.export:Export
+f-rae generate = audeep.cli.generate:GenerateFrequencyAutoencoder
+f-rae train = audeep.cli.train:TrainFrequencyAutoencoder
+ft-rae generate = audeep.cli.generate:GenerateFrequencyTimeAutoencoder
+ft-rae train = audeep.cli.train:TrainFrequencyTimeAutoencoder
+fuse = audeep.cli.fuse:FuseDataSets
+fuse chunks = audeep.cli.fuse:FuseChunks
+import = audeep.cli.import_data:Import
+inspect netcdf = audeep.cli.inspect:InspectNetCDF
+inspect raw = audeep.cli.inspect:InspectRaw
+mlp evaluate = audeep.cli.evaluate:MLPEvaluation
+mlp predict = audeep.cli.predict:MLPPrediction
+modify = audeep.cli.modify:Modify
+preprocess = audeep.cli.extract_spectrograms:ExtractSpectrograms
+svm evaluate = audeep.cli.evaluate:SVMEvaluation
+svm predict = audeep.cli.predict:SVMPrediction
+t-rae generate = audeep.cli.generate:GenerateTimeAutoencoder
+t-rae train = audeep.cli.train:TrainTimeAutoencoder
+upsample = audeep.cli.upsample:Upsample
+validate = audeep.cli.validate:Validate
+visualize tsne = audeep.cli.visualize:VisualizeTSNE
+
+[console_scripts]
+audeep = audeep.main:main
+
