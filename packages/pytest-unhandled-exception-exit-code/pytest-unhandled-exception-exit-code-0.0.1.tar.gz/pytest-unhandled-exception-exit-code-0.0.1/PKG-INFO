@@ -1,0 +1,55 @@
+Metadata-Version: 1.1
+Name: pytest-unhandled-exception-exit-code
+Version: 0.0.1
+Summary: Plugin for py.test set a different exit code on uncaught exceptions
+Home-page: https://github.com/bra-fsn/pytest-unhandled-exception-exit-code
+Author: NAGY, Attila
+Author-email: nagy.attila+pytest@gmail.com
+License: BSD
+Description: ====================================
+        pytest-unhandled-exception-exit-code
+        ====================================
+        
+        Plugin for ``pytest`` to change exit code on uncaught exceptions
+        
+        * Free software: MIT license
+        
+        Features
+        --------
+        
+        * You can set a different exit code when uncaught exceptions in ``pytest`` test
+          cases will occur
+        
+        
+        Installation
+        ------------
+        
+        You can install the plugin by running
+        
+            pip install pytest-unhandled-exception-exit-code
+        
+        Alternately check out the source code and run
+        
+            python setup.py install
+        
+        
+        Usage
+        -----
+        
+        If you want to change `pytest` exit code to detect unhandled exceptions in
+        tests, give the plugin the desired exit code with the following option:
+        ``pytest --unhandled-exc-exit-code 13``
+        
+        
+Keywords: pytest,py.test
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Framework :: Pytest
