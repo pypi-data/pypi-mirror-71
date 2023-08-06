@@ -1,0 +1,111 @@
+Metadata-Version: 2.1
+Name: tf-keras-vis
+Version: 0.3.2
+Summary: Neural network visualization toolkit for tf.keras
+Home-page: https://github.com/keisen/tf-keras-vis
+Author: keisen
+Author-email: k.keisen@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5, <3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: imageio
+Requires-Dist: pillow
+Provides-Extra: develop
+Requires-Dist: flake8 ; extra == 'develop'
+Requires-Dist: isort ; extra == 'develop'
+Requires-Dist: yapf ; extra == 'develop'
+Requires-Dist: pytest ; extra == 'develop'
+Requires-Dist: pytest-pep8 ; extra == 'develop'
+Requires-Dist: pytest-cov ; extra == 'develop'
+Provides-Extra: examples
+Requires-Dist: jupyterlab ; extra == 'examples'
+Requires-Dist: matplotlib ; extra == 'examples'
+
+# tf-keras-vis
+[![Downloads](https://pepy.tech/badge/tf-keras-vis)](https://pepy.tech/project/tf-keras-vis)
+[![PyPI version](https://badge.fury.io/py/tf-keras-vis.svg)](https://badge.fury.io/py/tf-keras-vis)
+[![Build Status](https://travis-ci.org/keisen/tf-keras-vis.svg?branch=master)](https://travis-ci.org/keisen/tf-keras-vis)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+tf-keras-vis is a visualization toolkit for debugging `tf.keras` models in Tensorflow2.0+.
+
+## Visualizations
+
+### Visualize Dense Layer
+
+<img src='https://github.com/keisen/tf-keras-vis/raw/master/examples/images/visualize-dense-layer.png' width='600px' />
+
+### Visualize Convolutional Filer
+
+<img src='https://github.com/keisen/tf-keras-vis/raw/master/examples/images/visualize-filters.png' width='800px' />
+
+### Saliency Map and GradCAM
+
+<img src='https://github.com/keisen/tf-keras-vis/raw/master/examples/images/gradcam.png' width='600px' />
+
+
+These features are based on ones of [keras-vis](https://github.com/raghakot/keras-vis), but tf-keras-vis APIs doesn't have compatibility with keras-vis, because we prioritized to get following features for our expriments.
+
+- Support processing multiple images at a time as a batch
+- Support tf.keras.Model that has multiple inputs (and, of course, multiple outpus too)
+- Allow to use optimizers that embeded in tf.keras
+
+
+## Requirements
+
+* Python 3.5-3.8
+* tensorflow>=2.0
+
+
+## Installation
+
+* PyPI
+
+```bash
+$ pip install tf-keras-vis tensorflow
+```
+
+* Docker (container that run Jupyter Notebook)
+
+```bash
+$ docker run -itd -p 8888:8888 keisen/tf-keras-vis:0.2.4
+```
+
+If you have GPU processors,
+
+```bash
+$ docker run -itd --runtime=nvidia -p 8888:8888 keisen/tf-keras-vis:0.2.4-gpu
+```
+
+> You can find other images at [Docker Hub](https://hub.docker.com/repository/docker/keisen/tf-keras-vis/tags).
+
+
+## Usage
+
+Please see [examples/attentions.ipynb](https://github.com/keisen/tf-keras-vis/blob/master/examples/attentions.ipynb), [examples/visualize_dense_layer.ipynb](https://github.com/keisen/tf-keras-vis/blob/master/examples/visualize_dense_layer.ipynb) and [examples/visualize_conv_filters.ipynb](https://github.com/keisen/tf-keras-vis/blob/master/examples/visualize_conv_filters.ipynb) for details.
+
+
+## Known Issues
+
+* With InceptionV3, ActivationMaximization doesn't work well, that's, it might generate meanninglessly bulr image.
+* With cascading model, Gradcam and Gradcam++ don't work well, that's, it might occur some error.
+* Unsupport `channels-first` models and datas.
+
+
+## ToDo
+* API documentations
+* We're going to add some algorisms such as below.
+   - [SmoothGrad: removing noise by adding noise](https://arxiv.org/pdf/1706.03825.pdf) (DONE)
+   - [GradCAM++](https://arxiv.org/abs/1710.11063)
+   - [ScoreCAM](https://arxiv.org/pdf/1910.01279.pdf)
+   - Deep Dream
+   - Style transfer
+
+
+
