@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: fbprophet-inference
+Version: 0.7
+Summary: An inference only fork of Prophet (Python only)
+Home-page: https://github.com/randyphoa/prophet-inference
+Author: Randy Phoa
+Author-email: randyphoa@outlook.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3
+Requires-Dist: numpy (>=1.10.0)
+Requires-Dist: pandas (>=0.23.4)
+Requires-Dist: matplotlib (>=2.0.0)
+Requires-Dist: LunarCalendar (>=0.0.9)
+Requires-Dist: convertdate (>=2.1.2)
+Requires-Dist: holidays (>=0.9.5)
+Requires-Dist: python-dateutil (>=2.8.0)
+Requires-Dist: tqdm (>=4.36.1)
+
+This is an inference only fork of Prophet for Python. The primary purpose of this package is to deploy a Prophet model in a light weight environment for the purpose of inference/prediction. This implementation does not require heavy dependencies such as pystan(Stan) and Cython which requires a C/C++ compiler. It is a purely Python based and does not require additional binaries.
+
+
