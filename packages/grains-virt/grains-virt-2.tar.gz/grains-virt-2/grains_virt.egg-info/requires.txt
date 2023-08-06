@@ -1,0 +1,21 @@
+aiofiles>=0.3.0
+grainsv2>=9
+pop>=13
+
+[:"BSD" in sys_platform]
+idem-bsd
+
+[:"sunos" in sys_platform]
+idem-solaris
+
+[:os_name == "AIX"]
+idem-aix
+
+[:sys_platform == "darwin"]
+idem-darwin
+
+[:sys_platform == "linux"]
+idem-linux
+
+[:sys_platform == "win32"]
+idem-windows
