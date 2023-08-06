@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: incached
+Version: 1.3
+Summary: Caching engine for python
+Home-page: https://gitlab.com/cytedge/incached
+Author: Cytedge
+Author-email: cytedge@wnhm.tech
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# incached
+
+[![pipeline status](https://gitlab.com/cytedge/incached/badges/master/pipeline.svg)](https://gitlab.com/cytedge/incached/-/commits/master)
+
+**Ultimate cache engine for Python3**
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install incached.
+
+```bash
+pip install incached
+```
+
+## Usage
+
+```python
+import incached
+
+inc = incached.INCached(cachesize=0)  # Set cachesize to infinite
+```
+```python
+def fibonacci(num):  # Example fibonacci without caching, try to run it
+	if num < 2:
+		return num
+	return fibonacci(num-1)+fibonacci(num-2)
+
+fibonacci(40)  # After 35 iterations, the performance will slow down considerably.
+```
+```python
+@inc.wrap()
+def cached_fibonacci(num):  # Example fibonacci with caching
+	if num < 2:
+		return num
+	return cached_fibonacci(num-1)+cached_fibonacci(num-2)
+```
+```python
+cached_fibonacci(40)
+```
+Try changing 40 to 400, the calculations are almost instantaneous compared to the non-cached function.
+```python
+>>> print(inc.cache_info())  # Prints cache info
+{'hits': 399, 'misses': 400, 'cachesize': 400}
+```
+Utils:
+```python
+>>> from incached import utils
+>>> utils.save_full_cache("test.full", inc)  # Save encrypted cache to file
+>>> x = utils.load_full_cache("test.full")  # Load encrypted cache from file
+>>> print(inc.cache_info())  # Prints cache info
+{'hits': 399, 'misses': 400, 'cachesize': 400}
+```
+
+## Encryption
+
+The saved cache is encrypted by default, you can disable the encryption, or change the password (recommended)
+
+Disabling encryption:
+```python
+utils.save_full_cache("test.cache", inc, encrypt = False)  # Save
+utils.load_full_cache("test.cache", encrypt = False)  # Load
+```
+
+Custom password (recommended):
+```python
+utils.save_full_cache("test.enc", inc, password = "password")
+utils.load_full_cache("test.enc", password = "password")
+```
+
+## Filter
+
+You can use your own function to filter the cache
+
+Example:
+```python
+import incached
+inc = incached.INCached(cachesize=0)
+
+def example_filter(args, kwargs):
+    if args[0] % 2 != 0:
+        return False
+    return True
+
+@inc.wrap(filter_func=example_filter)
+def cached_fibonacci(num):  # Example fibonacci with caching
+    if num < 2:
+        return num
+    return cached_fibonacci(num-1)+cached_fibonacci(num-2)
+
+cached_fibonacci(100)
+print(inc.cache_info())
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
