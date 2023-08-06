@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: erdkeys
+Version: 0.1.0
+Summary: Tools for working with elrond pem files and json keystores
+Home-page: https://github.com/flyingbasalt/erdkeys
+Author: Flying Stone
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: bech32
+Requires-Dist: cryptography
+
+# erdkeys
+
+This are Flying Stone's unofficial tools for converting between elrond wallet pem files and json 
+keystores. Please be aware that the private key is written in plaintext in the pem file. The json 
+keystores are much safer to use.
+
+Use at your own risk and remember: if you run code you haven't read and understood, you can't be 
+sure that it is not sending me your keys ;-)
+
+## installing
+
+`$ pip3 install vilya`
+
+This will also install a couple of dependencies: the extremely cool [cryptography](https://pypi.org/project/cryptography/)
+library and a small module to deal with bech32 addresses.
+
+## usage
+
+`$ ./pem2json.py pem_file password`
+
+`$ ./json2pem.py json_file password`
+
+The password must satisfy the same requirements as the official [wallet](https://wallet.elrond.com)
+
+## license
+
+MIT
+
+
