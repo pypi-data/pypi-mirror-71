@@ -1,0 +1,187 @@
+{
+  "version": "1.0.0",
+  "routes": [
+    {
+      "path": "/embedded/actions/set-notification-instance-list-inactive",
+      "name": "setNotificationInstanceListInactive",
+      "method": "PUT",
+      "description": "Set notification instance list inactive.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1actions~1set-notification-instance-list-inactive/put"
+    },
+    {
+      "path": "/embedded/basic/get-token",
+      "name": "getDeviceTokenBasic",
+      "method": "POST",
+      "description": "Get token for device via key, serial, and secret.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1basic~1get-token/post"
+    },
+    {
+      "path": "/embedded/batch-command-instances/:batchReferenceUuid/executed",
+      "name": "setBatchedCommandInstancesAsExecuted",
+      "method": "PATCH",
+      "description": "Set a collection of batched command instances as executed.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1batch-command-instances~1:batchReferenceUuid~1executed/patch"
+    },
+    {
+      "path": "/embedded/broker-address",
+      "name": "getBrokerAddress",
+      "method": "GET",
+      "description": "Get the MQTT broker address.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1broker-address/get"
+    },
+    {
+      "path": "/embedded/command-instances/executed",
+      "name": "reportAlreadyExecutedCommands",
+      "method": "POST",
+      "description": "Report an already executed set of commands to the server.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1command-instances~1executed/post"
+    },
+    {
+      "path": "/embedded/command-instances/:commandInstanceUuid/executed",
+      "name": "setCommandInstanceAsExecuted",
+      "method": "PATCH",
+      "description": "Report that a command has been executed to the server.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1command-instances~1:commandInstanceUuid~1executed/patch"
+    },
+    {
+      "path": "/embedded/command-types",
+      "name": "getCommandTypeList",
+      "method": "GET",
+      "description": "Get a list of available command types.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1command-types/get"
+    },
+    {
+      "path": "/embedded/current-timestamp",
+      "name": "getCurrentTimestamp",
+      "method": "GET",
+      "description": "Get the current server time in epoch (unix) time.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1current-timestamp/get"
+    },
+    {
+      "path": "/embedded/data-types",
+      "name": "getDataTypeList",
+      "method": "GET",
+      "description": "Get a list of available data types.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1data-types/get"
+    },
+    {
+      "path": "/embedded/devices",
+      "name": "createDevice",
+      "method": "POST",
+      "description": "Create a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices/post"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/channelId/:channelId",
+      "name": "updateDeviceChannel",
+      "method": "PATCH",
+      "description": "Update device channel.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1channelId~1:channelId/patch"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/command-types/:commandTypeUuid",
+      "name": "createDeviceCommandInstance",
+      "method": "POST",
+      "description": "Create a command instance via a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1command-types~1:commandTypeUuid/post"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/data",
+      "name": "postData",
+      "method": "POST",
+      "description": "Post data to the cloud.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1data/post"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/settings",
+      "name": "upsertDeviceSettings",
+      "method": "POST",
+      "description": "Upsert settings for a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1settings/post"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/settings",
+      "name": "getDeviceSettingList",
+      "method": "GET",
+      "description": "Get a list of settings for a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1settings/get"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/unexecuted-commands",
+      "name": "getDeviceUnexecutedCommandInstanceList",
+      "method": "GET",
+      "description": "Get a list of unexecuted command instances for a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1unexecuted-commands/get"
+    },
+    {
+      "path": "/embedded/devices/:deviceUuid/upload-log-file",
+      "name": "uploadDeviceLogs",
+      "method": "POST",
+      "description": "Upload zip file of device logs.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1devices~1:deviceUuid~1upload-log-file/post"
+    },
+    {
+      "path": "/embedded/firmware/:deviceTypeUuid/:version",
+      "name": "getDeviceTypeFirmwareRecord",
+      "method": "GET",
+      "description": "Get a desired version of a firmware record for a given device type.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1firmware~1:deviceTypeUuid~1:version/get"
+    },
+    {
+      "path": "/embedded/key",
+      "name": "getPublicCloudKey",
+      "method": "GET",
+      "description": "Get base64 encoded public key from the server for use in RSA scheme.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1key/get"
+    },
+    {
+      "path": "/embedded/me",
+      "name": "getMe",
+      "method": "GET",
+      "description": "Get information about the device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1me/get"
+    },
+    {
+      "path": "/embedded/notification-types",
+      "name": "getNotificationTypeList",
+      "method": "GET",
+      "description": "Get a list of available notifications.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1notification-types/get"
+    },
+    {
+      "path": "/embedded/notification-instances/:notificationInstanceUuid/inactive",
+      "name": "setNotificationInstanceInactive",
+      "method": "PATCH",
+      "description": "Set notification instance inactive.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1notification-instances~1:notificationInstanceUuid~1inactive/patch"
+    },
+    {
+      "path": "/embedded/provision-network",
+      "name": "provisionNetwork",
+      "method": "POST",
+      "description": "Provision a network.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1provision-network/post"
+    },
+    {
+      "path": "/embedded/setting-types",
+      "name": "getSettingTypeList",
+      "method": "GET",
+      "description": "Get a list of available setting types.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1setting-types/get"
+    },
+    {
+      "path": "/embedded/team",
+      "name": "getTeam",
+      "method": "GET",
+      "description": "Get the team information for a device.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1team/get"
+    },
+    {
+      "path": "/embedded/token/asymmetric",
+      "name": "getDeviceTokenAsymmetric",
+      "method": "POST",
+      "description": "Get device token based on encrypted credentials.",
+      "link": "https://iotery.io/docs/embedded#tag/Embedded/paths/~1embedded~1token~1asymmetric/post"
+    }
+  ]
+}
