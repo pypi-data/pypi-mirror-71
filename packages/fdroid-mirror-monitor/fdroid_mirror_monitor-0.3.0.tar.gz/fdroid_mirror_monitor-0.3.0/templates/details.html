@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title%}F-Droid - {{ mirror['hostname'] }} - Mirror Details{% endblock %}
+{% block h1%}Mirror Details: {{ mirror['hostname'] }}
+
+{% endblock %}
+{% block nav_items %}
+        <li class="nav-item logo-item">
+          <a href="." class="nav-link logo-link">
+            <img src="assets/img/fdroid-logo.svg" alt="SVG error" />
+            <span class="link-text">F-droid</span>
+          </a>
+        </li>
+{% endblock %}
+
+{% if mirror['common_url'] is defined %}
+  {% set url = mirror['common_url'] %}
+{% else %}
+  {% set url = mirror['url'] %}
+{% endif %}
+{% block content %}
+          <h1>URL Details: {{ url }}</h1>
+          <div class="compact_container">
+            <table class="compact">
+              <tbody>
+                <tr>
+                  <th>URL:</th>
+                {% if mirror['protocol'] in ['http', 'https'] %}
+                  <td><a href="{{ url }}">{{ url }}</a></td>
+                {% else %}
+                  <td>{{ url }}</td>
+                {% endif %}
+              </tr>
+                <tr>
+                  <th>Mirror:</th>
+                  <td>{{ mirror['hostname'] }}</td>
+                </tr>
+                <tr>
+                  <th>Official:</th>
+                  <td>Yes/No</td>
+                </tr>
+                <tr>
+                  <th>Has archive:</th>
+                  <td>Yes/No</td>
+                </tr>
+                <tr>
+                  <th>IPv4:</th>
+                  <td>{{ 'Yes' if mirror['IPv4'] else 'No' }}{#% for ip in mirror['IPv4'] %}{{ ip }}{{ ', ' if not loop.last }}{% endfor %#}</td>
+                </tr>
+                <tr>
+                  <th>IPv6:</th>
+                  <td>{{ 'Yes' if mirror['IPv6'] else 'No' }}{#% for ip in mirror['IPv6'] %}{{ ip }}{{ ', ' if not loop.last }}{% endfor %#}</td>
+                </tr>
+                {% if mirror['countries'] %}
+                <tr>
+                  <th>Country</th>
+                  <td>
+                    {% if mirror['countries'] is defined %}
+                    {% if mirror['countries'] | length > 1 %}
+                      <span class="fam-flag" title="Unknown"></span>Unknown
+                      {% else %}
+                      <span class="fam-flag fam-flag-{{ mirror['country_codes'][0].lower() }}" title="{{ mirror['countries'][0] }}"></span>{{ mirror['countries'][0] }}
+                    {% endif %}
+                    {% else %}
+                      <span class="fam-flag" title="Unknown"></span>Unknown
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            {% if mirror['protocol'] == 'https' %}
+            <table class="compact">
+              <tbody>
+              </tr>
+                <tr>
+                  <th>TLS version:</th>
+                  <td>{{ mirror['tls_version'] }}</td>
+                </tr>
+                <tr>
+                  <th>TLS ping:</th>
+                  <td>
+                    {% if mirror['tlsping'] is defined %}
+                    {{ mirror['tlsping']['average'] }}
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th>TLS ping stddev:</th>
+                  <td>
+                    {% if mirror['tlsping'] is defined %}
+                    {{ mirror['tlsping']['stddev'] }}
+                    {% endif %}
+                  </td>
+                <tr>
+                  <th>TLS least strength:</th>
+                  <td>
+                    {% if mirror['tls_details'] is defined %}
+                    {{ mirror['tls_details']['least strength'] }}
+                    {% endif %}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            {% endif %}
+          </div>
+          <div class="results">
+            <table id="check_logs">
+              <caption>
+                Check Logs
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Check time (UTC)</th>
+                  <th scope="col">Check location</th>
+                  <th scope="col">Check IP</th>
+                  <th scope="col">Last modified (UTC)</th>
+                  <th scope="col">Delay (hh:mm)</th>
+                  <th scope="col">Duration (s)</th>
+                  <th scope="col">Success</th>
+                  <th scope="col">Errors</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for t_str in mirror['historical'] %}{% set h = mirror['historical'][t_str] %}
+                <tr>
+                  <td>{{ t_str }}</td>
+                  <td>
+                    <span class="fam-flag fam-flag-{{ h['check_country_code'].lower() }}" title="{{ h['check_country'] }}"></span>
+                    {{ h['check_country'] }}
+                  <td>{{ h['check_ip'] }}</td>
+                  <td>{{ h['modified'] }}</td>
+                  <td>{{ h['delay'] }}</td>
+                  <td>{{ h['duration'] }}</td>
+                  <td>{{ h['success'] }}</td>
+                  <td class="wrap">
+                    {% for err in h['errors'] %}
+                    <b>{{ err }}: </b>{{ h['errors'][err] }}<br>
+                    {% endfor %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div id="debug" class="results">
+          <h1>Debug output</h1>
+          {{ table }}
+          </div>
+{% endblock %}
