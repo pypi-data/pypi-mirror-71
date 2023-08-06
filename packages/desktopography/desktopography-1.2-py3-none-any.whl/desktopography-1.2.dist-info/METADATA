@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: desktopography
+Version: 1.2
+Summary: A simple desktopography.net wallpaper retriever
+Home-page: https://gitlab.com/fbochu/desktopography
+License: BSD
+Keywords: desktopography, wallpapers
+Author: Fabien Bochu
+Author-email: fabien.bochu+desktopography@gmail.com
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Utilities
+Requires-Dist: BeautifulSoup4
+Requires-Dist: click
+Requires-Dist: daiquiri
+Requires-Dist: requests
+Requires-Dist: isort[pyproject] ; extra == "dev"
+Requires-Dist: prospector ; extra == "dev"
+Provides-Extra: dev
+
+Desktopography command line
+===========================
+
+see http://www.desktopography.net
+
+Usage
+-----
+
+``` console
+$ pip install desktopography
+$ desktopography -h
+```
+
+TODO
+----
+
+- Add more verbose documentation and docstrings
+- Add tests
+- Setup CI
+- Auto-detect screen size
+- Fix XDG support
+
+Development
+-----------
+
+``` console
+$ git clone https://gitlab.com/fbochu/desktopography.git
+$ cd desktopography
+$ python -m venv venv
+$ . venv/bin/activate
+$ flit install --deps=develop
+```
+
+Tests
+-----
+
+``` console
+$ prospector src/
+```
+
+Publishing
+----------
+
+Change `__version__` in `src/desktopography/__init__.py` then
+
+``` console
+$ flit build
+$ flit publish
+```
+
