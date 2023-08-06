@@ -1,0 +1,70 @@
+CHANGES
+=======
+
+0.4.1
+-----
+
+* Specify the README format for pipy
+
+0.4.0
+-----
+
+* Moved the reason to the last parameter
+* Added the ability to provide custom response reason
+
+0.3.0
+-----
+
+* Rebase update
+* Stub the 404
+* Update docs with new verify method
+* Add verify method tests
+* Add verify method, now we can verify requests without adding them to expectations dict
+
+0.2.1
+-----
+
+* Update package info
+
+0.2.0
+-----
+
+* Rename package and class to add the friendly name
+
+0.1.0
+-----
+
+* Finalize moving to -friendly-client
+* Start migration to mockserver-friendly-client
+* Stabilize tests
+* Make the tests red again
+* Add verbosity to the tests and dump container the logs on failure
+
+0.0.5
+-----
+
+* Send TimeToLive to api only if it specified in stub parameters
+* Add support of TimeToLive MockServer request matcher feature
+
+0.0.4
+-----
+
+* Added support for mockserver cookies request and response
+
+0.0.3
+-----
+
+* Added support for mockserver json request
+
+0.0.2
+-----
+
+* Add delay to response calls
+
+0.0.1
+-----
+
+* Introduce MockServerClient
+* Make travis work!
+* Add travis support
+* Initial setup
