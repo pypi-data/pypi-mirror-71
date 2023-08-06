@@ -1,0 +1,7 @@
+[console_scripts]
+PartSeg = PartSeg.launcher_main:main
+Tester = PartSeg.test_widget_main:main
+
+[napari.plugin]
+PartSeg = PartSegCore.napari_plugin
+
