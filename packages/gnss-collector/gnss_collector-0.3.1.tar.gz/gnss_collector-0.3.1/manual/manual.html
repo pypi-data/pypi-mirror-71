@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-06-17 mié 14:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sistema GNSS Collector</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="David Pineda @ CSN-Geodesia" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Sistema GNSS Collector</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga0da788">1. Versión</a></li>
+<li><a href="#org2e6e7ba">2. Introducción</a></li>
+<li><a href="#orgb0942d7">3. Características</a></li>
+<li><a href="#orga28efe0">4. Requisitos de Hardware</a></li>
+<li><a href="#orgb2bb4ba">5. Requisitos de Software</a></li>
+<li><a href="#org2f9e3d5">6. Instalación</a></li>
+<li><a href="#orga30d6e7">7. Montar Rethinkdb</a></li>
+<li><a href="#orge83f6fd">8. Probar Rethinkdb</a></li>
+<li><a href="#org9ae254d">9. Interfaz RethinkDB</a></li>
+<li><a href="#org482cdae">10. Crear database en postgresql</a></li>
+<li><a href="#org29c0f6d">11. Crear el <b>schema</b> de <b>orm_collector</b></a>
+<ul>
+<li><a href="#orga8ad1a0">11.1. Cargando los datos de ambiente</a></li>
+<li><a href="#org6e812d3">11.2. Utilizando un json</a></li>
+<li><a href="#org2951254">11.3. Crear el esquema.</a></li>
+</ul>
+</li>
+<li><a href="#org1667806">12. Cargar datos a database</a></li>
+<li><a href="#orgc291315">13. Crear Ambiente Virtual</a></li>
+<li><a href="#org4ff4ea5">14. Parámetros en ambiente virtual</a></li>
+<li><a href="#orgd9d3e6d">15. Crear JSON</a></li>
+<li><a href="#org281a666">16. El registro de eventos o LOG</a></li>
+<li><a href="#orga4d34b8">17. Recomendaciones para comenzar a desarrollar con GNSS Collector</a></li>
+<li><a href="#org91511d2">18. Herramientas de Utilidad</a>
+<ul>
+<li><a href="#org9924d6b">18.1. Leer directo a una estación</a></li>
+<li><a href="#org1063cd6">18.2. Monitorear tabla rethinkdb</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga0da788" class="outline-2">
+<h2 id="orga0da788"><span class="section-number-2">1</span> Versión</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Manual GNSS Collector V.0.9.9
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e6e7ba" class="outline-2">
+<h2 id="org2e6e7ba"><span class="section-number-2">2</span> Introducción</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+El sistema <b>GNSS Collector</b> es un servicio que debe operar en un servidor <b>Gnu/Linux</b>.
+</p>
+
+<p>
+Realiza la adquisición en tiempo real los datos de toda una red de sensores
+<b>GNSS</b> y los almacena en una base de datos <b>RethinkDB</b> para la consulta rápida y
+posteriores usos.  
+</p>
+
+<p>
+Si no se cumplen los requisitos de software necesarios, no podrá correr.
+</p>
+
+<p>
+Garantiza, bajo la responsabilidad del usuario, la adquisición los datos de
+aquellas estaciones que tengan un montaje de comunicaciones adecuado. 
+</p>
+
+<p>
+Cada estación en particular debe tener disponible la entrada TCP/IP para
+conectarse al <b>socket-server</b> del equipo.
+</p>
+
+<p>
+El dimensionamiento del sistema se debe dar en medida de la cantidad de
+estaciones que deseas adquirir en tiempo real.
+</p>
+
+<p>
+Este es un manual de instalación, no la documentación para desarrolladores.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0942d7" class="outline-2">
+<h2 id="orgb0942d7"><span class="section-number-2">3</span> Características</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Lectura y decodificación de estaciones o fuentes con datos emitidos en
+protocolos {GSOF, ERYO}</li>
+<li>Almacenamiento en tiempo real de datos en RethinkDB</li>
+<li>Activación de un socket server para la administración en vivo de las estaciones.</li>
+<li>Sistema configurable y dimensionable según lo que se necesite</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga28efe0" class="outline-2">
+<h2 id="orga28efe0"><span class="section-number-2">4</span> Requisitos de Hardware</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Tener un servidor con las siguientes características:
+</p>
+
+<ul class="org-ul">
+<li>8 núcleos disponibles (mínimo)</li>
+<li>64GB de ram</li>
+<li>2T de disco duro</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb2bb4ba" class="outline-2">
+<h2 id="orgb2bb4ba"><span class="section-number-2">5</span> Requisitos de Software</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Debes tener instalado lo siguiente. 
+</p>
+
+<ul class="org-ul">
+<li>Gnu/Linux <a href="https://www.debian.org/">debian</a> o <a href="https://www.centos.org/">Centos</a> (última versión)</li>
+<li>Python 3.7, <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li>RethinkDB 2.4, <a href="https://rethinkdb.com/">https://rethinkdb.com/</a></li>
+<li>PostgreSQL 12, <a href="https://www.postgresql.org/">https://www.postgresql.org/</a></li>
+<li>PostGIS, <a href="https://postgis.net/">https://postgis.net/</a></li>
+<li>GDAL-dev, <a href="https://gdal.org/">https://gdal.org/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f9e3d5" class="outline-2">
+<h2 id="org2f9e3d5"><span class="section-number-2">6</span> Instalación</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Una vez se tengan los requisitos de software será posible instalar el sistema <b>GNSS Collector</b> de la siguiente manera.
+</p>
+
+<p>
+Utilizando el gestor de instalaciones para python <b>pip</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pip install gnss_collector
+</pre>
+</div>
+
+<p>
+O bien, desde el repositorio
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">git clone https://gitlab.com/pineiden/collector.git
+<span style="color: #4f97d7;">cd</span> collector
+python setup.py install
+</pre>
+</div>
+
+<p>
+Todo esto considerando que o estás en <b>ambiente virtual</b> o bien te aseguras que la versión de <b>python</b> es igual o superior a <b>3.7</b>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga30d6e7" class="outline-2">
+<h2 id="orga30d6e7"><span class="section-number-2">7</span> Montar Rethinkdb</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Una vez que se tenga instalado <b>Rethinkdb</b> se deben definir necesariamente
+algunos parámetros para la correcta operación.
+</p>
+
+<p>
+Dirigirse a la siguiente dirección como <b>root</b> o <b>sudo</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">cd</span> /etc/rethinkdb/instances.d
+</pre>
+</div>
+
+<p>
+Crear una copia del archivo de configuración ubicada en <b>/etc/rethinkdb</b> a
+<b>instances.d/</b>
+</p>
+
+<p>
+Editar el archivo con al menos los siguientes parámetros
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Parámetro</th>
+<th scope="col" class="org-left">Valor</th>
+<th scope="col" class="org-left">Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">runuser</td>
+<td class="org-left">rethinkdb</td>
+<td class="org-left">usuario</td>
+</tr>
+
+<tr>
+<td class="org-left">rungroup</td>
+<td class="org-left">rethinkdb</td>
+<td class="org-left">group</td>
+</tr>
+
+<tr>
+<td class="org-left">directory</td>
+<td class="org-left">/var/data/rdb</td>
+<td class="org-left">dónde se almacenan los datos</td>
+</tr>
+
+<tr>
+<td class="org-left">log-fle</td>
+<td class="org-left">/var/data/rdb_log</td>
+<td class="org-left">dónde está el log</td>
+</tr>
+
+<tr>
+<td class="org-left">bind</td>
+<td class="org-left">all</td>
+<td class="org-left">habilitar acceso a la red</td>
+</tr>
+
+<tr>
+<td class="org-left">driver-port</td>
+<td class="org-left">28015</td>
+<td class="org-left">puerto de conexión clientes</td>
+</tr>
+
+<tr>
+<td class="org-left">http-port</td>
+<td class="org-left">8080</td>
+<td class="org-left">puerto de acceso interfaz administración</td>
+</tr>
+
+<tr>
+<td class="org-left">cores</td>
+<td class="org-left">10</td>
+<td class="org-left">cantidad de núcleos disponibles para rdb</td>
+</tr>
+
+<tr>
+<td class="org-left">cache-size</td>
+<td class="org-left">14000</td>
+<td class="org-left">espacio en RAM habilitado</td>
+</tr>
+
+<tr>
+<td class="org-left">io-threads</td>
+<td class="org-left">64</td>
+<td class="org-left">cantidad de hilos operando</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Verificar correctamente la edición, con el siguiente comando podrás ver si está
+bien editado (<i>suponiendo</i> que tu archivo es <b>my_rdb.conf</b>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">grep -v <span style="color: #2d9574;">"#"</span> my_rdb.conf|sed <span style="color: #2d9574;">'/^$/d'</span>
+</pre>
+</div>
+
+<p>
+Ahora, un paso <b>importante</b> es inicializar la <b>database</b> en la dirección
+acordada en tu archivo.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">rethinkdb create -d /ruta/directorio
+</pre>
+</div>
+
+<p>
+Iniciar rethinkdb
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">systemctl start rethinkdb
+</pre>
+</div>
+
+<p>
+Como extra, algo que también se puede hacer, es tener conectadas en modo <b>cluster</b> diversas
+instancias <b>RethinkDB</b>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge83f6fd" class="outline-2">
+<h2 id="orge83f6fd"><span class="section-number-2">8</span> Probar Rethinkdb</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Si necesitas verificar que la database <b>rethinkdb</b> que montaste está corriendo
+bien, te recomiendo probar con el siguiente programa de prueba del módulo
+<b>data_rdb</b>
+</p>
+
+<p>
+En la carpeta <b>tests</b>, el script <b>crea_perfiles.py</b>. Si lo inicias con los
+parámetros de conexión adecuados realizará algunas acciones básicas de
+interacción, como 
+</p>
+
+<ul class="org-ul">
+<li>listar databases</li>
+<li>crear database</li>
+<li>listar tablas</li>
+<li>crear tablas</li>
+<li>crear index extra</li>
+<li>añadir datos</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-bash">python crea_perfiles.py
+</pre>
+</div>
+
+<p>
+Puedes clonar el módulo desde acá:
+</p>
+
+<p>
+<a href="https://gitlab.com/pineiden/datadbs-rethinkdb">https://gitlab.com/pineiden/datadbs-rethinkdb</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ae254d" class="outline-2">
+<h2 id="org9ae254d"><span class="section-number-2">9</span> Interfaz RethinkDB</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Una interfaz RethinkDB, es una plataforma web que te permite visualizar las bases de datos, tablas, escrituras y lecturas al sistema.
+</p>
+
+
+<div class="figure">
+<p><img src="./img/rdb_gui.png" alt="rdb_gui.png" />
+</p>
+</div>
+
+<p>
+También, podrás realizar consultas <b>RQL</b> directamente desde la pestaña 'Data Explorer'.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org482cdae" class="outline-2">
+<h2 id="org482cdae"><span class="section-number-2">10</span> Crear database en postgresql</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Primero debemos crear la base de datos en postgresql.
+</p>
+
+<p>
+Como root, accede al usuario postgres, así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">su
+su postgres
+psql
+</pre>
+</div>
+
+<p>
+Crea el rol de usuario, con los permisos necesarios.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">create</span> <span style="color: #4f97d7; font-weight: bold;">role</span> collector;
+<span style="color: #4f97d7; font-weight: bold;">alter</span> <span style="color: #4f97d7; font-weight: bold;">role</span> collector <span style="color: #4f97d7; font-weight: bold;">with</span> superuser;
+<span style="color: #4f97d7; font-weight: bold;">alter</span> <span style="color: #4f97d7; font-weight: bold;">role</span> collector <span style="color: #4f97d7; font-weight: bold;">with</span> login;
+<span style="color: #4f97d7; font-weight: bold;">create</span> database collector;
+<span style="color: #4f97d7; font-weight: bold;">alter</span> <span style="color: #4f97d7; font-weight: bold;">role</span> collector <span style="color: #4f97d7; font-weight: bold;">with</span> password <span style="color: #2d9574;">'INGRESA-NUEVA-PASSWORD'</span>;
+<span style="color: #4f97d7; font-weight: bold;">grant</span> <span style="color: #4f97d7; font-weight: bold;">all</span> <span style="color: #4f97d7; font-weight: bold;">privileges</span> <span style="color: #4f97d7; font-weight: bold;">on</span> database collector <span style="color: #4f97d7; font-weight: bold;">to</span> collector;
+</pre>
+</div>
+
+<p>
+Conectate a la nueva database y crea las extensiones <b>gis</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql">\c collector;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION postgis;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION postgis_topology;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION fuzzystrmatch;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION address_standardizer;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION address_standardizer_data_us;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION postgis_tiger_geocoder;
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> EXTENSION postgis_sfcgal;
+</pre>
+</div>
+
+<p>
+Busca en tu sistema, en la configuración de <b>postgresql</b> el archivo
+<b>pg_hba.conf</b> 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">find -iname <span style="color: #2d9574;">"pg_hba.conf"</span>
+</pre>
+</div>
+
+<p>
+Editalo y modifica la línea, de <b>peer</b> a <b>md5</b>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">local</span>   all   all         md5
+</pre>
+</div>
+
+<p>
+Reinicia <b>postgresql</b> desde el sistema <b>systemctl</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">systemctl restart postgresql
+</pre>
+</div>
+
+<p>
+Con esto, para probar deberías poder acceder de la siguiente manera en tu
+usuario de trabajo. Ingresando la <b>password que escogiste</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">psql -U collector -d collector -W
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29c0f6d" class="outline-2">
+<h2 id="org29c0f6d"><span class="section-number-2">11</span> Crear el <b>schema</b> de <b>orm_collector</b></h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Ahora, en tu instalación de <b>gnss_collector</b>,  se habilitaron comandos para
+crear el <b>esquema collector</b> en la <b>database</b> y cargar los datos.
+</p>
+
+<p>
+Para crear el esquema:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">orm_create_db --help
+</pre>
+</div>
+
+<p>
+Necesitarás los datos de acceso a la database, hay dos caminos.
+</p>
+</div>
+
+<div id="outline-container-orga8ad1a0" class="outline-3">
+<h3 id="orga8ad1a0"><span class="section-number-3">11.1</span> Cargando los datos de ambiente</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+En el archivo <b>postactivate</b> de tu ambiente, poner los siguientes parámetros
+para cargar al iniciar el ambiente
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBUSER</span>=<span style="color: #2d9574;">'collector'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBPASS</span>=<span style="color: #2d9574;">'TU-PASSWORD-DB'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBNAME</span>=<span style="color: #2d9574;">'collector'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBHOST</span>=<span style="color: #2d9574;">'localhost'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBPORT</span>=<span style="color: #a45bad;">5432</span>
+</pre>
+</div>
+
+<p>
+¿No lo encuentras? El siguiente comando te dará la ruta.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">find -iname <span style="color: #2d9574;">"postactivate"</span>|grep NOMBRE_AMBIENTE
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e812d3" class="outline-3">
+<h3 id="org6e812d3"><span class="section-number-3">11.2</span> Utilizando un json</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+Crea un archivo <b>dbdata.json</b> que sea así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-json"><span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">"dbname"</span>:<span style="color: #2d9574;">"collector"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbuser"</span>:<span style="color: #2d9574;">"collector"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbpass"</span>:<span style="color: #2d9574;">"TU-PASSWORD-DB"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbhost"</span>:<span style="color: #2d9574;">"localhost"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbport"</span>:"<span style="color: #a45bad;">5432</span>"
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2951254" class="outline-3">
+<h3 id="org2951254"><span class="section-number-3">11.3</span> Crear el esquema.</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+Dependiendo el caso, entregando correctamente los datos de acceso.
+</p>
+
+<p>
+Para datos cargados en ambiente virtual
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">orm_create_db --env
+</pre>
+</div>
+
+<p>
+Para datos en json, avisamos que no se usan los datos de ambiente y entregamos
+la <b>ruta al archivo json</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">orm_create_db --no-env --conf dbdata.json
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1667806" class="outline-2">
+<h2 id="org1667806"><span class="section-number-2">12</span> Cargar datos a database</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Teniendo tu red, deberías crear los siguientes archivos <b>csv</b> con los campos
+siguientes.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Archivo</th>
+<th scope="col" class="org-left">Campos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">dbtype.csv</td>
+<td class="org-left">id;typedb;name;url;data_list</td>
+</tr>
+
+<tr>
+<td class="org-left">dbdata.csv</td>
+<td class="org-left">id;code;path;host;port;user;passw;info;dbtype;dbname</td>
+</tr>
+
+<tr>
+<td class="org-left">protocol.csv</td>
+<td class="org-left">id;name;ref;class_name;git</td>
+</tr>
+
+<tr>
+<td class="org-left">network.csv</td>
+<td class="org-left">id;name;description</td>
+</tr>
+
+<tr>
+<td class="org-left">server.csv</td>
+<td class="org-left">id;host_name;host_ip;gnsocket;activated</td>
+</tr>
+
+<tr>
+<td class="org-left">station.csv</td>
+<td class="org-left">id;code;name;host;interface_port;protocol_host;port;ECEF_X;ECEF_Y;ECEF_Z</td>
+</tr>
+
+<tr>
+<td class="org-left">(sigue)</td>
+<td class="org-left">;db;protocol;active;server_id;network_id</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Ver en la carpeta <b>ejemplos_csv</b>.
+</p>
+
+<p>
+En este caso, es necesario comprender que la <b>información</b> que aparezca en
+<b>station</b> que está relacionada con alguna tabla anterior <b>debe existir</b> en la
+tabla relacionada.
+</p>
+
+<p>
+El nombre de los archivos puede cambiar si entregas un <b>json</b> con las siguientes
+características.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-json"><span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">"protocol"</span>: <span style="color: #2d9574;">"protocol.csv"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbdata"</span>: <span style="color: #2d9574;">"dbdata.csv"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbtype"</span>: <span style="color: #2d9574;">"dbtype.csv"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"server"</span>: <span style="color: #2d9574;">"server.csv"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"network"</span>:<span style="color: #2d9574;">"network.csv"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"station"</span>: <span style="color: #2d9574;">"station.csv"</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+Y los archivos deben estar contenidos, por defecto, en la misma carpeta. Aunque
+si entregas adecuadamente el <b>json</b> las rutas puedes cambiarlas. Para cargar los
+datos también debes entregar la información de <b>dbdata</b>.
+</p>
+
+<p>
+El comando se usa así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">orm_load_data --help
+</pre>
+</div>
+
+<p>
+Para <b>GNSS Collector</b> el esquema será <b>collector</b>.
+</p>
+
+<p>
+Si tu carpeta con datos es <b>./fixtures</b>, el comando podría ser así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">orm_load_data --name collector --env --path fixtures
+</pre>
+</div>
+
+<p>
+Para el caso en que tomes los datos de acceso desde el ambiente y tus archivos
+de datos en esa carpeta.
+</p>
+
+<p>
+También, puede darse el caso de agregar datos en particular de una o pocas
+estaciones extra. El comando debería poder acceder a leer los archivos de manera
+ordenada y bien configurados, de ser así cargaría los nuevos datos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc291315" class="outline-2">
+<h2 id="orgc291315"><span class="section-number-2">13</span> Crear Ambiente Virtual</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+Para crear una ambiente virtual se debe instalar <b>virtualenvwrapper</b> 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pip install virtualenvwrapper --user
+</pre>
+</div>
+
+<p>
+Y asociar los siguientes parámetros a un archivo ubicado en tu $HOME, llamémosle
+<b>.ambiente</b>, en este caso para <b>python38</b> que compilé desde la fuente:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">a&#241;adir path de instalacion de binarios de  python38 </span>
+<span style="color: #7590db;">PATH</span>=$<span style="color: #7590db;">PATH</span>:~/.local/bin:/opt/python38/bin
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">WORKON_HOME</span>=$<span style="color: #7590db;">HOME</span>/.virtualenvs
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">PROJECT_HOME</span>=$<span style="color: #7590db;">HOME</span>/proyectos
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">binario de python asociado al ambiente</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">VIRTUALENV_PYTHON</span>=/opt/python38/bin/python3
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">VIRTUALENVWRAPPER_PYTHON</span>=/opt/python38/bin/python3
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ruta donde est&#225; script virtualenvwrapper</span>
+<span style="color: #4f97d7;">source</span> ~/.local/bin/virtualenvwrapper.sh
+</pre>
+</div>
+
+<p>
+Luego añadir a <b>~/.bashrc</b> al final.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">source</span> ~/.ambiente
+</pre>
+</div>
+
+<p>
+Con esto, abrir nueva pestaña, crear ambiente
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">mkvirtualenv collector
+</pre>
+</div>
+
+<p>
+E instalar todo los módulos que necesites, por ejemplo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pip install gnss_collector
+</pre>
+</div>
+
+<p>
+Se habilitará con esto el archivo <b>postactivate</b> para cargar los parámetros de ambiente.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">~/.virtualenvs/collector/bin/postactivate
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ff4ea5" class="outline-2">
+<h2 id="org4ff4ea5"><span class="section-number-2">14</span> Parámetros en ambiente virtual</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Si escoges correr el sistema bajo un ambiente virtual, el archivo postactivate
+debería tener, al menos lo siguiente.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">ENV</span>=collector
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">PROJECT</span>=CSN
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">este valor coherente a la tabla server.csv que </span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">activaras</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">SERVER_NAME</span>=<span style="color: #2d9574;">'pruebas'</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">datos de base de datos</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBUSER</span>=<span style="color: #2d9574;">'collector'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBPASS</span>=<span style="color: #2d9574;">'TU_PASSWORD_DATABASE'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBNAME</span>=<span style="color: #2d9574;">'collector'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBHOST</span>=<span style="color: #2d9574;">'localhost'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_DBPORT</span>=<span style="color: #a45bad;">5432</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">En relaci&#243;n a dimensionamiento del collector</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_EST_X_PROC</span>=<span style="color: #a45bad;">8</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_TSLEEP</span>=<span style="color: #a45bad;">1</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_WORKERS</span>=<span style="color: #a45bad;">8</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">GSOF_TIMEOUT</span>=<span style="color: #a45bad;">8</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">CLL_GROUP</span>=<span style="color: #2d9574;">"[\"ALL\"]"</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_SOCKET_IP</span>=<span style="color: #2d9574;">"10.54.218.39"</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">COLLECTOR_SOCKET_PORT</span>=<span style="color: #a45bad;">6677</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">RDB_HOST</span>=<span style="color: #2d9574;">'10.54.217.15'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">RDB_PORT</span>=<span style="color: #a45bad;">29015</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LOG_STA</span>=true
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">CLL_STATUS</span>=<span style="color: #2d9574;">"ALL"</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LOG_PATH</span>=$<span style="color: #7590db;">HOME</span><span style="color: #2d9574;">"/collector_log"</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">DT_CRITERIA</span>=<span style="color: #a45bad;">5</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd9d3e6d" class="outline-2">
+<h2 id="orgd9d3e6d"><span class="section-number-2">15</span> Crear JSON</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+De manera análoga, si corres el sistema <b>GNSS Collector</b> sin tener un ambiente
+virtual activado o los parámetros activados en ambiente, usar un <b>json</b> es buena opción.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-json"><span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">"schema"</span>:<span style="color: #2d9574;">"collector"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"cll_group"</span>: <span style="color: #2d9574;">"[\"ALL\"]"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"est_by_proc"</span>: <span style="color: #a45bad;">4</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"tsleep"</span>: <span style="color: #a45bad;">1</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"workers"</span>: <span style="color: #a45bad;">12</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"gsof_timeout"</span>: <span style="color: #a45bad;">20</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"rdb_host"</span>: <span style="color: #2d9574;">"localhost"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"rdb_port"</span>: <span style="color: #a45bad;">28015</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"cll_status"</span>: <span style="color: #2d9574;">"ALL"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"socket_ip"</span>: <span style="color: #2d9574;">"localhost_ip"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"socket_port"</span>: <span style="color: #a45bad;">6677</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"log_path"</span>: <span style="color: #2d9574;">"~/collector_log"</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"dbdata"</span>: <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">"dbname"</span>: <span style="color: #2d9574;">"nombre database"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbuser"</span>: <span style="color: #2d9574;">"nombre de usuario"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbpass"</span>: <span style="color: #2d9574;">"password para el usuario"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbhost"</span>: <span style="color: #2d9574;">"host de database"</span>,
+    <span style="color: #4f97d7; font-weight: bold;">"dbport"</span>: <span style="color: #2d9574;">"puerto de database"</span>
+  <span style="color: #bc6ec5;">}</span>,
+  <span style="color: #4f97d7; font-weight: bold;">"server_name"</span>: <span style="color: #2d9574;">"collector"</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org281a666" class="outline-2">
+<h2 id="org281a666"><span class="section-number-2">16</span> El registro de eventos o LOG</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+Una vez que se inicia el sistema <b>GNSS Collector</b> cada evento o falla del sistema se registrará en el directorio definido por <b>LOG_PATH</b>, modularmente hay subdirectorios para:
+</p>
+
+<ul class="org-ul">
+<li>Conexión a base de datos ORM</li>
+<li>Conexión a protocolo</li>
+<li>Engine (sistema collector)</li>
+<li>Conexión a RethinkDB</li>
+</ul>
+
+<p>
+En caso de errores es bueno consultar estos archivos y valerse de los comanodos {ls, find, grep, awk} para encontrar la información. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga4d34b8" class="outline-2">
+<h2 id="orga4d34b8"><span class="section-number-2">17</span> Recomendaciones para comenzar a desarrollar con GNSS Collector</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+Para quienes deseen activar o desarrollar características extras, recomiendo
+crear un archivo con funciones de utilidad para la gestión de los 
+valores de ambiente, archivos y módulos extras. 
+</p>
+
+<p>
+Cómo base, trabajar con ambiente virtual.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">before</span>=$<span style="color: #4f97d7;">(</span><span style="color: #fa8072;">pwd</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">FUNC_NAME</span>=funciones.tpl.sh
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">search_path</span><span style="color: #4f97d7;">(){</span>
+    <span style="color: #4f97d7;">cd</span> ~
+    <span style="color: #7590db;">result</span>=$<span style="color: #bc6ec5;">(</span><span style="color: #fa8072;">find</span> -iname <span style="color: #2d9574;">"${FUNC_NAME}"</span> <span style="color: #a45bad;">2</span>&gt;/dev/null<span style="color: #bc6ec5;">)</span>
+    <span style="color: #4f97d7;">cd</span> $<span style="color: #7590db;">before</span>
+    <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">result</span>    
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #7590db;">path</span>=$<span style="color: #7590db;">HOME</span>$<span style="color: #4f97d7;">(</span><span style="color: #fa8072;">search_path</span>|sed <span style="color: #2d9574;">'s/^\.//g'</span>|sed <span style="color: #2d9574;">"s|/$FUNC_NAME||g"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"Path to file: "</span>$<span style="color: #7590db;">path</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">FN_PATH</span>=$<span style="color: #7590db;">path</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">show</span><span style="color: #4f97d7;">(){</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Mostrar las variables de ambiente</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">poner path de venv postactivate:</span>
+
+cat $<span style="color: #7590db;">WORKON_HOME</span>/$<span style="color: #7590db;">ENV</span>/bin/postactivate 
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">show_fn</span><span style="color: #4f97d7;">(){</span>
+cat $<span style="color: #7590db;">FN_PATH</span>/$<span style="color: #7590db;">FUNC_NAME</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">edit_fn</span><span style="color: #4f97d7;">(){</span>
+emacs $<span style="color: #7590db;">FN_PATH</span>/$<span style="color: #7590db;">FUNC_NAME</span> 
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">buscar valores de estaciones </span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">se ubican en carpeta fixtures</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">uso</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">station CODE_ESTACION</span>
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">station</span><span style="color: #4f97d7;">(){</span>
+    <span style="color: #4f97d7;">cd</span> $<span style="color: #7590db;">FN_PATH</span>
+    <span style="color: #4f97d7;">cd</span> ..
+    <span style="color: #7590db;">path</span>=$<span style="color: #bc6ec5;">(</span><span style="color: #fa8072;">pwd</span><span style="color: #bc6ec5;">)</span>
+    <span style="color: #7590db;">st</span>=$<span style="color: #a45bad;">1</span>
+    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #bc6ec5;">[</span> <span style="color: #2d9574;">"${#st}"</span> -ge <span style="color: #2d9574;">"1"</span> <span style="color: #bc6ec5;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    awk -F<span style="color: #2d9574;">';'</span> <span style="color: #2d9574;">'{print $2,$4":"$5 ,$6, $7}'</span> fixtures/station.csv|grep $<span style="color: #a45bad;">1</span>; 
+    <span style="color: #4f97d7; font-weight: bold;">else</span>
+    awk -F<span style="color: #2d9574;">';'</span> <span style="color: #2d9574;">'{print $2,$4":"$5 ,$6, $7}'</span> fixtures/station.csv 
+    <span style="color: #4f97d7; font-weight: bold;">fi</span>
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">edit_env</span><span style="color: #4f97d7;">(){</span>
+nano $<span style="color: #7590db;">WORKON_HOME</span>/$<span style="color: #7590db;">ENV</span>/bin/postactivate 
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">save_env</span><span style="color: #4f97d7;">(){</span>
+show &gt; $<span style="color: #bc6ec5;">{</span><span style="color: #7590db;">ENV</span><span style="color: #bc6ec5;">}</span>_file
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">pysep</span><span style="color: #4f97d7;">(){</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">instalar en modo desarrollo</span>
+python setup.py develop
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">gitignore</span><span style="color: #4f97d7;">(){</span>
+<span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"Creating gitignore"</span>
+cp $<span style="color: #7590db;">FN_PATH</span>/gitignore $<span style="color: #bc6ec5;">(</span><span style="color: #fa8072;">pwd</span><span style="color: #bc6ec5;">)</span>/gitignore
+git add .
+git commit -m <span style="color: #2d9574;">"Se crea o actualiza gitignore en proyecto"</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org91511d2" class="outline-2">
+<h2 id="org91511d2"><span class="section-number-2">18</span> Herramientas de Utilidad</h2>
+<div class="outline-text-2" id="text-18">
+</div>
+<div id="outline-container-org9924d6b" class="outline-3">
+<h3 id="org9924d6b"><span class="section-number-3">18.1</span> Leer directo a una estación</h3>
+<div class="outline-text-3" id="text-18-1">
+<p>
+Para leer datos directamente desde una estación o fuente de datos, mediante un protocolo disponible (GSOF, ERYO) se deben considerar los siguientes parámetros.
+</p>
+
+<dl class="org-dl">
+<dt>code</dt><dd>código de estación</dd>
+<dt>host</dt><dd>url de host de la estación</dd>
+<dt>port</dt><dd>puerto de conexión</dd>
+<dt>limit</dt><dd>cantidad de muestras</dd>
+<dt>data_file</dt><dd>solo para comando protocol</dd>
+</dl>
+
+<p>
+Se dispone de los siguientes comandos:
+</p>
+
+<dl class="org-dl">
+<dt>protocol</dt><dd>se debe escoger protocolo y entregar los parámetros</dd>
+<dt>gsof</dt><dd>de uso directo, entregar los parámetros</dd>
+<dt>eryo</dt><dd>de uso directo, entregar los parámetros.</dd>
+</dl>
+
+<p>
+Para más información.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">protocol --help
+gsof --help
+eryo --help
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1063cd6" class="outline-3">
+<h3 id="org1063cd6"><span class="section-number-3">18.2</span> Monitorear tabla rethinkdb</h3>
+<div class="outline-text-3" id="text-18-2">
+<p>
+Si deseamos monitorear o extraer datos de una tabla en tiempo real, está disponible el comando <b>rdb_monitor</b>, requiere los siguientes parámetros.
+</p>
+
+<dl class="org-dl">
+<dt>conf</dt><dd>archivo json para conectarse a un rdb</dd>
+<dt>limite</dt><dd>cantidad de muestras</dd>
+<dt>destino</dt><dd>archivo dónde se almacenan las muestras obtenidas</dd>
+<dt>sleep</dt><dd>tiempo de descanzo entre cada muestra, recomendable igual o superior al periodo de generación de datos.</dd>
+<dt>station</dt><dd>código de estación</dd>
+<dt>table_name</dt><dd>nombre de tabla.</dd>
+</dl>
+
+<p>
+Para la ayuda.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">rdb_monitor --help
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Junio 2020</p>
+<p class="author">Author: David Pineda @ CSN-Geodesia</p>
+<p class="date">Created: 2020-06-17 mié 14:35</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
