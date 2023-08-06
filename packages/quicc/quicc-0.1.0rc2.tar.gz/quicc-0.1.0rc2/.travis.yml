@@ -1,0 +1,19 @@
+calanguage: python
+sudo: required
+dist: xenial
+
+python:
+  - "3.8"
+
+before_install:
+  - pip install -U pip
+
+install:
+  - pip install .[dev]  # install package + test dependencies
+
+script:
+  - python -m quicc.meta
+  - python -m pytest --cov=quicc --cov-fail-under 100
+  - flake8
+  - mypy
+  - sphinx-build -M html docs docs/_build
