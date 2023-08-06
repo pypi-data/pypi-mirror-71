@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: cpytraceafl-regex
+Version: 0.2.0
+Summary: A modified version of mrab-regex with added cpytraceafl instrumentation
+Home-page: https://github.com/risicle/cpytraceafl-regex
+Author: Robert Scott
+Author-email: code@humanleg.org.uk
+License: Python Software Foundation License
+Description: # cpytraceafl-regex
+        
+        This is a thinly modified version of Matthew Barnett's
+        [mrab-regex](https://bitbucket.org/mrabarnett/mrab-regex) regular expression library with
+        added instrumentation for use when fuzzing python code with
+        [cpytraceafl](https://github.com/risicle/cpytraceafl).
+        
+        The intention is for fuzzing harnesses to be able to substitute the builtin `re` module
+        library with this, highly compatible, module and thereby allow AFL to generate examples
+        which pass regular expressions used in the target or explore their limits in interesting
+        ways.
+        
+        See the original [README.mrab-regex.rst](./README.mrab-regex.rst) for more general
+        information in this library's extended regex features.
+        
+        ## Recommended usage
+        
+        Early in the startup of the fuzzing harness, (though after the call to `install_rewriter()`):
+        
+        ```python
+        import regex
+        from sys import modules
+        modules["re"] = regex
+        ```
+        
+        code later importing/referencing the `re` module should instead be using this instrumented
+        `regex` code. Note that before evaluating any regexes, `cpytraceafl.tracehook.set_map_start()`
+        will need to have been initialized with a memory region to write its intrumentation data
+        into. Otherwise you'll get segfaults.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Python Software Foundation License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: General
+Description-Content-Type: text/markdown
