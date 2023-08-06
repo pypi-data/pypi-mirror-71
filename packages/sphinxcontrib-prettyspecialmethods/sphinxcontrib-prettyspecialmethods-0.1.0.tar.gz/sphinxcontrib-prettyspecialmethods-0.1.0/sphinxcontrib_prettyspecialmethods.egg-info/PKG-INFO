@@ -1,0 +1,70 @@
+Metadata-Version: 1.2
+Name: sphinxcontrib-prettyspecialmethods
+Version: 0.1.0
+Summary: Shows special methods as the python syntax that invokes them
+Home-page: https://github.com/sphinx-contrib/prettyspecialmethods
+Author: Thomas Smith
+Maintainer: Eric Wieser
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/sphinx-contrib/prettyspecialmethods/issues
+Project-URL: Source Code, https://github.com/sphinx-contrib/prettyspecialmethods
+Description: ==================================
+        sphinxcontrib-prettyspecialmethods
+        ==================================
+        
+        .. image:: https://travis-ci.org/sphinx-contrib/prettyspecialmethods.svg?branch=master
+            :target: https://travis-ci.org/sphinx-contrib/prettyspecialmethods
+        
+        Shows special methods as the python syntax that invokes them
+        
+        Overview
+        --------
+        
+        This module renders docs like
+        
+        .. code-block:: rst
+        
+            .. method:: __add__(other)
+                Docstring
+        
+        
+        as
+        
+        self + other
+            Docstring
+        
+        
+        After installing this module, add the following to your `conf.py` to enable it
+        
+        .. code-block:: python
+        
+            extensions = [
+                ...  # your other extensions
+                'sphinxcontrib.prettyspecialmethods',
+            ]
+        
+        
+        Links
+        -----
+        
+        - Source: https://github.com/sphinx-contrib/prettyspecialmethods
+        - Bugs: https://github.com/sphinx-contrib/prettyspecialmethods/issues
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Documentation
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Utilities
