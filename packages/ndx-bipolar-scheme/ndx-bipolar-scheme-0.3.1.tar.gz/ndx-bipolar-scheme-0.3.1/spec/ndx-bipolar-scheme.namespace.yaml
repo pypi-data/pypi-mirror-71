@@ -1,0 +1,18 @@
+namespaces:
+- author:
+  - Ben Dichter
+  - Armin Najarpour
+  - Ryan Ly
+  contact:
+  - ben.dichter@catalystneuro.com
+  doc: An NWB extension for storing bipolar schema
+  name: ndx-bipolar-scheme
+  schema:
+  - namespace: core
+    neurodata_types:
+    - LabMetaData
+    - DynamicTableRegion
+    - DynamicTable
+    - VectorIndex
+  - source: ndx-bipolar-scheme.extensions.yaml
+  version: 0.3.1
