@@ -1,0 +1,6 @@
+# 生成库的安装包
+python setup.py sdist
+
+上传库到pip
+python -m twine upload dist/
+python -m twine upload  .\dist\xToolkit-0.0.36.tar.gz
