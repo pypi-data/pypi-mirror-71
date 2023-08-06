@@ -1,0 +1,75 @@
+{
+  "tables": [
+    {
+      "name": "users",
+      "primary_key": "id",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "numerical"
+        },
+        {
+          "name": "age",
+          "data_type": "numerical"
+        },
+        {
+          "name": "birthyear",
+          "data_type": "numerical"
+        },
+        {
+          "name": "height",
+          "data_type": "numerical"
+        },
+        {
+          "name": "nb_posts",
+          "data_type": "numerical"
+        }
+      ],
+      "id": "users"
+    },
+    {
+      "name": "posts",
+      "primary_key": "id",
+      "fields": [
+        {
+          "name": "id",
+          "data_type": "numerical"
+        },
+        {
+          "name": "uid",
+          "data_type": "numerical"
+        },
+        {
+          "name": "text",
+          "data_type": "text"
+        }
+      ],
+      "id": "posts"
+    }
+  ],
+  "foreign_keys": [
+    {
+      "table": "posts",
+      "field": "uid",
+      "ref_table": "users",
+      "ref_field": "id"
+    }
+  ],
+  "constraints": [
+    {
+      "constraint_type": "validity",
+      "fields_under_consideration": [
+        {
+          "table": "users",
+          "field": "age"
+        }
+      ],
+      "related_fields": [
+        {
+          "table": "users",
+          "field": "birthyear"
+        }
+      ]
+    }
+  ]
+}
