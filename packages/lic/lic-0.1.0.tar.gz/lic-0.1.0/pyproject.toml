@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "lic"
+version = "0.1.0"
+description = "Line integral convolution for numpy arrays"
+authors = ["Steffen Brinkmann <s-b@mailbox.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.18.5"
+matplotlib = "^3.2.1"
+pytest-pylint = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pytest-cov = "^2.9.0"
+pytest-mypy = "^0.6.2"
+pytest-flake8 = "^1.0.6"
+ipython = "^7.15.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
