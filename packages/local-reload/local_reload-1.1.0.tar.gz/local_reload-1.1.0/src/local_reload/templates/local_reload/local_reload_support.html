@@ -1,0 +1,6 @@
+{% load local_reload %}
+{% load static %}
+<script 
+    async src="{% static "local_reload/local_reload.js" %}"
+    id="local_reload_timestamp" data-rendered="{% millisecond_timestamp %}"
+></script>
