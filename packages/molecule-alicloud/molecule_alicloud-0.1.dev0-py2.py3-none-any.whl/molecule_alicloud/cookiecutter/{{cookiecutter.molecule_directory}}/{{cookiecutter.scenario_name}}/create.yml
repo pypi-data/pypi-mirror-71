@@ -1,0 +1,100 @@
+---
+{% raw -%}
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ molecule_no_log }}"
+  vars:
+    ssh_user: "{{ lookup('env', 'USER') }}"
+    ssh_port: 22
+    ssh_key_pair_name: molecule
+    security_group_name: molecule
+    security_group_description: Security group for testing Molecule
+
+  tasks:
+    - name: Find the vpc for the subnet
+      ali_vswitch_info:
+        vswitch_ids:
+          - "{{ item.vswitch_id }}"
+        loop: "{{ molecule_yml.platforms }}"
+        register: vswitch_info
+
+    - name: Create security group
+      ali_security_group:
+        name: "{{ security_group_name }}"
+        description: "{{ security_group_description }}"
+        vpc_id: "{{ item.vpc_id }}"
+        rules:
+          - ip_protocol: tcp
+            port_range: 22/22
+            source_cidr_ip: '0.0.0.0/0'
+        rules_egress:
+          - ip_protocol: icmp
+            port_range: -1/-1
+            source_cidr_ip: '0.0.0.0/0'
+      loop: "{{ vswitch_info.results.vswitches }}"
+      register: security_group
+
+    - name: Create instance(s) key pair
+      ali_key_pair:
+        name: "{{ ssh_key_pair_name }}"
+        public_key: "{{ lookup('file', item.ssh_identity_file) }}"
+        force: yes
+      loop: "{{ molecule_yml.platforms }}"
+
+    - name: Create molecule instance(s)
+      ali_instance:
+        image: "{{ item.image }}"
+        instance_type: "{{ item.instance_type }}"
+        vswitch_id: "{{ vswitch_info.results.ids[0] }}"
+        assign_public_ip: True
+        security_groups:
+          - "{{ security_group.results.group.id }}"
+        key_name: "{{ ssh_key_pair_name }}"
+      loop: "{{ molecule_yml.platforms }}"
+      register: server
+      async: 7200
+      poll: 0
+
+    - name: Wait for instance(s) creation to complete
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: ecs_jobs
+      until: ecs_jobs.finished
+      retries: 300
+      with_items: "{{ server.results }}"
+
+    # Mandatory configuration for Molecule to function.
+
+    - name: Populate instance config dict
+      set_fact:
+        instance_conf_dict: {
+          'instance': "{{ item.instances[0].instance_name }}",
+          'address': "{{ item.instances[0].public_ip_address }}",
+          'user': "{{ ssh_user }}",
+          'port': "{{ ssh_port }}",
+          'identity_file': "{{ molecule_yml.platforms.ssh_identity_file }}", }
+      with_items: "{{ ecs_jobs.results }}"
+      register: instance_config_dict
+      when: server.changed | bool
+
+    - name: Convert instance config dict to a list
+      set_fact:
+        instance_conf: "{{ instance_config_dict.results | map(attribute='ansible_facts.instance_conf_dict') | list }}"
+      when: server.changed | bool
+
+    - name: Dump instance config
+      copy:
+        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        dest: "{{ molecule_instance_config }}"
+      when: server.changed | bool
+
+    - name: Wait for SSH
+      wait_for:
+        port: "{{ ssh_port }}"
+        host: "{{ item.address }}"
+        search_regex: SSH
+        delay: 10
+      with_items: "{{ lookup('file', molecule_instance_config) | molecule_from_yaml }}"
+{%- endraw %}
