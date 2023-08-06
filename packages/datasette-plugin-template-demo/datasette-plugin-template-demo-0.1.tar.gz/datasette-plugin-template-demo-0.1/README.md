@@ -1,0 +1,37 @@
+# datasette-plugin-template-demo
+
+[![PyPI](https://img.shields.io/pypi/v/datasette-plugin-template-demo.svg)](https://pypi.org/project/datasette-plugin-template-demo/)
+[![Changelog](https://img.shields.io/github/v/release/simonw/datasette-plugin-template-demo?label=changelog)](https://github.com/simonw/datasette-plugin-template-demo/releases)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/simonw/datasette-plugin-template-demo/blob/master/LICENSE)
+
+Demonstrating https://github.com/simonw/datasette-plugin
+
+## Installation
+
+Install this plugin in the same environment as Datasette.
+
+    $ pip install datasette-plugin-template-demo
+
+## Usage
+
+Usage instructions go here.
+
+## Development
+
+To set up this plugin locally, first checkout the code. Then create a new virtual environment:
+
+    cd datasette-plugin-template-demo
+    python -mvenv venv
+    source venv/bin/activate
+
+Or if you are using `pipenv`:
+
+    pipenv shell
+
+Now install the dependencies and tests:
+
+    pip install -e '.[test]'
+
+To run the tests:
+
+    pytest
