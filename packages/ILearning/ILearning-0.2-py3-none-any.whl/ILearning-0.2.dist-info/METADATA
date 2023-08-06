@@ -1,0 +1,133 @@
+Metadata-Version: 2.1
+Name: ILearning
+Version: 0.2
+Summary: UNKNOWN
+Home-page: https://github.com/Kowsher/Impact-Learning-
+Author: Kowsher Ahmed, Avishek Das
+Author-email: ahmedshuvo969@gmail.com, avishek.das.ayan@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: h5py (==2.10.0)
+Requires-Dist: tensorflow (==2.2.0)
+Requires-Dist: numpy (==1.18.5)
+
+# Impact Learning
+## Impact Learning is a new machine learning algoirthm developed by [Md. Kowsher](https://sites.google.com/view/kowsher)
+
+Impact learning is a supervised and competitive learning algorithm for inducing classification, linear or nonlinear regression knowledge from examples. The primary principle of this method is to learn from a competition which is the impact of independent features; to be more specific it fits curve by the back forces or impacts of features from the intrinsic rate of natural increase (RNI); since every real dataset follows the aptitude of RNI. The input to Impact Learning is a training set of numerical data.
+To be more prominently, every feature of our life follows the trend of RNI, on the other hand, there are more back forces on which the feature need to be dependent. As a result, the target is impacted by other features of the back forces which can be named for a specific force as “Back Impact on Target (BIT)”. Since the target feature relies on BITs that is why every BIT also depends on the target feature. 
+Basically, the machine learning or statistical learning datasets derive from real sectors of target territories, consequently, they flow the trend of RNI. So it will be a procedure to generate the algorithm (Impact Learning)  from the flow of RNI. Furthermore, this method learns from the effect of BITs and in real life, every business sector has good competitors; the impact learning can be used in order to depict the competition among the competitors. In addition, the trained impact learning can be also used for checking multicollinearity or redundancy for feature selection. 
+
+-A framework of this algorithm is being developed. Very soon, it will be made open source, if you have captivating to use in your work just [email me](ga.kowsher@gamil.com)    
+
+
+
+## Installation:
+
+```
+pip install ILearning
+```
+
+
+## Usage of Regressor:
+```python
+from ILearning import Regressor
+import numpy as np
+
+import pandas as pd
+df= pd.read_csv("data.csv")
+
+D = np.matrix(df.values, dtype=np.float32)
+# Slice Data
+X = D[:, :-1]
+Y = D[:, [-1]]
+
+ilr = Regressor()
+ilr.fit(X,Y, loss_function="MSE", optimizer = "RMSProp")
+ilr.train(epochs=1000, lr=0.05)
+```
+Output:
+```
+Epoch count 0: Loss value: 187944.484375
+....
+Epoch count 1000: Loss value: 191.80960083007812
+```
+
+## Usage of Regressor:
+```python
+from ILearning import Classifier
+import numpy as np
+
+import pandas as pd
+df = pd.read_csv("diabetes.csv")
+df.head()
+
+D = np.matrix(df.values)
+# Slice Data
+X = D[:, :-1]
+Y = np.transpose(D[:, -1])
+
+x_train = np.array(X, dtype=np.float32)
+y_train = np.array(Y, dtype=np.uint8)[0]
+
+
+#FEATURE SCALING IF NEEDED
+from sklearn.preprocessing import MinMaxScaler
+norm = MinMaxScaler().fit(x_train)
+x_train = norm.transform(x_train)
+
+ilc = Classifier()
+ilc.fit(x_train, y_train, num_classes=3, optimizer="GD", loss_function="KLD")
+ilc.train(epochs = 1000, lr=0.001)
+```
+Output:
+```
+Epoch: 0, loss: 0.630209, accuracy: 0.651042
+....
+Epoch: 900, loss: 0.399794, accuracy: 0.691406
+```
+
+## Loss Functions
+```
+FOR Classifier
+
+      BinaryCrossentropy
+      CategoricalCrossentropy
+      CosineSimilarity
+      Hinge
+      CategoricalHinge
+      Logosh
+      Poisson
+      SquaredHinge
+      KLD
+
+FOR Regressor
+
+	  logcosh 
+      huber 
+      MSE 
+      MAE 
+      MAPE 
+      Poisson 
+      sqr_hinge 
+
+```
+## OPTIMIZERS
+```
+
+      Adadelta
+      Adagrad
+      Adam
+      Adamax
+      Ftrl
+      Nadam
+      RMSprop
+      SGD
+      GD
+```
+
+
