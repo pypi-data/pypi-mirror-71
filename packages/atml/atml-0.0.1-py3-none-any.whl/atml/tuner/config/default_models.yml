@@ -1,0 +1,39 @@
+models:
+  - name: "sklearn.ensemble.forest.RandomForestClassifier"
+    searchSpace:
+      - property: "bootstrap"
+        type: "choice" # choice, uniform, randint
+        value: [True, False]
+      - property: "max_features"
+        type: "choice"
+        value: ["auto", "sqrt"]
+      - property: "max_depth"
+        type: "choice"
+        value: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None]
+      - property: "n_estimators"
+        type: "choice"
+        value: [200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000]
+      - property: "min_samples_leaf"
+        type: "choice"
+        value: [1, 2, 4]
+      - property: "min_samples_split"
+        type: "choice"
+        value: [2, 5, 10]
+
+#  - name: "xgboost.sklearn.XGBClassifier"
+#    searchSpace:
+#      - property: "learning_rate"
+#        type: "choice"
+#        value: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
+#      - property: "max_depth"
+#        type: "choice"
+#        value: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None]
+#      - property: "min_child_weight"
+#        type: "choice"
+#        value: [1, 3, 5, 7]
+#      - property: "gamma"
+#        type: "choice"
+#        value: [0.0, 0.1, 0.2 , 0.3, 0.4]
+#      - property: "colsample_bytree"
+#        type: "choice"
+#        value: [0.3, 0.4, 0.5 , 0.7]

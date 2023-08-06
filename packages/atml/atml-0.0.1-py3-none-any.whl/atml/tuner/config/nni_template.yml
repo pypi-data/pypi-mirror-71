@@ -1,0 +1,20 @@
+authorName: default
+experimentName: $EXP_NAME
+trialConcurrency: $CONCURRENCY
+maxExecDuration: $MAX_DURATION
+maxTrialNum: $MAX_TRAIL
+#choice: local, remote
+trainingServicePlatform: $TRAIN_PLATFORM
+searchSpacePath: $SEARCH_SPACE_PATH
+#choice: true, false
+useAnnotation: false
+tuner:
+  #choice: TPE, Random, Anneal, Evolution, BatchTuner, MetisTuner
+  builtinTunerName: $TUNER
+  classArgs:
+    #choice: maximize, minimize
+    optimize_mode: $OPTIMIZE_MODE
+trial:
+  command: $PYTHON_EXE -m atml.tuner.$MAIN_MODULE $MODEL_KEY $RUN_ID $RUN_DIR
+  codeDir: $CODE_DIR
+  gpuNum: 0
