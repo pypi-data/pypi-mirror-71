@@ -1,0 +1,16 @@
+include LICENSE HACKING README.md
+include Makefile *.yaml *.txt *.ini
+recursive-include tests *.py
+recursive-include tests *.txt
+recursive-include tests *.zip
+recursive-include tests *.yaml
+recursive-include tests collect_1 collect_2 missing_parent simple_1 tricky_1
+# attempting to include these files breaks installation from source
+exclude tests/test_data/collect_info/empty_subdir/not-there.txt
+exclude tests/test_data/collect_info/.bogus-file-to-be-ignored
+recursive-exclude tests/test_data/collect_info recursive.txt recursive2.txt
+recursive-exclude tests not-there.txt
+exclude .gitconfig
+exclude .gitignore
+prune .bzr
+prune debian

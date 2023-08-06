@@ -1,0 +1,28 @@
+apache2               lp:~charms/apache2/;revno=44
+certification         lp:~charms/certification/;overwrite=True
+certification-web     lp:~charms/certification-web/;revno=55
+gunicorn              lp:~charms/gunicorn/;revno=66
+haproxy               lp:~charms/haproxy/;revno=77
+nrpe-external-master  lp:~charms/nrpe-external-master/;revno=88
+pgbouncer             lp:~charms/pgbouncer;overwrite=True
+postgresql            lp:~charmers/charms/precise/postgresql/trunk/;revno=7
+rabbitmq-server       lp:~charms/rabbitmq-server/;revno=5
+ubuntu                lp:~other-charms/ubuntu/;revno=3
+
+# basenode mappings
+apache2/exec.d                   @
+apache2/exec.d/basenode          lp:~charms/basenode/
+certification/exec.d             @
+certification/exec.d/basenode    lp:~charms/basenode/
+haproxy/exec.d                   @
+haproxy/exec.d/basenode          lp:~charms/basenode/
+pgbouncer/exec.d                 @
+pgbouncer/exec.d/basenode        lp:~charms/basenode/
+postgresql/exec.d                @
+postgresql/exec.d/basenode       lp:~charms/basenode/
+rabbitmq-server/exec.d           @
+rabbitmq-server/exec.d/basenode  lp:~charms/basenode/
+
+sample-project                 lp:~sample-project-dev/sample-project/production;revno=51
+sample-project/third-party     lp:~sample-project-dev/sample-project/third-party;revno=3
+

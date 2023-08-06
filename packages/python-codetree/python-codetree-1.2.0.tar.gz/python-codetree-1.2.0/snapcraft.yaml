@@ -1,0 +1,33 @@
+name: codetree
+summary: A tool for collating and building trees of files from various sources.
+description: A tool for collating and building trees of files from various sources.
+# Switch to strict once https://bugs.launchpad.net/snappy/+bug/1657021
+# is addressed.
+confinement: classic
+adopt-info: codetree
+grade: stable
+apps:
+  codetree:
+    command: bin/codetree
+    # Classic mode has no plugs.
+    # plugs:
+    #   - home
+    #   - network
+    #   - network-bind
+parts:
+  codetree:
+    plugin: python
+    python-version: python3
+    source: .
+    stage-packages:
+      - bzr
+      - git
+      - rsync
+      - unzip
+      - python3-paramiko
+      - python3-yaml
+    override-pull: |
+      snapcraftctl pull
+      CHANGELOG_VERSION=$(dpkg-parsechangelog --show-field Version)
+      BZR_REVNO=$(bzr revno)
+      snapcraftctl set-version "${CHANGELOG_VERSION}~${BZR_REVNO}"

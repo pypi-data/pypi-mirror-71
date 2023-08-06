@@ -1,0 +1,26 @@
+Codetree Hacking
+================
+
+If you're trying to hack on codetree, you can run:
+
+  $ python setup.py install --user
+
+against a branch of codetree to install it into your $HOME/.local (you may
+need to check that $HOME/.local/bin is on your $PATH)
+
+See the [README](readme.html)'s FAQ for further tips/gotchas.
+
+To build an updated version of the codetree package:
+
+ 1. Ensure the name of the directory you're using is "codetree" (debian
+    packaging will look for this).
+ 2. Increment the version in ./setup.py
+ 3. `make deb-src`. If you need to rerun for some reason (missing dependencies,
+     etc.), just re-run `debuild -S -sa -I.bzr` from the debian directory, as
+     `make deb-src` will update the changelog again.
+ 4. Upload the source.changes file from a directory level above the Makefile:
+    dput ppa:$MY-PPA/ppa codetree_$version_source.changes
+
+If you want to test the code without manually specifying a virtualenv, tox can
+be used:
+ * tox -e <pep8|py27|py3>

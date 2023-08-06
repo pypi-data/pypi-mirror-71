@@ -1,0 +1,44 @@
+storage              lp:charms/precise/storage
+block-storage-broker lp:charms/precise/block-storage-broker
+rabbitmq-server      lp:charms/trusty/rabbitmq-server
+postgresql           lp:charms/trusty/postgresql
+
+# Custom
+open-port           lp:~some-user/charms/trusty/open-port/trunk
+apache-openid       lp:~some-user/charms/trusty/apache-openid/trunk
+capomastro          lp:~some-team/capomastro/charm;revno=58
+jenkins             lp:~some-group/some-charm-repo/jenkins
+system-image-server lp:~some-user/charms/trusty/system-image-server/trunk
+apache2             lp:~some-group/some-charm-repo/apache2
+archiver            lp:~some-group/some-charm-repo/apache2
+
+# Pin Jenkins version. Overwrite ensures codetree doesn't error
+# out with "Skipping" - os.unlinks the file first
+jenkins/files                          @
+jenkins/files/plugins                  @
+jenkins/files/jenkins.deb              http://some.ppa.canonical.com/jenkins-stable/jenkins_1.580.2_all.deb;overwrite=True
+jenkins/files/plugins/notification.hpi http://some.ppa.canonical.com/jenkins-plugins/notification.hpi;overwrite=True
+
+# Subordinates
+nrpe-external-master    lp:~some-group/some-charm-repo/nrpe-external-master
+
+# Jenkins/Bygmester deployable assets
+jobs                    @
+jobs/rootfs             lp:~some-team/jobs/rootfs
+jobs/tarball            lp:~some-team/jobs/tarball
+jobs/image-puller       lp:~some-team/jobs/image-puller
+jobs/android-barajas    lp:~some-team/jobs/android-barajas
+jobs/android-tangxi     lp:~some-team/jobs/android-tangxi
+jobs/android            lp:~some-team/jobs/android
+
+# Basenode support needed by IS (though not really sure what services should have this)
+apache2/exec.d                  @
+apache2/exec.d/basenode         lp:~someone/project/trunk
+rabbitmq-server/exec.d          @
+rabbitmq-server/exec.d/basenode lp:~someone/project/trunk
+postgresql/exec.d               @
+postgresql/exec.d/basenode      lp:~someone/project/trunk
+capomastro/exec.d               @
+capomastro/exec.d/basenode      lp:~someone/project/trunk
+jenkins/exec.d                  @
+jenkins/exec.d/basenode         lp:~someone/project/trunk

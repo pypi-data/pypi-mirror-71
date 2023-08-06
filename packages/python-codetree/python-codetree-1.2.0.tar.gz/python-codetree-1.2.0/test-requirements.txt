@@ -1,0 +1,12 @@
+# The order of packages is significant, because pip processes them in the order
+# of appearance. Changing the order has an impact on the overall integration
+# process, which may cause wedges in the gate later.
+coverage>=4.4
+futures>=3.1.1
+mock>=2.0
+nose>=1.3.7
+pip>=9.0
+requests>=2.18
+setuptools>=36.0.1
+# six>=1.10  six now embedded as codetree.six
+flake8>=2.2.4,<=2.4.1
