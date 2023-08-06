@@ -1,0 +1,809 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+pyplan/__init__.py
+pyplan/__main__.py
+pyplan/pyplan_ide.py
+pyplan/config/__init__.py
+pyplan/config/urls.py
+pyplan/config/wsgi.py
+pyplan/config/settings/__init__.py
+pyplan/config/settings/common.py
+pyplan/config/settings/desktop.py
+pyplan/config/settings/local.py
+pyplan/config/settings/production.py
+pyplan/demos/home.json
+pyplan/demos/Examples/01-Visualization/01-California Power Plants/California Power Plants.png
+pyplan/demos/Examples/01-Visualization/01-California Power Plants/California Power Plants.ppl
+pyplan/demos/Examples/01-Visualization/01-California Power Plants/Data/California_Power_Plant.csv
+pyplan/demos/Examples/01-Visualization/02-Visualization Libraries in Pyplan/Visualization Libraries in Pyplan.ppl
+pyplan/demos/Examples/01-Visualization/03-Gapminder Data Analysis/Gapminder Data Analysis.png
+pyplan/demos/Examples/01-Visualization/03-Gapminder Data Analysis/Gapminder Data Analysis.ppl
+pyplan/demos/Examples/01-Visualization/03-Gapminder Data Analysis/gapminder_data.csv
+pyplan/demos/Examples/02-Machine Learning/01-Supplier route optimization/Supplier route optimization.ppl
+pyplan/demos/Examples/02-Machine Learning/01-Supplier route optimization/Files/DemoQuilmesDB.db
+pyplan/demos/Examples/02-Machine Learning/01-Supplier route optimization/Files/gba_clientes.csv
+pyplan/demos/Examples/02-Machine Learning/01-Supplier route optimization/Files/sale.csv
+pyplan/demos/Examples/02-Machine Learning/01-Supplier route optimization/Files/testClasif.pkl
+pyplan/demos/Examples/02-Machine Learning/02-Iris Sample/Iris Sample.png
+pyplan/demos/Examples/02-Machine Learning/02-Iris Sample/Iris Sample.ppl
+pyplan/demos/Examples/02-Machine Learning/02-Iris Sample/trained_model.sav
+pyplan/demos/Examples/03-Regressions/Regressions.png
+pyplan/demos/Examples/03-Regressions/Regressions.ppl
+pyplan/demos/Examples/04-Stochastic models/04-Stochastic models (Market Model).ppl
+pyplan/demos/Examples/05-Pyplan Library/01-Basic concepts/Basic concepts.png
+pyplan/demos/Examples/05-Pyplan Library/01-Basic concepts/Basic concepts.ppl
+pyplan/demos/Examples/05-Pyplan Library/02-Selecting Data from Arrays/Selecting Data from Arrays.ppl
+pyplan/demos/Examples/05-Pyplan Library/02-Selecting Data from Arrays/Selecting data from Arrays.png
+pyplan/demos/Examples/05-Pyplan Library/03-Basic Math and Missing Values/Basic Math and Missing Values.png
+pyplan/demos/Examples/05-Pyplan Library/03-Basic Math and Missing Values/Basic Math and Missing Values.ppl
+pyplan/demos/Examples/05-Pyplan Library/04-Aggregation and Rolling window operations/Aggregation and Rolling window operations.png
+pyplan/demos/Examples/05-Pyplan Library/04-Aggregation and Rolling window operations/Aggregation and Rolling window operations.ppl
+pyplan/demos/Examples/05-Pyplan Library/05-Linear Interpolation/Linear Interpolation.png
+pyplan/demos/Examples/05-Pyplan Library/05-Linear Interpolation/Linear Interpolation.ppl
+pyplan/demos/Examples/05-Pyplan Library/06-Working with indexes/Working with indexes.png
+pyplan/demos/Examples/05-Pyplan Library/06-Working with indexes/Working with indexes.ppl
+pyplan/demos/Examples/05-Pyplan Library/07-Dynamic NPV IRR  and Linear Depreciation/Dynamic NPV IRR  and Linear Depreciation.png
+pyplan/demos/Examples/05-Pyplan Library/07-Dynamic NPV IRR  and Linear Depreciation/Dynamic NPV IRR  and Linear Depreciation.ppl
+pyplan/demos/Examples/05-Pyplan Library/08-Interacting with Pandas/Interacting with Pandas.png
+pyplan/demos/Examples/05-Pyplan Library/08-Interacting with Pandas/Interacting with Pandas.ppl
+pyplan/demos/Examples/05-Pyplan Library/08-Interacting with Pandas/Data/1000 Sales Records.csv
+pyplan/demos/Examples/05-Pyplan Library/09-XY Graphs/XY Graphs.ppl
+pyplan/demos/Examples/05-Pyplan Library/09-XY Graphs/Xy Graphs.png
+pyplan/demos/Examples/05-Pyplan Library/10-Xarray simple calculation in Pyplan/Xarray simple calculation in Pyplan.png
+pyplan/demos/Examples/05-Pyplan Library/10-Xarray simple calculation in Pyplan/Xarray simple calculation in Pyplan.ppl
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Financial Planning Library.png
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Financial Planning Library.ppl
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Pyplan Template/Pyplan Template.xlsm
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Pyplan Template/Pyplan Template/Front_page.pkl
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Pyplan Template/Pyplan Template/ppa_clients_proj.pkl
+pyplan/demos/Examples/05-Pyplan Library/11-Financial Planning Library/Pyplan Template/Pyplan Template/ppa_other_data.pkl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/01-Read data From CSV/Read data from CSV.png
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/01-Read data From CSV/Read data from CSV.ppl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/01-Read data From CSV/Data/1000 Sales Records.csv
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/02-Read data From Excel/Read data from Excel.png
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/02-Read data From Excel/Read data from Excel.ppl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/02-Read data From Excel/Data/sales-estimate.xlsx
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/03-Pandas Basic Methods/Pandas Basic Methods.png
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/03-Pandas Basic Methods/Pandas Basic Methods.ppl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/04-Pandas Basics Calculation (Federer example)/Pandas Basics Calculation (Federer example).png
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/04-Pandas Basics Calculation (Federer example)/Pandas Basics Calculation (Federer example).ppl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/04-Pandas Basics Calculation (Federer example)/Files/Country to Continent Mapping.csv
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/05-Intro to Pandas for Excel Super Users/Intro to Pandas Excel Super Users.ppl
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/05-Intro to Pandas for Excel Super Users/Data/CPS-Progress-Reports_SY1617.csv
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/06-Numpy Basics/Numpy Basics.png
+pyplan/demos/Examples/06-Pandas and Numpy in Pyplan/06-Numpy Basics/Numpy Basics.ppl
+pyplan/demos/Examples/07- Hierarchy Definition/07- Hierarchy Definition.png
+pyplan/demos/Examples/07- Hierarchy Definition/07- Hierarchy Definition.ppl
+pyplan/demos/Tutorials/Quick Start/01-Xarray Intro/Xarray Intro.png
+pyplan/demos/Tutorials/Quick Start/01-Xarray Intro/Xarray Intro.ppl
+pyplan/demos/Tutorials/Quick Start/02-Xarray in Pyplan/Xarray in Pyplan.png
+pyplan/demos/Tutorials/Quick Start/02-Xarray in Pyplan/Xarray in Pyplan.ppl
+pyplan/demos/Tutorials/Quick Start/03-Pandas Basics/Pandas Basics.png
+pyplan/demos/Tutorials/Quick Start/03-Pandas Basics/Pandas Basics.ppl
+pyplan/demos/Tutorials/Quick Start/03-Pandas Basics/Files/Country to Continent Mapping.csv
+pyplan/demos/Tutorials/Quick Start/04-Creating my first App/My first app.png
+pyplan/demos/Tutorials/Quick Start/04-Creating my first App/My first app.ppl
+pyplan/demos/Tutorials/Quick Start/04-Creating my first App/NCHS_-_Leading_Causes_of_Death__United_States.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/Annual Regional Performance.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/Pandas Data Prep Model.png
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/Pandas Data Prep Model.ppl
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/Superstore Sales.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/exhibitorLeads_pyplan_17Jul2019.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Annual Regional Performance.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Orders_Central.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Orders_East.xlsx
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Orders_West.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Quota.xlsx
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/Superstore Sales.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/android_devices.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/orders_south_2015.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/orders_south_2016.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/orders_south_2017.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/orders_south_2018.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/return reasons_new.xlsx
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/user_device.csv
+pyplan/demos/Tutorials/Quick Start/05-Data Preparation/files/user_usage.csv
+pyplan/demos/Tutorials/Quick Start/06-Revenue Calculation Example/Revenue Calculation Example.png
+pyplan/demos/Tutorials/Quick Start/06-Revenue Calculation Example/Revenue Calculation Example.ppl
+pyplan/frontend/0_a43fdfe1485d8fe465bc.js
+pyplan/frontend/100_f6232db99f3f2c92eba8.js
+pyplan/frontend/101_eee0a100370a4a7bce0d.js
+pyplan/frontend/102_244b78da316bb5291299.js
+pyplan/frontend/103_6a53acfd9306fbe264a9.js
+pyplan/frontend/104_01f859f9e37694d6d16c.js
+pyplan/frontend/105_0f6f4adc21f6562bff32.js
+pyplan/frontend/106_ddaddf3d60d30dde6e08.js
+pyplan/frontend/107_4f741d9a26de6b64bd0d.js
+pyplan/frontend/108_2b30454116eea43e6a75.js
+pyplan/frontend/109_0eece59b391e9774c761.js
+pyplan/frontend/10_3f4f1757a15bf470a1d0.js
+pyplan/frontend/110_b7f9714d783ca8373bec.js
+pyplan/frontend/111_ad9ac1fc8a66df72a9d8.js
+pyplan/frontend/112_d92956cb89669e6dfcec.js
+pyplan/frontend/113_d7404ac8eb869d47411d.js
+pyplan/frontend/114_aabc34a5304c385b2d60.js
+pyplan/frontend/115_65803b3aa9b04d84f5cc.js
+pyplan/frontend/116_46a5c8afd721b1a9efb7.js
+pyplan/frontend/117_7fce296e9de65084fb61.js
+pyplan/frontend/118_44104ce80c4fbd38e899.js
+pyplan/frontend/119_0fc3ba3cab9f6548b6aa.js
+pyplan/frontend/11_d23db92a697c07b7d55e.js
+pyplan/frontend/120_8b0d2227d4f617cf3d99.js
+pyplan/frontend/121_fb04e0d3ffb07d252e9b.js
+pyplan/frontend/122_253cc1082c175496c4a9.js
+pyplan/frontend/123_e21279ebdfe2b3846a57.js
+pyplan/frontend/124_7b071cd9e5ed9d3a7c2b.js
+pyplan/frontend/125_fbe95dd42c9564e74108.js
+pyplan/frontend/126_e71d47a66a8fb3afc530.js
+pyplan/frontend/127_4187818d7ccaa316d2ce.js
+pyplan/frontend/128_b1c7863eee4e3d68e8a3.js
+pyplan/frontend/129_dcc6a2dedd3e7f7e8b19.js
+pyplan/frontend/12_f82a615caf8b3f82ce3c.js
+pyplan/frontend/130_e78cc43db172bf5fd29b.js
+pyplan/frontend/131_baad3ed9f3f65f836299.js
+pyplan/frontend/132_b16127cdcb787b6bd8c5.js
+pyplan/frontend/133_ba3d1cb52b0b25c53576.js
+pyplan/frontend/134_80de95be61a2c05ba4d8.js
+pyplan/frontend/135_e816b866d0cd2337d85b.js
+pyplan/frontend/136_c86d2e42613e3199277c.js
+pyplan/frontend/137_7c2f64ab17bf0e4831ba.js
+pyplan/frontend/138_b34a4c83e5ac7c35a161.js
+pyplan/frontend/139_c0b8f369a0eb27eabf88.js
+pyplan/frontend/13_5c990439171da4ea20c8.js
+pyplan/frontend/140_9a13ccff4884f85053c2.js
+pyplan/frontend/141_d1ffbef16edceb49e677.js
+pyplan/frontend/142_687fe102396f69dc0e4a.js
+pyplan/frontend/143_4ea1633e83d18a9302b1.js
+pyplan/frontend/144_1290bf10bad96bf049af.js
+pyplan/frontend/145_65ea3424e1c2fa320b0f.js
+pyplan/frontend/146_82943187423ebf138b2c.js
+pyplan/frontend/147_66018295fc014b9b7219.js
+pyplan/frontend/148_28859093aa4ee4d58da8.js
+pyplan/frontend/149_64e803f633792f059546.js
+pyplan/frontend/14_25be684a79e24ec69264.js
+pyplan/frontend/150_ec752516510c64e17787.js
+pyplan/frontend/151_7d5bdfca80245408e4fc.js
+pyplan/frontend/152_f6c3dcdd82034ec964ec.js
+pyplan/frontend/153_c7666326dbf661122df1.js
+pyplan/frontend/154_4b6e6656e434b446a506.js
+pyplan/frontend/155_e06d2ba6f5649115bb90.js
+pyplan/frontend/156_f1cbb9ecdb9e3309a9a0.js
+pyplan/frontend/157_b887aca8a943050767ef.js
+pyplan/frontend/158_d3cb3e501c47aaa0aa2d.js
+pyplan/frontend/159_2fcdab23a7dd949f6501.js
+pyplan/frontend/15_c158098b4776fa5cc7fb.js
+pyplan/frontend/160_7dfbcd3e4f97a23df5d3.js
+pyplan/frontend/161_64c59a67586c12b23bc5.js
+pyplan/frontend/162_9ef5f4131d056c7d3b14.js
+pyplan/frontend/163_5ce3821a2e3018f7f780.js
+pyplan/frontend/164_cc887e86839d655ddf17.js
+pyplan/frontend/165_993f8f399f2b52f8a760.js
+pyplan/frontend/166_68f8c02693dd94523848.js
+pyplan/frontend/167_bb5f4672d9edaefc5147.js
+pyplan/frontend/168_02196403b82a01377388.js
+pyplan/frontend/169_b08cb467d37962a7ea31.js
+pyplan/frontend/16_fe2ae93ad7dd935ebca7.js
+pyplan/frontend/170_9301437ac2c2f68ff4ae.js
+pyplan/frontend/171_5bf275f610756677f778.js
+pyplan/frontend/172_f21baad67d4264082d92.js
+pyplan/frontend/173_94684fd2e9e60d137b31.js
+pyplan/frontend/174_9e468b75a354edfe2d12.js
+pyplan/frontend/175_aab4ee1d59d0fd5d17e7.js
+pyplan/frontend/176_2107d1ce7e4ceea6fa9f.js
+pyplan/frontend/177_38859273de30edf7fd58.js
+pyplan/frontend/178_582a7c64280343c7e472.js
+pyplan/frontend/179_2b74393091ff4c49ea65.js
+pyplan/frontend/17_6e35ce372666ba7fdc18.js
+pyplan/frontend/180_c273ba4cc447b9eb42c2.js
+pyplan/frontend/181_0a82ca6116c5834260b0.js
+pyplan/frontend/182_4cd1661437886be9daa2.js
+pyplan/frontend/183_3b91911e778e075d8cbf.js
+pyplan/frontend/184_0626c06bede95786b5ae.js
+pyplan/frontend/185_90fbe93b589f213e6b50.js
+pyplan/frontend/186_e3ac82d41eb886c23c7f.js
+pyplan/frontend/187_0037d9fde888ad05dc19.js
+pyplan/frontend/188_0d3e6f5ff5ac75f8559c.js
+pyplan/frontend/189_750ba43ecf2b43ce1053.js
+pyplan/frontend/18_81a1401e5325d153f1bf.js
+pyplan/frontend/190_c116322ea21043f9dcf2.js
+pyplan/frontend/191_c45bbfb30663b6927519.js
+pyplan/frontend/192_06db257ed04a0f880a46.js
+pyplan/frontend/193_6dbcd5ef215191bbfa30.js
+pyplan/frontend/194_9962c56acf1fe692aa6f.js
+pyplan/frontend/195_efcb0290c2f2fcefae74.js
+pyplan/frontend/196_5379c63b7df7cca5b1c3.js
+pyplan/frontend/197_1230763da96d0130ff40.js
+pyplan/frontend/198_737a87e0408df1ebe70e.js
+pyplan/frontend/199_352d8ea4d4ae10939dfb.js
+pyplan/frontend/19_f6ea6d09fe615c611f9c.js
+pyplan/frontend/1_39ba7fcdfa07b41ed2bd.js
+pyplan/frontend/200_037251b6a16bc1a4f2f8.js
+pyplan/frontend/201_73f919b24b14924052af.js
+pyplan/frontend/202_d75a4acec2c64c1eb601.js
+pyplan/frontend/203_46db5105b4feab77faca.js
+pyplan/frontend/204_256b4a49e2472b4168e5.js
+pyplan/frontend/205_bb335c6c8487d3113365.js
+pyplan/frontend/206_9c7a2796084355de88b5.js
+pyplan/frontend/207_4344db9ffc8cbe53c53e.js
+pyplan/frontend/208_c84bc81fc2844747dd08.js
+pyplan/frontend/209_11487d49f3aa04fae0a1.js
+pyplan/frontend/20_ac9c606a5c05478d96d5.js
+pyplan/frontend/210_954c715923e80c9c035d.js
+pyplan/frontend/211_76bc00b5b5fc901bb21f.js
+pyplan/frontend/212_20b50db47212e5bbfef0.js
+pyplan/frontend/213_7f24d2e4cbcb7cab2a04.js
+pyplan/frontend/214_4b8bae63934f9c1dd386.js
+pyplan/frontend/215_05f15df40de6edd4db94.js
+pyplan/frontend/216_1326795c252d39eb6301.js
+pyplan/frontend/217_63d9346c123b72a2faef.js
+pyplan/frontend/218_a9c80284136120b99d7d.js
+pyplan/frontend/219_5e44ee09b8b627f9a71c.js
+pyplan/frontend/21_d95ecc8e9b0262f01502.js
+pyplan/frontend/220_49175a3d8536689f844a.js
+pyplan/frontend/221_5fb61b07b8d43fc775c3.js
+pyplan/frontend/222_7db7d4ee8c6d2ea87b0e.js
+pyplan/frontend/223_b841eea2253fc1da5e99.js
+pyplan/frontend/224_4b642ff3b8208cae441b.js
+pyplan/frontend/225_8acd5606ccddf1877477.js
+pyplan/frontend/226_bc353437dde306b2a27b.js
+pyplan/frontend/227_c3091ffbcf54c319edeb.js
+pyplan/frontend/228_631f8fc540dd57767594.js
+pyplan/frontend/229_f350f9791fc24b289e2d.js
+pyplan/frontend/22_e0cdfc2d01a1b4541f9f.js
+pyplan/frontend/230_eb581e2b36d8d133b1c2.js
+pyplan/frontend/231_3272edd2ce9de9fb2db6.js
+pyplan/frontend/232_2a9029014fef32b3f9c5.js
+pyplan/frontend/233_f47cc83fc6cb8fa6b325.js
+pyplan/frontend/234_5ce4691efc4d57decf09.js
+pyplan/frontend/235_6f8f97a16f845522ec65.js
+pyplan/frontend/236_c7e7aa3bd1a463ee3884.js
+pyplan/frontend/237_b09d971cc34d280b8356.js
+pyplan/frontend/238_996f30be1d7185997b57.js
+pyplan/frontend/239_f3e1cd001a8f5f521e39.js
+pyplan/frontend/23_d4638b30dbe3491907cc.js
+pyplan/frontend/240_1abaf021505b9be86349.js
+pyplan/frontend/241_4c46e9e1536222ae981a.js
+pyplan/frontend/242_4427dbdb9da790594faf.js
+pyplan/frontend/243_abbb8f882d1130307eb9.js
+pyplan/frontend/244_b1573b4f2221925e9a6d.js
+pyplan/frontend/245_4f75081dbf3612a35f41.js
+pyplan/frontend/246_f4e5b1f59df2cd3f7d04.js
+pyplan/frontend/247_c2cae0ba757cc0c44039.js
+pyplan/frontend/248_82cd95e3cdd99f7687bd.js
+pyplan/frontend/249_a3ea5c1e3acc667a249c.js
+pyplan/frontend/24_277b7e51843f3e392efe.js
+pyplan/frontend/250_d99882164cbcdd7e698f.js
+pyplan/frontend/251_4b29a624aebed13033d4.js
+pyplan/frontend/252_55c7afca3599bd40d92e.js
+pyplan/frontend/253_ac61fe6ad9d204b205e7.js
+pyplan/frontend/254_1ce3ca70dfed3c628a8a.js
+pyplan/frontend/255_1e382bc07478b182ca25.js
+pyplan/frontend/256_060158a92bdb73399f46.js
+pyplan/frontend/257_ed5566d5eb96f2c97078.js
+pyplan/frontend/258_602e2b57e1695f9ee550.js
+pyplan/frontend/259_2b1a644114f560062aa2.js
+pyplan/frontend/25_e28f5524fb6c607f36f8.js
+pyplan/frontend/260_89fe87130e4e89beb27f.js
+pyplan/frontend/261_059290d8d9d5c16f6628.js
+pyplan/frontend/262_992d6c60eff723a02a73.js
+pyplan/frontend/263_bffebf6ccaf638372ec0.js
+pyplan/frontend/264_c4a0adee213a5b70e4e8.js
+pyplan/frontend/265_4b1500073dbf631d270d.js
+pyplan/frontend/266_26703e56dcc0e42b1d50.js
+pyplan/frontend/267_062a15bf436a28d15eca.js
+pyplan/frontend/268_0f1922cc93c85f418f25.js
+pyplan/frontend/269_b85da87da2cbcbb5125a.js
+pyplan/frontend/26_ee0fb4d69cc22c53401c.js
+pyplan/frontend/270_fa747b07b03e77d54a0e.js
+pyplan/frontend/271_79f9bf2982c346712d58.js
+pyplan/frontend/272_22466afe9638463968dd.js
+pyplan/frontend/273_0934088749ca44a22096.js
+pyplan/frontend/274_0e5c38dda22253d6e9a4.js
+pyplan/frontend/275_eebb95024b9b7c1c5357.js
+pyplan/frontend/276_fb9130a891aec4ec1655.js
+pyplan/frontend/277_0f77e5c9386cd41481a0.js
+pyplan/frontend/278_ed6eb2c5937bfece540e.js
+pyplan/frontend/279_05829e69ca351cf27f25.js
+pyplan/frontend/27_000f16d22f40a37c70ee.js
+pyplan/frontend/280_6e89804d2f5d6afe9170.js
+pyplan/frontend/281_17b5a72f03e2014daa22.js
+pyplan/frontend/282_f03cada8b58939a2b300.js
+pyplan/frontend/283_21c0f0965632b7af6cdf.js
+pyplan/frontend/284_c50cec69c9223e0b8692.js
+pyplan/frontend/285_b6323d3ff3d2808685ec.js
+pyplan/frontend/286_e77afee7aea171af7afd.js
+pyplan/frontend/287_96e21dec1c68562293bf.js
+pyplan/frontend/288_ffd805681a12c5fd64d1.js
+pyplan/frontend/289_77788c2105c094a24250.js
+pyplan/frontend/28_1fb636c6b97d24f0aded.js
+pyplan/frontend/290_b00656f12eeb292925a9.js
+pyplan/frontend/291_a781a4bf1850f5d3f78e.js
+pyplan/frontend/292_035a086c7980997934b7.js
+pyplan/frontend/293_f6760266373d2a4868bf.js
+pyplan/frontend/294_1517cd4cbf2e85c41b38.js
+pyplan/frontend/295_d1eab42aebe142767f94.js
+pyplan/frontend/296_f6d957169f10c6bf4cfd.js
+pyplan/frontend/297_d971186f3b8e11a48d16.js
+pyplan/frontend/298_c0c71a42a013a9ef5a84.js
+pyplan/frontend/299_918dbb3c13a4625e6f58.js
+pyplan/frontend/29_d8a1ba793e8f803cbbf3.js
+pyplan/frontend/2_717bbd83cb7fee29dcf8.js
+pyplan/frontend/300_f2565f72463922d1a52d.js
+pyplan/frontend/301_76c2630107596904158b.js
+pyplan/frontend/302_6d86fa10078282ebf455.js
+pyplan/frontend/303_a5669e10a3848da105a1.js
+pyplan/frontend/304_1b493171d00c72761937.js
+pyplan/frontend/305_de4ec01014496eec1f69.js
+pyplan/frontend/306_00c27cf7e33110c3af51.js
+pyplan/frontend/307_0b794b0a4a52de401ecf.js
+pyplan/frontend/308_4758558a2383740db43c.js
+pyplan/frontend/309_99353726bc88c5a4f978.js
+pyplan/frontend/30_c17b009bc637535c3a3f.js
+pyplan/frontend/310_fe88459901b2cbeb202b.js
+pyplan/frontend/311_3cc24efb2648d1f377dc.js
+pyplan/frontend/312_3e5b1d2a10e7713bb9c9.js
+pyplan/frontend/313_cf121f837fc94d6eb1f7.js
+pyplan/frontend/314_8aef87eb511aa5f15cfb.js
+pyplan/frontend/315_7751e8dad859114967ab.js
+pyplan/frontend/316_92ee15cedb2820b5f35a.js
+pyplan/frontend/317_86c829c844f071ed1d44.js
+pyplan/frontend/318_f24ffae4a565ef42316e.js
+pyplan/frontend/31_91107abc6de5274facdd.js
+pyplan/frontend/32_32d0f3acabceaaeae69b.js
+pyplan/frontend/33_63c8b9a09414dc014d35.js
+pyplan/frontend/34_0f62be40de7f554d40f4.js
+pyplan/frontend/35_e3f1c4526c1ddab6a98c.js
+pyplan/frontend/36_82da5fde957ae31d79a2.js
+pyplan/frontend/37_9275fd7f520ecd2c05df.js
+pyplan/frontend/38_a24ced9cbdf2870c37ee.js
+pyplan/frontend/39_55499f83c1bf7ea0bad7.js
+pyplan/frontend/3_0c4860019bed8c3ba391.js
+pyplan/frontend/40_b378b107cb5262cc6be8.js
+pyplan/frontend/41_3e4005fc399034af2aa4.js
+pyplan/frontend/42_02ceb26ea7a6f9421cda.js
+pyplan/frontend/43_7f938d46ab70bbaf300c.js
+pyplan/frontend/44_ecf228d8858929a1edbf.js
+pyplan/frontend/45_fed5419e94b18071da75.js
+pyplan/frontend/46_3a9358e37c58ef0ebb85.js
+pyplan/frontend/47_2799b04f6f2b6a94a8e1.js
+pyplan/frontend/48_211f33b3d6625d67f4b0.js
+pyplan/frontend/49_edc73beb27436f9d2855.js
+pyplan/frontend/4_7041b553bc40b2abd3f5.js
+pyplan/frontend/50_e1fc39778c312fae5db7.js
+pyplan/frontend/51_62925fefe9573e3ab7ae.js
+pyplan/frontend/52_a8d00767115f0a52cf22.js
+pyplan/frontend/53_13da669017428b028909.js
+pyplan/frontend/54_f395269f7a10a6e26386.js
+pyplan/frontend/55_d2d181939833de564a5d.js
+pyplan/frontend/56_5780f0b87893f9769c80.js
+pyplan/frontend/57_5908c0350a01b5810f8c.js
+pyplan/frontend/58_8bf4820589e0f747d0db.js
+pyplan/frontend/59_e4738ed77b23176bcfce.js
+pyplan/frontend/5_520dd9ec3718cab7ee61.js
+pyplan/frontend/60_d0b386fa10d32b669302.js
+pyplan/frontend/61_54cfac8fa596cc99105a.js
+pyplan/frontend/62_cb9fd540e4e58e4981a1.js
+pyplan/frontend/63_f31fe23ce855a9f181b8.js
+pyplan/frontend/64_079e7bd4fb99830ba4a6.js
+pyplan/frontend/65_7a6ba05d658f374ed475.js
+pyplan/frontend/66_eec0dfadb3320034266e.js
+pyplan/frontend/67_b663cf7664e90983c9db.js
+pyplan/frontend/68_fb04197d2e3bb52d4b54.js
+pyplan/frontend/69_928ad1c357f572c43873.js
+pyplan/frontend/6_e683b694bd386930566b.js
+pyplan/frontend/70_8d85a65e755dcb8a7227.js
+pyplan/frontend/71_5092fb76afeaaf36b8c9.js
+pyplan/frontend/72_b4b4b647d297d8f3ef67.js
+pyplan/frontend/73_a01c3c89470320f55a37.js
+pyplan/frontend/74_e0aa9c8fdadfd5fa9599.js
+pyplan/frontend/75_7aa12b282bf949fd351a.js
+pyplan/frontend/76_f2aef11bb5c288241938.js
+pyplan/frontend/77_1bb88e78b70056a8e0f7.js
+pyplan/frontend/78_6508329d545edd9a7d5f.js
+pyplan/frontend/79_66366820b4f83ec44349.js
+pyplan/frontend/7_48c61d11786e0c414ced.js
+pyplan/frontend/80_47f742cefd55e16daea9.js
+pyplan/frontend/81_a3a86b16d3f43dad45f4.js
+pyplan/frontend/82_321b80b96f153d67949e.js
+pyplan/frontend/83_160237e4397254bfbae2.js
+pyplan/frontend/84_f07c9521150480ca8868.js
+pyplan/frontend/85_a44133ec71ad244621e3.js
+pyplan/frontend/86_34a5dfe0b770dd6e54d5.js
+pyplan/frontend/87_2aed4b669106d44f637f.js
+pyplan/frontend/88_3ba50d3a7cdfd8599632.js
+pyplan/frontend/89_2602f5430d2caf8e2b24.js
+pyplan/frontend/8_c878db76adacc86cb25e.js
+pyplan/frontend/90_5ebd175bbf6d234dbd20.js
+pyplan/frontend/91_fc7d82ec0a8460ccdb3f.js
+pyplan/frontend/92_de372089ba347b94523e.js
+pyplan/frontend/94_8eef3cf2490d4c1f5503.js
+pyplan/frontend/95_019e3d3cbc62e85601b7.js
+pyplan/frontend/96_0016ee7323b680c76297.js
+pyplan/frontend/97_2655a43fe3aa4c45a9a9.js
+pyplan/frontend/98_0671cf67be18ea77a32c.js
+pyplan/frontend/99_43cc20392651a032e23a.js
+pyplan/frontend/9_5f6641d09f85c6f06e22.js
+pyplan/frontend/appSettings.json.example
+pyplan/frontend/bundle_52f166339832a459c989.js
+pyplan/frontend/favicon.ico
+pyplan/frontend/index.html
+pyplan/frontend/ace/ace.js
+pyplan/frontend/ace/ext-language_tools.js
+pyplan/frontend/ace/ext-searchbox.js
+pyplan/frontend/ace/index.html
+pyplan/frontend/ace/mode-ade.js
+pyplan/frontend/ace/mode-json.js
+pyplan/frontend/ace/mode-python.js
+pyplan/frontend/ace/mode-sqlserver.js
+pyplan/frontend/ace/theme-cubeplan.js
+pyplan/frontend/ace/theme-sqlserver.js
+pyplan/frontend/ace/worker-json.js
+pyplan/frontend/ace/snippets/ade.js
+pyplan/frontend/ace/snippets/json.js
+pyplan/frontend/ace/snippets/python.js
+pyplan/frontend/ace/snippets/text.js
+pyplan/frontend/customer/.gitkeep
+pyplan/frontend/customer/css/comgas.css
+pyplan/frontend/customer/css/copel.css
+pyplan/frontend/customer/css/sbmo.css
+pyplan/frontend/customer/img/logo-comgas-mini.png
+pyplan/frontend/customer/img/logo-comgas.png
+pyplan/frontend/customer/img/logo-fenosa-mini.png
+pyplan/frontend/customer/img/logo-fenosa.png
+pyplan/frontend/customer/img/powered-by.png
+pyplan/frontend/img/32941d6330044744c02493835b799e90-glyphicons-halflings-regular.svg
+pyplan/frontend/img/3e389501649bb8641db4b9fd439babe5-titilliumweb-regular-webfont.svg
+pyplan/frontend/img/5053fdae6d1cb534d1e604847fd0dd58-titilliumweb-bold-webfont.svg
+pyplan/frontend/img/521441155bff858d9a3d5e808aad3d90-titilliumweb-extralight-webfont.svg
+pyplan/frontend/img/5d0b838235164c5ed4e5452d9f9173f5-new_model.jpg
+pyplan/frontend/img/5eef26d6096e6688a0f7b9e0ee960e1b-fa-solid-900.svg
+pyplan/frontend/img/78fe5012ba83d554949a7371362186dd-polaris@2x.png
+pyplan/frontend/img/82bbe714f0b8c21ee85f89a9814b1986-glyphicons-regular.svg
+pyplan/frontend/img/8ca375165a44ded899a24fa3264636fe-fa-light-300.svg
+pyplan/frontend/img/a1636ded8465b995f65eaf7ae76380e9-fa-duotone-900.svg
+pyplan/frontend/img/a1bf45ccffd61957e6f649c1998d611e-30px.png
+pyplan/frontend/img/abbb5d72614615ac35f33bfab14b6444-powered-by-small.png
+pyplan/frontend/img/d74dfd84ad08f922bf8ca61dd02469ac-fa-regular-400.svg
+pyplan/frontend/img/ec74d90aad40a888bc00645a9d4439ba-upload_bg.png
+pyplan/frontend/img/f74b8457fd9c2d3575629cf1584704aa-fa-brands-400.svg
+pyplan/frontend/img/f775f9cca88e21d45bebe185b27c0e5b-fontawesome-webfont.svg
+pyplan/frontend/leaflet/layers-2x.png
+pyplan/frontend/leaflet/layers.png
+pyplan/frontend/leaflet/marker-icon-2x.png
+pyplan/frontend/leaflet/marker-icon.png
+pyplan/frontend/leaflet/marker-shadow.png
+pyplan/frontend/toolbars/img/nodeTypes/SysVar_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/button_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/button_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/chance_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/chance_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/constant_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/constant_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/constraint_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/constraint_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/decision_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/decision_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/function_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/function_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/index_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/index_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/inputtable_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/module_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/module_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/objective_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/objective_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/text_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/text_icon.png
+pyplan/frontend/toolbars/img/nodeTypes/variable_drag.png
+pyplan/frontend/toolbars/img/nodeTypes/variable_icon.png
+pyplan/pyplan/__init__.py
+pyplan/pyplan/admin.py
+pyplan/pyplan/config.py
+pyplan/pyplan/models.py
+pyplan/pyplan/urls.py
+pyplan/pyplan/activity/__init__.py
+pyplan/pyplan/activity/admin.py
+pyplan/pyplan/activity/models.py
+pyplan/pyplan/activity/permissions.py
+pyplan/pyplan/activity/serializers.py
+pyplan/pyplan/activity/service.py
+pyplan/pyplan/activity/tests.py
+pyplan/pyplan/activity/views.py
+pyplan/pyplan/app_pool/__init__.py
+pyplan/pyplan/app_pool/models.py
+pyplan/pyplan/auth/__init__.py
+pyplan/pyplan/auth/custom_authentication.py
+pyplan/pyplan/auth/views.py
+pyplan/pyplan/auth/serializers/__init__.py
+pyplan/pyplan/auth/serializers/passwordResetSerializer.py
+pyplan/pyplan/auth/serializers/sendPasswordResetEmailSerializer.py
+pyplan/pyplan/common/__init__.py
+pyplan/pyplan/common/baseService.py
+pyplan/pyplan/common/calcEngine.py
+pyplan/pyplan/common/engineManager.py
+pyplan/pyplan/common/logger.py
+pyplan/pyplan/common/redisService.py
+pyplan/pyplan/common/utils.py
+pyplan/pyplan/common/classes/__init__.py
+pyplan/pyplan/common/classes/eNodeProperty.py
+pyplan/pyplan/common/classes/emailListField.py
+pyplan/pyplan/common/classes/filterChoices.py
+pyplan/pyplan/common/email/__init__.py
+pyplan/pyplan/common/email/admin.py
+pyplan/pyplan/common/email/models.py
+pyplan/pyplan/common/email/service.py
+pyplan/pyplan/common/email/classes/__init__.py
+pyplan/pyplan/common/email/classes/eEmailType.py
+pyplan/pyplan/common/email/classes/email.py
+pyplan/pyplan/common/engineTypes/__init__.py
+pyplan/pyplan/common/engineTypes/desktopType.py
+pyplan/pyplan/common/engineTypes/engineType.py
+pyplan/pyplan/common/engineTypes/serializers.py
+pyplan/pyplan/common/middlewares/__init__.py
+pyplan/pyplan/common/middlewares/exceptionMiddleware.py
+pyplan/pyplan/common/middlewares/sessionMiddleware.py
+pyplan/pyplan/common/serializers/ObjectField.py
+pyplan/pyplan/common/serializers/RecursiveField.py
+pyplan/pyplan/common/serializers/__init__.py
+pyplan/pyplan/companies/__init__.py
+pyplan/pyplan/companies/admin.py
+pyplan/pyplan/companies/models.py
+pyplan/pyplan/companies/pagination.py
+pyplan/pyplan/companies/permissions.py
+pyplan/pyplan/companies/serializers.py
+pyplan/pyplan/companies/service.py
+pyplan/pyplan/companies/views.py
+pyplan/pyplan/company_preference/__init__.py
+pyplan/pyplan/company_preference/admin.py
+pyplan/pyplan/company_preference/models.py
+pyplan/pyplan/company_preference/permissions.py
+pyplan/pyplan/company_preference/serializers.py
+pyplan/pyplan/company_preference/service.py
+pyplan/pyplan/company_preference/views.py
+pyplan/pyplan/dashboard/__init__.py
+pyplan/pyplan/dashboard/admin.py
+pyplan/pyplan/dashboard/models.py
+pyplan/pyplan/dashboard/service.py
+pyplan/pyplan/dashboard/tests.py
+pyplan/pyplan/dashboard/views.py
+pyplan/pyplan/dashboard/classes/__init__.py
+pyplan/pyplan/dashboard/classes/nodeDimension.py
+pyplan/pyplan/dashboard/classes/nodeDimensionValue.py
+pyplan/pyplan/dashboard/classes/nodeEvalProperties.py
+pyplan/pyplan/dashboard/classes/nodeFullData.py
+pyplan/pyplan/dashboard/classes/nodeProperties.py
+pyplan/pyplan/dashboard/classes/nodeQueryResult.py
+pyplan/pyplan/dashboard/classes/nodeResult.py
+pyplan/pyplan/dashboard/classes/pivot.py
+pyplan/pyplan/dashboard/serializers/__init__.py
+pyplan/pyplan/dashboard/serializers/nodeDimension.py
+pyplan/pyplan/dashboard/serializers/nodeDimensionValue.py
+pyplan/pyplan/dashboard/serializers/nodeFullData.py
+pyplan/pyplan/dashboard/serializers/nodeProperties.py
+pyplan/pyplan/dashboard/serializers/nodeQueryResult.py
+pyplan/pyplan/dashboard/serializers/nodeResult.py
+pyplan/pyplan/dashboard/serializers/pivot.py
+pyplan/pyplan/dashboard/serializers/serializers.py
+pyplan/pyplan/dashboard_comment/__init__.py
+pyplan/pyplan/dashboard_comment/admin.py
+pyplan/pyplan/dashboard_comment/models.py
+pyplan/pyplan/dashboard_comment/permissions.py
+pyplan/pyplan/dashboard_comment/serializers.py
+pyplan/pyplan/dashboard_comment/service.py
+pyplan/pyplan/dashboard_comment/tests.py
+pyplan/pyplan/dashboard_comment/views.py
+pyplan/pyplan/dashboardstyle/__init__.py
+pyplan/pyplan/dashboardstyle/admin.py
+pyplan/pyplan/dashboardstyle/models.py
+pyplan/pyplan/dashboardstyle/permissions.py
+pyplan/pyplan/dashboardstyle/serializers.py
+pyplan/pyplan/dashboardstyle/service.py
+pyplan/pyplan/dashboardstyle/tests.py
+pyplan/pyplan/dashboardstyle/views.py
+pyplan/pyplan/department/__init__.py
+pyplan/pyplan/department/admin.py
+pyplan/pyplan/department/models.py
+pyplan/pyplan/department/permissions.py
+pyplan/pyplan/department/serializers.py
+pyplan/pyplan/department/service.py
+pyplan/pyplan/department/views.py
+pyplan/pyplan/diagram_shortcut/__init__.py
+pyplan/pyplan/diagram_shortcut/admin.py
+pyplan/pyplan/diagram_shortcut/models.py
+pyplan/pyplan/diagram_shortcut/permissions.py
+pyplan/pyplan/diagram_shortcut/serializers.py
+pyplan/pyplan/diagram_shortcut/service.py
+pyplan/pyplan/diagram_shortcut/views.py
+pyplan/pyplan/external_link/__init__.py
+pyplan/pyplan/external_link/admin.py
+pyplan/pyplan/external_link/models.py
+pyplan/pyplan/external_link/permissions.py
+pyplan/pyplan/external_link/serializers.py
+pyplan/pyplan/external_link/views.py
+pyplan/pyplan/external_link/dashboard/__init__.py
+pyplan/pyplan/external_link/dashboard/admin.py
+pyplan/pyplan/external_link/dashboard/models.py
+pyplan/pyplan/external_link/dashboard/permissions.py
+pyplan/pyplan/external_link/dashboard/serializers.py
+pyplan/pyplan/external_link/dashboard/service.py
+pyplan/pyplan/external_link/dashboard/views.py
+pyplan/pyplan/external_link/node/__init__.py
+pyplan/pyplan/external_link/node/admin.py
+pyplan/pyplan/external_link/node/models.py
+pyplan/pyplan/external_link/node/permissions.py
+pyplan/pyplan/external_link/node/serializers.py
+pyplan/pyplan/external_link/node/service.py
+pyplan/pyplan/external_link/node/views.py
+pyplan/pyplan/external_link/report/__init__.py
+pyplan/pyplan/external_link/report/admin.py
+pyplan/pyplan/external_link/report/models.py
+pyplan/pyplan/external_link/report/permissions.py
+pyplan/pyplan/external_link/report/serializers.py
+pyplan/pyplan/external_link/report/service.py
+pyplan/pyplan/external_link/report/views.py
+pyplan/pyplan/filemanager/__init__.py
+pyplan/pyplan/filemanager/admin.py
+pyplan/pyplan/filemanager/serializers.py
+pyplan/pyplan/filemanager/service.py
+pyplan/pyplan/filemanager/tests.py
+pyplan/pyplan/filemanager/views.py
+pyplan/pyplan/filemanager/classes/__init__.py
+pyplan/pyplan/filemanager/classes/fileEntry.py
+pyplan/pyplan/filemanager/classes/fileEntryData.py
+pyplan/pyplan/frontend/__init__.py
+pyplan/pyplan/frontend/views.py
+pyplan/pyplan/geo/__init__.py
+pyplan/pyplan/geo/service.py
+pyplan/pyplan/geo/views.py
+pyplan/pyplan/geo/classes/__init__.py
+pyplan/pyplan/geo/classes/geoquery.py
+pyplan/pyplan/geo/serializers/__init__.py
+pyplan/pyplan/geo/serializers/geodata.py
+pyplan/pyplan/geo/serializers/geoquery.py
+pyplan/pyplan/healthcheck/__init__.py
+pyplan/pyplan/healthcheck/views.py
+pyplan/pyplan/inputtemplate/__init__.py
+pyplan/pyplan/inputtemplate/admin.py
+pyplan/pyplan/inputtemplate/models.py
+pyplan/pyplan/inputtemplate/service.py
+pyplan/pyplan/inputtemplate/views.py
+pyplan/pyplan/inputtemplate/serializers/__init__.py
+pyplan/pyplan/inputtemplate/serializers/inputTemplateSerializer.py
+pyplan/pyplan/inputtemplate/serializers/inputTemplateSetDataSerializer.py
+pyplan/pyplan/migrations/0001_initial.py
+pyplan/pyplan/migrations/0002_auto_20181207_1511.py
+pyplan/pyplan/migrations/0005_inputtemplate.py
+pyplan/pyplan/migrations/0012_new_email_preferences_20190824.py
+pyplan/pyplan/migrations/0013_guestuser_permissions_20190919_1715.py
+pyplan/pyplan/migrations/0014_demo_dashboards.py
+pyplan/pyplan/migrations/0015_dashboard_and_report_uuid_20191210_1853.py
+pyplan/pyplan/migrations/0016_demo_dashboards.py
+pyplan/pyplan/migrations/0017_user_my_uuid_my_username_20200205_1454.py
+pyplan/pyplan/migrations/0018_fix_duplicated_uuids_20200327.py
+pyplan/pyplan/migrations/__init__.py
+pyplan/pyplan/modelmanager/__init__.py
+pyplan/pyplan/modelmanager/service.py
+pyplan/pyplan/modelmanager/views.py
+pyplan/pyplan/modelmanager/classes/__init__.py
+pyplan/pyplan/modelmanager/classes/copyAsValuesParam.py
+pyplan/pyplan/modelmanager/classes/eFormNodeType.py
+pyplan/pyplan/modelmanager/classes/eImportType.py
+pyplan/pyplan/modelmanager/classes/exportModuleToFile.py
+pyplan/pyplan/modelmanager/classes/exportNode.py
+pyplan/pyplan/modelmanager/classes/importModuleData.py
+pyplan/pyplan/modelmanager/classes/importModuleMap.py
+pyplan/pyplan/modelmanager/classes/modelInfo.py
+pyplan/pyplan/modelmanager/classes/modelPreference.py
+pyplan/pyplan/modelmanager/classes/node.py
+pyplan/pyplan/modelmanager/classes/nodeInfo.py
+pyplan/pyplan/modelmanager/classes/wizardParams.py
+pyplan/pyplan/modelmanager/classes/wizardRequest.py
+pyplan/pyplan/modelmanager/serializers/ArrowSerializer.py
+pyplan/pyplan/modelmanager/serializers/CopyAsValuesParamSerializer.py
+pyplan/pyplan/modelmanager/serializers/ExportModuleToFileSerializer.py
+pyplan/pyplan/modelmanager/serializers/ExportNodeSerializer.py
+pyplan/pyplan/modelmanager/serializers/ImportModuleDataSerializer.py
+pyplan/pyplan/modelmanager/serializers/ImportModuleMapItemSerializer.py
+pyplan/pyplan/modelmanager/serializers/ModelInfoSerializer.py
+pyplan/pyplan/modelmanager/serializers/ModelPreferenceSerializer.py
+pyplan/pyplan/modelmanager/serializers/NavigateDiagramSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeBreadCrumSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeDiagramSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeIdSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeIdentifierSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeInfoSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodePropertiesSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodePropertySerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeSearchResultSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodeSizeSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodesSerializer.py
+pyplan/pyplan/modelmanager/serializers/NodesSizeAndPositionSerializer.py
+pyplan/pyplan/modelmanager/serializers/UploadFilesSerializer.py
+pyplan/pyplan/modelmanager/serializers/WizardRequestSerialzier.py
+pyplan/pyplan/modelmanager/serializers/__init__.py
+pyplan/pyplan/notification/__init__.py
+pyplan/pyplan/notification/service.py
+pyplan/pyplan/notification/views.py
+pyplan/pyplan/permissions/__init__.py
+pyplan/pyplan/permissions/permissions.py
+pyplan/pyplan/permissions/serializers.py
+pyplan/pyplan/permissions/views.py
+pyplan/pyplan/preference/__init__.py
+pyplan/pyplan/preference/admin.py
+pyplan/pyplan/preference/models.py
+pyplan/pyplan/preference/permissions.py
+pyplan/pyplan/preference/serializers.py
+pyplan/pyplan/preference/views.py
+pyplan/pyplan/preference_module/__init__.py
+pyplan/pyplan/preference_module/admin.py
+pyplan/pyplan/preference_module/models.py
+pyplan/pyplan/preference_module/permissions.py
+pyplan/pyplan/preference_module/serializers.py
+pyplan/pyplan/preference_module/views.py
+pyplan/pyplan/report/__init__.py
+pyplan/pyplan/report/admin.py
+pyplan/pyplan/report/models.py
+pyplan/pyplan/report/serializers.py
+pyplan/pyplan/report/service.py
+pyplan/pyplan/report/tests.py
+pyplan/pyplan/report/views.py
+pyplan/pyplan/security/__init__.py
+pyplan/pyplan/security/functions.py
+pyplan/pyplan/security/serializers.py
+pyplan/pyplan/security/service.py
+pyplan/pyplan/security/views.py
+pyplan/pyplan/security/classes/__init__.py
+pyplan/pyplan/security/classes/activeSession.py
+pyplan/pyplan/security/classes/clientSession.py
+pyplan/pyplan/security/classes/systemResources.py
+pyplan/pyplan/user_company_preference/__init__.py
+pyplan/pyplan/user_company_preference/admin.py
+pyplan/pyplan/user_company_preference/models.py
+pyplan/pyplan/user_company_preference/permissions.py
+pyplan/pyplan/user_company_preference/serializers.py
+pyplan/pyplan/user_company_preference/service.py
+pyplan/pyplan/user_company_preference/views.py
+pyplan/pyplan/usercompanies/__init__.py
+pyplan/pyplan/usercompanies/admin.py
+pyplan/pyplan/usercompanies/models.py
+pyplan/pyplan/usercompanies/pagination.py
+pyplan/pyplan/usercompanies/permissions.py
+pyplan/pyplan/usercompanies/serializers.py
+pyplan/pyplan/usercompanies/service.py
+pyplan/pyplan/usercompanies/views.py
+pyplan/pyplan/users/__init__.py
+pyplan/pyplan/users/admin.py
+pyplan/pyplan/users/models.py
+pyplan/pyplan/users/pagination.py
+pyplan/pyplan/users/permissions.py
+pyplan/pyplan/users/serializers.py
+pyplan/pyplan/users/service.py
+pyplan/pyplan/users/views.py
+pyplan/pyplan/users/test/__init__.py
+pyplan/pyplan/users/test/factories.py
+pyplan/pyplan/users/test/test_serializers.py
+pyplan/pyplan/users/test/test_views.py
+pyplan/pyplan/ws/__init__.py
+pyplan/pyplan/ws/consumers.py
+pyplan/pyplan/ws/exceptions.py
+pyplan/pyplan/ws/routing.py
+pyplan/pyplan/ws/service.py
+pyplan/pyplan/ws/settings.py
+pyplan/pyplan/ws/token_auth.py
+pyplan_engine/__init__.py
+pyplan_engine/classes/CalcEngine.py
+pyplan_engine/classes/PyplanFunctions.py
+pyplan_engine/classes/__init__.py
+pyplan_engine/ws/__init__.py
+pyplan_engine/ws/ws.py
+pyplan_engine/ws/ws_settings.py
+pyplan_ide.egg-info/PKG-INFO
+pyplan_ide.egg-info/SOURCES.txt
+pyplan_ide.egg-info/dependency_links.txt
+pyplan_ide.egg-info/entry_points.txt
+pyplan_ide.egg-info/requires.txt
+pyplan_ide.egg-info/top_level.txt
+requirements/desktop.txt
