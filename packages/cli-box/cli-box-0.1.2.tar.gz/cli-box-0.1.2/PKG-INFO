@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: cli-box
+Version: 0.1.2
+Summary: Add a box around your text for prettier CLIs
+Home-page: https://github.com/ewen-lbh/python-cli-box
+License: MIT
+Author: Ewen Le Bihan
+Author-email: ewen.lebihan7@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: wcwidth (>=0.2.4,<0.3.0)
+Project-URL: Repository, https://github.com/ewen-lbh/python-cli-box
+Description-Content-Type: text/markdown
+
+# box
+
+> Add a box around your text for prettier CLIs
+
+## Installation
+
+```sh-session
+pip install cli-box
+```
+
+## Usage
+
+```python
+>>> import cli_box
+>>> print(cli_box.rounded("""Lorem ipsum
+... dolor sit amet.
+... """))
+╭─────────────────╮
+│   Lorem ipsum   │
+│ dolor sit amet. │
+╰─────────────────╯
+```
+
