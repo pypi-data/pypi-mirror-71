@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pywr"
+version = "1.5.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cython = "^0.29.15"
+numpy = "^1.18.1"
+packaging = "^20.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.5"
+pytest-cov = "^2.8.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
