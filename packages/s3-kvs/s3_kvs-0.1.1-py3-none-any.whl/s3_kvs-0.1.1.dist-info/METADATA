@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: s3-kvs
+Version: 0.1.1
+Summary: Python wrapper for an AWS S3 backed key-value store.
+Home-page: https://github.com/octavenz/s3-kvs
+License: MIT
+Author: Richard Campen
+Author-email: richard@campen.co
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: requests (>=2.23.0,<3.0.0)
+Description-Content-Type: text/x-rst
+
+s3-kvs
+======
+
+A python wrapper for an S3 backed key-value store.
+
+Usage
+=====
+
+Import and create a client instance, setting a domain and optionally a namespace:
+
+
+    from s3_kvs import ReadOnlyClient
+
+    client = ReadOnlyClient(domain='kvs.example.com')
+
+    OR
+
+    client = ReadOnlyClient(domain='kvs.example.com', namespace='test')
+
+
+Then use then use the getitem notation to retrieve values from the key store:
+
+    client['foo']
+
+    > 'bar'
+
+Or, use the get method to provide a default if no matching value is found:
+
+    client.get('foo', 'oops')
+
+    > 'oops'
+
