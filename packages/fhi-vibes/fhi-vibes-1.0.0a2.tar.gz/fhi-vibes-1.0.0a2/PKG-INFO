@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: fhi-vibes
+Version: 1.0.0a2
+Summary: Fritz Haber Institute Vibrational Simulations
+Home-page: https://gitlab.com/flokno/hilde
+License: MIT
+Keywords: physics
+Author: Florian Knoop
+Author-email: knoop@fhi-berlin.mpg.de
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: fireworks
+Provides-Extra: hiphive
+Provides-Extra: phono3py
+Provides-Extra: postgresql
+Requires-Dist: ase (>=3.19.0,<4.0.0)
+Requires-Dist: attrs (>=19.1,<20.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: click_aliases (>=1.0,<2.0)
+Requires-Dist: click_completion (>=0.5.2,<0.6.0)
+Requires-Dist: fabric (>=2.4,<3.0); extra == "fireworks"
+Requires-Dist: fireworks (>=1.9,<2.0); extra == "fireworks"
+Requires-Dist: hiphive (>=0.5.0,<0.6.0); extra == "hiphive"
+Requires-Dist: jconfigparser (>=0.1.2,<0.2.0)
+Requires-Dist: jinja2 (>=2.10,<3.0)
+Requires-Dist: matplotlib (>=3.1,<4.0)
+Requires-Dist: netCDF4 (>=1.5,<2.0)
+Requires-Dist: numpy (>=1.11,<2.0)
+Requires-Dist: pandas (>=1.0,<2.0)
+Requires-Dist: paramiko (>=2.4,<3.0); extra == "fireworks"
+Requires-Dist: phono3py (>=1.19,<2.0); extra == "phono3py"
+Requires-Dist: phonopy (>=2.6,<2.7.0)
+Requires-Dist: psycopg2 (>=2.8.0,<3.0.0); extra == "postgresql"
+Requires-Dist: pymongo (>=3.8,<4.0); extra == "fireworks"
+Requires-Dist: python-gssapi (>=0.6.4,<0.7.0); extra == "fireworks"
+Requires-Dist: scipy (>=1.1.1,<2.0.0)
+Requires-Dist: seekpath (>=1.8.4,<2.0.0)
+Requires-Dist: son (>=0.3.2,<0.4.0)
+Requires-Dist: spglib (>=1.12,<2.0)
+Requires-Dist: tables (>=3.5,<4.0)
+Requires-Dist: xarray (>=0.12,<0.13)
+Project-URL: Repository, https://gitlab.com/flokno/hilde
+Description-Content-Type: text/markdown
+
+FHI-vibes
+===
+
+Welcome to `FHI-vibes`, a `python` package for _ab initio_ modeling of vibrational properties in anharmonic solids.
+
+## Overview
+
+- [Tutorial](Tutorial/0_intro/)
+- [Documentation](Documentation/0_intro/)
+- If you are interested in scientific work that was performed using `FHI-vibes`, please have a look at [References](References.md)
+
+`FHI-vibes` is preparing a submission to [JOSS](https://joss.theoj.org/).
+
+## Installation
+
+### Prerequisites
+
+- A working `python3.7+` or `python3.6` (see remarks below) environment, e.g., provided by [anaconda](https://docs.conda.io/en/latest/miniconda.html)
+
+- A working `fortran` compiler, e.g., obtained by
+  
+  - `apt-get install gfortran` in Debian-derived systems, or
+  - `conda install -c conda-forge fortran-compiler` when `conda` is used.
+- If you want to use `FHI-aims` for running _ab initio_ calculations, make sure you have a recent version that supports the iPi socket communication.
+
+
+### Install `vibes`
+
+`FHI-vibes` can be installed simply via pip:
+
+```bash
+pip install fhi-vibes
+```
+
+**(Important: If you run in to version conflicts that you cannot solve, use a virtual environment created with `python -m venv` or `conda create`.)**
+
+### Configuration
+
+Configure `vibes` by creating a `~/.vibesrc` configuration file in the home directory. To this end, first run
+
+```
+vibes template configuration > ~/.vibesrc
+```
+
+and edit according to system. The `aims_command` is a command or script that takes care of running aims. This can be either just `mpirun aims.x`, or a script loading necessary modules etc. and finally calling `srun aims.x` on a cluster.
+
+**You're now good to go!** Just make sure your vibes virtual environment is activated.
+
+### Remarks for `python3.6`
+
+On `python3.6`, please install `importlib_resources` and `dataclasses` via 
+
+```bash
+pip install importlib_resources dataclasses
+```
+
+### Autocompletion
+
+To activate autocompletion of `vibes` subcommands, add this to your `.bashrc`:
+
+```bash
+eval "$(_VIBES_COMPLETE=source vibes)"
+```
+
+and source it.
+
+If you use the `fishshell`, add a file `~/.config/fish/completions/vibes.fish` containing
+
+```bash
+eval (env _VIBES_COMPLETE=source-fish vibes)
+```
+
