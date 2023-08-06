@@ -1,0 +1,100 @@
+Metadata-Version: 2.1
+Name: pyspace-toolkit
+Version: 1.0.1
+Summary: pyspace is a tool set of data science python functions
+Home-page: UNKNOWN
+Author: Sahin Batmaz
+Author-email: sahin.batmaz@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: sklearn
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: Keras (==2.3.1)
+Requires-Dist: matplotlib
+Requires-Dist: sklearn-hierarchical-classification
+Requires-Dist: JPype1
+
+# pyspace
+
+
+
+## requirements
+
+```
+sklearn
+pandas
+tensorflow
+keras
+# pytorch
+# pytorch-pretrained-bert
+# transformers
+```
+
+
+
+## dataset wrapper
+
+- **class import**
+```python
+from pyspace.wrapper.dataset_wrapper import dataset_container
+```
+```python
+# parameters with defaults
+d1 = dataset_container(self, dataset, valid=True, test=True, valid_size=0.2, test_size=0.2, random_state=42)
+
+# output object
+d1.dfX # pandas dataframe of features
+d1.y   # list of labels
+```
+- **parameters**
+
+    - **dataset** : list # **[X, y] or [X]** 
+    - **valid** # **True, False, [X,y] or [X]**
+      - True : valid_size parameter will be used for valid subset from dataset
+      - False : There will be no valid subset
+      - [X,y] or [X] : valid subset will constructed from this input, no data from dataset parameter
+    - **valid_size** : float between 0.0 and 1.0 # valid data ratio from dataset
+    - **test** and **test_size** are similar to valid and valid_size
+    - **random_state** : random state used in train_test_split
+
+- **examples** 
+
+    - ```python
+        from pyspace.wrapper.dataset_wrapper import dataset_container
+
+        # example 1
+        X = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+        y = [0,0,0,0,0,0,0,0,0, 0, 0, 0, 1, 1, 1, 1]
+
+        d1 = dataset_container([X,y], valid_size = 0.3, test=False)
+        ```
+
+    - ```python
+        d1.train.dfX.values[:,0].tolist() # [15, 1, 11, 13, 14, 2, 3, 9, 12, 10, 6]
+        d1.train.y # [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0]
+        ```
+
+    - ```python
+        d1.valid.dfX.values[:,0].tolist() # [4, 5, 16, 8, 7]
+        d1.valid.y # [0, 0, 1, 0, 0]
+        ```
+
+    - ```python
+        d1.test # False
+        ```
+
+## future work
+
+- maxpumperla/hyperas
+- https://www.kaggle.com/baghern/a-deep-dive-into-sklearn-pipelines
+- https://www.kaggle.com/graymant/pytorch-regression-with-sklearn-pipelines
+- https://gist.github.com/MaxHalford/9bfaa8daf8b4bc17a7fb7ba58c880675
+
+
+
