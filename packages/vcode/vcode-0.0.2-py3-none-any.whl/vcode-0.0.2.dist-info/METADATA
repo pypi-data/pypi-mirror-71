@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: vcode
+Version: 0.0.2
+Summary: Verification-Code (Captcha) Recognition.
+Home-page: https://github.com/shinalone/vcode
+Author: UlionTse
+Author-email: shinalone@outlook.com
+License: MIT
+Keywords: vcode,verification code,captcha
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pillow (>=3.3.1)
+Requires-Dist: numpy (>=1.13.3)
+
+## ***The document of [vcode]()*** ##
+
+
+- *Usage:*
+
+```python
+>>>from vcode import vcode
+
+>>>text = vcode.generate()
+
+'Save OK!'
+
+>>>print(text)
+
+'p7YW'
+```
+
+- *Tips:*
+```python
+generate(number=4,bgSize=None,font=None,colorAll=None,pool=None,drawLine=True,foggy=True,
+         saveDirPath=None,showImg=True,returnText=True)
+```
+
+
+
