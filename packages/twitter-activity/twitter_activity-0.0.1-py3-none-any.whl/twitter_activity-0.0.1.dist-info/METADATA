@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: twitter-activity
+Version: 0.0.1
+Summary: This library is to help you work with web-hook, Classify twitter account activities
+Home-page: https://github.com/Samer92/twitter_activity
+Author: sammer sallam
+Author-email: samersallam92@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2020.4.5.2)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: idna (==2.9)
+Requires-Dist: oauthlib (==3.1.0)
+Requires-Dist: PySocks (==1.7.1)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: requests-oauthlib (==1.3.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: tweepy (==3.8.0)
+Requires-Dist: urllib3 (==1.25.9)
+
+# twitter_activity
+
+You can use this library in order to :
+
+  - Register, get, and delete the webhook url 
+  - Make a user subscribe his account for the twitter activity API 
+  - Classify twitter account activities
+
+*In order to install, open the command prompt and type:*
+```
+pip install twitter_activity
+```
+
+It  has two main module:
+
+  - webhook_manager
+  - activity_manager
+
+In order to use this library  you should have a verified twitter application and you have to save your credential  inside a json file as following:
+ ```
+ {
+"consumer_key": " your one", 
+"consumer_secret": "your one", 
+"access_token": "your one", 
+"access_token_secret": "your one",
+"env_name": "your one"
+}
+```
+
+The following [Notebook](https://github.com/Samer92/twitter_activity/blob/master/Example/setup.ipynb) shows multiple example about how to use webhook_manager modules
+
+
+
