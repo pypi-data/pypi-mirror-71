@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: spor-python
+Version: 2.0.2
+Classifier: Programming Language :: Python
+Requires-Dist: pyyaml
+Project-Url: https://github.com/abingham/spor-python
+Summary: Python bindings for spor
+Author: Austin Bingham <austin.bingham@gmail.com>
+Author-Email: Austin Bingham <austin.bingham@gmail.com>
+Maintainer: Austin Bingham
+Maintainer-Email: austin.bingham@gmail.com
+License: MIT
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+
+# spor-python
+
+Python bindings for [spor](https://github.com/abingham/spor).
+
+## Building
+
+You can do basic building with cargo:
+
+```
+cargo build
+```
+
+### Wheels, etc.
+
+Alternatively, you can build with [maturin](https://github.com/PyO3/maturin). This not only does a normal cargo build,
+but it can also things like build wheels.
+
+To use it, you first need to install it with `pip`:
+
+```
+pip install maturin
+```
+
+Then use maturin to build:
+
+```
+maturin build
+```
+
+Note that you may need to specify a particular Python interpreter:
+
+```
+maturin build --i python3.8
+```
+
+### Build issues?
+
+We use [PyO3](https://github.com/PyO3/PyO3) to generate the Python bindings, so read their docs
+if you have any trouble building (particularly on macos).
+
