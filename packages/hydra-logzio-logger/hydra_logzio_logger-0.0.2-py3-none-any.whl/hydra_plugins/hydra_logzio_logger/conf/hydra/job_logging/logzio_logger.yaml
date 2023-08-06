@@ -1,0 +1,29 @@
+hydra:
+  job_logging:
+    version: 1
+    formatters:
+      logzioFormat:
+        format: ${env:logzio_format}
+      simple:
+        format: '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'
+    handlers:
+      logzio:
+        class: logzio.handler.LogzioHandler
+        formatter: logzioFormat
+        token: ${env:logzio_token}
+        logs_drain_timeout: ${env:logzio_drain_timeout}
+        url:  ${env:logzio_url}
+        level: INFO
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+      file:
+        class: logging.FileHandler
+        formatter: simple
+        filename: ${hydra.job.name}.log
+    root:
+      level: INFO
+      handlers: [console, file, logzio]
+
+    disable_existing_loggers: false
