@@ -1,0 +1,25 @@
+# Hard requirements for notebook examples and documentation build
+# NOTE: PyQt5 is needed by pyplot, RTD server *happens* to already have it
+# but creating local environment will fail.
+name: climopy-dev
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - matplotlib
+  - numpy
+  - scipy
+  - pandas
+  - xarray
+  - pandoc
+  - ipykernel
+  - pip
+  - pip:
+    - ..
+    - pint
+    - pyqt5
+    - proplot
+    - nbsphinx
+    - sphinx_rtd_theme
+    - sphinxcontrib-bibtex
+    - git+https://github.com/lukelbd/sphinx-automodapi@v0.8.proplot-mods
