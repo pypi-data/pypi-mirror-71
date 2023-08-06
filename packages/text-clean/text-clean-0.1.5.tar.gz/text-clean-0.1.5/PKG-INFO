@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: text-clean
+Version: 0.1.5
+Summary: Process text for NLP
+Home-page: https://github.com/mikuh/text_clean
+Author: geb
+Author-email: 853934146@qq.com
+License: UNKNOWN
+Description: #text-clean
+        Process text for NLP.
+        
+        
+        ## how to use
+        ```python
+        from text_clean import TextClean
+        
+        
+        tc = TextClean()
+        
+        _str = "繁 體 字是smasd ❶ ❷ ❸ ❹ 艹艹艹艹 艹艹艹艹nm 夶彩呗我 幹什麼 □ ■ ◇ ◆ − ++++++++ ⑪ ⑫ ⑬  ⒍ ⒎ ⒏ ⒐ W,X  asd鬼东 西錯 鍼٩(๑ᵒ̴̶͈᷄ᗨᵒ̴̶͈᷅)و q🕓🕛"
+        
+        print(tc.clean(_str))
+        
+        # output
+        # 繁体字是smasd1234艹艹艹nm大大彩呗我干什么+++1112136789wxasd鬼东西错针q
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
