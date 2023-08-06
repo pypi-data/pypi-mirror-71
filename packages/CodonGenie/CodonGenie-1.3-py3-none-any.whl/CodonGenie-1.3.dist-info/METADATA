@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: CodonGenie
+Version: 1.3
+Summary: CodonGenie
+Home-page: https://github.com/neilswainston/CodonGenie
+Author: Neil Swainston
+Author-email: neil.swainston@liverpool.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# To run with Docker:
+
+1. Clone repository:
+
+git clone https://github.com/synbiochem/CodonGenie.git
+
+2. Navigate to CodonGenie directory:
+
+cd CodonGenie
+
+3. Run start_server script, with optional port (if port is not provided, a randomly assigned empty port will be provided):
+
+bash start_server.sh 80
+
