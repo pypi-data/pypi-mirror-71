@@ -1,0 +1,68 @@
+Metadata-Version: 1.2
+Name: simple-tornado
+Version: 0.2.0
+Summary: 
+simple_tornado
+--------------
+
+Make tornado use more simple
+
+Installation
+------------
+
+.. code-block:: bash
+
+   pip3 install simple_tornado
+
+Usage
+-----
+
+.. code-block:: python
+
+   import sys
+   import tornado.web
+   import simple_tornado
+
+
+   class MainHandler(tornado.web.RequestHandler):
+       def get(self):
+           self.write("Hello Index page")
+
+
+   if __name__ == "__main__":
+       simple_tornado.patch_for_windows()
+       # this patch includes
+       # - python 3.8 set_event_loop_policy
+       # - handle Ctrl-C
+
+       simple_tornado.listen_and_serve(":5000", [
+           (r"/", MainHandler)
+       ])
+
+Use CorsMixin
+
+.. code-block:: python
+
+   class MainHandler(simple_tornado.CorsMixin, tornado.web.RequestHandler):
+       def get(self):
+           self.write("Hello Index page")
+
+LICENSE
+-------
+
+`MIT <LICENSE>`_
+
+Home-page: https://github.com/codeskyblue/simple_tornado
+Author: codeskyblue
+Author-email: codeskyblue@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.6
