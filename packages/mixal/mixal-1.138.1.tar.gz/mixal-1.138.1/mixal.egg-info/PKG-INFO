@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: mixal
+Version: 1.138.1
+Summary: MIX Assembly Language Simulator
+Home-page: https://github.com/CyberZHG/MIXAL
+Author: CyberZHG
+Author-email: CyberZHG@users.noreply.github.com
+License: MIT
+Description: MIXAL
+        =====
+        
+        ## Sample
+        
+        A sample code that finds the maximum value:
+        
+        ```python
+        import random
+        import mixal
+        
+        machine = mixal.Machine()
+        
+        machine.loadCodes([
+            'X       EQU  1000',
+            '        ORIG 3000',
+            'MAXIMUM STJ  EXIT',
+            'INIT    ENT3 0,1',
+            '        JMP  CHANGEM',
+            'LOOP    CMPA X,3',
+            '        JGE  *+3',
+            'CHANGEM ENT2 0,3',
+            '        LDA  X,3',
+            '        DEC3 1',
+            '        J3P  LOOP',
+            'EXIT    JMP  *',
+        ])
+        
+        n, max_val = 100, 0
+        machine.rI1().set(n)
+        machine.rJ.set(3009)
+        for i in range(1000, 1000 + n):
+            val = random.randint(0, 100000)
+            machine.memoryAt(i).set(val)
+            max_val = max(max_val, val)
+        machine.executeUntilSelfLoop()
+        print(machine.rA.value())
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
