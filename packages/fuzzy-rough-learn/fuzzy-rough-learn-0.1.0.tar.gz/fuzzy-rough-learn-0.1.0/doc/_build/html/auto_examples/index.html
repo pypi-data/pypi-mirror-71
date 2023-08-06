@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Neighbours &mdash; fuzzy-rough-learn 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/fuzzy-rough-learn.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FROVOCO classification" href="neighbours/plot_frovoco_classification.html" />
+    <link rel="prev" title="frlearn.utils.owa_operators.OWAOperator" href="../generated/frlearn.utils.owa_operators.OWAOperator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> fuzzy-rough-learn
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">fuzzy-rough-learn API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Neighbours</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="neighbours/plot_frovoco_classification.html">FROVOCO classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neighbours/plot_frnn_classification.html">FRNN classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neighbours/plot_frfs_preprocessing.html">FRFS preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neighbours/plot_frps_preprocessing.html">FRPS preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neighbours/plot_fronec_labelling.html">FRONEC labelling</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release history</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fuzzy-rough-learn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Neighbours</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/auto_examples/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div style='clear:both'></div><div class="section" id="neighbours">
+<span id="neighbours-examples"></span><span id="sphx-glr-auto-examples-neighbours"></span><h1>Neighbours<a class="headerlink" href="#neighbours" title="Permalink to this headline">¶</a></h1>
+<p>Examples from the <a class="reference internal" href="../api.html#module-frlearn.neighbours" title="frlearn.neighbours"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours</span></code></a> module.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Sample usage of FROVOCO classification."><div class="figure align-default" id="id1">
+<img alt="../_images/sphx_glr_plot_frovoco_classification_thumb.png" src="../_images/sphx_glr_plot_frovoco_classification_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="neighbours/plot_frovoco_classification.html#sphx-glr-auto-examples-neighbours-plot-frovoco-classification-py"><span class="std std-ref">FROVOCO classification</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Sample usage of FRNN classification."><div class="figure align-default" id="id2">
+<img alt="../_images/sphx_glr_plot_frnn_classification_thumb.png" src="../_images/sphx_glr_plot_frnn_classification_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="neighbours/plot_frnn_classification.html#sphx-glr-auto-examples-neighbours-plot-frnn-classification-py"><span class="std std-ref">FRNN classification</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Sample usage of FRFS preprocessing, demonstrated in combination with (strict) FRNN classificati..."><div class="figure align-default" id="id3">
+<img alt="../_images/sphx_glr_plot_frfs_preprocessing_thumb.png" src="../_images/sphx_glr_plot_frfs_preprocessing_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="neighbours/plot_frfs_preprocessing.html#sphx-glr-auto-examples-neighbours-plot-frfs-preprocessing-py"><span class="std std-ref">FRFS preprocessing</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Sample usage of FRPS preprocessing, demonstrated in combination with (strict) FRNN classificati..."><div class="figure align-default" id="id4">
+<img alt="../_images/sphx_glr_plot_frps_preprocessing_thumb.png" src="../_images/sphx_glr_plot_frps_preprocessing_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="neighbours/plot_frps_preprocessing.html#sphx-glr-auto-examples-neighbours-plot-frps-preprocessing-py"><span class="std std-ref">FRPS preprocessing</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Sample usage of FRONEC labelling."><div class="figure align-default" id="id5">
+<img alt="../_images/sphx_glr_plot_fronec_labelling_thumb.png" src="../_images/sphx_glr_plot_fronec_labelling_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="neighbours/plot_fronec_labelling.html#sphx-glr-auto-examples-neighbours-plot-fronec-labelling-py"><span class="std std-ref">FRONEC labelling</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div style='clear:both'></div><div class="sphx-glr-footer class sphx-glr-footer-gallery docutils container">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1d25fc9f699e6214c05d7ae860d323b6/auto_examples_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">auto_examples_python.zip</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/715fb23d6292ed5c1d3bef0d7edb2b9d/auto_examples_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">auto_examples_jupyter.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="neighbours/plot_frovoco_classification.html" class="btn btn-neutral float-right" title="FROVOCO classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../generated/frlearn.utils.owa_operators.OWAOperator.html" class="btn btn-neutral float-left" title="frlearn.utils.owa_operators.OWAOperator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oliver Urs Lenz
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

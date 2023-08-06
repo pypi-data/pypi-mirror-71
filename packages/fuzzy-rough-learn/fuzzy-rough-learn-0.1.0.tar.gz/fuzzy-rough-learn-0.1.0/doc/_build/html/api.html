@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fuzzy-rough-learn API &mdash; fuzzy-rough-learn 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/fuzzy-rough-learn.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="frlearn.neighbours.classifiers.FRNN" href="generated/frlearn.neighbours.classifiers.FRNN.html" />
+    <link rel="prev" title="Welcome to the documentation of fuzzy-rough-learn!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> fuzzy-rough-learn
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">fuzzy-rough-learn API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-frlearn.neighbours">Neighbours</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classifiers">Classifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FRNN.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.classifiers</span></code>.FRNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FROVOCO.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.classifiers</span></code>.FROVOCO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FRONEC.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.classifiers</span></code>.FRONEC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nearest-neighbour-search">Nearest Neighbour Search</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.NNSearch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.neighbour_search</span></code>.NNSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.BallTree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.neighbour_search</span></code>.BallTree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.KDTree.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.neighbour_search</span></code>.KDTree</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#preprocessors">Preprocessors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.preprocessors.FRFS.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.preprocessors</span></code>.FRFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.neighbours.preprocessors.FRPS.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours.preprocessors</span></code>.FRPS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-frlearn.utils">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-utils">numpy utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.np_utils.first.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.np_utils</span></code>.first</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.np_utils.last.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.np_utils</span></code>.last</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.np_utils.least.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.np_utils</span></code>.least</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.np_utils.greatest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.np_utils</span></code>.greatest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.np_utils.div_or.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.np_utils</span></code>.div_or</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#owa-operators">OWA Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/frlearn.utils.owa_operators.OWAOperator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.owa_operators</span></code>.OWAOperator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Neighbours</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Release history</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">fuzzy-rough-learn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>fuzzy-rough-learn API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fuzzy-rough-learn-api">
+<h1>fuzzy-rough-learn API<a class="headerlink" href="#fuzzy-rough-learn-api" title="Permalink to this headline">¶</a></h1>
+<p>This is the full API documentation of <cite>fuzzy-rough-learn</cite>.</p>
+<div class="section" id="module-frlearn.neighbours">
+<span id="neighbours"></span><h2>Neighbours<a class="headerlink" href="#module-frlearn.neighbours" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#module-frlearn.neighbours" title="frlearn.neighbours"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.neighbours</span></code></a> subpackage implements nearest neighbour algorithms.</p>
+<div class="section" id="classifiers">
+<h3>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FRNN.html#frlearn.neighbours.classifiers.FRNN" title="frlearn.neighbours.classifiers.FRNN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.classifiers.FRNN</span></code></a>(*[, …])</p></td>
+<td><p>Implementation of Fuzzy Rough Nearest Neighbour (FRNN) classification (FRNN).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FROVOCO.html#frlearn.neighbours.classifiers.FROVOCO" title="frlearn.neighbours.classifiers.FROVOCO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.classifiers.FROVOCO</span></code></a>([nn_search])</p></td>
+<td><p>Implementation of the Fuzzy Rough OVO COmbination (FROVOCO) ensemble classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.neighbours.classifiers.FRONEC.html#frlearn.neighbours.classifiers.FRONEC" title="frlearn.neighbours.classifiers.FRONEC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.classifiers.FRONEC</span></code></a>([Q_type, …])</p></td>
+<td><p>Implementation of the Fuzzy ROugh NEighbourhood Consensus (FRONEC) multilabel classifier.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nearest-neighbour-search">
+<h3>Nearest Neighbour Search<a class="headerlink" href="#nearest-neighbour-search" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.NNSearch.html#frlearn.neighbours.neighbour_search.NNSearch" title="frlearn.neighbours.neighbour_search.NNSearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.neighbour_search.NNSearch</span></code></a>(**kwargs)</p></td>
+<td><p>Abstract base class for nearest neighbour searches.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.BallTree.html#frlearn.neighbours.neighbour_search.BallTree" title="frlearn.neighbours.neighbour_search.BallTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.neighbour_search.BallTree</span></code></a>(*[, …])</p></td>
+<td><p>Nearest neighbour search with a Ball tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.neighbours.neighbour_search.KDTree.html#frlearn.neighbours.neighbour_search.KDTree" title="frlearn.neighbours.neighbour_search.KDTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.neighbour_search.KDTree</span></code></a>(*[, …])</p></td>
+<td><p>Nearest neighbour search with a KD-tree.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="preprocessors">
+<h3>Preprocessors<a class="headerlink" href="#preprocessors" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.neighbours.preprocessors.FRFS.html#frlearn.neighbours.preprocessors.FRFS" title="frlearn.neighbours.preprocessors.FRFS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.preprocessors.FRFS</span></code></a>([n_features, …])</p></td>
+<td><p>Implementation of the Fuzzy Rough Feature Selection (FRFS) preprocessor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/frlearn.neighbours.preprocessors.FRPS.html#frlearn.neighbours.preprocessors.FRPS" title="frlearn.neighbours.preprocessors.FRPS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">neighbours.preprocessors.FRPS</span></code></a>([owa_weights, …])</p></td>
+<td><p>Implementation of the Fuzzy Rough Prototype Selection (FRPS) preprocessor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-frlearn.utils">
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-frlearn.utils" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#module-frlearn.utils" title="frlearn.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils</span></code></a> subpackage implements utility functions used in the
+other modules.</p>
+<div class="section" id="numpy-utils">
+<h3>numpy utils<a class="headerlink" href="#numpy-utils" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.utils.np_utils.first.html#frlearn.utils.np_utils.first" title="frlearn.utils.np_utils.first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.np_utils.first</span></code></a>(a, k[, axis])</p></td>
+<td><p>Returns the <cite>k</cite> first values of <cite>a</cite> along the specified axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/frlearn.utils.np_utils.last.html#frlearn.utils.np_utils.last" title="frlearn.utils.np_utils.last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.np_utils.last</span></code></a>(a, k[, axis])</p></td>
+<td><p>Returns the <cite>k</cite> last values of <cite>a</cite> along the specified axis, in reverse order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.utils.np_utils.least.html#frlearn.utils.np_utils.least" title="frlearn.utils.np_utils.least"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.np_utils.least</span></code></a>(a, k[, axis])</p></td>
+<td><p>Returns the <cite>k</cite> least values of <cite>a</cite> along the specified axis, in order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/frlearn.utils.np_utils.greatest.html#frlearn.utils.np_utils.greatest" title="frlearn.utils.np_utils.greatest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.np_utils.greatest</span></code></a>(a, k[, axis])</p></td>
+<td><p>Returns the <cite>k</cite> greatest values of <cite>a</cite> along the specified axis, in order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.utils.np_utils.div_or.html#frlearn.utils.np_utils.div_or" title="frlearn.utils.np_utils.div_or"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.np_utils.div_or</span></code></a>(x, y[, fallback])</p></td>
+<td><p>Divides <cite>x</cite> by <cite>y</cite>, replacing <cite>np.nan</cite> values with <cite>fallback</cite>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="owa-operators">
+<h3>OWA Operators<a class="headerlink" href="#owa-operators" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/frlearn.utils.owa_operators.OWAOperator.html#frlearn.utils.owa_operators.OWAOperator" title="frlearn.utils.owa_operators.OWAOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.owa_operators.OWAOperator</span></code></a>(f, *[, …])</p></td>
+<td><p>Ordered Weighted Averaging (OWA) operator, which can be applied to an array to obtain its ordered weighted average.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generated/frlearn.neighbours.classifiers.FRNN.html" class="btn btn-neutral float-right" title="frlearn.neighbours.classifiers.FRNN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the documentation of fuzzy-rough-learn!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oliver Urs Lenz
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

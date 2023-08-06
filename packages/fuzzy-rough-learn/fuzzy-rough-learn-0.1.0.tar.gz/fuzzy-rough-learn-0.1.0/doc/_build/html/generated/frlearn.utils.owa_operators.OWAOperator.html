@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>frlearn.utils.owa_operators.OWAOperator &mdash; fuzzy-rough-learn 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/fuzzy-rough-learn.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neighbours" href="../auto_examples/index.html" />
+    <link rel="prev" title="frlearn.utils.np_utils.div_or" href="frlearn.utils.np_utils.div_or.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> fuzzy-rough-learn
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">fuzzy-rough-learn API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-frlearn.neighbours">Neighbours</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-frlearn.utils">Utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api.html#numpy-utils">numpy utils</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#owa-operators">OWA Operators</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.owa_operators</span></code>.OWAOperator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Neighbours</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release history</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fuzzy-rough-learn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">fuzzy-rough-learn API</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.owa_operators</span></code>.OWAOperator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/frlearn.utils.owa_operators.OWAOperator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="frlearn-utils-owa-operators-owaoperator">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">frlearn.utils.owa_operators</span></code>.OWAOperator<a class="headerlink" href="#frlearn-utils-owa-operators-owaoperator" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="frlearn.utils.owa_operators.OWAOperator">
+<em class="property">class </em><code class="sig-prename descclassname">frlearn.utils.owa_operators.</code><code class="sig-name descname">OWAOperator</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">*</em>, <em class="sig-param">scale: bool = False</em>, <em class="sig-param">name: Optional[str] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordered Weighted Averaging (OWA) operator, which can be applied to an
+array to obtain its ordered weighted average. Intended specifically for
+dual pairs of OWA operators that approximate maxima and minima, which are
+encoded together in one object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f</strong><span class="classifier">int -&gt; array shape=(k, )</span></dt><dd><p>Generating function which takes an integer k and returns a valid
+weight vector of length k. (The values should be in [0, 1] and sum to 1.)</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">boolean, default=False</span></dt><dd><p>If True, weights will be scaled to sum to 1 before being applied.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str, default=None</span></dt><dd><p>Name of the weights to be displayed as its string representation.
+If None, <cite>f</cite> will be used to generate a weight array of length 4.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="frlearn.utils.owa_operators.OWAOperator.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">f</em>, <em class="sig-param">*</em>, <em class="sig-param">scale: 'bool' = False</em>, <em class="sig-param">name: 'str' = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frlearn.utils.owa_operators.OWAOperator.soft_head">
+<code class="sig-name descname">soft_head</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">a</em>, <em class="sig-param">k=None</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">flavour: 'str' = 'arithmetic'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator.soft_head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator.soft_head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the soft head of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Input array of values.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">int or float or None, default=None</span></dt><dd><p>Number of initial values from which the soft head is calculated.
+If a float in (0, 1), taken as a fraction of the total number of values.
+If None, all values are used.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, default=-1</span></dt><dd><p>The axis along which the soft head is calculated.</p>
+</dd>
+<dt><strong>flavour</strong><span class="classifier">str {‘arithmetic’, ‘geometric’, ‘harmonic’, }, default=’arithmetic’</span></dt><dd><p>Determines the type of weighted average.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>soft_head_along_axis</strong><span class="classifier">ndarray</span></dt><dd><p>An array with the same shape as <cite>a</cite>, with the specified
+axis removed. If <cite>a</cite> is a 0-d array, a scalar is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="frlearn.utils.owa_operators.OWAOperator.soft_max">
+<code class="sig-name descname">soft_max</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">a</em>, <em class="sig-param">k=None</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">flavour: 'str' = 'arithmetic'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator.soft_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator.soft_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the soft maximum of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Input array of values.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">int or float or None, default=None</span></dt><dd><p>Number of greatest values from which the soft maximum is calculated.
+If a float in (0, 1), taken as a fraction of the total number of values.
+If None, all values are used.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, default=-1</span></dt><dd><p>The axis along which the soft maximum is calculated.</p>
+</dd>
+<dt><strong>flavour</strong><span class="classifier">str {‘arithmetic’, ‘geometric’, ‘harmonic’, }, default=’arithmetic’</span></dt><dd><p>Determines the type of weighted average.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>soft_max_along_axis</strong><span class="classifier">ndarray</span></dt><dd><p>An array with the same shape as <cite>a</cite>, with the specified
+axis removed. If <cite>a</cite> is a 0-d array, a scalar is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="frlearn.utils.owa_operators.OWAOperator.soft_min">
+<code class="sig-name descname">soft_min</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">a</em>, <em class="sig-param">k=None</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">flavour: 'str' = 'arithmetic'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator.soft_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator.soft_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the soft minimum of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Input array of values.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">int or float or None, default=None</span></dt><dd><p>Number of least values from which the soft minimum is calculated.
+If a float in (0, 1), taken as a fraction of the total number of values.
+If None, all values are used.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, default=-1</span></dt><dd><p>The axis along which the soft minimum is calculated.</p>
+</dd>
+<dt><strong>flavour</strong><span class="classifier">str {‘arithmetic’, ‘geometric’, ‘harmonic’, }, default=’arithmetic’</span></dt><dd><p>Determines the type of weighted average.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>soft_min_along_axis</strong><span class="classifier">ndarray</span></dt><dd><p>An array with the same shape as <cite>a</cite>, with the specified
+axis removed. If <cite>a</cite> is a 0-d array, a scalar is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="frlearn.utils.owa_operators.OWAOperator.soft_tail">
+<code class="sig-name descname">soft_tail</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">a</em>, <em class="sig-param">k=None</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">flavour: 'str' = 'arithmetic'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/frlearn/utils/owa_operators.html#OWAOperator.soft_tail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#frlearn.utils.owa_operators.OWAOperator.soft_tail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the soft tail of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>a</strong><span class="classifier">ndarray</span></dt><dd><p>Input array of values.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier">int or float or None, default=None</span></dt><dd><p>Number of terminal values from which the soft tail is calculated.
+If a float in (0, 1), taken as a fraction of the total number of values.
+If None, all values are used.</p>
+</dd>
+<dt><strong>axis</strong><span class="classifier">int, default=-1</span></dt><dd><p>The axis along which the soft tail is calculated.</p>
+</dd>
+<dt><strong>flavour</strong><span class="classifier">str {‘arithmetic’, ‘geometric’, ‘harmonic’, }, default=’arithmetic’</span></dt><dd><p>Determines the type of weighted average.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>soft_tail_along_axis</strong><span class="classifier">ndarray</span></dt><dd><p>An array with the same shape as <cite>a</cite>, with the specified
+axis removed. If <cite>a</cite> is a 0-d array, a scalar is returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div style='clear:both'></div></div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../auto_examples/index.html" class="btn btn-neutral float-right" title="Neighbours" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="frlearn.utils.np_utils.div_or.html" class="btn btn-neutral float-left" title="frlearn.utils.np_utils.div_or" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oliver Urs Lenz
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>frlearn.neighbours.classifiers &mdash; fuzzy-rough-learn 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/fuzzy-rough-learn.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/js/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> fuzzy-rough-learn
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">fuzzy-rough-learn API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_examples/index.html">Neighbours</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release history</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">fuzzy-rough-learn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>frlearn.neighbours.classifiers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for frlearn.neighbours.classifiers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Nearest neighbour classifiers&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">frlearn.base</span> <span class="kn">import</span> <span class="n">Descriptor</span><span class="p">,</span> <span class="n">MultiClassClassifier</span><span class="p">,</span> <span class="n">MultiLabelClassifier</span>
+<span class="kn">from</span> <span class="nn">frlearn.neighbours.descriptors</span> <span class="kn">import</span> <span class="n">ComplementedDistance</span>
+<span class="kn">from</span> <span class="nn">frlearn.neighbours.neighbour_search</span> <span class="kn">import</span> <span class="n">KDTree</span><span class="p">,</span> <span class="n">NNSearch</span>
+<span class="kn">from</span> <span class="nn">frlearn.utils.np_utils</span> <span class="kn">import</span> <span class="n">div_or</span>
+<span class="kn">from</span> <span class="nn">frlearn.utils.owa_operators</span> <span class="kn">import</span> <span class="n">OWAOperator</span><span class="p">,</span> <span class="n">additive</span><span class="p">,</span> <span class="n">exponential</span>
+
+
+<span class="k">class</span> <span class="nc">FuzzyRoughEnsemble</span><span class="p">(</span><span class="n">MultiClassClassifier</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">upper_approximator</span><span class="p">:</span> <span class="n">Descriptor</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(),</span>
+            <span class="n">lower_approximator</span><span class="p">:</span> <span class="n">Descriptor</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(),</span>
+            <span class="n">nn_search</span><span class="p">:</span> <span class="n">NNSearch</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(),</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upper_approximator</span> <span class="o">=</span> <span class="n">upper_approximator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower_approximator</span> <span class="o">=</span> <span class="n">lower_approximator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nn_search</span> <span class="o">=</span> <span class="n">nn_search</span>
+
+    <span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">MultiClassClassifier</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+            <span class="n">Cs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">]</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">nn_search</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">Cs</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">upper_approximations</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">upper_approximator</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
+
+            <span class="n">co_Cs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">]</span>
+            <span class="n">co_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">nn_search</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">co_C</span><span class="p">)</span> <span class="k">for</span> <span class="n">co_C</span> <span class="ow">in</span> <span class="n">co_Cs</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lower_approximations</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">lower_approximator</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">co_index</span><span class="p">)</span> <span class="k">for</span> <span class="n">co_index</span> <span class="ow">in</span> <span class="n">co_indices</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper_approximations</span><span class="p">:</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">approximation</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">approximation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper_approximations</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower_approximations</span><span class="p">:</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">approximation</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">approximation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower_approximations</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="FRNN"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FRNN.html#frlearn.neighbours.classifiers.FRNN">[docs]</a><span class="k">class</span> <span class="nc">FRNN</span><span class="p">(</span><span class="n">FuzzyRoughEnsemble</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of Fuzzy Rough Nearest Neighbour (FRNN) classification</span>
+<span class="sd">    (FRNN).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    upper_weights : OWAOperator, default=additive()</span>
+<span class="sd">        OWA weights to use in calculation of upper approximation of decision classes.</span>
+
+<span class="sd">    upper_k : int, default = 20</span>
+<span class="sd">        Effective length of upper weights vector (number of nearest neighbours to consider).</span>
+
+<span class="sd">    lower_weights : OWAOperator, default=additive()</span>
+<span class="sd">        OWA weights to use in calculation of lower approximation of decision classes.</span>
+
+<span class="sd">    lower_k : int, default = 20</span>
+<span class="sd">        Effective length of lower weights vector (number of nearest neighbours to consider).</span>
+
+<span class="sd">    nn_search : NNSearch, default=KDTree()</span>
+<span class="sd">        Nearest neighbour search algorithm to use.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    With strict upper_weights and lower_weights, this is FRNN classification</span>
+<span class="sd">    as presented in [1]_. The use of OWA operators for the calculation of</span>
+<span class="sd">    fuzzy rough sets was proposed in [2]_, and OWA operators were first</span>
+<span class="sd">    explicitly combined with FRNN in [3]_.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] `Jensen R, Cornelis C (2008).</span>
+<span class="sd">       A New Approach to Fuzzy-Rough Nearest Neighbour Classification.</span>
+<span class="sd">       In: Chan CC, Grzymala-Busse JW, Ziarko WP (eds). Rough Sets and Current Trends in Computing. RSCTC 2008.</span>
+<span class="sd">       Lecture Notes in Computer Science, vol 5306. Springer, Berlin, Heidelberg.</span>
+<span class="sd">       doi: 10.1007/978-3-540-88425-5_32</span>
+<span class="sd">       &lt;https://link.springer.com/chapter/10.1007/978-3-540-88425-5_32&gt;`_</span>
+<span class="sd">    .. [2] `Cornelis C, Verbiest N, Jensen R (2010).</span>
+<span class="sd">       Ordered Weighted Average Based Fuzzy Rough Sets.</span>
+<span class="sd">       In: Yu J, Greco S, Lingras P, Wang G, Skowron A (eds). Rough Set and Knowledge Technology. RSKT 2010.</span>
+<span class="sd">       Lecture Notes in Computer Science, vol 6401. Springer, Berlin, Heidelberg.</span>
+<span class="sd">       doi: 10.1007/978-3-642-16248-0_16</span>
+<span class="sd">       &lt;https://link.springer.com/chapter/10.1007/978-3-642-16248-0_16&gt;`_</span>
+<span class="sd">    .. [3] `E. Ramentol et al.,</span>
+<span class="sd">       IFROWANN: Imbalanced Fuzzy-Rough Ordered Weighted Average Nearest Neighbor Classification.</span>
+<span class="sd">       IEEE Transactions on Fuzzy Systems, vol 23, no 5, pp 1622-1637, Oct 2015.</span>
+<span class="sd">       doi: 10.1109/TFUZZ.2014.2371472</span>
+<span class="sd">       &lt;https://ieeexplore.ieee.org/document/6960859&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FRNN.__init__"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FRNN.html#frlearn.neighbours.classifiers.FRNN.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">upper_weights</span><span class="p">:</span> <span class="n">OWAOperator</span> <span class="o">=</span> <span class="n">additive</span><span class="p">(),</span> <span class="n">upper_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+                 <span class="n">lower_weights</span><span class="p">:</span> <span class="n">OWAOperator</span> <span class="o">=</span> <span class="n">additive</span><span class="p">(),</span> <span class="n">lower_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+                 <span class="n">nn_search</span><span class="p">:</span> <span class="n">NNSearch</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">()):</span>
+        <span class="n">upper_approximator</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(</span><span class="n">owa</span><span class="o">=</span><span class="n">upper_weights</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">upper_k</span><span class="p">)</span> <span class="k">if</span> <span class="n">upper_weights</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">lower_approximator</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(</span><span class="n">owa</span><span class="o">=</span><span class="n">lower_weights</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">lower_k</span><span class="p">)</span> <span class="k">if</span> <span class="n">lower_weights</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">upper_approximator</span><span class="p">,</span> <span class="n">lower_approximator</span><span class="p">,</span> <span class="n">nn_search</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="FROVOCO"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FROVOCO.html#frlearn.neighbours.classifiers.FROVOCO">[docs]</a><span class="k">class</span> <span class="nc">FROVOCO</span><span class="p">(</span><span class="n">MultiClassClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of the Fuzzy Rough OVO COmbination (FROVOCO) ensemble classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nn_search : NNSearch, default=KDTree()</span>
+<span class="sd">        Nearest neighbour search algorithm to use.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] `Vluymans S, Fernández A, Saeys Y, Cornelis C, Herrera F (2018).</span>
+<span class="sd">       Dynamic affinity-based classification of multi-class imbalanced data with one-versus-one decomposition:</span>
+<span class="sd">       a fuzzy rough set approach.</span>
+<span class="sd">       Knowledge and Information Systems, vol 56, pp 55–84.</span>
+<span class="sd">       doi: 10.1007/s10115-017-1126-1</span>
+<span class="sd">       &lt;https://link.springer.com/article/10.1007/s10115-017-1126-1&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FROVOCO.__init__"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FROVOCO.html#frlearn.neighbours.classifiers.FROVOCO.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">nn_search</span><span class="p">:</span> <span class="n">NNSearch</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(),</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exponential_approximator</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(</span><span class="n">owa</span><span class="o">=</span><span class="n">exponential</span><span class="p">(),</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">additive_approximator</span> <span class="o">=</span> <span class="n">ComplementedDistance</span><span class="p">(</span><span class="n">owa</span><span class="o">=</span><span class="n">additive</span><span class="p">(),</span> <span class="n">k</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nn_search</span> <span class="o">=</span> <span class="n">nn_search</span></div>
+
+<div class="viewcode-block" id="FROVOCO.Model"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FROVOCO.html#frlearn.neighbours.classifiers.FROVOCO.Model">[docs]</a>    <span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">MultiClassClassifier</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_attributes</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+
+            <span class="n">Cs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">]</span>
+            <span class="n">co_Cs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">]</span>
+
+            <span class="n">class_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">Cs</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ovo_ir</span> <span class="o">=</span> <span class="p">(</span><span class="n">class_sizes</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">/</span> <span class="n">class_sizes</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ova_ir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c_n</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">c_n</span><span class="p">)</span> <span class="k">for</span> <span class="n">c_n</span> <span class="ow">in</span> <span class="n">class_sizes</span><span class="p">])</span>
+            <span class="n">max_ir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ovo_ir</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">nn_search</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">Cs</span><span class="p">]</span>
+            <span class="n">co_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">nn_search</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">co_C</span><span class="p">)</span> <span class="k">for</span> <span class="n">co_C</span> <span class="ow">in</span> <span class="n">co_Cs</span><span class="p">]</span>
+
+            <span class="n">add_construct</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">additive_approximator</span><span class="o">.</span><span class="n">construct</span>
+            <span class="n">exp_construct</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">exponential_approximator</span><span class="o">.</span><span class="n">construct</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_approx</span> <span class="o">=</span> <span class="p">[</span><span class="n">add_construct</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">if</span> <span class="n">ir</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">max_ir</span><span class="p">,</span> <span class="n">indices</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exp_approx</span> <span class="o">=</span> <span class="p">[</span><span class="n">exp_construct</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">if</span> <span class="n">ir</span> <span class="o">&lt;=</span> <span class="mi">9</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ova_ir</span><span class="p">,</span> <span class="n">indices</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">co_approx</span> <span class="o">=</span> <span class="p">[</span><span class="n">add_construct</span><span class="p">(</span><span class="n">co_index</span><span class="p">)</span> <span class="k">if</span> <span class="mi">1</span><span class="o">/</span><span class="n">ir</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="k">else</span> <span class="n">exp_construct</span><span class="p">(</span><span class="n">co_index</span><span class="p">)</span> <span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">co_index</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ova_ir</span><span class="p">,</span> <span class="n">co_indices</span><span class="p">)]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_sig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">Cs</span><span class="p">])</span>
+
+        <span class="k">def</span> <span class="nf">_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+            <span class="n">approx</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">if</span> <span class="n">ir</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="k">else</span> <span class="n">e</span> <span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ova_ir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_approx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_approx</span><span class="p">)]</span>
+            <span class="n">vals_C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">C</span><span class="p">))</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">approx</span><span class="p">])</span>
+            <span class="n">co_vals_C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">co_a</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">C</span><span class="p">))</span> <span class="k">for</span> <span class="n">co_a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">co_approx</span><span class="p">])</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">vals_C</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">co_vals_C</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="c1"># The values in the else clause are just placeholders. But we can&#39;t use `None`, because that will force</span>
+            <span class="c1"># the dtype of the resulting array to become `object`, which will in turn lead to 0/0 producing</span>
+            <span class="c1"># ZeroDivisionError rather than np.nan</span>
+            <span class="n">additive_vals_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_arrays</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_approx</span><span class="p">]))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+            <span class="n">exponential_vals_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_arrays</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_approx</span><span class="p">]))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+            <span class="n">co_vals_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">co_approx</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+            <span class="n">mem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mem</span><span class="p">(</span><span class="n">additive_vals_X</span><span class="p">,</span> <span class="n">exponential_vals_X</span><span class="p">,</span> <span class="n">co_vals_X</span><span class="p">)</span>
+
+            <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">mem</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">mse_n</span> <span class="o">=</span> <span class="n">mse</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mse</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">wv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wv</span><span class="p">(</span><span class="n">additive_vals_X</span><span class="p">,</span> <span class="n">exponential_vals_X</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="p">(</span><span class="n">wv</span> <span class="o">+</span> <span class="n">mem</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">mse_n</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span>
+
+        <span class="k">def</span> <span class="nf">_mem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">additive_vals</span><span class="p">,</span> <span class="n">exponential_vals</span><span class="p">,</span> <span class="n">co_approximation_vals</span><span class="p">):</span>
+            <span class="n">approximation_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ova_ir</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">,</span> <span class="n">additive_vals</span><span class="p">,</span> <span class="n">exponential_vals</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">approximation_vals</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">co_approximation_vals</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="k">def</span> <span class="nf">_wv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">additive_vals</span><span class="p">,</span> <span class="n">exponential_vals</span><span class="p">):</span>
+            <span class="c1"># Subtract from 1 because we&#39;re using lower approximations.</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ovo_ir</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">,</span> <span class="n">additive_vals</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">exponential_vals</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+            <span class="n">tot_vals</span> <span class="o">=</span> <span class="n">vals</span> <span class="o">+</span> <span class="n">vals</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">div_or</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">tot_vals</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="c1"># Exclude comparisons of a class with itself.</span>
+            <span class="n">vals</span><span class="p">[:,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Sum along axis 1 (rather than 2) because we&#39;re using lower approximations.</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="FRONEC"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FRONEC.html#frlearn.neighbours.classifiers.FRONEC">[docs]</a><span class="k">class</span> <span class="nc">FRONEC</span><span class="p">(</span><span class="n">MultiLabelClassifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of the Fuzzy ROugh NEighbourhood Consensus (FRONEC) multilabel classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Q_type : int {1, 2, 3, }, default=2</span>
+<span class="sd">        Quality measure to use for identifying most relevant instances.</span>
+<span class="sd">        Q^1 uses lower approximation, Q^2 uses upper approximation, Q^3 is the mean of Q^1 and Q^2.</span>
+<span class="sd">    R_d_type : int {1, 2, }, default=1</span>
+<span class="sd">        Label similarity relation to use.</span>
+<span class="sd">        R_d^1 is simple Hamming similarity. R_d^2 is similar, but takes the prior label probabilities into account.</span>
+<span class="sd">    k : int, default=20</span>
+<span class="sd">        Number of neighbours to consider for neighbourhood consensus.</span>
+<span class="sd">    owa_weights: OWAOperator, default=additive()</span>
+<span class="sd">        OWA weights to use for calculation of soft maximum and/or minimum.</span>
+<span class="sd">    nn_search : NNSearch, default=KDTree()</span>
+<span class="sd">        Nearest neighbour search algorithm to use.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    .. [1] `Vluymans S, Cornelis C, Herrera F, Saeys Y (2018).</span>
+<span class="sd">       Multi-label classification using a fuzzy rough neighborhood consensus.</span>
+<span class="sd">       Information Sciences, vol 433, pp 96–114.</span>
+<span class="sd">       doi: 10.1016/j.ins.2017.12.034</span>
+<span class="sd">       &lt;https://www.sciencedirect.com/science/article/pii/S002002551731157X&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="FRONEC.__init__"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FRONEC.html#frlearn.neighbours.classifiers.FRONEC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Q_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">R_d_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">owa_weights</span><span class="p">:</span> <span class="n">OWAOperator</span> <span class="o">=</span> <span class="n">additive</span><span class="p">(),</span> <span class="n">nn_search</span><span class="p">:</span> <span class="n">NNSearch</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Q_type</span> <span class="o">=</span> <span class="n">Q_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">R_d_type</span> <span class="o">=</span> <span class="n">R_d_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owa_weights</span> <span class="o">=</span> <span class="n">owa_weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nn_search</span> <span class="o">=</span> <span class="n">nn_search</span></div>
+
+<div class="viewcode-block" id="FRONEC.Model"><a class="viewcode-back" href="../../../generated/frlearn.neighbours.classifiers.FRONEC.html#frlearn.neighbours.classifiers.FRONEC.Model">[docs]</a>    <span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">MultiLabelClassifier</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_attributes</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Q_type</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">Q_type</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">R_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_R_d_2</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="k">if</span> <span class="n">classifier</span><span class="o">.</span><span class="n">R_d_type</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_R_d_1</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">k</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">owa_weights</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">owa_weights</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">nn_search</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span>
+
+        <span class="nd">@staticmethod</span>
+        <span class="k">def</span> <span class="nf">_R_d_1</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">==</span> <span class="n">Y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="nd">@staticmethod</span>
+        <span class="k">def</span> <span class="nf">_R_d_2</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+            <span class="n">both</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">Y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Y</span><span class="p">)</span>
+            <span class="n">either</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">Y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Y</span><span class="p">)</span>
+            <span class="n">neither</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">either</span>
+            <span class="n">xeither</span> <span class="o">=</span> <span class="n">either</span> <span class="o">-</span> <span class="n">both</span>
+
+            <span class="n">numerator</span> <span class="o">=</span> <span class="n">both</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="n">neither</span> <span class="o">*</span> <span class="n">p</span>
+            <span class="n">divisor</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">+</span> <span class="n">xeither</span> <span class="o">*</span> <span class="mf">0.5</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numerator</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">divisor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="n">neighbours</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distances</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q_1</span><span class="p">(</span><span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_type</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q_2</span><span class="p">(</span><span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q_1</span><span class="p">(</span><span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q_2</span><span class="p">(</span><span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+            <span class="n">Q_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">==</span> <span class="n">Q_max</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">Q</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_Q_1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">owa_weights</span><span class="o">.</span><span class="n">soft_min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_d</span><span class="p">[</span><span class="n">neighbours</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_Q_2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighbours</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">owa_weights</span><span class="o">.</span><span class="n">soft_max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_d</span><span class="p">[</span><span class="n">neighbours</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oliver Urs Lenz
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
