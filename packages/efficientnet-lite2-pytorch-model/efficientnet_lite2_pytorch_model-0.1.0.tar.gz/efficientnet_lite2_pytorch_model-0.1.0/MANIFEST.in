@@ -1,0 +1,9 @@
+include LICENSE
+include README.md
+
+recursive-include efficientnet_lite2_pytorch_model/models *
+
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
