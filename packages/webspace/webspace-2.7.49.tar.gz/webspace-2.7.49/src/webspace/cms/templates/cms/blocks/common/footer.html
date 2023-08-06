@@ -1,0 +1,57 @@
+{% load static %}
+{% load wagtailsettings_tags my my_amp %}
+
+<div class="">
+    <div class="theme-{{ page.theme }}">
+        <footer>
+            <div id="block-footer" class="footer-links">
+                <div class="container regular">
+                    <div>
+                        {% include 'cms/blocks/common/nav.html' with menus=page.footer %}
+                    </div>
+                </div>
+            </div>
+            <div id="block-footer-socials" class="footer-socials">
+                <div class="container full nopad">
+                    {% get_settings %}
+
+                    {% if settings.cms.WebspaceSettings.linkedin %}
+                        <a target="_blank" href="{{ settings.cms.WebspaceSettings.linkedin }}">
+                            {% amp_img %}
+                                <img class="s-icon x1" src="{{ icons.linkedin|ico:page.theme }}"
+                                     alt="Linkedin"/>
+                            {% endamp_img %}
+                        </a>
+                    {% endif %}
+
+                    {% if settings.cms.WebspaceSettings.facebook %}
+                        <a target="_blank" href="{{ settings.cms.WebspaceSettings.facebook }}">
+                            {% amp_img %}
+                                <img class="s-icon x1" src="{{ icons.facebook|ico:page.theme }}"
+                                     alt="Facebook"/>
+                            {% endamp_img %}
+                        </a>
+                    {% endif %}
+
+                    {% if settings.cms.WebspaceSettings.instagram %}
+                        <a target="_blank" href="{{ settings.cms.WebspaceSettings.instagram }}">
+                            {% amp_img %}
+                                <img class="s-icon x1" src="{{ icons.instagram|ico:page.theme }}"
+                                     alt="Instagram"/>
+                            {% endamp_img %}
+                        </a>
+                    {% endif %}
+
+                    {% if settings.cms.WebspaceSettings.twitter %}
+                        <a target="_blank" href="{{ settings.cms.WebspaceSettings.twitter }}">
+                            {% amp_img %}
+                                <img class="s-icon x1" src="{{ icons.twitter|ico:page.theme }}"
+                                     alt="Twitter"/>
+                            {% endamp_img %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
