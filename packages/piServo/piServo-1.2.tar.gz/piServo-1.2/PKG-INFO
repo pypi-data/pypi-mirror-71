@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: piServo
+Version: 1.2
+Summary: Control Servos with python !
+Home-page: https://github.com/rushan7750/
+Author: Rushan SJ
+Author-email: shanrsjmax@gmail.com
+License: MIT
+Download-URL: https://github.com/rushan7750/piServo/archive/master.zip
+Description: # RPI-Servo\n
+        Control servos with python !\n
+        
+        Example to run a servo connected to pin 3 and angle 90:/n/n
+        
+        import RPI.GPIO as GPIO\n
+        import piServo\n
+        servo = piServo.Servo(3)\n
+        servo.initServo()\n
+        servo.setAngle(90)\n
+        servo.stopServo()\n
+        GPIO.cleanup()\n
+        
+Keywords: Raspberry Pi,Servo,Python
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
