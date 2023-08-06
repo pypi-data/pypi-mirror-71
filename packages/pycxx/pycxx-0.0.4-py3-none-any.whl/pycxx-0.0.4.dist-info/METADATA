@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: pycxx
+Version: 0.0.4
+Summary: simple crypting library ;)
+Home-page: https://rubbiekelvin@bitbucket.org/rubbiekelvin/cxx
+Author: Rubbie Kelvin Voltsman
+Author-email: rubbiekelvinvoltsman@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+
+# Cxx
+### simple crypting library
+
+## installation
+```bash
+pip install pycxx
+```
+
+## usage
+```python
+import pycxx
+
+c = pycxx.Cxx(key="password", expires=0)
+"""${expires} is the Time in milliseconds for the 
+encrypted password to be destroyed
+setting ${encrypted} to 0 implies the data would
+not be destroyed
+"""
+
+# to encrypt;
+data = dict(
+    name="rubbie kelvin",
+    country="Nigeria"
+)
+encrypted = c.encrypt(**data) # =>str
+
+
+# to decrypt
+data2 = pycxx.Cxx.decrypt(encrypted, key="password") # => dict
+```
+
+`made with ❤️ by rubbie`
+
