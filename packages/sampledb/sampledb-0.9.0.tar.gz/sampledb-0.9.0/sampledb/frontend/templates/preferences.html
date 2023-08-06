@@ -1,0 +1,635 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block title %}Preferences — {{ service_name }}{% endblock %}
+
+{% block content %}
+<h1>Preferences</h1>
+<h2>Account Information</h2>
+<form class="form-horizontal" method="post" name="form-preference-name-and-email" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+    {{ change_user_form.csrf_token() }}
+    <div class="form-group {% if change_user_form.name.errors %} has-error{% endif %}">
+        <label for="input-username" class="col-sm-4 control-label">Name</label>
+        <div class="col-sm-8">
+            <input class="form-control" type="text" id="input-username" name="{{change_user_form.name.name}}" value="{{ change_user_form.name.data }}">
+            {% if change_user_form.name.errors %}
+              <span class="help-block">Please enter your name.</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-group{% if change_user_form.email.errors %} has-error{% endif %}">
+        <label for="input-email" class="col-sm-4 control-label">Email</label>
+        <div class="col-sm-8">
+             <input class="form-control" type="text" id="input-email" name="{{change_user_form.email.name}}" value="{{ change_user_form.email.data }}">
+            {% if change_user_form.email.errors %}
+              <span class="help-block">Please enter your email address.</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="change" value="Change">Save</button>
+    </div>
+</form>
+
+
+<h2>Authentication Methods</h2>
+    <div>
+       <table class="table">
+         <thead>
+             <tr>
+                 <th>Username / E-Mail</th>
+                 <th>Authentication Method</th>
+                 <th></th>
+             </tr>
+         </thead>
+         <tbody>
+           {% for authentication in authentications %}
+           <tr>
+               <td style="vertical-align: middle;">{{authentication.login['login']}}</td>
+               <td style="vertical-align: middle;">{{ {'ldap': 'LDAP', 'email': 'Email', 'other': 'Other'}[authentication.type.name.lower()] }}</td>
+               <td class="text-right">
+                   <form method="post" name="form-remove-authentication-methods" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+                       {{ authentication_method_form.csrf_token() }}
+                       <input class="form-control" type="hidden" name="{{authentication_method_form.id.name}}" value={{authentication.id}}>
+                       {% if error %} <span class='help-block'>{{error}} </span> {%endif%}
+                       {% if authentications|length > 1 %}
+                          {% if confirmed_authentication_methods > 1 %}
+                             {% if authentication.type.name.lower() != 'ldap' %}
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pwModal{{authentication.id}}"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                             {% endif %}
+                             <button type="submit" class="btn btn-danger" name="remove" value="Remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+                          {% else %}
+                               {% if authentication.confirmed  %}
+                                 {% if authentication.type.name.lower() != 'ldap' %}
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pwModal{{authentication.id}}"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                 {% endif %}
+                                 <button type="submit" class="btn btn-danger" name="remove" disabled><i class="fa fa-times" aria-hidden="true"></i></button>
+                               {% else %}
+                                 <button type="submit" class="btn btn-danger" name="remove" value="Remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+                               {% endif %}
+                          {% endif %}
+                       {% else %}
+                         {% if authentication.confirmed and authentication.type.name.lower() != 'ldap' %}
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pwModal{{authentication.id}}"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                         {% endif %}
+                         <button type="submit" class="btn btn-danger" name="remove" disabled><i class="fa fa-times" aria-hidden="true"></i></button>
+                       {% endif %}
+                   </form>
+              </td>
+           </tr>
+           {% endfor %}
+         </tbody>
+         <tfoot>
+           <tr>
+             <td></td>
+             <td></td>
+             <td class="text-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
+           </tr>
+         </tfoot>
+       </table>
+    </div>
+
+  <h3>API Tokens</h3>
+  <div>
+    <p>
+      <strong>Note:</strong> API tokens are an authentication method for use with the <a href="https://scientific-it-systems.iffgit.fz-juelich.de/SampleDB/developer_guide/api.html">HTTP API</a>.
+    </p>
+    <table class="table">
+      {% if api_tokens %}
+         <thead>
+             <tr>
+                 <th>Description</th>
+                 <th></th>
+                 <th></th>
+             </tr>
+         </thead>
+         <tbody>
+           {% for authentication in api_tokens %}
+           <tr>
+             <td>{{ authentication.login['description'] }}</td>
+             <td><a href="{{ url_for('.current_user_api_log', api_token_id=authentication.id) }}">View Log</a></td>
+             <td class="text-right">
+               <form method="post" name="form-remove-authentication-methods" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+                 {{ authentication_method_form.csrf_token() }}
+                 <input class="form-control" type="hidden" name="{{authentication_method_form.id.name}}" value={{authentication.id}}>
+                 <button type="submit" class="btn btn-danger" name="remove" value="Remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+               </form>
+             </td>
+           </tr>
+           {% endfor %}
+         </tbody>
+      {% endif %}
+       <tfoot>
+         <tr>
+           <td></td>
+           <td></td>
+           <td class="text-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#createApiTokenModal"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
+         </tr>
+       </tfoot>
+    </table>
+  </div>
+
+  <h2>Notification Settings</h2>
+  <p><strong>Note:</strong> {{ service_name }} will notify you about various events. By default, these notifications will be sent using the {{ service_name }} notification system, but you can also chose to receive them via email or decide to ignore some notification types.</p>
+
+  <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post">
+    {{ notification_mode_form.csrf_token }}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%">Notification Type</th>
+          <th scope="col" class="text-center">Ignore</th>
+          <th scope="col" class="text-center">Web</th>
+          <th scope="col" class="text-center">Email</th>
+      </thead>
+      <tbody>
+        {% set notification_types = {
+              NotificationType.ANNOUNCEMENT: ("Announcements", False),
+              NotificationType.ASSIGNED_AS_RESPONSIBLE_USER: ("Becoming responsible for an object", True),
+              NotificationType.INVITED_TO_GROUP: ("Being invited to a group", False),
+              NotificationType.INVITED_TO_PROJECT: ("Being invited to a project", False),
+              NotificationType.RECEIVED_OBJECT_PERMISSIONS_REQUEST: ("Receiving object permission requests", False),
+              NotificationType.OTHER: ("Other", False)
+            }
+        %}
+        {% for notification_type in notification_types %}
+          {% set notification_description = notification_types[notification_type][0] %}
+          {% set notification_can_be_ignored = notification_types[notification_type][1] %}
+          <tr>
+            <td style="vertical-align: middle">{{ notification_description }}</td>
+            {% for notification_mode in [NotificationMode.IGNORE, NotificationMode.WEBAPP, NotificationMode.EMAIL] %}
+            <td class="text-center" style="vertical-align: middle">
+              {% if notification_mode != NotificationMode.IGNORE or notification_can_be_ignored %}
+                <label for="notification_mode_for_type_{{ notification_type.name.lower() }}_{{ notification_mode.name.lower() }}" class="sr-only">{{ notification_mode.name.lower() }}</label>
+                <input type="radio" id="notification_mode_for_type_{{ notification_type.name.lower() }}_{{ notification_mode.name.lower() }}" name="notification_mode_for_type_{{ notification_type.name.lower() }}" class="notification-mode-input-{{ notification_mode.name.lower() }}" value="{{ notification_mode.name.lower() }}" {% if notification_modes.get(notification_type, notification_modes.get(None, NotificationMode.WEBAPP)) == notification_mode %}checked="checked"{% endif %}/>
+              {% endif %}
+            </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="container">
+      <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="edit_notification_settings" value="edit_notification_settings">Save</button>
+    </div>
+  </form>
+
+  {% if not current_user.is_readonly %}
+  <h2>Default Permissions</h2>
+  <p><strong>Note:</strong> These permissions will be used for samples, measurements and simulations that you create in the future. To change the permissions for an already existing object, please use the <strong>Edit preferences</strong> button on the object's site.</p>
+
+    <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post">
+    {{ default_permissions_form.csrf_token }}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 40%">Special Groups</th>
+        <th scope="col" class="text-center">None</th>
+        <th scope="col" class="text-center">Read</th>
+        <th scope="col" class="text-center">Write</th>
+        <th scope="col" class="text-center">Grant</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="vertical-align: middle">Administrators</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        {% for possible_permissions in [Permissions.GRANT] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_instrument_responsible_users_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" id="permissions_instrument_responsible_users_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" checked disabled />
+          </td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">Instrument Scientists</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        {% for possible_permissions in [Permissions.GRANT] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_instrument_responsible_users_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" id="permissions_instrument_responsible_users_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" checked disabled />
+          </td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">Everyone</td>
+        {% for possible_permissions in [Permissions.NONE, Permissions.READ] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_public_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" name="{{ default_permissions_form.public_permissions.name }}" id="permissions_public_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if public_permissions == possible_permissions %}checked{% endif %} />
+          </td>
+        {% endfor %}
+        <td></td>
+        <td></td>
+      </tr>
+      {% if default_permissions_form.project_permissions | length > 0 %}
+      <tr>
+        <th scope="col" style="width: 40%">Projects</th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+      </tr>
+      {% endif %}
+      {% for project_permissions_form in default_permissions_form.project_permissions %}
+      {% set project_id = project_permissions_form.project_id.data | int %}
+      {% set project = get_project(project_id) %}
+        <tr>
+          <td>
+            <a href="{{ url_for('.project', project_id=project_id) }}">{{ project.name }}</a>
+            {{ project_permissions_form.csrf_token }}
+            <input type="hidden" name="{{ project_permissions_form.project_id.name }}" value="{{ project_id }}">
+          </td>
+          {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+            <td class="text-center" style="vertical-align: middle">
+              <label for="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+              <input type="radio" name="{{ project_permissions_form.permissions.name }}" id="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if project_permissions[project_id] == possible_permissions %}checked{% endif %} />
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      {% if default_permissions_form.group_permissions | length > 0 %}
+      <tr>
+        <th scope="col" style="width: 40%">Groups</th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+      </tr>
+      {% endif %}
+      {% for group_permissions_form in default_permissions_form.group_permissions %}
+      {% set group_id = group_permissions_form.group_id.data | int %}
+      {% set group = get_group(group_id) %}
+        <tr>
+          <td>
+            <a href="{{ url_for('.group', group_id=group_id) }}">{{ group.name }}</a>
+            {{ group_permissions_form.csrf_token }}
+            <input type="hidden" name="{{ group_permissions_form.group_id.name }}" value="{{ group_id }}">
+          </td>
+          {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+            <td class="text-center" style="vertical-align: middle">
+              <label for="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+              <input type="radio" name="{{ group_permissions_form.permissions.name }}" id="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if group_permissions[group_id] == possible_permissions %}checked{% endif %} />
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      {% if default_permissions_form.user_permissions | length > 0 %}
+      <tr>
+        <th scope="col" style="width: 40%">Users</th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+      </tr>
+      {% endif %}
+      {% for user_permissions_form in default_permissions_form.user_permissions %}
+        {% set user_id = user_permissions_form.user_id.data | int %}
+        {% set user = get_user(user_id) %}
+        {% set permissions = user_permissions.get(user_id, Permissions.NONE) %}
+        <tr>
+          <td>
+            <a href="{{ url_for('.user_profile', user_id=user_id) }}">{{ user.name }}</a>
+            {{ user_permissions_form.csrf_token }}
+            <input type="hidden" name="{{ user_permissions_form.user_id.name }}" value="{{ user_id }}">
+          </td>
+          {% if user.id == current_user.id %}
+            <input type="hidden" name="{{ user_permissions_form.permissions.name }}" value="grant" />
+          {% endif %}
+          {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+            <td class="text-center" style="vertical-align: middle">
+              <label for="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+              <input type="radio" {% if user.id != current_user.id %}name="{{ user_permissions_form.permissions.name }}"{% endif %} id="permissions_user_{{ user_id }}_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if user_permissions[user_id] == possible_permissions %}checked{% endif %} {% if user.id == current_user.id %}disabled{% endif %}/>
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="container">
+    <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="edit_user_permissions" value="edit_user_permissions">Save</button>
+  </div>
+  </form>
+  {% if users %}
+    <h3>Add User</h3>
+    <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post">
+    {{ add_user_permissions_form.csrf_token }}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%">User</th>
+          <th scope="col" class="text-center">None</th>
+          <th scope="col" class="text-center">Read</th>
+          <th scope="col" class="text-center">Write</th>
+          <th scope="col" class="text-center">Grant</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <select class="selectpicker" name="{{ add_user_permissions_form.user_id.name }}" data-width="100%" data-live-search="true">
+          {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }} (#{{ user.id }})</option>
+          {% endfor %}
+          </select>
+        </td>
+        {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_new_user_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" name="{{ add_user_permissions_form.permissions.name }}" id="permissions_new_user_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if possible_permissions == Permissions.READ %}checked{% endif %}  {% if possible_permissions == Permissions.NONE %}disabled{% endif %} />
+          </td>
+        {% endfor %}
+      </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="add_user_permissions" value="add_user_permissions">Add</button>
+    </div>
+    </form>
+  {% endif %}
+  {% if groups %}
+    <h3>Add Group</h3>
+    <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post">
+    {{ add_group_permissions_form.csrf_token }}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%">Group</th>
+          <th scope="col" class="text-center">None</th>
+          <th scope="col" class="text-center">Read</th>
+          <th scope="col" class="text-center">Write</th>
+          <th scope="col" class="text-center">Grant</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <select class="selectpicker" name="{{ add_group_permissions_form.group_id.name }}" data-width="100%" data-live-search="true">
+          {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.name }} (#{{ group.id }})</option>
+          {% endfor %}
+          </select>
+        </td>
+        {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_new_group_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" name="{{ add_group_permissions_form.permissions.name }}" id="permissions_new_group_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if possible_permissions == Permissions.READ %}checked{% endif %}  {% if possible_permissions == Permissions.NONE %}disabled{% endif %} />
+          </td>
+        {% endfor %}
+      </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="add_group_permissions" value="add_group_permissions">Add</button>
+    </div>
+    </form>
+  {% endif %}
+  {% if projects %}
+    <h3>Add Project</h3>
+    <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post">
+    {{ add_project_permissions_form.csrf_token }}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%">Project</th>
+          <th scope="col" class="text-center">None</th>
+          <th scope="col" class="text-center">Read</th>
+          <th scope="col" class="text-center">Write</th>
+          <th scope="col" class="text-center">Grant</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <select class="selectpicker" name="{{ add_project_permissions_form.project_id.name }}" data-width="100%" data-live-search="true">
+          {% for project in projects %}
+            <option value="{{ project.id }}">{{ project.name }} (#{{ project.id }})</option>
+          {% endfor %}
+          </select>
+        </td>
+        {% for possible_permissions in [Permissions.NONE, Permissions.READ, Permissions.WRITE, Permissions.GRANT] %}
+          <td class="text-center" style="vertical-align: middle">
+            <label for="permissions_new_project_{{ possible_permissions.name.lower() }}" class="sr-only">{{ possible_permissions.name.lower() }}</label>
+            <input type="radio" name="{{ add_project_permissions_form.permissions.name }}" id="permissions_new_project_{{ possible_permissions.name.lower() }}" value="{{ possible_permissions.name.lower() }}" {% if possible_permissions == Permissions.READ %}checked{% endif %}  {% if possible_permissions == Permissions.NONE %}disabled{% endif %} />
+          </td>
+        {% endfor %}
+      </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="add_project_permissions" value="add_project_permissions">Add</button>
+    </div>
+    </form>
+  {% endif %}
+  {% endif %}
+
+  <h2>Other Settings</h2>
+  <form action="{{ url_for('.user_preferences', user_id=current_user.id) }}" method="post" class="form-horizontal">
+    {{ other_settings_form.csrf_token }}
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="input-use-schema-editor-yes">
+      Use Schema Editor
+    </label>
+    <div class="radio col-md-4">
+      <label>
+        <input type="radio" name="input-use-schema-editor" id="input-use-schema-editor-yes" value="yes" {% if user_settings["USE_SCHEMA_EDITOR"] %}checked="checked"{% endif %}>
+        Yes &mdash; Use graphical editor for editing action schemas (recommended)
+      </label>
+    </div>
+    <div class="radio col-md-4">
+      <label>
+        <input type="radio" name="input-use-schema-editor" id="input-use-schema-editor-no" value="no" {% if not user_settings["USE_SCHEMA_EDITOR"] %}checked="checked"{% endif %}>
+        No &mdash; Edit schemas as JSON using a text editor (advanced)
+      </label>
+    </div>
+      </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="input-objects-per-page">
+        Objects per Page
+      </label>
+      <span class="col-md-8">
+        <select class="selectpicker form-control" id="input-objects-per-page" name="input-objects-per-page">
+          {% for limit in (10, 25, 50, 100, 'all') %}
+          <option value="{{ limit }}" {% if limit == user_settings['OBJECTS_PER_PAGE'] or (limit == 'all' and user_settings['OBJECTS_PER_PAGE'] is none) %}selected="selected"{% endif %}>{{ limit }}</option>
+          {% endfor %}
+        </select>
+      </span>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary col-md-offset-9 col-md-3" name="edit_other_settings" value="edit_other_settings">Save</button>
+    </div>
+  </form>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form-horizontal" id="form-add-authentication-methods" method="post" name="form-add-authentication-methods" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Authentication Method</h4>
+      </div>
+      <div class="modal-body">
+            {{ authentication_form.csrf_token() }}
+            <div class="form-group{% if authentication_form.login.errors  or error_add %} has-error{% endif %}">
+                <label for="input-login" class="col-sm-4 control-label">Username / Email</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" id="input-login" name="login"  placeholder="Username / Email" {% if authentication_form.login.data %}value="{{ authentication_form.login.data }}"{% endif %}>
+                    {% if error_add %} <span class='help-block'>{{error_add}} </span> {%endif%}
+                    {% if error %} <span class='help-block'>{{error}} </span> {%endif%}
+                </div>
+            </div>
+            <div class="form-group{% if authentication_form.password.errors%} has-error {% endif %}">
+                <label for="input-password" class="col-sm-4 control-label">Password</label>
+                <div class="col-sm-8">
+                     <input class="form-control" type="password" id="input-password" name="password"  placeholder="Password">
+                    {% if authentication_form.password.errors %}
+                     <span class='help-block'>The password must be at least 3 characters long.</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Type</label>
+                <div class="col-sm-8">
+                  <select class="form-control selectpicker" name="{{ authentication_form.authentication_method.name }}">
+                  {% for option in authentication_form.authentication_method.choices %}
+                    <option value="{{ option[0] }}"{% if authentication_form.authentication_method.data == option[0] %}selected="selected"{% endif %}>{{ {'ldap': 'LDAP', 'email': 'Email', 'other': 'Other'}[option[1].lower()] }}</option>
+                  {% endfor %}
+                  </select>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="width:6em;">Cancel</button>
+        <button type="submit" class="btn btn-primary" name="add" value="Add" style="width:6em;">Add</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% for authentication in authentications %}
+<div class="modal fade" id="pwModal{{authentication.id}}" tabindex="-1" role="dialog" aria-labelledby="pwModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form-horizontal" id="form-change-password" method="post" name="form-change-password" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pwModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+            {{ authentication_password_form.csrf_token() }}
+            <input class="form-control" type="hidden" name="{{authentication_password_form.id.name}}" value={{authentication.id}}>
+            <div class="form-group{% if authentication_password_form.password.errors%} has-error {% endif %}">
+                <label for="input-pw" class="col-sm-4 control-label">Password</label>
+                <div class="col-sm-8">
+                     <input class="form-control" type="password" id="input-pw" name="password"  placeholder="Password">
+                    {% if authentication_password_form.password.errors %}
+                     <span class='help-block'>The password must be at least 3 characters long.</span>
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="width:6em;">Cancel</button>
+        <button type="submit" class="btn btn-primary" name="edit" value="Edit" style="width:6em;">Change</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<div class="modal fade" id="createApiTokenModal" tabindex="-1" role="dialog" aria-labelledby="createApiTokenModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form-horizontal" id="form-add-api-token" method="post" name="form-add-api-token" action="{{ url_for('.user_preferences', user_id=user.id) }}">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="createApiTokenModalLabel">Create API Token</h4>
+      </div>
+      <div class="modal-body">
+            {{ create_api_token_form.csrf_token() }}
+            <div class="form-group{% if create_api_token_form.description.errors %} has-error{% endif %}">
+                <label for="input-description" class="col-sm-4 control-label">Description</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" id="input-description" name="description"  placeholder="Description" {% if create_api_token_form.description.data %}value="{{ create_api_token_form.description.data }}"{% endif %}>
+                    {% if create_api_token_form.description.errors %} <span class='help-block'>Please enter a description for the API token.</span> {%endif%}
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="width:6em;">Cancel</button>
+        <button type="submit" class="btn btn-primary" name="create_api_token" value="create_api_token" style="width:6em;">Create</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% if created_api_token %}
+<div class="modal fade" id="viewApiTokenModal" tabindex="-1" role="dialog" aria-labelledby="viewApiTokenModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="viewApiTokenModalLabel">New API Token</h4>
+      </div>
+      <div class="modal-body">
+        <div id="api-token">
+          <div class="input-group">
+            <input type="text" readonly="readonly" class="disabled form-control" value="{{ created_api_token }}"/>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+            </span>
+          </div>
+          <span class="help-block" id="api-token-copy-notes"></span>
+        </div>
+        <span class="help-block">Make sure you save it - you won't be able to access it again.</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="width:6em;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>
+  {% if created_api_token %}
+  <script>
+  $('#viewApiTokenModal').modal('show');
+  $('#api-token button').bind('click', function() {
+  var input = document.querySelector('#api-token input');
+  input.setSelectionRange(0, input.value.length + 1);
+  $(input).focus();
+  try {
+    var success = document.execCommand('copy');
+    if (success) {
+      $('#api-token-copy-notes').text("Copied!");
+      $('#api-token').removeClass('has-error').addClass('has-success');
+    } else {
+      $('#api-token-copy-notes').text("Could not copy to clipboard, please use Ctrl+C.");
+      $('#api-token').removeClass('has-success').addClass('has-error');
+    }
+  } catch (err) {
+      $('#api-token-copy-notes').text("Could not copy to clipboard, please use Ctrl+C.");
+      $('#api-token').removeClass('has-success').addClass('has-error');
+  }
+});
+
+  </script>
+  {% endif %}
+  {% if create_api_token_form.description.errors %}
+  <script>
+  $('#createApiTokenModal').modal('show');
+  </script>
+  {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}" />
+{% endblock %}

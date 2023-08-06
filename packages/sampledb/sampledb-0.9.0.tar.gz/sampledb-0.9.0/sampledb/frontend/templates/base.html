@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{{ service_name }}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  {% endblock %}
+</head>
+<body {% if current_user.is_authenticated %}class="user-is-authenticated"{% endif %}>
+
+{% if current_user.is_authenticated %}
+  {% set num_unread_notifications = (current_user | get_num_unread_notifications) %}
+{% else %}
+  {% set num_unread_notifications = 0 %}
+{% endif %}
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('frontend.index') }}">{{ service_name }}</a>
+      {% if num_unread_notifications > 0 %}<a href="{{ url_for('frontend.notifications', user_id=current_user.id) }}"><span class="badge badge-new-notifications"><i class="fa fa-bell" aria-hidden="true"></i> {{ num_unread_notifications }}</span></a>{% endif %}
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {% if not current_user.is_authenticated %}
+      <ul class="nav navbar-nav">
+        <li><a href="https://scientific-it-systems.iffgit.fz-juelich.de/SampleDB/">Help</a></li>
+      </ul>
+      {% else %}
+      <form action="{{ url_for('frontend.objects') }}" method="get" class="navbar-form navbar-left" id="nav-search">
+        {% if action_id %}
+          <input type="hidden" name="action" value="{{ action_id }}" id="input-search-action-id" />
+        {% endif %}
+        {% if project_id %}
+          <input type="hidden" name="action" value="{{ project_id }}" id="input-search-project-id" />
+        {% endif %}
+        {% if ActionType %}
+          {% if action_type == ActionType.SAMPLE_CREATION %}
+          <input type="hidden" name="t" value="samples" id="input-search-action-type" />
+          {% elif action_type == ActionType.MEASUREMENT %}
+          <input type="hidden" name="t" value="measurements" id="input-search-action-type" />
+          {% elif action_type == ActionType.SIMULATION %}
+          <input type="hidden" name="t" value="simulations" id="input-search-action-type" />
+          {% endif %}
+        {% endif %}
+        <div class="input-group">
+          <input type="text" id="input-search" class="form-control" placeholder="Search..." name="q" {% if search_query %} value="{{ search_query }}"{% endif %}>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="sr-only">Search</span><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a><label id="button-search-advanced" style="font-weight: normal; margin: 0; cursor:pointer"><input type="checkbox" id="input-search-advanced" name="advanced" style="margin-right: 2px;" {% if must_use_advanced_search %}checked="checked"{% endif %}> Advanced Search</label></a></li>
+            {% if action_type or project_id %}
+              <li class="divider"></li>
+              {% if project_id %}
+                {% if action_type == ActionType.SAMPLE_CREATION %}
+                <li><a href="#" id="button-search-project-id">Search samples from this project</a></li>
+                {% elif action_type == ActionType.MEASUREMENT %}
+                <li><a href="#" id="button-search-project-id">Search measurements from this project</a></li>
+                {% elif action_type == ActionType.SIMULATION %}
+                <li><a href="#" id="button-search-project-id">Search simulations from this project</a></li>
+                {% else %}
+                <li><a href="#" id="button-search-project-id">Search objects from this project</a></li>
+                {% endif %}
+              {% endif %}
+              {% if action_id %}
+                {% if action_type == ActionType.SAMPLE_CREATION %}
+                <li><a href="#" id="button-search-action-id">Search samples from this action</a></li>
+                {% elif action_type == ActionType.MEASUREMENT %}
+                <li><a href="#" id="button-search-action-id">Search measurements from this action</a></li>
+                {% elif action_type == ActionType.SIMULATION %}
+                <li><a href="#" id="button-search-action-id">Search simulations from this action</a></li>
+                {% else %}
+                <li><a href="#" id="button-search-action-id">Search objects from this action</a></li>
+                {% endif %}
+              {% endif %}
+              {% if action_type == ActionType.SAMPLE_CREATION %}
+              <li><a href="#" id="button-search-action-type">Search all samples</a></li>
+              {% elif action_type == ActionType.MEASUREMENT %}
+              <li><a href="#" id="button-search-action-type">Search all measurements</a></li>
+              {% elif action_type == ActionType.SIMULATION %}
+              <li><a href="#" id="button-search-action-type">Search all simulations</a></li>
+              {% endif %}
+              <li><a href="#" id="button-search-all">Search all objects</a></li>
+            {% endif %}
+            </ul>
+          </span>
+        </div>
+      </form>
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('frontend.instruments') }}">Instruments</a></li>
+        <li><a href="{{ url_for('frontend.actions') }}">Actions</a></li>
+        <li class="dropdown">
+          <a href="{{ url_for('frontend.objects') }}" style="display:inline-block; padding-right: 0;">Objects</a><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display:inline-block; padding-left: 3px;"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('frontend.objects', t='samples') }}">Samples</a></li>
+            <li><a href="{{ url_for('frontend.objects', t='measurements') }}">Measurements</a></li>
+            <li><a href="{{ url_for('frontend.objects', t='simulations') }}">Simulations</a></li>
+            <li role="separator" class="divider nav-search-link"></li>
+            <li class="nav-search-link"><a href="{{ url_for('frontend.search') }}">Search</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('frontend.users') }}">Users</a></li>
+            <li><a href="{{ url_for('frontend.projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('frontend.groups') }}">Groups</a></li>
+            <li><a href="{{ url_for('frontend.locations') }}">Locations</a></li>
+            <li><a href="{{ url_for('frontend.tags') }}">Tags</a></li>
+          </ul>
+        </li>
+        <li><a href="https://scientific-it-systems.iffgit.fz-juelich.de/SampleDB/">Help</a></li>
+      </ul>
+      {% endif %}
+      {% block navbar_userarea %}
+      <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ current_user.name }} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('frontend.user_profile', user_id=current_user.id) }}"><strong>{{ current_user.name }} (#{{ current_user.id }})</strong></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ url_for('frontend.user_preferences', user_id=current_user.id) }}">Preferences</a></li>
+              <li><a href="{{ url_for('frontend.notifications', user_id=current_user.id) }}">Notifications {% if num_unread_notifications > 0 %}<span class="badge badge-new-notifications"><i class="fa fa-bell" aria-hidden="true"></i> {{ num_unread_notifications }}</span>{% endif %}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ url_for('frontend.projects', user_id=current_user.id) }}">Your Projects</a></li>
+              <li><a href="{{ url_for('frontend.groups', user_id=current_user.id) }}">Your Groups</a></li>
+              <li><a href="{{ url_for('frontend.actions', user_id=current_user.id) }}">Your Actions</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ url_for('frontend.invitation_route')}}">Invite a guest</a></li>
+              <li role="separator" class="divider"></li>
+              <li><form class="form-navbar-signout" action="{{ url_for('frontend.sign_out') }}" method="post">{{ signout_form().csrf_token() }}<button type="submit" class="btn btn-link">Sign out</button></form></li>
+            </ul>
+          </li>
+          {% if num_unread_notifications > 0 %}<li class="nav-item-new-notifications"><a href="{{ url_for('frontend.notifications', user_id=current_user.id) }}"><span class="badge badge-new-notifications"><i class="fa fa-bell" aria-hidden="true"></i> {{ num_unread_notifications }}</span></a></li>{% endif %}
+          {% else %}
+          <li><a href="{{ url_for('frontend.sign_in') }}">Sign in</a></li>
+          {% endif %}
+      </ul>
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+<div id="main" class="container">
+  <noscript>
+    <div class="alert alert-danger" role="alert">
+      <strong>Warning:</strong> This service requires JavaScript for some features. Please <a href="https://www.enable-javascript.com/">enable JavaScript</a> and reload the page.
+    </div>
+  </noscript>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      {% if category == "error" %}
+        {% set alert_class="alert-danger" %}
+      {% elif category == "warning" %}
+        {% set alert_class="alert-warning" %}
+      {% elif category == "success" %}
+        {% set alert_class="alert-success" %}
+      {% else %}
+        {% set alert_class="alert-info" %}
+      {% endif %}
+      <div class="alert {{ alert_class }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endwith %}
+  {% block readonly_alert %}
+  {% if current_user.is_readonly %}
+  <div class="alert alert-info">
+    <p><strong>Note:</strong> Your account has been marked as read only. If you think this was done erroneously, please <a href="mailto:{{ contact_email }}?subject={{ service_name }}">contact an administrator</a>.</p>
+  </div>
+  {% endif %}
+  {% endblock %}
+ {% block content %}{% endblock %}
+</div>
+<footer>
+  <div class="container">
+    <p class="text-center text-muted">{{ service_name }} is a service by the <a href="https://pgi-jcns.fz-juelich.de/">PGI / JCNS Scientific IT-Systems</a> team &bullet; <a href="https://scientific-it-systems.iffgit.fz-juelich.de/SampleDB/user_guide/citations.html">Citation Guide</a>{% if service_imprint %} &bullet; <a href="{{ service_imprint }}">Imprint</a>{% endif %}{% if service_privacy_policy %} &bullet; <a href="{{ service_privacy_policy }}">Privacy Policy</a>{% endif %}</p>
+  </div>
+</footer>
+ {% block scripts %}
+  <script src="{{ url_for('static', filename='js/jquery-1.12.4.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+   <script>
+   $(function() {
+     $('#button-search-all').on('click', function() {
+       $('#input-search-action-type').attr('name', 't_');
+       $('#input-search-action-id').attr('name', 'action_');
+       $('#input-search-project-id').attr('name', 'project_');
+       if ($('#input-search-advanced')[0].checked) {
+         $('#input-search').attr('placeholder', 'Advanced Search...');
+       } else {
+         $('#input-search').attr('placeholder', 'Search...');
+       }
+     });
+     $('#button-search-action-id').on('click', function() {
+       $('#input-search-action-type').attr('name', 't');
+       $('#input-search-action-id').attr('name', 'action');
+       $('#input-search-project-id').attr('name', 'project_');
+       if ($('#input-search-advanced')[0].checked) {
+         $('#input-search').attr('placeholder', 'Advanced Search (by action)...');
+       } else {
+         $('#input-search').attr('placeholder', 'Search (by action)...');
+       }
+     });
+     $('#button-search-project-id').on('click', function() {
+       $('#input-search-action-type').attr('name', 't');
+       $('#input-search-action-id').attr('name', 'action_');
+       $('#input-search-project-id').attr('name', 'project');
+       if ($('#input-search-advanced')[0].checked) {
+         $('#input-search').attr('placeholder', 'Advanced Search (by project)...');
+       } else {
+         $('#input-search').attr('placeholder', 'Search (by project)...');
+       }
+     });
+     $('#button-search-action-type').on('click', function() {
+       $('#input-search-action-type').attr('name', 't');
+       $('#input-search-action-id').attr('name', 'action_');
+       $('#input-search-project-id').attr('name', 'project_');
+       if ($('#input-search-advanced')[0].checked) {
+         $('#input-search').attr('placeholder', 'Advanced Search (by type)...');
+       } else {
+         $('#input-search').attr('placeholder', 'Search (by type)...');
+       }
+     });
+     $('#input-search-advanced').on('change', function() {
+       var current_placeholder = $('#input-search').attr('placeholder');
+       if ($('#input-search-advanced')[0].checked) {
+         if (!current_placeholder.startsWith('Advanced ')) {
+          $('#input-search').attr('placeholder', 'Advanced '+current_placeholder);
+         }
+       } else {
+         if (current_placeholder.startsWith('Advanced ')) {
+           $('#input-search').attr('placeholder', current_placeholder.substring('Advanced '.length, current_placeholder.length));
+         }
+       }
+     });
+     /* don't limit search by default*/
+     $('#input-search-action-type').attr('name', 't_');
+     $('#input-search-action-id').attr('name', 'action_');
+     $('#input-search-project-id').attr('name', 'project_');
+     if ($('#input-search-advanced')[0].checked) {
+       $('#input-search').attr('placeholder', 'Advanced Search...');
+     } else {
+       $('#input-search').attr('placeholder', 'Search...');
+     }
+   });
+   </script>
+
+  {% endblock %}
+</body>
+</html>
