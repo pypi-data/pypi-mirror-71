@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: pycites
+Version: 0.1.0
+Summary: Package to download and interact with the CITES Trade Database in Python
+Home-page: https://github.com/ltirrell/pycites
+License: MIT
+Author: Lee Tirrell
+Author-email: tirrell.le@gmail.com
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: appdirs (>=1.4.4,<2.0.0)
+Requires-Dist: pandas (>=1.0.5,<2.0.0)
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Requires-Dist: tqdm (>=4.46.1,<5.0.0)
+Project-URL: Repository, https://github.com/ltirrell/pycites
+Description-Content-Type: text/markdown
+
+# pycites
+`pycites` is a package to download and interact with the [CITES Trade Database](https://trade.cites.org/) using Python. [citesdb](https://github.com/ropensci/citesdb) exists for R users to load and analzyes this data, so we wanted a way to do the same!
+
+Currently very much a work in progress.  This only allows uses to download CITES trade data and load it as a `pandas` DataFrame.
+
+## Installation
+`pip install pycites`
+
+## Roadmap
+- [ ] Release a CSV to make it easier for users to download and load data
+- [ ] Experiement with other data formats for better memory usage of data (currently pretty high)
+- [ ] Include metadata and other useful information, like `citesdb`
+- [ ] Add additional functionality for analysis (time series and network analyses), and integrate with other data sources (such as World Bank)
+- [ ] Setup CI and testing
+
