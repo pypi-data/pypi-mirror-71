@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: kmpc
+Version: 0.7.1
+Summary: kmpc is a Kivy-based mpd client, primarily meant for use on a Raspberry Pi mounted in a car.
+Home-page: https://gitlab.com/eratosthene/kmpc
+Author: Chris Graham
+Author-email: eratosthene@gmail.com
+License: GNU Lesser General Public License v3 (LGPLv3)
+Download-URL: https://gitlab.com/eratosthene/kmpc/archive/0.7.1.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: setuptools (<=44.1.1,>=38.4.0)
+Requires-Dist: kivy (<1.10.99,>=1.10.0)
+Requires-Dist: twisted
+Requires-Dist: mutagen (<=1.43.0)
+Requires-Dist: pillow
+Requires-Dist: python-mpd2 (>=1.0.0)
+Requires-Dist: pycountry
+Provides-Extra: cache
+Requires-Dist: musicbrainzngs ; extra == 'cache'
+Requires-Dist: pyopenssl ; extra == 'cache'
+Provides-Extra: mongo
+Requires-Dist: txmongo ; extra == 'mongo'
+Provides-Extra: rpi
+Requires-Dist: rpi-backlight ; extra == 'rpi'
+
+UNKNOWN
+
+
