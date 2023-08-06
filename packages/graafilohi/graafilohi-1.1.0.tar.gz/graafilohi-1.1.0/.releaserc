@@ -1,0 +1,16 @@
+{
+  "repositoryUrl": "git@gitlab.com:blissfulreboot/python/graafilohi.git",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog", {
+      "changelogFile": "CHANGELOG.md"
+    }
+    ],
+    ["@semantic-release/exec", {
+      "publishCmd": "echo ${nextRelease.version} > VERSION && git add VERSION"
+    }],
+    "@semantic-release/git"
+  ]
+}

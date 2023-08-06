@@ -1,0 +1,41 @@
+default:
+  tags:
+    - amd64-docker
+
+include:
+  - project: "blissfulreboot/gl-pipelines/build-and-publish"
+    file: "/semantic-release/python/full.yml"
+
+install:
+  script:
+    - echo "true"
+
+test:
+  stage: test
+  before_script:
+    - pip install --user -r requirements.txt
+
+build-test:
+  stage: test
+  script:
+    - ls -la
+    - python --version
+    - python setup.py sdist
+
+build:
+  only:
+    - master
+
+publish-test:
+  environment:
+    name: test-pypi
+    url: https://test.pypi.org/project/graavilohi/
+  only:
+    - master
+
+publish-main:
+  environment:
+    name: pypi
+    url: https://pypi.org/project/graavilohi/
+  only:
+    - master
