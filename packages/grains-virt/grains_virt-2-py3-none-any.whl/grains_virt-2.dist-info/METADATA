@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: grains-virt
+Version: 2
+Summary: Virtualization grains for grainsv2 horizontal merging
+Home-page: https://gitlab.com/saltstack/pop/corn_virtualization
+Author: Tyler Johnson
+Author-email: tjohnson@saltstack.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: aiofiles (>=0.3.0)
+Requires-Dist: grainsv2 (>=9)
+Requires-Dist: pop (>=13)
+Requires-Dist: idem-bsd ; "BSD" in sys_platform
+Requires-Dist: idem-solaris ; "sunos" in sys_platform
+Requires-Dist: idem-aix ; os_name == "AIX"
+Requires-Dist: idem-darwin ; sys_platform == "darwin"
+Requires-Dist: idem-linux ; sys_platform == "linux"
+Requires-Dist: idem-windows ; sys_platform == "win32"
+
+***********
+GRAINS_VIRT
+***********
+
+**Virtualization grains for idem with grains**
+
+INSTALLATION
+============
+
+Parts of `grains-virt` are dependant on `hub.exec.cmd.run`
+which exists inside of a few kernel specific idem projects.
+Install the appropriate **one** for your system to make full use of `grains-virt`:
+
+I.E::
+
+    pip install idem-bsd
+    pip install idem-darwin
+    pip install idem-linux
+    pip install idem-solaris
+    pip install idem-windows
+
+
+DEVELOPMENT INSTALLATION
+========================
+
+
+Clone the `grains-virt` repo and install with pip::
+
+    git clone https://gitlab.com/saltstack/pop/corn_virtualization.git grains-virt
+    pip install -e grains-virt
+
+EXECUTION
+=========
+After installation the `grains` command should now be available::
+
+    grains virtual virtual_subtype
+
+
