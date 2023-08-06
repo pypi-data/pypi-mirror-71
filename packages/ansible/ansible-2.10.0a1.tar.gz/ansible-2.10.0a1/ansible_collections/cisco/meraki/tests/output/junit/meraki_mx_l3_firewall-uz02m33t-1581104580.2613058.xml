@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="3" time="5.689745903015137">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_mx_l3_firewall-uz02m33t" skipped="0" tests="3" time="5.689745903015137">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-fs6yf7qk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:64" name="[localhost] meraki: meraki_mx_l3_firewall : Set one firewall rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'any', 'src_cidr': 'any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="4.968298">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-fs6yf7qk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:81" name="[localhost] meraki: meraki_mx_l3_firewall : debug var=create_one" time="0.340668">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-fs6yf7qk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:84" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['create_one.data|length == 2', &quot;create_one.data.0.dest_cidr == '192.0.1.1/32'&quot;, &quot;create_one.data.0.protocol == 'tcp'&quot;, &quot;create_one.data.0.policy == 'deny'&quot;, 'create_one.changed == True', 'create_one.data is defined']" time="0.380779">
+			<failure message="Assertion failed" type="failure">{
+    &quot;assertion&quot;: &quot;create_one.changed == True&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;Assertion failed&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

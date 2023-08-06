@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="2" tests="4" time="5.103685140609741">
+	<testsuite disabled="0" errors="0" failures="2" name="meraki_mx_l3_firewall-gbacg3ix" skipped="1" tests="4" time="5.103685140609741">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-m65o7c0i-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mx_l3_firewall : Test an API key is provided msg=Please define an API key" time="0.442728">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-m65o7c0i-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:12" name="[localhost] meraki: meraki_mx_l3_firewall : Create network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, type=appliance" time="3.931591">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682585&quot;,
+&quot;name&quot;: &quot;TestNetAppliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-m65o7c0i-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:21" name="[localhost] meraki: meraki_mx_l3_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="0.375169">
+			<failure message="Unable to import meraki_mx_l3_firewall due to invalid syntax" type="failure">{
+&quot;msg&quot;: &quot;Unable to import meraki_mx_l3_firewall due to invalid syntax&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-m65o7c0i-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:245" name="[localhost] meraki: meraki_mx_l3_firewall : Delete all firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[]" time="0.354198">
+			<failure message="Unable to import meraki_mx_l3_firewall due to invalid syntax" type="failure">{
+&quot;msg&quot;: &quot;Unable to import meraki_mx_l3_firewall due to invalid syntax&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,10 @@
+{
+    "docs": "https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/ansible-doc.html",
+    "results": [
+        {
+            "message": "The test `ansible-test sanity --test ansible-doc` [[explain](https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/ansible-doc.html)] failed with the error:",
+            "output": "Command \"ansible-doc -t module cisco.meraki.meraki_ms_link_aggregation\" returned exit status 1.\n>>> Standard Error\nERROR! module cisco.meraki.meraki_ms_link_aggregation missing documentation (or could not parse documentation): mapping values are not allowed in this context\n  in \"<unicode string>\", line 41, column 19"
+        }
+    ],
+    "verified": false
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="9" time="14.051696062088013">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_snmp-bkhvvbcp" skipped="1" tests="9" time="14.051696062088013">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:7" name="[localhost] meraki: meraki_snmp : Test an API key is provided msg=Please define an API key" time="0.428164">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:12" name="[localhost] meraki: meraki_snmp : Create SNMP network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, type=appliance" time="3.067139">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682433&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:22" name="[localhost] meraki: meraki_snmp : set_fact net_id=new_net.data.id" time="0.017772">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;new_net.data.id&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:213" name="[localhost] meraki: meraki_snmp : Set network access type to community string auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, access=community, community_string=abc123" time="4.444808">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;community&quot;,
+&quot;community_string&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:224" name="[localhost] meraki: meraki_snmp : debug var=set_net_community" time="0.439932">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_net_community&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;community&quot;,
+            &quot;community_string&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:227" name="[localhost] meraki: meraki_snmp : assert that=['set_net_community is changed', 'set_net_community.data is defined']" time="0.376403">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:232" name="[localhost] meraki: meraki_snmp : Set network access type to username auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, access=users, users=[{'username': 'ansibleuser', 'passphrase': 'ansiblepass'}]" time="4.537358">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;users&quot;,
+&quot;users&quot;: [
+{
+&quot;passphrase&quot;: &quot;ansiblepass&quot;,
+&quot;username&quot;: &quot;ansibleuser&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:245" name="[localhost] meraki: meraki_snmp : debug var=set_net_user" time="0.370486">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_net_user&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;users&quot;,
+            &quot;users&quot;: [
+                {
+                    &quot;passphrase&quot;: &quot;ansiblepass&quot;,
+                    &quot;username&quot;: &quot;ansibleuser&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-u51l4qq6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:248" name="[localhost] meraki: meraki_snmp : assert that=['set_net_user is changed', 'set_net_user.data is defined']" time="0.369635">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

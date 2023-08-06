@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="6" time="8.226018190383911">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_syslog-q8pk4gxq" skipped="1" tests="6" time="8.226018190383911">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:7" name="[localhost] meraki: meraki_syslog : Test an API key is provided msg=Please define an API key" time="0.354939">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:12" name="[localhost] meraki: meraki_syslog : set_fact syslog_test_net_name=syslog_{{test_net_name}}" time="0.334391">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;syslog_test_net_name&quot;: &quot;syslog_Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:15" name="[localhost] meraki: meraki_syslog : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="2.752839">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682319&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:25" name="[localhost] meraki: meraki_syslog : set_fact net_id={{new_net.data.id}}" time="0.361393">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682319&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:116" name="[localhost] meraki: meraki_syslog : Create syslog server with bad name auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, servers=[{'host': '192.0.1.6', 'port': 514, 'roles': ['Invalid role']}]" time="4.064466">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/tmp/ansible_meraki_syslog_payload_x0tvrivq/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 92, in inner\nansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577283943.5980747-216953338931912/AnsiballZ_meraki_syslog.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577283943.5980747-216953338931912/AnsiballZ_meraki_syslog.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577283943.5980747-216953338931912/AnsiballZ_meraki_syslog.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_syslog', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_syslog_payload_x0tvrivq/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_syslog.py\&quot;, line 260, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_syslog_payload_x0tvrivq/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_syslog.py\&quot;, line 244, in main\n  File \&quot;/tmp/ansible_meraki_syslog_payload_x0tvrivq/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 119, in inner\nNameError: name 'meraki' is not defined\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:131" name="[localhost] meraki: meraki_syslog : debug msg={{invalid_role.errors}}" time="0.357991">
+			<failure message="The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'errors'
+
+The error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml': line 131, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+  - debug:
+    ^ here
+" type="failure">{
+&quot;msg&quot;: &quot;The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'errors'\n\nThe error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-vz5hvdx6-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml': line 131, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n  - debug:\n    ^ here\n&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

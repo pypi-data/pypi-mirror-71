@@ -1,0 +1,188 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="12" time="23.320297718048096">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_switch_stack-35ec9b7x" skipped="0" tests="12" time="23.320297718048096">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_stack : Create new stack auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, name=Test stack, serials=['QBSB-BPR6-PRER', 'QBSB-VLNE-E299']" time="4.143260">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;id&quot;: &quot;624874448297657101&quot;,
+&quot;name&quot;: &quot;Test stack&quot;,
+&quot;serials&quot;: [
+&quot;QBSB-BPR6-PRER&quot;,
+&quot;QBSB-VLNE-E299&quot;
+]
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:19" name="[localhost] meraki: meraki_switch_stack : debug var=create" time="0.641139">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;id&quot;: &quot;624874448297657101&quot;,
+            &quot;name&quot;: &quot;Test stack&quot;,
+            &quot;serials&quot;: [
+                &quot;QBSB-BPR6-PRER&quot;,
+                &quot;QBSB-VLNE-E299&quot;
+            ]
+        },
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:22" name="[localhost] meraki: meraki_switch_stack : set_fact stack_id={{create.data.id}}" time="0.621178">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;stack_id&quot;: &quot;624874448297657101&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:25" name="[localhost] meraki: meraki_switch_stack : assert that=['create.data is defined', 'create is changed']" time="0.634799">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:30" name="[localhost] meraki: meraki_switch_stack : Query all stacks in the network auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_name={{test_switch_net_name}}" time="3.745695">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;id&quot;: &quot;624874448297657101&quot;,
+&quot;name&quot;: &quot;Test stack&quot;,
+&quot;serials&quot;: [
+&quot;QBSB-BPR6-PRER&quot;,
+&quot;QBSB-VLNE-E299&quot;
+]
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:38" name="[localhost] meraki: meraki_switch_stack : debug var=query_all" time="0.628538">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: &quot;624874448297657101&quot;,
+                &quot;name&quot;: &quot;Test stack&quot;,
+                &quot;serials&quot;: [
+                    &quot;QBSB-BPR6-PRER&quot;,
+                    &quot;QBSB-VLNE-E299&quot;
+                ]
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:41" name="[localhost] meraki: meraki_switch_stack : assert that=['query_all.data is defined', 'query_all is not changed']" time="0.642519">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:46" name="[localhost] meraki: meraki_switch_stack : Query one stack auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, stack_id={{stack_id}}" time="3.881298">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;id&quot;: &quot;624874448297657101&quot;,
+&quot;name&quot;: &quot;Test stack&quot;,
+&quot;serials&quot;: [
+&quot;QBSB-BPR6-PRER&quot;,
+&quot;QBSB-VLNE-E299&quot;
+]
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:55" name="[localhost] meraki: meraki_switch_stack : debug var=query_one" time="0.617793">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_one&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: &quot;624874448297657101&quot;,
+                &quot;name&quot;: &quot;Test stack&quot;,
+                &quot;serials&quot;: [
+                    &quot;QBSB-BPR6-PRER&quot;,
+                    &quot;QBSB-VLNE-E299&quot;
+                ]
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:58" name="[localhost] meraki: meraki_switch_stack : assert that=['query_one.data is defined', 'query_one is not changed']" time="0.640377">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:63" name="[localhost] meraki: meraki_switch_stack : Query one stack using name auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, name=Test stack" time="3.197735">
+			<error message="NameError: name 'net_id' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619679.1508298-197364848884332/AnsiballZ_meraki_switch_stack.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619679.1508298-197364848884332/AnsiballZ_meraki_switch_stack.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619679.1508298-197364848884332/AnsiballZ_meraki_switch_stack.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_switch_stack', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_myssnodq/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 247, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_myssnodq/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 202, in main
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_myssnodq/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 139, in get_stack_id
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_myssnodq/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 134, in get_stacks
+NameError: name 'net_id' is not defined
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-rj_yo2if-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:81" name="[localhost] meraki: meraki_switch_stack : Delete stack auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, stack_id={{stack_id}}" time="3.925966">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

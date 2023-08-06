@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="4" time="14.086337327957153">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switch_access_list-0t_c3db2" skipped="1" tests="4" time="14.086337327957153">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-3e5iv2ze-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:7" name="[localhost] meraki: meraki_switch_access_list : Test an API key is provided msg=Please define an API key" time="0.360473">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-3e5iv2ze-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:12" name="[localhost] meraki: meraki_switch_access_list : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="4.407439">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682463&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-3e5iv2ze-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:20" name="[localhost] meraki: meraki_switch_access_list : Query access lists auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}" time="4.000679">
+			<failure message="HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297682463/switch/accessControlLists - ['This endpoint only supports MS networks']" type="failure">{
+&quot;body&quot;: {
+&quot;errors&quot;: [
+&quot;This endpoint only supports MS networks&quot;
+]
+},
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297682463/switch/accessControlLists - ['This endpoint only supports MS networks']&quot;,
+&quot;response&quot;: &quot;HTTP Error 400: Bad Request&quot;,
+&quot;status&quot;: 400
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-3e5iv2ze-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:39" name="[localhost] meraki: meraki_switch_access_list : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="5.317746">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

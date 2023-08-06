@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="4" time="9.386758804321289">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switch_access_list-hzbyr6kf" skipped="1" tests="4" time="9.386758804321289">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-1p4084kn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:7" name="[localhost] meraki: meraki_switch_access_list : Test an API key is provided msg=Please define an API key" time="0.371671">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-1p4084kn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:12" name="[localhost] meraki: meraki_switch_access_list : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=switch" time="3.914011">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682466&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-1p4084kn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:20" name="[localhost] meraki: meraki_switch_access_list : Query access lists auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}" time="0.443475">
+			<failure message="Unable to import meraki_switch_access_list due to expected an indented block" type="failure">{
+&quot;msg&quot;: &quot;Unable to import meraki_switch_access_list due to expected an indented block&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-1p4084kn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:39" name="[localhost] meraki: meraki_switch_access_list : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="4.657601">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

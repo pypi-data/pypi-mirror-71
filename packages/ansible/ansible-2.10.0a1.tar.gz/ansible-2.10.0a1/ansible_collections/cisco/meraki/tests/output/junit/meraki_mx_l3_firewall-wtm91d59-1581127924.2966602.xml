@@ -1,0 +1,812 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="39" time="79.11995553970337">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_mx_l3_firewall-wtm91d59" skipped="1" tests="39" time="79.11995553970337">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mx_l3_firewall : Test an API key is provided msg=Please define an API key" time="0.357184">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:12" name="[localhost] meraki: meraki_mx_l3_firewall : Create network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, type=appliance" time="5.500585">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683112&quot;,
+&quot;name&quot;: &quot;TestNetAppliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:21" name="[localhost] meraki: meraki_mx_l3_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="4.083871">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:30" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['query.data|length == 1']" time="0.351790">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:34" name="[localhost] meraki: meraki_mx_l3_firewall : Set one firewall rule with check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="3.835443">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:52" name="[localhost] meraki: meraki_mx_l3_firewall : debug var=create_one_check" time="0.367037">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:55" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['create_one_check.data|length == 2', &quot;create_one_check.data.0.dest_cidr == '192.0.1.1/32'&quot;, &quot;create_one_check.data.0.protocol == 'tcp'&quot;, &quot;create_one_check.data.0.policy == 'deny'&quot;, 'create_one_check is changed', 'create_one_check.data is defined']" time="0.369894">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:64" name="[localhost] meraki: meraki_mx_l3_firewall : Set one firewall rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="4.925756">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:81" name="[localhost] meraki: meraki_mx_l3_firewall : debug var=create_one" time="0.456508">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:84" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['create_one.data|length == 2', &quot;create_one.data.0.dest_cidr == '192.0.1.1/32'&quot;, &quot;create_one.data.0.protocol == 'tcp'&quot;, &quot;create_one.data.0.policy == 'deny'&quot;, 'create_one.changed == True', 'create_one.data is defined']" time="0.363846">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:93" name="[localhost] meraki: meraki_mx_l3_firewall : Check for idempotency auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="4.668927">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:110" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{create_one_idempotent}}" time="0.395238">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:113" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['create_one_idempotent.changed == False', 'create_one_idempotent.data is defined']" time="0.346210">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:118" name="[localhost] meraki: meraki_mx_l3_firewall : Update one existing rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny all documentation addresses', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32,192.0.1.2/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="4.336515">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny all documentation addresses&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32,192.0.1.2/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:135" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{update_one}}" time="0.343241">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny all documentation addresses&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32,192.0.1.2/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:138" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['update_one.changed == True', 'update_one.data is defined']" time="0.349106">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:143" name="[localhost] meraki: meraki_mx_l3_firewall : Create syslog in network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, servers=[{'host': '192.0.2.10', 'port': 514, 'roles': ['Appliance event log', 'Flows']}]" time="5.357127">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;host&quot;: &quot;192.0.2.10&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Flows&quot;,
+&quot;Appliance event log&quot;
+]
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:157" name="[localhost] meraki: meraki_mx_l3_firewall : Enable syslog for default rule with check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}], syslog_default_rule=True" time="3.496988">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: true
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:176" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{default_syslog_check}}" time="0.342636">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: true
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:179" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['default_syslog_check.data is defined', 'default_syslog_check.data.1.syslog_enabled == True']" time="0.342090">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:185" name="[localhost] meraki: meraki_mx_l3_firewall : Enable syslog for default rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}], syslog_default_rule=True" time="4.508827">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: true
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:203" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{default_syslog}}" time="0.338542">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: true
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:206" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['default_syslog.data is defined']" time="0.342303">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:210" name="[localhost] meraki: meraki_mx_l3_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="3.418683">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: true
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:219" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{query.data.1}}" time="0.339460">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;comment&quot;: &quot;Default rule&quot;,
+        &quot;dest_cidr&quot;: &quot;Any&quot;,
+        &quot;dest_port&quot;: &quot;Any&quot;,
+        &quot;policy&quot;: &quot;allow&quot;,
+        &quot;protocol&quot;: &quot;Any&quot;,
+        &quot;src_cidr&quot;: &quot;Any&quot;,
+        &quot;src_port&quot;: &quot;Any&quot;,
+        &quot;syslog_enabled&quot;: true
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:222" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['query.data.1.syslog_enabled == True', 'default_syslog.changed == True']" time="0.351941">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:227" name="[localhost] meraki: meraki_mx_l3_firewall : Disable syslog for default rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny to documentation address', 'src_port': 'Any', 'src_cidr': 'Any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32', 'protocol': 'tcp', 'policy': 'deny'}], syslog_default_rule=False" time="6.147495">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:245" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{disable_syslog}}" time="0.342896">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:248" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['disable_syslog.data is defined']" time="0.413722">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:252" name="[localhost] meraki: meraki_mx_l3_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="3.454789">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:261" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{query}}" time="0.339943">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:264" name="[localhost] meraki: meraki_mx_l3_firewall : Enable syslog for default rule with no rules and with check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, syslog_default_rule=True" time="3.841745">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: true
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:275" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{enable_syslog_only_check}}" time="0.342138">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Deny to documentation address&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+                &quot;dest_port&quot;: &quot;80,443&quot;,
+                &quot;policy&quot;: &quot;deny&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: false
+            },
+            {
+                &quot;comment&quot;: &quot;Default rule&quot;,
+                &quot;dest_cidr&quot;: &quot;Any&quot;,
+                &quot;dest_port&quot;: &quot;Any&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;Any&quot;,
+                &quot;src_cidr&quot;: &quot;Any&quot;,
+                &quot;src_port&quot;: &quot;Any&quot;,
+                &quot;syslog_enabled&quot;: true
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:278" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['enable_syslog_only_check.data.1.syslog_enabled == True', 'enable_syslog_only_check is changed']" time="0.376801">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:283" name="[localhost] meraki: meraki_mx_l3_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="3.498574">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Deny to documentation address&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.1.1/32&quot;,
+&quot;dest_port&quot;: &quot;80,443&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:292" name="[localhost] meraki: meraki_mx_l3_firewall : debug msg={{query.data.1}}" time="0.382009">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;comment&quot;: &quot;Default rule&quot;,
+        &quot;dest_cidr&quot;: &quot;Any&quot;,
+        &quot;dest_port&quot;: &quot;Any&quot;,
+        &quot;policy&quot;: &quot;allow&quot;,
+        &quot;protocol&quot;: &quot;Any&quot;,
+        &quot;src_cidr&quot;: &quot;Any&quot;,
+        &quot;src_port&quot;: &quot;Any&quot;,
+        &quot;syslog_enabled&quot;: false
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:295" name="[localhost] meraki: meraki_mx_l3_firewall : assert that=['query.data.1.syslog_enabled == False', 'disable_syslog.changed == True']" time="0.428219">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:301" name="[localhost] meraki: meraki_mx_l3_firewall : Delete all firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[]" time="4.300429">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dest_cidr&quot;: &quot;Any&quot;,
+&quot;dest_port&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;,
+&quot;src_cidr&quot;: &quot;Any&quot;,
+&quot;src_port&quot;: &quot;Any&quot;,
+&quot;syslog_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-34jpmaxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:311" name="[localhost] meraki: meraki_mx_l3_firewall : Delete network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=absent" time="5.361447">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

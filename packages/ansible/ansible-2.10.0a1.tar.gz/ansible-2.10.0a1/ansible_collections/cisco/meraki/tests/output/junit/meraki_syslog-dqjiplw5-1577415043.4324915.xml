@@ -1,0 +1,253 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="19" time="32.15850234031677">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_syslog-dqjiplw5" skipped="1" tests="19" time="32.15850234031677">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:7" name="[localhost] meraki: meraki_syslog : Test an API key is provided msg=Please define an API key" time="0.359991">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:12" name="[localhost] meraki: meraki_syslog : set_fact syslog_test_net_name=syslog_{{test_net_name}}" time="0.344258">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;syslog_test_net_name&quot;: &quot;syslog_Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:15" name="[localhost] meraki: meraki_syslog : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="4.106782">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682450&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:25" name="[localhost] meraki: meraki_syslog : set_fact net_id={{new_net.data.id}}" time="0.364793">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682450&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:28" name="[localhost] meraki: meraki_syslog : Query syslog settings auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query" time="3.510356">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:37" name="[localhost] meraki: meraki_syslog : debug msg={{query_all}}" time="0.375151">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:40" name="[localhost] meraki: meraki_syslog : Set syslog server auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, servers=[{'host': '192.0.1.2', 'port': 514, 'roles': ['Appliance event log']}]" time="4.319805">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;host&quot;: &quot;192.0.1.2&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Appliance event log&quot;
+]
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:54" name="[localhost] meraki: meraki_syslog : debug msg={{create_server.data}}" time="0.477093">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: [
+        {
+            &quot;host&quot;: &quot;192.0.1.2&quot;,
+            &quot;port&quot;: &quot;514&quot;,
+            &quot;roles&quot;: [
+                &quot;Appliance event log&quot;
+            ]
+        }
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:57" name="[localhost] meraki: meraki_syslog : assert that=['create_server[\'data\'][0][\'host\'] == &quot;192.0.1.2&quot;']" time="0.369979">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:61" name="[localhost] meraki: meraki_syslog : Set syslog server with idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, servers=[{'host': '192.0.1.2', 'port': 514, 'roles': ['Appliance event log']}]" time="5.700775">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;servers&quot;: [
+{
+&quot;host&quot;: &quot;192.0.1.2&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Appliance event log&quot;
+]
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:75" name="[localhost] meraki: meraki_syslog : debug msg={{create_server_idempotency}}" time="0.487098">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;servers&quot;: [
+                {
+                    &quot;host&quot;: &quot;192.0.1.2&quot;,
+                    &quot;port&quot;: &quot;514&quot;,
+                    &quot;roles&quot;: [
+                        &quot;Appliance event log&quot;
+                    ]
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:78" name="[localhost] meraki: meraki_syslog : assert that=['create_server_idempotency.changed == False', 'create_server_idempotency.data is defined']" time="0.499274">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:83" name="[localhost] meraki: meraki_syslog : Set multiple syslog servers auth_key={{auth_key}}, org_name={{test_org_name}}, net_id={{net_id}}, state=present, servers=[{'host': '192.0.1.3', 'port': 514, 'roles': ['Appliance event log']}, {'host': '192.0.1.4', 'port': 514, 'roles': ['Appliance event log', 'Flows']}, {'host': '192.0.1.5', 'port': 514, 'roles': ['Flows']}]" time="3.263190">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;host&quot;: &quot;192.0.1.3&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Appliance event log&quot;
+]
+},
+{
+&quot;host&quot;: &quot;192.0.1.4&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Flows&quot;,
+&quot;Appliance event log&quot;
+]
+},
+{
+&quot;host&quot;: &quot;192.0.1.5&quot;,
+&quot;port&quot;: &quot;514&quot;,
+&quot;roles&quot;: [
+&quot;Flows&quot;
+]
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:106" name="[localhost] meraki: meraki_syslog : debug msg={{create_multiple_servers}}" time="0.509990">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;host&quot;: &quot;192.0.1.3&quot;,
+                &quot;port&quot;: &quot;514&quot;,
+                &quot;roles&quot;: [
+                    &quot;Appliance event log&quot;
+                ]
+            },
+            {
+                &quot;host&quot;: &quot;192.0.1.4&quot;,
+                &quot;port&quot;: &quot;514&quot;,
+                &quot;roles&quot;: [
+                    &quot;Flows&quot;,
+                    &quot;Appliance event log&quot;
+                ]
+            },
+            {
+                &quot;host&quot;: &quot;192.0.1.5&quot;,
+                &quot;port&quot;: &quot;514&quot;,
+                &quot;roles&quot;: [
+                    &quot;Flows&quot;
+                ]
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:109" name="[localhost] meraki: meraki_syslog : assert that=['create_multiple_servers[\'data\'][0][\'host\'] == &quot;192.0.1.3&quot;', 'create_multiple_servers[\'data\'][1][\'host\'] == &quot;192.0.1.4&quot;', 'create_multiple_servers[\'data\'][2][\'host\'] == &quot;192.0.1.5&quot;', &quot;create_multiple_servers['data'] | length == 3&quot;]" time="0.516382">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:116" name="[localhost] meraki: meraki_syslog : Create syslog server with bad name auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, servers=[{'host': '192.0.1.6', 'port': 514, 'roles': ['Invalid role']}]" time="0.838302">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;value of roles must be one or more of: Wireless Event log, Appliance event log, Switch event log, Air Marshal events, Flows, URLs, IDS alerts, Security events. Got no match for: Invalid role found in servers&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:131" name="[localhost] meraki: meraki_syslog : debug msg={{invalid_role.msg}}" time="0.552614">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;value of roles must be one or more of: Wireless Event log, Appliance event log, Switch event log, Air Marshal events, Flows, URLs, IDS alerts, Security events. Got no match for: Invalid role found in servers&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:134" name="[localhost] meraki: meraki_syslog : assert that=['&quot;value of roles must be one or more of&quot; in invalid_role.body.errors.0']" time="0.517170">
+			<failure message="The conditional check '&quot;value of roles must be one or more of&quot; in invalid_role.body.errors.0' failed. The error was: error while evaluating conditional (&quot;value of roles must be one or more of&quot; in invalid_role.body.errors.0): Unable to look up a name or access an attribute in template string ({% if &quot;value of roles must be one or more of&quot; in invalid_role.body.errors.0 %} True {% else %} False {% endif %}).
+Make sure your variable name does not contain invalid characters like '-': argument of type 'AnsibleUndefined' is not iterable" type="failure">{
+&quot;msg&quot;: &quot;The conditional check '\&quot;value of roles must be one or more of\&quot; in invalid_role.body.errors.0' failed. The error was: error while evaluating conditional (\&quot;value of roles must be one or more of\&quot; in invalid_role.body.errors.0): Unable to look up a name or access an attribute in template string ({% if \&quot;value of roles must be one or more of\&quot; in invalid_role.body.errors.0 %} True {% else %} False {% endif %}).\nMake sure your variable name does not contain invalid characters like '-': argument of type 'AnsibleUndefined' is not iterable&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-4_qdkktz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:161" name="[localhost] meraki: meraki_syslog : Delete syslog test network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="5.045497">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

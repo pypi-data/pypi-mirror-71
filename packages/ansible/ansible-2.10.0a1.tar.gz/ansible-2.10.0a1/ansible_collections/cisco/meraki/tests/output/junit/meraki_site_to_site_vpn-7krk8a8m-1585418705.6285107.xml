@@ -1,0 +1,361 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="19" time="51.482263803482056">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_site_to_site_vpn-7krk8a8m" skipped="0" tests="19" time="51.482263803482056">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:8" name="[localhost] meraki: meraki_site_to_site_vpn : Create hub network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, type=appliance" time="4.232776">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683434&quot;,
+&quot;name&quot;: &quot;Home - Appliance_hub&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:18" name="[localhost] meraki: meraki_site_to_site_vpn : Create spoke network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, type=appliance" time="3.330034">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683435&quot;,
+&quot;name&quot;: &quot;Home - Appliance_spoke&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:28" name="[localhost] meraki: meraki_site_to_site_vpn : set_fact net_spoke_id={{net_spoke.data.id}}, net_hub_id={{net_hub.data.id}}" time="0.590000">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;net_spoke_id&quot;: &quot;N_624874448297683435&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:32" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode with check mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub, subnets=[{'local_subnet': '192.168.128.0/24', 'use_vpn': False}]" time="4.111258">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:46" name="[localhost] meraki: meraki_site_to_site_vpn : assert that=['set_hub_check is changed', 'set_hub_check.data is defined']" time="0.592900">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:51" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub, subnets=[{'local_subnet': '192.168.128.0/24', 'use_vpn': False}]" time="5.157714">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:64" name="[localhost] meraki: meraki_site_to_site_vpn : assert that=['set_hub is changed', 'set_hub.data is defined']" time="0.594118">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:69" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode with idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub" time="4.032407">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:79" name="[localhost] meraki: meraki_site_to_site_vpn : assert that=['set_hub_idempotent is not changed', 'set_hub_idempotent.data is defined']" time="0.599767">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:84" name="[localhost] meraki: meraki_site_to_site_vpn : Enable subnet on hub network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub, subnets=[{'local_subnet': '192.168.128.0/24', 'use_vpn': True}]" time="5.067500">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: true
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:97" name="[localhost] meraki: meraki_site_to_site_vpn : assert that=['enable_hub_subnet is changed', 'enable_hub_subnet.data is defined']" time="0.605426">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:102" name="[localhost] meraki: meraki_site_to_site_vpn : Set spoke mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, mode=spoke, hubs=[{'hub_id': '{{net_hub_id}}', 'use_default_route': False}]" time="4.960818">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [
+{
+&quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;use_default_route&quot;: false
+}
+],
+&quot;mode&quot;: &quot;spoke&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+},
+{
+&quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+&quot;use_vpn&quot;: true
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:115" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_spoke" time="0.559857">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_spoke&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [
+                {
+                    &quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+                    &quot;use_default_route&quot;: false
+                }
+            ],
+            &quot;mode&quot;: &quot;spoke&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                },
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+                    &quot;use_vpn&quot;: true
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:118" name="[localhost] meraki: meraki_site_to_site_vpn : Set spoke configuration auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, mode=spoke, hubs=[{'hub_id': '{{net_hub_id}}', 'use_default_route': False}], subnets=[{'local_subnet': '192.168.169.0/24', 'use_vpn': True}]" time="4.986195">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hubs&quot;: [
+{
+&quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;use_default_route&quot;: false
+}
+],
+&quot;mode&quot;: &quot;spoke&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+},
+{
+&quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+&quot;use_vpn&quot;: true
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:134" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_spoke" time="0.573507">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_spoke&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [
+                {
+                    &quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+                    &quot;use_default_route&quot;: false
+                }
+            ],
+            &quot;mode&quot;: &quot;spoke&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                },
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+                    &quot;use_vpn&quot;: true
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:137" name="[localhost] meraki: meraki_site_to_site_vpn : Query rules for hub auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}_hub" time="4.071266">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: true
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:146" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=query_all_hub" time="0.572837">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all_hub&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [],
+            &quot;mode&quot;: &quot;hub&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: true
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:149" name="[localhost] meraki: meraki_site_to_site_vpn : Query rules for spoke auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke" time="6.273866">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [
+{
+&quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;use_default_route&quot;: false
+}
+],
+&quot;mode&quot;: &quot;spoke&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+},
+{
+&quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+&quot;use_vpn&quot;: true
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-vb6gvnau-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:158" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=query_all_spoke" time="0.570016">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all_spoke&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [
+                {
+                    &quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+                    &quot;use_default_route&quot;: false
+                }
+            ],
+            &quot;mode&quot;: &quot;spoke&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                },
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.169.0/24&quot;,
+                    &quot;use_vpn&quot;: true
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

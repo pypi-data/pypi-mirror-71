@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="13" time="33.811840772628784">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_vlan-5s50no9b" skipped="1" tests="13" time="33.811840772628784">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:7" name="[localhost] meraki: meraki_vlan : Test an API key is provided msg=Please define an API key" time="0.381215">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:12" name="[localhost] meraki: meraki_vlan : Test play without auth_key state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="0.933038">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;missing required arguments: auth_key&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:22" name="[localhost] meraki: meraki_vlan : assert that=['&quot;missing required arguments&quot; in no_key.msg']" time="0.576134">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:26" name="[localhost] meraki: meraki_vlan : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="4.779637">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683559&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/Home-Appliance/n/dnL-_dUb/manage/usage/list&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:35" name="[localhost] meraki: meraki_vlan : Enable VLANs on network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, enable_vlans=True" time="5.306157">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;network_id&quot;: &quot;N_624874448297683559&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:307" name="[localhost] meraki: meraki_vlan : Update VLAN with list of DNS entries auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2, name=TestVLAN, subnet=192.168.250.0/24, appliance_ip=192.168.250.2, fixed_ip_assignments=[{'mac': '13:37:de:ad:be:ef', 'ip': '192.168.250.10', 'name': 'fixed_ip'}], reserved_ip_range=[{'start': '192.168.250.10', 'end': '192.168.250.20', 'comment': 'reserved_range'}], dns_nameservers=1.1.1.1;8.8.8.8" time="5.159799">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+&quot;dhcp_boot_options_enabled&quot;: false,
+&quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+&quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+&quot;dhcp_options&quot;: [],
+&quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;id&quot;: 2,
+&quot;name&quot;: &quot;TestVLAN&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683559&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:329" name="[localhost] meraki: meraki_vlan : debug msg={{update_vlan_dns_list}}" time="0.399229">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+            &quot;dhcp_boot_options_enabled&quot;: false,
+            &quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+            &quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+            &quot;dhcp_options&quot;: [],
+            &quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+            &quot;fixed_ip_assignments&quot;: {},
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;TestVLAN&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297683559&quot;,
+            &quot;reserved_ip_ranges&quot;: [],
+            &quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:332" name="[localhost] meraki: meraki_vlan : assert that=['&quot;1.1.1.1&quot; in update_vlan_dns_list.data.dns_nameservers', 'update_vlan_dns_list.changed == True']" time="0.517186">
+			<failure message="Assertion failed" type="failure">{
+    &quot;assertion&quot;: &quot;\&quot;1.1.1.1\&quot; in update_vlan_dns_list.data.dns_nameservers&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;Assertion failed&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:399" name="[localhost] meraki: meraki_vlan : Delete VLAN with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2" time="4.021055">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:410" name="[localhost] meraki: meraki_vlan : assert that=delete_vlan_check is changed" time="0.482762">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:414" name="[localhost] meraki: meraki_vlan : Delete VLAN auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2" time="5.063177">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:424" name="[localhost] meraki: meraki_vlan : debug msg={{delete_vlan}}" time="0.411271">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: null,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 204
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-zrey5p_h-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:427" name="[localhost] meraki: meraki_vlan : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="5.781183">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

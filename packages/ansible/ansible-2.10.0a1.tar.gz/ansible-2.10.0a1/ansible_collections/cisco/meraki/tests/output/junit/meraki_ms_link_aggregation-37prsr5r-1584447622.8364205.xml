@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="1" tests="4" time="8.786919355392456">
+	<testsuite disabled="0" errors="1" failures="1" name="meraki_ms_link_aggregation-37prsr5r" skipped="1" tests="4" time="8.786919355392456">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:7" name="[localhost] meraki: meraki_ms_link_aggregation : Test an API key is provided msg=Please define an API key" time="0.613242">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:12" name="[localhost] meraki: meraki_ms_link_aggregation : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, type=switch" time="3.828066">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683727&quot;,
+&quot;name&quot;: &quot;Home - Switch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:21" name="[localhost] meraki: meraki_ms_link_aggregation : Create LAG auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, switch_ports=[{'serial': '{{serial_switch}}', 'port_id': '1'}, {'serial': '{{serial_switch}}', 'port_id': '2'}]" time="3.722521">
+			<error message="NameError: name 'net_id' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447619.0691392-98710252126025/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447619.0691392-98710252126025/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447619.0691392-98710252126025/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_ms_link_aggregation', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_n_umcxgz/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 190, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_n_umcxgz/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 160, in main
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_n_umcxgz/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 67, in get_lags
+NameError: name 'net_id' is not defined
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:76" name="[localhost] meraki: meraki_ms_link_aggregation : Delete LAG auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, lag_id={{lag_id}}" time="0.623090">
+			<failure message="The task includes an option with an undefined variable. The error was: 'lag_id' is undefined
+
+The error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml': line 76, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  always:
+  - name: Delete LAG
+    ^ here
+" type="failure">{
+&quot;msg&quot;: &quot;The task includes an option with an undefined variable. The error was: 'lag_id' is undefined\n\nThe error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-qc4_chuz-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml': line 76, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  always:\n  - name: Delete LAG\n    ^ here\n&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

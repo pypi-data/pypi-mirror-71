@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="3" time="7.887134552001953">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_site_to_site_vpn-v6044hn7" skipped="0" tests="3" time="7.887134552001953">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-4o_xo0ei-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:8" name="[localhost] meraki: meraki_site_to_site_vpn : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="4.079465">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683433&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-4o_xo0ei-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:17" name="[localhost] meraki: meraki_site_to_site_vpn : Query all rules auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}" time="3.465043">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;mode&quot;: &quot;none&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-4o_xo0ei-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:26" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=query_all" time="0.342626">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;mode&quot;: &quot;none&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

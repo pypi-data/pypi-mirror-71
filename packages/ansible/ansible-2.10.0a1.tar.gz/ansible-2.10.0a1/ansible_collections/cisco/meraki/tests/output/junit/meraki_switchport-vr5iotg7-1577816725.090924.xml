@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="2" time="1.3775691986083984">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switchport-vr5iotg7" skipped="1" tests="2" time="1.3775691986083984">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-8iuc1dy8-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:6" name="[localhost] meraki: meraki_switchport : Test an API key is provided msg=Please define an API key" time="0.348118">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-8iuc1dy8-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:11" name="[localhost] meraki: meraki_switchport : Query all switchports auth_key={{auth_key}}, state=query, serial=Q2HP-2C6E-GTLD" time="1.029452">
+			<failure message="HTTP error 404 - https://api.meraki.com/api/v0/devices/Q2HP-2C6E-GTLD/switchPorts" type="failure">{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;HTTP error 404 - https://api.meraki.com/api/v0/devices/Q2HP-2C6E-GTLD/switchPorts&quot;,
+&quot;response&quot;: &quot;HTTP Error 404: Not Found&quot;,
+&quot;status&quot;: 404
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

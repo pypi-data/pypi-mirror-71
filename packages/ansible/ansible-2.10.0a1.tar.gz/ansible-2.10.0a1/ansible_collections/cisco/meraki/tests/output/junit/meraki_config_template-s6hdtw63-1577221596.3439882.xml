@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="22" time="53.2422559261322">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_config_template-s6hdtw63" skipped="1" tests="22" time="53.2422559261322">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:7" name="[localhost] meraki: meraki_config_template : Test an API key is provided msg=Please define an API key" time="0.580040">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:12" name="[localhost] meraki: meraki_config_template : Query all configuration templates auth_key={{auth_key}}, state=query, org_name={{test_org_name}}" time="3.814496">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;id&quot;: &quot;L_624874448297661409&quot;,
+&quot;name&quot;: &quot;AnsibleTemplate&quot;
+}
+],
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:19" name="[localhost] meraki: meraki_config_template : Delete non-existant configuration template auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, config_template=FakeConfigTemplate" time="3.656729">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;No configuration template named FakeConfigTemplate found&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:28" name="[localhost] meraki: meraki_config_template : assert that=['&quot;No configuration template named&quot; in deleted.msg']" time="0.377759">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:32" name="[localhost] meraki: meraki_config_template : Create a network auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, type=appliance" time="4.089636">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682311&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:42" name="[localhost] meraki: meraki_config_template : set_fact net_id={{net_info.data.id}}" time="0.407352">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682311&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:45" name="[localhost] meraki: meraki_config_template : Bind a template to a network with check mode auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, config_template={{test_template_name}}" time="3.502558">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:55" name="[localhost] meraki: meraki_config_template : Bind a template to a network auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, config_template={{test_template_name}}" time="4.562554">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:64" name="[localhost] meraki: meraki_config_template : assert that=bind.changed == True" time="0.402020">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:68" name="[localhost] meraki: meraki_config_template : assert that=bind_check is changed" time="0.382953">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:72" name="[localhost] meraki: meraki_config_template : Bind a template to a network when it's already bound auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, config_template={{test_template_name}}" time="3.520231">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:82" name="[localhost] meraki: meraki_config_template : assert that=['bind_invalid.changed == False']" time="0.397790">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:86" name="[localhost] meraki: meraki_config_template : Unbind a template from a network auth_key={{auth_key}}, state=absent, org_name={{ test_org_name }}, net_name={{ test_net_name }}, config_template={{test_template_name}}" time="5.219118">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:95" name="[localhost] meraki: meraki_config_template : assert that=unbind.changed == True" time="0.398143">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:99" name="[localhost] meraki: meraki_config_template : Unbind a template from a network when it's not bound auth_key={{auth_key}}, state=absent, org_name={{ test_org_name }}, net_name={{ test_net_name }}, config_template={{test_template_name}}" time="4.350703">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:108" name="[localhost] meraki: meraki_config_template : assert that=unbind_invalid.changed == False" time="0.387532">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:112" name="[localhost] meraki: meraki_config_template : Bind a template to a network via id auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="4.480178">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:121" name="[localhost] meraki: meraki_config_template : assert that=bind_id.changed == True" time="0.421239">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:125" name="[localhost] meraki: meraki_config_template : Bind a template to a network via id for idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="3.404099">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:134" name="[localhost] meraki: meraki_config_template : assert that=['bind_id_idempotent.changed == False', 'bind_id_idempotent.data is defined']" time="0.411498">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:139" name="[localhost] meraki: meraki_config_template : Unbind a template from a network via id with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="2.209021">
+			<error message="TypeError: 'NoneType' object is not iterable" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221588.20775-238229344001557/AnsiballZ_meraki_config_template.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221588.20775-238229344001557/AnsiballZ_meraki_config_template.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221588.20775-238229344001557/AnsiballZ_meraki_config_template.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_config_template', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_config_template_payload_tae8x9rf/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 333, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_config_template_payload_tae8x9rf/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 298, in main
+  File &quot;/tmp/ansible_meraki_config_template_payload_tae8x9rf/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 143, in is_template_valid
+TypeError: 'NoneType' object is not iterable
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-y8jp1_si-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:190" name="[localhost] meraki: meraki_config_template : Delete network auth_key={{auth_key}}, state=absent, org_name={{ test_org_name }}, net_name={{ test_net_name }}" time="6.266610">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,1425 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="42" time="44.328163146972656">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_switchport-rh89b31b" skipped="1" tests="42" time="44.328163146972656">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:6" name="[localhost] meraki: meraki_switchport : Test an API key is provided msg=Please define an API key" time="0.378452">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:11" name="[localhost] meraki: meraki_switchport : Query all switchports auth_key={{auth_key}}, state=query, serial=Q2HP-2C6E-GTLD" time="1.763811">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 1,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 2,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 3,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 4,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 5,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 6,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Server port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;server&quot;,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 2,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 8,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 9,
+&quot;poe_enabled&quot;: false,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+{
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 10,
+&quot;poe_enabled&quot;: false,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+}
+],
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:19" name="[localhost] meraki: meraki_switchport : debug msg={{query_all}}" time="0.371803">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 1,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 2,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 3,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 4,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 5,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 6,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: &quot;Server port&quot;,
+                &quot;number&quot;: 7,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: &quot;server&quot;,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 2,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: &quot;Test Port&quot;,
+                &quot;number&quot;: 8,
+                &quot;poe_enabled&quot;: true,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;access&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 10,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 9,
+                &quot;poe_enabled&quot;: false,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            },
+            {
+                &quot;access_policy_number&quot;: null,
+                &quot;allowed_vlans&quot;: &quot;all&quot;,
+                &quot;enabled&quot;: true,
+                &quot;isolation_enabled&quot;: false,
+                &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+                &quot;mac_whitelist&quot;: null,
+                &quot;name&quot;: null,
+                &quot;number&quot;: 10,
+                &quot;poe_enabled&quot;: false,
+                &quot;port_schedule_id&quot;: null,
+                &quot;rstp_enabled&quot;: true,
+                &quot;sticky_mac_whitelist&quot;: null,
+                &quot;sticky_mac_whitelist_limit&quot;: null,
+                &quot;stp_guard&quot;: &quot;disabled&quot;,
+                &quot;tags&quot;: null,
+                &quot;type&quot;: &quot;trunk&quot;,
+                &quot;udld&quot;: &quot;Alert only&quot;,
+                &quot;vlan&quot;: 1,
+                &quot;voice_vlan&quot;: null
+            }
+        ],
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:22" name="[localhost] meraki: meraki_switchport : Query one switchport auth_key={{auth_key}}, state=query, serial=Q2HP-2C6E-GTLD, number=1" time="1.432836">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 1,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 1 (type int) in a string field was converted to '1' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:31" name="[localhost] meraki: meraki_switchport : debug msg={{query_one}}" time="0.368741">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: null,
+            &quot;number&quot;: 1,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: null,
+            &quot;type&quot;: &quot;trunk&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 1,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 1 (type int) in a string field was converted to '1' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:34" name="[localhost] meraki: meraki_switchport : Enable switchport with check mode auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True" time="1.528552">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: &quot;7&quot;,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:45" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_true_check}}" time="0.366430">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: null,
+            &quot;number&quot;: &quot;7&quot;,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: null,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 1,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:48" name="[localhost] meraki: meraki_switchport : assert that=['update_port_true_check is changed', 'update_port_true_check.data is defined']" time="0.397254">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:53" name="[localhost] meraki: meraki_switchport : Enable switchport auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True" time="2.497704">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:63" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_true}}" time="0.388223">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: null,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: null,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 1,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:66" name="[localhost] meraki: meraki_switchport : assert that=['update_port_true.data.enabled == True']" time="0.399824">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:70" name="[localhost] meraki: meraki_switchport : Disable switchport auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=False" time="2.486131">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: false,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: null,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:80" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_false}}" time="0.396200">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: false,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: null,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: null,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 1,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:83" name="[localhost] meraki: meraki_switchport : assert that=['update_port_false.data.enabled == False']" time="0.378567">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:88" name="[localhost] meraki: meraki_switchport : Name switchport auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, name=Test Port" time="2.387396">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 1,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:98" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_name}}" time="0.391202">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Test Port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: null,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 1,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:101" name="[localhost] meraki: meraki_switchport : assert that=[&quot;update_port_name.data.name == 'Test Port'&quot;]" time="0.375577">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:105" name="[localhost] meraki: meraki_switchport : Configure access port auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Test Port, tags=desktop, type=access, vlan=10" time="2.509679">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;desktop&quot;,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:119" name="[localhost] meraki: meraki_switchport : debug msg={{update_access_port}}" time="0.353268">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Test Port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;desktop&quot;,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 10,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:122" name="[localhost] meraki: meraki_switchport : assert that=['update_access_port.data.vlan == 10']" time="0.400346">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:126" name="[localhost] meraki: meraki_switchport : Configure port as trunk auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=8, enabled=True, name=Test Port, type=trunk, vlan=10, allowed_vlans=10, 100, 200" time="2.400872">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;10,100,200&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 8,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 8 (type int) in a string field was converted to '8' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:139" name="[localhost] meraki: meraki_switchport : Convert trunk port to access auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=8, enabled=True, name=Test Port, type=access, vlan=10" time="2.528441">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 8,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 8 (type int) in a string field was converted to '8' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:151" name="[localhost] meraki: meraki_switchport : Test converted port for idempotency auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=8, enabled=True, name=Test Port, type=access, vlan=10" time="1.919572">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 8,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: null,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 8 (type int) in a string field was converted to '8' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:164" name="[localhost] meraki: meraki_switchport : assert that=['convert_idempotent.changed == False']" time="0.379499">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:168" name="[localhost] meraki: meraki_switchport : Configure access port with voice VLAN auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Test Port, tags=desktop, type=access, vlan=10, voice_vlan=11" time="3.010915">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;desktop&quot;,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: 11
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:183" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_vvlan}}" time="0.345076">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Test Port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;desktop&quot;,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 10,
+            &quot;voice_vlan&quot;: 11
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:186" name="[localhost] meraki: meraki_switchport : assert that=['update_port_vvlan.data.voice_vlan == 11', 'update_port_vvlan.changed == True']" time="0.375682">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:191" name="[localhost] meraki: meraki_switchport : Check access port for idempotenty auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Test Port, tags=desktop, type=access, vlan=10, voice_vlan=11" time="1.372358">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Test Port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;desktop&quot;,
+&quot;type&quot;: &quot;access&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 10,
+&quot;voice_vlan&quot;: 11
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:206" name="[localhost] meraki: meraki_switchport : debug msg={{update_port_access_idempotent}}" time="0.369593">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Test Port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;desktop&quot;,
+            &quot;type&quot;: &quot;access&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 10,
+            &quot;voice_vlan&quot;: 11
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:209" name="[localhost] meraki: meraki_switchport : assert that=['update_port_access_idempotent.changed == False', 'update_port_access_idempotent.data is defined']" time="0.371235">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:214" name="[localhost] meraki: meraki_switchport : Configure trunk port auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Server port, tags=server, type=trunk, allowed_vlans=all, vlan=8" time="2.366391">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;all&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Server port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;server&quot;,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 8,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:229" name="[localhost] meraki: meraki_switchport : debug msg={{update_trunk}}" time="0.383099">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;all&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Server port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;server&quot;,
+            &quot;type&quot;: &quot;trunk&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 8,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:232" name="[localhost] meraki: meraki_switchport : assert that=[&quot;update_trunk.data.tags == 'server'&quot;, &quot;update_trunk.data.type == 'trunk'&quot;, &quot;update_trunk.data.allowed_vlans == 'all'&quot;]" time="0.376877">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:238" name="[localhost] meraki: meraki_switchport : Configure trunk port with specific VLANs auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Server port, tags=server, type=trunk, vlan=8, allowed_vlans=[10, 15, 20]" time="2.609211">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;8,10,15,20&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Server port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;server&quot;,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 8,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:256" name="[localhost] meraki: meraki_switchport : debug msg={{update_trunk}}" time="0.378678">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;8,10,15,20&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Server port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;server&quot;,
+            &quot;type&quot;: &quot;trunk&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 8,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:259" name="[localhost] meraki: meraki_switchport : assert that=[&quot;update_trunk.data.tags == 'server'&quot;, &quot;update_trunk.data.type == 'trunk'&quot;, &quot;update_trunk.data.allowed_vlans == '8,10,15,20'&quot;]" time="0.342519">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:265" name="[localhost] meraki: meraki_switchport : Configure trunk port with specific VLANs and native VLAN auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Server port, tags=server, type=trunk, vlan=2, allowed_vlans=[10, 15, 20]" time="2.344931">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Server port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;server&quot;,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 2,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:283" name="[localhost] meraki: meraki_switchport : debug msg={{update_trunk}}" time="0.374199">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Server port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;server&quot;,
+            &quot;type&quot;: &quot;trunk&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 2,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:286" name="[localhost] meraki: meraki_switchport : assert that=[&quot;update_trunk.data.tags == 'server'&quot;, &quot;update_trunk.data.type == 'trunk'&quot;, &quot;update_trunk.data.allowed_vlans == '2,10,15,20'&quot;]" time="0.353861">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:292" name="[localhost] meraki: meraki_switchport : Check for idempotency on trunk port auth_key={{auth_key}}, state=present, serial=Q2HP-2C6E-GTLD, number=7, enabled=True, name=Server port, tags=server, type=trunk, vlan=2, allowed_vlans=[10, 15, 20]" time="1.425661">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access_policy_number&quot;: null,
+&quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+&quot;enabled&quot;: true,
+&quot;isolation_enabled&quot;: false,
+&quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+&quot;mac_whitelist&quot;: null,
+&quot;name&quot;: &quot;Server port&quot;,
+&quot;number&quot;: 7,
+&quot;poe_enabled&quot;: true,
+&quot;port_schedule_id&quot;: null,
+&quot;rstp_enabled&quot;: true,
+&quot;sticky_mac_whitelist&quot;: null,
+&quot;sticky_mac_whitelist_limit&quot;: null,
+&quot;stp_guard&quot;: &quot;disabled&quot;,
+&quot;tags&quot;: &quot;server&quot;,
+&quot;type&quot;: &quot;trunk&quot;,
+&quot;udld&quot;: &quot;Alert only&quot;,
+&quot;vlan&quot;: 2,
+&quot;voice_vlan&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:310" name="[localhost] meraki: meraki_switchport : debug msg={{update_trunk_idempotent}}" time="0.358637">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access_policy_number&quot;: null,
+            &quot;allowed_vlans&quot;: &quot;2,10,15,20&quot;,
+            &quot;enabled&quot;: true,
+            &quot;isolation_enabled&quot;: false,
+            &quot;link_negotiation&quot;: &quot;Auto negotiate&quot;,
+            &quot;mac_whitelist&quot;: null,
+            &quot;name&quot;: &quot;Server port&quot;,
+            &quot;number&quot;: 7,
+            &quot;poe_enabled&quot;: true,
+            &quot;port_schedule_id&quot;: null,
+            &quot;rstp_enabled&quot;: true,
+            &quot;sticky_mac_whitelist&quot;: null,
+            &quot;sticky_mac_whitelist_limit&quot;: null,
+            &quot;stp_guard&quot;: &quot;disabled&quot;,
+            &quot;tags&quot;: &quot;server&quot;,
+            &quot;type&quot;: &quot;trunk&quot;,
+            &quot;udld&quot;: &quot;Alert only&quot;,
+            &quot;vlan&quot;: 2,
+            &quot;voice_vlan&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 7 (type int) in a string field was converted to '7' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switchport-zyxj9gtn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switchport/tasks/main.yml:313" name="[localhost] meraki: meraki_switchport : assert that=['update_trunk_idempotent.changed == False', 'update_trunk_idempotent.data is defined']" time="0.368860">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

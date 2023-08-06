@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="6" time="12.074342250823975">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_switch_storm_control-xdo3ppu5" skipped="0" tests="6" time="12.074342250823975">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_storm_control : Create switch network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=Home - Switch, timezone=America/Chicago, type=switch" time="3.303940">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682461&quot;,
+&quot;name&quot;: &quot;Home - Switch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:18" name="[localhost] meraki: meraki_switch_storm_control : set_fact net_id={{net.data.id}}" time="0.575737">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682461&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:21" name="[localhost] meraki: meraki_switch_storm_control : Set broadcast settings auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=Home - Switch, broadcast_threshold=75, multicast_threshold=70, unknown_unicast_threshold=65" time="3.614139">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;broadcast_threshold&quot;: 75,
+&quot;multicast_threshold&quot;: 70,
+&quot;unknown_unicast_threshold&quot;: 65
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:33" name="[localhost] meraki: meraki_switch_storm_control : debug var=set_unicast" time="0.454788">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_unicast&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;broadcast_threshold&quot;: 75,
+            &quot;multicast_threshold&quot;: 70,
+            &quot;unknown_unicast_threshold&quot;: 65
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:36" name="[localhost] meraki: meraki_switch_storm_control : Query storm control settings auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name=Home - Switch" time="3.619124">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;broadcast_threshold&quot;: 75,
+&quot;multicast_threshold&quot;: 70,
+&quot;unknown_unicast_threshold&quot;: 65
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-zhmof0k2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:45" name="[localhost] meraki: meraki_switch_storm_control : debug var=query_all" time="0.506615">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;broadcast_threshold&quot;: 75,
+            &quot;multicast_threshold&quot;: 70,
+            &quot;unknown_unicast_threshold&quot;: 65
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,199 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="11" time="24.763909101486206">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_device-hcuq5yxu" skipped="0" tests="11" time="24.763909101486206">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:17" name="[localhost] meraki: meraki_device : Create network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance, state=present" time="4.313681">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682291&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:26" name="[localhost] meraki: meraki_device : set_fact net_id={{net_info.data.id}}" time="0.344524">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682291&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:29" name="[localhost] meraki: meraki_device : Query status of all devices in an organization auth_key={{auth_key}}, org_name={{test_org_name}}, state=query" time="3.599429">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+&quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+&quot;model&quot;: &quot;MS220-8P&quot;,
+&quot;name&quot;: &quot;ms220-8p-basement&quot;,
+&quot;network_id&quot;: &quot;N_624874448297662961&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+&quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+&quot;model&quot;: &quot;MR42&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;test-hostname&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:37" name="[localhost] meraki: meraki_device : debug msg={{query_device_org}}" time="0.328632">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+                &quot;model&quot;: &quot;MS220-8P&quot;,
+                &quot;name&quot;: &quot;ms220-8p-basement&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297662961&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+                &quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+                &quot;model&quot;: &quot;MR42&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;name&quot;: &quot;test-hostname&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:40" name="[localhost] meraki: meraki_device : Claim a device into a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=present" time="5.956709">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+null
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:50" name="[localhost] meraki: meraki_device : debug msg={{claim_device}}" time="0.371855">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            null
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:53" name="[localhost] meraki: meraki_device : assert that=['claim_device.changed == true']" time="0.363764">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:57" name="[localhost] meraki: meraki_device : Query all devices in one network by network ID auth_key={{auth_key}}, org_name={{test_org_name}}, net_id={{test_net_id}}, state=query" time="3.690264">
+			<error message="ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None" type="error">Traceback (most recent call last):
+  File &quot;/tmp/ansible_meraki_device_payload_v5szmt2v/ansible_meraki_device_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 92, in inner
+ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577194991.0149806-277866316047878/AnsiballZ_meraki_device.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577194991.0149806-277866316047878/AnsiballZ_meraki_device.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577194991.0149806-277866316047878/AnsiballZ_meraki_device.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_device', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_device_payload_v5szmt2v/ansible_meraki_device_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_device.py&quot;, line 430, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_device_payload_v5szmt2v/ansible_meraki_device_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_device.py&quot;, line 356, in main
+  File &quot;/tmp/ansible_meraki_device_payload_v5szmt2v/ansible_meraki_device_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 116, in inner
+ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:212" name="[localhost] meraki: meraki_device : Remove a device from a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=absent" time="5.057927">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:222" name="[localhost] meraki: meraki_device : debug msg={{delete_device}}" time="0.368773">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 204
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-0z1mfty4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:225" name="[localhost] meraki: meraki_device : assert that=['delete_device.changed == true']" time="0.368350">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

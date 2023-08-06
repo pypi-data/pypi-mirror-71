@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="6" time="17.30535626411438">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_ms_link_aggregation-k5yspuz3" skipped="1" tests="6" time="17.30535626411438">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:7" name="[localhost] meraki: meraki_ms_link_aggregation : Test an API key is provided msg=Please define an API key" time="0.694523">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:12" name="[localhost] meraki: meraki_ms_link_aggregation : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=TestNetSwitch, type=switch" time="4.902298">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683724&quot;,
+&quot;name&quot;: &quot;TestNetSwitch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;switch&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/TestNetSwitch/n/q4t7ncUb/manage/usage/list&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:21" name="[localhost] meraki: meraki_ms_link_aggregation : debug msg={{test_net}}" time="0.607997">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;disable_my_meraki_com&quot;: false,
+            &quot;disable_remote_status_page&quot;: true,
+            &quot;enrollment_string&quot;: null,
+            &quot;id&quot;: &quot;N_624874448297683724&quot;,
+            &quot;name&quot;: &quot;TestNetSwitch&quot;,
+            &quot;organization_id&quot;: &quot;133277&quot;,
+            &quot;product_types&quot;: [
+                &quot;switch&quot;
+            ],
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+            &quot;type&quot;: &quot;switch&quot;,
+            &quot;url&quot;: &quot;https://n110.meraki.com/TestNetSwitch/n/q4t7ncUb/manage/usage/list&quot;
+        },
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:24" name="[localhost] meraki: meraki_ms_link_aggregation : Query all LAGs auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name=TestNetSwitch" time="4.509777">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:33" name="[localhost] meraki: meraki_ms_link_aggregation : debug var=query_all" time="0.659842">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-5v1u7fxw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:37" name="[localhost] meraki: meraki_ms_link_aggregation : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name=TestNetSwitch" time="5.930920">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

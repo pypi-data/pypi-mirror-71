@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="8" time="19.761455059051514">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_syslog-uiggm4zr" skipped="1" tests="8" time="19.761455059051514">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:7" name="[localhost] meraki: meraki_syslog : Test an API key is provided msg=Please define an API key" time="0.443083">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:12" name="[localhost] meraki: meraki_syslog : set_fact syslog_test_net_name=syslog_{{test_net_name}}" time="0.524848">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;syslog_test_net_name&quot;: &quot;syslog_Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:15" name="[localhost] meraki: meraki_syslog : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="4.508753">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682511&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:25" name="[localhost] meraki: meraki_syslog : set_fact net_id={{new_net.data.id}}" time="0.404875">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682511&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:28" name="[localhost] meraki: meraki_syslog : Query syslog settings auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query" time="4.010731">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:37" name="[localhost] meraki: meraki_syslog : debug msg={{query_all}}" time="0.395423">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:40" name="[localhost] meraki: meraki_syslog : Set syslog server auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, servers=[{'host': '192.0.1.2', 'port': 514, 'roles': ['Appliance event log']}]" time="4.977915">
+			<error message="TypeError: 'NoneType' object is not subscriptable" type="error">Traceback (most recent call last):
+  File &quot;/tmp/ansible_meraki_syslog_payload_tch3ibbv/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 250, in generate_diff
+  File &quot;/tmp/ansible_meraki_syslog_payload_tch3ibbv/ansible_meraki_syslog_payload.zip/ansible/module_utils/common/dict_transformations.py&quot;, line 127, in recursive_diff
+AttributeError: 'list' object has no attribute 'items'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577669980.6493618-181797534868108/AnsiballZ_meraki_syslog.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577669980.6493618-181797534868108/AnsiballZ_meraki_syslog.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577669980.6493618-181797534868108/AnsiballZ_meraki_syslog.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_syslog', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_syslog_payload_tch3ibbv/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_syslog.py&quot;, line 256, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_syslog_payload_tch3ibbv/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_syslog.py&quot;, line 241, in main
+  File &quot;/tmp/ansible_meraki_syslog_payload_tch3ibbv/ansible_meraki_syslog_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 257, in generate_diff
+TypeError: 'NoneType' object is not subscriptable
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-x6dkrih2-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:161" name="[localhost] meraki: meraki_syslog : Delete syslog test network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="4.495826">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

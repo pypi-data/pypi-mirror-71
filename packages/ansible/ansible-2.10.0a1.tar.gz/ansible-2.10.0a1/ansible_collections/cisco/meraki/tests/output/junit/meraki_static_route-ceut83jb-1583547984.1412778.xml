@@ -1,0 +1,462 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="26" time="62.285895109176636">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_static_route-ceut83jb" skipped="0" tests="26" time="62.285895109176636">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:7" name="[localhost] meraki: meraki_static_route : Create appliance network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, timezone=America/Chicago, type=appliance" time="4.492010">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683552&quot;,
+&quot;name&quot;: &quot;IntTestNetwork&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;appliance&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/IntTestNetwork/n/OFD67cUb/manage/usage/list&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:18" name="[localhost] meraki: meraki_static_route : set_fact net_id={{net.data.id}}" time="0.433176">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297683552&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:21" name="[localhost] meraki: meraki_static_route : Initialize static route id list route_ids=[]" time="0.015023">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;route_ids&quot;: []
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:25" name="[localhost] meraki: meraki_static_route : Create static_route auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, name=Test Route, subnet=192.0.1.0/24, gateway_ip=192.168.128.1" time="4.819016">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.1.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:37" name="[localhost] meraki: meraki_static_route : set_fact route_ids={{ route_ids + [create_route.data.id] }}" time="0.353510">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;route_ids&quot;: [
+&quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;
+]
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:40" name="[localhost] meraki: meraki_static_route : Create static_route with idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, name=Test Route, subnet=192.0.1.0/24, gateway_ip=192.168.128.1" time="4.724267">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.1.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:52" name="[localhost] meraki: meraki_static_route : assert that=['create_route_idempotent is not changed']" time="0.362402">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:56" name="[localhost] meraki: meraki_static_route : Create second static_route auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, name=Test Route 2, subnet=192.0.2.0/24, gateway_ip=192.168.128.1" time="4.322348">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+&quot;name&quot;: &quot;Test Route 2&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.2.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:68" name="[localhost] meraki: meraki_static_route : set_fact route_ids={{ route_ids + [second_create.data.id] }}" time="0.366013">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;route_ids&quot;: [
+&quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;
+]
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:71" name="[localhost] meraki: meraki_static_route : assert that=['create_route.changed == True', 'create_route.data.id is defined']" time="0.364922">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:76" name="[localhost] meraki: meraki_static_route : Update static route auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{create_route.data.id}}, subnet=192.0.3.0/24, enabled=True" time="4.703042">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:88" name="[localhost] meraki: meraki_static_route : assert that=['update is changed', 'update.data.subnet == &quot;192.0.3.0/24&quot;']" time="0.364276">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:93" name="[localhost] meraki: meraki_static_route : Query static routes auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name=IntTestNetwork" time="3.880756">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+},
+{
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+&quot;name&quot;: &quot;Test Route 2&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.2.0/24&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:102" name="[localhost] meraki: meraki_static_route : debug var=query_all" time="0.564957">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;enabled&quot;: true,
+                &quot;fixed_ip_assignments&quot;: {},
+                &quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+                &quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+                &quot;name&quot;: &quot;Test Route&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+                &quot;reserved_ip_ranges&quot;: [],
+                &quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+            },
+            {
+                &quot;enabled&quot;: true,
+                &quot;fixed_ip_assignments&quot;: {},
+                &quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+                &quot;id&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+                &quot;name&quot;: &quot;Test Route 2&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+                &quot;reserved_ip_ranges&quot;: [],
+                &quot;subnet&quot;: &quot;192.0.2.0/24&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:105" name="[localhost] meraki: meraki_static_route : assert that=['query_all.data | length &gt;= 2']" time="0.573883">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:109" name="[localhost] meraki: meraki_static_route : Update static route with idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{create_route.data.id}}, name=Test Route, gateway_ip=192.168.128.1, subnet=192.0.3.0/24, enabled=True" time="3.945426">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:123" name="[localhost] meraki: meraki_static_route : assert that=['update_idempotent.changed == False', 'update_idempotent.data is defined']" time="0.443100">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:128" name="[localhost] meraki: meraki_static_route : Rename static route auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{ second_create.data.id }}, name=Test Route Renamed, subnet=192.0.1.0/24, gateway_ip=192.168.128.1" time="5.161401">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+&quot;name&quot;: &quot;Test Route Renamed&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.0.1.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:141" name="[localhost] meraki: meraki_static_route : assert that=['second_create_renamed is changed', 'second_create_renamed.data.name == &quot;Test Route Renamed&quot;']" time="0.414549">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:146" name="[localhost] meraki: meraki_static_route : Update static route with fixed IP assignment and reservation auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{create_route.data.id}}, fixed_ip_assignments=[{'mac': 'aa:bb:cc:dd:ee:ff', 'ip': '192.0.3.11', 'name': 'WebServer'}], reserved_ip_ranges=[{'start': '192.168.3.2', 'end': '192.168.3.10', 'comment': 'Printers'}]" time="4.740338">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {
+&quot;aa:bb:cc:dd:ee:ff&quot;: {
+&quot;ip&quot;: &quot;192.0.3.11&quot;,
+&quot;name&quot;: &quot;WebServer&quot;
+}
+},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [
+{
+&quot;comment&quot;: &quot;Printers&quot;,
+&quot;end&quot;: &quot;192.168.3.10&quot;,
+&quot;start&quot;: &quot;192.168.3.2&quot;
+}
+],
+&quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:164" name="[localhost] meraki: meraki_static_route : debug var=fixed_ip" time="0.406867">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;fixed_ip&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;enabled&quot;: true,
+            &quot;fixed_ip_assignments&quot;: {
+                &quot;aa:bb:cc:dd:ee:ff&quot;: {
+                    &quot;ip&quot;: &quot;192.0.3.11&quot;,
+                    &quot;name&quot;: &quot;WebServer&quot;
+                }
+            },
+            &quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+            &quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+            &quot;name&quot;: &quot;Test Route&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+            &quot;reserved_ip_ranges&quot;: [
+                {
+                    &quot;comment&quot;: &quot;Printers&quot;,
+                    &quot;end&quot;: &quot;192.168.3.10&quot;,
+                    &quot;start&quot;: &quot;192.168.3.2&quot;
+                }
+            ],
+            &quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:167" name="[localhost] meraki: meraki_static_route : assert that=['fixed_ip.data.fixed_ip_assignments | length == 1', 'fixed_ip.data.reserved_ip_ranges | length == 1']" time="0.345111">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:172" name="[localhost] meraki: meraki_static_route : Query single static route auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{create_route.data.id}}" time="4.200027">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;fixed_ip_assignments&quot;: {
+&quot;aa:bb:cc:dd:ee:ff&quot;: {
+&quot;ip&quot;: &quot;192.0.3.11&quot;,
+&quot;name&quot;: &quot;WebServer&quot;
+}
+},
+&quot;gateway_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;name&quot;: &quot;Test Route&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683552&quot;,
+&quot;reserved_ip_ranges&quot;: [
+{
+&quot;comment&quot;: &quot;Printers&quot;,
+&quot;end&quot;: &quot;192.168.3.10&quot;,
+&quot;start&quot;: &quot;192.168.3.2&quot;
+}
+],
+&quot;subnet&quot;: &quot;192.0.3.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:182" name="[localhost] meraki: meraki_static_route : assert that=['query_one.data.name == &quot;Test Route&quot;']" time="0.470499">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:186" name="[localhost] meraki: meraki_static_route : Delete static routes auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name=IntTestNetwork, route_id={{item}}" time="6.845861">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;msg&quot;: &quot;All items completed&quot;,
+&quot;results&quot;: [
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;failed&quot;: false,
+&quot;invocation&quot;: {
+&quot;module_args&quot;: {
+&quot;auth_key&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;enabled&quot;: null,
+&quot;fixed_ip_assignments&quot;: null,
+&quot;follow_redirects&quot;: &quot;all&quot;,
+&quot;gateway_ip&quot;: null,
+&quot;host&quot;: &quot;api.meraki.com&quot;,
+&quot;internal_error_retry_time&quot;: 60,
+&quot;name&quot;: null,
+&quot;net_id&quot;: null,
+&quot;net_name&quot;: &quot;IntTestNetwork&quot;,
+&quot;org_id&quot;: null,
+&quot;org_name&quot;: &quot;kbreit@insight.com&quot;,
+&quot;output_format&quot;: &quot;snakecase&quot;,
+&quot;output_level&quot;: &quot;normal&quot;,
+&quot;protocol&quot;: &quot;https&quot;,
+&quot;rate_limit_retry_time&quot;: 165,
+&quot;reserved_ip_ranges&quot;: null,
+&quot;route_id&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;state&quot;: &quot;absent&quot;,
+&quot;subnet&quot;: null,
+&quot;timeout&quot;: 30,
+&quot;use_https&quot;: true,
+&quot;use_proxy&quot;: false,
+&quot;validate_certs&quot;: true
+}
+},
+&quot;item&quot;: &quot;bad8b2c7-75bd-4271-a70c-e4d184e5a40d&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+},
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;failed&quot;: false,
+&quot;invocation&quot;: {
+&quot;module_args&quot;: {
+&quot;auth_key&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;enabled&quot;: null,
+&quot;fixed_ip_assignments&quot;: null,
+&quot;follow_redirects&quot;: &quot;all&quot;,
+&quot;gateway_ip&quot;: null,
+&quot;host&quot;: &quot;api.meraki.com&quot;,
+&quot;internal_error_retry_time&quot;: 60,
+&quot;name&quot;: null,
+&quot;net_id&quot;: null,
+&quot;net_name&quot;: &quot;IntTestNetwork&quot;,
+&quot;org_id&quot;: null,
+&quot;org_name&quot;: &quot;kbreit@insight.com&quot;,
+&quot;output_format&quot;: &quot;snakecase&quot;,
+&quot;output_level&quot;: &quot;normal&quot;,
+&quot;protocol&quot;: &quot;https&quot;,
+&quot;rate_limit_retry_time&quot;: 165,
+&quot;reserved_ip_ranges&quot;: null,
+&quot;route_id&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+&quot;state&quot;: &quot;absent&quot;,
+&quot;subnet&quot;: null,
+&quot;timeout&quot;: 30,
+&quot;use_https&quot;: true,
+&quot;use_proxy&quot;: false,
+&quot;validate_certs&quot;: true
+}
+},
+&quot;item&quot;: &quot;153e789a-2823-4dbf-806d-0993dcd76b02&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_static_route-fvjgbcjj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_static_route/tasks/main.yml:198" name="[localhost] meraki: meraki_static_route : Delete appliance network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name=IntTestNetwork" time="4.973119">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

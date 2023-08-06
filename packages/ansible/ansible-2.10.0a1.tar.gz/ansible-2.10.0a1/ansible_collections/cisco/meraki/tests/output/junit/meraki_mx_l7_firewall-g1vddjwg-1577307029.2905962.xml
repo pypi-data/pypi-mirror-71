@@ -1,0 +1,1754 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="64" time="115.76805210113525">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_mx_l7_firewall-g1vddjwg" skipped="1" tests="64" time="115.76805210113525">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:7" name="[localhost] meraki: meraki_mx_l7_firewall : Test an API key is provided msg=Please define an API key" time="0.334599">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:12" name="[localhost] meraki: meraki_mx_l7_firewall : Create network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, type=appliance" time="4.186728">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682367&quot;,
+&quot;name&quot;: &quot;TestNetAppliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:20" name="[localhost] meraki: meraki_mx_l7_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query" time="4.010454">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: []
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:28" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=query" time="0.341352">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;rules&quot;: []
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:31" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['query.data is defined']" time="0.334075">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:35" name="[localhost] meraki: meraki_mx_l7_firewall : Query firewall application categories auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=query, categories=True" time="4.331417">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;application_categories&quot;: [
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/4&quot;,
+&quot;name&quot;: &quot;Gmail&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/2&quot;,
+&quot;name&quot;: &quot;Host-based email (POP3/IMAP/SMTP)&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/39&quot;,
+&quot;name&quot;: &quot;Hotmail&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/7&quot;,
+&quot;name&quot;: &quot;Rackspace Hosted Exchange&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/158&quot;,
+&quot;name&quot;: &quot;Web based email&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/87&quot;,
+&quot;name&quot;: &quot;Windows Live Hotmail and Outlook&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/130&quot;,
+&quot;name&quot;: &quot;Yahoo Mail&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/1&quot;,
+&quot;name&quot;: &quot;Email&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/35&quot;,
+&quot;name&quot;: &quot;Blogger&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/94&quot;,
+&quot;name&quot;: &quot;WordPress&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/2&quot;,
+&quot;name&quot;: &quot;Blogging&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/106&quot;,
+&quot;name&quot;: &quot;Apple file sharing&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/171&quot;,
+&quot;name&quot;: &quot;Box&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/9&quot;,
+&quot;name&quot;: &quot;Dropbox&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/185&quot;,
+&quot;name&quot;: &quot;Mega&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/162&quot;,
+&quot;name&quot;: &quot;Microsoft OneDrive&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/168&quot;,
+&quot;name&quot;: &quot;PutLocker.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/107&quot;,
+&quot;name&quot;: &quot;Windows file sharing&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/3&quot;,
+&quot;name&quot;: &quot;File sharing&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/184&quot;,
+&quot;name&quot;: &quot;ABC News&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/41&quot;,
+&quot;name&quot;: &quot;CNN&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/98&quot;,
+&quot;name&quot;: &quot;Fox News&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/100&quot;,
+&quot;name&quot;: &quot;Gizmodo&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/89&quot;,
+&quot;name&quot;: &quot;MSN&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/42&quot;,
+&quot;name&quot;: &quot;New York Times&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/99&quot;,
+&quot;name&quot;: &quot;TechCrunch&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/91&quot;,
+&quot;name&quot;: &quot;sina.com.cn&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/124&quot;,
+&quot;name&quot;: &quot;turner.com&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/4&quot;,
+&quot;name&quot;: &quot;News&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/101&quot;,
+&quot;name&quot;: &quot;CBS Sports&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/40&quot;,
+&quot;name&quot;: &quot;ESPN&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/96&quot;,
+&quot;name&quot;: &quot;foxsports.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/125&quot;,
+&quot;name&quot;: &quot;mlb.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/183&quot;,
+&quot;name&quot;: &quot;nhl.com&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/5&quot;,
+&quot;name&quot;: &quot;Sports&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/133&quot;,
+&quot;name&quot;: &quot;Battle.net&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/64&quot;,
+&quot;name&quot;: &quot;Big Fish Games&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/189&quot;,
+&quot;name&quot;: &quot;Blizzard&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/63&quot;,
+&quot;name&quot;: &quot;GameSpot&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/61&quot;,
+&quot;name&quot;: &quot;IGN&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/62&quot;,
+&quot;name&quot;: &quot;Miniclip&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/68&quot;,
+&quot;name&quot;: &quot;PlayStation&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/173&quot;,
+&quot;name&quot;: &quot;Steam&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/150&quot;,
+&quot;name&quot;: &quot;World of Warcraft&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/67&quot;,
+&quot;name&quot;: &quot;Xbox LIVE&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/65&quot;,
+&quot;name&quot;: &quot;Zynga&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/66&quot;,
+&quot;name&quot;: &quot;pogo.com&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/6&quot;,
+&quot;name&quot;: &quot;Gaming&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/10&quot;,
+&quot;name&quot;: &quot;Backblaze&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/156&quot;,
+&quot;name&quot;: &quot;Carbonite&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/126&quot;,
+&quot;name&quot;: &quot;IBackup&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/11&quot;,
+&quot;name&quot;: &quot;Mozy&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/181&quot;,
+&quot;name&quot;: &quot;iCloud&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/7&quot;,
+&quot;name&quot;: &quot;Online backup&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/110&quot;,
+&quot;name&quot;: &quot;BitTorrent&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/114&quot;,
+&quot;name&quot;: &quot;DC++&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/147&quot;,
+&quot;name&quot;: &quot;Encrypted P2P&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/112&quot;,
+&quot;name&quot;: &quot;Gnutella&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/111&quot;,
+&quot;name&quot;: &quot;Kazaa&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/113&quot;,
+&quot;name&quot;: &quot;eDonkey&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/8&quot;,
+&quot;name&quot;: &quot;Peer-to-peer (P2P)&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/33&quot;,
+&quot;name&quot;: &quot;Facebook&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/26&quot;,
+&quot;name&quot;: &quot;Flickr&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/84&quot;,
+&quot;name&quot;: &quot;ImageShack&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/152&quot;,
+&quot;name&quot;: &quot;Instagram&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/186&quot;,
+&quot;name&quot;: &quot;Line&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/23&quot;,
+&quot;name&quot;: &quot;MySpace&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/134&quot;,
+&quot;name&quot;: &quot;Picasa&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/159&quot;,
+&quot;name&quot;: &quot;Pinterest&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/180&quot;,
+&quot;name&quot;: &quot;Snapchat&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/44&quot;,
+&quot;name&quot;: &quot;Twitter&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/45&quot;,
+&quot;name&quot;: &quot;Yelp&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/151&quot;,
+&quot;name&quot;: &quot;img.ly&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/69&quot;,
+&quot;name&quot;: &quot;imgur.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/71&quot;,
+&quot;name&quot;: &quot;photobucket.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/135&quot;,
+&quot;name&quot;: &quot;smugmug&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/155&quot;,
+&quot;name&quot;: &quot;twitpic&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/153&quot;,
+&quot;name&quot;: &quot;yfrog&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/9&quot;,
+&quot;name&quot;: &quot;Social web &amp; photo sharing&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/14&quot;,
+&quot;name&quot;: &quot;Antivirus updates&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/13&quot;,
+&quot;name&quot;: &quot;Software updates&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/12&quot;,
+&quot;name&quot;: &quot;Software &amp; anti-virus updates&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/172&quot;,
+&quot;name&quot;: &quot;Amazon Instant Video&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/188&quot;,
+&quot;name&quot;: &quot;BBC iPlayer&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/169&quot;,
+&quot;name&quot;: &quot;Dailymotion&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/178&quot;,
+&quot;name&quot;: &quot;HBO GO&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/128&quot;,
+&quot;name&quot;: &quot;Miscellaneous audio&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/102&quot;,
+&quot;name&quot;: &quot;Miscellaneous video&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/38&quot;,
+&quot;name&quot;: &quot;Netflix&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/187&quot;,
+&quot;name&quot;: &quot;Niconico&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/32&quot;,
+&quot;name&quot;: &quot;Pandora&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/136&quot;,
+&quot;name&quot;: &quot;Rhapsody&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/163&quot;,
+&quot;name&quot;: &quot;Spotify&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/37&quot;,
+&quot;name&quot;: &quot;Vimeo&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/170&quot;,
+&quot;name&quot;: &quot;Xfinity TV&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/19&quot;,
+&quot;name&quot;: &quot;YouTube&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/122&quot;,
+&quot;name&quot;: &quot;blip.tv&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/143&quot;,
+&quot;name&quot;: &quot;grooveshark.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/36&quot;,
+&quot;name&quot;: &quot;hulu.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/24&quot;,
+&quot;name&quot;: &quot;iTunes&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/70&quot;,
+&quot;name&quot;: &quot;last.fm&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/73&quot;,
+&quot;name&quot;: &quot;megavideo.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/141&quot;,
+&quot;name&quot;: &quot;rdio.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/142&quot;,
+&quot;name&quot;: &quot;soundcloud.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/72&quot;,
+&quot;name&quot;: &quot;ustream.tv&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/13&quot;,
+&quot;name&quot;: &quot;Video &amp; music&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/165&quot;,
+&quot;name&quot;: &quot;Dropcam&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/160&quot;,
+&quot;name&quot;: &quot;SCCP (Skinny Call Control Protocol)&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/132&quot;,
+&quot;name&quot;: &quot;SIP (Voice)&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/31&quot;,
+&quot;name&quot;: &quot;Skype&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/140&quot;,
+&quot;name&quot;: &quot;Vocera&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/161&quot;,
+&quot;name&quot;: &quot;WebEx&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/16&quot;,
+&quot;name&quot;: &quot;VoIP &amp; video conferencing&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/80&quot;,
+&quot;name&quot;: &quot;4shared.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/137&quot;,
+&quot;name&quot;: &quot;Easynews&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/78&quot;,
+&quot;name&quot;: &quot;RapidShare&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/58&quot;,
+&quot;name&quot;: &quot;download.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/48&quot;,
+&quot;name&quot;: &quot;easyshare.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/52&quot;,
+&quot;name&quot;: &quot;filefactory.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/53&quot;,
+&quot;name&quot;: &quot;filefront.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/56&quot;,
+&quot;name&quot;: &quot;filer.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/79&quot;,
+&quot;name&quot;: &quot;filestube.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/50&quot;,
+&quot;name&quot;: &quot;gigeshare.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/81&quot;,
+&quot;name&quot;: &quot;hotfile.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/55&quot;,
+&quot;name&quot;: &quot;massmirror.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/83&quot;,
+&quot;name&quot;: &quot;mediafire.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/49&quot;,
+&quot;name&quot;: &quot;megashare.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/74&quot;,
+&quot;name&quot;: &quot;megaupload.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/47&quot;,
+&quot;name&quot;: &quot;rapidshare.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/75&quot;,
+&quot;name&quot;: &quot;thepiratebay.org&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/77&quot;,
+&quot;name&quot;: &quot;torrentz.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/51&quot;,
+&quot;name&quot;: &quot;ultrashare.de&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/57&quot;,
+&quot;name&quot;: &quot;upload.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/82&quot;,
+&quot;name&quot;: &quot;zshare.net&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/17&quot;,
+&quot;name&quot;: &quot;Web file sharing&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/272&quot;,
+&quot;name&quot;: &quot;DigiCert&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/271&quot;,
+&quot;name&quot;: &quot;avast&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/18&quot;,
+&quot;name&quot;: &quot;Security&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/251&quot;,
+&quot;name&quot;: &quot;Adobe Creative Cloud&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/253&quot;,
+&quot;name&quot;: &quot;Sharepoint&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/252&quot;,
+&quot;name&quot;: &quot;Simphony.NET&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/254&quot;,
+&quot;name&quot;: &quot;Slack&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/138&quot;,
+&quot;name&quot;: &quot;Windows Live Office&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/182&quot;,
+&quot;name&quot;: &quot;Windows Office365&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/19&quot;,
+&quot;name&quot;: &quot;Productivity&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/179&quot;,
+&quot;name&quot;: &quot;Citrix ICA&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/6&quot;,
+&quot;name&quot;: &quot;Citrix Online&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/232&quot;,
+&quot;name&quot;: &quot;Marconet&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/231&quot;,
+&quot;name&quot;: &quot;MyRMM&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/108&quot;,
+&quot;name&quot;: &quot;Remote desktop&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/233&quot;,
+&quot;name&quot;: &quot;auvik&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/20&quot;,
+&quot;name&quot;: &quot;Remote monitoring &amp; management&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/293&quot;,
+&quot;name&quot;: &quot;Deltek Axium&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/297&quot;,
+&quot;name&quot;: &quot;IFS&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/292&quot;,
+&quot;name&quot;: &quot;IQMS&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/294&quot;,
+&quot;name&quot;: &quot;Intacct&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/296&quot;,
+&quot;name&quot;: &quot;Microsoft Dynamics 365&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/291&quot;,
+&quot;name&quot;: &quot;NetSuite&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/295&quot;,
+&quot;name&quot;: &quot;Priority ERP&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/299&quot;,
+&quot;name&quot;: &quot;SICOM Restaurant Management&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/298&quot;,
+&quot;name&quot;: &quot;SugarCRM&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/300&quot;,
+&quot;name&quot;: &quot;Workday&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/59&quot;,
+&quot;name&quot;: &quot;salesforce.com&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/21&quot;,
+&quot;name&quot;: &quot;Business management&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/374&quot;,
+&quot;name&quot;: &quot;Allscripts&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/376&quot;,
+&quot;name&quot;: &quot;Cerner&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/372&quot;,
+&quot;name&quot;: &quot;CureMD&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/371&quot;,
+&quot;name&quot;: &quot;Epic EHR&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/373&quot;,
+&quot;name&quot;: &quot;GE Healthcare&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/375&quot;,
+&quot;name&quot;: &quot;McKesson&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/22&quot;,
+&quot;name&quot;: &quot;Health care&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/313&quot;,
+&quot;name&quot;: &quot;Intuit&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/316&quot;,
+&quot;name&quot;: &quot;Lightspeed Retail POS&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/317&quot;,
+&quot;name&quot;: &quot;LivePOS&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/314&quot;,
+&quot;name&quot;: &quot;PayPal&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/315&quot;,
+&quot;name&quot;: &quot;PayU&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/318&quot;,
+&quot;name&quot;: &quot;ShopKeep&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/312&quot;,
+&quot;name&quot;: &quot;Square&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/311&quot;,
+&quot;name&quot;: &quot;Stripe&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/23&quot;,
+&quot;name&quot;: &quot;Web payments&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/332&quot;,
+&quot;name&quot;: &quot;Amazon RDS&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/333&quot;,
+&quot;name&quot;: &quot;Amazon Redshift&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/351&quot;,
+&quot;name&quot;: &quot;Azure&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/352&quot;,
+&quot;name&quot;: &quot;IBM Cloud&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/353&quot;,
+&quot;name&quot;: &quot;SAP Cloud Platform&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/331&quot;,
+&quot;name&quot;: &quot;SAP Hana&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/24&quot;,
+&quot;name&quot;: &quot;Databases &amp; cloud services&quot;
+},
+{
+&quot;applications&quot;: [
+{
+&quot;id&quot;: &quot;meraki:layer7/application/205&quot;,
+&quot;name&quot;: &quot;Advertising.com&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/202&quot;,
+&quot;name&quot;: &quot;AppNexus&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/211&quot;,
+&quot;name&quot;: &quot;Brightroll&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/207&quot;,
+&quot;name&quot;: &quot;DoubleVerify&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/201&quot;,
+&quot;name&quot;: &quot;Google advertising&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/203&quot;,
+&quot;name&quot;: &quot;Integral Ad Science&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/208&quot;,
+&quot;name&quot;: &quot;LKQD&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/209&quot;,
+&quot;name&quot;: &quot;OpenX&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/212&quot;,
+&quot;name&quot;: &quot;Pubmatic&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/204&quot;,
+&quot;name&quot;: &quot;SpringServe&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/210&quot;,
+&quot;name&quot;: &quot;moatads&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:layer7/application/206&quot;,
+&quot;name&quot;: &quot;mopub&quot;
+}
+],
+&quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+&quot;name&quot;: &quot;Advertising&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:44" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['query_categories.data is defined']" time="0.340569">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:48" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range in check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="3.806481">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:60" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=create_ip_range_check" time="0.341792">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_ip_range_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;ipRange&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.0/24&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: []
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:63" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_check is changed']" time="0.341508">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:67" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="4.705387">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:78" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=create_ip_range" time="0.341233">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_ip_range&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;ipRange&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.0/24&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: []
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:81" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range is changed', 'create_ip_range.data.rules | length == 1']" time="0.338382">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:86" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range with idempotency with check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="3.417232">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;,
+&quot;value&quot;: &quot;10.11.12.0/24&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:98" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_idempotent_check is not changed']" time="0.343443">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:102" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range with idempotency auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="3.259082">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;,
+&quot;value&quot;: &quot;10.11.12.0/24&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:113" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_idempotent is not changed']" time="0.334353">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:117" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP and port auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.1:23'}]" time="4.342316">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;ip_range&quot;: &quot;10.11.12.1:23&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:128" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=create_ip_range_port" time="0.339853">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_ip_range_port&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;ip_range&quot;: &quot;10.11.12.1:23&quot;,
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;ipRange&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.1:23&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.0/24&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:131" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_port is changed']" time="0.337461">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:135" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="5.498815">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:146" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=create_ip_range" time="0.345450">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_ip_range&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;ip_range&quot;: &quot;10.11.12.0/24&quot;,
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;ipRange&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.0/24&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;ipRange&quot;: &quot;10.11.12.1:23&quot;,
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;ipRange&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:149" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range is changed', 'create_ip_range.data.rules | length == 1']" time="0.345845">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:154" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range with idempotency with check mode auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="3.477113">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;,
+&quot;value&quot;: &quot;10.11.12.0/24&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:166" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_idempotent_check is not changed']" time="0.344178">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:170" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for IP range with idempotency auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'ip_range', 'ip_range': '10.11.12.0/24'}]" time="3.522810">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;ipRange&quot;,
+&quot;value&quot;: &quot;10.11.12.0/24&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:181" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['create_ip_range_idempotent is not changed']" time="0.342092">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:185" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for application auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application', 'application': {'name': 'facebook'}}]" time="5.336239">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;application&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/application/33&quot;,
+&quot;name&quot;: &quot;Facebook&quot;
+},
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;application&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:197" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['application_rule is changed', 'application_rule.data.rules is defined']" time="0.346155">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:202" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for application via ID auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application', 'application': {'id': 'meraki:layer7/application/205'}}]" time="4.224567">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;application&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/application/205&quot;,
+&quot;name&quot;: &quot;Advertising.com&quot;
+},
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;application&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:214" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['application_rule_id is changed']" time="0.338362">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:218" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for invalid application auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application', 'application': {'name': 'ansible'}}]" time="4.674248">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;No application or category named ansible found&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:231" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for application category auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application_category', 'application': {'name': 'Advertising'}}]" time="5.294372">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;application_category&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+&quot;name&quot;: &quot;Advertising&quot;
+},
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;applicationCategory&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:243" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=application_category_rule" time="0.340649">
+			<system-out>{
+    &quot;application_category_rule&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;application_category&quot;: {
+                        &quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+                        &quot;name&quot;: &quot;Advertising&quot;
+                    },
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;applicationCategory&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;applicationCategory&quot;: {
+                            &quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+                            &quot;name&quot;: &quot;Advertising&quot;
+                        },
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;applicationCategory&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;application&quot;: {
+                            &quot;id&quot;: &quot;meraki:layer7/application/205&quot;,
+                            &quot;name&quot;: &quot;Advertising.com&quot;
+                        },
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;application&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:246" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['application_category_rule is changed']" time="0.339145">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:250" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for application category with ID and conflict auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application_category', 'application': {'id': 'meraki:layer7/category/27'}}]" time="3.374335">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;applicationCategory&quot;,
+&quot;value&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/category/27&quot;
+}
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:262" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['application_category_rule_id_conflict is not changed']" time="0.342047">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:266" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for application category with ID auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application_category', 'application': {'id': 'meraki:layer7/category/24'}}]" time="4.229250">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;application_category&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/category/24&quot;,
+&quot;name&quot;: &quot;Databases &amp; cloud services&quot;
+},
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;applicationCategory&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:278" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['application_category_rule_id is changed']" time="0.339505">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:282" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for host auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'host', 'host': 'asdf.com'}]" time="5.092231">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;host&quot;: &quot;asdf.com&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;host&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:293" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['host_rule is changed']" time="0.343354">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:297" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for port auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'port', 'port': 1234}]" time="4.424659">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;port&quot;: &quot;1234&quot;,
+&quot;type&quot;: &quot;port&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 1234 (type int) in a string field was converted to '1234' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:308" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['port_rule is changed']" time="0.348785">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:312" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for blacklisted countries auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'blacklisted_countries', 'countries': ['CA', 'AX']}]" time="4.362904">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;blacklisted_countries&quot;: [
+&quot;CA&quot;,
+&quot;AX&quot;
+],
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;blacklistedCountries&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:325" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['blacklist_countries is changed']" time="0.335374">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:329" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for whitelisted countries auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'whitelisted_countries', 'countries': ['US', 'FR']}]" time="6.463197">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;whitelistedCountries&quot;,
+&quot;whitelisted_countries&quot;: [
+&quot;US&quot;,
+&quot;FR&quot;
+]
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:342" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['whitelist_countries is changed']" time="0.343608">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:346" name="[localhost] meraki: meraki_mx_l7_firewall : Create firewall rule for whitelisted countries with idempotency auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'whitelisted_countries', 'countries': ['US', 'FR']}]" time="3.569238">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;whitelistedCountries&quot;,
+&quot;value&quot;: [
+&quot;US&quot;,
+&quot;FR&quot;
+]
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:359" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['whitelist_countries_idempotent is not changed']" time="0.339035">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:363" name="[localhost] meraki: meraki_mx_l7_firewall : Create multiple firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application_category', 'application': {'id': 'meraki:layer7/category/27'}}, {'type': 'blacklisted_countries', 'countries': ['CN']}, {'policy': 'deny', 'type': 'port', 'port': 8080}]" time="4.713134">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;application_category&quot;: {
+&quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+&quot;name&quot;: &quot;Advertising&quot;
+},
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;applicationCategory&quot;
+},
+{
+&quot;blacklisted_countries&quot;: [
+&quot;CN&quot;
+],
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;type&quot;: &quot;blacklistedCountries&quot;
+},
+{
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;port&quot;: &quot;8080&quot;,
+&quot;type&quot;: &quot;port&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 8080 (type int) in a string field was converted to '8080' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:381" name="[localhost] meraki: meraki_mx_l7_firewall : debug var=multiple_rules" time="0.342631">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;multiple_rules&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;application_category&quot;: {
+                        &quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+                        &quot;name&quot;: &quot;Advertising&quot;
+                    },
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;applicationCategory&quot;
+                },
+                {
+                    &quot;blacklisted_countries&quot;: [
+                        &quot;CN&quot;
+                    ],
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;type&quot;: &quot;blacklistedCountries&quot;
+                },
+                {
+                    &quot;policy&quot;: &quot;deny&quot;,
+                    &quot;port&quot;: &quot;8080&quot;,
+                    &quot;type&quot;: &quot;port&quot;
+                }
+            ]
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;applicationCategory&quot;: {
+                            &quot;id&quot;: &quot;meraki:layer7/category/27&quot;,
+                            &quot;name&quot;: &quot;Advertising&quot;
+                        },
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;applicationCategory&quot;
+                    },
+                    {
+                        &quot;blacklistedCountries&quot;: [
+                            &quot;CN&quot;
+                        ],
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;blacklistedCountries&quot;
+                    },
+                    {
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;port&quot;: &quot;8080&quot;,
+                        &quot;type&quot;: &quot;port&quot;
+                    }
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;policy&quot;: &quot;deny&quot;,
+                        &quot;type&quot;: &quot;whitelistedCountries&quot;,
+                        &quot;whitelistedCountries&quot;: [
+                            &quot;US&quot;,
+                            &quot;FR&quot;
+                        ]
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 8080 (type int) in a string field was converted to '8080' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:384" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['multiple_rules.data.rules | length == 3', 'multiple_rules is changed']" time="0.344727">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:393" name="[localhost] meraki: meraki_mx_l7_firewall : Test whitelisted_countries incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'whitelisted_countries'}]" time="0.565654">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;countries argument is required when type is whitelisted_countries.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:404" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_whitelist.msg == &quot;countries argument is required when type is whitelisted_countries.&quot;']" time="0.340051">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:408" name="[localhost] meraki: meraki_mx_l7_firewall : Test blacklisted_countries incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'blacklisted_countries'}]" time="0.574771">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;countries argument is required when type is blacklisted_countries.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:419" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_blacklist.msg == &quot;countries argument is required when type is blacklisted_countries.&quot;']" time="0.339923">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:423" name="[localhost] meraki: meraki_mx_l7_firewall : Test application_category incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application_category'}]" time="0.600134">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;application argument is required when type is application_category.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:434" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_app_cat.msg == &quot;application argument is required when type is application_category.&quot;']" time="0.364596">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:438" name="[localhost] meraki: meraki_mx_l7_firewall : Test application incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'application'}]" time="0.567567">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;application argument is required when type is application.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:449" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_app_cat.msg == &quot;application argument is required when type is application.&quot;']" time="0.349113">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:453" name="[localhost] meraki: meraki_mx_l7_firewall : Test host incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'host'}]" time="0.591327">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;host argument is required when type is host.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:464" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_app_cat.msg == &quot;host argument is required when type is host.&quot;']" time="0.369781">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:468" name="[localhost] meraki: meraki_mx_l7_firewall : Test port incomplete arguments auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'type': 'port'}]" time="0.556994">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;port argument is required when type is port.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l7_firewall-pjw28gf0-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l7_firewall/tasks/tests.yml:479" name="[localhost] meraki: meraki_mx_l7_firewall : assert that=['error_app_cat.msg == &quot;port argument is required when type is port.&quot;']" time="0.342371">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

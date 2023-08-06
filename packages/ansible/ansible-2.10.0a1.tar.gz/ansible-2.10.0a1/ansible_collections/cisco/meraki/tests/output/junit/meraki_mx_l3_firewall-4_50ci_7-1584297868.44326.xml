@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="2" failures="0" tests="3" time="1.7444939613342285">
+	<testsuite disabled="0" errors="2" failures="0" name="meraki_mx_l3_firewall-4_50ci_7" skipped="1" tests="3" time="1.7444939613342285">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-1ssmndd3-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mx_l3_firewall : Test an API key is provided msg=Please define an API key" time="0.586633">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-1ssmndd3-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:12" name="[localhost] meraki: meraki_mx_l3_firewall : Create network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, type=appliance" time="0.571038">
+			<error message="ValueError: ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.__spec__ is None" type="error">Traceback (most recent call last):
+  File &quot;/root/ansible/lib/ansible/executor/task_executor.py&quot;, line 146, in run
+    res = self._execute()
+  File &quot;/root/ansible/lib/ansible/executor/task_executor.py&quot;, line 645, in _execute
+    result = self._handler.run(task_vars=variables)
+  File &quot;/root/ansible/lib/ansible/plugins/action/normal.py&quot;, line 46, in run
+    result = merge_hash(result, self._execute_module(task_vars=task_vars, wrap_async=wrap_async))
+  File &quot;/root/ansible/lib/ansible/plugins/action/__init__.py&quot;, line 815, in _execute_module
+    (module_style, shebang, module_data, module_path) = self._configure_module(module_name=module_name, module_args=module_args, task_vars=task_vars)
+  File &quot;/root/ansible/lib/ansible/plugins/action/__init__.py&quot;, line 209, in _configure_module
+    **become_kwargs)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 1258, in modify_module
+    environment=environment)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 1095, in _find_module_utils
+    py_module_cache, zf)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 731, in recursive_finder
+    [os.path.join(*py_module_name[:-idx])])
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 650, in __init__
+    self.get_source()
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 666, in get_source
+    data = pkgutil.get_data(to_native(self._package_name), to_native(self._mod_name + '.py'))
+  File &quot;/usr/lib/python3.7/pkgutil.py&quot;, line 619, in get_data
+    spec = importlib.util.find_spec(package)
+  File &quot;/usr/lib/python3.7/importlib/util.py&quot;, line 114, in find_spec
+    raise ValueError('{}.__spec__ is None'.format(name))
+ValueError: ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.__spec__ is None
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-1ssmndd3-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:301" name="[localhost] meraki: meraki_mx_l3_firewall : Delete all firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[]" time="0.586823">
+			<error message="ValueError: ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.__spec__ is None" type="error">Traceback (most recent call last):
+  File &quot;/root/ansible/lib/ansible/executor/task_executor.py&quot;, line 146, in run
+    res = self._execute()
+  File &quot;/root/ansible/lib/ansible/executor/task_executor.py&quot;, line 645, in _execute
+    result = self._handler.run(task_vars=variables)
+  File &quot;/root/ansible/lib/ansible/plugins/action/normal.py&quot;, line 46, in run
+    result = merge_hash(result, self._execute_module(task_vars=task_vars, wrap_async=wrap_async))
+  File &quot;/root/ansible/lib/ansible/plugins/action/__init__.py&quot;, line 815, in _execute_module
+    (module_style, shebang, module_data, module_path) = self._configure_module(module_name=module_name, module_args=module_args, task_vars=task_vars)
+  File &quot;/root/ansible/lib/ansible/plugins/action/__init__.py&quot;, line 209, in _configure_module
+    **become_kwargs)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 1258, in modify_module
+    environment=environment)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 1095, in _find_module_utils
+    py_module_cache, zf)
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 731, in recursive_finder
+    [os.path.join(*py_module_name[:-idx])])
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 650, in __init__
+    self.get_source()
+  File &quot;/root/ansible/lib/ansible/executor/module_common.py&quot;, line 666, in get_source
+    data = pkgutil.get_data(to_native(self._package_name), to_native(self._mod_name + '.py'))
+  File &quot;/usr/lib/python3.7/pkgutil.py&quot;, line 619, in get_data
+    spec = importlib.util.find_spec(package)
+  File &quot;/usr/lib/python3.7/importlib/util.py&quot;, line 114, in find_spec
+    raise ValueError('{}.__spec__ is None'.format(name))
+ValueError: ansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.__spec__ is None
+</error>
+		</testcase>
+	</testsuite>
+</testsuites>

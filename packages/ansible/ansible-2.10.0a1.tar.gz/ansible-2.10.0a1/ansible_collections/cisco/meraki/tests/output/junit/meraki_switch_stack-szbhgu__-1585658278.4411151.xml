@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="1" time="3.939640760421753">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switch_stack-szbhgu__" skipped="0" tests="1" time="3.939640760421753">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-j_kmqh82-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:50" name="[localhost] meraki: meraki_switch_stack : Add switch to stack idempotent auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, stack_id=624874448297657114, serials=['QBSB-D75G-PXCG']" time="3.939641">
+			<failure message="Key not in original" type="failure">{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;k&quot;: &quot;serial&quot;,
+&quot;msg&quot;: &quot;Key not in original&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 624874448297657114 (type int) in a string field was converted to '624874448297657114' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

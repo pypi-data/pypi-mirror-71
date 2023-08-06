@@ -1,0 +1,501 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="23" time="21.897200345993042">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_management_interface-ujyx6pl2" skipped="1" tests="23" time="21.897200345993042">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:7" name="[localhost] meraki: meraki_management_interface : Test an API key is provided msg=Please define an API key" time="0.416751">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:12" name="[localhost] meraki: meraki_management_interface : set_fact net_name=Home - Appliance" time="0.018288">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_name&quot;: &quot;Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:15" name="[localhost] meraki: meraki_management_interface : Create test network auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_name={{net_name}}, type=appliance" time="2.295638">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682550&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:25" name="[localhost] meraki: meraki_management_interface : set_fact net_id={{net.data.id}}" time="0.389333">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682550&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:28" name="[localhost] meraki: meraki_management_interface : Set WAN1 as DHCP in check mode auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'enabled', 'using_static_ip': False, 'vlan': 1}" time="1.489597">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;disabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:43" name="[localhost] meraki: meraki_management_interface : debug var=set_wan1_check" time="0.420304">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_wan1_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;ddns_hostnames&quot;: {
+                &quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+            },
+            &quot;wan1&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            },
+            &quot;wan2&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;disabled&quot;
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;vlan&quot;: 1
+                }
+            },
+            &quot;before&quot;: {
+                &quot;ddnsHostnames&quot;: {
+                    &quot;activeDdnsHostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                    &quot;ddnsHostnameWan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                    &quot;ddnsHostnameWan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+                },
+                &quot;wan1&quot;: {
+                    &quot;vlan&quot;: null
+                },
+                &quot;wan2&quot;: {
+                    &quot;usingStaticIp&quot;: false,
+                    &quot;vlan&quot;: 1,
+                    &quot;wanEnabled&quot;: &quot;disabled&quot;
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:46" name="[localhost] meraki: meraki_management_interface : assert that=['set_wan1_check is changed', 'set_wan1_check.data is defined']" time="0.390992">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:51" name="[localhost] meraki: meraki_management_interface : Set WAN1 as DHCP auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'enabled', 'using_static_ip': False, 'vlan': 1}" time="2.279531">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;disabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:65" name="[localhost] meraki: meraki_management_interface : debug var=set_wan1" time="0.433812">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_wan1&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;ddns_hostnames&quot;: {
+                &quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+            },
+            &quot;wan1&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            },
+            &quot;wan2&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;disabled&quot;
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;vlan&quot;: 1
+                }
+            },
+            &quot;before&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;vlan&quot;: null
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:68" name="[localhost] meraki: meraki_management_interface : assert that=['set_wan1 is changed', 'set_wan1.data is defined']" time="0.374673">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:73" name="[localhost] meraki: meraki_management_interface : Set WAN1 as DHCP with idempotency auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'enabled', 'using_static_ip': False, 'vlan': 1}" time="1.388939">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;disabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:87" name="[localhost] meraki: meraki_management_interface : debug var=set_wan1_idempotent" time="0.371304">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_wan1_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;ddns_hostnames&quot;: {
+                &quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+            },
+            &quot;wan1&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            },
+            &quot;wan2&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;disabled&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:90" name="[localhost] meraki: meraki_management_interface : assert that=['set_wan1_idempotent is not changed', 'set_wan1_idempotent.data is defined']" time="0.381808">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:95" name="[localhost] meraki: meraki_management_interface : Set WAN2 as static IP auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_id={{net_id}}, serial={{serial}}, wan2={'wan_enabled': 'enabled', 'using_static_ip': True, 'static_ip': '192.168.16.195', 'static_gateway_ip': '192.168.16.1', 'static_subnet_mask': '255.255.255.0', 'static_dns': ['1.1.1.1'], 'vlan': 1}" time="3.071682">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;static_dns&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;static_gateway_ip&quot;: &quot;192.168.16.1&quot;,
+&quot;static_ip&quot;: &quot;192.168.16.195&quot;,
+&quot;static_subnet_mask&quot;: &quot;255.255.255.0&quot;,
+&quot;using_static_ip&quot;: true,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:114" name="[localhost] meraki: meraki_management_interface : debug var=set_wan2" time="0.375038">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_wan2&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;ddns_hostnames&quot;: {
+                &quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+            },
+            &quot;wan1&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            },
+            &quot;wan2&quot;: {
+                &quot;static_dns&quot;: [
+                    &quot;1.1.1.1&quot;
+                ],
+                &quot;static_gateway_ip&quot;: &quot;192.168.16.1&quot;,
+                &quot;static_ip&quot;: &quot;192.168.16.195&quot;,
+                &quot;static_subnet_mask&quot;: &quot;255.255.255.0&quot;,
+                &quot;using_static_ip&quot;: true,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;wan2&quot;: {
+                    &quot;staticDns&quot;: [
+                        &quot;1.1.1.1&quot;
+                    ],
+                    &quot;staticGatewayIp&quot;: &quot;192.168.16.1&quot;,
+                    &quot;staticIp&quot;: &quot;192.168.16.195&quot;,
+                    &quot;staticSubnetMask&quot;: &quot;255.255.255.0&quot;,
+                    &quot;usingStaticIp&quot;: true,
+                    &quot;wanEnabled&quot;: &quot;enabled&quot;
+                }
+            },
+            &quot;before&quot;: {
+                &quot;wan2&quot;: {
+                    &quot;usingStaticIp&quot;: false,
+                    &quot;wanEnabled&quot;: &quot;disabled&quot;
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:117" name="[localhost] meraki: meraki_management_interface : assert that=['set_wan2 is changed', 'set_wan2.data is defined']" time="0.378169">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:122" name="[localhost] meraki: meraki_management_interface : Test too many DNS servers auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'enabled', 'using_static_ip': True, 'static_ip': '192.0.1.2', 'static_gateway_ip': '192.0.1.1', 'static_subnet_mask': '255.255.255.0', 'static_dns': ['1.1.1.1', '8.8.8.8', '4.4.4.4'], 'vlan': 1}" time="0.606804">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;Maximum number of static DNS addresses is 2.&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:144" name="[localhost] meraki: meraki_management_interface : debug var=too_many_dns" time="0.371386">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;too_many_dns&quot;: {
+        &quot;changed&quot;: false,
+        &quot;failed&quot;: true,
+        &quot;msg&quot;: &quot;Maximum number of static DNS addresses is 2.&quot;,
+        &quot;response&quot;: null,
+        &quot;status&quot;: null,
+        &quot;warnings&quot;: [
+            &quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:147" name="[localhost] meraki: meraki_management_interface : assert that=['too_many_dns.msg == &quot;Maximum number of static DNS addresses is 2.&quot;']" time="0.371382">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:151" name="[localhost] meraki: meraki_management_interface : Query management information auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_id={{net_id}}, serial={{serial}}" time="2.077503">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;static_dns&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;static_gateway_ip&quot;: &quot;192.168.16.1&quot;,
+&quot;static_ip&quot;: &quot;192.168.16.195&quot;,
+&quot;static_subnet_mask&quot;: &quot;255.255.255.0&quot;,
+&quot;using_static_ip&quot;: true,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:161" name="[localhost] meraki: meraki_management_interface : debug var=query_mx" time="0.368719">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_mx&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;ddns_hostnames&quot;: {
+                &quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+                &quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+            },
+            &quot;wan1&quot;: {
+                &quot;using_static_ip&quot;: false,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            },
+            &quot;wan2&quot;: {
+                &quot;static_dns&quot;: [
+                    &quot;1.1.1.1&quot;
+                ],
+                &quot;static_gateway_ip&quot;: &quot;192.168.16.1&quot;,
+                &quot;static_ip&quot;: &quot;192.168.16.195&quot;,
+                &quot;static_subnet_mask&quot;: &quot;255.255.255.0&quot;,
+                &quot;using_static_ip&quot;: true,
+                &quot;vlan&quot;: 1,
+                &quot;wan_enabled&quot;: &quot;enabled&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:164" name="[localhost] meraki: meraki_management_interface : assert that=['query_mx.data is defined']" time="0.375007">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-t4rkxvvo-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:172" name="[localhost] meraki: meraki_management_interface : Reset settings for all interfaces auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'disabled', 'using_static_ip': False}, wan2={'wan_enabled': 'enabled', 'using_static_ip': False}" time="3.250541">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;ddns_hostnames&quot;: {
+&quot;active_ddns_hostname&quot;: &quot;home-appliance-rmzwhdwpwk.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan1&quot;: &quot;home-appliance-rmzwhdwpwk-1.dynamic-m.com&quot;,
+&quot;ddns_hostname_wan2&quot;: &quot;home-appliance-rmzwhdwpwk-2.dynamic-m.com&quot;
+},
+&quot;wan1&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;disabled&quot;
+},
+&quot;wan2&quot;: {
+&quot;using_static_ip&quot;: false,
+&quot;vlan&quot;: 1,
+&quot;wan_enabled&quot;: &quot;enabled&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="8" time="21.151111364364624">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_site_to_site_vpn-3v4gc9j4" skipped="0" tests="8" time="21.151111364364624">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:8" name="[localhost] meraki: meraki_site_to_site_vpn : Create hub network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, type=appliance" time="3.333301">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683434&quot;,
+&quot;name&quot;: &quot;Home - Appliance_hub&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:18" name="[localhost] meraki: meraki_site_to_site_vpn : Create spoke network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, type=appliance" time="3.756361">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683435&quot;,
+&quot;name&quot;: &quot;Home - Appliance_spoke&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:28" name="[localhost] meraki: meraki_site_to_site_vpn : set_fact net_spoke_id={{net_spoke.data.id}}, net_hub_id={{net_hub.data.id}}" time="0.580883">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;net_spoke_id&quot;: &quot;N_624874448297683435&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:32" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub" time="4.874126">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:42" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_hub" time="0.371135">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_hub&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [],
+            &quot;mode&quot;: &quot;hub&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:45" name="[localhost] meraki: meraki_site_to_site_vpn : Set spoke mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, mode=spoke, hubs=[{'hub_id': '{{net_hub_id}}', 'use_default_route': False}]" time="3.932763">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [
+{
+&quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;use_default_route&quot;: false
+}
+],
+&quot;mode&quot;: &quot;spoke&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:58" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_spoke" time="0.367921">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_spoke&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [
+                {
+                    &quot;hub_id&quot;: &quot;N_624874448297683434&quot;,
+                    &quot;use_default_route&quot;: false
+                }
+            ],
+            &quot;mode&quot;: &quot;spoke&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-kks5ykhy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:61" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub configuration auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub, hubs=[{'hub_id': '{{net_hub_id}}', 'use_default_route': False}]" time="3.934621">
+			<failure message="HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683434/siteToSiteVpn/ - ['Full tunnel VPN mode cannot be enabled with an invalid concentrator']" type="failure">{
+&quot;body&quot;: {
+&quot;errors&quot;: [
+&quot;Full tunnel VPN mode cannot be enabled with an invalid concentrator&quot;
+]
+},
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683434/siteToSiteVpn/ - ['Full tunnel VPN mode cannot be enabled with an invalid concentrator']&quot;,
+&quot;response&quot;: &quot;HTTP Error 400: Bad Request&quot;,
+&quot;status&quot;: 400
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="7" time="14.599588394165039">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_mr_l3_firewall-irr1fc60" skipped="0" tests="7" time="14.599588394165039">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mr_l3_firewall : Create wireless network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=TestNetWireless, type=wireless" time="4.208712">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682560&quot;,
+&quot;name&quot;: &quot;TestNetWireless&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;wireless&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;wireless&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:17" name="[localhost] meraki: meraki_mr_l3_firewall : set_fact net={{new_net.data.id}}" time="0.356412">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net&quot;: &quot;N_624874448297682560&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:20" name="[localhost] meraki: meraki_mr_l3_firewall : Create single firewall rule with check mode auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_id={{net}}, number=1, rules=[{'comment': 'Integration test rule', 'policy': 'allow', 'protocol': 'tcp', 'dest_port': 80, 'dest_cidr': '192.0.2.0/24'}], allow_lan_access=False" time="2.152784">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;comment&quot;: &quot;Integration test rule&quot;,
+&quot;dest_cidr&quot;: &quot;192.0.2.0/24&quot;,
+&quot;dest_port&quot;: &quot;80&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 1 (type int) in a string field was converted to '1' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;,
+&quot;The value 80 (type int) in a string field was converted to '80' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:38" name="[localhost] meraki: meraki_mr_l3_firewall : debug msg={{create_one_check}}" time="0.357291">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            {
+                &quot;comment&quot;: &quot;Integration test rule&quot;,
+                &quot;dest_cidr&quot;: &quot;192.0.2.0/24&quot;,
+                &quot;dest_port&quot;: &quot;80&quot;,
+                &quot;policy&quot;: &quot;allow&quot;,
+                &quot;protocol&quot;: &quot;tcp&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 1 (type int) in a string field was converted to '1' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;,
+            &quot;The value 80 (type int) in a string field was converted to '80' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:41" name="[localhost] meraki: meraki_mr_l3_firewall : assert that=[&quot;create_one_check.data.0.comment == 'Integration test rule'&quot;, &quot;create_one_check.data.1.policy == 'deny'&quot;, 'create_one_check.data is defined', 'create_one_check is changed']" time="0.363431">
+			<failure message="The conditional check 'create_one_check.data.1.policy == 'deny'' failed. The error was: error while evaluating conditional (create_one_check.data.1.policy == 'deny'): list object has no element 1" type="failure">{
+&quot;msg&quot;: &quot;The conditional check 'create_one_check.data.1.policy == 'deny'' failed. The error was: error while evaluating conditional (create_one_check.data.1.policy == 'deny'): list object has no element 1&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:113" name="[localhost] meraki: meraki_mr_l3_firewall : Delete wireless SSID auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_id={{net}}, number=1" time="2.896891">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;auth_mode&quot;: &quot;open&quot;,
+&quot;band_selection&quot;: &quot;Dual band operation&quot;,
+&quot;enabled&quot;: false,
+&quot;ip_assignment_mode&quot;: &quot;NAT mode&quot;,
+&quot;min_bitrate&quot;: 11,
+&quot;name&quot;: &quot;Unconfigured SSID 2&quot;,
+&quot;number&quot;: 1,
+&quot;per_client_bandwidth_limit_down&quot;: 0,
+&quot;per_client_bandwidth_limit_up&quot;: 0,
+&quot;splash_page&quot;: &quot;None&quot;,
+&quot;ssid_admin_accessible&quot;: false
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-zkwg4ebw-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:122" name="[localhost] meraki: meraki_mr_l3_firewall : Delete wireless network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_id={{net}}" time="4.264067">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="4" time="9.914204835891724">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_site_to_site_vpn-hwzrltih" skipped="0" tests="4" time="9.914204835891724">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-_6ou3zqs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:8" name="[localhost] meraki: meraki_site_to_site_vpn : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="2.673172">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683433&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-_6ou3zqs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:17" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, mode=hub" time="3.476962">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-_6ou3zqs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:27" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_hub" time="0.381357">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_hub&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [],
+            &quot;mode&quot;: &quot;hub&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-_6ou3zqs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:30" name="[localhost] meraki: meraki_site_to_site_vpn : Query all rules auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}}" time="3.382713">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

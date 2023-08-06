@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="1" tests="2" time="4.206859111785889">
+	<testsuite disabled="0" errors="1" failures="1" name="meraki_switch_stack-ue0dn3wg" skipped="0" tests="2" time="4.206859111785889">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-u4uyfn2_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_stack : Create new stack auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, name=Test stack, serials=['QBSB-BPR6-PRER', 'QBSB-VLNE-E299']" time="3.602287">
+			<error message="TypeError: get_stacks() missing 1 required positional argument: 'net_id'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619789.1960156-265488153720359/AnsiballZ_meraki_switch_stack.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619789.1960156-265488153720359/AnsiballZ_meraki_switch_stack.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585619789.1960156-265488153720359/AnsiballZ_meraki_switch_stack.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_switch_stack', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_lz29hqvu/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 246, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_lz29hqvu/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 201, in main
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_lz29hqvu/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 139, in get_stack_id
+TypeError: get_stacks() missing 1 required positional argument: 'net_id'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-u4uyfn2_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:81" name="[localhost] meraki: meraki_switch_stack : Delete stack auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, stack_id={{stack_id}}" time="0.604572">
+			<failure message="The task includes an option with an undefined variable. The error was: 'stack_id' is undefined
+
+The error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-u4uyfn2_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml': line 81, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  always:
+  - name: Delete stack
+    ^ here
+" type="failure">{
+&quot;msg&quot;: &quot;The task includes an option with an undefined variable. The error was: 'stack_id' is undefined\n\nThe error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-u4uyfn2_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml': line 81, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  always:\n  - name: Delete stack\n    ^ here\n&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

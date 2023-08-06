@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="7" time="15.111383199691772">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_site_to_site_vpn-8kb6ubf9" skipped="0" tests="7" time="15.111383199691772">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:8" name="[localhost] meraki: meraki_site_to_site_vpn : Create hub network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, type=appliance" time="3.388609">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683434&quot;,
+&quot;name&quot;: &quot;Home - Appliance_hub&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:18" name="[localhost] meraki: meraki_site_to_site_vpn : Create spoke network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, type=appliance" time="2.906666">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683435&quot;,
+&quot;name&quot;: &quot;Home - Appliance_spoke&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:28" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=net_hub" time="0.401006">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;net_hub&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;disable_my_meraki_com&quot;: false,
+            &quot;disable_remote_status_page&quot;: true,
+            &quot;id&quot;: &quot;N_624874448297683434&quot;,
+            &quot;name&quot;: &quot;Home - Appliance_hub&quot;,
+            &quot;organization_id&quot;: &quot;133277&quot;,
+            &quot;product_types&quot;: [
+                &quot;appliance&quot;
+            ],
+            &quot;tags&quot;: null,
+            &quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+            &quot;type&quot;: &quot;appliance&quot;
+        },
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:31" name="[localhost] meraki: meraki_site_to_site_vpn : set_fact net_spoke_id={{net_spoke.data.id}}, net_hub_id={{net_hub.data.id}}" time="0.397743">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_hub_id&quot;: &quot;N_624874448297683434&quot;,
+&quot;net_spoke_id&quot;: &quot;N_624874448297683435&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:35" name="[localhost] meraki: meraki_site_to_site_vpn : Set hub mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_hub, mode=hub" time="3.957356">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hubs&quot;: [],
+&quot;mode&quot;: &quot;hub&quot;,
+&quot;subnets&quot;: [
+{
+&quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+&quot;use_vpn&quot;: false
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:45" name="[localhost] meraki: meraki_site_to_site_vpn : debug var=set_hub" time="0.403369">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_hub&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hubs&quot;: [],
+            &quot;mode&quot;: &quot;hub&quot;,
+            &quot;subnets&quot;: [
+                {
+                    &quot;local_subnet&quot;: &quot;192.168.128.0/24&quot;,
+                    &quot;use_vpn&quot;: false
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_site_to_site_vpn-9hdl0iyy-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_site_to_site_vpn/tasks/main.yml:48" name="[localhost] meraki: meraki_site_to_site_vpn : Set spoke mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}_spoke, mode=spoke, hubs=[{'hub_id': '{{net_hub_id}}', 'use_default_route': True}]" time="3.656633">
+			<failure message="HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683435/siteToSiteVpn/ - ['Site-to-site VPN spokes requires at least 1 hub.']" type="failure">{
+&quot;body&quot;: {
+&quot;errors&quot;: [
+&quot;Site-to-site VPN spokes requires at least 1 hub.&quot;
+]
+},
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683435/siteToSiteVpn/ - ['Site-to-site VPN spokes requires at least 1 hub.']&quot;,
+&quot;response&quot;: &quot;HTTP Error 400: Bad Request&quot;,
+&quot;status&quot;: 400
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="4" time="12.110934019088745">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_switch_storm_control-snyacbdd" skipped="0" tests="4" time="12.110934019088745">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-bo_mb2qr-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_storm_control : Create switch network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetwork, timezone=America/Chicago, type=switch" time="4.173903">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682457&quot;,
+&quot;name&quot;: &quot;IntTestNetwork&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-bo_mb2qr-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:18" name="[localhost] meraki: meraki_switch_storm_control : set_fact net_id={{net.data.id}}" time="0.366000">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682457&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-bo_mb2qr-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:21" name="[localhost] meraki: meraki_switch_storm_control : Query storm control settings auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name=IntTestNetwork" time="3.223158">
+			<error message="KeyError: 'switch_storm_control'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577417100.29321-82883757799649/AnsiballZ_meraki_switch_storm_control.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577417100.29321-82883757799649/AnsiballZ_meraki_switch_storm_control.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577417100.29321-82883757799649/AnsiballZ_meraki_switch_storm_control.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_switch_storm_control', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_switch_storm_control_payload_65ls2mj5/ansible_meraki_switch_storm_control_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_storm_control.py&quot;, line 316, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_switch_storm_control_payload_65ls2mj5/ansible_meraki_switch_storm_control_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_storm_control.py&quot;, line 305, in main
+  File &quot;/tmp/ansible_meraki_switch_storm_control_payload_65ls2mj5/ansible_meraki_switch_storm_control_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 382, in construct_path
+KeyError: 'switch_storm_control'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-bo_mb2qr-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:34" name="[localhost] meraki: meraki_switch_storm_control : Delete switch network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name=IntTestNetwork" time="4.347874">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

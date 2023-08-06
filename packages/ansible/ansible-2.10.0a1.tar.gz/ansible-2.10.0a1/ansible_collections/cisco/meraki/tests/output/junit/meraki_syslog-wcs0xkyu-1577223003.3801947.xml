@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="4" time="3.9770925045013428">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_syslog-wcs0xkyu" skipped="1" tests="4" time="3.9770925045013428">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-5u9wfo1_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:7" name="[localhost] meraki: meraki_syslog : Test an API key is provided msg=Please define an API key" time="0.369719">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-5u9wfo1_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:12" name="[localhost] meraki: meraki_syslog : set_fact syslog_test_net_name=syslog_{{test_net_name}}" time="0.435994">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;syslog_test_net_name&quot;: &quot;syslog_Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-5u9wfo1_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:15" name="[localhost] meraki: meraki_syslog : Create network with type appliance and no timezone auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="1.706757">
+			<error message="KeyError: 'body'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577223000.5875857-45961983005479/AnsiballZ_meraki_network.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577223000.5875857-45961983005479/AnsiballZ_meraki_network.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577223000.5875857-45961983005479/AnsiballZ_meraki_network.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_network', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_network.py&quot;, line 394, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_network.py&quot;, line 312, in main
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 294, in get_org_id
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 267, in get_orgs
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 81, in inner
+  File &quot;/tmp/ansible_meraki_network_payload_c2cp1304/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 430, in request
+KeyError: 'body'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_syslog-5u9wfo1_-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_syslog/tasks/main.yml:161" name="[localhost] meraki: meraki_syslog : Delete syslog test network auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="1.464623">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577223002.2511632-271626013784865/AnsiballZ_meraki_network.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577223002.2511632-271626013784865/AnsiballZ_meraki_network.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577223002.2511632-271626013784865/AnsiballZ_meraki_network.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_network', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_network.py\&quot;, line 394, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_network.py\&quot;, line 312, in main\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 294, in get_org_id\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 267, in get_orgs\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 81, in inner\n  File \&quot;/tmp/ansible_meraki_network_payload_5pdajac4/ansible_meraki_network_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 430, in request\nKeyError: 'body'\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="1" time="4.116524934768677">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_ms_link_aggregation-p91zd_8t" skipped="0" tests="1" time="4.116524934768677">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-v45f7gel-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:21" name="[localhost] meraki: meraki_ms_link_aggregation : Create LAG auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, switch_ports=[{'serial': '{{serial_switch}}', 'port_id': '1'}, {'serial': '{{serial_switch}}', 'port_id': '2'}]" time="4.116525">
+			<failure message="HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683727/switch/linkAggregations - ['Port 1 is present in another aggregation group']" type="failure">{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;body&quot;: {
+&quot;errors&quot;: [
+&quot;Port 1 is present in another aggregation group&quot;
+]
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297683727/switch/linkAggregations - ['Port 1 is present in another aggregation group']&quot;,
+&quot;response&quot;: &quot;HTTP Error 400: Bad Request&quot;,
+&quot;status&quot;: 400
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

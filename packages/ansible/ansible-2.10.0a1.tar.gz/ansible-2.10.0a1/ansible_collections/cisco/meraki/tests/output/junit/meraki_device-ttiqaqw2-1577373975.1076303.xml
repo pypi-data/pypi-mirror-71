@@ -1,0 +1,537 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="32" time="70.32423543930054">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_device-ttiqaqw2" skipped="0" tests="32" time="70.32423543930054">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:17" name="[localhost] meraki: meraki_device : Create network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance, state=present" time="7.184758">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682398&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:26" name="[localhost] meraki: meraki_device : set_fact net_id={{net_info.data.id}}" time="0.364239">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682398&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:29" name="[localhost] meraki: meraki_device : Query status of all devices in an organization auth_key={{auth_key}}, org_name={{test_org_name}}, state=query" time="3.756253">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+&quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+&quot;model&quot;: &quot;MS220-8P&quot;,
+&quot;name&quot;: &quot;ms220-8p-basement&quot;,
+&quot;network_id&quot;: &quot;N_624874448297662961&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+&quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+&quot;model&quot;: &quot;MR42&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;mr26&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:37" name="[localhost] meraki: meraki_device : debug msg={{query_device_org}}" time="0.339347">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+                &quot;model&quot;: &quot;MS220-8P&quot;,
+                &quot;name&quot;: &quot;ms220-8p-basement&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297662961&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+                &quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+                &quot;model&quot;: &quot;MR42&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;name&quot;: &quot;mr26&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:40" name="[localhost] meraki: meraki_device : Claim a device into a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=present" time="6.076028">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+null
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:50" name="[localhost] meraki: meraki_device : debug msg={{claim_device}}" time="0.363147">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: [
+            null
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:53" name="[localhost] meraki: meraki_device : assert that=['claim_device.changed == true']" time="0.367557">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:57" name="[localhost] meraki: meraki_device : Query all devices in one network by network ID auth_key={{auth_key}}, org_name={{test_org_name}}, net_id={{net_id}}, state=query" time="4.079457">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;address&quot;: &quot;&quot;,
+&quot;firmware&quot;: &quot;Not running configured version&quot;,
+&quot;floor_plan_id&quot;: null,
+&quot;lan_ip&quot;: null,
+&quot;lat&quot;: 37.4180951010362,
+&quot;lng&quot;: -122.098531723022,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+&quot;wan1_ip&quot;: null,
+&quot;wan2_ip&quot;: null
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:66" name="[localhost] meraki: meraki_device : debug msg={{query_one_net_id}}" time="0.366951">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;address&quot;: &quot;&quot;,
+                &quot;firmware&quot;: &quot;Not running configured version&quot;,
+                &quot;floor_plan_id&quot;: null,
+                &quot;lan_ip&quot;: null,
+                &quot;lat&quot;: 37.4180951010362,
+                &quot;lng&quot;: -122.098531723022,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+                &quot;wan1_ip&quot;: null,
+                &quot;wan2_ip&quot;: null
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:69" name="[localhost] meraki: meraki_device : Query all devices in one network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query" time="4.226500">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;address&quot;: &quot;&quot;,
+&quot;firmware&quot;: &quot;Not running configured version&quot;,
+&quot;floor_plan_id&quot;: null,
+&quot;lan_ip&quot;: null,
+&quot;lat&quot;: 37.4180951010362,
+&quot;lng&quot;: -122.098531723022,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+&quot;wan1_ip&quot;: null,
+&quot;wan2_ip&quot;: null
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:78" name="[localhost] meraki: meraki_device : debug msg={{query_one_net}}" time="0.364325">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;address&quot;: &quot;&quot;,
+                &quot;firmware&quot;: &quot;Not running configured version&quot;,
+                &quot;floor_plan_id&quot;: null,
+                &quot;lan_ip&quot;: null,
+                &quot;lat&quot;: 37.4180951010362,
+                &quot;lng&quot;: -122.098531723022,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+                &quot;wan1_ip&quot;: null,
+                &quot;wan2_ip&quot;: null
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:81" name="[localhost] meraki: meraki_device : Query device by serial auth_key={{auth_key}}, org_name={{test_org_name}}, serial={{serial}}, state=query" time="3.437745">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:90" name="[localhost] meraki: meraki_device : debug msg={{query_serial_no_net}}" time="0.369017">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+            &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+            &quot;model&quot;: &quot;MX60&quot;,
+            &quot;name&quot;: &quot;&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+            &quot;public_ip&quot;: null,
+            &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:93" name="[localhost] meraki: meraki_device : Query device by serial auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=query" time="3.350583">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;address&quot;: &quot;&quot;,
+&quot;firmware&quot;: &quot;Not running configured version&quot;,
+&quot;floor_plan_id&quot;: null,
+&quot;lan_ip&quot;: null,
+&quot;lat&quot;: 37.4180951010362,
+&quot;lng&quot;: -122.098531723022,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+&quot;wan1_ip&quot;: null,
+&quot;wan2_ip&quot;: null
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:103" name="[localhost] meraki: meraki_device : debug msg={{query_serial}}" time="0.342860">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;address&quot;: &quot;&quot;,
+                &quot;firmware&quot;: &quot;Not running configured version&quot;,
+                &quot;floor_plan_id&quot;: null,
+                &quot;lan_ip&quot;: null,
+                &quot;lat&quot;: 37.4180951010362,
+                &quot;lng&quot;: -122.098531723022,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+                &quot;wan1_ip&quot;: null,
+                &quot;wan2_ip&quot;: null
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:106" name="[localhost] meraki: meraki_device : assert that=['query_serial.changed == False']" time="0.371841">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:110" name="[localhost] meraki: meraki_device : Query uplink information for a device auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial_uplink={{serial}}, state=query" time="3.500126">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:120" name="[localhost] meraki: meraki_device : debug msg={{query_serial_uplink}}" time="0.371471">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:123" name="[localhost] meraki: meraki_device : Query LLDP/CDP information about a device auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial_lldp_cdp={{serial}}, lldp_cdp_timespan=6000, state=query" time="3.511680">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:134" name="[localhost] meraki: meraki_device : debug msg={{query_serial_lldp_cdp}}" time="0.356591">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {}
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:137" name="[localhost] meraki: meraki_device : Query a device by hostname auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, hostname=test-hostname, state=query" time="3.253684">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:147" name="[localhost] meraki: meraki_device : debug msg={{query_hostname}}" time="0.350783">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:150" name="[localhost] meraki: meraki_device : Query a device by model auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, model=MR26, state=query" time="3.277301">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:160" name="[localhost] meraki: meraki_device : debug msg={{query_model}}" time="0.361898">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:163" name="[localhost] meraki: meraki_device : Update a device auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, name=mr26, address=1060 W. Addison St., Chicago, IL, lat=41.948038, lng=-87.65568, tags=recently-added, state=present, move_map_marker=True, note=Test device notes" time="4.981067">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: [
+{
+&quot;address&quot;: &quot;1060 W. Addison St., Chicago, IL&quot;,
+&quot;firmware&quot;: &quot;Not running configured version&quot;,
+&quot;floor_plan_id&quot;: null,
+&quot;lan_ip&quot;: null,
+&quot;lat&quot;: 41.948038,
+&quot;lng&quot;: -87.65568,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;mr26&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;notes&quot;: &quot;Test device notes&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+&quot;tags&quot;: &quot; recently-added &quot;,
+&quot;wan1_ip&quot;: null,
+&quot;wan2_ip&quot;: null
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:180" name="[localhost] meraki: meraki_device : assert that=['update_device.changed == true', 'update_device.data.0.notes == &quot;Test device notes&quot;', '&quot;1060 W. Addison St., Chicago, IL&quot; in update_device.data.0.address']" time="0.356126">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:186" name="[localhost] meraki: meraki_device : Update a device with idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, name=mr26, address=1060 W. Addison St., Chicago, IL, lat=41.948038, lng=-87.65568, tags=recently-added, state=present, move_map_marker=True, note=Test device notes" time="4.821311">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;address&quot;: &quot;1060 W. Addison St., Chicago, IL&quot;,
+&quot;firmware&quot;: &quot;Not running configured version&quot;,
+&quot;floor_plan_id&quot;: null,
+&quot;lan_ip&quot;: null,
+&quot;lat&quot;: 41.948038,
+&quot;lng&quot;: -87.65568,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;mr26&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+&quot;notes&quot;: &quot;Test device notes&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+&quot;tags&quot;: &quot; recently-added &quot;,
+&quot;wan1_ip&quot;: null,
+&quot;wan2_ip&quot;: null
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:203" name="[localhost] meraki: meraki_device : debug msg={{update_device_idempotent}}" time="0.358601">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;address&quot;: &quot;1060 W. Addison St., Chicago, IL&quot;,
+            &quot;firmware&quot;: &quot;Not running configured version&quot;,
+            &quot;floor_plan_id&quot;: null,
+            &quot;lan_ip&quot;: null,
+            &quot;lat&quot;: 41.948038,
+            &quot;lng&quot;: -87.65568,
+            &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+            &quot;model&quot;: &quot;MX60&quot;,
+            &quot;name&quot;: &quot;mr26&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297682398&quot;,
+            &quot;notes&quot;: &quot;Test device notes&quot;,
+            &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;,
+            &quot;tags&quot;: &quot; recently-added &quot;,
+            &quot;wan1_ip&quot;: null,
+            &quot;wan2_ip&quot;: null
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:206" name="[localhost] meraki: meraki_device : assert that=['update_device_idempotent.changed == False', 'update_device_idempotent.data is defined']" time="0.348962">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:212" name="[localhost] meraki: meraki_device : Remove a device from a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=absent" time="8.407109">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:222" name="[localhost] meraki: meraki_device : debug msg={{delete_device}}" time="0.354100">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 204
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-j4jinwsn-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:225" name="[localhost] meraki: meraki_device : assert that=['delete_device.changed == true']" time="0.352818">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

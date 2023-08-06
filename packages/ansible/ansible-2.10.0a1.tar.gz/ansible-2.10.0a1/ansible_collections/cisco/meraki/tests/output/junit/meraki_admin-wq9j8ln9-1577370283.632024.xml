@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="2" failures="0" tests="3" time="3.8325612545013428">
+	<testsuite disabled="0" errors="2" failures="0" name="meraki_admin-wq9j8ln9" skipped="0" tests="3" time="3.8325612545013428">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-k7kxay96-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:7" name="[localhost] meraki: meraki_admin : Create new administrator in check mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=Jane Doe, email={{email_prefix}}+janedoe@{{email_domain}}, org_access=read-only" time="1.635452">
+			<error message="NameError: name 'tag_arg_pec' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370279.9222763-165373526814727/AnsiballZ_meraki_admin.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370279.9222763-165373526814727/AnsiballZ_meraki_admin.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370279.9222763-165373526814727/AnsiballZ_meraki_admin.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_admin_payload_vgktznvo/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py&quot;, line 494, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_admin_payload_vgktznvo/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py&quot;, line 397, in main
+NameError: name 'tag_arg_pec' is not defined
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-k7kxay96-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:360" name="[localhost] meraki: meraki_admin : Delete administrators auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, email={{item}}" time="1.674542">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;All items completed&quot;,
+&quot;results&quot;: [
+{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: false,
+&quot;exception&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_nabxx5to/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_nabxx5to/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;failed&quot;: true,
+&quot;item&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370281.4479444-83368685140209/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_nabxx5to/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_nabxx5to/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+},
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: false,
+&quot;exception&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_jqz7ed7h/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_jqz7ed7h/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;failed&quot;: true,
+&quot;item&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.1327953-89390546616652/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_jqz7ed7h/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_jqz7ed7h/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+},
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: false,
+&quot;exception&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_gp99u659/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_gp99u659/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;failed&quot;: true,
+&quot;item&quot;: &quot;meraki+jimdoe@kevinbreit.net&quot;,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577370282.5550275-203341248122837/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_gp99u659/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 494, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_gp99u659/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 397, in main\nNameError: name 'tag_arg_pec' is not defined\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+}
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-k7kxay96-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:374" name="[localhost] meraki: meraki_admin : Query all administrators auth_key={{auth_key}}, state=query, org_name={{test_org_name}}" time="0.522567">
+			<error message="NameError: name 'tag_arg_pec' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370283.2036443-195156817854329/AnsiballZ_meraki_admin.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370283.2036443-195156817854329/AnsiballZ_meraki_admin.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577370283.2036443-195156817854329/AnsiballZ_meraki_admin.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_admin_payload_tq8l7lw4/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py&quot;, line 494, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_admin_payload_tq8l7lw4/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py&quot;, line 397, in main
+NameError: name 'tag_arg_pec' is not defined
+</error>
+		</testcase>
+	</testsuite>
+</testsuites>

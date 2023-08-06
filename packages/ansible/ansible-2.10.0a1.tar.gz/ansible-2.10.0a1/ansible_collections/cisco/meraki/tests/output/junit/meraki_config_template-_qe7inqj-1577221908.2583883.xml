@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="6" time="13.657272577285767">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_config_template-_qe7inqj" skipped="0" tests="6" time="13.657272577285767">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:32" name="[localhost] meraki: meraki_config_template : Create a network auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, type=appliance" time="4.211851">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;config_template_id&quot;: &quot;L_624874448297661409&quot;,
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682312&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:42" name="[localhost] meraki: meraki_config_template : set_fact net_id={{net_info.data.id}}" time="0.367480">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682312&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:139" name="[localhost] meraki: meraki_config_template : Unbind a template from a network via id with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="3.497899">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:149" name="[localhost] meraki: meraki_config_template : assert that=unbind_id_check is changed" time="0.372221">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:153" name="[localhost] meraki: meraki_config_template : Unbind a template from a network via id auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="4.799249">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-6wige7bh-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:162" name="[localhost] meraki: meraki_config_template : assert that=unbind_id.changed == True" time="0.408572">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

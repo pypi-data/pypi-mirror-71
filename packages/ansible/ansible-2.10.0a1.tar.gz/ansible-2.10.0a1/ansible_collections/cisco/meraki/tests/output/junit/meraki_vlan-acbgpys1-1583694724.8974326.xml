@@ -1,0 +1,310 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="19" time="41.68693423271179">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_vlan-acbgpys1" skipped="1" tests="19" time="41.68693423271179">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:7" name="[localhost] meraki: meraki_vlan : Test an API key is provided msg=Please define an API key" time="0.371759">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:12" name="[localhost] meraki: meraki_vlan : Test play without auth_key state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="0.793149">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;missing required arguments: auth_key&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:22" name="[localhost] meraki: meraki_vlan : assert that=['&quot;missing required arguments&quot; in no_key.msg']" time="0.392502">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:26" name="[localhost] meraki: meraki_vlan : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance" time="5.507378">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683561&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/Home-Appliance/n/u2iUNaUb/manage/usage/list&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:35" name="[localhost] meraki: meraki_vlan : Enable VLANs on network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, enable_vlans=True" time="4.891934">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;enabled&quot;: true,
+&quot;network_id&quot;: &quot;N_624874448297683561&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:337" name="[localhost] meraki: meraki_vlan : Enable DHCP on VLAN auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2, name=TestVLAN, subnet=192.168.250.0/24, appliance_ip=192.168.250.2, dhcp_handling=server" time="4.539126">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+&quot;dhcp_boot_options_enabled&quot;: false,
+&quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+&quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+&quot;dhcp_options&quot;: [],
+&quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;id&quot;: 2,
+&quot;name&quot;: &quot;TestVLAN&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:351" name="[localhost] meraki: meraki_vlan : debug var=enable_dhcp" time="0.361253">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;enable_dhcp&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+            &quot;dhcp_boot_options_enabled&quot;: false,
+            &quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+            &quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+            &quot;dhcp_options&quot;: [],
+            &quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+            &quot;fixed_ip_assignments&quot;: {},
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;TestVLAN&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+            &quot;reserved_ip_ranges&quot;: [],
+            &quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:354" name="[localhost] meraki: meraki_vlan : assert that=['enable_dhcp is changed', &quot;enable_dhcp.data.dhcp_handling == 'Run a DHCP server'&quot;]" time="0.360828">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:359" name="[localhost] meraki: meraki_vlan : Query all VLANs in network auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query" time="4.143799">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;appliance_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;dhcp_boot_options_enabled&quot;: false,
+&quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+&quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+&quot;dhcp_options&quot;: [],
+&quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;id&quot;: 1,
+&quot;name&quot;: &quot;Default&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.168.128.0/24&quot;
+},
+{
+&quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+&quot;dhcp_boot_options_enabled&quot;: false,
+&quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+&quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+&quot;dhcp_options&quot;: [],
+&quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;id&quot;: 2,
+&quot;name&quot;: &quot;TestVLAN&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:368" name="[localhost] meraki: meraki_vlan : debug msg={{query_vlans}}" time="0.359196">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;appliance_ip&quot;: &quot;192.168.128.1&quot;,
+                &quot;dhcp_boot_options_enabled&quot;: false,
+                &quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+                &quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+                &quot;dhcp_options&quot;: [],
+                &quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+                &quot;fixed_ip_assignments&quot;: {},
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Default&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+                &quot;reserved_ip_ranges&quot;: [],
+                &quot;subnet&quot;: &quot;192.168.128.0/24&quot;
+            },
+            {
+                &quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+                &quot;dhcp_boot_options_enabled&quot;: false,
+                &quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+                &quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+                &quot;dhcp_options&quot;: [],
+                &quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+                &quot;fixed_ip_assignments&quot;: {},
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;TestVLAN&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+                &quot;reserved_ip_ranges&quot;: [],
+                &quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:371" name="[localhost] meraki: meraki_vlan : assert that=['query_vlans.data | length &gt;= 2', 'query_vlans.data.1.id == 2', 'query_vlans.changed == False']" time="0.362898">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:377" name="[localhost] meraki: meraki_vlan : Query single VLAN auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2, state=query, output_level=debug" time="4.098188">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+&quot;dhcp_boot_options_enabled&quot;: false,
+&quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+&quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+&quot;dhcp_options&quot;: [],
+&quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+&quot;fixed_ip_assignments&quot;: {},
+&quot;id&quot;: 2,
+&quot;name&quot;: &quot;TestVLAN&quot;,
+&quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+&quot;reserved_ip_ranges&quot;: [],
+&quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+},
+&quot;method&quot;: &quot;GET&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;url&quot;: &quot;https://api.meraki.com/api/v0/networks/N_624874448297683561/vlans/2&quot;,
+&quot;warnings&quot;: [
+&quot;Enable debug output because ANSIBLE_DEBUG was set or output_level is set to debug.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:388" name="[localhost] meraki: meraki_vlan : debug msg={{query_vlan}}" time="0.357086">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;appliance_ip&quot;: &quot;192.168.250.2&quot;,
+            &quot;dhcp_boot_options_enabled&quot;: false,
+            &quot;dhcp_handling&quot;: &quot;Run a DHCP server&quot;,
+            &quot;dhcp_lease_time&quot;: &quot;1 day&quot;,
+            &quot;dhcp_options&quot;: [],
+            &quot;dns_nameservers&quot;: &quot;upstream_dns&quot;,
+            &quot;fixed_ip_assignments&quot;: {},
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;TestVLAN&quot;,
+            &quot;network_id&quot;: &quot;N_624874448297683561&quot;,
+            &quot;reserved_ip_ranges&quot;: [],
+            &quot;subnet&quot;: &quot;192.168.250.0/24&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;method&quot;: &quot;GET&quot;,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;url&quot;: &quot;https://api.meraki.com/api/v0/networks/N_624874448297683561/vlans/2&quot;,
+        &quot;warnings&quot;: [
+            &quot;Enable debug output because ANSIBLE_DEBUG was set or output_level is set to debug.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:391" name="[localhost] meraki: meraki_vlan : assert that=['query_vlan.data.id == 2', 'query_vlan.changed == False']" time="0.357444">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:400" name="[localhost] meraki: meraki_vlan : Delete VLAN with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2" time="3.729681">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:411" name="[localhost] meraki: meraki_vlan : assert that=delete_vlan_check is changed" time="0.358316">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:415" name="[localhost] meraki: meraki_vlan : Delete VLAN auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}, vlan_id=2" time="4.696512">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:425" name="[localhost] meraki: meraki_vlan : debug msg={{delete_vlan}}" time="0.359884">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: null,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 204
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_vlan-276cpsmx-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_vlan/tasks/main.yml:428" name="[localhost] meraki: meraki_vlan : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}}" time="5.646001">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

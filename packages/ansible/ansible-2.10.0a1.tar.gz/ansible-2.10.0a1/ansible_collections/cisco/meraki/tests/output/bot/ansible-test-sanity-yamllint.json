@@ -1,0 +1,10 @@
+{
+    "docs": "https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/yamllint.html",
+    "results": [
+        {
+            "message": "The test `ansible-test sanity --test yamllint` [[explain](https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/yamllint.html)] failed with 1 error:",
+            "output": "plugins/modules/meraki_ms_link_aggregation.py:112:21: error: RETURN: syntax error: mapping values are not allowed here"
+        }
+    ],
+    "verified": false
+}

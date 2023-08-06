@@ -1,0 +1,294 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="10" time="17.436737298965454">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_device-fk70ghdx" skipped="0" tests="10" time="17.436737298965454">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:17" name="[localhost] meraki: meraki_device : Create network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance, state=present" time="2.989799">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682550&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:26" name="[localhost] meraki: meraki_device : set_fact net_id={{net_info.data.id}}" time="0.339701">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682550&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:29" name="[localhost] meraki: meraki_device : Query status of all devices in an organization auth_key={{auth_key}}, org_name={{test_org_name}}, state=query" time="3.652465">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+&quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+&quot;model&quot;: &quot;MX60&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: &quot;N_624874448297682550&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+&quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+&quot;model&quot;: &quot;MR42&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+&quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+&quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+&quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+&quot;model&quot;: &quot;MS220-8P&quot;,
+&quot;name&quot;: &quot;ms220-8p-basement&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.00356&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:1d&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-BPR6-PRER&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.04925&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:1e&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-3UEA-PDS8&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.05588&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:1f&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: null,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-4UDD-YPT9&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.06248&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:20&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: null,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-D75G-PXCG&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.06903&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:21&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: null,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-W5QZ-5AXN&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577482654.0785&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:22&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: null,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-8UF6-RBK4&quot;
+},
+{
+&quot;claimed_at&quot;: &quot;1577447382.66182&quot;,
+&quot;mac&quot;: &quot;4c:c8:a1:09:00:63&quot;,
+&quot;model&quot;: &quot;MS425-32&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;network_id&quot;: null,
+&quot;public_ip&quot;: null,
+&quot;serial&quot;: &quot;QBSB-VLNE-E299&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:37" name="[localhost] meraki: meraki_device : debug msg={{query_device_org}}" time="0.377408">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;claimed_at&quot;: &quot;1574894258.80842&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:41:f2:be&quot;,
+                &quot;model&quot;: &quot;MX60&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297682550&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2BN-MCH8-VEL5&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1560300433.60185&quot;,
+                &quot;mac&quot;: &quot;e0:cb:bc:90:1e:06&quot;,
+                &quot;model&quot;: &quot;MR42&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: &quot;N_624874448297681095&quot;,
+                &quot;public_ip&quot;: &quot;73.75.66.18&quot;,
+                &quot;serial&quot;: &quot;Q2KD-83UG-JL8X&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1437856184.88479&quot;,
+                &quot;mac&quot;: &quot;00:18:0a:b2:b0:8f&quot;,
+                &quot;model&quot;: &quot;MS220-8P&quot;,
+                &quot;name&quot;: &quot;ms220-8p-basement&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.00356&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:1d&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-BPR6-PRER&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.04925&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:1e&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-3UEA-PDS8&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.05588&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:1f&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: null,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-4UDD-YPT9&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.06248&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:20&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: null,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-D75G-PXCG&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.06903&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:21&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: null,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-W5QZ-5AXN&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577482654.0785&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:22&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: null,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-8UF6-RBK4&quot;
+            },
+            {
+                &quot;claimed_at&quot;: &quot;1577447382.66182&quot;,
+                &quot;mac&quot;: &quot;4c:c8:a1:09:00:63&quot;,
+                &quot;model&quot;: &quot;MS425-32&quot;,
+                &quot;name&quot;: &quot;&quot;,
+                &quot;network_id&quot;: null,
+                &quot;public_ip&quot;: null,
+                &quot;serial&quot;: &quot;QBSB-VLNE-E299&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:40" name="[localhost] meraki: meraki_device : Claim a device into a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=present" time="3.436147">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:50" name="[localhost] meraki: meraki_device : debug msg={{claim_device}}" time="0.399438">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:53" name="[localhost] meraki: meraki_device : assert that=['claim_device.changed == true']" time="0.389754">
+			<failure message="Assertion failed" type="failure">{
+    &quot;assertion&quot;: &quot;claim_device.changed == true&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;Assertion failed&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:212" name="[localhost] meraki: meraki_device : Remove a device from a network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, serial={{serial}}, state=absent" time="5.106233">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:222" name="[localhost] meraki: meraki_device : debug msg={{delete_device}}" time="0.370274">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 204
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_device-q0o3w01v-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_device/tasks/main.yml:225" name="[localhost] meraki: meraki_device : assert that=['delete_device.changed == true']" time="0.375518">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

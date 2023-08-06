@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="1" time="17.71037530899048">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_switch_stack-nrhcck6b" skipped="0" tests="1" time="17.71037530899048">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-bxu32dry-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:8" name="[localhost] meraki: meraki_switch_stack : Create new stack auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, name=Test stack, serials=['4c:c8:a1:09:00:63', '4c:c8:a1:09:00:1d']" time="17.710375">
+			<error message="UnboundLocalError: local variable 'path' referenced before assignment" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585535759.2887168-17199732879184/AnsiballZ_meraki_switch_stack.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585535759.2887168-17199732879184/AnsiballZ_meraki_switch_stack.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1585535759.2887168-17199732879184/AnsiballZ_meraki_switch_stack.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_switch_stack', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_bh0slg5d/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 222, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_switch_stack_payload_bh0slg5d/ansible_meraki_switch_stack_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_switch_stack.py&quot;, line 198, in main
+UnboundLocalError: local variable 'path' referenced before assignment
+</error>
+		</testcase>
+	</testsuite>
+</testsuites>

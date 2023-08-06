@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="6" time="5.631298780441284">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_management_interface-efxh_8d7" skipped="1" tests="6" time="5.631298780441284">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:7" name="[localhost] meraki: meraki_management_interface : Test an API key is provided msg=Please define an API key" time="0.368586">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:12" name="[localhost] meraki: meraki_management_interface : set_fact net_name=Home - Appliance" time="0.017070">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_name&quot;: &quot;Home - Appliance&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:15" name="[localhost] meraki: meraki_management_interface : Create test network auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_name={{net_name}}, type=appliance" time="3.471192">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682550&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:25" name="[localhost] meraki: meraki_management_interface : set_fact net_id=net.data.id" time="0.021022">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;net.data.id&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:28" name="[localhost] meraki: meraki_management_interface : Set WAN1 as DHCP in check mode auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'enabled', 'using_static_ip': False, 'vlan': 1}" time="0.941161">
+			<error message="ansible.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None" type="error">Traceback (most recent call last):
+  File &quot;/tmp/ansible_meraki_management_interface_payload_w__c9p5o/ansible_meraki_management_interface_payload.zip/ansible/module_utils/network/meraki/meraki.py&quot;, line 92, in inner
+ansible.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577803622.3052614-206505136909594/AnsiballZ_meraki_management_interface.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577803622.3052614-206505136909594/AnsiballZ_meraki_management_interface.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577803622.3052614-206505136909594/AnsiballZ_meraki_management_interface.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_management_interface', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_management_interface_payload_w__c9p5o/ansible_meraki_management_interface_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_management_interface.py&quot;, line 378, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_management_interface_payload_w__c9p5o/ansible_meraki_management_interface_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_management_interface.py&quot;, line 352, in main
+  File &quot;/tmp/ansible_meraki_management_interface_payload_w__c9p5o/ansible_meraki_management_interface_payload.zip/ansible/module_utils/network/meraki/meraki.py&quot;, line 116, in inner
+ansible.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_management_interface-y5azi36b-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_management_interface/tasks/main.yml:172" name="[localhost] meraki: meraki_management_interface : Reset settings for all interfaces auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, net_id={{net_id}}, serial={{serial}}, wan1={'wan_enabled': 'disabled', 'using_static_ip': False}, wan2={'wan_enabled': 'enabled', 'using_static_ip': False}" time="0.812268">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/tmp/ansible_meraki_management_interface_payload_i6_rr0gr/ansible_meraki_management_interface_payload.zip/ansible/module_utils/network/meraki/meraki.py\&quot;, line 92, in inner\nansible.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577803623.2522979-95485879120984/AnsiballZ_meraki_management_interface.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577803623.2522979-95485879120984/AnsiballZ_meraki_management_interface.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577803623.2522979-95485879120984/AnsiballZ_meraki_management_interface.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_management_interface', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_management_interface_payload_i6_rr0gr/ansible_meraki_management_interface_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_management_interface.py\&quot;, line 378, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_management_interface_payload_i6_rr0gr/ansible_meraki_management_interface_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_management_interface.py\&quot;, line 352, in main\n  File \&quot;/tmp/ansible_meraki_management_interface_payload_i6_rr0gr/ansible_meraki_management_interface_payload.zip/ansible/module_utils/network/meraki/meraki.py\&quot;, line 116, in inner\nansible.module_utils.network.meraki.meraki.HTTPError: HTTP error 404 - None\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

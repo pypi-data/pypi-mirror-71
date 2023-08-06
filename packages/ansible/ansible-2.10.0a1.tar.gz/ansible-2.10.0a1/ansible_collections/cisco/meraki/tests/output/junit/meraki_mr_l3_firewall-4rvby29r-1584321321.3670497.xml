@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="3" time="7.088309288024902">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_mr_l3_firewall-4rvby29r" skipped="0" tests="3" time="7.088309288024902">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-9td19s92-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mr_l3_firewall : Create wireless network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=TestNetWireless, type=wireless" time="3.513542">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683706&quot;,
+&quot;name&quot;: &quot;TestNetWireless&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;wireless&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;wireless&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-9td19s92-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:17" name="[localhost] meraki: meraki_mr_l3_firewall : set_fact net={{new_net.data.id}}" time="0.628335">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net&quot;: &quot;N_624874448297683706&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mr_l3_firewall-9td19s92-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mr_l3_firewall/tasks/main.yml:90" name="[localhost] meraki: meraki_mr_l3_firewall : Check idempotency with any auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_id={{net}}, number=1, rules=[{'comment': 'Integration test rule', 'policy': 'allow', 'protocol': 'tcp', 'dest_port': 'any', 'dest_cidr': 'any'}], allow_lan_access=False" time="2.946432">
+			<failure message="Compare" type="failure">{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;Compare&quot;,
+&quot;original&quot;: [
+{
+&quot;comment&quot;: &quot;Integration test rule&quot;,
+&quot;destCidr&quot;: &quot;Any&quot;,
+&quot;destPort&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;
+},
+{
+&quot;comment&quot;: &quot;Wireless clients accessing LAN&quot;,
+&quot;destCidr&quot;: &quot;Local LAN&quot;,
+&quot;destPort&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;deny&quot;,
+&quot;protocol&quot;: &quot;Any&quot;
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;destCidr&quot;: &quot;Any&quot;,
+&quot;destPort&quot;: &quot;Any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;Any&quot;
+}
+],
+&quot;payload&quot;: {
+&quot;rules&quot;: [
+{
+&quot;comment&quot;: &quot;Integration test rule&quot;,
+&quot;destCidr&quot;: &quot;any&quot;,
+&quot;destPort&quot;: &quot;any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 1 (type int) in a string field was converted to '1' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

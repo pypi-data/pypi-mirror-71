@@ -1,0 +1,1900 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="37" time="70.19767642021179">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_content_filtering-t6ovmd3b" skipped="1" tests="37" time="70.19767642021179">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:7" name="[localhost] meraki: meraki_content_filtering : Test an API key is provided msg=Please define an API key" time="0.334543">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:12" name="[localhost] meraki: meraki_content_filtering : Create network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance, timezone=America/Chicago" time="3.942075">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682362&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:23" name="[localhost] meraki: meraki_content_filtering : Test net_name and id exclusivity auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, net_id=12345, state=present, allowed_urls=['http://www.ansible.com/*']" time="0.688143">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;net_name and net_id are mutually exclusive&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null,
+&quot;warnings&quot;: [
+&quot;The value 12345 (type int) in a string field was converted to '12345' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:35" name="[localhost] meraki: meraki_content_filtering : assert that=['net_exclusive.msg == &quot;net_name and net_id are mutually exclusive&quot;']" time="0.362173">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:39" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="3.295260">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:50" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_check.data.allowed_url_patterns | length == 1', 'single_allowed_check is changed']" time="0.358342">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:55" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="4.218389">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:65" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed.data.allowed_url_patterns | length == 1']" time="0.360562">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:69" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern for idempotency with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="4.767668">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:80" name="[localhost] meraki: meraki_content_filtering : debug var=single_allowed_idempotent_check" time="0.356483">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_allowed_idempotent_check&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:83" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_idempotent_check is not changed', 'single_allowed.data.allowed_url_patterns | length == 1']" time="0.364430">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:88" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern for idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="3.432317">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:98" name="[localhost] meraki: meraki_content_filtering : debug var=single_allowed_idempotent" time="0.360587">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_allowed_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:101" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_idempotent.changed == False', 'single_allowed_idempotent.data is defined']" time="0.361286">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:106" name="[localhost] meraki: meraki_content_filtering : Set single blocked URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, blocked_urls=['http://www.ansible.com/*']" time="4.150052">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:116" name="[localhost] meraki: meraki_content_filtering : debug var=single_blocked" time="0.359893">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_blocked&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:119" name="[localhost] meraki: meraki_content_filtering : assert that=['single_blocked.data.blocked_url_patterns | length == 1']" time="0.369220">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:123" name="[localhost] meraki: meraki_content_filtering : Set two allowed URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*', 'http://www.redhat.com']" time="4.149657">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:134" name="[localhost] meraki: meraki_content_filtering : debug var=two_allowed" time="0.360740">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;two_allowed&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:137" name="[localhost] meraki: meraki_content_filtering : assert that=['two_allowed.changed == True', 'two_allowed.data.allowed_url_patterns | length == 2']" time="0.358351">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:142" name="[localhost] meraki: meraki_content_filtering : Set blocked URL category auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=full list, blocked_categories=['Adult and Pornography']" time="4.946362">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;fullList&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:153" name="[localhost] meraki: meraki_content_filtering : debug var=blocked_category" time="0.352862">
+			<system-out>{
+    &quot;blocked_category&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                    &quot;name&quot;: &quot;Adult and Pornography&quot;
+                }
+            ],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;fullList&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;blockedUrlCategories&quot;: [
+                    &quot;meraki:contentFiltering/category/11&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;fullList&quot;
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:156" name="[localhost] meraki: meraki_content_filtering : assert that=['blocked_category.changed == True', 'blocked_category.data.blocked_url_categories | length == 1', 'blocked_category.data.url_category_list_size == &quot;fullList&quot;']" time="0.345991">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:162" name="[localhost] meraki: meraki_content_filtering : Set blocked URL category with top sites auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=top sites, blocked_categories=['Adult and Pornography']" time="4.683211">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:173" name="[localhost] meraki: meraki_content_filtering : debug var=blocked_category" time="0.344162">
+			<system-out>{
+    &quot;blocked_category&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                    &quot;name&quot;: &quot;Adult and Pornography&quot;
+                }
+            ],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;blockedUrlCategories&quot;: [
+                    &quot;meraki:contentFiltering/category/11&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                        &quot;name&quot;: &quot;Adult and Pornography&quot;
+                    }
+                ],
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;fullList&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:176" name="[localhost] meraki: meraki_content_filtering : assert that=['blocked_category.changed == True', 'blocked_category.data.blocked_url_categories | length == 1', 'blocked_category.data.url_category_list_size == &quot;topSites&quot;']" time="0.345335">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:182" name="[localhost] meraki: meraki_content_filtering : Query all content filtering information auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query" time="4.031682">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;categories&quot;: {
+&quot;categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/1&quot;,
+&quot;name&quot;: &quot;Real Estate&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/2&quot;,
+&quot;name&quot;: &quot;Computer and Internet Security&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/3&quot;,
+&quot;name&quot;: &quot;Financial Services&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/5&quot;,
+&quot;name&quot;: &quot;Computer and Internet Info&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/6&quot;,
+&quot;name&quot;: &quot;Auctions&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/7&quot;,
+&quot;name&quot;: &quot;Shopping&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/8&quot;,
+&quot;name&quot;: &quot;Cult and Occult&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/9&quot;,
+&quot;name&quot;: &quot;Travel&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/10&quot;,
+&quot;name&quot;: &quot;Abused Drugs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/12&quot;,
+&quot;name&quot;: &quot;Home and Garden&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/13&quot;,
+&quot;name&quot;: &quot;Military&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/14&quot;,
+&quot;name&quot;: &quot;Social Networking&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/16&quot;,
+&quot;name&quot;: &quot;Individual Stock Advice and Tools&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/17&quot;,
+&quot;name&quot;: &quot;Training and Tools&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/18&quot;,
+&quot;name&quot;: &quot;Dating&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/19&quot;,
+&quot;name&quot;: &quot;Sex Education&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/20&quot;,
+&quot;name&quot;: &quot;Religion&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/21&quot;,
+&quot;name&quot;: &quot;Entertainment and Arts&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/22&quot;,
+&quot;name&quot;: &quot;Personal sites and Blogs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/23&quot;,
+&quot;name&quot;: &quot;Legal&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/24&quot;,
+&quot;name&quot;: &quot;Local Information&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/25&quot;,
+&quot;name&quot;: &quot;Streaming Media&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/26&quot;,
+&quot;name&quot;: &quot;Job Search&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/27&quot;,
+&quot;name&quot;: &quot;Gambling&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/28&quot;,
+&quot;name&quot;: &quot;Translation&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/29&quot;,
+&quot;name&quot;: &quot;Reference and Research&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/30&quot;,
+&quot;name&quot;: &quot;Shareware and Freeware&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/31&quot;,
+&quot;name&quot;: &quot;Peer to Peer&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/32&quot;,
+&quot;name&quot;: &quot;Marijuana&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/33&quot;,
+&quot;name&quot;: &quot;Hacking&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/34&quot;,
+&quot;name&quot;: &quot;Games&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/35&quot;,
+&quot;name&quot;: &quot;Philosophy and Political Advocacy&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/36&quot;,
+&quot;name&quot;: &quot;Weapons&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/37&quot;,
+&quot;name&quot;: &quot;Pay to Surf&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/38&quot;,
+&quot;name&quot;: &quot;Hunting and Fishing&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/39&quot;,
+&quot;name&quot;: &quot;Society&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/40&quot;,
+&quot;name&quot;: &quot;Educational Institutions&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/41&quot;,
+&quot;name&quot;: &quot;Online Greeting cards&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/42&quot;,
+&quot;name&quot;: &quot;Sports&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/43&quot;,
+&quot;name&quot;: &quot;Swimsuits &amp; Intimate Apparel&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/44&quot;,
+&quot;name&quot;: &quot;Questionable&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/45&quot;,
+&quot;name&quot;: &quot;Kids&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/46&quot;,
+&quot;name&quot;: &quot;Hate and Racism&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/47&quot;,
+&quot;name&quot;: &quot;Personal Storage&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/48&quot;,
+&quot;name&quot;: &quot;Violence&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/49&quot;,
+&quot;name&quot;: &quot;Keyloggers and Monitoring&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/50&quot;,
+&quot;name&quot;: &quot;Search Engines&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/51&quot;,
+&quot;name&quot;: &quot;Internet Portals&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/52&quot;,
+&quot;name&quot;: &quot;Web Advertisements&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/53&quot;,
+&quot;name&quot;: &quot;Cheating (Academic)&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/54&quot;,
+&quot;name&quot;: &quot;Gross&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/55&quot;,
+&quot;name&quot;: &quot;Web based email&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/56&quot;,
+&quot;name&quot;: &quot;Malware Sites&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/57&quot;,
+&quot;name&quot;: &quot;Phishing and Other Frauds&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/58&quot;,
+&quot;name&quot;: &quot;Proxy Avoidance and Anonymizers&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/59&quot;,
+&quot;name&quot;: &quot;Spyware and Adware&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/60&quot;,
+&quot;name&quot;: &quot;Music&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/61&quot;,
+&quot;name&quot;: &quot;Government&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/62&quot;,
+&quot;name&quot;: &quot;Nudity&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/63&quot;,
+&quot;name&quot;: &quot;News and Media&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/64&quot;,
+&quot;name&quot;: &quot;Illegal&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/65&quot;,
+&quot;name&quot;: &quot;Content Delivery Networks&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/66&quot;,
+&quot;name&quot;: &quot;Internet Communications&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/67&quot;,
+&quot;name&quot;: &quot;Bot Nets&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/68&quot;,
+&quot;name&quot;: &quot;Abortion&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/69&quot;,
+&quot;name&quot;: &quot;Health and Medicine&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/70&quot;,
+&quot;name&quot;: &quot;Confirmed SPAM Sources&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/71&quot;,
+&quot;name&quot;: &quot;SPAM URLs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/72&quot;,
+&quot;name&quot;: &quot;Unconfirmed SPAM Sources&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/73&quot;,
+&quot;name&quot;: &quot;Open HTTP Proxies&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/74&quot;,
+&quot;name&quot;: &quot;Dynamically Generated Content&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/75&quot;,
+&quot;name&quot;: &quot;Parked Domains&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/76&quot;,
+&quot;name&quot;: &quot;Alcohol and Tobacco&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/78&quot;,
+&quot;name&quot;: &quot;Image and Video Search&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/79&quot;,
+&quot;name&quot;: &quot;Fashion and Beauty&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/80&quot;,
+&quot;name&quot;: &quot;Recreation and Hobbies&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/81&quot;,
+&quot;name&quot;: &quot;Motor Vehicles&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/82&quot;,
+&quot;name&quot;: &quot;Web Hosting&quot;
+}
+]
+},
+&quot;policy&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:191" name="[localhost] meraki: meraki_content_filtering : debug var=query_all" time="0.349825">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;categories&quot;: {
+                &quot;categories&quot;: [
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/1&quot;,
+                        &quot;name&quot;: &quot;Real Estate&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/2&quot;,
+                        &quot;name&quot;: &quot;Computer and Internet Security&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/3&quot;,
+                        &quot;name&quot;: &quot;Financial Services&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/5&quot;,
+                        &quot;name&quot;: &quot;Computer and Internet Info&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/6&quot;,
+                        &quot;name&quot;: &quot;Auctions&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/7&quot;,
+                        &quot;name&quot;: &quot;Shopping&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/8&quot;,
+                        &quot;name&quot;: &quot;Cult and Occult&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/9&quot;,
+                        &quot;name&quot;: &quot;Travel&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/10&quot;,
+                        &quot;name&quot;: &quot;Abused Drugs&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                        &quot;name&quot;: &quot;Adult and Pornography&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/12&quot;,
+                        &quot;name&quot;: &quot;Home and Garden&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/13&quot;,
+                        &quot;name&quot;: &quot;Military&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/14&quot;,
+                        &quot;name&quot;: &quot;Social Networking&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/16&quot;,
+                        &quot;name&quot;: &quot;Individual Stock Advice and Tools&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/17&quot;,
+                        &quot;name&quot;: &quot;Training and Tools&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/18&quot;,
+                        &quot;name&quot;: &quot;Dating&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/19&quot;,
+                        &quot;name&quot;: &quot;Sex Education&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/20&quot;,
+                        &quot;name&quot;: &quot;Religion&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/21&quot;,
+                        &quot;name&quot;: &quot;Entertainment and Arts&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/22&quot;,
+                        &quot;name&quot;: &quot;Personal sites and Blogs&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/23&quot;,
+                        &quot;name&quot;: &quot;Legal&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/24&quot;,
+                        &quot;name&quot;: &quot;Local Information&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/25&quot;,
+                        &quot;name&quot;: &quot;Streaming Media&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/26&quot;,
+                        &quot;name&quot;: &quot;Job Search&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/27&quot;,
+                        &quot;name&quot;: &quot;Gambling&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/28&quot;,
+                        &quot;name&quot;: &quot;Translation&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/29&quot;,
+                        &quot;name&quot;: &quot;Reference and Research&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/30&quot;,
+                        &quot;name&quot;: &quot;Shareware and Freeware&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/31&quot;,
+                        &quot;name&quot;: &quot;Peer to Peer&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/32&quot;,
+                        &quot;name&quot;: &quot;Marijuana&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/33&quot;,
+                        &quot;name&quot;: &quot;Hacking&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/34&quot;,
+                        &quot;name&quot;: &quot;Games&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/35&quot;,
+                        &quot;name&quot;: &quot;Philosophy and Political Advocacy&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/36&quot;,
+                        &quot;name&quot;: &quot;Weapons&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/37&quot;,
+                        &quot;name&quot;: &quot;Pay to Surf&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/38&quot;,
+                        &quot;name&quot;: &quot;Hunting and Fishing&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/39&quot;,
+                        &quot;name&quot;: &quot;Society&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/40&quot;,
+                        &quot;name&quot;: &quot;Educational Institutions&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/41&quot;,
+                        &quot;name&quot;: &quot;Online Greeting cards&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/42&quot;,
+                        &quot;name&quot;: &quot;Sports&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/43&quot;,
+                        &quot;name&quot;: &quot;Swimsuits &amp; Intimate Apparel&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/44&quot;,
+                        &quot;name&quot;: &quot;Questionable&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/45&quot;,
+                        &quot;name&quot;: &quot;Kids&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/46&quot;,
+                        &quot;name&quot;: &quot;Hate and Racism&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/47&quot;,
+                        &quot;name&quot;: &quot;Personal Storage&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/48&quot;,
+                        &quot;name&quot;: &quot;Violence&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/49&quot;,
+                        &quot;name&quot;: &quot;Keyloggers and Monitoring&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/50&quot;,
+                        &quot;name&quot;: &quot;Search Engines&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/51&quot;,
+                        &quot;name&quot;: &quot;Internet Portals&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/52&quot;,
+                        &quot;name&quot;: &quot;Web Advertisements&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/53&quot;,
+                        &quot;name&quot;: &quot;Cheating (Academic)&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/54&quot;,
+                        &quot;name&quot;: &quot;Gross&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/55&quot;,
+                        &quot;name&quot;: &quot;Web based email&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/56&quot;,
+                        &quot;name&quot;: &quot;Malware Sites&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/57&quot;,
+                        &quot;name&quot;: &quot;Phishing and Other Frauds&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/58&quot;,
+                        &quot;name&quot;: &quot;Proxy Avoidance and Anonymizers&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/59&quot;,
+                        &quot;name&quot;: &quot;Spyware and Adware&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/60&quot;,
+                        &quot;name&quot;: &quot;Music&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/61&quot;,
+                        &quot;name&quot;: &quot;Government&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/62&quot;,
+                        &quot;name&quot;: &quot;Nudity&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/63&quot;,
+                        &quot;name&quot;: &quot;News and Media&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/64&quot;,
+                        &quot;name&quot;: &quot;Illegal&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/65&quot;,
+                        &quot;name&quot;: &quot;Content Delivery Networks&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/66&quot;,
+                        &quot;name&quot;: &quot;Internet Communications&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/67&quot;,
+                        &quot;name&quot;: &quot;Bot Nets&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/68&quot;,
+                        &quot;name&quot;: &quot;Abortion&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/69&quot;,
+                        &quot;name&quot;: &quot;Health and Medicine&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/70&quot;,
+                        &quot;name&quot;: &quot;Confirmed SPAM Sources&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/71&quot;,
+                        &quot;name&quot;: &quot;SPAM URLs&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/72&quot;,
+                        &quot;name&quot;: &quot;Unconfirmed SPAM Sources&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/73&quot;,
+                        &quot;name&quot;: &quot;Open HTTP Proxies&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/74&quot;,
+                        &quot;name&quot;: &quot;Dynamically Generated Content&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/75&quot;,
+                        &quot;name&quot;: &quot;Parked Domains&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/76&quot;,
+                        &quot;name&quot;: &quot;Alcohol and Tobacco&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/78&quot;,
+                        &quot;name&quot;: &quot;Image and Video Search&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/79&quot;,
+                        &quot;name&quot;: &quot;Fashion and Beauty&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/80&quot;,
+                        &quot;name&quot;: &quot;Recreation and Hobbies&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/81&quot;,
+                        &quot;name&quot;: &quot;Motor Vehicles&quot;
+                    },
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/82&quot;,
+                        &quot;name&quot;: &quot;Web Hosting&quot;
+                    }
+                ]
+            },
+            &quot;policy&quot;: {
+                &quot;allowed_url_patterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ],
+                &quot;blocked_url_categories&quot;: [
+                    {
+                        &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                        &quot;name&quot;: &quot;Adult and Pornography&quot;
+                    }
+                ],
+                &quot;blocked_url_patterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;url_category_list_size&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:194" name="[localhost] meraki: meraki_content_filtering : Query all content filtering assertion that=['query_all.data.categories is defined', 'query_all.data.policy is defined']" time="0.338033">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:200" name="[localhost] meraki: meraki_content_filtering : Query categories auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=categories" time="4.603477">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/1&quot;,
+&quot;name&quot;: &quot;Real Estate&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/2&quot;,
+&quot;name&quot;: &quot;Computer and Internet Security&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/3&quot;,
+&quot;name&quot;: &quot;Financial Services&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/5&quot;,
+&quot;name&quot;: &quot;Computer and Internet Info&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/6&quot;,
+&quot;name&quot;: &quot;Auctions&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/7&quot;,
+&quot;name&quot;: &quot;Shopping&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/8&quot;,
+&quot;name&quot;: &quot;Cult and Occult&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/9&quot;,
+&quot;name&quot;: &quot;Travel&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/10&quot;,
+&quot;name&quot;: &quot;Abused Drugs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/12&quot;,
+&quot;name&quot;: &quot;Home and Garden&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/13&quot;,
+&quot;name&quot;: &quot;Military&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/14&quot;,
+&quot;name&quot;: &quot;Social Networking&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/16&quot;,
+&quot;name&quot;: &quot;Individual Stock Advice and Tools&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/17&quot;,
+&quot;name&quot;: &quot;Training and Tools&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/18&quot;,
+&quot;name&quot;: &quot;Dating&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/19&quot;,
+&quot;name&quot;: &quot;Sex Education&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/20&quot;,
+&quot;name&quot;: &quot;Religion&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/21&quot;,
+&quot;name&quot;: &quot;Entertainment and Arts&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/22&quot;,
+&quot;name&quot;: &quot;Personal sites and Blogs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/23&quot;,
+&quot;name&quot;: &quot;Legal&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/24&quot;,
+&quot;name&quot;: &quot;Local Information&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/25&quot;,
+&quot;name&quot;: &quot;Streaming Media&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/26&quot;,
+&quot;name&quot;: &quot;Job Search&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/27&quot;,
+&quot;name&quot;: &quot;Gambling&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/28&quot;,
+&quot;name&quot;: &quot;Translation&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/29&quot;,
+&quot;name&quot;: &quot;Reference and Research&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/30&quot;,
+&quot;name&quot;: &quot;Shareware and Freeware&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/31&quot;,
+&quot;name&quot;: &quot;Peer to Peer&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/32&quot;,
+&quot;name&quot;: &quot;Marijuana&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/33&quot;,
+&quot;name&quot;: &quot;Hacking&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/34&quot;,
+&quot;name&quot;: &quot;Games&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/35&quot;,
+&quot;name&quot;: &quot;Philosophy and Political Advocacy&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/36&quot;,
+&quot;name&quot;: &quot;Weapons&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/37&quot;,
+&quot;name&quot;: &quot;Pay to Surf&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/38&quot;,
+&quot;name&quot;: &quot;Hunting and Fishing&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/39&quot;,
+&quot;name&quot;: &quot;Society&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/40&quot;,
+&quot;name&quot;: &quot;Educational Institutions&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/41&quot;,
+&quot;name&quot;: &quot;Online Greeting cards&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/42&quot;,
+&quot;name&quot;: &quot;Sports&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/43&quot;,
+&quot;name&quot;: &quot;Swimsuits &amp; Intimate Apparel&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/44&quot;,
+&quot;name&quot;: &quot;Questionable&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/45&quot;,
+&quot;name&quot;: &quot;Kids&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/46&quot;,
+&quot;name&quot;: &quot;Hate and Racism&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/47&quot;,
+&quot;name&quot;: &quot;Personal Storage&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/48&quot;,
+&quot;name&quot;: &quot;Violence&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/49&quot;,
+&quot;name&quot;: &quot;Keyloggers and Monitoring&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/50&quot;,
+&quot;name&quot;: &quot;Search Engines&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/51&quot;,
+&quot;name&quot;: &quot;Internet Portals&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/52&quot;,
+&quot;name&quot;: &quot;Web Advertisements&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/53&quot;,
+&quot;name&quot;: &quot;Cheating (Academic)&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/54&quot;,
+&quot;name&quot;: &quot;Gross&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/55&quot;,
+&quot;name&quot;: &quot;Web based email&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/56&quot;,
+&quot;name&quot;: &quot;Malware Sites&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/57&quot;,
+&quot;name&quot;: &quot;Phishing and Other Frauds&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/58&quot;,
+&quot;name&quot;: &quot;Proxy Avoidance and Anonymizers&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/59&quot;,
+&quot;name&quot;: &quot;Spyware and Adware&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/60&quot;,
+&quot;name&quot;: &quot;Music&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/61&quot;,
+&quot;name&quot;: &quot;Government&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/62&quot;,
+&quot;name&quot;: &quot;Nudity&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/63&quot;,
+&quot;name&quot;: &quot;News and Media&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/64&quot;,
+&quot;name&quot;: &quot;Illegal&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/65&quot;,
+&quot;name&quot;: &quot;Content Delivery Networks&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/66&quot;,
+&quot;name&quot;: &quot;Internet Communications&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/67&quot;,
+&quot;name&quot;: &quot;Bot Nets&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/68&quot;,
+&quot;name&quot;: &quot;Abortion&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/69&quot;,
+&quot;name&quot;: &quot;Health and Medicine&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/70&quot;,
+&quot;name&quot;: &quot;Confirmed SPAM Sources&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/71&quot;,
+&quot;name&quot;: &quot;SPAM URLs&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/72&quot;,
+&quot;name&quot;: &quot;Unconfirmed SPAM Sources&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/73&quot;,
+&quot;name&quot;: &quot;Open HTTP Proxies&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/74&quot;,
+&quot;name&quot;: &quot;Dynamically Generated Content&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/75&quot;,
+&quot;name&quot;: &quot;Parked Domains&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/76&quot;,
+&quot;name&quot;: &quot;Alcohol and Tobacco&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/78&quot;,
+&quot;name&quot;: &quot;Image and Video Search&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/79&quot;,
+&quot;name&quot;: &quot;Fashion and Beauty&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/80&quot;,
+&quot;name&quot;: &quot;Recreation and Hobbies&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/81&quot;,
+&quot;name&quot;: &quot;Motor Vehicles&quot;
+},
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/82&quot;,
+&quot;name&quot;: &quot;Web Hosting&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:210" name="[localhost] meraki: meraki_content_filtering : debug var=query_categories" time="0.341575">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_categories&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;categories&quot;: [
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/1&quot;,
+                    &quot;name&quot;: &quot;Real Estate&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/2&quot;,
+                    &quot;name&quot;: &quot;Computer and Internet Security&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/3&quot;,
+                    &quot;name&quot;: &quot;Financial Services&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/5&quot;,
+                    &quot;name&quot;: &quot;Computer and Internet Info&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/6&quot;,
+                    &quot;name&quot;: &quot;Auctions&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/7&quot;,
+                    &quot;name&quot;: &quot;Shopping&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/8&quot;,
+                    &quot;name&quot;: &quot;Cult and Occult&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/9&quot;,
+                    &quot;name&quot;: &quot;Travel&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/10&quot;,
+                    &quot;name&quot;: &quot;Abused Drugs&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                    &quot;name&quot;: &quot;Adult and Pornography&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/12&quot;,
+                    &quot;name&quot;: &quot;Home and Garden&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/13&quot;,
+                    &quot;name&quot;: &quot;Military&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/14&quot;,
+                    &quot;name&quot;: &quot;Social Networking&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/16&quot;,
+                    &quot;name&quot;: &quot;Individual Stock Advice and Tools&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/17&quot;,
+                    &quot;name&quot;: &quot;Training and Tools&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/18&quot;,
+                    &quot;name&quot;: &quot;Dating&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/19&quot;,
+                    &quot;name&quot;: &quot;Sex Education&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/20&quot;,
+                    &quot;name&quot;: &quot;Religion&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/21&quot;,
+                    &quot;name&quot;: &quot;Entertainment and Arts&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/22&quot;,
+                    &quot;name&quot;: &quot;Personal sites and Blogs&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/23&quot;,
+                    &quot;name&quot;: &quot;Legal&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/24&quot;,
+                    &quot;name&quot;: &quot;Local Information&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/25&quot;,
+                    &quot;name&quot;: &quot;Streaming Media&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/26&quot;,
+                    &quot;name&quot;: &quot;Job Search&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/27&quot;,
+                    &quot;name&quot;: &quot;Gambling&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/28&quot;,
+                    &quot;name&quot;: &quot;Translation&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/29&quot;,
+                    &quot;name&quot;: &quot;Reference and Research&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/30&quot;,
+                    &quot;name&quot;: &quot;Shareware and Freeware&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/31&quot;,
+                    &quot;name&quot;: &quot;Peer to Peer&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/32&quot;,
+                    &quot;name&quot;: &quot;Marijuana&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/33&quot;,
+                    &quot;name&quot;: &quot;Hacking&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/34&quot;,
+                    &quot;name&quot;: &quot;Games&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/35&quot;,
+                    &quot;name&quot;: &quot;Philosophy and Political Advocacy&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/36&quot;,
+                    &quot;name&quot;: &quot;Weapons&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/37&quot;,
+                    &quot;name&quot;: &quot;Pay to Surf&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/38&quot;,
+                    &quot;name&quot;: &quot;Hunting and Fishing&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/39&quot;,
+                    &quot;name&quot;: &quot;Society&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/40&quot;,
+                    &quot;name&quot;: &quot;Educational Institutions&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/41&quot;,
+                    &quot;name&quot;: &quot;Online Greeting cards&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/42&quot;,
+                    &quot;name&quot;: &quot;Sports&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/43&quot;,
+                    &quot;name&quot;: &quot;Swimsuits &amp; Intimate Apparel&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/44&quot;,
+                    &quot;name&quot;: &quot;Questionable&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/45&quot;,
+                    &quot;name&quot;: &quot;Kids&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/46&quot;,
+                    &quot;name&quot;: &quot;Hate and Racism&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/47&quot;,
+                    &quot;name&quot;: &quot;Personal Storage&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/48&quot;,
+                    &quot;name&quot;: &quot;Violence&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/49&quot;,
+                    &quot;name&quot;: &quot;Keyloggers and Monitoring&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/50&quot;,
+                    &quot;name&quot;: &quot;Search Engines&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/51&quot;,
+                    &quot;name&quot;: &quot;Internet Portals&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/52&quot;,
+                    &quot;name&quot;: &quot;Web Advertisements&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/53&quot;,
+                    &quot;name&quot;: &quot;Cheating (Academic)&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/54&quot;,
+                    &quot;name&quot;: &quot;Gross&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/55&quot;,
+                    &quot;name&quot;: &quot;Web based email&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/56&quot;,
+                    &quot;name&quot;: &quot;Malware Sites&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/57&quot;,
+                    &quot;name&quot;: &quot;Phishing and Other Frauds&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/58&quot;,
+                    &quot;name&quot;: &quot;Proxy Avoidance and Anonymizers&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/59&quot;,
+                    &quot;name&quot;: &quot;Spyware and Adware&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/60&quot;,
+                    &quot;name&quot;: &quot;Music&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/61&quot;,
+                    &quot;name&quot;: &quot;Government&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/62&quot;,
+                    &quot;name&quot;: &quot;Nudity&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/63&quot;,
+                    &quot;name&quot;: &quot;News and Media&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/64&quot;,
+                    &quot;name&quot;: &quot;Illegal&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/65&quot;,
+                    &quot;name&quot;: &quot;Content Delivery Networks&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/66&quot;,
+                    &quot;name&quot;: &quot;Internet Communications&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/67&quot;,
+                    &quot;name&quot;: &quot;Bot Nets&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/68&quot;,
+                    &quot;name&quot;: &quot;Abortion&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/69&quot;,
+                    &quot;name&quot;: &quot;Health and Medicine&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/70&quot;,
+                    &quot;name&quot;: &quot;Confirmed SPAM Sources&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/71&quot;,
+                    &quot;name&quot;: &quot;SPAM URLs&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/72&quot;,
+                    &quot;name&quot;: &quot;Unconfirmed SPAM Sources&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/73&quot;,
+                    &quot;name&quot;: &quot;Open HTTP Proxies&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/74&quot;,
+                    &quot;name&quot;: &quot;Dynamically Generated Content&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/75&quot;,
+                    &quot;name&quot;: &quot;Parked Domains&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/76&quot;,
+                    &quot;name&quot;: &quot;Alcohol and Tobacco&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/78&quot;,
+                    &quot;name&quot;: &quot;Image and Video Search&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/79&quot;,
+                    &quot;name&quot;: &quot;Fashion and Beauty&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/80&quot;,
+                    &quot;name&quot;: &quot;Recreation and Hobbies&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/81&quot;,
+                    &quot;name&quot;: &quot;Motor Vehicles&quot;
+                },
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/82&quot;,
+                    &quot;name&quot;: &quot;Web Hosting&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:213" name="[localhost] meraki: meraki_content_filtering : Query categories assertion that=['query_categories.data is defined']" time="0.344573">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:218" name="[localhost] meraki: meraki_content_filtering : Query content filtering policies auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, subset=policy, state=query" time="4.697207">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:228" name="[localhost] meraki: meraki_content_filtering : debug var=query_policy" time="0.341623">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_policy&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                    &quot;name&quot;: &quot;Adult and Pornography&quot;
+                }
+            ],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:231" name="[localhost] meraki: meraki_content_filtering : Query contnet filtering policy assertion that=['query_policy.data is defined']" time="0.341305">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:237" name="[localhost] meraki: meraki_content_filtering : Reset policies auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=full list, allowed_urls=[None], blocked_urls=[None]" time="5.611601">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;fullList&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-78kk6p4o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:249" name="[localhost] meraki: meraki_content_filtering : Delete network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=absent" time="5.228677">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,456 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="32" time="56.14785194396973">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_firewalled_services-a0mq_uxq" skipped="0" tests="32" time="56.14785194396973">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:7" name="[localhost] meraki: meraki_firewalled_services : Create network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, type=appliance" time="4.563494">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682399&quot;,
+&quot;name&quot;: &quot;IntTestNetworkAppliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:16" name="[localhost] meraki: meraki_firewalled_services : set_fact net_id={{create.data.id}}" time="0.369321">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682399&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:19" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to blocked with check mode auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP, access=blocked" time="3.961797">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:30" name="[localhost] meraki: meraki_firewalled_services : debug var=icmp_blocked_check" time="0.369391">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;icmp_blocked_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;blocked&quot;,
+            &quot;service&quot;: &quot;ICMP&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;access&quot;: &quot;blocked&quot;
+            },
+            &quot;before&quot;: {
+                &quot;access&quot;: &quot;unrestricted&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:33" name="[localhost] meraki: meraki_firewalled_services : assert that=['icmp_blocked_check.data is defined', 'icmp_blocked_check is changed']" time="0.370438">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:38" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to blocked auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP, access=blocked" time="4.853404">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:48" name="[localhost] meraki: meraki_firewalled_services : debug var=icmp_blocked" time="0.377326">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;icmp_blocked&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;blocked&quot;,
+            &quot;service&quot;: &quot;ICMP&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;access&quot;: &quot;blocked&quot;
+            },
+            &quot;before&quot;: {
+                &quot;access&quot;: &quot;unrestricted&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:51" name="[localhost] meraki: meraki_firewalled_services : assert that=['icmp_blocked.data is defined', 'icmp_blocked is changed']" time="0.375069">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:56" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to blocked with idempotency auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP, access=blocked" time="3.868022">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:66" name="[localhost] meraki: meraki_firewalled_services : debug var=icmp_blocked_idempotent" time="0.371263">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;icmp_blocked_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;blocked&quot;,
+            &quot;service&quot;: &quot;ICMP&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:69" name="[localhost] meraki: meraki_firewalled_services : assert that=['icmp_blocked_idempotent.data is defined', 'icmp_blocked_idempotent is not changed']" time="0.375611">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:74" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to restricted with check mode auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=web, access=restricted, allowed_ips=['192.0.1.1', '192.0.1.2']" time="3.801658">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;restricted&quot;,
+&quot;allowed_ips&quot;: [
+&quot;192.0.1.1&quot;,
+&quot;192.0.1.2&quot;
+],
+&quot;service&quot;: &quot;web&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:88" name="[localhost] meraki: meraki_firewalled_services : debug var=web_restricted_check" time="0.365055">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;web_restricted_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;restricted&quot;,
+            &quot;allowed_ips&quot;: [
+                &quot;192.0.1.1&quot;,
+                &quot;192.0.1.2&quot;
+            ],
+            &quot;service&quot;: &quot;web&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;access&quot;: &quot;restricted&quot;,
+                &quot;allowedIps&quot;: [
+                    &quot;192.0.1.1&quot;,
+                    &quot;192.0.1.2&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;access&quot;: &quot;blocked&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:91" name="[localhost] meraki: meraki_firewalled_services : assert that=['web_restricted_check.data is defined', 'web_restricted_check is changed']" time="0.367957">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:96" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to restricted auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=web, access=restricted, allowed_ips=['192.0.1.1', '192.0.1.2']" time="4.790771">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;restricted&quot;,
+&quot;allowed_ips&quot;: [
+&quot;192.0.1.1&quot;,
+&quot;192.0.1.2&quot;
+],
+&quot;service&quot;: &quot;web&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:109" name="[localhost] meraki: meraki_firewalled_services : debug var=web_restricted" time="0.374693">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;web_restricted&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;restricted&quot;,
+            &quot;allowed_ips&quot;: [
+                &quot;192.0.1.1&quot;,
+                &quot;192.0.1.2&quot;
+            ],
+            &quot;service&quot;: &quot;web&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;access&quot;: &quot;restricted&quot;,
+                &quot;allowedIps&quot;: [
+                    &quot;192.0.1.1&quot;,
+                    &quot;192.0.1.2&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;access&quot;: &quot;blocked&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:112" name="[localhost] meraki: meraki_firewalled_services : assert that=['web_restricted.data is defined', 'web_restricted is changed']" time="0.363411">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:117" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to restricted with idempotency auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=web, access=restricted, allowed_ips=['192.0.1.1', '192.0.1.2']" time="3.864657">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;restricted&quot;,
+&quot;allowed_ips&quot;: [
+&quot;192.0.1.1&quot;,
+&quot;192.0.1.2&quot;
+],
+&quot;service&quot;: &quot;web&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:130" name="[localhost] meraki: meraki_firewalled_services : debug var=web_restricted_idempotent" time="0.370901">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;web_restricted_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;restricted&quot;,
+            &quot;allowed_ips&quot;: [
+                &quot;192.0.1.1&quot;,
+                &quot;192.0.1.2&quot;
+            ],
+            &quot;service&quot;: &quot;web&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:133" name="[localhost] meraki: meraki_firewalled_services : assert that=['web_restricted_idempotent.data is defined', 'web_restricted_idempotent is not changed']" time="0.370460">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:138" name="[localhost] meraki: meraki_firewalled_services : Test error for access restricted and allowed_ips auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=web, access=unrestricted, allowed_ips=['192.0.1.1', '192.0.1.2']" time="2.939374">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;allowed_ips is only allowed when access is restricted.&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:152" name="[localhost] meraki: meraki_firewalled_services : assert that=['access_error.msg == &quot;allowed_ips is only allowed when access is restricted.&quot;']" time="0.355342">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:156" name="[localhost] meraki: meraki_firewalled_services : Query appliance services with net_id auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_id={{net_id}}" time="2.204223">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+{
+&quot;access&quot;: &quot;restricted&quot;,
+&quot;allowed_ips&quot;: [
+&quot;192.0.1.1&quot;,
+&quot;192.0.1.2&quot;
+],
+&quot;service&quot;: &quot;web&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:164" name="[localhost] meraki: meraki_firewalled_services : debug var=query_appliance_id" time="0.345322">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_appliance_id&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;access&quot;: &quot;blocked&quot;,
+                &quot;service&quot;: &quot;ICMP&quot;
+            },
+            {
+                &quot;access&quot;: &quot;restricted&quot;,
+                &quot;allowed_ips&quot;: [
+                    &quot;192.0.1.1&quot;,
+                    &quot;192.0.1.2&quot;
+                ],
+                &quot;service&quot;: &quot;web&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:167" name="[localhost] meraki: meraki_firewalled_services : assert that=['query_appliance_id.data is defined']" time="0.349874">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:172" name="[localhost] meraki: meraki_firewalled_services : Query appliance services auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance" time="3.696867">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+{
+&quot;access&quot;: &quot;restricted&quot;,
+&quot;allowed_ips&quot;: [
+&quot;192.0.1.1&quot;,
+&quot;192.0.1.2&quot;
+],
+&quot;service&quot;: &quot;web&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:180" name="[localhost] meraki: meraki_firewalled_services : debug var=query_appliance" time="0.351041">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_appliance&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: [
+            {
+                &quot;access&quot;: &quot;blocked&quot;,
+                &quot;service&quot;: &quot;ICMP&quot;
+            },
+            {
+                &quot;access&quot;: &quot;restricted&quot;,
+                &quot;allowed_ips&quot;: [
+                    &quot;192.0.1.1&quot;,
+                    &quot;192.0.1.2&quot;
+                ],
+                &quot;service&quot;: &quot;web&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:183" name="[localhost] meraki: meraki_firewalled_services : assert that=['query_appliance.data is defined']" time="0.346729">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:187" name="[localhost] meraki: meraki_firewalled_services : Query services auth_key={{ auth_key }}, state=query, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP" time="3.295233">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:196" name="[localhost] meraki: meraki_firewalled_services : debug var=query_service" time="0.355091">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_service&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;blocked&quot;,
+            &quot;service&quot;: &quot;ICMP&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:199" name="[localhost] meraki: meraki_firewalled_services : assert that=['query_service.data is defined']" time="0.356191">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-jjznzlyg-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:207" name="[localhost] meraki: meraki_firewalled_services : Delete all networks auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance" time="7.027867">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

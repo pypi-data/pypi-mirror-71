@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="4" time="15.475314617156982">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_nat-mh6rsfo2" skipped="0" tests="4" time="15.475314617156982">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-rrgtzjm7-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:7" name="[localhost] meraki: meraki_nat : Create test network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, type=appliance" time="4.555095">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682500&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-rrgtzjm7-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:247" name="[localhost] meraki: meraki_nat : Create port forwarding rule with port range auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, port_forwarding=[{'name': 'Test map', 'lan_ip': '192.168.128.1', 'uplink': 'both', 'protocol': 'tcp', 'allowed_ips': ['1.1.1.1'], 'public_port': '10-15', 'local_port': '11-16'}]" time="5.389426">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11-16&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10-15&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-rrgtzjm7-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:264" name="[localhost] meraki: meraki_nat : debug var=pf_port_range" time="0.389350">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;pf_port_range&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.1&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11-16&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10-15&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedIps&quot;: [
+                                &quot;1.1.1.1&quot;
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;localPort&quot;: &quot;11-16&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;publicPort&quot;: &quot;10-15&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-rrgtzjm7-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:382" name="[localhost] meraki: meraki_nat : Delete test network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=absent" time="5.141443">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="4" time="10.548770427703857">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_ms_link_aggregation-we20_hyp" skipped="1" tests="4" time="10.548770427703857">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-o98uxsrs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:7" name="[localhost] meraki: meraki_ms_link_aggregation : Test an API key is provided msg=Please define an API key" time="0.604152">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-o98uxsrs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:12" name="[localhost] meraki: meraki_ms_link_aggregation : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, type=switch" time="3.326856">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682461&quot;,
+&quot;name&quot;: &quot;Home - Switch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-o98uxsrs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:21" name="[localhost] meraki: meraki_ms_link_aggregation : Create LAG auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, switch_ports=[{'serial': '{{serial_switch}}', 'port_id': 1}, {'serial': '{[serial_switch]}', 'port_id': 2}]" time="1.034868">
+			<error message="AttributeError: 'NoneType' object has no attribute 'update'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584408575.16045-4463667556742/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584408575.16045-4463667556742/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584408575.16045-4463667556742/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_ms_link_aggregation', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_bdpjin0f/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 157, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_bdpjin0f/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 122, in main
+AttributeError: 'NoneType' object has no attribute 'update'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-o98uxsrs-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:51" name="[localhost] meraki: meraki_ms_link_aggregation : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}" time="5.582894">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,422 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="26" time="51.94045662879944">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_content_filtering-ux7vc0f5" skipped="1" tests="26" time="51.94045662879944">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:7" name="[localhost] meraki: meraki_content_filtering : Test an API key is provided msg=Please define an API key" time="0.360463">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:12" name="[localhost] meraki: meraki_content_filtering : Create network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=appliance, timezone=America/Chicago" time="3.875932">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682357&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:23" name="[localhost] meraki: meraki_content_filtering : Test net_name and id exclusivity auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, net_id=12345, state=present, allowed_urls=['http://www.ansible.com/*']" time="0.728607">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;net_name and net_id are mutually exclusive&quot;,
+&quot;response&quot;: null,
+&quot;status&quot;: null,
+&quot;warnings&quot;: [
+&quot;The value 12345 (type int) in a string field was converted to '12345' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:35" name="[localhost] meraki: meraki_content_filtering : assert that=['net_exclusive.msg == &quot;net_name and net_id are mutually exclusive&quot;']" time="0.368024">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:39" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="3.372380">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:50" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_check.data.allowed_url_patterns | length == 1', 'single_allowed_check is changed']" time="0.393063">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:55" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="4.198528">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:65" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed.data.allowed_url_patterns | length == 1']" time="0.365945">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:69" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern for idempotency with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="3.225664">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:80" name="[localhost] meraki: meraki_content_filtering : debug var=single_allowed_idempotent_check" time="0.358757">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_allowed_idempotent_check&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:83" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_idempotent_check is not changed', 'single_allowed.data.allowed_url_patterns | length == 1']" time="0.375015">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:88" name="[localhost] meraki: meraki_content_filtering : Set single allowed URL pattern for idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*']" time="3.215206">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:98" name="[localhost] meraki: meraki_content_filtering : debug var=single_allowed_idempotent" time="0.367028">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_allowed_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:101" name="[localhost] meraki: meraki_content_filtering : assert that=['single_allowed_idempotent.changed == False', 'single_allowed_idempotent.data is defined']" time="0.357582">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:106" name="[localhost] meraki: meraki_content_filtering : Set single blocked URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, blocked_urls=['http://www.ansible.com/*']" time="5.847101">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:116" name="[localhost] meraki: meraki_content_filtering : debug var=single_blocked" time="0.369806">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;single_blocked&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:119" name="[localhost] meraki: meraki_content_filtering : assert that=['single_blocked.data.blocked_url_patterns | length == 1']" time="0.361878">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:123" name="[localhost] meraki: meraki_content_filtering : Set two allowed URL pattern auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, allowed_urls=['http://www.ansible.com/*', 'http://www.redhat.com']" time="5.081923">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;topSites&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:134" name="[localhost] meraki: meraki_content_filtering : debug var=two_allowed" time="0.363666">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;two_allowed&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;topSites&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ]
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:137" name="[localhost] meraki: meraki_content_filtering : assert that=['two_allowed.changed == True', 'two_allowed.data.allowed_url_patterns | length == 2']" time="0.359198">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:142" name="[localhost] meraki: meraki_content_filtering : Set blocked URL category auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=full list, blocked_categories=['Adult and Pornography']" time="5.037147">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;,
+&quot;http://www.redhat.com&quot;
+],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [
+&quot;http://www.ansible.com/*&quot;
+],
+&quot;url_category_list_size&quot;: &quot;fullList&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:153" name="[localhost] meraki: meraki_content_filtering : debug var=blocked_category" time="0.342297">
+			<system-out>{
+    &quot;blocked_category&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;allowed_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;,
+                &quot;http://www.redhat.com&quot;
+            ],
+            &quot;blocked_url_categories&quot;: [
+                {
+                    &quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+                    &quot;name&quot;: &quot;Adult and Pornography&quot;
+                }
+            ],
+            &quot;blocked_url_patterns&quot;: [
+                &quot;http://www.ansible.com/*&quot;
+            ],
+            &quot;url_category_list_size&quot;: &quot;fullList&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;blockedUrlCategories&quot;: [
+                    &quot;meraki:contentFiltering/category/11&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;fullList&quot;
+            },
+            &quot;before&quot;: {
+                &quot;allowedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;,
+                    &quot;http://www.redhat.com&quot;
+                ],
+                &quot;blockedUrlCategories&quot;: [],
+                &quot;blockedUrlPatterns&quot;: [
+                    &quot;http://www.ansible.com/*&quot;
+                ],
+                &quot;urlCategoryListSize&quot;: &quot;topSites&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:156" name="[localhost] meraki: meraki_content_filtering : assert that=['blocked_category.changed == True', 'blocked_category.data.blocked_url_categories | length == 1', 'blocked_category.data.url_category_list_size == &quot;fullList&quot;']" time="0.344483">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:162" name="[localhost] meraki: meraki_content_filtering : Set blocked URL category with top sites auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=top sites, blocked_categories=['Adult and Pornography']" time="3.943856">
+			<error message="AttributeError: 'str' object has no attribute 'items'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577302682.1328878-33278075844069/AnsiballZ_meraki_content_filtering.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577302682.1328878-33278075844069/AnsiballZ_meraki_content_filtering.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577302682.1328878-33278075844069/AnsiballZ_meraki_content_filtering.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_content_filtering', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_content_filtering_payload_vd_uu1si/ansible_meraki_content_filtering_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_content_filtering.py&quot;, line 248, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_content_filtering_payload_vd_uu1si/ansible_meraki_content_filtering_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_content_filtering.py&quot;, line 221, in main
+  File &quot;/tmp/ansible_meraki_content_filtering_payload_vd_uu1si/ansible_meraki_content_filtering_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 245, in is_update_required
+  File &quot;/tmp/ansible_meraki_content_filtering_payload_vd_uu1si/ansible_meraki_content_filtering_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 238, in is_update_required
+  File &quot;/tmp/ansible_meraki_content_filtering_payload_vd_uu1si/ansible_meraki_content_filtering_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py&quot;, line 242, in is_update_required
+AttributeError: 'str' object has no attribute 'items'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:237" name="[localhost] meraki: meraki_content_filtering : Reset policies auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, category_list_size=full list, allowed_urls=[None], blocked_urls=[None]" time="4.367258">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;allowed_url_patterns&quot;: [],
+&quot;blocked_url_categories&quot;: [
+{
+&quot;id&quot;: &quot;meraki:contentFiltering/category/11&quot;,
+&quot;name&quot;: &quot;Adult and Pornography&quot;
+}
+],
+&quot;blocked_url_patterns&quot;: [],
+&quot;url_category_list_size&quot;: &quot;fullList&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_content_filtering-mfem7r1m-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_content_filtering/tasks/main.yml:249" name="[localhost] meraki: meraki_content_filtering : Delete network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=absent" time="3.959650">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

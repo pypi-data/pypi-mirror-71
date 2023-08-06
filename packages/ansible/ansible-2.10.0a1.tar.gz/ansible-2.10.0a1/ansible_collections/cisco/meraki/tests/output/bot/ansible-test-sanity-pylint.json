@@ -1,0 +1,10 @@
+{
+    "docs": "https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/pylint.html",
+    "results": [
+        {
+            "message": "The test `ansible-test sanity --test pylint` [[explain](https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/pylint.html)] failed with 3 errors:",
+            "output": "plugins/modules/meraki_switch_access_list.py:199:12: bare-except: No exception type(s) specified\nplugins/modules/meraki_switch_access_list.py:206:12: bare-except: No exception type(s) specified\nplugins/modules/meraki_switch_access_list.py:211:12: bare-except: No exception type(s) specified"
+        }
+    ],
+    "verified": false
+}

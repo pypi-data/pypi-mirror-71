@@ -1,0 +1,191 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="8" time="14.637876272201538">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switch_access_list-auqq2b0m" skipped="1" tests="8" time="14.637876272201538">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:7" name="[localhost] meraki: meraki_switch_access_list : Test an API key is provided msg=Please define an API key" time="0.368145">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:12" name="[localhost] meraki: meraki_switch_access_list : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, type=switch" time="3.057140">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682480&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:20" name="[localhost] meraki: meraki_switch_access_list : Set access list auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, rules=[{'comment': 'Fake rule', 'policy': 'allow', 'ip_version': 'ipv4', 'protocol': 'udp', 'src_cidr': '192.0.1.0/24', 'src_port': '4242', 'dst_cidr': '1.2.3.4/32', 'dst_port': '80', 'vlan': '100'}]" time="4.969088">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;comment&quot;: &quot;Fake rule&quot;,
+&quot;dst_cidr&quot;: &quot;1.2.3.4/32&quot;,
+&quot;dst_port&quot;: 80,
+&quot;ip_version&quot;: &quot;ipv4&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;udp&quot;,
+&quot;src_cidr&quot;: &quot;192.0.1.0/24&quot;,
+&quot;src_port&quot;: 4242,
+&quot;vlan&quot;: 100
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dst_cidr&quot;: &quot;any&quot;,
+&quot;dst_port&quot;: &quot;any&quot;,
+&quot;ip_version&quot;: &quot;any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;any&quot;,
+&quot;src_cidr&quot;: &quot;any&quot;,
+&quot;src_port&quot;: &quot;any&quot;,
+&quot;vlan&quot;: &quot;any&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:38" name="[localhost] meraki: meraki_switch_access_list : assert that=['create is changed', 'create.data is defined']" time="0.385640">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:43" name="[localhost] meraki: meraki_switch_access_list : debug var=create" time="0.404464">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;comment&quot;: &quot;Fake rule&quot;,
+                    &quot;dst_cidr&quot;: &quot;1.2.3.4/32&quot;,
+                    &quot;dst_port&quot;: 80,
+                    &quot;ip_version&quot;: &quot;ipv4&quot;,
+                    &quot;policy&quot;: &quot;allow&quot;,
+                    &quot;protocol&quot;: &quot;udp&quot;,
+                    &quot;src_cidr&quot;: &quot;192.0.1.0/24&quot;,
+                    &quot;src_port&quot;: 4242,
+                    &quot;vlan&quot;: 100
+                },
+                {
+                    &quot;comment&quot;: &quot;Default rule&quot;,
+                    &quot;dst_cidr&quot;: &quot;any&quot;,
+                    &quot;dst_port&quot;: &quot;any&quot;,
+                    &quot;ip_version&quot;: &quot;any&quot;,
+                    &quot;policy&quot;: &quot;allow&quot;,
+                    &quot;protocol&quot;: &quot;any&quot;,
+                    &quot;src_cidr&quot;: &quot;any&quot;,
+                    &quot;src_port&quot;: &quot;any&quot;,
+                    &quot;vlan&quot;: &quot;any&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:46" name="[localhost] meraki: meraki_switch_access_list : Set access list with idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}}, rules=[{'comment': 'Fake rule', 'policy': 'allow', 'ip_version': 'ipv4', 'protocol': 'udp', 'src_cidr': '192.0.1.0/24', 'src_port': '4242', 'dst_cidr': '1.2.3.4/32', 'dst_port': '80', 'vlan': '100'}]" time="4.658101">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;rules&quot;: [
+{
+&quot;comment&quot;: &quot;Fake rule&quot;,
+&quot;dst_cidr&quot;: &quot;1.2.3.4/32&quot;,
+&quot;dst_port&quot;: 80,
+&quot;ip_version&quot;: &quot;ipv4&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;udp&quot;,
+&quot;src_cidr&quot;: &quot;192.0.1.0/24&quot;,
+&quot;src_port&quot;: 4242,
+&quot;vlan&quot;: 100
+},
+{
+&quot;comment&quot;: &quot;Default rule&quot;,
+&quot;dst_cidr&quot;: &quot;any&quot;,
+&quot;dst_port&quot;: &quot;any&quot;,
+&quot;ip_version&quot;: &quot;any&quot;,
+&quot;policy&quot;: &quot;allow&quot;,
+&quot;protocol&quot;: &quot;any&quot;,
+&quot;src_cidr&quot;: &quot;any&quot;,
+&quot;src_port&quot;: &quot;any&quot;,
+&quot;vlan&quot;: &quot;any&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:64" name="[localhost] meraki: meraki_switch_access_list : debug var=create_idempotent" time="0.389605">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_idempotent&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;rules&quot;: [
+                {
+                    &quot;comment&quot;: &quot;Fake rule&quot;,
+                    &quot;dst_cidr&quot;: &quot;1.2.3.4/32&quot;,
+                    &quot;dst_port&quot;: 80,
+                    &quot;ip_version&quot;: &quot;ipv4&quot;,
+                    &quot;policy&quot;: &quot;allow&quot;,
+                    &quot;protocol&quot;: &quot;udp&quot;,
+                    &quot;src_cidr&quot;: &quot;192.0.1.0/24&quot;,
+                    &quot;src_port&quot;: 4242,
+                    &quot;vlan&quot;: 100
+                },
+                {
+                    &quot;comment&quot;: &quot;Default rule&quot;,
+                    &quot;dst_cidr&quot;: &quot;any&quot;,
+                    &quot;dst_port&quot;: &quot;any&quot;,
+                    &quot;ip_version&quot;: &quot;any&quot;,
+                    &quot;policy&quot;: &quot;allow&quot;,
+                    &quot;protocol&quot;: &quot;any&quot;,
+                    &quot;src_cidr&quot;: &quot;any&quot;,
+                    &quot;src_port&quot;: &quot;any&quot;,
+                    &quot;vlan&quot;: &quot;any&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_access_list-mtu5b7ak-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_access_list/tasks/tests.yml:67" name="[localhost] meraki: meraki_switch_access_list : assert that=['create_idempotent is not changed', 'create_idempotent.data is defined']" time="0.405693">
+			<failure message="Assertion failed" type="failure">{
+    &quot;assertion&quot;: &quot;create_idempotent is not changed&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;Assertion failed&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

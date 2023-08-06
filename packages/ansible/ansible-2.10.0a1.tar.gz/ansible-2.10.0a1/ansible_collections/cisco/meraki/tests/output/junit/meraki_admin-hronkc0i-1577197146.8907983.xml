@@ -1,0 +1,346 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="19" time="36.905102014541626">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_admin-hronkc0i" skipped="0" tests="19" time="36.905102014541626">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:7" name="[localhost] meraki: meraki_admin : Create new administrator in check mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=Jane Doe, email={{email_prefix}}+janedoe@{{email_domain}}, org_access=read-only" time="2.472093">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;email&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;name&quot;: &quot;Jane Doe&quot;,
+&quot;org_access&quot;: &quot;read-only&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:19" name="[localhost] meraki: meraki_admin : Create new admin check mode assertion that=['create_org_check is changed', 'create_org_check.data.name == &quot;Jane Doe&quot;']" time="0.384871">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:25" name="[localhost] meraki: meraki_admin : Create new administrator auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=Jane Doe, email={{email_prefix}}+janedoe@{{email_domain}}, org_access=read-only" time="3.754545">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;account_status&quot;: &quot;unverified&quot;,
+&quot;email&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;has_api_key&quot;: false,
+&quot;id&quot;: &quot;624874448297769157&quot;,
+&quot;last_active&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;Jane Doe&quot;,
+&quot;networks&quot;: [],
+&quot;org_access&quot;: &quot;read-only&quot;,
+&quot;tags&quot;: [],
+&quot;two_factor_auth_enabled&quot;: false
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:36" name="[localhost] meraki: meraki_admin : Create new admin assertion that=['create_orgaccess.changed == true', 'create_orgaccess.data.name == &quot;Jane Doe&quot;']" time="0.372864">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:42" name="[localhost] meraki: meraki_admin : Delete recently created administrator with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, email={{email_prefix}}+janedoe@{{email_domain}}" time="1.391437">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:52" name="[localhost] meraki: meraki_admin : assert that=['delete_one_check is changed']" time="0.362689">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:56" name="[localhost] meraki: meraki_admin : Delete recently created administrator auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, email={{email_prefix}}+janedoe@{{email_domain}}" time="3.904953">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:65" name="[localhost] meraki: meraki_admin : Create new administrator with org_id auth_key={{auth_key}}, state=present, org_id={{test_org_id}}, name=Jane Doe, email={{email_prefix}}+janedoe@{{email_domain}}, orgAccess=read-only" time="2.700023">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;account_status&quot;: &quot;unverified&quot;,
+&quot;email&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;has_api_key&quot;: false,
+&quot;id&quot;: &quot;624874448297769158&quot;,
+&quot;last_active&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;Jane Doe&quot;,
+&quot;networks&quot;: [],
+&quot;org_access&quot;: &quot;read-only&quot;,
+&quot;tags&quot;: [],
+&quot;two_factor_auth_enabled&quot;: false
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:76" name="[localhost] meraki: meraki_admin : Create new admin assertion that=['create_orgaccess_id.changed == true', 'create_orgaccess_id.data.name == &quot;Jane Doe&quot;']" time="0.376220">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:82" name="[localhost] meraki: meraki_admin : Create administrator with tags with check mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=John Doe, email={{email_prefix}}+johndoe@{{email_domain}}, orgAccess=none, tags=[{'tag': 'production', 'access': 'read-only'}, {'tag': 'beta', 'access': 'full'}]" time="3.334636">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;email&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+&quot;name&quot;: &quot;John Doe&quot;,
+&quot;org_access&quot;: &quot;none&quot;,
+&quot;tags&quot;: [
+{
+&quot;access&quot;: &quot;read-only&quot;,
+&quot;tag&quot;: &quot;production&quot;
+},
+{
+&quot;access&quot;: &quot;full&quot;,
+&quot;tag&quot;: &quot;beta&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:98" name="[localhost] meraki: meraki_admin : debug var=create_tags_check" time="0.383126">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_tags_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;email&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+            &quot;name&quot;: &quot;John Doe&quot;,
+            &quot;org_access&quot;: &quot;none&quot;,
+            &quot;tags&quot;: [
+                {
+                    &quot;access&quot;: &quot;read-only&quot;,
+                    &quot;tag&quot;: &quot;production&quot;
+                },
+                {
+                    &quot;access&quot;: &quot;full&quot;,
+                    &quot;tag&quot;: &quot;beta&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:101" name="[localhost] meraki: meraki_admin : assert that=['create_tags_check is changed', 'create_tags_check.data.name == &quot;John Doe&quot;', 'create_tags_check.data.tags | length == 2']" time="0.379872">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:107" name="[localhost] meraki: meraki_admin : Create administrator with tags auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=John Doe, email={{email_prefix}}+johndoe@{{email_domain}}, orgAccess=none, tags=[{'tag': 'production', 'access': 'read-only'}, {'tag': 'beta', 'access': 'full'}]" time="3.647781">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;account_status&quot;: &quot;unverified&quot;,
+&quot;email&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+&quot;has_api_key&quot;: false,
+&quot;id&quot;: &quot;624874448297769159&quot;,
+&quot;last_active&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;John Doe&quot;,
+&quot;networks&quot;: [],
+&quot;org_access&quot;: &quot;none&quot;,
+&quot;tags&quot;: [
+{
+&quot;access&quot;: &quot;full&quot;,
+&quot;tag&quot;: &quot;beta&quot;
+},
+{
+&quot;access&quot;: &quot;read-only&quot;,
+&quot;tag&quot;: &quot;production&quot;
+}
+],
+&quot;two_factor_auth_enabled&quot;: false
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:122" name="[localhost] meraki: meraki_admin : assert that=['create_tags.changed == true', 'create_tags.data.name == &quot;John Doe&quot;', 'create_tags.data.tags | length == 2']" time="0.366302">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:128" name="[localhost] meraki: meraki_admin : Create administrator with invalid tags auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, name=Jake Doe, email={{email_prefix}}+jakedoe@{{email_domain}}, orgAccess=none, tags=[{'tag': 'production', 'access': 'read-only'}, {'tag': 'alpha', 'access': 'invalid'}]" time="3.177265">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;module_stderr&quot;: &quot;Traceback (most recent call last):\n  File \&quot;/tmp/ansible_meraki_admin_payload_adquz22k/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 92, in inner\nansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError: HTTP error 400 - None\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577197133.7583034-100430753931344/AnsiballZ_meraki_admin.py\&quot;, line 116, in &lt;module&gt;\n    _ansiballz_main()\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577197133.7583034-100430753931344/AnsiballZ_meraki_admin.py\&quot;, line 108, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \&quot;/root/.ansible/tmp/ansible-tmp-1577197133.7583034-100430753931344/AnsiballZ_meraki_admin.py\&quot;, line 54, in invoke_module\n    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_admin', init_globals=None, run_name='__main__', alter_sys=True)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 205, in run_module\n    return _run_module_code(code, init_globals, run_name, mod_spec)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 96, in _run_module_code\n    mod_name, mod_spec, pkg_name, script_name)\n  File \&quot;/usr/lib/python3.6/runpy.py\&quot;, line 85, in _run_code\n    exec(code, run_globals)\n  File \&quot;/tmp/ansible_meraki_admin_payload_adquz22k/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 498, in &lt;module&gt;\n  File \&quot;/tmp/ansible_meraki_admin_payload_adquz22k/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 473, in main\n  File \&quot;/tmp/ansible_meraki_admin_payload_adquz22k/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_admin.py\&quot;, line 346, in create_admin\n  File \&quot;/tmp/ansible_meraki_admin_payload_adquz22k/ansible_meraki_admin_payload.zip/ansible_collections/cisco/meraki/plugins/module_utils/network/meraki/meraki.py\&quot;, line 116, in inner\nansible_collections.cisco.meraki.plugins.module_utils.network.meraki.meraki.HTTPError: HTTP error 400 - None\n&quot;,
+&quot;module_stdout&quot;: &quot;&quot;,
+&quot;msg&quot;: &quot;MODULE FAILURE\nSee stdout/stderr for the exact error&quot;,
+&quot;rc&quot;: 1
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:143" name="[localhost] meraki: meraki_admin : assert that=['&quot;400&quot; in create_tags_invalid.msg']" time="0.381496">
+			<failure message="Assertion failed" type="failure">{
+    &quot;assertion&quot;: &quot;\&quot;400\&quot; in create_tags_invalid.msg&quot;,
+    &quot;changed&quot;: false,
+    &quot;evaluated_to&quot;: false,
+    &quot;msg&quot;: &quot;Assertion failed&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:360" name="[localhost] meraki: meraki_admin : Delete administrators auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, email={{item}}" time="7.437631">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;msg&quot;: &quot;All items completed&quot;,
+&quot;results&quot;: [
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;failed&quot;: false,
+&quot;invocation&quot;: {
+&quot;module_args&quot;: {
+&quot;auth_key&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;email&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;follow_redirects&quot;: &quot;all&quot;,
+&quot;host&quot;: &quot;api.meraki.com&quot;,
+&quot;internal_error_retry_time&quot;: 60,
+&quot;name&quot;: null,
+&quot;networks&quot;: null,
+&quot;org_access&quot;: null,
+&quot;org_id&quot;: null,
+&quot;org_name&quot;: &quot;kbreit@insight.com&quot;,
+&quot;output_format&quot;: &quot;snakecase&quot;,
+&quot;output_level&quot;: &quot;normal&quot;,
+&quot;protocol&quot;: &quot;https&quot;,
+&quot;rate_limit_retry_time&quot;: 165,
+&quot;state&quot;: &quot;absent&quot;,
+&quot;tags&quot;: null,
+&quot;timeout&quot;: 30,
+&quot;use_https&quot;: true,
+&quot;use_proxy&quot;: false,
+&quot;validate_certs&quot;: true
+}
+},
+&quot;item&quot;: &quot;meraki+janedoe@kevinbreit.net&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+},
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: true,
+&quot;data&quot;: null,
+&quot;failed&quot;: false,
+&quot;invocation&quot;: {
+&quot;module_args&quot;: {
+&quot;auth_key&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;email&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+&quot;follow_redirects&quot;: &quot;all&quot;,
+&quot;host&quot;: &quot;api.meraki.com&quot;,
+&quot;internal_error_retry_time&quot;: 60,
+&quot;name&quot;: null,
+&quot;networks&quot;: null,
+&quot;org_access&quot;: null,
+&quot;org_id&quot;: null,
+&quot;org_name&quot;: &quot;kbreit@insight.com&quot;,
+&quot;output_format&quot;: &quot;snakecase&quot;,
+&quot;output_level&quot;: &quot;normal&quot;,
+&quot;protocol&quot;: &quot;https&quot;,
+&quot;rate_limit_retry_time&quot;: 165,
+&quot;state&quot;: &quot;absent&quot;,
+&quot;tags&quot;: null,
+&quot;timeout&quot;: 30,
+&quot;use_https&quot;: true,
+&quot;use_proxy&quot;: false,
+&quot;validate_certs&quot;: true
+}
+},
+&quot;item&quot;: &quot;meraki+johndoe@kevinbreit.net&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+},
+{
+&quot;ansible_loop_var&quot;: &quot;item&quot;,
+&quot;changed&quot;: false,
+&quot;failed&quot;: true,
+&quot;invocation&quot;: {
+&quot;module_args&quot;: {
+&quot;auth_key&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;email&quot;: &quot;meraki+jimdoe@kevinbreit.net&quot;,
+&quot;follow_redirects&quot;: &quot;all&quot;,
+&quot;host&quot;: &quot;api.meraki.com&quot;,
+&quot;internal_error_retry_time&quot;: 60,
+&quot;name&quot;: null,
+&quot;networks&quot;: null,
+&quot;org_access&quot;: null,
+&quot;org_id&quot;: null,
+&quot;org_name&quot;: &quot;kbreit@insight.com&quot;,
+&quot;output_format&quot;: &quot;snakecase&quot;,
+&quot;output_level&quot;: &quot;normal&quot;,
+&quot;protocol&quot;: &quot;https&quot;,
+&quot;rate_limit_retry_time&quot;: 165,
+&quot;state&quot;: &quot;absent&quot;,
+&quot;tags&quot;: null,
+&quot;timeout&quot;: 30,
+&quot;use_https&quot;: true,
+&quot;use_proxy&quot;: false,
+&quot;validate_certs&quot;: true
+}
+},
+&quot;item&quot;: &quot;meraki+jimdoe@kevinbreit.net&quot;,
+&quot;msg&quot;: &quot;No admin_id found&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:374" name="[localhost] meraki: meraki_admin : Query all administrators auth_key={{auth_key}}, state=query, org_name={{test_org_name}}" time="2.049280">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: [
+{
+&quot;account_status&quot;: &quot;ok&quot;,
+&quot;email&quot;: &quot;kbreit@insight.com&quot;,
+&quot;has_api_key&quot;: true,
+&quot;id&quot;: &quot;315782&quot;,
+&quot;last_active&quot;: 1577125449,
+&quot;name&quot;: &quot;Kevin Breit&quot;,
+&quot;networks&quot;: [],
+&quot;org_access&quot;: &quot;full&quot;,
+&quot;tags&quot;: [],
+&quot;two_factor_auth_enabled&quot;: false
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_admin-hhjknhf9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_admin/tasks/main.yml:382" name="[localhost] meraki: meraki_admin : assert that=['query_all_deleted.data | length == 1']" time="0.028017">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

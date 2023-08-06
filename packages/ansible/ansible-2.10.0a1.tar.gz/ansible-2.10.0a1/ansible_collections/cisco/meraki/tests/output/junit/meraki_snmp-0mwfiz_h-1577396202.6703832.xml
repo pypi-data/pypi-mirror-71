@@ -1,0 +1,487 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="36" time="53.935842514038086">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_snmp-0mwfiz_h" skipped="1" tests="36" time="53.935842514038086">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:7" name="[localhost] meraki: meraki_snmp : Test an API key is provided msg=Please define an API key" time="0.403968">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:12" name="[localhost] meraki: meraki_snmp : Create SNMP network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, type=appliance" time="4.408069">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682432&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:22" name="[localhost] meraki: meraki_snmp : set_fact net_id=new_net.data.id" time="0.020519">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;new_net.data.id&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:25" name="[localhost] meraki: meraki_snmp : Query all SNMP settings auth_key={{auth_key}}, org_name={{test_org_name}}, state=query" time="2.320112">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:33" name="[localhost] meraki: meraki_snmp : debug msg={{snmp_query}}" time="0.408738">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+            &quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+            &quot;port&quot;: 16100,
+            &quot;v2c_enabled&quot;: false,
+            &quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+            &quot;v3_enabled&quot;: false,
+            &quot;v3_priv_mode&quot;: &quot;AES128&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:36" name="[localhost] meraki: meraki_snmp : Enable SNMPv2c auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v2c_enabled=True" time="2.671173">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2_community_string&quot;: &quot;o/yjVHMb&quot;,
+&quot;v2c_enabled&quot;: true,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:45" name="[localhost] meraki: meraki_snmp : debug msg={{snmp_v2_enable}}" time="0.373397">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+            &quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+            &quot;port&quot;: 16100,
+            &quot;v2_community_string&quot;: &quot;o/yjVHMb&quot;,
+            &quot;v2c_enabled&quot;: true,
+            &quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+            &quot;v3_enabled&quot;: false,
+            &quot;v3_priv_mode&quot;: &quot;AES128&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;v2CommunityString&quot;: &quot;o/yjVHMb&quot;,
+                &quot;v2cEnabled&quot;: true
+            },
+            &quot;before&quot;: {
+                &quot;v2cEnabled&quot;: false
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:48" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v2_enable.data.v2_community_string is defined', 'snmp_v2_enable.data.v2c_enabled == true']" time="0.387859">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:53" name="[localhost] meraki: meraki_snmp : Disable SNMPv2c auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v2c_enabled=False" time="2.821129">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:62" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v2_disable.data.v2_community_string is not defined', 'snmp_v2_disable.data.v2c_enabled == False']" time="0.469568">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:67" name="[localhost] meraki: meraki_snmp : Enable SNMPv2c with org_id auth_key={{auth_key}}, org_id={{test_org_id}}, state=present, v2c_enabled=True" time="2.247728">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2_community_string&quot;: &quot;o/yjVHMb&quot;,
+&quot;v2c_enabled&quot;: true,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:76" name="[localhost] meraki: meraki_snmp : debug msg={{snmp_v2_enable_id}}" time="0.363146">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+            &quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+            &quot;port&quot;: 16100,
+            &quot;v2_community_string&quot;: &quot;o/yjVHMb&quot;,
+            &quot;v2c_enabled&quot;: true,
+            &quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+            &quot;v3_enabled&quot;: false,
+            &quot;v3_priv_mode&quot;: &quot;AES128&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;v2CommunityString&quot;: &quot;o/yjVHMb&quot;,
+                &quot;v2cEnabled&quot;: true
+            },
+            &quot;before&quot;: {
+                &quot;v2cEnabled&quot;: false
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200,
+        &quot;warnings&quot;: [
+            &quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:79" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v2_enable_id.data.v2_community_string is defined', 'snmp_v2_enable_id.data.v2c_enabled == true']" time="0.360005">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:84" name="[localhost] meraki: meraki_snmp : Disable SNMPv2c with org_id auth_key={{auth_key}}, org_id={{test_org_id}}, state=present, v2c_enabled=False" time="1.935618">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200,
+&quot;warnings&quot;: [
+&quot;The value 133277 (type int) in a string field was converted to '133277' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:93" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v2_disable_id.data.v2_community_string is not defined', 'snmp_v2_disable_id.data.v2c_enabled == False']" time="0.441136">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:98" name="[localhost] meraki: meraki_snmp : Enable SNMPv3 with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=True, v3_auth_mode=SHA, v3_auth_pass=ansiblepass, v3_priv_mode=AES128, v3_priv_pass=ansiblepass" time="1.870778">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_auth_pass&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;,
+&quot;v3_enabled&quot;: true,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+&quot;v3_priv_pass&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:112" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v3_enable_check.data.v3_enabled == True', 'snmp_v3_enable_check.changed == True']" time="0.573256">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:117" name="[localhost] meraki: meraki_snmp : Enable SNMPv3 auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=True, v3_auth_mode=SHA, v3_auth_pass=ansiblepass, v3_priv_mode=AES128, v3_priv_pass=ansiblepass" time="4.443675">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: true,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+&quot;v3_user&quot;: &quot;o/yjVHMb&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:130" name="[localhost] meraki: meraki_snmp : assert that=['snmp_v3_enable.data.v3_enabled == True', 'snmp_v3_enable.changed == True']" time="0.521345">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:135" name="[localhost] meraki: meraki_snmp : Check for idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=True, v3_auth_mode=SHA, v3_auth_pass=ansiblepass, v3_priv_mode=AES128, v3_priv_pass=ansiblepass" time="2.205652">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: true,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+&quot;v3_user&quot;: &quot;o/yjVHMb&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:148" name="[localhost] meraki: meraki_snmp : debug msg={{snmp_idempotent}}" time="0.510702">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+            &quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+            &quot;port&quot;: 16100,
+            &quot;v2c_enabled&quot;: false,
+            &quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+            &quot;v3_enabled&quot;: true,
+            &quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+            &quot;v3_user&quot;: &quot;o/yjVHMb&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:151" name="[localhost] meraki: meraki_snmp : assert that=['snmp_idempotent.changed == False', 'snmp_idempotent.data is defined']" time="0.469990">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:156" name="[localhost] meraki: meraki_snmp : Add peer IPs auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=True, v3_auth_mode=SHA, v3_auth_pass=ansiblepass, v3_priv_mode=AES128, v3_priv_pass=ansiblepass, peer_ips=1.1.1.1;2.2.2.2" time="2.234195">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: true,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+&quot;v3_user&quot;: &quot;o/yjVHMb&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:170" name="[localhost] meraki: meraki_snmp : debug msg={{peers}}" time="0.432491">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+            &quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+            &quot;port&quot;: 16100,
+            &quot;v2c_enabled&quot;: false,
+            &quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+            &quot;v3_enabled&quot;: true,
+            &quot;v3_priv_mode&quot;: &quot;AES128&quot;,
+            &quot;v3_user&quot;: &quot;o/yjVHMb&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:173" name="[localhost] meraki: meraki_snmp : assert that=['peers.data.peer_ips is defined']" time="0.359191">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:177" name="[localhost] meraki: meraki_snmp : Add invalid peer IPs auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, peer_ips=1.1.1.1 2.2.2.2" time="1.304565">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;Peer IP addresses are semi-colon delimited.&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:187" name="[localhost] meraki: meraki_snmp : assert that=&quot;Peer IP addresses are semi-colon delimited.&quot; in invalid_peers.msg" time="0.361844">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:191" name="[localhost] meraki: meraki_snmp : Set short password auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=True, v3_auth_mode=SHA, v3_auth_pass=ansible, v3_priv_mode=AES128, v3_priv_pass=ansible, peer_ips=1.1.1.1;2.2.2.2" time="1.294071">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;v3_auth_pass and v3_priv_pass must both be at least 8 characters long.&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:206" name="[localhost] meraki: meraki_snmp : debug msg={{short_password}}" time="0.464725">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: false,
+        &quot;failed&quot;: true,
+        &quot;msg&quot;: &quot;v3_auth_pass and v3_priv_pass must both be at least 8 characters long.&quot;,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:209" name="[localhost] meraki: meraki_snmp : assert that=['&quot;at least 8&quot; in short_password.msg']" time="0.541857">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:213" name="[localhost] meraki: meraki_snmp : Set network access type to community string auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, access=community, community_string=abc123" time="4.246805">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;community&quot;,
+&quot;community_string&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:224" name="[localhost] meraki: meraki_snmp : debug var=set_net_community" time="0.392184">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_net_community&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;community&quot;,
+            &quot;community_string&quot;: &quot;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:227" name="[localhost] meraki: meraki_snmp : assert that=['set_net_community is changed', 'set_net_community.data is defined']" time="0.470112">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:232" name="[localhost] meraki: meraki_snmp : Set network access type to username auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, access=users, users=[{'username': 'ansibleuser', 'passphrase': 'ansiblepass'}]" time="4.640937">
+			<failure message="HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297682432/snmpSettings - [&quot;Each element in 'users' must be an object&quot;]" type="failure">{
+&quot;body&quot;: {
+&quot;errors&quot;: [
+&quot;Each element in 'users' must be an object&quot;
+]
+},
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 400 - https://api.meraki.com/api/v0/networks/N_624874448297682432/snmpSettings - [\&quot;Each element in 'users' must be an object\&quot;]&quot;,
+&quot;response&quot;: &quot;HTTP Error 400: Bad Request&quot;,
+&quot;status&quot;: 400,
+&quot;warnings&quot;: [
+&quot;The value {'username': 'ansibleuser', 'passphrase': 'ansiblepass'} (type dict) in a string field was converted to \&quot;{'username': 'ansibleuser', 'passphrase': 'ansiblepass'}\&quot; (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:288" name="[localhost] meraki: meraki_snmp : Disable SNMPv3 auth_key={{auth_key}}, org_name={{test_org_name}}, state=present, v3_enabled=False, v3_auth_mode=SHA, v3_auth_pass=ansiblepass, v3_priv_mode=AES128, v3_priv_pass=ansiblepass" time="2.756537">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;hostname&quot;: &quot;n110.meraki.com&quot;,
+&quot;peer_ips&quot;: &quot;1.1.1.1;2.2.2.2&quot;,
+&quot;port&quot;: 16100,
+&quot;v2c_enabled&quot;: false,
+&quot;v3_auth_mode&quot;: &quot;SHA&quot;,
+&quot;v3_enabled&quot;: false,
+&quot;v3_priv_mode&quot;: &quot;AES128&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_snmp-umk_lg33-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_snmp/tasks/main.yml:300" name="[localhost] meraki: meraki_snmp : Delete SNMP network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=absent" time="4.208764">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

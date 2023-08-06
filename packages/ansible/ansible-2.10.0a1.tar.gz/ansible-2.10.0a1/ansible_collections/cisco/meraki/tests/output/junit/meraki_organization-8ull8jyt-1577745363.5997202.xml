@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="2" tests="10" time="13.37630581855774">
+	<testsuite disabled="0" errors="0" failures="2" name="meraki_organization-8ull8jyt" skipped="1" tests="10" time="13.37630581855774">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:7" name="[localhost] meraki: meraki_organization : Test an API key is provided msg=Please define an API key" time="0.458017">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:12" name="[localhost] meraki: meraki_organization : Create a new organization named IntTestOrg auth_key={{ auth_key }}, org_name=IntTestOrg, state=present, output_level=debug" time="2.561493">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;id&quot;: &quot;624874448297657948&quot;,
+&quot;name&quot;: &quot;IntTestOrg&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/o/Vw10vaUb/manage/organization/overview&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;method&quot;: &quot;POST&quot;,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201,
+&quot;url&quot;: &quot;https://api.meraki.com/api/v0/organizations&quot;,
+&quot;warnings&quot;: [
+&quot;Enable debug output because ANSIBLE_DEBUG was set or output_level is set to debug.&quot;
+]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:20" name="[localhost] meraki: meraki_organization : debug msg={{new_org}}" time="0.403055">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;ansible_facts&quot;: {
+            &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+        },
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;id&quot;: &quot;624874448297657948&quot;,
+            &quot;name&quot;: &quot;IntTestOrg&quot;,
+            &quot;url&quot;: &quot;https://n110.meraki.com/o/Vw10vaUb/manage/organization/overview&quot;
+        },
+        &quot;deprecations&quot;: [
+            {
+                &quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+                &quot;version&quot;: &quot;2.12&quot;
+            }
+        ],
+        &quot;failed&quot;: false,
+        &quot;method&quot;: &quot;POST&quot;,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201,
+        &quot;url&quot;: &quot;https://api.meraki.com/api/v0/organizations&quot;,
+        &quot;warnings&quot;: [
+            &quot;Enable debug output because ANSIBLE_DEBUG was set or output_level is set to debug.&quot;
+        ]
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:23" name="[localhost] meraki: meraki_organization : Clone IntTestOrg auth_key={{ auth_key }}, clone=IntTestOrg, org_name=IntTestOrgCloned, state=present" time="2.868673">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;id&quot;: &quot;624874448297657949&quot;,
+&quot;name&quot;: &quot;IntTestOrgCloned&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/o/4gY8_cUb/manage/organization/overview&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:31" name="[localhost] meraki: meraki_organization : debug msg={{cloned_org}}" time="0.365219">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;id&quot;: &quot;624874448297657949&quot;,
+            &quot;name&quot;: &quot;IntTestOrgCloned&quot;,
+            &quot;url&quot;: &quot;https://n110.meraki.com/o/4gY8_cUb/manage/organization/overview&quot;
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:34" name="[localhost] meraki: meraki_organization : set_fact cloned_net_id={{cloned_org.data.id}}" time="0.359691">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;cloned_net_id&quot;: &quot;624874448297657949&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:37" name="[localhost] meraki: meraki_organization : Rename IntTestOrg auth_key={{ auth_key }}, org_name=IntTestOrgRenamed, org_id={{ new_org.data.id }}, state=present" time="1.701072">
+			<failure message="HTTP error 404 - https://api.meraki.com/api/v0/organizations/624874448297657948" type="failure">{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 404 - https://api.meraki.com/api/v0/organizations/624874448297657948&quot;,
+&quot;response&quot;: &quot;HTTP Error 404: Not Found&quot;,
+&quot;status&quot;: 404
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:115" name="[localhost] meraki: meraki_organization : Delete cloned organizations with check mode auth_key={{ auth_key }}, state=absent, org_name=IntTestOrgCloned, delete_confirm={{cloned_net_id}}" time="2.126402">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:124" name="[localhost] meraki: meraki_organization : assert that=['deleted_org_check is changed']" time="0.362845">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_organization-tsn2fxj9-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_organization/tasks/tests.yml:128" name="[localhost] meraki: meraki_organization : Delete cloned organizations auth_key={{ auth_key }}, state=absent, org_name=IntTestOrgCloned, delete_confirm={{cloned_net_id}}" time="2.169839">
+			<failure message="HTTP error 404 - https://api.meraki.com/api/v0/organizations/624874448297657949" type="failure">{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 404 - https://api.meraki.com/api/v0/organizations/624874448297657949&quot;,
+&quot;response&quot;: &quot;HTTP Error 404: Not Found&quot;,
+&quot;status&quot;: 404
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

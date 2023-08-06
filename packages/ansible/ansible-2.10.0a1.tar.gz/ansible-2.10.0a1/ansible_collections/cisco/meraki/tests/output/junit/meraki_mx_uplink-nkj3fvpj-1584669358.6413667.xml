@@ -1,0 +1,286 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="15" time="37.52150750160217">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_mx_uplink-nkj3fvpj" skipped="1" tests="15" time="37.52150750160217">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:7" name="[localhost] meraki: meraki_mx_uplink : Test an API key is provided msg=Please define an API key" time="0.604889">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:12" name="[localhost] meraki: meraki_mx_uplink : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink, type=appliance" time="5.114274">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297683796&quot;,
+&quot;name&quot;: &quot;Home - Appliance - Uplink&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;,
+&quot;url&quot;: &quot;https://n110.meraki.com/Home-Appliance-U/n/2iLopbUb/manage/usage/list&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:21" name="[localhost] meraki: meraki_mx_uplink : Set MX uplink settings with check mode auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink, wan1={'bandwidth_limits': {'limit_down': 1000000, 'limit_up': 100}}, cellular={'bandwidth_limits': {'limit_down': 0, 'limit_up': 0}}" time="5.510012">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;cellular&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 0,
+&quot;limit_up&quot;: 0
+}
+},
+&quot;wan1&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 1000000,
+&quot;limit_up&quot;: 100
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:39" name="[localhost] meraki: meraki_mx_uplink : debug var=set_bw_check" time="0.704732">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_bw_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;cellular&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 0,
+                    &quot;limit_up&quot;: 0
+                }
+            },
+            &quot;wan1&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 1000000,
+                    &quot;limit_up&quot;: 100
+                }
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;bandwidth_limits&quot;: {
+                        &quot;limit_up&quot;: 100
+                    }
+                }
+            },
+            &quot;before&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;bandwidth_limits&quot;: {
+                        &quot;limit_up&quot;: 1000000
+                    }
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:42" name="[localhost] meraki: meraki_mx_uplink : assert that=['set_bw_check is changed', 'set_bw_check.data is defined', 'set_bw_check.diff is defined']" time="0.610767">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:48" name="[localhost] meraki: meraki_mx_uplink : Set MX uplink settings auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink, wan1={'bandwidth_limits': {'limit_down': 1000000, 'limit_up': 1000}}, cellular={'bandwidth_limits': {'limit_down': 0, 'limit_up': 0}}" time="5.807586">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;cellular&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 0,
+&quot;limit_up&quot;: 0
+}
+},
+&quot;wan1&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 1000000,
+&quot;limit_up&quot;: 1000
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:65" name="[localhost] meraki: meraki_mx_uplink : debug var=set_bw" time="0.610152">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_bw&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;cellular&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 0,
+                    &quot;limit_up&quot;: 0
+                }
+            },
+            &quot;wan1&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 1000000,
+                    &quot;limit_up&quot;: 1000
+                }
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;bandwidth_limits&quot;: {
+                        &quot;limit_up&quot;: 1000
+                    }
+                }
+            },
+            &quot;before&quot;: {
+                &quot;wan1&quot;: {
+                    &quot;bandwidth_limits&quot;: {
+                        &quot;limit_up&quot;: 1000000
+                    }
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:68" name="[localhost] meraki: meraki_mx_uplink : assert that=['set_bw is changed', 'set_bw.data is defined']" time="0.656656">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:73" name="[localhost] meraki: meraki_mx_uplink : Set MX uplink settings with idempotency auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink, wan1={'bandwidth_limits': {'limit_down': 1000000, 'limit_up': 1000}}, cellular={'bandwidth_limits': {'limit_down': 0, 'limit_up': 0}}" time="4.787939">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;cellular&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 0,
+&quot;limit_up&quot;: 0
+}
+},
+&quot;wan1&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 1000000,
+&quot;limit_up&quot;: 1000
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:90" name="[localhost] meraki: meraki_mx_uplink : debug var=set_bw_idempotent" time="0.676275">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;set_bw_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;cellular&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 0,
+                    &quot;limit_up&quot;: 0
+                }
+            },
+            &quot;wan1&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 1000000,
+                    &quot;limit_up&quot;: 1000
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:93" name="[localhost] meraki: meraki_mx_uplink : assert that=['set_bw_idempotent is not changed', 'set_bw_idempotent.data is defined']" time="0.699064">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:98" name="[localhost] meraki: meraki_mx_uplink : Query MX uplink settings auth_key={{auth_key}}, state=query, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink" time="3.900869">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;cellular&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 0,
+&quot;limit_up&quot;: 0
+}
+},
+&quot;wan1&quot;: {
+&quot;bandwidth_limits&quot;: {
+&quot;limit_down&quot;: 1000000,
+&quot;limit_up&quot;: 1000
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:107" name="[localhost] meraki: meraki_mx_uplink : debug var=query_all" time="0.644879">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;cellular&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 0,
+                    &quot;limit_up&quot;: 0
+                }
+            },
+            &quot;wan1&quot;: {
+                &quot;bandwidth_limits&quot;: {
+                    &quot;limit_down&quot;: 1000000,
+                    &quot;limit_up&quot;: 1000
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:110" name="[localhost] meraki: meraki_mx_uplink : assert that=['query_all.data is defined']" time="0.684096">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_uplink-5tqifr6l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_uplink/tasks/main.yml:119" name="[localhost] meraki: meraki_mx_uplink : Delete test network auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_net_name}} - Uplink" time="6.509318">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

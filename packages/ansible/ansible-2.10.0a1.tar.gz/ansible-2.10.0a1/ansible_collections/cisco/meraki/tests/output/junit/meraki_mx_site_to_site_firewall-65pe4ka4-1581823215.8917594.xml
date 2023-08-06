@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="2" failures="0" tests="3" time="3.7054853439331055">
+	<testsuite disabled="0" errors="2" failures="0" name="meraki_mx_site_to_site_firewall-65pe4ka4" skipped="1" tests="3" time="3.7054853439331055">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_site_to_site_firewall-c3z9faeu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_site_to_site_firewall/tasks/main.yml:7" name="[localhost] meraki: meraki_mx_site_to_site_firewall : Test an API key is provided msg=Please define an API key" time="0.355599">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_site_to_site_firewall-c3z9faeu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_site_to_site_firewall/tasks/main.yml:12" name="[localhost] meraki: meraki_mx_site_to_site_firewall : Query firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, state=query" time="2.112906">
+			<error message="NameError: name 'net_id' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823212.8745327-73395187493374/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823212.8745327-73395187493374/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823212.8745327-73395187493374/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_mx_site_to_site_firewall', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_mx_site_to_site_firewall_payload_ujatwaky/ansible_meraki_mx_site_to_site_firewall_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_mx_site_to_site_firewall.py&quot;, line 336, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_mx_site_to_site_firewall_payload_ujatwaky/ansible_meraki_mx_site_to_site_firewall_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_mx_site_to_site_firewall.py&quot;, line 277, in main
+NameError: name 'net_id' is not defined
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_site_to_site_firewall-c3z9faeu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_site_to_site_firewall/tasks/main.yml:279" name="[localhost] meraki: meraki_mx_site_to_site_firewall : Delete all firewall rules auth_key={{ auth_key }}, org_name={{test_org_name}}, state=present, rules=[]" time="1.236980">
+			<error message="NameError: name 'net_id' is not defined" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823214.939932-79971810813020/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823214.939932-79971810813020/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1581823214.939932-79971810813020/AnsiballZ_meraki_mx_site_to_site_firewall.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_mx_site_to_site_firewall', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_mx_site_to_site_firewall_payload_oiytwv5p/ansible_meraki_mx_site_to_site_firewall_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_mx_site_to_site_firewall.py&quot;, line 336, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_mx_site_to_site_firewall_payload_oiytwv5p/ansible_meraki_mx_site_to_site_firewall_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_mx_site_to_site_firewall.py&quot;, line 279, in main
+NameError: name 'net_id' is not defined
+</error>
+		</testcase>
+	</testsuite>
+</testsuites>

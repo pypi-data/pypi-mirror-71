@@ -1,0 +1,347 @@
+[------------- Sending Request to Server ------------
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthEstcCloud"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthMonLan"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricDceSrv"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthLan"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricLanPinGroup"
+inDn="fabric/lan"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="flowctrlDefinition"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="vnicVnicBehPolicy"
+inDn="org-root"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricVlan"
+inDn="fabric/lan"
+inHierarchical="false">
+    <inFilter>
+<eq class="fabricVlan" property="ifRole" value="network"/>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthLan"
+inDn="fabric/lan"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassDefinition"
+inDn="fabric/lan"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthLanPc"
+inDn="fabric/lan/A"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthLanPc"
+inDn="fabric/lan/B"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configScope
+dn="fabric/lan/A"
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+inClass="fabricEthLanEp"
+inHierarchical="false"
+inRecursive="false">
+    <inFilter>
+    </inFilter>
+</configScope>
+
+<configScope
+dn="fabric/lan/B"
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+inClass="fabricEthLanEp"
+inHierarchical="false"
+inRecursive="false">
+    <inFilter>
+    </inFilter>
+</configScope>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricEthEstc"
+inDn="fabric/eth-estc"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="fabricDceSwSrv"
+inDn="fabric/server"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassEthClassified"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+<eq class="qosclassEthClassified" property="priority" value="platinum"/>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassEthClassified"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+<eq class="qosclassEthClassified" property="priority" value="gold"/>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassEthClassified"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+<eq class="qosclassEthClassified" property="priority" value="silver"/>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassEthClassified"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+<eq class="qosclassEthClassified" property="priority" value="bronze"/>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassEthBE"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveChildren
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassFc"
+inDn="fabric/lan/classes"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveChildren>
+
+<configResolveClass
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+classId="qosclassSlowDrain"
+inHierarchical="false">
+    <inFilter>
+    </inFilter>
+</configResolveClass>
+
+<configResolveDn
+dn="sys"
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+inHierarchical="false">
+</configResolveDn>
+
+<configResolveDn
+dn="sys"
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+inHierarchical="false">
+</configResolveDn>
+
+<configEstimateImpact
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7">
+    <inConfigs>
+<pair key="fabric/lan/classes/class-platinum">
+    <qosclassEthClassified
+    adminState="enabled"
+    drop="drop"
+    mtu="9216"
+    priority="platinum"
+    dn="fabric/lan/classes/class-platinum"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-gold">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="gold"
+    dn="fabric/lan/classes/class-gold"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-silver">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="silver"
+    dn="fabric/lan/classes/class-silver"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-bronze">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="bronze"
+    dn="fabric/lan/classes/class-bronze"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-best-effort">
+    <qosclassEthBE
+    mtu="9216"
+    dn="fabric/lan/classes/class-best-effort"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthBE>
+</pair>
+    </inConfigs>
+</configEstimateImpact>
+
+<configConfMos
+cookie="1591805204/8c69f0a8-871b-4c41-8976-ec2344587eb7"
+inHierarchical="false">
+    <inConfigs>
+<pair key="fabric/lan/classes/class-platinum">
+    <qosclassEthClassified
+    adminState="enabled"
+    drop="drop"
+    mtu="9216"
+    priority="platinum"
+    dn="fabric/lan/classes/class-platinum"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-gold">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="gold"
+    dn="fabric/lan/classes/class-gold"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-silver">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="silver"
+    dn="fabric/lan/classes/class-silver"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-bronze">
+    <qosclassEthClassified
+    mtu="9216"
+    priority="bronze"
+    dn="fabric/lan/classes/class-bronze"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthClassified>
+</pair>
+<pair key="fabric/lan/classes/class-best-effort">
+    <qosclassEthBE
+    mtu="9216"
+    dn="fabric/lan/classes/class-best-effort"
+    
+    status="created,modified"
+    
+    sacl="addchild,del,mod">
+    </qosclassEthBE>
+</pair>
+    </inConfigs>
+</configConfMos>
+-----------------------------------------------------]

@@ -1,0 +1,502 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "COPYING",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+   "format": 1
+  },
+  {
+   "name": "galaxy.yml.in",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ba21f50b97b7f801dd811f96d4941327fccab34b13311e9bfcc5facfeec16999",
+   "format": 1
+  },
+  {
+   "name": "tests",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.9.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "34cee687a81b0832097200c4d67ffc497c2056f4a86feb17a71406414e3d6570",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "471c16a6346df1b74757306a436cbab143fe65c30e6f9cda1f5c7179d6012b73",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.10.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "745d4b3f1fa4dc477a4271337ac613e0a5d004f420591e531cfd8cfd70dfeb81",
+   "format": 1
+  },
+  {
+   "name": "tests/.gitignore",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b5726d3ec9335a09c124469eca039523847a6b0f08a083efaefd002b83326600",
+   "format": 1
+  },
+  {
+   "name": "tests/integration",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/files/Dockerfile",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a02ba1b2230a74a50564871ed786ee7630c0a4245b8fbb4a582a46c310116fd5",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/files/start.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bb80ab18f5df29c7c77f8acea5285af4f0f4d1ddac161801d0ff26ac242c2d86",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_workdir.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6b6bda6cff4560e2feba738e98cab6b4547f514b07d663653164561cfb2e9f3d",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_users.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1a48eed443ea3c636af09a6b4fc582a4cb5b54a9a9c89ed6e174270a3933b1ae",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_labels.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "157287f51969989865cd7c1a34849fc5a9145e2f9ac283d306ce3077f082e0bf",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a3683d217ecce01b56d5b5b08095689b0e4109b9d362a9ff57185b4571469fcd",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_stopsignal.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "543a6ce2e1a6fb59eb0723f77f41a5877980276d10b89a3e0fa032fa5a390c13",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/build_test_container.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c9caa9a117963c43f4cb167c688e0d3fe40e5a94d978821adb3753ff0327332c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_ports.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ca05a7d9bbfd4c3008f3849e345a642bc408d81f20951d292de68fcdb049621c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container/tasks/idem_volumes.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a8a03ac9c3468fb25287b1338480fa19264a11f9383e6f86269ffb68c1604076",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_container_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3f3f7888f8d4b02194b01ebfc162e12751a736bfa0c78dc5af2a9f4d933c87d6",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6844ce4970c7650072fd11d5c31a0323b8f868619f6038357ef7cae671665a7f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_buildah",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_buildah/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "706de11cf3d424148cbe8060c09e0417ab24cb35d9b4fb7af47595d43722f9b3",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_buildah/test_connection.inventory",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5012fc0a2af812b87b675f31cd605ecf8d80fe32667b6ed20ea51fe0c8685742",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_network_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_network_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_network_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a174d23da44b07628cd0328f7568cd40dc35f2203cb3694d90dcb9cef7c3d045",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_volume_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_volume_info/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_volume_info/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e614b3532e6cc3a64a0215a4d8b484fadfa3053f87bfc63be8fe281b6877c675",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image/files",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image/files/Containerfile",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ec6bc9968ca494ec22fcb0bed27fc12ddf2241fea1fe58d0d8a4f0b33487b506",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image/tasks",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/podman_image/tasks/main.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d5e08c3db15d063e8230994ee628b13605df132c50379fe753dc7aa627c319fd",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection/test_connection.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a0c126383c62ba38cf5688d282006c1bc4943d95927bb1e95d3db02a1180c03b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_podman",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_podman/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0d90338274f3a8d2540a17265b3064918c8989a266fd16348cc1b17678d0d877",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/connection_podman/test_connection.inventory",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f75a535c614dbdf71e61eb605b4bd1e857bbec85ff3ae9da0eff6f138f1ae56d",
+   "format": 1
+  },
+  {
+   "name": "CODE-OF-CONDUCT.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5b42ff686c8d61fc9879d2512a9fa01f8810a7274318e7952ad3322eeea02f11",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_image.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "825a6c343c7170be1b8671aa23b83261b16522a49fcdd3a33081e9003a7f632c",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_network_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8aeccc08b1cbbf4e130d347c39dca80689f64d1f66d1af093b9bd7829a81e2c6",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_volume_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "fbd9965063b2d37610ed4e74a85d3626731ff3175ea5eaa20e466bd762523174",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_container_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "bd8a1d58859b00604cfca5876e7fda6c9b1bd43e2fdef21bf82b7c1d1696f249",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_image_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "eeb1cea69e8b56bf2551b6653ed22ace26a9513e437ca4241bc0c6d1d300875d",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/podman_container.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a39bee3dd3eae59d1ef7697711c841a607e6c9d0547e8bb10ebbe64b3c3951b9",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/podman",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/podman/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/podman/common.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ef49c09925d5fdcd70009f7a13b34877f68147097ac7eefb6a5829eb90dc0492",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/connection",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/connection/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/connection/buildah.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4a3396273b074751c294160d2a72e106cf50a700254b458928409797d73d73f9",
+   "format": 1
+  },
+  {
+   "name": "plugins/connection/podman.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "933ca54fd28f37a8f2187ef7476d82050f7e9f206e794c2c6300fe08fe1b268b",
+   "format": 1
+  },
+  {
+   "name": "SECURITY.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "b73dc04e41dbb3774a3244e8e40d13eb97d169caa3e1230a622e077d60c1edd9",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0a5f417558be5845a488252d536d9890ab0f9939e8765b8ed40d19060fdbf464",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

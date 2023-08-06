@@ -1,0 +1,10 @@
+{
+    "docs": "https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/validate-modules.html",
+    "results": [
+        {
+            "message": "The test `ansible-test sanity --test validate-modules` [[explain](https://docs.ansible.com/ansible/2.9/dev_guide/testing/sanity/validate-modules.html)] failed with 7 errors:",
+            "output": "plugins/modules/meraki_switch_stack.py:0:0: doc-choices-do-not-match-spec: Argument 'state' in argument_spec defines choices as (['present', 'query', 'absent']) but documentation defines choices as (['present', 'query'])\nplugins/modules/meraki_switch_stack.py:0:0: parameter-type-not-in-doc: Argument 'name' in argument_spec defines type as 'str' but documentation doesn't define type\nplugins/modules/meraki_switch_stack.py:0:0: parameter-type-not-in-doc: Argument 'serials' in argument_spec defines type as 'list' but documentation doesn't define type\nplugins/modules/meraki_switch_stack.py:0:0: parameter-type-not-in-doc: Argument 'stack_id' in argument_spec defines type as 'str' but documentation doesn't define type\nplugins/modules/meraki_switch_stack.py:0:0: undocumented-parameter: Argument 'name' is listed in the argument_spec, but not documented in the module documentation\nplugins/modules/meraki_switch_stack.py:0:0: undocumented-parameter: Argument 'serials' is listed in the argument_spec, but not documented in the module documentation\nplugins/modules/meraki_switch_stack.py:0:0: undocumented-parameter: Argument 'stack_id' is listed in the argument_spec, but not documented in the module documentation"
+        }
+    ],
+    "verified": false
+}

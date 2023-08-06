@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="7" time="22.398841857910156">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_ms_link_aggregation-39jiha72" skipped="1" tests="7" time="22.398841857910156">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:7" name="[localhost] meraki: meraki_ms_link_aggregation : Test an API key is provided msg=Please define an API key" time="0.592187">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:12" name="[localhost] meraki: meraki_ms_link_aggregation : Create test network auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, type=switch" time="4.121271">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297683727&quot;,
+&quot;name&quot;: &quot;Home - Switch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:21" name="[localhost] meraki: meraki_ms_link_aggregation : Create LAG auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, switch_ports=[{'serial': '{{serial_switch}}', 'port_id': '1'}, {'serial': '{{serial_switch}}', 'port_id': '2'}]" time="6.511816">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;id&quot;: &quot;MTE3MTA2MDdfMA==&quot;,
+&quot;switch_ports&quot;: [
+{
+&quot;port_id&quot;: &quot;1&quot;,
+&quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+},
+{
+&quot;port_id&quot;: &quot;2&quot;,
+&quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+}
+]
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:35" name="[localhost] meraki: meraki_ms_link_aggregation : debug var=create_ports" time="0.598411">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_ports&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;id&quot;: &quot;MTE3MTA2MDdfMA==&quot;,
+            &quot;switch_ports&quot;: [
+                {
+                    &quot;port_id&quot;: &quot;1&quot;,
+                    &quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+                },
+                {
+                    &quot;port_id&quot;: &quot;2&quot;,
+                    &quot;serial&quot;: &quot;Q2HP-2C6E-GTLD&quot;
+                }
+            ]
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 201
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:38" name="[localhost] meraki: meraki_ms_link_aggregation : set_fact lag_id={{create_ports.data.id}}" time="0.597347">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;lag_id&quot;: &quot;MTE3MTA2MDdfMA==&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:41" name="[localhost] meraki: meraki_ms_link_aggregation : Update LAG auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, lag_id={{lag_id}}, switch_ports=[{'serial': '{{serial_switch}}', 'port_id': '1'}, {'serial': '{{serial_switch}}', 'port_id': '2'}, {'serial': '{{serial_switch}}', 'port_id': '3'}, {'serial': '{{serial_switch}}', 'port_id': '4'}]" time="4.554336">
+			<error message="TypeError: get_lags() missing 1 required positional argument: 'net_id'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447845.1812978-132800716430491/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 143, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447845.1812978-132800716430491/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 135, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1584447845.1812978-132800716430491/AnsiballZ_meraki_ms_link_aggregation.py&quot;, line 81, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_ms_link_aggregation', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_z5e5vzbs/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 190, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_ms_link_aggregation_payload_z5e5vzbs/ansible_meraki_ms_link_aggregation_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_ms_link_aggregation.py&quot;, line 162, in main
+TypeError: get_lags() missing 1 required positional argument: 'net_id'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_ms_link_aggregation-fjuqv3q4-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_ms_link_aggregation/tasks/main.yml:76" name="[localhost] meraki: meraki_ms_link_aggregation : Delete LAG auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, lag_id={{lag_id}}" time="5.423473">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

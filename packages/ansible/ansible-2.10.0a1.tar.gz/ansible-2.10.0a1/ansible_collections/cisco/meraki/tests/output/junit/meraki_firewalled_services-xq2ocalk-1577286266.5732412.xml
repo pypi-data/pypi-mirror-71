@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="7" time="27.791298151016235">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_firewalled_services-xq2ocalk" skipped="0" tests="7" time="27.791298151016235">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:7" name="[localhost] meraki: meraki_firewalled_services : Create network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, type=appliance" time="4.594260">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682329&quot;,
+&quot;name&quot;: &quot;IntTestNetworkAppliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:16" name="[localhost] meraki: meraki_firewalled_services : set_fact net_id=create.data.id" time="0.020989">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;create.data.id&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:19" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to blocked with check mode auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP, access=blocked" time="3.675092">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;access&quot;: &quot;blocked&quot;,
+&quot;service&quot;: &quot;ICMP&quot;
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:30" name="[localhost] meraki: meraki_firewalled_services : debug var=icmp_blocked_check" time="0.330414">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;icmp_blocked_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;access&quot;: &quot;blocked&quot;,
+            &quot;service&quot;: &quot;ICMP&quot;
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;access&quot;: &quot;blocked&quot;
+            },
+            &quot;before&quot;: {
+                &quot;access&quot;: &quot;unrestricted&quot;
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:33" name="[localhost] meraki: meraki_firewalled_services : assert that=['icmp_blocked_check.data is defined', 'icmp_blocked_check is changed']" time="0.361964">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:38" name="[localhost] meraki: meraki_firewalled_services : Set icmp service to blocked auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance, service=ICMP, access=blocked" time="13.830726">
+			<error message="AttributeError: 'NoneType' object has no attribute 'items'" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577286248.109414-171404393913927/AnsiballZ_meraki_firewalled_services.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577286248.109414-171404393913927/AnsiballZ_meraki_firewalled_services.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577286248.109414-171404393913927/AnsiballZ_meraki_firewalled_services.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_firewalled_services', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_firewalled_services_payload_yoc31431/ansible_meraki_firewalled_services_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_firewalled_services.py&quot;, line 241, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_firewalled_services_payload_yoc31431/ansible_meraki_firewalled_services_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_firewalled_services.py&quot;, line 227, in main
+  File &quot;/tmp/ansible_meraki_firewalled_services_payload_yoc31431/ansible_meraki_firewalled_services_payload.zip/ansible/module_utils/common/dict_transformations.py&quot;, line 126, in recursive_diff
+AttributeError: 'NoneType' object has no attribute 'items'
+</error>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_firewalled_services-6a1xytxk-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_firewalled_services/tasks/tests.yml:191" name="[localhost] meraki: meraki_firewalled_services : Delete all networks auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name=IntTestNetworkAppliance" time="4.977854">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

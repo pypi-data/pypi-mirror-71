@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="3" time="18.030341625213623">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_config_template-oicbspeb" skipped="1" tests="3" time="18.030341625213623">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-i7hdaagj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:7" name="[localhost] meraki: meraki_config_template : Test an API key is provided msg=Please define an API key" time="0.365802">
+			<skipped message="Conditional result was False" type="skipped"/>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-i7hdaagj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:12" name="[localhost] meraki: meraki_config_template : Query all configuration templates auth_key={{auth_key}}, state=query, org_name={{test_org_name}}" time="12.827991">
+			<failure message="Unable to get configuration templates" type="failure">{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;msg&quot;: &quot;Unable to get configuration templates&quot;,
+&quot;response&quot;: &quot;Request failed: &lt;urlopen error [Errno -3] Temporary failure in name resolution&gt;&quot;,
+&quot;status&quot;: -1
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-i7hdaagj-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:190" name="[localhost] meraki: meraki_config_template : Delete network auth_key={{auth_key}}, state=absent, org_name={{ test_org_name }}, net_name={{ test_net_name }}" time="4.836548">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

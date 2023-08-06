@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="1" time="0.38791441917419434">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_mx_l3_firewall-mhy5ieos" skipped="0" tests="1" time="0.38791441917419434">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_mx_l3_firewall-s3rhgy5k-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_mx_l3_firewall/tasks/main.yml:118" name="[localhost] meraki: meraki_mx_l3_firewall : Update existing rule auth_key={{ auth_key }}, org_name={{test_org_name}}, net_name=TestNetAppliance, state=present, rules=[{'comment': 'Deny all documentation addresses', 'src_port': 'any', 'src_cidr': 'any', 'dest_port': '80,443', 'dest_cidr': '192.0.1.1/32,192.0.1.2/32', 'protocol': 'tcp', 'policy': 'deny'}]" time="0.387914">
+			<failure message="Unable to import meraki_mx_l3_firewall due to positional argument follows keyword argument" type="failure">{
+&quot;msg&quot;: &quot;Unable to import meraki_mx_l3_firewall due to positional argument follows keyword argument&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

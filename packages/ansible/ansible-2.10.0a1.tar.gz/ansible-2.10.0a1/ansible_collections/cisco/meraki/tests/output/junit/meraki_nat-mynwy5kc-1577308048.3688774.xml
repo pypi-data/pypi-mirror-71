@@ -1,0 +1,1412 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="43" time="84.99795508384705">
+	<testsuite disabled="0" errors="0" failures="0" name="meraki_nat-mynwy5kc" skipped="0" tests="43" time="84.99795508384705">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:7" name="[localhost] meraki: meraki_nat : Create test network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, type=appliance" time="4.981295">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;enrollment_string&quot;: null,
+&quot;id&quot;: &quot;N_624874448297682382&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: &quot;&quot;,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:15" name="[localhost] meraki: meraki_nat : Create 1:1 rule with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_one=[{'name': 'Service behind NAT', 'public_ip': '1.2.1.2', 'lan_ip': '192.168.128.1', 'uplink': 'internet1', 'allowed_inbound': [{'protocol': 'tcp', 'destination_ports': [80], 'allowed_ips': ['10.10.10.10']}]}]" time="3.994660">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;one_to_one&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:35" name="[localhost] meraki: meraki_nat : debug var=create_one_one_check" time="0.394688">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_one_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;one_to_one&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_inbound&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;10.10.10.10&quot;
+                                ],
+                                &quot;destination_ports&quot;: [
+                                    &quot;80&quot;
+                                ],
+                                &quot;protocol&quot;: &quot;tcp&quot;
+                            }
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;name&quot;: &quot;Service behind NAT&quot;,
+                        &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;one_to_one&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedInbound&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;10.10.10.10&quot;
+                                    ],
+                                    &quot;destinationPorts&quot;: [
+                                        &quot;80&quot;
+                                    ],
+                                    &quot;protocol&quot;: &quot;tcp&quot;
+                                }
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;name&quot;: &quot;Service behind NAT&quot;,
+                            &quot;publicIp&quot;: &quot;1.2.1.2&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;one_to_one&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:38" name="[localhost] meraki: meraki_nat : assert that=['create_one_one_check is changed']" time="0.364867">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:42" name="[localhost] meraki: meraki_nat : Create 1:1 rule auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_one=[{'name': 'Service behind NAT', 'public_ip': '1.2.1.2', 'lan_ip': '192.168.128.1', 'uplink': 'internet1', 'allowed_inbound': [{'protocol': 'tcp', 'destination_ports': [80], 'allowed_ips': ['10.10.10.10']}]}]" time="4.936729">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;one_to_one&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:61" name="[localhost] meraki: meraki_nat : debug var=create_one_one" time="0.349310">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_one&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;one_to_one&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_inbound&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;10.10.10.10&quot;
+                                ],
+                                &quot;destination_ports&quot;: [
+                                    &quot;80&quot;
+                                ],
+                                &quot;protocol&quot;: &quot;tcp&quot;
+                            }
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;name&quot;: &quot;Service behind NAT&quot;,
+                        &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;one_to_one&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedInbound&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;10.10.10.10&quot;
+                                    ],
+                                    &quot;destinationPorts&quot;: [
+                                        &quot;80&quot;
+                                    ],
+                                    &quot;protocol&quot;: &quot;tcp&quot;
+                                }
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;name&quot;: &quot;Service behind NAT&quot;,
+                            &quot;publicIp&quot;: &quot;1.2.1.2&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;one_to_one&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:64" name="[localhost] meraki: meraki_nat : assert that=['create_one_one is changed']" time="0.338840">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:68" name="[localhost] meraki: meraki_nat : Create 1:1 rule with idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_one=[{'name': 'Service behind NAT', 'public_ip': '1.2.1.2', 'lan_ip': '192.168.128.1', 'uplink': 'internet1', 'allowed_inbound': [{'protocol': 'tcp', 'destination_ports': [80], 'allowed_ips': ['10.10.10.10']}]}]" time="3.631490">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;one_to_one&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:87" name="[localhost] meraki: meraki_nat : debug var=create_one_one_idempotent" time="0.347687">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_one_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;one_to_one&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_inbound&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;10.10.10.10&quot;
+                                ],
+                                &quot;destination_ports&quot;: [
+                                    &quot;80&quot;
+                                ],
+                                &quot;protocol&quot;: &quot;tcp&quot;
+                            }
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;name&quot;: &quot;Service behind NAT&quot;,
+                        &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:90" name="[localhost] meraki: meraki_nat : assert that=['create_one_one_idempotent is not changed']" time="0.339755">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:94" name="[localhost] meraki: meraki_nat : Create 1:many rule with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_many=[{'public_ip': '1.1.1.1', 'uplink': 'internet1', 'port_rules': [{'name': 'Test rule', 'protocol': 'tcp', 'public_port': 10, 'local_ip': '192.168.128.1', 'local_port': 11, 'allowed_ips': ['any']}]}]" time="3.880745">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;one_to_many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:114" name="[localhost] meraki: meraki_nat : debug var=create_one_many_check" time="0.341593">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_many_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;one_to_many&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;port_rules&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;any&quot;
+                                ],
+                                &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                &quot;local_port&quot;: &quot;11&quot;,
+                                &quot;name&quot;: &quot;Test rule&quot;,
+                                &quot;protocol&quot;: &quot;tcp&quot;,
+                                &quot;public_port&quot;: &quot;10&quot;
+                            }
+                        ],
+                        &quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;portRules&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;localIp&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;localPort&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;publicPort&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;publicIp&quot;: &quot;1.1.1.1&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:117" name="[localhost] meraki: meraki_nat : assert that=['create_one_many_check is changed']" time="0.345725">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:121" name="[localhost] meraki: meraki_nat : Create 1:many rule auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_many=[{'public_ip': '1.1.1.1', 'uplink': 'internet1', 'port_rules': [{'name': 'Test rule', 'protocol': 'tcp', 'public_port': 10, 'local_ip': '192.168.128.1', 'local_port': 11, 'allowed_ips': ['any']}]}]" time="4.829811">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;one_to_many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:140" name="[localhost] meraki: meraki_nat : debug var=create_one_many" time="0.337660">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_many&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;one_to_many&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;port_rules&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;any&quot;
+                                ],
+                                &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                &quot;local_port&quot;: &quot;11&quot;,
+                                &quot;name&quot;: &quot;Test rule&quot;,
+                                &quot;protocol&quot;: &quot;tcp&quot;,
+                                &quot;public_port&quot;: &quot;10&quot;
+                            }
+                        ],
+                        &quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;portRules&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;localIp&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;localPort&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;publicPort&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;publicIp&quot;: &quot;1.1.1.1&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:143" name="[localhost] meraki: meraki_nat : assert that=['create_one_many is changed']" time="0.342293">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:147" name="[localhost] meraki: meraki_nat : Create 1:many rule with idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, one_to_many=[{'public_ip': '1.1.1.1', 'uplink': 'internet1', 'port_rules': [{'name': 'Test rule', 'protocol': 'tcp', 'public_port': 10, 'local_ip': '192.168.128.1', 'local_port': 11, 'allowed_ips': ['any']}]}]" time="3.817046">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;one_to_many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:166" name="[localhost] meraki: meraki_nat : debug var=create_one_many_idempotent" time="0.335981">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_one_many_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;one_to_many&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;port_rules&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;any&quot;
+                                ],
+                                &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                &quot;local_port&quot;: &quot;11&quot;,
+                                &quot;name&quot;: &quot;Test rule&quot;,
+                                &quot;protocol&quot;: &quot;tcp&quot;,
+                                &quot;public_port&quot;: &quot;10&quot;
+                            }
+                        ],
+                        &quot;public_ip&quot;: &quot;1.1.1.1&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:169" name="[localhost] meraki: meraki_nat : assert that=['create_one_many_idempotent is not changed']" time="0.350748">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:173" name="[localhost] meraki: meraki_nat : Create port forwarding rule with check mode auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, port_forwarding=[{'name': 'Test map', 'lan_ip': '192.168.128.1', 'uplink': 'both', 'protocol': 'tcp', 'allowed_ips': ['1.1.1.1'], 'public_port': 10, 'local_port': 11}]" time="3.623456">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:191" name="[localhost] meraki: meraki_nat : debug var=create_pf_check" time="0.338878">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_pf_check&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.1&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedIps&quot;: [
+                                &quot;1.1.1.1&quot;
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;localPort&quot;: &quot;11&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;publicPort&quot;: &quot;10&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:194" name="[localhost] meraki: meraki_nat : assert that=['create_pf_check is changed']" time="0.337180">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:198" name="[localhost] meraki: meraki_nat : Create port forwarding rule auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, port_forwarding=[{'name': 'Test map', 'lan_ip': '192.168.128.1', 'uplink': 'both', 'protocol': 'tcp', 'allowed_ips': ['1.1.1.1'], 'public_port': 10, 'local_port': 11}]" time="4.838129">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:215" name="[localhost] meraki: meraki_nat : debug var=create_pf" time="0.344910">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_pf&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.1&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedIps&quot;: [
+                                &quot;1.1.1.1&quot;
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;localPort&quot;: &quot;11&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;publicPort&quot;: &quot;10&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: []
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:218" name="[localhost] meraki: meraki_nat : assert that=['create_pf is changed']" time="0.350311">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:222" name="[localhost] meraki: meraki_nat : Create port forwarding rule with idempotency auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, port_forwarding=[{'name': 'Test map', 'lan_ip': '192.168.128.1', 'uplink': 'both', 'protocol': 'tcp', 'allowed_ips': ['1.1.1.1'], 'public_port': 10, 'local_port': 11}]" time="4.106597">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.1&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:239" name="[localhost] meraki: meraki_nat : debug var=create_pf_idempotent" time="0.344917">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_pf_idempotent&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.1&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:242" name="[localhost] meraki: meraki_nat : assert that=['create_pf_idempotent is not changed', 'create_pf_idempotent.data.port_forwarding is defined']" time="0.339638">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:247" name="[localhost] meraki: meraki_nat : Create multiple rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=present, port_forwarding=[{'name': 'Test map', 'lan_ip': '192.168.128.1', 'uplink': 'both', 'protocol': 'tcp', 'allowed_ips': ['1.1.1.2'], 'public_port': 10, 'local_port': 11}], one_to_many=[{'public_ip': '1.1.1.3', 'uplink': 'internet1', 'port_rules': [{'name': 'Test rule', 'protocol': 'tcp', 'public_port': 10, 'local_ip': '192.168.128.1', 'local_port': 11, 'allowed_ips': ['any']}]}]" time="6.924111">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;one_to_many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+},
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.2&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:275" name="[localhost] meraki: meraki_nat : debug var=create_multiple" time="0.346048">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;create_multiple&quot;: {
+        &quot;changed&quot;: true,
+        &quot;data&quot;: {
+            &quot;one_to_many&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;port_rules&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;any&quot;
+                                ],
+                                &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                &quot;local_port&quot;: &quot;11&quot;,
+                                &quot;name&quot;: &quot;Test rule&quot;,
+                                &quot;protocol&quot;: &quot;tcp&quot;,
+                                &quot;public_port&quot;: &quot;10&quot;
+                            }
+                        ],
+                        &quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            },
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.2&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;diff&quot;: {
+            &quot;after&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;portRules&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;localIp&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;localPort&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;publicPort&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;publicIp&quot;: &quot;1.1.1.3&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                },
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedIps&quot;: [
+                                &quot;1.1.1.2&quot;
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;localPort&quot;: &quot;11&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;publicPort&quot;: &quot;10&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;before&quot;: {
+                &quot;one_to_many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;portRules&quot;: [
+                                {
+                                    &quot;allowedIps&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;localIp&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;localPort&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;publicPort&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;publicIp&quot;: &quot;1.1.1.1&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                },
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowedIps&quot;: [
+                                &quot;1.1.1.1&quot;
+                            ],
+                            &quot;lanIp&quot;: &quot;192.168.128.1&quot;,
+                            &quot;localPort&quot;: &quot;11&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;publicPort&quot;: &quot;10&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:278" name="[localhost] meraki: meraki_nat : assert that=['create_multiple is changed', 'create_multiple.data.one_to_many is defined', 'create_multiple.data.port_forwarding is defined']" time="0.338128">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:284" name="[localhost] meraki: meraki_nat : assert that=['create_multiple is changed', 'create_multiple.data.one_to_many is defined', 'create_multiple.data.port_forwarding is defined', 'create_multiple.diff.before.one_to_many is defined', 'create_multiple.diff.before.port_forwarding is defined', 'create_multiple.diff.after.one_to_many is defined', 'create_multiple.diff.after.port_forwarding is defined']" time="0.351101">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;All assertions passed&quot;
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:294" name="[localhost] meraki: meraki_nat : Query all NAT rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=all" time="6.039251">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;1:1&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+},
+&quot;1:many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+},
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.2&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:303" name="[localhost] meraki: meraki_nat : debug var=query_all" time="0.340584">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_all&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;1:1&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_inbound&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;10.10.10.10&quot;
+                                ],
+                                &quot;destination_ports&quot;: [
+                                    &quot;80&quot;
+                                ],
+                                &quot;protocol&quot;: &quot;tcp&quot;
+                            }
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;name&quot;: &quot;Service behind NAT&quot;,
+                        &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            },
+            &quot;1:many&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;port_rules&quot;: [
+                            {
+                                &quot;allowed_ips&quot;: [
+                                    &quot;any&quot;
+                                ],
+                                &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                &quot;local_port&quot;: &quot;11&quot;,
+                                &quot;name&quot;: &quot;Test rule&quot;,
+                                &quot;protocol&quot;: &quot;tcp&quot;,
+                                &quot;public_port&quot;: &quot;10&quot;
+                            }
+                        ],
+                        &quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+                        &quot;uplink&quot;: &quot;internet1&quot;
+                    }
+                ]
+            },
+            &quot;port_forwarding&quot;: {
+                &quot;rules&quot;: [
+                    {
+                        &quot;allowed_ips&quot;: [
+                            &quot;1.1.1.2&quot;
+                        ],
+                        &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                        &quot;local_port&quot;: &quot;11&quot;,
+                        &quot;name&quot;: &quot;Test map&quot;,
+                        &quot;protocol&quot;: &quot;tcp&quot;,
+                        &quot;public_port&quot;: &quot;10&quot;,
+                        &quot;uplink&quot;: &quot;both&quot;
+                    }
+                ]
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:306" name="[localhost] meraki: meraki_nat : Query 1:1 NAT rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=1:1" time="3.890833">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;1:1&quot;: {
+&quot;1:1&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:315" name="[localhost] meraki: meraki_nat : debug var=query_1to1" time="0.341186">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_1to1&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;1:1&quot;: {
+                &quot;1:1&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowed_inbound&quot;: [
+                                {
+                                    &quot;allowed_ips&quot;: [
+                                        &quot;10.10.10.10&quot;
+                                    ],
+                                    &quot;destination_ports&quot;: [
+                                        &quot;80&quot;
+                                    ],
+                                    &quot;protocol&quot;: &quot;tcp&quot;
+                                }
+                            ],
+                            &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                            &quot;name&quot;: &quot;Service behind NAT&quot;,
+                            &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:318" name="[localhost] meraki: meraki_nat : Query 1:many NAT rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=1:many" time="3.782449">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;1:many&quot;: {
+&quot;1:many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:327" name="[localhost] meraki: meraki_nat : debug var=query_1tomany" time="0.345264">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_1tomany&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;1:many&quot;: {
+                &quot;1:many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;port_rules&quot;: [
+                                {
+                                    &quot;allowed_ips&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;local_port&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;public_port&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:330" name="[localhost] meraki: meraki_nat : Query port forwarding rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=port_forwarding" time="3.601734">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;port_forwarding&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;1.1.1.2&quot;
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test map&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;,
+&quot;uplink&quot;: &quot;both&quot;
+}
+]
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:339" name="[localhost] meraki: meraki_nat : debug var=query_pf" time="0.338301">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_pf&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;port_forwarding&quot;: {
+                &quot;port_forwarding&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowed_ips&quot;: [
+                                &quot;1.1.1.2&quot;
+                            ],
+                            &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                            &quot;local_port&quot;: &quot;11&quot;,
+                            &quot;name&quot;: &quot;Test map&quot;,
+                            &quot;protocol&quot;: &quot;tcp&quot;,
+                            &quot;public_port&quot;: &quot;10&quot;,
+                            &quot;uplink&quot;: &quot;both&quot;
+                        }
+                    ]
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:342" name="[localhost] meraki: meraki_nat : Query multiple rules auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=query, subset=['1:1', '1:many']" time="4.542134">
+			<system-out>{
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;1:1&quot;: {
+&quot;1:1&quot;: {
+&quot;rules&quot;: [
+{
+&quot;allowed_inbound&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;10.10.10.10&quot;
+],
+&quot;destination_ports&quot;: [
+&quot;80&quot;
+],
+&quot;protocol&quot;: &quot;tcp&quot;
+}
+],
+&quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;name&quot;: &quot;Service behind NAT&quot;,
+&quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+},
+&quot;1:many&quot;: {
+&quot;1:many&quot;: {
+&quot;rules&quot;: [
+{
+&quot;port_rules&quot;: [
+{
+&quot;allowed_ips&quot;: [
+&quot;any&quot;
+],
+&quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+&quot;local_port&quot;: &quot;11&quot;,
+&quot;name&quot;: &quot;Test rule&quot;,
+&quot;protocol&quot;: &quot;tcp&quot;,
+&quot;public_port&quot;: &quot;10&quot;
+}
+],
+&quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+&quot;uplink&quot;: &quot;internet1&quot;
+}
+]
+}
+}
+},
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:353" name="[localhost] meraki: meraki_nat : debug var=query_multiple" time="0.346380">
+			<system-out>{
+    &quot;changed&quot;: false,
+    &quot;query_multiple&quot;: {
+        &quot;changed&quot;: false,
+        &quot;data&quot;: {
+            &quot;1:1&quot;: {
+                &quot;1:1&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;allowed_inbound&quot;: [
+                                {
+                                    &quot;allowed_ips&quot;: [
+                                        &quot;10.10.10.10&quot;
+                                    ],
+                                    &quot;destination_ports&quot;: [
+                                        &quot;80&quot;
+                                    ],
+                                    &quot;protocol&quot;: &quot;tcp&quot;
+                                }
+                            ],
+                            &quot;lan_ip&quot;: &quot;192.168.128.1&quot;,
+                            &quot;name&quot;: &quot;Service behind NAT&quot;,
+                            &quot;public_ip&quot;: &quot;1.2.1.2&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            },
+            &quot;1:many&quot;: {
+                &quot;1:many&quot;: {
+                    &quot;rules&quot;: [
+                        {
+                            &quot;port_rules&quot;: [
+                                {
+                                    &quot;allowed_ips&quot;: [
+                                        &quot;any&quot;
+                                    ],
+                                    &quot;local_ip&quot;: &quot;192.168.128.1&quot;,
+                                    &quot;local_port&quot;: &quot;11&quot;,
+                                    &quot;name&quot;: &quot;Test rule&quot;,
+                                    &quot;protocol&quot;: &quot;tcp&quot;,
+                                    &quot;public_port&quot;: &quot;10&quot;
+                                }
+                            ],
+                            &quot;public_ip&quot;: &quot;1.1.1.3&quot;,
+                            &quot;uplink&quot;: &quot;internet1&quot;
+                        }
+                    ]
+                }
+            }
+        },
+        &quot;failed&quot;: false,
+        &quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+        &quot;status&quot;: 200
+    }
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_nat-lznt_42y-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_nat/tasks/tests.yml:357" name="[localhost] meraki: meraki_nat : Delete test network auth_key={{auth_key}}, org_name={{test_org_name}}, net_name={{test_net_name}}, state=absent" time="4.585512">
+			<system-out>{
+&quot;changed&quot;: true,
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 204
+}</system-out>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="2" tests="3" time="11.149561166763306">
+	<testsuite disabled="0" errors="0" failures="2" name="meraki_switch_stack-_ih91r5q" skipped="0" tests="3" time="11.149561166763306">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-r4hq0b8o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_stack : Create new stack auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, name=Test stack, serials=['QBSB-BPR6-PRER', 'QBSB-VLNE-E299']" time="4.754833">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: true,
+&quot;data&quot;: {
+&quot;id&quot;: &quot;624874448297657096&quot;,
+&quot;name&quot;: &quot;Test stack&quot;,
+&quot;serials&quot;: [
+&quot;QBSB-BPR6-PRER&quot;,
+&quot;QBSB-VLNE-E299&quot;
+]
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 201
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-r4hq0b8o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:19" name="[localhost] meraki: meraki_switch_stack : set_fact stack_id={{data.0.id}}" time="0.728702">
+			<failure message="The task includes an option with an undefined variable. The error was: 'data' is undefined
+
+The error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-r4hq0b8o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml': line 19, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+  - set_fact:
+    ^ here
+" type="failure">{
+&quot;msg&quot;: &quot;The task includes an option with an undefined variable. The error was: 'data' is undefined\n\nThe error appears to be in '/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-r4hq0b8o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml': line 19, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n  - set_fact:\n    ^ here\n&quot;
+}</failure>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_stack-r4hq0b8o-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_stack/tasks/main.yml:61" name="[localhost] meraki: meraki_switch_stack : Delete stack auth_key={{ auth_key }}, state=absent, org_name={{test_org_name}}, net_name={{test_switch_net_name}}, stack_id=624874448297657095" time="5.666025">
+			<failure message="HTTP error 404 - https://api.meraki.com/api/v0/networks/N_624874448297683727/switchStacks/624874448297657095" type="failure">{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;HTTP error 404 - https://api.meraki.com/api/v0/networks/N_624874448297683727/switchStacks/624874448297657095&quot;,
+&quot;response&quot;: &quot;HTTP Error 404: Not Found&quot;,
+&quot;status&quot;: 404,
+&quot;warnings&quot;: [
+&quot;The value 624874448297657095 (type int) in a string field was converted to '624874448297657095' (type string). If this does not look like what you expect, quote the entire value to ensure it does not change.&quot;
+]
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

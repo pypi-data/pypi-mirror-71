@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="1" failures="0" tests="3" time="6.797537803649902">
+	<testsuite disabled="0" errors="1" failures="0" name="meraki_config_template-bqyxzyaj" skipped="0" tests="3" time="6.797537803649902">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-zojlgc9l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:32" name="[localhost] meraki: meraki_config_template : Create a network auth_key={{auth_key}}, state=present, org_name={{ test_org_name }}, net_name={{ test_net_name }}, type=appliance" time="3.963339">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;config_template_id&quot;: &quot;L_624874448297661409&quot;,
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682312&quot;,
+&quot;name&quot;: &quot;Home - Appliance&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;appliance&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Los_Angeles&quot;,
+&quot;type&quot;: &quot;appliance&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-zojlgc9l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:42" name="[localhost] meraki: meraki_config_template : set_fact net_id={{net_info.data.id}}" time="0.377891">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682312&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_config_template-zojlgc9l-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_config_template/tasks/main.yml:139" name="[localhost] meraki: meraki_config_template : Unbind a template from a network via id with check mode auth_key={{auth_key}}, state=absent, org_name={{test_org_name}}, net_id={{net_id}}, config_template={{test_template_name}}" time="2.456308">
+			<error message="TypeError: 'NoneType' object is not iterable" type="error">Traceback (most recent call last):
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221841.3635323-167718563311574/AnsiballZ_meraki_config_template.py&quot;, line 116, in &lt;module&gt;
+    _ansiballz_main()
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221841.3635323-167718563311574/AnsiballZ_meraki_config_template.py&quot;, line 108, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File &quot;/root/.ansible/tmp/ansible-tmp-1577221841.3635323-167718563311574/AnsiballZ_meraki_config_template.py&quot;, line 54, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.cisco.meraki.plugins.modules.meraki_config_template', init_globals=None, run_name='__main__', alter_sys=True)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 205, in run_module
+    return _run_module_code(code, init_globals, run_name, mod_spec)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File &quot;/usr/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;/tmp/ansible_meraki_config_template_payload_6xpmrgch/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 334, in &lt;module&gt;
+  File &quot;/tmp/ansible_meraki_config_template_payload_6xpmrgch/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 299, in main
+  File &quot;/tmp/ansible_meraki_config_template_payload_6xpmrgch/ansible_meraki_config_template_payload.zip/ansible_collections/cisco/meraki/plugins/modules/meraki_config_template.py&quot;, line 144, in is_template_valid
+TypeError: 'NoneType' object is not iterable
+</error>
+		</testcase>
+	</testsuite>
+</testsuites>

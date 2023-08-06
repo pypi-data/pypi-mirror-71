@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="1" tests="3" time="3.9132397174835205">
+	<testsuite disabled="0" errors="0" failures="1" name="meraki_switch_storm_control-ksg91l4p" skipped="0" tests="3" time="3.9132397174835205">
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-4dnviztu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:7" name="[localhost] meraki: meraki_switch_storm_control : Create switch network auth_key={{ auth_key }}, state=present, org_name={{test_org_name}}, net_name=Home - Switch, timezone=America/Chicago, type=switch" time="2.887897">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+},
+&quot;changed&quot;: false,
+&quot;data&quot;: {
+&quot;disable_my_meraki_com&quot;: false,
+&quot;disable_remote_status_page&quot;: true,
+&quot;id&quot;: &quot;N_624874448297682461&quot;,
+&quot;name&quot;: &quot;Home - Switch&quot;,
+&quot;organization_id&quot;: &quot;133277&quot;,
+&quot;product_types&quot;: [
+&quot;switch&quot;
+],
+&quot;tags&quot;: null,
+&quot;time_zone&quot;: &quot;America/Chicago&quot;,
+&quot;type&quot;: &quot;switch&quot;
+},
+&quot;deprecations&quot;: [
+{
+&quot;msg&quot;: &quot;Distribution Ubuntu 18.04 on host localhost should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information&quot;,
+&quot;version&quot;: &quot;2.12&quot;
+}
+],
+&quot;response&quot;: &quot;OK (unknown bytes)&quot;,
+&quot;status&quot;: 200
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-4dnviztu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:18" name="[localhost] meraki: meraki_switch_storm_control : set_fact net_id={{net.data.id}}" time="0.343661">
+			<system-out>{
+&quot;ansible_facts&quot;: {
+&quot;net_id&quot;: &quot;N_624874448297682461&quot;
+},
+&quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/ansible/ansible_collections/cisco/meraki/tests/output/.tmp/integration/meraki_switch_storm_control-4dnviztu-ÅÑŚÌβŁÈ/tests/integration/targets/meraki_switch_storm_control/tasks/main.yml:21" name="[localhost] meraki: meraki_switch_storm_control : Set unicast settings auth_key={{auth_key}}, state=present, org_name={{test_org_name}}, net_name=Home - Switch, unicast_threshold=75" time="0.681682">
+			<failure message="Unsupported parameters for (meraki_switch_storm_control) module: unicast_threshold Supported parameters include: auth_key, broadcast_threshold, host, internal_error_retry_time, multicast_threshold, net_id, net_name, org_id, org_name, output_format, output_level, rate_limit_retry_time, state, timeout, unknown_unicast_threshold, use_https, use_proxy, validate_certs" type="failure">{
+&quot;changed&quot;: false,
+&quot;msg&quot;: &quot;Unsupported parameters for (meraki_switch_storm_control) module: unicast_threshold Supported parameters include: auth_key, broadcast_threshold, host, internal_error_retry_time, multicast_threshold, net_id, net_name, org_id, org_name, output_format, output_level, rate_limit_retry_time, state, timeout, unknown_unicast_threshold, use_https, use_proxy, validate_certs&quot;
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>
