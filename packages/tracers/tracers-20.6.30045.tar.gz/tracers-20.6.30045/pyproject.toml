@@ -1,0 +1,32 @@
+[tool.poetry]
+authors = [
+  "Kevin Amado <kamadorueda@gmail.com>"
+]
+description = "Open-Source APM (Application monitoring) project that offers you zero overhead wrappers for profiling your code execution flow"
+license = "MIT"
+name = "tracers"
+packages = [
+  { include = "tracers", from = "src" },
+]
+readme = "README.md"
+repository = "https://github.com/kamadorueda/tracers"
+version = "20.06.30045"
+
+[tool.poetry.dependencies]
+botocore = "1.17.7"
+more-itertools = "8.4.0"
+pynamodb = "4.3.2"
+python = "^3.7"
+python-dateutil = "2.8.1"
+six = "1.15.0"
+
+[tool.poetry.dev-dependencies]
+prospector = "1.2.0"
+python-dateutil = "2.8.1"
+mypy = "0.770"
+
+[build-system]
+requires = [
+  "poetry>=0.12"
+]
+build-backend = "poetry.masonry.api"
