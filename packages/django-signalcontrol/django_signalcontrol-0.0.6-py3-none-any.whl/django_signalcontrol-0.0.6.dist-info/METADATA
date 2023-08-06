@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: django-signalcontrol
+Version: 0.0.6
+Summary: A django app to allow dynamic control of signals
+Home-page: https://github.com/davidslusser/django-signalcontrol
+Author: David Slusser
+Author-email: dbslusser@gmail.com
+License: GPL-3.0
+Download-URL: https://github.com/davidslusser/django-signalcontrol/archive/0.0.6.tar.gz
+Keywords: django,helpers,signal,control,admin
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django :: 2.2
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: django (>=2.2.0)
+
+# django-signalcontrol
+A django extension for dynamically enabling/disabling signals. This application allows django signals to be disabled or
+enabled on-demand through the django admin interface. 
+
+
+| | |
+|--------------|------|
+| Author       | David Slusser |
+| Description  | A django extension for dynamically enabling/disabling signals. |
+| Requirements | `Python 3.x`<br>`Django 2.2.x` |
+
+
+# Documentation
+Full documentation can be found on http://django-signalcontrol.readthedocs.org. 
+Documentation source files are available in the docs folder.
+
+
+# Installation
+- pip install django-signalcontrol
+- add signalcontrol to your INSTALLED_APPS
+- run migrations python ./manage.py migrate signalcontrol
+
+
+# Features
+
+### signal decorator
+SignalControl can be added to a signal with the provided decorator. In the signals.py file, import the signalcontrol
+decorator and add the signal_control decorator to the line directly above the signal definition. Example:
+
+
+### admin interface
+An django admin interface for django-signalcontrol is available to set signals to enabled or disabled. This displays
+all signals that can be controlled, and lists the application, model, signal receiver and signal name.
+Additionally, full search is available and filters are available for each field.
+Signals can be enabled or disabled individually or in bulk.
+
+
+# Usage Example
+
+    from signalcontrol.decorators import signal_control
+
+    @receiver(post_save, sender=MyCoolModel)
+    @signal_control
+    def msg_after_my_model_save(sender, instance, created, **kwargs):
+        """ some signal """
+        print("you just saved an instance of MyCoolModel")
+
+
