@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: pythere
+Version: 0.2
+Summary: pythere is a tool to run python scripts over ssh
+Home-page: https://github.com/clint-lawrence/pythere
+Author: Clint Lawrence
+Author-email: clint.lawrence@gmail.com
+License: LICENSE
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: fabric
+
+# pythere
+pythere is a tool to run python scripts over ssh
+
+1. Put you code into script/__main__.py
+2. List any dependencies in script/requirements.txt (Optional)
+3. Run "pythere user@remotehost script/"
+
+Pythere bundles any files in the script folder and execute on remote host.
+If script/requirements.txt exists, the listed dependencies will
+be available. (Only pure python packages will be guaranteed to work)
+
