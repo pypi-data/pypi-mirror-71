@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: tacks
+Version: 0.0.0
+Summary: Pin requirements for Python apps
+Home-page: https://github.com/bulatb/tacks
+Author: Bulat Bochkariov
+Author-email: pypi@bulat.bochkariov.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/bulatb/tacks
+Project-URL: Issues, https://github.com/bulatb/tacks/issues
+Description: Tacks is in development.
+        
+        Project Goals:
+        
+          * One tool for one job: pin requirements to plain requirements.txt files.
+          * Don't require changes to existing tools or workflows.
+          * Output files compatible with standard `pip install`.
+          * Manage pinning from the CLI. Add/remove dependencies while preserving comments and whitespace.
+          * Integrate with task runners: Django, Flask, doit, Invoke, or user-defined.
+          * Eject at any time. To stop using Tacks, just delete it.
+          * Support Python 3.6+. Eventually expand to 2.7 and 3.5+.
+        
+Keywords: pin requirement dependency version pip-tools pip
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: develop
+Provides-Extra: test
