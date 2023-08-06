@@ -1,0 +1,25 @@
+<style type="text/css">
+    .editormd-fullscreen {z-index : 99999;}
+
+    .editormd-menu {margin : 0 !important;}
+</style>
+{% load static %}
+<div style="width: 100%; height:500px;">
+    <div id="editor_md_{{ widget.attrs.id }}_content" style="width: 100%;height: 100%;"><textarea style="display: none;" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>{% if widget.value %}{{ widget.value }}{% endif %}</textarea></div>
+</div>
+<script type="text/javascript">
+    (function () {
+        let _editorTextareaId = '{{ widget.attrs.id }}';
+        let _editorId = 'editor_md_' + _editorTextareaId + '_content';
+
+        let _editorConfig;
+        try {
+            _editorConfig = document.getElementById(_editorTextareaId).attributes["field_settings"].nodeValue;
+            _editorConfig = JSON.parse(_editorConfig);
+        } catch (e) {
+            _editorConfig = {};
+        }
+        _editorConfig.path = "{% static 'django_kelove_db/editor_md/lib' %}/";
+        editormd(_editorId, _editorConfig);
+    })()
+</script>

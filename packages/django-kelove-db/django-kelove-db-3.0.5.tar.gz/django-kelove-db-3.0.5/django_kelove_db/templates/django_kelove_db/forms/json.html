@@ -1,0 +1,35 @@
+<style type="text/css">
+    .jsoneditor-poweredBy {display : none !important;}
+</style>
+<div style="width: 100%; height:400px;float: left;">
+    <div id="json_editor_{{ widget.attrs.id }}" style="width: 100%;height: 100%;margin: 0;padding: 0;"></div>
+    <input type="hidden"
+           name="{{ widget.name }}"
+            {% include "django/forms/widgets/attrs.html" %}
+           value="{% if widget.value %}{{ widget.value }}{% else %}{}{% endif %}"
+           class="json_editor_controller" onload="">
+</div>
+<script type="text/javascript">
+    (function () {
+        let _input_id = '{{ widget.attrs.id }}';
+        let _editor_id = 'json_editor_' + _input_id;
+        let jsonValue;
+        try {
+            jsonValue = JSON.parse(document.getElementById(_input_id).value);
+        } catch (e) {
+            jsonValue = {};
+        }
+        let _editorConfig;
+        try {
+            _editorConfig = document.getElementById(_input_id).attributes["field_settings"].nodeValue;
+            _editorConfig = JSON.parse(_editorConfig);
+        } catch (e) {
+            _editorConfig = {};
+        }
+
+        _editorConfig.onChangeText = function (jsonString) {
+            document.getElementById(_input_id).value = jsonString;
+        };
+        (new JSONEditor(document.getElementById(_editor_id), _editorConfig)).set(jsonValue);
+    })()
+</script>
