@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mlpcode"
+version = "1.0.0"
+description = "MLP cli for semester project"
+authors = ["Arslan <rslnkrmt2552@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+typer = "^0.1.1"
+numpy = "^1.18.2"
+cupy-cuda102 = "^7.3.0"
+h5py = "^2.10.0"
+
+[tool.poetry.dev-dependencies]
+
+
+[tool.poetry.scripts]
+mlp = "mlpcode.cli:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
