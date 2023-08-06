@@ -1,0 +1,113 @@
+Tresoryx, humble paquet pour la trésorerie d'association
+======================================================
+
+
+**Fonctionnalités**:
+
+- automatiser le remplissage du fichier d'exercice à partir d'un relevé de
+    compte au format `.csv` ;
+- calculer (et représenter sur un graphique) les dettes des adhérents ;
+- automatiquement compiler le bilan de fin d'année ;
+
+# Installation
+
+1. Installer Python 3
+2. Installer [pip](https://pip.pypa.io/en/stable/installing/) ;
+3. Lancer
+
+        pip install --user git+https://gitlab.com/GullumLuvl/tresoryx.git
+
+4. C'est bon, les exécutables `treso-exercice`, `treso-dette`, `treso-bilan`,
+  `treso-datajoueur` sont disponibles en ligne de commande.
+
+# Exemple d'usage dans un notebook Google Colab
+
+    # Commencer par installer le package:
+    !pip install Tresoryx
+
+    # Importer le dernier fichier de relevé, et éventuellement les fichiers
+    # noms.csv et config.yaml:
+    from google.colab import files
+    uploaded = files.upload()  # Choisir les fichiers manuellement
+
+    from tresoryx.auto_exercice import met_a_jour_exercice
+
+    # Affiche l'aide
+    met_a_jour_exercice?
+
+    met_a_jour_exercice('<fichier-releve>',  # le fichier relevé téléchargé dans colab
+                    'Exercice2019',  # le nom de la googlesheet
+                    source='googlesheets',
+                    fichier_noms='noms.csv')
+
+# Exemple d'usage local, en ligne de commande
+
+1. Lancer un terminal (sous linux, <kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>T</kbd>) <!-- (Ctrl-Alt-T) -->
+2. Afficher l'aide du programme : `treso-exercice -h`.
+3. Dans le répertoire où se trouvent `Exercice.xlsx` et le
+   `dernier_releve.csv` (et optionnellement `noms.csv`), exécuter:
+
+        treso-exercice dernier_releve.csv Exercice.xlsx -n noms.csv
+
+# Formats de fichiers attendus
+
+## Exercice
+
+`.xlsx` ou `.xls`.
+
+Le nom ou numéro de la feuille sur laquelle se trouve l'exercice en cours peut
+être précisé avec l'option `-f`/`--feuille`. Les lignes et colonnes de début du
+tableau doivent être modifiées si besoin dans le code de la classe
+`ChargeurDonnees`.
+
+Les noms de colonne attendus sont fixés (mais insensibles à la casse): 
+
+    ['Date', 'Catégorie', 'Nom', 'Crédit', 'Débit', 'Solde', 'Mode', 'Classe', 'Intitulé']
+
+Les colonnes additionnelles ne sont pas vérifiées, mais en sortie par défaut,
+`treso-exercice` rajoute `'Commentaire'` et `'Info_supp`.
+
+## relevé
+
+Fichier `.csv` téléchargé depuis l'onglet "Téléchargements" de la banque.
+Uniquement implémenté pour Société Générale pour l'instant.
+
+## noms.csv
+
+Colonnes "Relevé", "Complet", "Surnom".
+
+"Relevé" ne doit pas contenir de duplicats.
+
+## exemple_config.yaml
+
+Contient différentes variables de configuration :
+
+- "expressions régulières" permettant de détecter la classe d'opération;
+- lignes et colonnes de début des tableaux dans les fichier Excel.
+
+# TODO
+
+- [ ] Charger depuis Google Sheets. Utiliser Google Colab pour exécuter les
+    fonctions. Attention, cela stocke les données sur Google SDK Cloud.
+- [ ] Une dette combinant toutes les catégories + treso-exercice utilise les
+    dettes précédentes pour classer les virements par catégories
+    (éventuellement diviser les lignes)
+
+# Comment contribuer
+
+1. Via l'interface web Gitlab (plus facile) :
+    - aller à un fichier particulier.
+    - cliquer sur "Edit" ou "Web IDE"
+    - modifier
+    - sélectionner/créer une *branche* autre que "master".
+    - Entrer un "commit message" (description des changements effectués.
+        Préciser le Pourquoi plutôt que le Comment.)
+
+2. En local avec `Git` et votre éditeur de texte préféré.
+
+# License
+
+Ce code est licensé sous la [license publique générale
+GNU](https://www.gnu.org/licenses/gpl.html) version 3.
+
+
