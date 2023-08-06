@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: django-geo-chile
+Version: 1.0.2
+Summary: Models and management command to load Chile's Administrative Geographical data from official source.
+Home-page: https://github.com/fceruti/django-geo-chile
+License: MIT
+Author: Francisco Ceruti
+Author-email: hello@fceruti.com
+Maintainer: Francisco Ceruti
+Maintainer-email: hello@fceruti.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: django (>=2.2)
+Requires-Dist: requests (>=2.23.0,<3.0.0)
+Project-URL: Repository, https://github.com/fceruti/django-geo-chile
+Description-Content-Type: text/markdown
+
+# Django Geo Chile 🇨🇱
+
+Models and management command to load Chile's Administrative Geographical data from official source.
+
+## Getting Started 
+
+### 1) Download package
+
+Using poetry
+
+    poetry add django_geo_chile
+
+Using pipenv
+
+    pipenv install django_geo_chile
+
+Using pip
+    
+    pip install django_geo_chile
+
+
+### 2) Add to settings
+
+In `settings.py` add `geo_chile` to `INSTALLED_APPS`
+
+
+    INSTALLED_APPS = [
+        ...
+        "geo_chile",
+    ]
+
+### 3) Create database tables
+
+In terminal run:
+
+    python manage.py migrate
+
+
+
+### 4) Load data
+
+In terminal run:
+
+    python manage.py load_geo_chile_data
+
+
+### 5) Drink Wine 🍷 
+
