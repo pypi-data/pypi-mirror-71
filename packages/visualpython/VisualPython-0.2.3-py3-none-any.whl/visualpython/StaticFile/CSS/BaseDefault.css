@@ -1,0 +1,69 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+} 
+li {
+    text-decoration: none;
+}
+
+ul, ol {
+    margin-bottom: 0px;
+}
+
+textarea {
+    resize: none;
+}
+
+
+
+.scrollbar::-webkit-scrollbar {
+    width: 1em;
+}
+   
+.scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: #DC6180;
+    outline: 1px solid slategrey;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.Base-input-button {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 30px;
+    border: 2px solid #DC6180;
+    color: #DC6180;
+    text-transform: uppercase;
+    font-size: 11px;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.Base-input-button:hover {
+    cursor: pointer;
+    transition: 0.7s;
+    border: 2px solid white;
+    color: white;
+}
+
+.Base-input-search {    
+    color: white;
+    background-color: transparent;
+    border: 1px solid #DC6180; 
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
