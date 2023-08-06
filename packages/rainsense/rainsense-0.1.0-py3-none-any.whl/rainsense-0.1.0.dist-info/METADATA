@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: rainsense
+Version: 0.1.0
+Summary: Toolbox for retrieval of precipitation from laser disdrometers and microwave links.
+Home-page: https://github.com/TCvanLeth/RainSense
+Author: T.C. van Leth
+Author-email: tommy.vanleth@wur.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: numba
+Requires-Dist: pyhad
+Requires-Dist: scatterpy
+
+# RainSense
+
+Python toolbox for the retrieval and processing of precipitation data from laser
+disdrometers and microwave links.
+
+RainSense is based on a collection of scripts and functions that where used in
+the processing of the WUREx14 field experiment and redacted to be more reusable.
+
+It is build around the PyHAD package and also uses ScatterPy for certain functions.
+
+NB: The current package is still heavily work-in-progress.
+
