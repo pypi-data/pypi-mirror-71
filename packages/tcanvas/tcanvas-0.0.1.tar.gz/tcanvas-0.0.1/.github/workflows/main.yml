@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: master
+  release:
+    types:
+    - published
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+        - 2.7
+        - 3.6
+        - 3.8
+    name: Check Python ${{ matrix.python-version }}
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install package
+      run: python -m pip install -e .[test]
+
+    - name: Test package
+      run: python -m pytest
+
+  dist:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Install wheel and SDist requirements
+      run: python -m pip install "setuptools>=42.0" "setuptools_scm[toml]>=4.1" "wheel" "twine"
+
+    - name: Build SDist
+      run: python setup.py sdist
+
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+
+    - name: Build wheel
+      run: >
+        python -m pip wheel . -w wheels
+
+    - uses: actions/upload-artifact@v2
+      with:
+        path: wheels/tcanvas*.whl
+
+    - name: Check metadata
+      run: twine check dist/* wheels/*
+
+  publish:
+    needs: [dist]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact
+        path: dist
+
+    - uses: pypa/gh-action-pypi-publish@v1.2.2
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
