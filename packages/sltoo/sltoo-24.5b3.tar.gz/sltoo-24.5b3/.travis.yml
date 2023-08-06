@@ -1,0 +1,34 @@
+language: python
+
+git:
+  depth: 5000
+
+dist:  bionic
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+# Required to run the respective python env in tox
+install: pip install tox-travis flit
+
+# command to run tests
+script:
+  - tox
+  - tox -e pep8
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+jobs:
+  include:
+    - stage: deploy
+      python: 3.8
+      env:
+      - FLIT_USERNAME=__token__
+      deploy:
+        provider: script
+        script: flit publish
+        on:
+          tags: true
