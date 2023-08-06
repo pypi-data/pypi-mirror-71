@@ -1,0 +1,13 @@
+
+        [skytemple.module]
+        rom=          skytemple.module.rom.module:RomModule
+        bgp=          skytemple.module.bgp.module:BgpModule
+        map_bg=       skytemple.module.map_bg.module:MapBgModule
+        script=       skytemple.module.script.module:ScriptModule
+        monster=      skytemple.module.monster.module:MonsterModule
+        portrait=     skytemple.module.portrait.module:PortraitModule
+        patch=        skytemple.module.patch.module:PatchModule
+        lists=        skytemple.module.lists.module:ListsModule
+        [console_scripts]
+        skytemple=skytemple.main:main
+    
