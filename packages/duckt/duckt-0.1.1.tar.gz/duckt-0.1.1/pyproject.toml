@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "duckt"
+version = "0.1.1"
+description = "Python package facilitating duck typing through attribute traverse utilities"
+authors = ["Vladyslav Halchenko <valh@tuta.io>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/monomonedula/duckt"
+homepage = "https://github.com/monomonedula/duckt"
+keywords = ["decorator", "duck-typing", "ducktyping", "wrapper", "utility"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+pytest-cov = "^2.10.0"
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
