@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: cdk-fargate-express
+Version: 0.3.0
+Summary: A sample JSII construct lib for Express Apps in AWS Fargate
+Home-page: https://github.com/pahud/cdk-fargate-express.git
+Author: Pahud Hsieh<hunhsieh@amazon.com>
+License: Apache-2.0
+Project-URL: Source, https://github.com/pahud/cdk-fargate-express.git
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Typing :: Typed
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: jsii (<2.0.0,>=1.6.0)
+Requires-Dist: publication (>=0.0.3)
+Requires-Dist: aws-cdk.aws-ec2 (==1.45.0)
+Requires-Dist: aws-cdk.aws-ecs (==1.45.0)
+Requires-Dist: aws-cdk.aws-ecs-patterns (==1.45.0)
+Requires-Dist: aws-cdk.core (==1.45.0)
+Requires-Dist: constructs (==3.0.3)
+
+# cdk-fargate-express
+
+Deploy your serverless Express app in AWS with AWS CDK
+
+## Usage
+
+```python
+# Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
+from cdk_fargate_express import ExpressService
+
+ExpressService(stack, "testing",
+    vpc=vpc,
+    # define your local express assets directory containing the Dockerfile
+    docker_assets=path.join(__dirname, "../express.d")
+)
+```
+
+
