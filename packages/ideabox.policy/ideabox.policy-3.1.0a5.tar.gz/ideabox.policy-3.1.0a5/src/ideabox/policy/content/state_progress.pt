@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ideabox.policy">
+<body>
+  <metal:main fill-slot="main">
+    <div class="ap-state" i18n:domain="ideabox.policy">
+      <div tal:define="state_progess view/get_state_progress" tal:condition="state_progess" class="state-block">
+        <div i18n:translate="" id="ap-status" class="ap-button">Project Status</div>
+          <div class="state-body ap-status ap-toggle">
+            <div class="state-item" tal:repeat="sp state_progess">
+              <tal:block tal:define="spo sp/getObject;
+                              img python: getattr(spo, 'image', None)">
+                <div class="state-date" tal:content="python: spo.state_date.strftime('%d %B %Y')"></div>
+                <div class="state-content">
+                  <div tal:condition="img" class="img">
+                    <img class="view img-responsive" src="" tal:attributes="src string: ${spo/absolute_url}/@@images/image" />
+                  </div>
+                  <div tal:replace="structure python: spo.body.output"></div>
+                </div>
+              </tal:block>
+            </div>
+          </div>
+          <div class="state-notif ap-status ap-toggle"></div>
+      </div>
+    </div>
+  </metal:main>
+</body>
+</html>
+
