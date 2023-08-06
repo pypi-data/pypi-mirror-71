@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: ynj
+Version: 1.1.0
+Summary: Compile Jinja templates with YAML variables
+Home-page: https://gitlab.com/carbolymer/ynj
+Author: carbolymer
+Author-email: carbolymer@gmail.com
+License: UNKNOWN
+Description: # ynj
+        
+        Compile [Jinja](http://jinja.pocoo.org/) templates using [YAML](https://yaml.org/) variables!
+        
+        
+        ## Installation
+        ```
+        pip install ynj
+        ```
+        
+        ## Usage
+        
+        To use `ynj` you need yaml file with the variables, and a jinja template.
+        An example `values.yml` file:
+        ```
+          ---
+          name: John
+          surname: Collins
+          jobs:
+            - name: "Python developer"
+              technologies: [Pyton, SQL]
+            - name: "Database administrator"
+              technologies: [PostgreSQL, Oracle]
+        ```
+        A sample template:
+        ```
+          <h1>{{ name }} {{ surname }}</h2>
+          <dl>
+        {% for job in jobs %}
+              <dt>{{ job.name }}</dt>
+              <dd>{{ ', '.join(job.technologies) }}</dd>
+        {% endfor %}
+          </dl>
+        ```
+        To fill the values into the template, run:
+        ```
+        ynj < jobs.j2
+        ```
+        You can override values also from command line:
+        ```
+        ynj -t jobs.j2 -s "{name: Matt}"
+        ```
+        More info: `ynj -h`.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Systems Administration
+Description-Content-Type: text/markdown
