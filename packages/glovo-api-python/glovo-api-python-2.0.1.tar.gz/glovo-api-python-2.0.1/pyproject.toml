@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "glovo-api-python"
+version = "2.0.1"
+description = "Glovo API Python SDK"
+authors = ["SoftButterfly Development Team <dev@softbutterfly.io>"]
+license = "BSD 3-Clause License"
+readme = "README.md"
+homepage = "https://gitlab.com/softbutterfly/glovo-api-python"
+repository = "https://gitlab.com/softbutterfly/glovo-api-python"
+documentation = "https://gitlab.com/softbutterfly/glovo-api-python/-/wikis/home"
+keywords = ["Softbutterfly", "Glovo", "Glovo API"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: BSD License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.5",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    { include = "glovo_api_python" }
+]
+include = [
+  "LICENSE.txt",
+  "CHANGELOG.md",
+]
+
+[tool.poetry.urls]
+"Download" = "https://gitlab.com/softbutterfly/glovo-api-python/-/archive/2.0.1/glovo-api-python-2.0.1.tar.gz"
+"Bug Tracker" = "https://gitlab.com/softbutterfly/glovo-api-python/-/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.22.0"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.4.4"
+bandit = "^1.6.2"
+black = "^19.10b0"
+codacy-coverage = "^1.3.11"
+codecov = "^2.0.15"
+coverage = "^5.0.3"
+flake8 = "^3.7.9"
+flake8-black = "^0.1.1"
+jupyterlab = "^1.2.5"
+mypy = "^0.761"
+pre-commit = "^1.21.0"
+pydocstyle = "^5.0.2"
+pylint = "^2.4.4"
+pytest = "^5.3.3"
+pytest-cov = "^2.8.1"
+pytest-vcr = "^1.0.2"
+python-dotenv = "^0.10.5"
+tox = "^3.14.3"
+twine = "^3.1.1"
+
+[tool.black]
+target_version = ['py35', 'py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+/(\.git/
+  |\.eggs
+  |\.hg
+  |__pycache__
+  |\.cache
+  |\.ipynb_checkpoints
+  |\.mypy_cache
+  |\.pytest_cache
+  |\.tox
+  |\.venv
+  |_build
+  |buck-out
+  |build
+  |dist
+  |legacy
+)/
+'''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
