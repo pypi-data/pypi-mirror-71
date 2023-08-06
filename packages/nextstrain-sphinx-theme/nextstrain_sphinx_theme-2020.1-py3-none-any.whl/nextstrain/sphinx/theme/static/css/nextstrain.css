@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import "theme.css"; /* From sphinx_rtd_theme */
+
+body {
+  font-family: Lato, 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, legend, .rst-content .toctree-wrapper p.caption {
+  font-family: Lato, 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+}
+
+a {
+  color: #5097BA;
+}
+
+/* Sidebar */
+.wy-nav-side {
+  background: #f2f2f2;
+}
+
+/* Remove blue accent border */
+.wy-side-nav-search > a {
+  color: #404040;
+}
+
+.wy-side-nav-search > a.project-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.wy-side-nav-search input[type="text"] {
+  border-color: rgb(204, 204, 204);
+}
+
+/* Remove sidebar TOC link colors and hover states */
+.wy-menu-vertical a, 
+.wy-menu-vertical a:hover,
+.wy-menu-vertical li.on a:hover,
+.wy-menu-vertical li.current > a:hover {
+  color: black;
+  background: none;
+}
+
+/* Remove sidebar TOC heading/caption color */
+.wy-menu-vertical p.caption {
+  color: #666;
+}
