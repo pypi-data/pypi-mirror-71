@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: seeed-python-ircamera
+Version: 1.9.2
+Summary: 32 x 24 pixels IRCamera Application
+Home-page: https://github.com/gobuyun/seeed_ircamera
+Author: gobuyun
+Author-email: 874751353@qq.com
+License: MIT
+Keywords: seeed 32x24 IR sensor Application
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System :: Hardware
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pyserial
+Requires-Dist: seeed-python-mlx9064x
+
+# Seeed IRCamera
+
+The IRCamera is a 32x24 thermal imagery sensor.
+
+## Support python verison
+```
+Best version is 3.7
+```
+
+## Before intall this packetage
+```
+Make sure that your computer intall python...
+Then, make sure that python's path and python's scripts path add your computer PATH variable.
+```
+
+## Installing from PyPI
+On windows system:
+```
+pip install seeed_python_ircamera
+```
+if you think that the speed of download too slowly, you can try below command:
+```
+pip install seeed_python_ircamera -i https://pypi.tuna.tsinghua.edu.cn/simple/
+```
+
+on unix/linux system:
+```
+sudo pip3 install seeed_python_ircamera
+```
+if you think that the speed of download too slowly, you can try below command:
+```
+sudo pip install seeed_python_ircamera -i https://pypi.tuna.tsinghua.edu.cn/simple/
+```
+
+## Usage Notes
+On Windows, you should input the below command in cmd.exe:
+```cmd
+ircamera PortName ChipType [minHue] [maxHue] [NarrowRatio] [EnableBlur]
+```
+Parameter indicate:
+```
+"PortName"           : May look like "COM1" on windows system, or "tty", "usb" on unix system
+"ChipType"           : Support MLX90640 and MLX90641 for now
+"minHue" and "maxHue": Setting color gamut, default value: minHue=90, maxHue=360
+"NarrowRatio"        : Fill 3， 5， 6， 9， default value is 1
+"EnableBlur"         : True is EnableBlur, else False
+```
+
+On Unix/linux system, you should input below command in terminal:
+```shell
+sudo ircamera PortName MLX90641
+```
+just add sudo, the meaning of "PortName" the same as above.
+
+## Contributing
+If you have any good suggestions or comments, send email to me: 874751353@qq.com.
+
+
