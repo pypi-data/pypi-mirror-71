@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: flask-cloud-services
+Version: 0.0.2
+Summary: Cloud Services in Flask
+Home-page: https://gitlab.com/terminus-zinobe/flask-cloud-services
+Author: Terminus
+Author-email: david.tabla@zinobe.com
+License: UNKNOWN
+Description: # Cloud Services
+        
+        PIP package to provide cloud services.
+        
+        ## Package installation
+        - Installation
+            ```shell
+            $ pip3 install flask-cloud-services
+            ```
+        
+        ## Configuration
+        
+        Define the following environment variables:
+        
+        * (str) Provider. Allowed: [aws, ]
+        
+                CLOUD_SERVICES_PROVIDER=
+        
+        * (str) Region. Example: 'us-west-2'
+        
+                CLOUD_SERVICES_REGION=
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
