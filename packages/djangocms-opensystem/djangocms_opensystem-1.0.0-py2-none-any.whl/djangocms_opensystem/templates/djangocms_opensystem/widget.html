@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% if object.reference %}
+    <div id="widget-produit-{{ object.reference }}"></div>
+{% endif %}
+
+{% addtoblock "bottom_js" %}
+    <script type="text/javascript" src="//gadget.open-system.fr/widgets-libs/rel/noyau-1.0.min.js"></script>
+    {% if object.reference %}
+        <script type="text/javascript">
+            {% get_current_language as CURRENT_LANGUAGE %}
+            (function() {
+                var widgetProduit = AllianceReseaux.Widget.Instance("Produit", {
+                    idPanier:"{{ BASKET_ID }}",
+                    idIntegration: {{ INTEGRATION_ID }},
+                    langue: "{% if CURRENT_LANGUAGE == 'en' %}uk{% else %}{{ CURRENT_LANGUAGE }}{% endif %}",
+                    ui: "{{ object.reference }}",
+                });
+
+                widgetProduit.Initialise();
+            })();
+        </script>
+    {% endif %}
+{% endaddtoblock %}
