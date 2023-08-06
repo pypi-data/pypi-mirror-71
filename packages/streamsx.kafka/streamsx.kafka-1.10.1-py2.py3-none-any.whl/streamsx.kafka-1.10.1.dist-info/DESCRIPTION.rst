@@ -1,0 +1,60 @@
+Overview
+========
+
+Provides functions to read messages from Kafka brokers including the IBM Event Streams cloud service as a stream
+and submit tuples to Kafka brokers as messages.
+
+The broker configuration must be done with properties in an application configuration or by
+using a dictionary variable.
+The minimum set of properties must contain the `bootstrap.servers` configuration, which is valid
+for both consumers and producers, i.e. for the `KafkaConsumer` and `KafkaProducer` classes.
+
+It is also possible to use different application configurations for consumer and producer
+when special consumer or producer configs must be used.
+
+Sample
+======
+
+A simple hello world example of a Streams application publishing to
+a topic and the same application consuming the same topic::
+
+    from streamsx.topology.topology import Topology
+    from streamsx.topology.schema import CommonSchema
+    from streamsx.topology.context import submit, ContextTypes
+    from streamsx.kafka import KafkaConsumer, KafkaProducer
+    import time
+
+    def delay(v):
+        time.sleep(5.0)
+        return True
+
+    topology = Topology('KafkaHelloWorld')
+
+    to_kafka = topology.source(['Hello', 'World!'])
+    to_kafka = to_kafka.as_string()
+    # delay tuple by tuple
+    to_kafka = to_kafka.filter(delay)
+
+    # Publish a stream to Kafka using TEST topic, the Kafka server is at localhost
+    producer = KafkaProducer(config={'bootstrap.servers': 'localhost:9092'},
+                             topic='TEST')
+    to_kafka.for_each(producer)
+
+    # Subscribe to same topic as a stream
+    consumer = KafkaConsumer(config={'bootstrap.servers': 'localhost:9092'},
+                             schema=CommonSchema.String,
+                             topic='TEST')
+    from_kafka = topology.source(consumer)
+
+    # You'll find the Hello World! in stdout log file:
+    from_kafka.print()
+
+    submit(ContextTypes.DISTRIBUTED, topology)
+    # The Streams job is kept running.
+
+Documentation
+=============
+
+* `streamsx.kafka package documentation <http://streamsxkafka.readthedocs.io/>`_
+
+
