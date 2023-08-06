@@ -1,0 +1,117 @@
+.LoginPage-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+
+    width:  450px;
+    height: 400px;
+
+    background-color: var(--BACKGROUND-COLOR-1F2940);
+
+    box-shadow: 0 0 1px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.1);
+}
+
+.LoginPage-title {
+    width: 100%;
+    height: 50px;
+
+    font-size: 18px;
+
+    color: var(--BACKGROUND-COLOR-WHITE);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.LoginPage-title-text {
+    text-align: center;
+}
+
+.LoginPage-body {
+    width: 100%;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.LoginPage-body-element {
+    position: relative;
+}
+
+.LoginPage-body-element-icon {
+    position: absolute;
+    z-index: 1;
+    left: 36px;
+    top: 8px;
+    opacity: .5;
+}
+
+.LoginPage-body-element-container input[type='text'],
+.LoginPage-body-element-container input[type='password'] {
+    color: #afb1be;
+    width: 100%;
+    margin-top: -2px;
+    background: #32364a;
+    left: 0;
+    padding: 10px 65px;
+    border-top: 2px solid #393d52;
+    border-bottom: 2px solid #393d52;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    font-family: 'Gudea', sans-serif;
+    box-shadow: none;
+}
+
+
+.LoginPage-body-submit {
+    position: relative;
+    left: 0;
+    width: 80%;
+    right: 0;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.LoginPage-body-submit input {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid #DC6180;
+    color: #DC6180;
+    text-transform: uppercase;
+    font-size: 11px;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.LoginPage-body-submit input:hover {
+    cursor: pointer;
+    transition: 0.7s;
+    border: 2px solid var(--COLOR-WHITE);
+    color: var(--COLOR-WHITE);
+}
+
+.LoginPage-body-a-forgetPassword {
+    font-size: 15px;
+    margin-top: 11px;
+    text-decoration: underline;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.LoginPage-body-a-forgetPassword a {
+    color: #606479;
+    text-align: center;
+}

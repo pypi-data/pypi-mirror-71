@@ -1,0 +1,160 @@
+.CodeEditorPage-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+
+    width:  450px;
+    height: 450px;
+
+    background-color: var(--BACKGROUND-COLOR-1F2940);
+
+    box-shadow: 0 0 1px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.1);
+}
+
+.CodeEditorPage-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.CodeEditorPage-inner-title {
+    position: relative;
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 22px;
+
+}
+
+.CodeEditorPage-inner-body {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.CodeEditorPage-inner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+
+    width:  400px;
+    height: 350px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--BACKGROUND-COLOR-1F2940);
+    border: 1px solid #DC6180;
+    overflow-y: auto;
+}
+
+.CodeEditorPage-inner-left {
+    width: 45%;
+    height: 100%;
+}
+.CodeEditorPage-inner-center {
+    width: 10%;
+    height: 100%;
+}
+.CodeEditorPage-inner-right {
+    width: 45%;
+    height: 100%;
+}
+
+.CodeEditorPage-codeBlock {
+    position: relative;
+    width: 100%;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.CodeEditorPage-codeBlock-title {
+    position: relative;
+    width: 100%;
+    height: 30px;
+
+    color: #DC6180;
+
+    font-size: 20px;
+}
+
+.CodeEditorPage-codeBlock-input-button {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid #DC6180;
+    color: #DC6180;
+    text-transform: uppercase;
+    font-size: 11px;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.CodeEditorPage-codeBlock-input-button:hover {
+    cursor: pointer;
+    transition: 0.7s;
+    border: 2px solid var(--COLOR-WHITE);
+    color: var(--COLOR-WHITE);
+}
+
+.CodeEditorPage-codeBlock-body {
+    position: relative;
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.CodeEditorPage-codeBlock-body textarea {
+    width: 100%;
+    background-color: transparent;
+
+    color: white;
+}
+
+.CodeEditorPage-codeBlock-toolbar {
+    position: relative;
+    width: 100%;
+    /* height: 100px; */
+}
+
+.CodeEditorPage-codeBlock-toolbar input {
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 30px;
+    border: 2px solid #DC6180;
+    color: #DC6180;
+    text-transform: uppercase;
+    font-size: 11px;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.CodeEditorPage-codeBlock-toolbar input:hover {
+    cursor: pointer;
+    transition: 0.7s;
+
+    color: white;
+    border: 2px solid white;
+}
