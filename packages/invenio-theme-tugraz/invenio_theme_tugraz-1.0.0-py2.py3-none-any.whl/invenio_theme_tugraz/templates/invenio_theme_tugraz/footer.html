@@ -1,0 +1,34 @@
+{#
+  Copyright (C) 2020 TUGRAZ
+  Copyright (C) 2020 mojib wali.
+
+  invenio-theme-tugraz is free software; you can redistribute it and/or
+  modify it under the terms of the MIT License; see LICENSE file for more
+  details.
+#}
+
+{%- block css %}
+
+{{ webpack['invenio-theme-tugraz-theme.css'] }}
+{%- endblock %}
+
+{%- block javascript %}
+  {{ webpack['invenio-theme-tugraz-js.js'] }}
+{%- endblock javascript %}
+
+<footer id="footer" class="footer-bottom">
+  <div class="ui grid container">
+    <div class="eight wide column left aligned">
+      {% trans invenio_rdm="http://inveniosoftware.org/products/rdm" %}Powered by <a
+        href="{{invenio_rdm}}">InvenioRDM</a>{% endtrans %}
+    </div>
+    <div class="eight wide column right aligned">
+      <!--
+      {%- if config.I18N_LANGUAGES %}
+      {% from "invenio_i18n/macros/language_selector.html" import language_selector_dropdown %}
+      {{ language_selector_dropdown() }}
+      {%- endif %}
+      -->
+    </div>
+  </div>
+</footer>
