@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: itay-bardugo-cronmig
+Version: 1.0.0
+Summary: manage your cron jobs with python and a revision system(CLI)
+Home-page: UNKNOWN
+Author: Itay Bardugo
+Author-email: itaybardugo91@gmail.com
+License: UNKNOWN
+Description: # python-cron-migration
+        python-cron-migration is a CLI package that was built for helping you manage your cronjobs by revisions files system.
+        It contains two main components:
+        1. a CLI revision system, which can generate/upgrade/downgrade revision files by simple commands.
+        2. a lightweight crontab high-level package which integrates with the `crontab` library on your OS
+        ![](docs/readme.gif)
+        
+        ## commands 
+        | entry point | command | example | description |
+        | ----------- |---------|------|-------------|
+        | cronmig | init | cronmig init | initializes a new environment |
+        | cronming-revision | make | cronmig-revision make `[filename]` | generates a new revision file . `[filename]` should be a short description of your revision file|
+        | cronming-revision | upgrade | cronmig-revision upgrade | upgrades all non-upgraded files by invoking the `upgrade` method within your revision file |
+        | cronming-revision | downgrade | cronmig-revision downgrade `[steps]`  | downgrades revisions files `[steps]` times. `[steps]` is the number of downgrading (from the most upgraded file) | 
+        
+         
+        
+        
+        ## Installation
+        
+        You can install the package via composer:
+        
+        ```bash
+        composer require spatie/package-skeleton-laravel
+        ```
+        
+        You can publish and run the migrations with:
+        
+        ```bash
+        php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="migrations"
+        php artisan migrate
+        ```
+        
+        You can publish the config file with:
+        ```bash
+        php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="config"
+        ```
+        
+        This is the contents of the published config file:
+        
+        ```php
+        return [
+        ];
+        ```
+        
+        ## Usage
+        
+        ``` php
+        $skeleton = new Spatie\Skeleton();
+        echo $skeleton->echoPhrase('Hello, Spatie!');
+        ```
+        
+        ## Testing
+        
+        ``` bash
+        composer test
+        ```
+        
+        ## Changelog
+        
+        Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+        
+        ## Contributing
+        
+        Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+        
+        ## Security
+        
+        If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+        
+        ## Credits
+        
+        - [:author_name](https://github.com/:author_username)
+        - [All Contributors](../../contributors)
+        
+        ## License
+        
+        The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Requires-Python: >=3.8.3
+Description-Content-Type: text/markdown
