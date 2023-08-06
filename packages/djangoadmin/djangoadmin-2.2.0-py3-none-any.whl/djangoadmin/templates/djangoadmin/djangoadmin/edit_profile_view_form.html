@@ -1,0 +1,17 @@
+{% extends 'djangoadmin/base/body/index_admin.html' %}
+
+{% block body %}
+{% include "djangoadmin/widgets/alert.html" %}
+<form method="POST" action="#" enctype="multipart/form-data">
+{% csrf_token %}
+{% include "djangoadmin/widgets/ClearableFileInput_Form_Field.html" with field=userform.image %}
+{% include "djangoadmin/widgets/TextInput_Form_Field.html" with field=userchangeform.username %}
+{% include "djangoadmin/widgets/EmailInput_Form_Field.html" with field=userchangeform.email %}
+{% include "djangoadmin/widgets/TextInput_Form_Field.html" with field=userchangeform.first_name %}
+{% include "djangoadmin/widgets/TextInput_Form_Field.html" with field=userchangeform.last_name %}
+{% include "djangoadmin/widgets/TextInput_Form_Field.html" with field=userform.address %}
+{% include "djangoadmin/widgets/NumberInput_Form_Field.html" with field=userform.phone %}
+{% include "djangoadmin/widgets/URLInput_Form_Field.html" with field=userform.website %}
+{% include "djangoadmin/widgets/simple_button.html" with type="primary" value="Save" %}
+</form>
+{% endblock body %}
