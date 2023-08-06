@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: cumulator
+Version: 0.0.6
+Summary: a tool to quantify and communicate the carbon footprint of machine learning methods
+Home-page: https://github.com/tristantreb/cumulator
+Author: tristan trebaol
+Author-email: tristan.trebaol@epfl.ch
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+
+========
+Overview
+========
+
+CUMULATOR — a tool to quantify and report the carbon footprint of Machine Learning computations and communication in academia and healthcare
+
+Aim
+___
+Raise awareness about the carbon footprint of machine learning methods and to encourage further optimization and the rationale use of AI-powered tools.
+This work advocates for sustainable AI and the rational use of IT systems.
+
+Installation
+============
+
+Use the following command:
+
+    pip install cumulator
+
+Project Structure
+=================
+    ├── src/cumulator         <- code base for CUMULATOR
+        ├── base.py           <- implementation of the Cumulator class
+        ├── bonus.py          <- Impact Statement Protocol
+
+Use cases
+=========
+Cumulator was integrated within the Alg-E platform 
+
+ChangeLog
+=========
+* 07.06.2020: 0.0.2 added communication costs and cleaned src/
+* 21.05.2020: 0.0.1 deployment on PypI and integration with Alg-E
+
+Links
+=====
+* Project's material: https://drive.google.com/file/d/1saRzSZ_bDqN85a7OoU5611v6BZpz1arx/view?usp=sharing
+* GitHub: https://github.com/tristantreb/cumulator
+* PyPI: https://pypi.org/project/cumulator/
+
+* Free software: MIT license
+
+
+Changelog
+=========
+
+0.0.0 (2020-05-14)
+------------------
+
+* First release on PyPI.
+
+
