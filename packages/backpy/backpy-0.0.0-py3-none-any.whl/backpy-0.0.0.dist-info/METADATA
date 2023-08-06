@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: backpy
+Version: 0.0.0
+Summary: A Python interface to interact with gmail. 
+Home-page: https://pypi.org/project/emailpy
+Author: Sandra Mattar
+Author-email: sandrawmattar1@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+
+<p>
+A Python interface to run functions in the background. <br />
+<br />
+Functions:
+<ul>
+    <li>background - run a function in the background</li>
+</ul>
+<br />
+Usage: <br /></p>
+<pre>    >>> import backpy
+    >>> def myFunction(text):
+            while 1:
+                print(text)
+
+    >>> thread = backpy.background(target = myFunction, args = ("hello!")) # run
+    >>> # the function myFunction in the background with args ("hello!")
+    >>> thread._stop() # stop the thread.
+    >>> def myEndFunction(data):
+            print('Finished', data)
+
+    >>> thread = backpy.background(mode = 'basic+finish',
+                                   target = myFunction, args = ("hello!"),
+                                   finish = myEndFunction, fargs = ("data"))
+    >>> thread._stop() # stop the thread.  </pre>
+
+
