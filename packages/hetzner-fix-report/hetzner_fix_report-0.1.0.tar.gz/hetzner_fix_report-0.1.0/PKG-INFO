@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: hetzner_fix_report
+Version: 0.1.0
+Summary: This package demonstrates building and publishing Python Packages with GitHubs infrastructure
+Home-page: UNKNOWN
+Author: Felix
+Author-email: 10831300+flxai@users.noreply.github.com
+License: UNKNOWN
+Project-URL: Source Code, https://github.com/flxai/hetzner-fix-report
+Project-URL: Bug Tracker, https://github.com/flxai/hetzner-fix-report/issues
+Project-URL: Documentation, https://hetzner-fix-report.readthedocs.io
+Description: # hetzner-fix-report
+        
+        Fixes Hetzner CSV reports by cleaning the CSV and merging project name from PDF.
+        
+        ## Installation
+        
+        This project is hosted on [PyPI](https://pypi.org/project/pyceau/) and can therefore be installed easily through pip:
+        
+        ```
+        pip install hetzner_fix_report
+        ```
+        
+        Dependending on your setup you may need to add `--user` after the install.
+        
+        ## Usage
+        
+        Use the command line interface to combine a `csv` and `pdf` file:
+        
+        ```
+        hetzner-fix-report Hetzner_2020-01-05_RXXXXXXXXXX.csv Hetzner_2020-01-05_RXXXXXXXXXX.pdf
+        ```
+        
+        Or shorten it using brace expansion:
+        
+        ```
+        hetzner-fix-report Hetzner_2020-01-05_RXXXXXXXXXX.{csv,pdf}
+        ```
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
