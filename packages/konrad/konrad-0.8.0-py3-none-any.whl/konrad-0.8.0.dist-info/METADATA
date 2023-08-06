@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: konrad
+Version: 0.8.0
+Summary: Implementation of a radiative-convective equilibrium model.
+Home-page: https://github.com/atmtools/konrad
+Author: The konrad developers
+License: MIT
+Download-URL: https://github.com/atmtools/konrad/tarball/v0.8.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib (>=2.0.0)
+Requires-Dist: netcdf4 (>=1.2.7)
+Requires-Dist: numpy (>=1.16.1)
+Requires-Dist: scipy (>=0.19.0)
+Requires-Dist: typhon (>=0.7.0)
+Requires-Dist: xarray (>=0.9.1)
+Requires-Dist: climt (==0.16.9)
+Requires-Dist: sympl (>=0.4.0)
+Provides-Extra: arts
+Requires-Dist: pyarts ; extra == 'arts'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+
+[![PyPI version](https://badge.fury.io/py/konrad.svg)](https://badge.fury.io/py/konrad)
+[![Test](https://github.com/atmtools/konrad/workflows/Test/badge.svg?branch=master)](https://github.com/atmtools/konrad/commits/master)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1313687.svg)](https://doi.org/10.5281/zenodo.1313687)
+[![Documentation Status](https://readthedocs.org/projects/konrad/badge/?version=latest)](https://konrad.readthedocs.io/en/latest/?badge=latest)
+
+# konrad - Radiative-convective equilibrium framework
+
+The goal of ``konrad`` is to provide a simple framework to run
+radiative-convective equilibrium (RCE) simulations. It is build in an object
+oriented structure to allow simple modifications of the model setup.
+
+## Requirements
+``konrad`` requires Python 3.6 or higher. The recommended way to get
+Python is through [Anaconda](https://www.continuum.io/downloads).
+But of course, any other Python distribution is also working.
+
+## Install stable release
+You can install the latest stable version of ``konrad`` using ``pip``:
+```bash
+pip install konrad
+```
+
+
