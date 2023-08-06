@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import os
+import sys
+import smtplib
+
+import psutil
+
+if __name__ == "__main__":
+    # do nothing if cpu usage is > 10%
+    if psutil.cpu_percent(interval=1) > 10:
+        exit()
+
+    addrs = sys.argv[1]
+    alias = sys.argv[2]
+
+    procs = []
+    for proc in psutil.process_iter(["cmdline", "status"]):
+        if proc.info["status"] != "running":
+            continue
+        proc_str = " ".join(p for p in proc.info["cmdline"])
+        if "python" in proc_str and "notify-idle" not in proc_str:
+            procs.append(proc_str)
+
+    procs = "\n-".join(procs)
+
+    server = smtplib.SMTP_SSL("smtp.gmx.com", 465)
+    server.login(os.environ["GMX_USER"], os.environ["GMX_PASSWORD"])
+    for addr in addrs.split(","):
+        message = f"From: notify-idle <{os.environ['GMX_USER']}>\n"
+        message += f"To: To Person <{addr}>\n"
+        message += f"Subject: {alias} IDLE\n\n"
+        message += f"CPU = {psutil.cpu_percent(interval=1)}%\n"
+        if procs:
+            message += f"Python processes:\n"
+            message += f"-{procs}"
+        else:
+            message += f"No running Python processes"
+        server.sendmail(os.environ["GMX_USER"], addr, message)
+    server.quit()
