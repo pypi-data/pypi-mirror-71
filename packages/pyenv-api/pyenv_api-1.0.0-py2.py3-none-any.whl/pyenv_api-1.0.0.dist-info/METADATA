@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: pyenv-api
+Version: 1.0.0
+Summary: A simple API for pyenv
+Home-page: https://github.com/ulacioh/pyenv-api
+Author: Hector Ulacio
+Author-email: hectorulacior@gmail.com
+License: MIT
+Keywords: pyenv,version-management
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/x-rst
+
+pyenv-api - A simple API for pyenv
+======================================
+
+|Build Status|
+|License|
+
+This package provides an API in the form of a wrapper around `pyenv`_. It can be used to install, uninstall and switch Python versions.
+
+Note: This document is based on `virtualenv-api README`_.
+
+.. _pyenv: https://github.com/pyenv/pyenv
+.. _virtualenv-api README: https://github.com/sjkingo/virtualenv-api/blob/master/README.rst
+.. |Build Status| image:: https://api.travis-ci.org/ulacioh/pyenv-api.svg
+   :target: https://travis-ci.org/github/ulacioh/pyenv-api
+.. |License| image:: https://img.shields.io/github/license/ulacioh/pyenv-api
+   :target: https://github.com/ulacioh/pyenv-api/blob/master/LICENSE
+
+
