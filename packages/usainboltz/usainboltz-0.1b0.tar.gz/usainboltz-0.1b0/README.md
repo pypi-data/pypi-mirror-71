@@ -1,0 +1,48 @@
+# Usain Boltz
+
+Usain Boltz is a Python/Cython library meant to automate the random generation
+of tree-like structures.
+
+The library was primarily designed to be used with the
+[Sagemath](https://sagemath.org) mathematics software system but Sagemath is no
+longer a dependency and the library is now perfectly usable both within and
+without a Sagemath environment.
+
+## System requirements and known issues
+
+- One of our dependencies requires `cmake` to build. It is installed by default
+  on most distributions but if you encounter build errors with `osqp` that may
+  be the reason.
+
+- You also need to have [`cython`](https://cython.org/) installed on your
+  system to be able to build Usain Boltz.
+
+- If you are using Python 3.8 **and** you don't already have `numpy` installed,
+  you may have to manually install it before installing `usain-boltz`. The
+  issue has been reported [here](https://github.com/oxfordcontrol/osqp-python/issues/40)
+
+## Build and install
+
+Usain Boltz can be built locally with `make build`.
+
+It is also possible to install it inside your python environment by running
+`pip3 install [--user] .` from the root of the project or `pip3 install
+[--user] git+https://gitlab.com/ParComb/usain-boltz`.
+
+In a sage environment with python3 enabled, installation is done by `sage -pip
+install .` or `sage -pip install git+https://gitlab.com/ParComb/usain-boltz`.
+
+## Documentation
+
+Provided you have [`sphinx`](https://www.sphinx-doc.org) installed, you can
+build the documentation with `make doc`.
+
+### Examples and demo
+
+Some examples are available in the `examples` and `sage_examples` modules in
+the documentation. In particular, the `sage_examples` module illustrates how
+Usain Boltz can be used to generate sage objects.
+
+A sage notebook is available in the `demo/` folder which shows how Usain Boltz
+can be used to generate various objects related to binary trees from the same
+grammar and generator.
