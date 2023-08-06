@@ -1,0 +1,1360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>equity_jenga.api.auth &mdash; equity-jenga-api  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> equity-jenga-api
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">equity-jenga-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>equity_jenga.api.auth</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for equity_jenga.api.auth</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="k">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Signature</span> <span class="k">import</span> <span class="n">PKCS1_v1_5</span>
+<span class="kn">from</span> <span class="nn">Crypto.Hash</span> <span class="k">import</span> <span class="n">SHA256</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">handle_response</span><span class="p">,</span> <span class="n">generate_reference</span>
+
+
+<div class="viewcode-block" id="JengaAuth"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth">[docs]</a><span class="k">class</span> <span class="nc">JengaAuth</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Jenga API CORE  Class Representation</span>
+
+<span class="sd">    Jenga Payment Gateway and Jenga API support the OAuth 2.0 Authentication Framework, requiring you to provide a username and password, as well as an API key that you generate on Jenga HQ part of HTTP Basic Authentication to generate a Bearer token.</span>
+
+<span class="sd">    Once you have a token you can make subsequent requests to initiate payments, check completed transactions and more.</span>
+
+<span class="sd">    Only load your API keys as environment variables and do not share your credentials to anyone over email or any other method of communication.</span>
+
+<span class="sd">    **Params**</span>
+
+<span class="sd">    :api_key: Your Jenga API Key</span>
+<span class="sd">    :password: Your Jenga API Password</span>
+<span class="sd">    :merchant_code:: the merchant code provided by JengaHQ</span>
+<span class="sd">    :env:: the environment in which  the API is to be used either *sandbox* or *production*</span>
+<span class="sd">    :private_key:: the path to the merchant private key default is &quot;~/.JengaAPI/keys/privatekey.pem&quot;</span>
+<span class="sd">    :sandbox_url:: the url used to access the Sandbox API</span>
+<span class="sd">    :live_url:: the url used to access the Production API</span>
+
+<span class="sd">    **Example**</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from equity_jenga import api</span>
+<span class="sd">        jengabase = api.auth.JengaApi(</span>
+<span class="sd">        api_key=&quot;Basic TofFGUeU9y448idLCKVAe35LmAtLU9y448idLCKVAe35LmAtL&quot;,</span>
+<span class="sd">        password=&quot;TofFGUeU9y448idLCKVAe35LmAtL&quot;,</span>
+<span class="sd">        merchant_code=&quot;4144142283&quot;,</span>
+<span class="sd">        env=&quot;sandbox&quot;,</span>
+<span class="sd">        )</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">merchant_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">private_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/.JengaApi/keys/privatekey.pem&quot;</span><span class="p">,</span>
+        <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.jengahq.io&quot;</span><span class="p">,</span>
+        <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.jengahq.io&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="n">merchant_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">=</span> <span class="n">sandbox_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">=</span> <span class="n">live_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">private_key</span> <span class="o">=</span> <span class="n">private_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">merchant_code</span> <span class="o">=</span> <span class="n">merchant_code</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">authorization_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;token_type&quot;: &quot;bearer&quot;,</span>
+<span class="sd">            &quot;issued_at&quot;: &quot;1443102144106&quot;,</span>
+<span class="sd">            &quot;expires_in&quot;: &quot;3599&quot;,</span>
+<span class="sd">            &quot;access_token&quot;: &quot;ceTo5RCpluTfGn9B3OZXnnQkDVKM&quot;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Returns a str like &quot;Bearer ceTo5RCpluTfGn9B3OZXnnQkDVKM&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/identity-test/v2/token&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/identity/v2/token&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">}</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_password</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="JengaAuth.signature"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.signature">[docs]</a>    <span class="k">def</span> <span class="nf">signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request_hash_fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build a String of concatenated values of the request fields with</span>
+<span class="sd">        following order: as specificied by the API endpoint</span>
+<span class="sd">        The resulting text is then signed with Private Key and Base64 encoded.</span>
+
+<span class="sd">        Takes a tuple of request fields in the order that they should be</span>
+<span class="sd">        concatenated, hashes them with SHA-256,signs the resulting hash and</span>
+<span class="sd">        returns a Base64 encoded string of the resulting signature</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">request_hash_fields</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">private_key</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pk</span><span class="p">:</span>
+            <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">signer</span> <span class="o">=</span> <span class="n">PKCS1_v1_5</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">)</span>
+        <span class="n">digest</span> <span class="o">=</span> <span class="n">SHA256</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+        <span class="n">digest</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">signer</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">digest</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_pesalink_linked_accounts"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_pesalink_linked_accounts">[docs]</a>    <span class="k">def</span> <span class="nf">get_pesalink_linked_accounts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobile_number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This webservice returns the recipients’ Linked Banks linked to the</span>
+<span class="sd">        provided phone number on PesaLink</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;mobileNumber&quot;</span><span class="p">:</span> <span class="n">mobile_number</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/pesalink/inquire&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/pesalink/inquire&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_transaction_status"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_transaction_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_transaction_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requestId</span><span class="p">,</span> <span class="n">transferDate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use this API to check the status of a B2C transaction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;requestId&quot;</span><span class="p">:</span> <span class="n">requestId</span><span class="p">,</span>
+            <span class="s2">&quot;destination&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;M-Pesa&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;transfer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">transferDate</span><span class="p">},</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/b2c/status/query&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/b2c/status/query&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_all_eazzypay_merchants"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_all_eazzypay_merchants">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_eazzypay_merchants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numPages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This webservice returns all EazzyPay merchants .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="n">numPages</span><span class="p">,</span> <span class="s2">&quot;per_page&quot;</span><span class="p">:</span> <span class="n">per_page</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/merchants&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/merchants&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_all_billers"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_all_billers">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_billers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numPages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This web service returns a paginated list of all billers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="n">numPages</span><span class="p">,</span> <span class="s2">&quot;per_page&quot;</span><span class="p">:</span> <span class="n">per_page</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/billers&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/billers&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_payment_status"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_payment_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_payment_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transactionReference</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The webservice enables an application track the status of a payment</span>
+<span class="sd">        that is linked to the Receive Payments - Eazzypay Push web service</span>
+<span class="sd">        especially in failure states.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span>
+                <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/payments/&quot;</span>
+                <span class="o">+</span> <span class="n">transactionReference</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/payments/&quot;</span> <span class="o">+</span> <span class="n">transactionReference</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_transaction_details"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_transaction_details">[docs]</a>    <span class="k">def</span> <span class="nf">get_transaction_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transactionReference</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This webservice enables an application or service to query a</span>
+<span class="sd">        transactions details and status</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span>
+                <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/payments/details/&quot;</span>
+                <span class="o">+</span> <span class="n">transactionReference</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
+                <span class="o">+</span> <span class="s2">&quot;/transaction/v2/payments/details/&quot;</span>
+                <span class="o">+</span> <span class="n">transactionReference</span>
+            <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.purchase_airtime"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.purchase_airtime">[docs]</a>    <span class="k">def</span> <span class="nf">purchase_airtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">airtime</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This gives an application the ability to purchase airtime from any telco in</span>
+<span class="sd">        East and Central Africa.</span>
+
+<span class="sd">        Example Request</span>
+
+<span class="sd">        :Customer::</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;countryCode&quot;: &quot;KE&quot;,</span>
+<span class="sd">                &quot;mobileNumber&quot;: &quot;0765555131&quot;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        *countryCode*: the telco&#39;s ISO country code</span>
+
+<span class="sd">        *mobileNumber*: the mobile number you are purchasing airtime for</span>
+
+<span class="sd">        :Airtime::</span>
+
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;amount&quot;: &quot;100&quot;,</span>
+<span class="sd">                &quot;reference&quot;: &quot;692194625798&quot;,</span>
+<span class="sd">                &quot;telco&quot;: &quot;Equitel&quot;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        *telco* the telco/provider. For example: Equitel, Safaricom , Airtel.</span>
+
+<span class="sd">        *reference* your transaction references. Should always be a 12 digit string</span>
+
+<span class="sd">        *amount* the airtime amount string</span>
+
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;referenceNumber&quot;: &quot;4568899373748&quot;,</span>
+<span class="sd">                &quot;status&quot;: &quot;SUCCESS&quot;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">airtime</span><span class="p">[</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_reference</span><span class="p">()</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">customer</span><span class="p">,</span>
+            <span class="s2">&quot;airtime&quot;</span><span class="p">:</span> <span class="n">airtime</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">merchantCode</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">merchant_code</span><span class="p">,)</span>
+        <span class="n">airtimeTelco</span> <span class="o">=</span> <span class="p">(</span><span class="n">airtime</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;telco&quot;</span><span class="p">),)</span>
+        <span class="n">airtimeAmount</span> <span class="o">=</span> <span class="p">(</span><span class="n">airtime</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">),)</span>
+        <span class="n">airtimeReference</span> <span class="o">=</span> <span class="p">(</span><span class="n">airtime</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;reference&quot;</span><span class="p">),)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="n">merchantCode</span><span class="p">,</span> <span class="n">airtimeTelco</span><span class="p">,</span> <span class="n">airtimeAmount</span><span class="p">,</span> <span class="n">airtimeReference</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fields</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/airtime&quot;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/airtime&quot;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.kyc_search_verify"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.kyc_search_verify">[docs]</a>    <span class="k">def</span> <span class="nf">kyc_search_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identity</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Params:</span>
+
+<span class="sd">        :identitiy:</span>
+<span class="sd">            :documentType: string the document type of the customer.  for example ID, PASSPORT, ALIENID</span>
+
+<span class="sd">            :firstName: string first name as per identity document type</span>
+
+<span class="sd">            :lastName: string last name as per identity document type</span>
+
+<span class="sd">            :dateOfBirth: string optional date in YYYY-MM-DD format</span>
+
+<span class="sd">            :documentNumber: string the document id number</span>
+
+<span class="sd">            :countryCode: string the country in which the document relates to (only KE and RW enabled for now)</span>
+
+
+<span class="sd">        Example Reponse</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;identity&quot;: {</span>
+<span class="sd">                    &quot;customer&quot;: {</span>
+<span class="sd">                        &quot;fullName&quot;: &quot;John Doe &quot;,</span>
+<span class="sd">                        &quot;firstName&quot;: &quot;John&quot;,</span>
+<span class="sd">                        &quot;middlename&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;lastName&quot;: &quot;Doe&quot;,</span>
+<span class="sd">                        &quot;ShortName&quot;: &quot;John&quot;,</span>
+<span class="sd">                        &quot;birthDate&quot;: &quot;1900-01-01T00:00:00&quot;,</span>
+<span class="sd">                        &quot;birthCityName&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;deathDate&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;gender&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;faceImage&quot;: &quot;/9j/4AAQSkZJRgABAAEAYABgA+H8qr6n4e1O71SGFbV/sEOF3O6/N/eb71d/FGkaBVXaq9KfRRRRRUMsKSIdyr0r/9k=&quot;,</span>
+<span class="sd">                        &quot;occupation&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;nationality&quot;: &quot;Refugee&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    &quot;documentType&quot;: &quot;ALIEN ID&quot;,</span>
+<span class="sd">                    &quot;documentNumber&quot;: &quot;654321&quot;,</span>
+<span class="sd">                    &quot;documentSerialNumber&quot;: &quot;100500425&quot;,</span>
+<span class="sd">                    &quot;documentIssueDate&quot;: &quot;2002-11-29T12:00:00&quot;,</span>
+<span class="sd">                    &quot;documentExpirationDate&quot;: &quot;2004-11-28T12:00:00&quot;,</span>
+<span class="sd">                    &quot;IssuedBy&quot;: &quot;REPUBLIC OF KENYA&quot;,</span>
+<span class="sd">                    &quot;additionalIdentityDetails&quot;: [</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;documentNumber&quot;: &quot;&quot;,</span>
+<span class="sd">                            &quot;documentType&quot;: &quot;&quot;,</span>
+<span class="sd">                            &quot;issuedBy&quot;: &quot;&quot;</span>
+<span class="sd">                        }</span>
+<span class="sd">                    ],</span>
+<span class="sd">                    &quot;address&quot;: {</span>
+<span class="sd">                        &quot;provinceName&quot;: &quot; &quot;,</span>
+<span class="sd">                        &quot;districtName&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;locationName&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;subLocationName&quot;: &quot;&quot;,</span>
+<span class="sd">                        &quot;villageName&quot;: &quot;&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">documentNumber</span> <span class="o">=</span> <span class="n">identity</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;documentNumber&quot;</span><span class="p">)</span>
+        <span class="n">countryCode</span> <span class="o">=</span> <span class="n">identity</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;countryCode&quot;</span><span class="p">)</span>
+        <span class="n">merchantCode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merchant_code</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">merchantCode</span><span class="p">,</span> <span class="n">documentNumber</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;identity&quot;</span><span class="p">:</span> <span class="n">identity</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/customer-test/v2/identity/verify&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/customer/v2/identity/verify&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.loans_credit_score"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.loans_credit_score">[docs]</a>    <span class="k">def</span> <span class="nf">loans_credit_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">bureau</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">loan</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Request Payload</span>
+<span class="sd">        customer,bureau,loan</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;customer&quot;: [{</span>
+<span class="sd">                    &quot;id&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;fullName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;firstName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;lastName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;shortName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;title&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;mobileNumber&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;dateOfBirth&quot;: &quot;1999-01-31&quot;,</span>
+<span class="sd">                    &quot;identityDocument&quot;: {</span>
+<span class="sd">                        &quot;documentType&quot;: &quot;NationalID&quot;,</span>
+<span class="sd">                        &quot;documentNumber&quot;: &quot;12365478&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                }],</span>
+<span class="sd">                &quot;bureau&quot;: {</span>
+<span class="sd">                    &quot;reportType&quot;: &quot;Mobile&quot;,</span>
+<span class="sd">                    &quot;countryCode&quot;: &quot;KE&quot;</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;loan&quot;: {</span>
+<span class="sd">                    &quot;amount&quot;: &quot;5000&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;Person&quot;: {</span>
+<span class="sd">                    &quot;PersonName&quot;: {},</span>
+<span class="sd">                    &quot;IdentityDocument&quot;: {</span>
+<span class="sd">                        &quot;IdentityDocumentID&quot;: &quot;1234568&quot;,</span>
+<span class="sd">                        &quot;IdentityDocumentType&quot;: &quot;National ID&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;CreditAccountsSummary&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;17012014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;65000.00000&quot;,</span>
+<span class="sd">                            &quot;65000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;5000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;20062014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;09&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;09062011&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;106458.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;200000.00000&quot;,</span>
+<span class="sd">                            &quot;200000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;1667.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;14052014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6960.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15122014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;22092014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;1000.00000&quot;,</span>
+<span class="sd">                            &quot;1000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;1000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15102014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31102014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29122014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16032015&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31032015&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;20032015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16012016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31012016&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;N:000019:01:2015&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;06012015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;300000.00000&quot;,</span>
+<span class="sd">                            &quot;300000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;20562.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;27102017&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;068-P-12365478&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;04&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;13102011&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;39844.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;40000.00000&quot;,</span>
+<span class="sd">                            &quot;40000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2500.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16072018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;068-P-25417854&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;04&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;19082015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;50000.00000&quot;,</span>
+<span class="sd">                            &quot;50000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2500.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;13022018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;02022016&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16122016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31012017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;2569774&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;02062016&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;3000.00000&quot;,</span>
+<span class="sd">                            &quot;3000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;3726.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;26122016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;11110571749286&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;14022017&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;120000.00000&quot;,</span>
+<span class="sd">                            &quot;120000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;10000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15112017&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;JKCBDL1724301111&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;30082017&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;13122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;A&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;BCKMLD1802229762&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;08042018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;11062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;21062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;A&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MKDLCB1814647289&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;26052018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;5400.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;5400.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;26052018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31052018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MKCDLB1818039369&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29062018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;2150.00000&quot;,</span>
+<span class="sd">                            &quot;2150.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;29062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MDLBBCK1821123688&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29072018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;2150.00000&quot;,</span>
+<span class="sd">                            &quot;2150.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;30072018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                ],</span>
+<span class="sd">                &quot;CreditBureau&quot;: {</span>
+<span class="sd">                    &quot;score&quot;: &quot;772&quot;,</span>
+<span class="sd">                    &quot;creditApplications90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;creditApplications180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;creditApplications365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctNonPerformingCurrent&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctNonPerformingHisto&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctPerformingCurrent&quot;: &quot;15&quot;,</span>
+<span class="sd">                    &quot;AcctPerformingHisto&quot;: &quot;NaN&quot;,</span>
+<span class="sd">                    &quot;IsFraud&quot;: &quot;false&quot;,</span>
+<span class="sd">                    &quot;isGuarantor&quot;: &quot;false&quot;,</span>
+<span class="sd">                    &quot;delinquency_code&quot;: &quot;No delinquency&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">customer</span><span class="p">,</span> <span class="s2">&quot;bureau&quot;</span><span class="p">:</span> <span class="n">bureau</span><span class="p">,</span> <span class="s2">&quot;loan&quot;</span><span class="p">:</span> <span class="n">loan</span><span class="p">}</span>
+        <span class="n">dateOfBirth</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;customer&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dateOfBirth&quot;</span><span class="p">)</span>
+        <span class="n">merchantCode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merchant_code</span>
+        <span class="n">documentNumber</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;customer&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;identityDocument&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;documentNumber&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">dateOfBirth</span><span class="p">,</span> <span class="n">merchantCode</span><span class="p">,</span> <span class="n">documentNumber</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/customer-test/v2/creditinfo&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/customer/v2/creditinfo&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_forex_rates"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_forex_rates">[docs]</a>    <span class="k">def</span> <span class="nf">get_forex_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">currencyCode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Params</span>
+
+<span class="sd">        :countryCode:: the country for which rates are being requested.</span>
+<span class="sd">            Valid values are KE, TZ, UG, RW.</span>
+
+<span class="sd">        :currencyCode:: the currency code of the currency</span>
+<span class="sd">            that is being converted from in ISO 4217 format</span>
+
+<span class="sd">        Example Request</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;countryCode&quot;: &quot;KE&quot;,</span>
+<span class="sd">            &quot;currencyCode&quot;: &quot;USD&quot;</span>
+<span class="sd">            }</span>
+
+
+<span class="sd">        Example Response</span>
+<span class="sd">        :currencyRates:: list of conversion rates for major currencies</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;currencyRates&quot;:[],</span>
+<span class="sd">            &quot;fromCurrency&quot;: &quot;KES&quot;,</span>
+<span class="sd">            &quot;rate&quot;:101.3,</span>
+<span class="sd">            &quot;toCurrency&quot;: &quot;USD&quot;</span>
+<span class="sd">            }</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;countryCode&quot;</span><span class="p">:</span> <span class="n">countryCode</span><span class="p">,</span>
+            <span class="s2">&quot;currencyCode&quot;</span><span class="p">:</span> <span class="n">currencyCode</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction-test/v2/foreignexchangerates&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/transaction/v2/foreignexchangerates&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_account_available_balance"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_account_available_balance">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_available_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">accountId</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the current and available balance of an account</span>
+
+<span class="sd">        200 Success Response Schema</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                &quot;balances&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;amount&quot;: &quot;997382.57&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Current&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;amount&quot;: &quot;997382.57&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Available&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">countryCode</span><span class="p">,</span> <span class="n">accountId</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;/account-test/v2/accounts/balances/</span><span class="si">{countryCode}</span><span class="s2">/</span><span class="si">{accountId}</span><span class="s2">&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;/account/v2/accounts/balances/</span><span class="si">{countryCode}</span><span class="s2">/</span><span class="si">{accountId}</span><span class="s2">&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_account_opening_and_closing_balance"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_account_opening_and_closing_balance">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_opening_and_closing_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accountId</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Request</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">            &quot;countryCode&quot;: &quot;KE&quot;,</span>
+<span class="sd">            &quot;accountId&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">            &quot;date&quot;: &quot;2017-09-29&quot;</span>
+<span class="sd">            }</span>
+
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &quot;balances&quot;: [</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;type&quot;: &quot;Closing Balance&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: &quot;10810.00&quot;</span>
+<span class="sd">                        },</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;type&quot;: &quot;Opening Balance&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: &quot;103.00&quot;</span>
+<span class="sd">                        }</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">accountId</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">date</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;countryCode&quot;</span><span class="p">:</span> <span class="n">countryCode</span><span class="p">,</span>
+            <span class="s2">&quot;accountId&quot;</span><span class="p">:</span> <span class="n">accountId</span><span class="p">,</span>
+            <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="s2">&quot;/account-test/v2/accounts/accountbalance/query&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="s2">&quot;/account/v2/accounts/accountbalance/query&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_account_mini_statement"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_account_mini_statement">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_mini_statement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;accountNumber&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                &quot;balance&quot;: 1000,</span>
+<span class="sd">                &quot;transactions&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-01T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EAZZY-FUNDS TRNSF TO A/C XXXXXXXXXXXX&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;100&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-03T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;51&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-05T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;CHARGE FOR OTC ECS TRAN&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;220&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-05T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;20&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;/account-test/v2/accounts/ministatement/</span><span class="si">{countryCode}</span><span class="s2">/</span><span class="si">{accountNumber}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;/account/v2/accounts/ministatement/</span><span class="si">{countryCode}</span><span class="s2">/</span><span class="si">{accountNumber}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JengaAuth.get_account_full_statement"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.JengaAuth.get_account_full_statement">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_full_statement</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">,</span> <span class="n">fromDate</span><span class="p">,</span> <span class="n">toDate</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;accountNumber&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                &quot;balance&quot;: 997382.57,</span>
+<span class="sd">                &quot;transactions&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: 541,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-13T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EQUITEL-BUNDLE/254764555383/8755&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 900,</span>
+<span class="sd">                        &quot;serial&quot;: 1,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-13T09:51:27.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1344.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: &quot;S4921027&quot;,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-18T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EAZZY-AIRTIME/EQUITEL/254764555383/100000939918/18&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 200,</span>
+<span class="sd">                        &quot;serial&quot;: 1,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-18T16:27:18.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1144.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: 5436,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-19T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;CREDIT TRANSFER&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 1000000,</span>
+<span class="sd">                        &quot;serial&quot;: 2,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-19T12:01:47.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Credit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1001144.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;countryCode&quot;</span><span class="p">:</span> <span class="n">countryCode</span><span class="p">,</span>
+            <span class="s2">&quot;accountNumber&quot;</span><span class="p">:</span> <span class="n">accountNumber</span><span class="p">,</span>
+            <span class="s2">&quot;fromDate&quot;</span><span class="p">:</span> <span class="n">fromDate</span><span class="p">,</span>
+            <span class="s2">&quot;toDate&quot;</span><span class="p">:</span> <span class="n">toDate</span><span class="p">,</span>
+            <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">accountNumber</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;accountNumber&quot;</span><span class="p">)</span>
+        <span class="n">countryCode</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;countryCode&quot;</span><span class="p">)</span>
+        <span class="n">toDate</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;toDate&quot;</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">accountNumber</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">toDate</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="s2">&quot;/account-test/v2/accounts/fullstatement/&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="s2">&quot;/account/v2/accounts/fullstatement/&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="n">resource</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="generate_key_pair"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.auth.generate_key_pair">[docs]</a><span class="k">def</span> <span class="nf">generate_key_pair</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a Public/Public RSA Key Pair which is store in the current User&#39;s</span>
+<span class="sd">    **HOME** directory  under the **.JengaAPI/keys/** Directory</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+
+    <span class="n">home_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">home_dir</span> <span class="o">+</span> <span class="s2">&quot;/.JengaApi&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">home_dir</span> <span class="o">+</span> <span class="s2">&quot;/.JengaApi&quot;</span><span class="p">)</span>
+    <span class="n">keypath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home_dir</span><span class="p">,</span> <span class="s2">&quot;.JengaApi&quot;</span><span class="p">,</span> <span class="s2">&quot;keys&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">keypath</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">keypath</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;created </span><span class="si">{keypath}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span>
+        <span class="n">f</span><span class="s2">&quot;cd </span><span class="si">{keypath}</span><span class="s2">;openssl genrsa -out privatekey.pem 2048;openssl rsa -in privatekey.pem -outform PEM -pubout -out publickey.pem&quot;</span>
+    <span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;ls </span><span class="si">{keypath}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tralah M Brian
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,2156 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Equity_Jenga Package &mdash; equity-jenga-api  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> equity-jenga-api
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jenga-submodules">Jenga Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-equity_jenga.api.auth">equity_jenga.api.auth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-equity_jenga.api.exceptions">equity_jenga.api.exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">equity-jenga-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Equity_Jenga Package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="equity-jenga-package">
+<h1>Equity_Jenga Package<a class="headerlink" href="#equity-jenga-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="jenga-submodules">
+<h2>Jenga Submodules<a class="headerlink" href="#jenga-submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-equity_jenga.api.auth">
+<span id="equity-jenga-api-auth"></span><h2>equity_jenga.api.auth<a class="headerlink" href="#module-equity_jenga.api.auth" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="equity_jenga.api.auth.JengaAuth">
+<em class="property">class </em><code class="sig-prename descclassname">equity_jenga.api.auth.</code><code class="sig-name descname">JengaAuth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api_key</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">merchant_code</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">env</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">private_key</span><span class="o">=</span><span class="default_value">'/home/african/.JengaApi/keys/privatekey.pem'</span></em>, <em class="sig-param"><span class="n">sandbox_url</span><span class="o">=</span><span class="default_value">'https://sandbox.jengahq.io'</span></em>, <em class="sig-param"><span class="n">live_url</span><span class="o">=</span><span class="default_value">'https://api.jengahq.io'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Jenga API CORE  Class Representation</p>
+<p>Jenga Payment Gateway and Jenga API support the OAuth 2.0 Authentication Framework, requiring you to provide a username and password, as well as an API key that you generate on Jenga HQ part of HTTP Basic Authentication to generate a Bearer token.</p>
+<p>Once you have a token you can make subsequent requests to initiate payments, check completed transactions and more.</p>
+<p>Only load your API keys as environment variables and do not share your credentials to anyone over email or any other method of communication.</p>
+<p><strong>Params</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Api_key</dt>
+<dd class="field-odd"><p>Your Jenga API Key</p>
+</dd>
+<dt class="field-even">Password</dt>
+<dd class="field-even"><p>Your Jenga API Password</p>
+</dd>
+<dt class="field-odd">Merchant_code:</dt>
+<dd class="field-odd"><p>the merchant code provided by JengaHQ</p>
+</dd>
+<dt class="field-even">Env:</dt>
+<dd class="field-even"><p>the environment in which  the API is to be used either <em>sandbox</em> or <em>production</em></p>
+</dd>
+<dt class="field-odd">Private_key:</dt>
+<dd class="field-odd"><p>the path to the merchant private key default is “~/.JengaAPI/keys/privatekey.pem”</p>
+</dd>
+<dt class="field-even">Sandbox_url:</dt>
+<dd class="field-even"><p>the url used to access the Sandbox API</p>
+</dd>
+<dt class="field-odd">Live_url:</dt>
+<dd class="field-odd"><p>the url used to access the Production API</p>
+</dd>
+</dl>
+<p><strong>Example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">equity_jenga</span> <span class="kn">import</span> <span class="n">api</span>
+<span class="n">jengabase</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">JengaApi</span><span class="p">(</span>
+<span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;Basic TofFGUeU9y448idLCKVAe35LmAtLU9y448idLCKVAe35LmAtL&quot;</span><span class="p">,</span>
+<span class="n">password</span><span class="o">=</span><span class="s2">&quot;TofFGUeU9y448idLCKVAe35LmAtL&quot;</span><span class="p">,</span>
+<span class="n">merchant_code</span><span class="o">=</span><span class="s2">&quot;4144142283&quot;</span><span class="p">,</span>
+<span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.authorization_token">
+<em class="property">property </em><code class="sig-name descname">authorization_token</code><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.authorization_token" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;bearer&quot;</span><span class="p">,</span>
+<span class="nt">&quot;issued_at&quot;</span><span class="p">:</span> <span class="s2">&quot;1443102144106&quot;</span><span class="p">,</span>
+<span class="nt">&quot;expires_in&quot;</span><span class="p">:</span> <span class="s2">&quot;3599&quot;</span><span class="p">,</span>
+<span class="nt">&quot;access_token&quot;</span><span class="p">:</span> <span class="s2">&quot;ceTo5RCpluTfGn9B3OZXnnQkDVKM&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Returns a str like “Bearer ceTo5RCpluTfGn9B3OZXnnQkDVKM”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_account_available_balance">
+<code class="sig-name descname">get_account_available_balance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countryCode</span></em>, <em class="sig-param"><span class="n">accountId</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_account_available_balance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_account_available_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the current and available balance of an account</p>
+<p>200 Success Response Schema</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;balances&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;997382.57&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Current&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;997382.57&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Available&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_account_full_statement">
+<code class="sig-name descname">get_account_full_statement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countryCode</span></em>, <em class="sig-param"><span class="n">accountNumber</span></em>, <em class="sig-param"><span class="n">fromDate</span></em>, <em class="sig-param"><span class="n">toDate</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_account_full_statement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_account_full_statement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example Response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accountNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="mf">997382.57</span><span class="p">,</span>
+    <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="mi">541</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-13T00:00:00.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;EQUITEL-BUNDLE/254764555383/8755&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span>
+            <span class="nt">&quot;serial&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;postedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-13T09:51:27.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;runningBalance&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">1344.57</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;S4921027&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-18T00:00:00.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;EAZZY-AIRTIME/EQUITEL/254764555383/100000939918/18&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+            <span class="nt">&quot;serial&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;postedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-18T16:27:18.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;runningBalance&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">1144.57</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="mi">5436</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-19T00:00:00.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;CREDIT TRANSFER&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
+            <span class="nt">&quot;serial&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;postedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-19T12:01:47.000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Credit&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;runningBalance&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">1001144.57</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_account_mini_statement">
+<code class="sig-name descname">get_account_mini_statement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countryCode</span></em>, <em class="sig-param"><span class="n">accountNumber</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_account_mini_statement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_account_mini_statement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example Response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accountNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;chequeNumber&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T00:00:00&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;EAZZY-FUNDS TRNSF TO A/C XXXXXXXXXXXX&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;chequeNumber&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-03T00:00:00&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;51&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;chequeNumber&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-05T00:00:00&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;CHARGE FOR OTC ECS TRAN&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;220&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;chequeNumber&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-05T00:00:00&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Debit&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_account_opening_and_closing_balance">
+<code class="sig-name descname">get_account_opening_and_closing_balance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">accountId</span></em>, <em class="sig-param"><span class="n">countryCode</span></em>, <em class="sig-param"><span class="n">date</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_account_opening_and_closing_balance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_account_opening_and_closing_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example Request</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;countryCode&quot;</span><span class="p">:</span> <span class="s2">&quot;KE&quot;</span><span class="p">,</span>
+<span class="nt">&quot;accountId&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+<span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-09-29&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example Response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;balances&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Closing Balance&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;10810.00&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Opening Balance&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;103.00&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_all_billers">
+<code class="sig-name descname">get_all_billers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">numPages</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">per_page</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_all_billers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_all_billers" title="Permalink to this definition">¶</a></dt>
+<dd><p>This web service returns a paginated list of all billers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_all_eazzypay_merchants">
+<code class="sig-name descname">get_all_eazzypay_merchants</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">numPages</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">per_page</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_all_eazzypay_merchants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_all_eazzypay_merchants" title="Permalink to this definition">¶</a></dt>
+<dd><p>This webservice returns all EazzyPay merchants .</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_forex_rates">
+<code class="sig-name descname">get_forex_rates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countryCode</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">currencyCode</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_forex_rates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_forex_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Params</p>
+<dl class="field-list simple">
+<dt class="field-odd">CountryCode:</dt>
+<dd class="field-odd"><p>the country for which rates are being requested.
+Valid values are KE, TZ, UG, RW.</p>
+</dd>
+<dt class="field-even">CurrencyCode:</dt>
+<dd class="field-even"><p>the currency code of the currency
+that is being converted from in ISO 4217 format</p>
+</dd>
+</dl>
+<p>Example Request</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;countryCode&quot;</span><span class="p">:</span> <span class="s2">&quot;KE&quot;</span><span class="p">,</span>
+<span class="nt">&quot;currencyCode&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example Response
+:currencyRates:: list of conversion rates for major currencies</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;currencyRates&quot;</span><span class="p">:[],</span>
+<span class="nt">&quot;fromCurrency&quot;</span><span class="p">:</span> <span class="s2">&quot;KES&quot;</span><span class="p">,</span>
+<span class="nt">&quot;rate&quot;</span><span class="p">:</span><span class="mf">101.3</span><span class="p">,</span>
+<span class="nt">&quot;toCurrency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_payment_status">
+<code class="sig-name descname">get_payment_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transactionReference</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_payment_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_payment_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>The webservice enables an application track the status of a payment
+that is linked to the Receive Payments - Eazzypay Push web service
+especially in failure states.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_pesalink_linked_accounts">
+<code class="sig-name descname">get_pesalink_linked_accounts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mobile_number</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_pesalink_linked_accounts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_pesalink_linked_accounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>This webservice returns the recipients’ Linked Banks linked to the
+provided phone number on PesaLink</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_transaction_details">
+<code class="sig-name descname">get_transaction_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transactionReference</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_transaction_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_transaction_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>This webservice enables an application or service to query a
+transactions details and status</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.get_transaction_status">
+<code class="sig-name descname">get_transaction_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">requestId</span></em>, <em class="sig-param"><span class="n">transferDate</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.get_transaction_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.get_transaction_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this API to check the status of a B2C transaction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.kyc_search_verify">
+<code class="sig-name descname">kyc_search_verify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">identity</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.kyc_search_verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.kyc_search_verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Params:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Identitiy</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">documentType</dt>
+<dd class="field-odd"><p>string the document type of the customer.  for example ID, PASSPORT, ALIENID</p>
+</dd>
+<dt class="field-even">firstName</dt>
+<dd class="field-even"><p>string first name as per identity document type</p>
+</dd>
+<dt class="field-odd">lastName</dt>
+<dd class="field-odd"><p>string last name as per identity document type</p>
+</dd>
+<dt class="field-even">dateOfBirth</dt>
+<dd class="field-even"><p>string optional date in YYYY-MM-DD format</p>
+</dd>
+<dt class="field-odd">documentNumber</dt>
+<dd class="field-odd"><p>string the document id number</p>
+</dd>
+<dt class="field-even">countryCode</dt>
+<dd class="field-even"><p>string the country in which the document relates to (only KE and RW enabled for now)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Example Reponse</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;identity&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;fullName&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe &quot;</span><span class="p">,</span>
+            <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;middlename&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;lastName&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;ShortName&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;birthDate&quot;</span><span class="p">:</span> <span class="s2">&quot;1900-01-01T00:00:00&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;birthCityName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;deathDate&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;gender&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;faceImage&quot;</span><span class="p">:</span> <span class="s2">&quot;/9j/4AAQSkZJRgABAAEAYABgA+H8qr6n4e1O71SGFbV/sEOF3O6/N/eb71d/FGkaBVXaq9KfRRRRRUMsKSIdyr0r/9k=&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;occupation&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;nationality&quot;</span><span class="p">:</span> <span class="s2">&quot;Refugee&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;documentType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALIEN ID&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;documentNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;654321&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;documentSerialNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;100500425&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;documentIssueDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2002-11-29T12:00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;documentExpirationDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2004-11-28T12:00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;IssuedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;REPUBLIC OF KENYA&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;additionalIdentityDetails&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;documentNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;documentType&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;issuedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;provinceName&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+            <span class="nt">&quot;districtName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;locationName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;subLocationName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;villageName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.loans_credit_score">
+<code class="sig-name descname">loans_credit_score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">customer</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">bureau</span><span class="p">:</span> <span class="n">dict</span></em>, <em class="sig-param"><span class="n">loan</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.loans_credit_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.loans_credit_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example Request Payload
+customer,bureau,loan</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;fullName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;mobileNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="s2">&quot;1999-01-31&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;identityDocument&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;documentType&quot;</span><span class="p">:</span> <span class="s2">&quot;NationalID&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;documentNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;12365478&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}],</span>
+    <span class="nt">&quot;bureau&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;reportType&quot;</span><span class="p">:</span> <span class="s2">&quot;Mobile&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;countryCode&quot;</span><span class="p">:</span> <span class="s2">&quot;KE&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;loan&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;5000&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example Response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;Person&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;PersonName&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="nt">&quot;IdentityDocument&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;IdentityDocumentID&quot;</span><span class="p">:</span> <span class="s2">&quot;1234568&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;IdentityDocumentType&quot;</span><span class="p">:</span> <span class="s2">&quot;National ID&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;CreditAccountsSummary&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;36&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;17012014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;65000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;65000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;5000.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;20062014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;30062014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;09&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;09062011&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;106458.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;200000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;200000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;1667.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;15062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;30062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;36&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;14052014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;80000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;80000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;6960.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;15122014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31122014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;36&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;22092014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;1000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;1000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;1000.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;15102014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31102014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;36&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;29122014&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;80000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;80000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;6666.67000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;16032015&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31032015&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;36&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;20032015&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;80000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;80000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;6666.67000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;16012016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31012016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;N:000019:01:2015&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;06012015&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;300000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;300000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;20562.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;27102017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31122017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;068-P-12365478&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;04&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;13102011&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;39844.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;40000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;40000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;2500.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;16072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;068-P-25417854&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;04&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;19082015&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;50000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;50000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;2500.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;13022018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;0011547896523&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;02022016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;80000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;80000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;6666.67000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;16122016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31012017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;2569774&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;02062016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;3000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;3000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;3726.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;26122016&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;30062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;11110571749286&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;14022017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;120000.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;120000.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;10000.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;15112017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31122017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;JKCBDL1724301111&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;30082017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;5400.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;5400.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;13122017&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;BCKMLD1802229762&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;08042018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;5400.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;5400.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;11062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;21062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;MKDLCB1814647289&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;26052018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;5400.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;5400.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;5400.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;5400.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;26052018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31052018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;MKCDLB1818039369&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;29062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;2150.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;29062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;30062018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;AccountIdentifier&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AccountID&quot;</span><span class="p">:</span> <span class="s2">&quot;MDLBBCK1821123688&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;AccountCurrency&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;AccountType&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOpenDate&quot;</span><span class="p">:</span> <span class="s2">&quot;29072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountOwnership&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Balance&quot;</span><span class="p">:</span> <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;DelinquencyStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Original_Amount&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;2150.00000&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;PastDueAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;0.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentAmount&quot;</span><span class="p">:</span> <span class="s2">&quot;2150.00000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LastPaymentReceivedDate&quot;</span><span class="p">:</span> <span class="s2">&quot;30072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;NoofDelayed_Payments&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PostedDateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;31072018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;AccountStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;LoanAccount&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;PastDueDate&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="nt">&quot;LoanHighestDaysInArrears&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;CreditBureau&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="s2">&quot;772&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creditApplications90Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creditApplications180Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;creditApplications365Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;crbEnqiry90Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;crbEnqiry180Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;crbEnqiry365Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;BouncedCheques90Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;BouncedCheques180Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;BouncedCheques365Days&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AcctNonPerformingCurrent&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AcctNonPerformingHisto&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AcctPerformingCurrent&quot;</span><span class="p">:</span> <span class="s2">&quot;15&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AcctPerformingHisto&quot;</span><span class="p">:</span> <span class="s2">&quot;NaN&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;IsFraud&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;isGuarantor&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;delinquency_code&quot;</span><span class="p">:</span> <span class="s2">&quot;No delinquency&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.purchase_airtime">
+<code class="sig-name descname">purchase_airtime</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">customer</span><span class="p">:</span> <span class="n">dict</span></em>, <em class="sig-param"><span class="n">airtime</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.purchase_airtime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.purchase_airtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>This gives an application the ability to purchase airtime from any telco in
+East and Central Africa.</p>
+<p>Example Request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Customer:</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;countryCode&quot;</span><span class="p">:</span> <span class="s2">&quot;KE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mobileNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;0765555131&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>countryCode</em>: the telco’s ISO country code</p>
+<p><em>mobileNumber</em>: the mobile number you are purchasing airtime for</p>
+<dl class="field-list simple">
+<dt class="field-odd">Airtime:</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;692194625798&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;telco&quot;</span><span class="p">:</span> <span class="s2">&quot;Equitel&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>telco</em> the telco/provider. For example: Equitel, Safaricom , Airtel.</p>
+<p><em>reference</em> your transaction references. Should always be a 12 digit string</p>
+<p><em>amount</em> the airtime amount string</p>
+<p>Example Response</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;referenceNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;4568899373748&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;SUCCESS&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="equity_jenga.api.auth.JengaAuth.signature">
+<code class="sig-name descname">signature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request_hash_fields</span><span class="p">:</span> <span class="n">tuple</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#JengaAuth.signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.JengaAuth.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a String of concatenated values of the request fields with
+following order: as specificied by the API endpoint
+The resulting text is then signed with Private Key and Base64 encoded.</p>
+<p>Takes a tuple of request fields in the order that they should be
+concatenated, hashes them with SHA-256,signs the resulting hash and
+returns a Base64 encoded string of the resulting signature</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="equity_jenga.api.auth.generate_key_pair">
+<code class="sig-prename descclassname">equity_jenga.api.auth.</code><code class="sig-name descname">generate_key_pair</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/auth.html#generate_key_pair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.auth.generate_key_pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a Public/Public RSA Key Pair which is store in the current User’s
+<strong>HOME</strong> directory  under the <strong>.JengaAPI/keys/</strong> Directory</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-equity_jenga.api.exceptions">
+<span id="equity-jenga-api-exceptions"></span><h2>equity_jenga.api.exceptions<a class="headerlink" href="#module-equity_jenga.api.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Downstream Provider Error responses:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>900101</p></td>
+<td><p>Invalid merchant Cipher Text</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>900101</p></td>
+<td><p>Invalid merchant certificate</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>900101</p></td>
+<td><p>invalid merchant public key configuration – is empty</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>900101</p></td>
+<td><p>Invalid merchant public key configuration —Public key is null</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>900101</p></td>
+<td><p>Invalid merchant code provided</p></td>
+</tr>
+</tbody>
+</table>
+<p>Merchant Authorization:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Code</p></td>
+<td><p>Response Message</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>401101</p></td>
+<td><p>Unauthorized</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>401102</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>401103</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+</tbody>
+</table>
+<p>Merchant Account/ Profile Validation:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>104101</p></td>
+<td><p>Validation of account failed</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>104102</p></td>
+<td><p>Merchant daily transaction limit exceeded</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>104103</p></td>
+<td><p>Insufficient Funds</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>104104</p></td>
+<td><p>Invalid charge configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>104105</p></td>
+<td><p>Server Error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>104106</p></td>
+<td><p>Server error - could not save to database</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>104107</p></td>
+<td><p>Invalid merchant configuration - No billing account found</p></td>
+</tr>
+</tbody>
+</table>
+<p>RTGS:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>118102</p></td>
+<td><p>Service Not Available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>118108</p></td>
+<td><p>The source account has insufficient balance amount</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>103101</p></td>
+<td><p>Invalid Account Type.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>103102</p></td>
+<td><p>Invalid account number .</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>103104</p></td>
+<td><p>Insufficient funds.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>103105</p></td>
+<td><p>Transfer Limit Exceeded .</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>103106</p></td>
+<td><p>Request Failed, please contact Bank.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>103107</p></td>
+<td><p>Invalid Currency/Transaction Amount.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>103108</p></td>
+<td><p>System Failure please retry .</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>103109</p></td>
+<td><p>System malfunction .</p></td>
+</tr>
+</tbody>
+</table>
+<p>Send Money - Within Equity Bank and Equitel</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400103</p></td>
+<td><p>Failed, invalid destination bank account</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400104</p></td>
+<td><p>Failed, insufficient funds</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400105</p></td>
+<td><p>Failed, general error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400106</p></td>
+<td><p>Failed, destination bank error.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400107</p></td>
+<td><p>Failed, destination bank error. Cut-over in progress</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400108</p></td>
+<td><p>Failed, destination bank error. System malfunction</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400109</p></td>
+<td><p>Failed, destination bank error. Duplicate transmission</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400111</p></td>
+<td><p>Failed, missing parameter in integration to gateway system</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400112</p></td>
+<td><p>Failed, could not process this request. System failure.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400113</p></td>
+<td><p>Failed, sender daily limit exceeded</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>103120</p></td>
+<td><p>Failed, banking service could not process the request</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400114</p></td>
+<td><p>Failed, unable to process request. Third party is unavailable</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400115</p></td>
+<td><p>Failed, unhandled error</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400116</p></td>
+<td><p>Failed, 12 digit transaction reference required</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>118110</p></td>
+<td><p>Failed, maximum transfer amount is 999,999 per transaction</p></td>
+</tr>
+</tbody>
+</table>
+<p>Pesalink</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>100116</p></td>
+<td><p>Failed, pesalink or destination bank error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100124</p></td>
+<td><p>Failed, invalid amount</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>100128</p></td>
+<td><p>Failed, pesalink or destination bank error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100130</p></td>
+<td><p>Failed, pesalink or destination bank error</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>100134</p></td>
+<td><p>Failed, amount less than minimum allowed</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100207</p></td>
+<td><p>Failed, destination cannot be found for routing</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>100209</p></td>
+<td><p>Failed, pesalink or destination bank error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100210</p></td>
+<td><p>Failed, transaction timed out</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>100211</p></td>
+<td><p>Failed, pesalink or destination bank error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100232</p></td>
+<td><p>Failed, banking service could not process the request</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>100222</p></td>
+<td><p>Failed, suspected fraud</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400102</p></td>
+<td><p>Failed, invalid destination bank account</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400103</p></td>
+<td><p>Failed, invalid destination bank account</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400104</p></td>
+<td><p>Failed, insufficient funds</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400105</p></td>
+<td><p>Failed, general error</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400106</p></td>
+<td><p>Failed, destination bank error.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400107</p></td>
+<td><p>Failed, destination bank error. Cut-over in progress</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400108</p></td>
+<td><p>Failed, destination bank error. System malfunction</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400109</p></td>
+<td><p>Failed, destination bank error. Duplicate transmission</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400110</p></td>
+<td><p>Failed, bank not on pesalink</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400111</p></td>
+<td><p>Failed, missing parameter in integration to gateway system</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400112</p></td>
+<td><p>Failed, could not process this request. System failure.</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400113</p></td>
+<td><p>Failed, sender daily limit exceeded</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400114</p></td>
+<td><p>Failed, unable to process request. Third party is unavailable</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400115</p></td>
+<td><p>Failed, unhandled error</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400116</p></td>
+<td><p>Failed, 12 digit transaction reference required</p></td>
+</tr>
+</tbody>
+</table>
+<p>Purchase Airtime</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 91%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107101</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107102</p></td>
+<td><p>Invalid Provider</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107103</p></td>
+<td><p>Invalid Parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107104</p></td>
+<td><p>Invalid Mobile Number</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107105</p></td>
+<td><p>Invalid Service Type</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107106</p></td>
+<td><p>Invalid Amount</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107107</p></td>
+<td><p>Payment reference Number should be 12 digits</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107108</p></td>
+<td><p>Authentication Failed</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107109</p></td>
+<td><p>The maximum amount allowed for transfers per transaction is KES 8000</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107110</p></td>
+<td><p>Failed. Transaction has been reversed to your Account {account}. Ref.{reference}.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>107111</p></td>
+<td><p>Dear Customer, we are unable to complete your request at this time. Kindly try again later. Reference Number {ref}</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>107112</p></td>
+<td><p>Failed.Transaction Ref.#RefNo# unsuccessful. Kindly call 100 for assistance</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+</tbody>
+</table>
+<p>Send Money - To Mobile Wallet ( Airtel and M-PESA )</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 88%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400104</p></td>
+<td><p>Failed, insufficient funds</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400105</p></td>
+<td><p>Failed, general error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400112</p></td>
+<td><p>Failed, could not process this request. System failure.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400113</p></td>
+<td><p>Failed, sender daily limit exceeded</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400114</p></td>
+<td><p>Failed, unable to process request. Third party is unavailable</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>400115</p></td>
+<td><p>Failed, unhandled error</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400116</p></td>
+<td><p>Failed, 12 digit transaction reference required</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>103120</p></td>
+<td><p>Failed, banking service could not process the request</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>105154</p></td>
+<td><p>Failed, we cannot process your request at the moment due to system failure at Airtel</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>105156</p></td>
+<td><p>Failed, the number is not registered for Airtel money</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>105157</p></td>
+<td><p>Failed, credit party customer type can’t be supported by the service</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>105158</p></td>
+<td><p>Failed, Maximum transfer amount is 70000 per transaction</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>105160</p></td>
+<td><p>Failed, invalid mobile wallet</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>118101</p></td>
+<td><p>Customer not registered for Equitel Mobile Banking</p></td>
+</tr>
+</tbody>
+</table>
+<p>Bill and Till Payments</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>102101</p></td>
+<td><p>Missing parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>102102</p></td>
+<td><p>invalid Reference Number</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>102103</p></td>
+<td><p>Invalid Biller Code/Till Number</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>102104</p></td>
+<td><p>Invalid Bill Reference</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>102105</p></td>
+<td><p>Reversal Failed</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>102106</p></td>
+<td><p>Insufficient Balance, Invalid Account</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>102107</p></td>
+<td><p>System Failure please retry</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>102108</p></td>
+<td><p>Reversal Failed</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>102110</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+</tbody>
+</table>
+<p>Eazzypay Push</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114101</p></td>
+<td><p>Merchant not registered for service</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114102</p></td>
+<td><p>Amount is below minimum that is allowed for transaction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114103</p></td>
+<td><p>The maximum amount limit is reached</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114104</p></td>
+<td><p>Customer is not registered</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114105</p></td>
+<td><p>Maximum daily amount per-day limit is reached for this payment</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114106</p></td>
+<td><p>Maximum transactions per-day limit is reached for this payment</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114107</p></td>
+<td><p>Invalid parameters. Kindly check with bank team</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>400101</p></td>
+<td><p>Duplicate Transaction/ Payment Reference</p></td>
+</tr>
+</tbody>
+</table>
+<p>Lipa na M-Pesa Online</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid TransactionType</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid Password</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid PartyB</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid CallBackURL</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid Remarks</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid PartyA</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>117101</p></td>
+<td><p>Bad Request - Invalid Amount</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>117102</p></td>
+<td><p>[MerchantValidate] - Wrong credentials</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>117102</p></td>
+<td><p>Request failed: Output data invalid</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>117104</p></td>
+<td><p>Error Occured: Spike Arrest Violation</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>500101</p></td>
+<td><p>Generic error. Please contact our support.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Get Payment Status</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>111101</p></td>
+<td><p>Failed. Invalid input parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>111102</p></td>
+<td><p>Bad request - Transaction not found.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Refund Payment</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>113101</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>113102</p></td>
+<td><p>Invalid request format</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>113103</p></td>
+<td><p>Invalid Transaction Status code for Reverse the Transaction</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>113104</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>113105</p></td>
+<td><p>Due to technical problem we are not able to process your request</p></td>
+</tr>
+</tbody>
+</table>
+<p>Identity Verification</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 91%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115101</p></td>
+<td><p>ID number used for search contains invalid symbols</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115102</p></td>
+<td><p>Serial number used for search contains invalid symbols</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115103</p></td>
+<td><p>At least one of search parameters should be filled</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115104</p></td>
+<td><p>Search can’t be done if one of mandatory fields is empty. All input parameters should be filled</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115105</p></td>
+<td><p>There is no record found in IPRS corresponding search parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115106</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115107</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115108</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115109</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115110</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115111</p></td>
+<td><p>Passport number contains illegal symbols</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115112</p></td>
+<td><p>At least one of search parameters should be filled</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115113</p></td>
+<td><p>Search can’t be done if one of mandatory fields is empty. All input parameters should be filled</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115114</p></td>
+<td><p>User can’t invoke verification methods because he didn’t pass the authorization or don’t have sufficient privileges</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115115</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115116</p></td>
+<td><p>The image sent doesn’t correspond to the fingerprint format</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115117</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>115118</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>115119</p></td>
+<td><p>Service Not available</p></td>
+</tr>
+</tbody>
+</table>
+<p>Account Balance</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>8504</p></td>
+<td><p>No record could be retrieved</p></td>
+</tr>
+</tbody>
+</table>
+<p>Create Bill</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>106101</p></td>
+<td><p>Unauthorized</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109101</p></td>
+<td><p>invalid charge configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109102</p></td>
+<td><p>invalid channel code</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109103</p></td>
+<td><p>Bill already cleared</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109104</p></td>
+<td><p>Invalid service configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109105</p></td>
+<td><p>Invalid charge channel configuration code</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109106</p></td>
+<td><p>Invalid merchant Outlet code specified</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109107</p></td>
+<td><p>Invalid merchant code</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109108</p></td>
+<td><p>Invalid request data. Please check your payload</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109109</p></td>
+<td><p>Service not available</p></td>
+</tr>
+</tbody>
+</table>
+<p>Credit &amp; Debit Card</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>101101</p></td>
+<td><p>Transaction could not be processed</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>101102</p></td>
+<td><p>Transaction declined – contact issuing bank</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>101103</p></td>
+<td><p>No reply from Processing Host</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>101104</p></td>
+<td><p>Card has expired</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>101105</p></td>
+<td><p>Insufficient credit</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>101106</p></td>
+<td><p>Error Communicating with Bank</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>101107</p></td>
+<td><p>Message Detail Error (Invalid PAN, Invalid Expiry Date)</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>101108</p></td>
+<td><p>Transaction declined –transaction type not supported</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>101109</p></td>
+<td><p>Bank Declined Transaction – Do Not Contact Bank</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>116101</p></td>
+<td><p>Payment Not Updated</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109101</p></td>
+<td><p>invalid charge configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109102</p></td>
+<td><p>invalid channel code</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109103</p></td>
+<td><p>Bill already cleared</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109104</p></td>
+<td><p>Invalid service configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109105</p></td>
+<td><p>Invalid charge channel configuration code</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109106</p></td>
+<td><p>Invalid merchant Outlet code specified</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109107</p></td>
+<td><p>Invalid merchant code</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>109108</p></td>
+<td><p>Invalid request data. Please check your payload</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>109109</p></td>
+<td><p>Service not available</p></td>
+</tr>
+</tbody>
+</table>
+<p>Receive Payments - Mobile Wallets</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114101</p></td>
+<td><p>Merchant not registered for service</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114102</p></td>
+<td><p>Amount is below minimum that is allowed for transaction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114103</p></td>
+<td><p>The maximum amount limit is reached</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114104</p></td>
+<td><p>Customer is not registered</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114105</p></td>
+<td><p>Maximum daily amount per-day limit is reached for this payment</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>114106</p></td>
+<td><p>Maximum transactions per-day limit is reached for this payment</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>114107</p></td>
+<td><p>Invalid parameters. Kindly check with bank team</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>111101</p></td>
+<td><p>Failed. Invalid input parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>111102</p></td>
+<td><p>Bad request - Transaction not found</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>116101</p></td>
+<td><p>Payment Not Updated</p></td>
+</tr>
+</tbody>
+</table>
+<p>Query Payment</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>112101</p></td>
+<td><p>Amount paid is less or more than bill amount</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>112102</p></td>
+<td><p>No transaction found for order ref</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>112103</p></td>
+<td><p>Bill not found</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>112104</p></td>
+<td><p>Invalid merchant code</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>112105</p></td>
+<td><p>invalid service map configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>112106</p></td>
+<td><p>Due to technical problem we are not able to process your request</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>112107</p></td>
+<td><p>Invalid service configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>112108</p></td>
+<td><p>Bill already cleared</p></td>
+</tr>
+</tbody>
+</table>
+<p>Query Bill</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>110101</p></td>
+<td><p>Invalid merchant code</p></td>
+</tr>
+<tr class="row-even"><td><p>error</p></td>
+<td><p>110102</p></td>
+<td><p>Invalid request data. Please check your payload</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>110103</p></td>
+<td><p>bill doesn’t exist</p></td>
+</tr>
+</tbody>
+</table>
+<p>Generic Error</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;response_status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="nt">&quot;response_code&quot;</span><span class="p">:</span> <span class="s2">&quot;500101&quot;</span><span class="p">,</span>
+<span class="nt">&quot;response_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Generic error. Please contact our support.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Target Error</p>
+<p>200 OK</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;response_status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="nt">&quot;response_code&quot;</span><span class="p">:</span> <span class="s2">&quot;{$.response code}&quot;</span><span class="p">,</span>
+<span class="nt">&quot;response_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;{$.message}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt id="equity_jenga.api.exceptions.generate_reference">
+<code class="sig-prename descclassname">equity_jenga.api.exceptions.</code><code class="sig-name descname">generate_reference</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/equity_jenga/api/exceptions.html#generate_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.exceptions.generate_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a transaction reference
+Should always be a 12 digit String</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="equity_jenga.api.exceptions.handle_response">
+<code class="sig-prename descclassname">equity_jenga.api.exceptions.</code><code class="sig-name descname">handle_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">response</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/equity_jenga/api/exceptions.html#handle_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#equity_jenga.api.exceptions.handle_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles Responses From the JengaHQ API and Raises Exceptions appropriately
+as errors occur and returns a <cite>dict</cite> object from the <cite>json</cite> response</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tralah M Brian
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

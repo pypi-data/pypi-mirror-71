@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>equity_jenga.api.loans &mdash; equity-jenga-api  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> equity-jenga-api
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">equity-jenga-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>equity_jenga.api.loans</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for equity_jenga.api.loans</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.auth</span> <span class="k">import</span> <span class="n">JengaAuth</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">handle_response</span>
+
+
+<div class="viewcode-block" id="CreditScore"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.loans.CreditScore">[docs]</a><span class="k">class</span> <span class="nc">CreditScore</span><span class="p">(</span><span class="n">JengaAuth</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This API (first of its kind) aggregates all the Credit Reference Bureaus</span>
+<span class="sd">    in East Africa as well as Equity Bank&#39;s own internal scoring to</span>
+<span class="sd">    give a response on the credit worthiness (or not) of an individual.</span>
+<span class="sd">    No need to perform countless integrations.</span>
+<span class="sd">    This web service does it for you.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CreditScore.authenticate"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.loans.CreditScore.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">dateOfBirth</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">merchantCode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documentNumber</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">dateOfBirth</span><span class="p">,</span> <span class="n">merchantCode</span><span class="p">,</span> <span class="n">documentNumber</span><span class="p">)),</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="CreditScore.credit_score"><a class="viewcode-back" href="../../../api.html#equity_jenga.api.loans.CreditScore.credit_score">[docs]</a>    <span class="k">def</span> <span class="nf">credit_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">bureau</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">loan</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Request Payload</span>
+<span class="sd">        customer,bureau,loan</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;customer&quot;: [{</span>
+<span class="sd">                    &quot;id&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;fullName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;firstName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;lastName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;shortName&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;title&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;mobileNumber&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;dateOfBirth&quot;: &quot;1999-01-31&quot;,</span>
+<span class="sd">                    &quot;identityDocument&quot;: {</span>
+<span class="sd">                        &quot;documentType&quot;: &quot;NationalID&quot;,</span>
+<span class="sd">                        &quot;documentNumber&quot;: &quot;12365478&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                }],</span>
+<span class="sd">                &quot;bureau&quot;: {</span>
+<span class="sd">                    &quot;reportType&quot;: &quot;Mobile&quot;,</span>
+<span class="sd">                    &quot;countryCode&quot;: &quot;KE&quot;</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;loan&quot;: {</span>
+<span class="sd">                    &quot;amount&quot;: &quot;5000&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;Person&quot;: {</span>
+<span class="sd">                    &quot;PersonName&quot;: {},</span>
+<span class="sd">                    &quot;IdentityDocument&quot;: {</span>
+<span class="sd">                        &quot;IdentityDocumentID&quot;: &quot;1234568&quot;,</span>
+<span class="sd">                        &quot;IdentityDocumentType&quot;: &quot;National ID&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;CreditAccountsSummary&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;17012014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;65000.00000&quot;,</span>
+<span class="sd">                            &quot;65000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;5000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;20062014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;09&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;09062011&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;106458.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;200000.00000&quot;,</span>
+<span class="sd">                            &quot;200000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;1667.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;14052014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6960.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15122014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;22092014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;1000.00000&quot;,</span>
+<span class="sd">                            &quot;1000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;1000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15102014&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31102014&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29122014&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16032015&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31032015&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;36&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;20032015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16012016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31012016&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;N:000019:01:2015&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;06012015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;300000.00000&quot;,</span>
+<span class="sd">                            &quot;300000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;20562.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;27102017&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;068-P-12365478&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;04&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;13102011&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;39844.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;40000.00000&quot;,</span>
+<span class="sd">                            &quot;40000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2500.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16072018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;068-P-25417854&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;04&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;19082015&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;50000.00000&quot;,</span>
+<span class="sd">                            &quot;50000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2500.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;13022018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;02022016&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;80000.00000&quot;,</span>
+<span class="sd">                            &quot;80000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;6666.67000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;16122016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31012017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;2569774&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;02062016&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;3000.00000&quot;,</span>
+<span class="sd">                            &quot;3000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;3726.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;26122016&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;11110571749286&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;23&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;14022017&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;true&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;120000.00000&quot;,</span>
+<span class="sd">                            &quot;120000.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;10000.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;15112017&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;F&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;JKCBDL1724301111&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;30082017&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;13122017&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;A&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;BCKMLD1802229762&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;08042018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;None&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;11062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;21062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;A&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MKDLCB1814647289&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;26052018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;5400.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;5400.00000&quot;,</span>
+<span class="sd">                            &quot;5400.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;5400.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;26052018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31052018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MKCDLB1818039369&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29062018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;2150.00000&quot;,</span>
+<span class="sd">                            &quot;2150.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;29062018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;30062018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;AccountIdentifier&quot;: {</span>
+<span class="sd">                            &quot;AccountID&quot;: &quot;MDLBBCK1821123688&quot;,</span>
+<span class="sd">                            &quot;AccountCurrency&quot;: {}</span>
+<span class="sd">                        },</span>
+<span class="sd">                        &quot;AccountType&quot;: &quot;12&quot;,</span>
+<span class="sd">                        &quot;AccountOpenDate&quot;: &quot;29072018&quot;,</span>
+<span class="sd">                        &quot;AccountOwnership&quot;: &quot;false&quot;,</span>
+<span class="sd">                        &quot;Balance&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;DelinquencyStatus&quot;: &quot;No delinquency&quot;,</span>
+<span class="sd">                        &quot;Original_Amount&quot;: [</span>
+<span class="sd">                            &quot;2150.00000&quot;,</span>
+<span class="sd">                            &quot;2150.00000&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;PastDueAmount&quot;: &quot;0.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentAmount&quot;: &quot;2150.00000&quot;,</span>
+<span class="sd">                        &quot;LastPaymentReceivedDate&quot;: &quot;30072018&quot;,</span>
+<span class="sd">                        &quot;NoofDelayed_Payments&quot;: &quot;0&quot;,</span>
+<span class="sd">                        &quot;PostedDateTime&quot;: &quot;31072018&quot;,</span>
+<span class="sd">                        &quot;AccountStatus&quot;: &quot;W&quot;,</span>
+<span class="sd">                        &quot;LoanAccount&quot;: {</span>
+<span class="sd">                            &quot;PastDueDate&quot;: {},</span>
+<span class="sd">                            &quot;LoanHighestDaysInArrears&quot;: {}</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                ],</span>
+<span class="sd">                &quot;CreditBureau&quot;: {</span>
+<span class="sd">                    &quot;score&quot;: &quot;772&quot;,</span>
+<span class="sd">                    &quot;creditApplications90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;creditApplications180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;creditApplications365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;crbEnqiry365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques90Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques180Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;BouncedCheques365Days&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctNonPerformingCurrent&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctNonPerformingHisto&quot;: &quot;0&quot;,</span>
+<span class="sd">                    &quot;AcctPerformingCurrent&quot;: &quot;15&quot;,</span>
+<span class="sd">                    &quot;AcctPerformingHisto&quot;: &quot;NaN&quot;,</span>
+<span class="sd">                    &quot;IsFraud&quot;: &quot;false&quot;,</span>
+<span class="sd">                    &quot;isGuarantor&quot;: &quot;false&quot;,</span>
+<span class="sd">                    &quot;delinquency_code&quot;: &quot;No delinquency&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">customer</span><span class="p">,</span> <span class="s2">&quot;bureau&quot;</span><span class="p">:</span> <span class="n">bureau</span><span class="p">,</span> <span class="s2">&quot;loan&quot;</span><span class="p">:</span> <span class="n">loan</span><span class="p">}</span>
+        <span class="n">dateOfBirth</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;customer&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dateOfBirth&quot;</span><span class="p">)</span>
+        <span class="n">merchantCode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merchant_code</span>
+        <span class="n">documentNumber</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;customer&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;identityDocument&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;documentNumber&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">dateOfBirth</span><span class="p">,</span> <span class="n">merchantCode</span><span class="p">,</span> <span class="n">documentNumber</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="s2">&quot;/customer-test/v2/creditinfo&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span> <span class="o">+</span> <span class="s2">&quot;/customer/v2/creditinfo&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tralah M Brian
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

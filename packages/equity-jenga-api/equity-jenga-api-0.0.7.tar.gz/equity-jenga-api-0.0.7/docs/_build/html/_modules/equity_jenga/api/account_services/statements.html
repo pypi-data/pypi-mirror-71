@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>equity_jenga.api.account_services.statements &mdash; equity-jenga-api  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> equity-jenga-api
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">equity-jenga-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>equity_jenga.api.account_services.statements</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for equity_jenga.api.account_services.statements</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">exceptions</span> <span class="k">import</span> <span class="n">handle_response</span>
+    <span class="kn">from</span> <span class="nn">auth</span> <span class="k">import</span> <span class="n">JengaAuth</span>
+<span class="k">except</span> <span class="n">ModuleNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MiniStatement"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.MiniStatement">[docs]</a><span class="k">class</span> <span class="nc">MiniStatement</span><span class="p">(</span><span class="n">JengaAuth</span><span class="p">):</span>
+<div class="viewcode-block" id="MiniStatement.authenticate"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.MiniStatement.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">countryCode</span> <span class="o">=</span> <span class="n">countryCode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accountNumber</span> <span class="o">=</span> <span class="n">accountNumber</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">)),</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="MiniStatement.retrieve"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.MiniStatement.retrieve">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;accountNumber&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                &quot;balance&quot;: 1000,</span>
+<span class="sd">                &quot;transactions&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-01T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EAZZY-FUNDS TRNSF TO A/C XXXXXXXXXXXX&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;100&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-03T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;51&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-05T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;CHARGE FOR OTC ECS TRAN&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;220&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;chequeNumber&quot;: null,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2017-01-05T00:00:00&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;SI ACCOUNT TO ACCOUNT THIRD PA&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: &quot;20&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">countryCode</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;/account-test/v2/accounts/ministatement/</span><span class="si">{countryCode}</span><span class="s2">/</span><span class="si">{accountNumber}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="FullStatement"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.FullStatement">[docs]</a><span class="k">class</span> <span class="nc">FullStatement</span><span class="p">(</span><span class="n">JengaAuth</span><span class="p">):</span>
+<div class="viewcode-block" id="FullStatement.authenticate"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.FullStatement.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accountNumber</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">toDate</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">countryCode</span> <span class="o">=</span> <span class="n">countryCode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accountNumber</span> <span class="o">=</span> <span class="n">accountNumber</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toDate</span> <span class="o">=</span> <span class="n">toDate</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_token</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">((</span><span class="n">accountNumber</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">toDate</span><span class="p">)),</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="FullStatement.retrieve"><a class="viewcode-back" href="../../../../api.html#equity_jenga.api.account_services.statements.FullStatement.retrieve">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Example Payload</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;countryCode&quot;: &quot;KE&quot;,</span>
+<span class="sd">                &quot;accountNumber&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                &quot;fromDate&quot;: &quot;2018-01-18&quot;,</span>
+<span class="sd">                &quot;toDate&quot;: &quot;2018-04-19&quot;,</span>
+<span class="sd">                &quot;limit&quot;: 20,</span>
+<span class="sd">                &quot;reference&quot;: &quot;&quot;,</span>
+<span class="sd">                &quot;serial&quot;: &quot;&quot;,</span>
+<span class="sd">                &quot;postedDateTime&quot;: &quot;&quot;,</span>
+<span class="sd">                &quot;date&quot;: &quot;&quot;,</span>
+<span class="sd">                &quot;runningBalance&quot;: {</span>
+<span class="sd">                    &quot;currency&quot;: &quot;&quot;,</span>
+<span class="sd">                    &quot;amount&quot;: 0.0</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Example Response</span>
+
+<span class="sd">        .. code-block:: json</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &quot;accountNumber&quot;: &quot;0011547896523&quot;,</span>
+<span class="sd">                &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                &quot;balance&quot;: 997382.57,</span>
+<span class="sd">                &quot;transactions&quot;: [</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: 541,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-13T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EQUITEL-BUNDLE/254764555383/8755&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 900,</span>
+<span class="sd">                        &quot;serial&quot;: 1,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-13T09:51:27.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1344.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: &quot;S4921027&quot;,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-18T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;EAZZY-AIRTIME/EQUITEL/254764555383/100000939918/18&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 200,</span>
+<span class="sd">                        &quot;serial&quot;: 1,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-18T16:27:18.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Debit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1144.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    },</span>
+<span class="sd">                    {</span>
+<span class="sd">                        &quot;reference&quot;: 5436,</span>
+<span class="sd">                        &quot;date&quot;: &quot;2018-07-19T00:00:00.000&quot;,</span>
+<span class="sd">                        &quot;description&quot;: &quot;CREDIT TRANSFER&quot;,</span>
+<span class="sd">                        &quot;amount&quot;: 1000000,</span>
+<span class="sd">                        &quot;serial&quot;: 2,</span>
+<span class="sd">                        &quot;postedDateTime&quot;: &quot;2018-07-19T12:01:47.000&quot;,</span>
+<span class="sd">                        &quot;type&quot;: &quot;Credit&quot;,</span>
+<span class="sd">                        &quot;runningBalance&quot;: {</span>
+<span class="sd">                            &quot;currency&quot;: &quot;KES&quot;,</span>
+<span class="sd">                            &quot;amount&quot;: 1001144.57</span>
+<span class="sd">                        }</span>
+<span class="sd">                    }</span>
+<span class="sd">                ]</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">accountNumber</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;accountNumber&quot;</span><span class="p">)</span>
+        <span class="n">countryCode</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;countryCode&quot;</span><span class="p">)</span>
+        <span class="n">toDate</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;toDate&quot;</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">accountNumber</span><span class="p">,</span> <span class="n">countryCode</span><span class="p">,</span> <span class="n">toDate</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;sandbox&quot;</span><span class="p">:</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;/account-test/v2/accounts/fullstatement/&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span> <span class="o">+</span> <span class="n">resource</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handle_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tralah M Brian
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
