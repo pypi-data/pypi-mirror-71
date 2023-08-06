@@ -1,0 +1,8 @@
+{% extends 'djangoadmin/base/body/index_admin.html' %}
+
+{% block body %}
+{% include "djangoadmin/widgets/alert.html" %}
+{% include "djangoadmin/widgets/header_search_by_object.html" %}
+{% include "djangoadmin/widgets/dashboard_accordian_list.html" with data=category_list is_category="False" %}
+{% include "djangoadmin/widgets/pagination.html" %}
+{% endblock body %}

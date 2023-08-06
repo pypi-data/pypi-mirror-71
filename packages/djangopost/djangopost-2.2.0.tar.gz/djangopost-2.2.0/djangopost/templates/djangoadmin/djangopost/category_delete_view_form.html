@@ -1,0 +1,7 @@
+{% extends 'djangoadmin/base/body/index_admin.html' %}
+
+{% block body %}
+{% include "djangoadmin/widgets/alert.html" %}
+{% include "djangoadmin/widgets/dashboard_accordian_detail.html" with data=category_detail is_category="False" %}
+{% include "djangoadmin/widgets/simple_button_in_form.html" with type="danger" value="Delete" %}
+{% endblock body %}
