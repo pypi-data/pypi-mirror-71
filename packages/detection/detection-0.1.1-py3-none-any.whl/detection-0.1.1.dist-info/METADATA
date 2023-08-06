@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: detection
+Version: 0.1.1
+Summary: A motion detector
+Home-page: https://gitlab.com/kahara/python-detection
+License: MIT
+Author: Joni Kähärä
+Author-email: joni.kahara@async.fi
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: opencv-contrib-python-headless (>=4.2.0,<5.0.0)
+Requires-Dist: scenegen (==0.1.1)
+Description-Content-Type: text/markdown
+
+# python-detection
+
+A motion detector. Currently two detectors, `SimpleDetector` and `BlobDetector` are implemented.
+The former performs simple frame differencing, and may not be useful for most purposes.
+The latter does a bit more and utilizes the OpenCV
+[MOG2](https://docs.opencv.org/3.4/d7/d7b/classcv_1_1BackgroundSubtractorMOG2.html)
+background subtractor to get more realistic results. The detectors try to use OpenCL if it's available.
+
+Using the `BlobDetector`:
+
+```
+import numpy as np
+from detection.detectors.blob.detector import BlobDetector
+
+detector = BlobDetector({"blur": 7, "learningrate": 0.001, "accelerate": True})
+(_boundingboxes, _metadata) = detector.feed(
+    np.reshape(np.frombuffer(frame, dtype=np.uint8), newshape=(height, width, 3))
+)
+```
+
+The `blur` value, if specified, will be performed before feeding the frame to the detector.
+If no `blur` is given, the frame is fed as-is.
+
+The `learningrate` parameter is described
+[here](https://docs.opencv.org/3.4/d7/df6/classcv_1_1BackgroundSubtractor.html#aa735e76f7069b3fa9c3f32395f9ccd21).
+If no `learningrate` is specified, it will default to `0.001`.
+
+The `accelerate` parameter defaults to `True`, and the detector attempts to exploit any GPU resources
+available on the host.
+
+The metadata contains details (in order) about the operations performed on the input image, and
+for how long each of those took:
+
+```
+{
+    'start_timestamp': datetime.datetime(2020, 6, 16, 17, 7, 6, 443946),
+    'took': [
+        ('cv.UMat', 0.0007669925689697266),
+        ('cv.GaussianBlur', 0.0014679431915283203),
+        ('cv.BackgroundSubtractorMOG2.apply', 0.0003933906555175781),
+        ('cv.findContours', 0.001050710678100586),
+        ('cv.approxPolyDP', 1.7404556274414062e-05),
+        ('cv.boundingRect', 2.384185791015625e-06),
+        ('total', 0.005391)
+    ],
+    'end_timestamp': datetime.datetime(2020, 6, 16, 17, 7, 6, 449337)}
+}
+```
+
+The bounding boxes contain any detected movement:
+
+```
+{
+    (
+        UUID('091c2620-ebb6-4cbe-b59d-42da156c3ba9'),
+        datetime.datetime(2020, 6, 16, 16, 11, 35, 931755)
+    ): (279, 324, 710, 755),
+    (
+        UUID('bcbf2e18-ed2b-4e68-b94c-abe021071e61'),
+        datetime.datetime(2020, 6, 16, 16, 11, 35, 931755)
+    ): (489, 324, 920, 755)
+}
+```
+
+The UUIDs are here to provide forward compatibility with a hypothetical new detector that
+also tracks movement.
+
+Development
+-----------
+
+TLDR:
+
+Create and activate a Python 3.7 virtualenv:
+
+```
+$ python3.7 -m venv .venv && . .venv/bin/activate
+```
+
+Change to a branch:
+
+```
+git checkout -b my_branch
+```
+
+Install Poetry: https://python-poetry.org/docs/#installation
+
+Install project deps and pre-commit hooks:
+
+```
+poetry install
+pre-commit install
+pre-commit run --all-files
+```
+
+Ready to go.
+
+Remember to activate your virtualenv whenever working on the repo, this is needed
+because pylint and mypy pre-commit hooks use the "system" python for now (because reasons).
+
