@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: dtrx
+Version: 8.0.2
+Summary: Script to intelligently extract multiple archive types
+Home-page: http://www.brettcsmith.org/2007/dtrx/
+Author: Brett Smith
+Author-email: brettcsmith@brettcsmith.org
+License: GNU General Public License, version 3 or later
+Download-URL: https://github.com/dtrx-py/dtrx
+Project-URL: Code, https://github.com/dtrx-py/dtrx
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+
+[![GitHub](https://img.shields.io/badge/GitHub-dtrx--py/dtrx-8da0cb?style=for-the-badge&logo=github)](https://github.com/dtrx-py/dtrx)
+[![PyPI
+version](https://img.shields.io/pypi/v/dtrx.svg?style=for-the-badge&logo=PyPi&logoColor=white)](https://pypi.org/project/dtrx/)
+[![PyPI
+pyversions](https://img.shields.io/pypi/pyversions/dtrx.svg?style=for-the-badge&logo=python&logoColor=white&color=ff69b4)](https://pypi.python.org/pypi/dtrx/)
+![GitHub Workflow Status
+(branch)](https://img.shields.io/github/workflow/status/dtrx-py/dtrx/main-ci/master?logo=github-actions&logoColor=white&style=for-the-badge)
+
+- [dtrx](#dtrx)
+  - [Changes in this repo](#changes-in-this-repo)
+
+# dtrx
+
+"**Do The Right eXtraction**" - don't remember what set of `tar` flags or where to
+pipe the output to extract it? no worries!
+
+TL;DR
+
+```bash
+pip install dtrx
+
+dtrx yolo.tar.gz
+```
+
+This is a copy-paste of the original dtrx repo, and **all credit for this
+software** should be attributed to the original author, Brett Smith @brettcs:
+
+https://github.com/brettcs/dtrx
+
+See the original [`README`](README) for more details on what this does!
+
+## Changes in this repo
+
+This repo contains some patches on top of the original source to enable using
+`dtrx` with python3. The original motivation was to enable `dtrx` on Ubuntu
+20.04+, where the `dtrx` apt package was removed from the default ppas (likely
+due to being python2 only).
+
+I attempted to get the tests all working via `tox` , for which I used a
+Dockerfile to try to get some kind of environment consistency. You can run the
+tests by running (requires Docker installed):
+
+```bash
+./test.sh
+```
+
+
