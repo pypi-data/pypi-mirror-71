@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: plaid-lukepafford
+Version: 0.1.7
+Summary: 
+Author: Luke Pafford
+Author-email: lukepafford@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: pandas (>=1.0.5,<2.0.0)
+Requires-Dist: plaid-python (>=4.1.0,<5.0.0)
+Requires-Dist: pytest (>=5.4.3,<6.0.0)
+Requires-Dist: typer (>=0.2.1,<0.3.0)
+Description-Content-Type: text/markdown
+
+# plaid_lukepafford
+
+Uses Plaid to instantiate a Chase connection and save transaction data
+locally.
+
+Graphs and summaries will be built that I find interesting.
+
+Main object is at `plaid_lukepafford.transactions.ChaseTransactions`
+
+# Install
+
+### Install package
+`pip install plaid_lukepafford`
+
+### Fetch transactions from Plaid API. (This will fail if you don't provide correct environment variables)
+`chase-plaid fetch-latest-transactions`
+
+### Display a table summarizing results
+`chase-plaid money-spent-on-food`
+```
+
