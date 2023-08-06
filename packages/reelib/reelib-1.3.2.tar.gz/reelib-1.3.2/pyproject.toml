@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "reelib"
+version = "1.3.2"
+description = "頻繁に利用する処理を集めたライブラリ"
+readme="README.md"
+authors = ["reeve0930 <reeve0930@gmail.com>"]
+repository = "https://github.com/reeve0930/reelib"
+license = "MIT"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.7",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.18.3"
+pillow = "^7.1.2"
+opencv-python = "^4.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
