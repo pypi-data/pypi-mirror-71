@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: bote
+Version: 0.9.0
+Summary: Send email messages
+Home-page: https://github.com/RuedigerVoigt/bote
+Author: Rüdiger Voigt
+Author-email: projects@ruediger-voigt.eu
+License: UNKNOWN
+Description: # Bote
+        
+        ![Supported Python Versions](https://img.shields.io/pypi/pyversions/bote)
+        ![Last commit](https://img.shields.io/github/last-commit/RuedigerVoigt/bote)
+        
+        "Bote" is German for messenger or courier. The `bote` library currently just sends plain-text email from localhost or a remote SMTP server.
+        
+        There are plenty of libraries for this. My reasons to write another one:
+        * Modularity: I outsourced this code from my [exoskeleton](https://github.com/RuedigerVoigt/exoskeleton "GitHub Repository of exoskeleton") library.
+        * Extensive testing (currently this is a beta version!)
+        * Type-Hints in the code ([PEP 484](https://www.python.org/dev/peps/pep-0484/))
+        * Good error messages
+        * Enforce that any connection to a SMTP server - except localhost / 127.0.0.1 - is encrypted.
+        * Automatically wrap messages to 80 characters.
+        
+        ## How to use it
+        
+        ```python
+        import bote
+        
+        mail_settings = {
+            'server': 'smtp.example.com',
+            'server_port': 587,
+            'encryption': 'starttls',
+            'username': 'example',
+            'passphrase': 'example',
+            'recipient': 'foo@example.com',
+            'sender': 'bar@example.com'}
+        
+        mailer = bote.Mailer(mail_settings)
+        
+        mailer.send_mail('Test bote', 'It worked!')
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: Communications :: Email
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
