@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: holidays-plus
+Version: 0.0.1
+Summary: Enhanced add-on for the holidays library offering expanded functionality
+Home-page: https://github.com/samtregar/python-holidays-plus
+Author: Sam Tregar
+Author-email: sam@tregar.com
+License: UNKNOWN
+Description: # python-holidays-plus
+        Enhanced add-on for the Python-Holidays library offering expanded functionality
+        
+        This module adds a couple useful features to the Python holidays modules.  For example:
+        
+        ```python
+        import holidays
+        import holidays_plus
+        
+        # holidays, but not the racist one
+        holidays = holidays.US()
+        holidays.pop_named("Columbus Day")
+        
+        # wait, when is Martin Luther King Day this year?
+        (day,) = holidays.get_named("Martin Luther King Jr. Day")
+        print(f"Martin Luther King Jr. Day is on {day} this year.")
+        ```
+        
+        If you have ideas for additional functionality that might be added
+        here, please let me know by opening an issue or sending me a PR here:
+        
+        https://github.com/samtregar/python-holidays-plus
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
