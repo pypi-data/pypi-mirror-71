@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: tooncher
+Version: 1.0.3
+Summary: automates toontown rewritten's login process
+Home-page: https://github.com/fphammerle/tooncher
+Author: Fabian Peter Hammerle
+Author-email: fabian.hammerle@gmail.com
+License: UNKNOWN
+Description: # tooncher
+        automates toontown rewritten's login process
+        
+        [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+        [![Last Release](https://img.shields.io/pypi/v/tooncher.svg)](https://pypi.org/project/tooncher/#history)
+        [![Python Version](https://img.shields.io/pypi/pyversions/tooncher.svg)](https://pypi.org/project/tooncher/)
+        
+        ## Installation
+        
+        ```sh
+        $ pip3 install --user --upgrade tooncher
+        # or
+        $ pip3 install --user git+https://github.com/fphammerle/tooncher@master
+        ```
+        
+        Optional: Install cpulimit to enable use of parameter `--cpu-limit`
+        
+        ```sh
+        $ sudo apt-get install cpulimit
+        ```
+        
+        ## Configuration
+        
+        ```yaml
+        # default path: $HOME/.tooncher
+        accounts:
+        - username: toon
+          password: secret
+        - username: ceo
+          password: golf
+        - username: cfo
+          password: train
+        engine_path: '/opt/Toontown Rewritten/TTREngine'
+        ```
+        
+        ## Usage
+        
+        ```sh
+        $ tooncher [username]
+        ```
+        
+        `tooncher --help` shows all available options.
+        
+        ### Examples
+        
+        ```sh
+        $ tooncher toon
+        $ tooncher ceo
+        $ tooncher --cpu-limit 70 cfo
+        ```
+        
+        ### Python Interface
+        
+        ```python
+        import pathlib
+        import tooncher
+        
+        tooncher.launch(
+            engine_path=pathlib.Path('/somewhere/toontown-rewritten/TTREngine'),
+            username='toon',
+            password='secret',
+        )
+        ```
+        
+Keywords: game,launcher,toontown rewritten,ttr
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
