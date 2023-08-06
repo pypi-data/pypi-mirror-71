@@ -1,0 +1,86 @@
+{% raw %}
+{% extends parent_template %}
+
+{% block base_header %}
+{% endraw %}
+
+ENV PIP_INDEX_URL {{ nodepool_pypi_mirror }}
+ENV PIP_TRUSTED_HOST {{ nodepool_mirror_host }}
+
+RUN echo registry={{ nodepool_npmjs_proxy }} > /etc/npmrc \
+    && mkdir -p /usr/etc \
+    && ln -s /etc/npmrc /usr/etc/npmrc
+
+{% raw %}
+{% if base_distro == 'ubuntu' %}
+{% endraw %}
+
+# NOTE(hrw): Debian 'buster' and Ubuntu 18.04 refuse to use unsigned repos
+RUN echo 'APT::Get::AllowUnauthenticated "true";' > /etc/apt/apt.conf.d/99allow-unauthenticated \
+ && echo 'Acquire::AllowInsecureRepositories "true";' > /etc/apt/apt.conf.d/99allow-insecure-repos
+
+{% raw %}
+{% endif %}
+{% endblock %}
+
+{% block base_centos_repo_overrides_post_copy %}
+{% endraw %}
+
+RUN sed -i \
+        -e "/^mirrorlist/ d" \
+        -e "s|^#baseurl=http://mirror.centos.org|baseurl=http://{{ nodepool_mirror_host }}|" \
+        /etc/yum.repos.d/CentOS-*.repo
+{% raw %}
+{% if distro_package_manager == 'yum' %}
+{% endraw %}
+# FIXME(mgoddard): No crmsh or opendaylight CentOS 8 repos yet.
+RUN sed -i \
+        -e "s|http://download.opensuse.org|http://{{ nodepool_mirror_host }}/opensuse|" \
+        /etc/yum.repos.d/crmsh.repo \
+    && sed -i \
+        -e "s|https://cbs.centos.org/repos|{{ nodepool_cbs_centos_proxy }}|g" \
+        /etc/yum.repos.d/opendaylight.repo
+{% raw %}
+{% endif %}
+{% endraw %}
+
+{% raw %}
+{% endblock %}
+
+{% block base_centos_repo_overrides_post_rpm %}
+{% endraw %}
+
+{% raw %}
+{% endblock %}
+
+{% block base_centos_repo_overrides_post_yum %}
+{% endraw %}
+    && sed -i \
+        -e "/^mirrorlist/ d" \
+        -e "s|^#baseurl=http://mirror.centos.org|baseurl=http://{{ nodepool_mirror_host }}|" \
+        -e "s|^#baseurl=https://mirror.centos.org|baseurl=http://{{ nodepool_mirror_host }}|" \
+        -e "s|^baseurl=http://mirror.centos.org|baseurl=http://{{ nodepool_mirror_host }}|" \
+        -e "s|^baseurl=https://mirror.centos.org|baseurl=http://{{ nodepool_mirror_host }}|" \
+        /etc/yum.repos.d/CentOS-*.repo \
+    && sed -i \
+        -e "/^metalink/ d" \
+        -e "s|^#baseurl=http://download.fedoraproject.org/pub|baseurl=http://{{ nodepool_mirror_host }}|" \
+        -e "s|^#baseurl=https://download.fedoraproject.org/pub|baseurl=http://{{ nodepool_mirror_host }}|" \
+        /etc/yum.repos.d/epel*.repo \
+{% raw %}
+{% endblock %}
+
+{% block base_footer %}
+{% if base_distro == "ubuntu" %}
+{% endraw %}
+
+## TODO(yoctozepto): replace base repo earlier as well (like RHEL-based do)
+RUN sed -i -e "s|http://archive.ubuntu.com|http://{{ nodepool_mirror_host }}|" \
+        -e "s|http://ubuntu-cloud.archive.canonical.com/ubuntu|http://{{ nodepool_mirror_host }}/ubuntu-cloud-archive|" \
+        /etc/apt/sources.list \
+    && apt-get update
+
+{% raw %}
+{% endif %}
+{% endblock %}
+{% endraw %}
