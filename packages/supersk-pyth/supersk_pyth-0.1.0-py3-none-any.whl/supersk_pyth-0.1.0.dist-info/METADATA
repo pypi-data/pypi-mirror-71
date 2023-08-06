@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: supersk-pyth
+Version: 0.1.0
+Summary: Simple Jinja2 Template Wrapper
+Home-page: https://gitlab.com/supersk-python/pyth
+Author: super-sk
+License: MIT
+Project-URL: Code, https://gitlab.com/supersk-python/pyth
+Project-URL: Issues, https://gitlab.com/supersk-python/pyth/-/issues
+Project-URL: Documentation, https://supersk-python.gitlab.io/pyth
+Keywords: template,utility
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: jinja2 (==2.11.2)
+
+====
+Pyth
+====
+
+.. image:: https://gitlab.com/supersk-python/pyth/badges/master/pipeline.svg
+   :target: https://gitlab.com/supersk-python/pyth/-/pipelines
+   :alt: pipeline status
+
+.. image:: https://gitlab.com/supersk-python/pyth/badges/master/coverage.svg
+   :alt: coverage status
+
+.. image:: https://badge.fury.io/py/supersk-pyth.svg
+   :target:  https://pypi.org/project/supersk-pyth/
+   :alt: pypi package
+
+**PY**\thon **T**\emplate **H**\elper
+
+This project aims at helping to generate output with `jinja2 <https://palletsprojects.com/p/jinja/>`_ templates.
+
+It uses flat `csv <https://docs.python.org/3.6/library/csv.html>`_ file for input data.
+
+TODO
+====
+
+* Add Command Line option for changing csv delimiter
+* Add header validator
+* Add format header validator
+* Extension for using other data than csv format
+* Optimize iterable data and rendered object with generator maybe
+* Handle output writing with other location than current directory
+* Create a new function for basedir and basename
+* Handle output file override
+
+
+
