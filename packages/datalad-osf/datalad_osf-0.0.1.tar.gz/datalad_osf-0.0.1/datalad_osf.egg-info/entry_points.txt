@@ -1,0 +1,6 @@
+[console_scripts]
+git-annex-remote-osf = datalad_osf.remote:main
+
+[datalad.extensions]
+osf = datalad_osf:command_suite
+
