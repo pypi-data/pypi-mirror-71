@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: redisary
+Version: 0.1.2
+Summary: Redis as dictionary
+Home-page: https://github.com/xurvan/redisary
+Author: Xurvan
+License: apache-2.0
+Download-URL: https://github.com/xurvan/redisary/archive/v0.1.2.zip
+Project-URL: Code, https://github.com/xurvan/redisary
+Project-URL: Issue tracker, https://github.com/xurvan/redisary/issues
+Description: # Redisary
+        Redis is a key-value database. Interestingly Python dictionaries are some how key-value data structure. So why not write
+        a wrapper that maps Python dictionary to Redis server.
+        
+        ## Installation
+        Simply you can install it from PyPi by following command:
+        
+        ```bash
+        pip install -U redisary
+        ```
+        
+        or if you prefer the latest development version, you can install it from the source:
+        
+        ```bash
+        git clone https://github.com/xurvan/redisary.git
+        cd redisary
+        python setup.py install
+        ```
+        
+        ## Quickstart
+        A very simple usage could be like:
+        
+        ```python
+        from redisary import Redisary
+        
+        redis = Redisary(host='127.0.0.1', db=0)
+        
+        redis['k'] = 'data'
+        data = redis['k']
+        ```
+        Well it works like a normal dictionary, the only advantage is data now stored on Redis and we could access it from
+        another process.
+        
+        We also could set an expire for all keys of dictionary:
+        
+        
+        ```python
+        from redisary import Redisary
+        
+        redis = Redisary(expire=800)
+        
+        redis['k'] = 'temporary'
+        ```
+        
+        ## TODO
+        
+        - [x] Map Redis 'string' to Python 'str'
+        - [ ] Map Redis 'list' to Python 'list'
+        - [ ] Map Redis 'hash' to Python 'dict'
+        - [ ] Map Redis 'set' to Python 'set'
+        - [ ] Map Redis 'sorted set' to something!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
