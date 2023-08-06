@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: hummingbird-ml
+Version: 0.0.3
+Summary: Convert trained traditional machine learning models into tensor computations
+Home-page: https://github.com/microsoft/hummingbird
+Author: Microsoft Corporation
+Author-email: hummingbird-dev@microsoft.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.5
+Requires-Dist: numpy (>=1.15)
+Requires-Dist: onnxconverter-common (>=1.6.0)
+Requires-Dist: scikit-learn (==0.22.1)
+Requires-Dist: torch (>=1.4.0)
+Provides-Extra: docs
+Requires-Dist: pdoc ; extra == 'docs'
+Provides-Extra: extra
+Requires-Dist: xgboost (==0.90) ; extra == 'extra'
+Requires-Dist: lightgbm (>=2.2) ; extra == 'extra'
+Provides-Extra: onnx
+Requires-Dist: onnxruntime (>=1.0.0) ; extra == 'onnx'
+Requires-Dist: onnxmltools (>=1.6.0) ; extra == 'onnx'
+Provides-Extra: tests
+Requires-Dist: flake8 ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: coverage ; extra == 'tests'
+Requires-Dist: pre-commit ; extra == 'tests'
+
+UNKNOWN
+
+
