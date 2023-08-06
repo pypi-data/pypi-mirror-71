@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: planetarypy
+Version: 0.7.3
+Summary: Python module to support analysis of planetary data.
+Home-page: https://github.com/michaelaye/planetarypy
+Author: K.-Michael Aye
+Author-email: kmichael.aye@gmail.com
+License: ISC
+Keywords: planetarypy
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6, <4
+Requires-Dist: pandas
+Requires-Dist: pvl
+Requires-Dist: tqdm
+Requires-Dist: click
+Requires-Dist: toml
+Requires-Dist: requests
+Requires-Dist: importlib-resources ; python_version < "3.9"
+Requires-Dist: dataclasses ; python_version == "3.6"
+
+===============================
+planetarypy
+===============================
+
+.. image:: https://img.shields.io/travis/michaelaye/planetarypy.svg
+        :target: https://travis-ci.org/michaelaye/planetarypy
+
+.. image:: https://img.shields.io/pypi/v/planetarypy.svg
+        :target: https://pypi.python.org/pypi/planetarypy
+
+Tools to work with planetary data.
+
+Features
+--------
+
+* Planetary constants tables, web-scraped from NASA websites
+* PDS index table tools
+* Free software: ISC license
+
+Future
+------
+
+I will potentially use this repo to start the generalized
+planetarypy package under the framework of OpenPlanetary.
+
+
+
+
+History
+-------
+
+0.1.0 (2015-08-01)
+---------------------
+
+* First release on PyPI.
+
+0.2.0 (2016-12-19)
+-------------------
+
+* Add pdstools
+
+
