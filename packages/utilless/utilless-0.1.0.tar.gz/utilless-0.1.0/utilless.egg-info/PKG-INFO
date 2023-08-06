@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: utilless
+Version: 0.1.0
+Summary: Useless utils if you have time for puzzles, a useful one if you don't
+Home-page: https://github.com/hugotiburtino/utilless
+Author: Hugo Tiburtino
+License: Apache 2.0
+Description: # utilless
+        Maybe the most useless Python library ever
+        
+        ## Comma module
+        Manipulates iterables and gets results with commas
+        
+        iterable: any element that has __ iter __ method, like
+        list, tuple, set, dict or even str.
+        
+        * justcomma(iterable)
+        
+        `>>> justcomma(['apples', 'bananas', 'tofu', 'cats'])`  
+        `'apples,bananas,tofu,cats'`
+        
+        
+        * commaspace(iterable)
+        
+        `>>> commaspace(['apples', 'bananas', 'tofu', 'cats'])`  
+        `'apples, bananas, tofu, cats'`
+        
+        * commaand(iterable)
+        
+        `>>> commaand(['apples', 'bananas', 'tofu', 'cats'])`  
+        `'apples, bananas, tofu, and cats'`
+        
+        or commaand(iterable, str)  
+        `>>> commaand(['apples', 'bananas', 'tofu', 'cats'], ' & ')`  
+        `'apples, bananas, tofu & cats'`
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
