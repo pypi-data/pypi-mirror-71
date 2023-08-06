@@ -1,0 +1,33 @@
+{
+  "dirs": [
+    "requirements",
+    "tests",
+    "settings",
+    "{__app_name__celeryt__}"
+  ],
+  "files": {
+    ".gitignore": "# Byte-compiled / optimized / DLL files\n__pycache__/\n*.py[cod]\n*$py.class\n\n# C extensions\n*.so\n\n# Distribution / packaging\n.Python\nbuild/\ndevelop-eggs/\ndist/\ndownloads/\neggs/\n.eggs/\nlib/\nlib64/\nparts/\nsdist/\nvar/\nwheels/\npip-wheel-metadata/\nshare/python-wheels/\n*.egg-info/\n.installed.cfg\n*.egg\nMANIFEST\n\n# PyInstaller\n#  Usually these files are written by a python script from a template\n#  before PyInstaller builds the exe, so as to inject date/other infos into it.\n*.manifest\n*.spec\n\n# Installer logs\npip-log.txt\npip-delete-this-directory.txt\n\n# Unit test / coverage reports\nhtmlcov/\n.tox/\n.nox/\n.coverage\n.coverage.*\n.cache\nnosetests.xml\ncoverage.xml\n*.cover\n.hypothesis/\n.pytest_cache/\n\n# Translations\n*.mo\n*.pot\n\n# Django stuff:\n*.log\nlocal_settings.py\ndb.sqlite3\n\n# Flask stuff:\ninstance/\n.webassets-cache\n\n# Scrapy stuff:\n.scrapy\n\n# Sphinx documentation\ndocs/_build/\n\n# PyBuilder\ntarget/\n\n# Jupyter Notebook\n.ipynb_checkpoints\n\n# IPython\nprofile_default/\nipython_config.py\n\n# pyenv\n.python-version\n\n# celery beat schedule file\ncelerybeat-schedule\n\n# SageMath parsed files\n*.sage.py\n\n# Environments\n.env\n.venv\nenv/\nvenv/\nENV/\nenv.bak/\nvenv.bak/\n\n# Spyder project settings\n.spyderproject\n.spyproject\n\n# Rope project settings\n.ropeproject\n\n# mkdocs documentation\n/site\n\n# mypy\n.mypy_cache/\n.dmypy.json\ndmypy.json\n\n# Pyre type checker\n.pyre/\n\n.idea/\n.idea/*\n\n\n# settings\nsettings/prod.py\nsettings/pprd.py\nsettings/preprod.py\nsettings/dev.py\nsettings/develop.py\n",
+    ".coveragerc": "[run]\nomit =\n    *venv/*\n    *tests/*\n    */__init__.py\n    *.tox/*\n    *.sh\n    */settings/*\n",
+    "README.md": "# super_project\n\n## Environment variables to set\n```shell\n# SETTINGS FILE VARIABLE\nexport CELERY_SETTINGS_FILE=\"test\"\n\n# SENTRY VARIABLE\nexport SENTRY_DSN=\"sentry dsn\"\n\n# AMQP VARIABLES\nexport AMQP_HOST=\"localhost\"\nexport AMQP_VHOST=\"localhost\"\nexport AMQP_PORT=5672\nexport AMQP_USER=\"guest\"\nexport AMQP_PASSWORD=\"guest\"\n```\n\n## basic run\n\n```\ncelery -A <project_name> worker -B -l INFO\n```\n",
+    "tox.ini": "[tox]\nskipsdist:True\nenvlist:python3.7\n\n[testenv]\ndeps:-r requirements/dev.txt\nsetenv:\n    CELERY_SETTINGS_FILE=test\n\ncommands:\n    coverage erase\n    coverage run -m unittest discover -s . -p \"test_*.py\" -v\n    coverage report\n",
+
+    "{__app_name__celeryt__}/__init__.py": "",
+    "{__app_name__celeryt__}/tasks.py": "\"\"\"Tasks module\"\"\"\n\nimport logging\nfrom celery import shared_task\n\nlogger = logging.getLogger(__name__)\n\n\n# basic task\n@shared_task(bind=True)\ndef basic_task(self, msg, **kwargs):\n    print(kwargs)\n    return str(msg)\n",
+    "{__app_name__celeryt__}/get_settings.py": "\"\"\"get settings\"\"\"\nimport os\nfrom importlib import import_module\nfrom typing import Any\n\n\ndef get_settings() -> Any:\n    \"\"\"\n    get settings or exit (needed before celery start, so exit is not overkill)\n    :return: return settings module\n    \"\"\"\n    try:\n        settings_module_name = os.getenv(\"CELERY_SETTINGS_FILE\", \"test\")\n        settings = import_module(f'settings.{settings_module_name}')\n        return settings\n    except ModuleNotFoundError as exc:\n        exit(f'Settings module \"{exc.name}\" not found')\n\n",
+
+    "requirements.txt": "-r requirements/common.txt\n",
+    "requirements/dev.txt": "-r common.txt\ntox\ncoverage\n",
+
+    "tests/__init__.py": "",
+    "tests/test_tasks.py": "\"\"\"Test module for tasks\"\"\"\nimport unittest\n\nfrom {{__app_name__celeryt__}}.get_settings import get_settings\n\n\nclass TestTasks(unittest.TestCase):\n    \"\"\"Test class form tasks\"\"\"\n\n    def test_true(self):\n        settings = get_settings()\n        self.assertIsInstance(settings.AMQP_HOST, str)\n",
+
+    "settings/base.py": "import os\nimport subprocess\n\n# CELERY\nCELERY_BACKEND = ''\nCELERY_APP_NAME = 'super_project'\nCELERY_TIMEZONE = 'Europe/Paris'\n\n# SENTRY\nSENTRY_DSN = os.getenv('SENTRY_DSN', '')\nGIT_RELEASE = subprocess.check_output(['git', 'describe', '--always']).decode().strip()\nSENTRY_RELEASE = f'{CELERY_APP_NAME}@{GIT_RELEASE}'\n",
+
+
+    "settings/test.py": "import os\n\nfrom settings.base import *\n\n# CELERY\nCELERY_RETRY_MAX = 0\nCELERY_RETRY_BACKOFF = 0\n\n# SENTRY\nSENTRY_ENV = 'test'\n\n# AMQP\nAMQP_USER = os.getenv('AMQP_USER', 'guest')\nAMQP_PASSWORD = os.getenv('AMQP_PASSWORD', 'guest')\nAMQP_HOST = os.getenv('AMQP_HOST', 'localhost')\nAMQP_PORT = os.getenv('AMQP_PORT', 5672)\nAMQP_VHOST = os.getenv('AMQP_VHOST', '/')\n\n# TO NOT TOUCH\nprint('This is a test settings file')\nimport time\ntime.sleep(1)\n",
+
+    "settings/dev.py": "from settings.base import *\n\n# CELERY\nCELERY_RETRY_MAX = 0\nCELERY_RETRY_BACKOFF = 0\n\n# SENTRY\nSENTRY_ENV = 'dev'\n\n# AMQP\nAMQP_USER = os.getenv('AMQP_USER', 'guest')\nAMQP_PASSWORD = os.getenv('AMQP_PASSWORD', 'guest')\nAMQP_HOST = os.getenv('AMQP_HOST', 'localhost')\nAMQP_PORT = os.getenv('AMQP_PORT', 5672)\nAMQP_VHOST = os.getenv('AMQP_VHOST', '/')\n",
+    "settings/pprd.py": "from settings.base import *\n\n# CELERY\nCELERY_RETRY_MAX = 3\nCELERY_RETRY_BACKOFF = 3\n\n# SENTRY\nSENTRY_ENV = 'preprod'\n\n# AMQP\nAMQP_USER = os.getenv('AMQP_USER', 'guest')\nAMQP_PASSWORD = os.getenv('AMQP_PASSWORD', 'guest')\nAMQP_HOST = os.getenv('AMQP_HOST', 'localhost')\nAMQP_PORT = os.getenv('AMQP_PORT', 5672)\nAMQP_VHOST = os.getenv('AMQP_VHOST', '/')",
+    "settings/prod.py": "from settings.base import *\n\n# CELERY\nCELERY_RETRY_MAX = 3\nCELERY_RETRY_BACKOFF = 3\n\n# SENTRY\nSENTRY_ENV = 'production'\n\n# AMQP\nAMQP_USER = os.getenv('AMQP_USER', 'guest')\nAMQP_PASSWORD = os.getenv('AMQP_PASSWORD', 'guest')\nAMQP_HOST = os.getenv('AMQP_HOST', 'localhost')\nAMQP_PORT = os.getenv('AMQP_PORT', 5672)\nAMQP_VHOST = os.getenv('AMQP_VHOST', '/')"
+  }
+}
