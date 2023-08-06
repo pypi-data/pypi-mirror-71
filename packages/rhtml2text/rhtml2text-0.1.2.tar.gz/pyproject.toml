@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rhtml2text"
+version = "0.1.2"
+description = ""
+authors = ["scottming <therealscottming@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[build-system]
+# requires = ["poetry>=0.12"]
+# build-backend = "poetry.masonry.api"
+requires = ["setuptools>=41.0.0", "wheel", "setuptools_rust>=0.10.2", "toml"]
+build-backend = "setuptools.build_meta"

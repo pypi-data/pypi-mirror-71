@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=41.0.0", "wheel", "setuptools_rust>=0.10.2", "toml"]
+build-backend = "setuptools.build_meta"
+
+[package]
+name = "rhtml2text"
+version = "0.1.2"
+authors = ["scottming <therealscottming@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+pyo3 = "0.10.1"
+html2md = { git = "https://github.com/Adonai/html2md.git", branch = "master" }
+
+[lib]
+name = "rhtml2text"
+crate-type = ["cdylib"]
