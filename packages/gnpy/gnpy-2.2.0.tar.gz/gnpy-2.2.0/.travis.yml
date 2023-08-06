@@ -1,0 +1,24 @@
+dist: xenial
+sudo: false
+language: python
+services: docker
+python:
+  - "3.6"
+  - "3.7"
+install: skip
+script:
+  - python setup.py develop
+  - pip install pytest-cov rstcheck
+  - pytest --cov-report=xml --cov=gnpy -v
+  - rstcheck --ignore-roles cite *.rst
+  - sphinx-build -W --keep-going docs/ x-throwaway-location
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+jobs:
+  include:
+    - stage: test
+      name: Docker image
+      script:
+        - git fetch --unshallow
+        - ./.docker-travis.sh
+        - docker images

@@ -1,0 +1,880 @@
+CHANGES
+=======
+
+v2.2
+----
+
+* docs: fix description of gnpy-path-request
+* docs: do not talk about branches anymore
+
+v2.2a3
+------
+
+* CI: provision secrets for uploads to PyPI
+* docs: badges: show code coverage as well
+* docs: badges: show code quality via LGTM.com
+* docs: boast about the contributor count
+* docs: badges: prepare for a future link to Zuul
+* docs: Move the \`gnpy-path-requests\` into README
+* README: point all badges to the master branch
+* docs: Move install instructions into the generated docs
+* docs: Do not run rstcheck on sphinx-consumed docs
+* docs: Fix Pygments highlighting
+* docs: move JSON and XLS instructions into the generated docs
+* CI: enable Zuul builds
+* Introduce polarization mode dispersion (PMD)
+* Introduce computation of the chromatic dispersion
+* Add dispersion slope
+* Bug fix in converting the dispersion D in beta2
+* Upload releases to PyPI upon tagging
+* Enable saving the network as converted from XLS
+* Save either to JSON or to CSV, not to both
+* CLI: Allow Raman in path\_requests\_run
+* CLI: Unify handling of the network topology
+* Remove unused variables
+* CLI: show default values in --help
+* Unify handling of the --equipment option in examples
+* CLI: specify shared code options just once
+* Tweak the --help output
+* Remove unused statements
+* XLS -> JSON conversion: add a nice program for this
+* transmission\_main\_example: Do not write out a CSV file
+* tests: don't clutter up the source dir with generated CSVs
+* use load\_json instead of open coding
+* tests: Do not produce JSON files in the source tree
+* Split JSON export from service XLS reading
+* tests: Do not create JSON files in the source tree
+* Do not always write out JSON data when reading XLS files
+* Remove incomplete support for "fuzzy name matching"
+* distribute example data along GNPy
+* Do not create \*\_auto\_design.json by default
+* tests: remove something which looks like a path, but is not a valid path
+* tests: show that the examples still work when directly invoked
+* examples: add some additional descriptions help context
+* Distribute our examples via setuptools
+* Update compute\_constrained\_path
+* tests: call our example entry points via functions
+* examples: prepare for overriding sys.args
+* examples: move path\_requests\_run to gnpy.tools
+* examples: move transmission\_main\_example into gnpy.tools
+* examples: use ansi\_escapes
+* examples: manual coding style tweaks
+* examples: autopep8 -aaaaaaaaaa
+* examples: autopep8
+* CI: Restore functionality via running on  Python 3.6 on native packages
+* Restructuring and reorganization of the library structure
+* docs: basic stuff about the module structure
+* tests: fix import of correct\_json\_route\_list
+* examples: common code for data loading
+* examples: unify exception handling
+* SimParams: pretty exceptions upon a misconfiguration
+* params: Remove extra \`if\`
+* reorganization: move request processing and request disjunction handling into topology.requests
+* flake8: Remove unused variables
+* reorganization: move JSON-specific bits from path\_requests\_run to tools.json\_io
+* reorganization: move example plotting into an extra submodule
+* De-JSONify gnpy.core
+* reorganization: move all JSON processing into an extra module
+* refactoring: reduce amount of Python magic in network building
+* Qualify all usages of classes from gnpy.core.elements
+* Remove extra indirection -- just instantiate Edfa directly
+* equipment: move NF estimation into science\_utils
+* equipment: mark internal functions as such
+* Move placeholder EDFA NF calculation to where it gets used
+* Do not perform magic when reading equipment config
+* Tweak error messages a bit
+* Rely on pip for missing dependency detection
+* examples: remove unused imports
+* requests: simplify ResultElement inheritance
+* coding style: separate property definitions from each other
+* reorganization: gnpy/{core => tools}/service\_sheet.py
+* reorganization: gnpy/{core => topology}/spectrum\_assignment.py
+* docs: improve docs markup a bit
+* docs: remove implementation details from the documentation
+* Import referenced exceptions
+* parameters: remove unused logger
+* Refactoring: conversion functions instead of gnpy.core.units.UNITS
+* FiberParams: print out the configuration upon failure
+* Remove unused gnpy.core.execute submodule
+* Ensure that automatic\_fmax gets used and not reinvented
+* Move automatic\_nch, automatic\_fmax into utils
+* document and test automatic\_nch and automatic\_fmax
+* Zuul: test with Python 3.6 as well
+* CI: do not clutter up Zuul's failure display with the coverage report
+* docs: brand the generated docs with our shiny logo
+* coding style: manual tweaks
+* Always use our ansi\_escapes module
+* flake8: fix F401 (unused imports)
+* flake8: fix F841 (local variable is assigned to but never used)
+* coding style: autopep8 in an aggressive mode (\`-aaaaaaaaaa\`)
+* coding style: \`autopep --in-place --recursive --jobs 4 --max-line-length 120 gnpy/ tests/\`
+* reorganization: gnpy/{core => topology}/request.py
+* linters: remove unused variables
+* Remove unused class import
+* pep8: rename classes to use CamelCase
+* gnpy/core/request.py: autopep8
+* reorganization: XLS conversion goes to gnpy.tools
+* gnpy/core/convert.py: coding style fixes
+* gnpy/core/convert.py: run autopep8
+* Support propagation of single channel
+* Remove extra elements from default EDFA parameters
+* Allow different lengths of EDFA config lists
+* docs: emphasise the API reference over bits which are duplicated in the README
+* docs: remove list of authors
+* Remove debug dumping of "city mapping"
+* Remove unused imports
+* tests: frequency to wavelength
+* tests: remove dead code
+* Remove unused functions
+* tests: use doctest instead of an explicit runner
+* tests: show how much \*test\* code is actually executed
+* Fix #353 - String representation of network elements
+* Find paths with include nodes constraint
+* Removing exit(1) and using exception instead
+* linters: activate more checkers
+* linters: Increase maximum line length
+* CI: run flake8 for coding style nagging in changes
+* Fix syntax of the bandit config file
+* Update Excel userguide
+* include all 'no' Capital/non capital combination in test
+* small refactor
+* Adding a set of tests on spectrum\_assignment functions
+* Enable ILA and FUSED type in routing constraints with xls input
+* Upgrade pytest, and list it as a test-only dependency
+* CI: Activate coverage diffing
+* tests: simplify tox setup
+* CI: Run both non-coverage and coverage build/test jobs
+* tests: Check if example code provides exact same output
+* tests: Run examples via pytest
+* Show more details upon a test failure
+* docs: explain what the roll\_off parameter means
+* Better explain the source of error in exception message
+* Correct the unit of gamma in Readme file
+* Add an explanation for delta\_p in excel user guide
+* Zuul CI: remove manual workaround for Python3 and TOX
+* docs: Fix all sphinx warnings
+* CI: build documentation, too
+* Fix dependency installation with PBR
+* docs: do not reference a non-existing directory
+* CI: build and test this under Python 3.7 and Vexxhost's Zuul
+* Convert to \`pbr\` setup
+* Configuration for git-review
+* Fix test failure due to mishandled merge
+* small linter fixes
+* refactor test and add test on constraints
+* Fix node\_list and "STRICT" checking
+* tests: Use XLSX for the CORONET topology
+* tests: do not hardcode file suffix lengths
+* Enable import from .xlsx files
+* updating test\_compare\_nf\_models to correctly compare variable gain with polynomial
+* Updating ase test to handle the variable gain setup
+* Add empty Zuul configuration
+
+v2.1
+----
+
+* Bump version to 2.1
+* update version setup.py
+* add the missing else to handle non first\_fit policy
+* replace todo with TODO
+* remove unused testing piece of code
+* refactoring: simplify code flow a bit
+* fix typos
+* tests: use native pytest features for exception handling
+* Refactoring with some incompatible changes
+* Unrelated changes
+* Introduce new parameter structure for all Fibers
+* Give more useful comment for user to correct topology
+* Edn-to-end test for Raman amplification
+* build: workaround Sphinx doc build failure
+* docs: Link to the updated meeting event
+
+v2.0
+----
+
+* second set of modification due to codacy report
+* Codacy report: minor changes (trailing spaces, ...)
+* SA: process also the case when pth is empty
+* Complete test on response comparison
+* Update test file with correct SA (due to bidir correction)
+* Improve compare\_response function
+* Create a SpectrumError(Exception)
+* Add a test to go through the new added code in spectrum\_assignment
+* raise error instead of exit in assignment
+* Raise exceptions instead of exit()
+* Do not block computation if M=0
+* Add a DisjunctionError exception and use it
+* Catch Service error exception in the main program
+* Move all main program into a main function in path\_requests\_run.py
+* Remove exit and use ServiceError exception instead
+* Another time improving formatting (codacy report)
+* Precise type of exception (codacy report)
+* improving formatting (codacy report) of path\_requests\_run, request and service\_sheet
+* Code coverage improvement test service creation w/o sync vector
+* Code coverage improvement test json generation with Z to A direction
+* Code coverage improvement test ServiceError handling
+* Update test data files
+* Call build\_oms\_list in test\_disjunction
+* Update test\_disjunction and test\_automaticmodefeature
+* Update test\_parser
+* Add a ServiceError(Exception) for malformed user requests
+* Change name of br and pw variables to brate and pwr
+* add docstring to functions
+* Cut long lines over 100 char
+* Correct indentation due to linter report
+* other time: Correct indentation due to linter report
+* Another time: removing extra spaces, trailing spaces and adding missing spaces
+* change variables d, el to conform to '[a-z\_][a-z0-9\_]{2,30}$' pattern
+* correction of the assignment: SA must be bidir
+* Moving reversed path computation and propagation to compute\_path\_with\_disjunction function
+* Removing extra spaces, trailing spaces and adding missing spaces
+* Cut long lines to 100char max due to linter report
+* Reordering imports due to codacy report
+* Introduce reversed path on CSV output
+* Add bidir as a parameter in path\_requests\_run.py
+* Add the bidir parameter in transmission\_main\_example.py
+* Add "bidirectional" field in the json service file example
+* Implementation of bidirectional field per request
+* Simplification de stdout
+* Second minor cosmetic changes
+* Minor cosmetic changes
+* add reversed path information on stdout
+* Use reversed path as a constraint for spectrum assignment
+* adding reversed path in the main program
+* Add the reversed path as an attribute of Result\_element
+* Change find\_reversed\_path function using the reversed\_oms
+* Introduce a reverse\_oms function to identify bidir oms
+* Add N and M info in the stdout
+* Add N and M info in the CSV
+* Add N and M in the json response
+* Add the N and M information in request when spectrum is assigned
+* Add blocking reason on stdout
+* Change the processing of blocking case in main program
+* CSV generation is adapted to include blocking info
+* adapt response from the compute\_constrained\_path to return info in case of blocking
+* Adapt json response to include information in case of blocking
+* Add reasons for blocking in the response
+* Calling assignment in main program path\_requests\_run.py
+* pth\_assign\_spectrum function  assigns wl  for all demands
+* Creation of the OMS structure to record spectrum assignment
+* Corrections with respect to second review
+* Correct bug in parser: csv header comparison
+* Bug: constraint not correctly interpreted
+* Correct some remaining strict loose into STRICT LOOSE
+* change variable n to nel to conform to '[a-z\_][a-z0-9\_]{2,30}$' pattern
+* syntax correction
+* Adding a no-path case for test coverage
+* add a test on json response generation
+* correct compare response header test to support any order
+* improve code quality
+* change assert to raise AssertionError
+* adding a test for the csv creation
+* changes to improve quality
+* Remove @ in path-metric names and extend type to decimal64
+* Change the exception handling if sync vector is absent
+* Remove the filtering on transponders for correcting explicit route
+* Correct csv creation in case of no path
+* update existing test files and examples according to ietf yang model
+* Change content of source and destination to transponder end-points
+* update csv creation according to all model changes
+* remove the restriction on fiber for the constraint
+* enable power and nch to be optional in requests definition
+* correction to support empty vectors of constraints
+* change the way transponder and mode are returned in the response
+* change the 'no path' case answer
+* applying changes in the request dict creation
+* correction of json generation: removing unused objects
+* correction of the json generation for path computation
+* codacy: do not complain about asserts in the test suite
+* utils: more descriptive name for \`itufl\`
+* Do not use confusing default values
+* Remove unused function
+* Only print out "pretty summary" when not doing the power sweep
+* Print both ASE-OSNR and final GSNR for both 0.1nm and signal-bw in power sweep
+* Highlight OSNR @ 0.1nm
+* docs: show a DOI
+
+v1.8
+----
+
+* docs: Explain how to use Docker
+* examples: commented-out path printing for Esther
+* docs: remove duplicate \`cd\`
+* examples: do not measure time taken
+* Remove unused function
+* example: Use "Total SNR", not "GSNR"
+* docs: Document Transceiver.mode.OSNR
+* examples: color highlighting of the "most interesting output"
+* doc: fiber length summary in km, not meters
+* Remove debug printing from propagate()
+* Docker: array for CMD is more idiomatic
+* Travis: Docker: Fix version numbers
+* Automatic building of Docker images
+* - Fix output per-channel SNR to include contribution from add\_drop\_sonr and tx\_osnr - Avoid recalculating SNRs in transmission main example since they are already calculated and stored in the Transceiver class - Also include per channel power (useful for checking tilt) and OSNR ASE in the output
+* Simplify logic for showing per-channel results
+* Raman: linear interpolation of channel NLI
+* docs: basic usage instructions for Raman
+* docs: skeleton of Raman-specific properties
+* Unify transmission\_main\_example and the Raman wrapper
+* Unify implementations of psi computation
+* More intuitive name for list of channels where Raman gain is computed
+* Move Raman parameter propagation to gnpy.core.network
+* Use lin2db() when we have it
+* Fix a typo in my e-mail address
+* Do not copy the whole Fiber class
+* Raman: do not introduce a new copy of the equipment library
+* diagnostics: Correctly report all spans, not just the Raman ones
+* Raman: use logging instead of debugging print()s
+* Raman: stricter validation of input parameters
+* Fix typos in Raman's frequency offset
+* CI: Run the Raman example as well
+* Remove unused imports
+* Do not measure time from the example directly
+* Remove unimplemented and unused code
+* Remove property aliases
+* method name for computing NLI updated in sim\_params.json
+* modified Raman pumps in the example raman\_edfa\_example\_network.json to make Raman effect more evident
+* minor fix to eqpt\_with\_raman\_config.json
+* dynamic evaluation of threshold frequency between near XPM and far XPM
+* changed output of propagate\_raman\_fiber to return a list
+* alpha0 computation moved from NLI solver to Fiber Params
+* introduced classes for the parameters
+* changes on variable names to be more clear
+* introduced a faster computation for XPM
+* output fixes on transmission\_with\_raman\_main\_example.py
+* new variable names for SPM and XPM
+* double underscore replaced with single one for some attributes
+* strings 'XPM' and 'SPM' removed while computing NLI, now it is implicit
+* minor fix to comments
+* minor fix to printed text
+* new print of final propagation
+* removed old printing of spectral information
+* self.pch\_out\_db in RamanFiber now takes into account Raman gain
+* CI: Attempt to builds docs during regular CI, too
+* docs: Fix docs building
+* CI: do not attempt to \`cd\` twice
+* Update dependencies
+* requirements: only list what we really need
+* docs: Animated invocation of transmission\_main\_example.py
+* added evaluation of the SNR at the end of the line
+* integration of the GGN-model with spectral separation
+* sim\_params now include GGN model
+* raman pump powers reduced in raman\_edfa\_example\_network.json
+* docs: no need to \`cd examples\` first
+* docs: Show a pretty picture of GNPy in action
+* RamanFiber propagate method now call the propagate\_raman\_fiber in the science\_utils module
+* propagate\_raman\_fiber function introduced
+* introcude NLI solver
+* fix raman solver parameters
+* raman\_efficiency included in RamanFiber equipment
+* modified sim\_params for transmission\_with\_raman\_main\_example.py
+* add temperature parameter in fiber
+* add raman efficiency in SSMF equipment
+* CI: run the examples as well
+* Fiber: beta2: use a default value directly
+* doc: hyperlinks++
+* Python: do not use a mutable default value
+* docs: random improvements and Sphinxiation
+* docs: document the \_private methods
+* docs: use a default preset here to prevent extra repetitions
+* docs: ensure that all modules are documented
+* docs: minor grammar fixes
+* Encourage people to join us and to join the VCs
+* Restrictions on auto-adding amplifiers into ROADMs
+* Utility functions for pruning and merging
+* gn model introduced in the science utils module
+* +1 and -1 replaced with coporop and counterprop strings for Raman pumps description
+* Correct testTopology file
+* Bug fix on create\_eqpt\_sheet.py
+* One fewer exit() in a library scope
+* Add a missing FIXME for direct-printing of diagnostics
+* Exceptions for errors in network topologies
+* Distinguish between "equipment library errors" and other "config errors"
+* Refactor color temrinal escaping into a common module
+* Use exceptions instead of direct-exit when parsing equipment JSON
+* Infrastructure for reporting configuration errors via exceptions
+* transmission with raman integrated with sim\_params configuration
+* configure\_network function created to configure the RamanFiber.sim\_params in a network
+* attribute sim\_params added to RamanFiber
+* Do not mix THz and Hz
+* fix to Raman solver
+* eqpt\_with\_raman\_config.json copied from eqpt\_config.json and RamanFiber added into it
+* Introduce RamanFiber in equipment
+* CI: test the RST files for validity
+* docs: Fix JSON syntax
+* docs: specify code-block highlighter
+* docs: Fix JSON syntax -- standard ASCII quotes
+* docs: specify a correct markup language for JSON snippets
+* docs: fix table markup syntax
+* docs: fix code markup
+* docs: Fix rendering of the SpectralInformation docs
+* modified fiber type in raman\_edfa\_example\_network.json to use new class RamanFiber
+* add class RamanFiber
+* tests: consult the doctests as well
+* tests: re-enable warnings
+* add an example of json including Raman pumps in fiber
+* Update networkx and xlrd
+* CI: Disable Codecov comments
+* add Raman solver
+* load\_sim\_params used to parse sim\_params.json and new default filename
+* fix load\_sim\_params
+* fix sim params
+* utility to load sim params from json
+* add science utils module
+* simparams enriched with Raman and NLI parameters
+* Be sure that both nf\_min and nf\_max are removed
+* Exceptions must be raised, not just instantiated
+* CI: do not require sudo
+* CI: Test on Python 3.7 as well
+* CI: remove unused section
+* CI: Report test code coverage to codecov.io
+* transmission w Raman gets sim params
+* Add all missing authors and sync the two lists of contributors
+* Replace James with myself as a maintainer
+* add raman transmission
+* add json sim\_params
+* docs: use github for release management
+* docs: prune the list of branches
+* docs: there's the --power argument for launch power config
+* docs: Improve typography and fix typos in the README
+* Fix RST syntax in the ROADM table
+* correction of bugs
+* Sort all simple paths using length instead of hop
+* Adding weights on edges to have shortest path in length instead of hops
+* manage empty edfa requirement list in auto\_design
+* clean up auto\_design code
+* improve auto\_design selection of raman
+* verbose possibility for paht\_request\_run
+* Display warning when Raman is used above max fiber lineic loss
+* bug fix in mixed auto/imported design with output voa
+* bug fix with FUSED spans and EOL
+* clarify code on connector and EOL default loss
+* Small fix
+* Update of README.rst wrt Roadm equalization feature and addresses issue #210
+* add units on the stdout answer given by transmission\_main\_example.py (issue 201)
+* reduce the number of test files
+* Update parser test files in order wrt novel road\_equalization branch
+* Adding a test on autodesign self consistency
+* adding a test on autodesign verfication
+* doc file description of all amplifier models!!
+* refactor amplifier build build\_OA\_json.py
+* clean edfa\_model repo
+* import Juniper amp model example
+* modify std\_medium\_gain\_advanced\_config.json
+* Advanced amplifier model improvement
+* update eqpt\_config.json
+* Add a warning message when attributes are missing in eqpt\_config.json
+* info message in gain mode
+* power reduction warning message in auto-design
+* pass tests
+* update eqpt\_config and example files
+* Roadm channels power equalization
+* Power reference tracking to roadm target power
+* bug fix : Roadms & Spans vs Roadm & Span
+* manage operational vs calculated values
+* improve power mode and gain mode
+* improve Edfa class element
+* improve power saturation handling
+* operational amplifier delta P target power support
+* convert headers restriction management
+* bug fix in dual stage NF calculation
+* auto-design: relax min\_gain restriction
+* manage inter-stage padding for dual stage typedef
+* reduce power when the extended\_gain\_range limit is reached
+* improve auto\_design algorithm for amplifier selection
+* parametrization of amplifier extended\_gain\_range
+* remove hybrid type\_def implementation
+* parametrization of the max\_fiber\_lineic\_loss\_for\_raman
+* raman tag in eqpt description
+* raman restrictions
+* dual stage
+* insert a raman hybrid example in eqpt\_config.json
+* Improve auto-design amplifier selection algorithm
+* update raman model to work in auto-design
+* remove namedtuple class structure for network elements
+* hybrid raman/edfa model
+
+v1.2
+----
+
+* small fixes
+* interpolate fiber positions
+* fixed ordering, display of SI details
+* removed redundant files
+* add units to OSNR
+* tweaks for OFC
+* update README for v1.2
+* changes for OFC demo
+* changes for OFC demo
+* update of the descriptioon json structure
+* update Excel\_userguide.rst wrt convert-service\_sheet issue #214
+* more precise description on README for v1
+* README table fix
+
+v1.1
+----
+
+* Update README.rst
+* Update Contributors
+* remove osnr\_nli update when adding add\_drop\_osnr or tx\_osnr
+* correct README
+* update and pass tests
+* system margins implementation
+* code speed improvement (-30% computation time)
+* NEW add\_drop OSNR in Roadms model
+* Code fix: non cumulative osnr penalties
+* add Tx\_osnr at the end of the transmission
+* restore SI basic parameters f\_min f\_max & spacing
+* Update node.py
+* parametrization of the name matching dictionary
+* enhance name matching dictionary
+* add name find closest match in xls parser convert.py
+* update test files
+* convert.py xls to json parser class enhancement
+* carrier probe point for Edfa and Fiber elements
+* gain mode fix
+* replace egress/ingress by east/west denomination
+* Add link duplication check for the xls parser
+* Improve Excel Node parser
+* Improve excel link sheet parser
+* update test eqpt\_config
+* Improve ROADM loss calculation in power mode
+* final openroadm models implementation
+* Adding min\_spacing parameter in transponder mode library
+* cosmetic changes
+* small fixes on stdout
+* small fix on test eqpt\_config file
+* Fixes concerning service sheet reading
+* adding some exception handling to help user debugging
+* add a limit cutoff for path search
+* Corrections of some bugs
+* Update node.py
+* Adding min\_spacing parameter in transponder mode library
+* cosmetic changes
+* small fixes on stdout
+* new test to check all combination of service specifications
+* bug fix due to tx\_osnr add
+* adding some exception handling to help user debugging
+* Fixes concerning service sheet reading
+* add a limit cutoff for path search
+* Corrections of some bugs
+* fix OSNR calculation when ASE or NLI is zero
+* fix OSNR test
+* fix eqpt\_config test file
+* fix amplifier test
+* Add support for Tx OSNR
+* Adding "transmission\_main\_example.py -h"
+* Now applying corrections to the README
+* Minor typo changes in README
+* Minor typos solved in README
+* Update transmission\_main\_example.py
+* New mesh example with correct inputs + small fix
+* small fixes
+* Major correction on mode optimization behaviour + small fixes
+* Corrections related to tests and cost feature
+* Test disjunction file corrected to include novel path\_bandwidth parameter
+* correction on aggregation to support disjunction feature - correction of json to csv function - small correction on disjunction format to avoid double (double crash the program) - adding time stamp to measure perf - demands with all the same disjunction can be aggregated - a new set of disjunction list is created to avoid inconsistancy   with the aggregated request-ids
+* clean eqpt\_config.json, add low noise openroadm amp
+* small fix
+* display channel count information when running transmission\_main
+* OpenRoadm amplifier model!
+* adding the example file used for disjunction testing adding the counting feature on standard output adding tsp nb in csv + small bug fixes small fixes to improve stdout and csv printing small bug fixes on service aggregation and automatic correction of names
+* First version of mode optimization
+* Adding aggregation feature
+* add help text
+* change handling of verbosity argument
+* fix broken links in readme
+* fix utf-8 encoding
+* change for  meshTopologyToy.xls
+* correcting example file
+* add a couple of missing imports
+* improve power range handling
+* fix changed spelling & misspellings in meshTopolgyExampleV2\_Services.json for "synchronize/synchronization"
+* fix bug in gain mode
+* Change span numbering in split\_fiber
+* Some modifications in split\_fiber function
+* Update transmission\_main\_example.py
+* Small fix
+* Update issue templates
+* small fix in case spacing\_list is not sorted
+* Set type of all nodes to ROADM in CORONET Glabal
+* Update examples/path\_requests\_run.py
+* Update examples/path\_requests\_run.py
+* allow JSON to encode UTF-8
+* enforce utf-8 encoding for reading/writing JSON
+* Simplify automatic spacing
+* small fixes to comply with test files
+* Correction of route constraint to support any type of node
+* adding safe check on baudrate and spacing
+* Changing optical power and nb channels as optional input for requests
+* Removing the duplicate convert\_service\_sheet.py in examples directory
+* changed source and destination handling
+* Update eqpt\_config.json
+* Update issue templates
+* Update issue templates
+* Update equipment.py
+* Update equipment.py
+* Create test\_disjunction
+* Adding this toy example network for disjunction testing
+* Moving the disjunction function into core functions
+* Minor corrections of tests due to orthograph change
+* some cleaning and renaming
+* Corrections, cleanup and debugging
+* routing constraint added on top of disjunction feature : step 4
+* Disjunction feature step 3
+* Disjunction feature step 2
+* Implementing disjunction in path\_requests\_run.py  - Implementing a conflict table for path disjoint choices  - adding disjunction in the parser and json (read and write)
+* Update README.rst
+
+v1.0
+----
+
+* add authors
+* small updates
+* small README fix
+* add tagged version table
+* Update elements.py
+* remove redundant directory
+* small fixes
+* small changes
+* small fixes
+* duplicate service sheet to simplify structure
+* fix headers
+* fix headers
+* small formatting
+* strip whitespace
+* strip whitespace
+* remove notebook and binder
+* perms
+* make package
+* README fixes
+* README fixes
+* README fixes
+* README fixes
+* README.rst update
+* improve code clarity of auto\_design power setting
+* Fix bug in padding and EOL and Roadm power
+* Generic write\_csv in utils to save simulation results
+* update of test files with respect to the use of string id instead of integer id update Excel\_userguide.rst for the services uid: now accepts strings
+* improving path\_request\_run robustness to wrong excel input - adding a test to check that transponder types and modes are part of the eqpt library - adding a formating on numeical value input for path request ids - automatically printing the results into a csv file in addition to the json file   and with the saime name+.csv - printing results in a more pretty way for demo
+* small update of toy topology file + comment of a proont in network.py
+* some improvement of std out printing, to ease user understanding
+* Save network to json after build (auto design)
+* writing json results from path\_requests\_run.py into csv
+* - Reference to path\_requests\_run.py added in README.rst file - adding a program to convert json result file into a CSV file - adding some more metrics in the results
+* Excel user guide modifications according to issue 95 - typos corrections - explanations on cable id, create\_eqt\_sheet.py, dimensionning - adding updates in user guide - harmonisation of naming \_eqpt instead of eqt in create\_eqt\_sheet.py - improving standard output, removing pi ref power print on standard output
+* Update README.rst
+* Update README.rst
+* Update untary test\_amplifier
+* power range fix for power sweep
+* Output VOA in EDFA implementation
+* Improve Select\_edfa algorithm
+* Remove nf calculation duplication
+* update amplifier tests
+* Small fixes
+* Amplifier selection with power constraints
+* Power setting refactor
+* Amplifier disable field
+* Automatic design Delta power / span
+* Add fixed gain amplifier unitary test
+* Add padding support for Fused spans
+* PADDING of small spans
+* Fix bug when splitting fiber in calculated length
+* Code improvement: catch eqpt errors/remove outdated files
+* read fiber con\_in, con\_out, EOL & max\_length default values
+* Update and pass amplifier tests
+* new fixed gain amp in nf\_model
+* Error message handling and code exit
+* Power sweep parametrization
+* Fix bug in setting the Roadm egress reference power
+* Add roll of factor in transponders library
+* Work contnued on fixing dutc merge with power feature of jla
+* restore power management in transmission main
+* Read trx parameters and find channel spacing&count
+* file extension changed
+* add test\_propagation
+* fixed merge conflicts; added default pref value for SI
+* fixed merge conflict
+* fixed merge conflict
+* network and equipment JSON descriptions added
+* implement the use of TSP f\_min
+* Integration of Path\_request\_run functionalities into transmisson\_main\_example
+* Refactor path\_request\_run and integration of functions to transmission
+* update amplifier test
+* parametrize and format power mode
+* Starting: adding path\_requests\_run functions to the "core" package
+* small fix source & node input in transmission main
+* bug fix in amplifier extended gain range
+* bug fix CORONET\_GLOBAL\_Topology example
+* Power mode implementation
+* adding test on the propagation on a link example
+* Update tests after having inserted connector losses in json
+* clean up JSON comparator & remove redundant files
+* remove duplicate CORONET file
+* small test fixes
+* rename test files
+* adding connector loss on the "loss" property of fiber class
+* clean-up test files/locations
+* Implementation of connector losses in the propagation function
+* remove redundant import
+* parametrized ROADM and FUSED losses
+* fix link
+* small test fixes
+* small fixes
+* correct path
+* try with .travis.yml to set the path to examples
+* adding exaples directory as a place to find programs to test with travis CI
+* Update of test for automatic testing
+* Excel\_userguide update + bugfixes
+* Merge: merge completed
+* path\_requests\_run now generates a json file if -o is used
+* path\_requests\_run.py now can use the route constraint
+* Adding a verification on the trx\_type entry of service sheet
+* module convert\_service\_sheet.py and path\_requests\_run.py
+* Use load\_json utility
+* Amplifier selection
+* restore transmission main power sweep and format
+* restore xls to json file parser-execute from json
+* small fixes
+* fixed README broken hyperlinks
+* merge debug
+* merge of major refactor
+* small readme fix
+* small readme fix
+* add lat-long
+* gnpy JSON comparison tool
+* remove redundant imports
+* file testing correction
+* new test files added
+* removing a last config file
+* Simplification of tests
+* adding tests on excel parsint in amplifier\_test.py
+* putting correct Path for input files in amplfier\_test.py
+* Enabling input files indirection for excel and json parser + pytest update
+* Formating Excel\_userguide.rst and adding a section for the optional Eqpt sheet Typos correction Explanations added on how to fill in the excel Eqpt sheet Removing verbose printing for debug of create\_eqpt\_sheet.py Bug correction : blank removed when copying city names with creat\_eqpt\_sheet.py Typos correction on README and Excel\_userguide
+* Adding a user guide to explain the excel input format
+* Program that creates the list of entries for the Eqpt xls sheet
+* Sanity checks and small code fix
+* command-line parameter for plotting
+* quick demo section
+* small fixes
+* source/destination nodes suggestion
+* Fused spans class and edfa gain adaptation
+* fix sys.path for notebook (when running from repo or Binder) (#65)
+* notebook version of transmission main example with Binder link
+* update readme
+* equipment json paths use relative directories
+* Read eqpt sheet in (convert.py) xls parser
+* Code improvement in convert.py
+* Implement default values in xls parser for empty cells
+* Advanced xls input support: Nodes & Links reading
+* Equipment library implementation
+* Add source sink arguments, restore convert.py
+* re-add coronet files
+* change RTD python version (#47)
+
+v0.1.3
+------
+
+* small setup.py fixes
+* bump version to v0.1.2
+* bump version to v0.1.1
+* add long\_description\_content\_type
+
+v0.1.1
+------
+
+* space align \_\_str\_\_ output
+* use scipy.constants
+* document modules
+* small setup.py fixes
+* prettier printing
+* fixed \_\_repr\_\_
+* clean up examples/ directory
+* remove unused network files
+* doc fixes
+* docs fix
+* small documentation fixes
+* fix authors
+* add AUTHORS.rst
+
+0.1.0
+-----
+
+* first release
+* fix spelling
+* updated readme
+* enable graphing of result
+* add location metadata
+* remove non-CONUS elements
+* Create LICENSE (#42)
+* README.rst Instructions and tests path for CI (#41)
+* add Roadm, coronet\_conus support and amplifier pytests (#35)
+* Add NLI Evaluation in Fiber class (#33)
+* Added some TExt about TIP, OOPT, PSE
+*  code wrap up and edfa model augmentation v2 (#30)
+* Contributors alphabetically
+* updated Contributors list (#27)
+* edfa model, json config loading, added utils (#26)
+* Created Contributors.md
+* adding License owner "Telecom  Infra  Project ,  Inc."
+* setup.py for package (#21)
+* Add License File (#22)
+* Add Sphinx Documentation and ReadTheDocs integration (#18)
+* JSON file based on Orange operator typical input (#15)
+* Create OperatorInputNetworkv3-xufeng.json (#17)
+* Develop (#14)
+* adding base node class
+* implemented "path closing" algorithm
+* sample network propagation
+* spectral\_info
+* improve data format
+* update requirements.txt
+* move network management code to network.py
+* make CORONET network connections bidirectional
+* simple Makefile for building CORONET input JSON
+* merged phase-2 into master
+* example network visualisation
+* requirements.txt
+* example CORONET networks (broken down by region)
+* example network (CORONET CONUS)
+* start fresh
+* cleanup
+* Update README.rst
+* some refinement on the configuration and input files
+* example of output added
+* new input spectrum for large number of WDM channels
+* new configuration files for lonk links
+* bug fix
+* minor corrections
+* the main\_ole plots two figures: one with PSN and powers, the other with OSNR curves
+* now the OLE saves the output in the output folder
+* \_\_init\_\_.py added in the folders configuration and input to enable the call of files in \_\_main\_ole\_\_.py
+* ole function to simulate the entire link added
+* with NW graph plots
+* JP initial commit refactoring base classes, utils
+* printout OSNR
+* rearranging files
+* rearrange propagation so it's path-driven from Opath
+* Integration of configuration and input files with some example parameters
+* fiber implementation complete
+* element-based propagation, not via edges
+* functions adapted to use the -3 dB bandwidth instead of symbol rate
+* compatibility fix
+* osnr calculation
+* network builder
+* Basic components of OLE: optical\_amplifier (OP) and passive\_component (PA) added
+* implementation of attenuation
+* impementation of EDFA
+* edges from topology into utils
+* working graph with topology
+* adding config reading and topology builder
+* adding some boilerplate for ign
+* adding several example json configuration files for route and for transmitter
+* integrating networkX and Edfa, Span classes
+* Adding skeleton of network elments
+* with JP's architecture.py
+* Fix for compatibility with python 2
+* include gnpy functionality imports into \_\_init\_\_.py, fix requirements to include scipy, numpy
+* \_\_init\_\_.py to gnpy.py
+* initial commit
