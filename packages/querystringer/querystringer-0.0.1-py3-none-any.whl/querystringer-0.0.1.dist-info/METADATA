@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: querystringer
+Version: 0.0.1
+Summary: Extract query strings from get urls & requests
+Home-page: https://github.com/E-RROR/QueryStringer/
+Author: Sina Farhadi
+Author-email: sina.farhadi.cyber@gmail.com
+License: MIT
+Keywords: django,strings,query,query stringer
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Description-Content-Type: text/markdown
+
+# QueryStringer
+Simple middleware for django to extract string queries from urls
+
+# Installation
+```
+pip install querystringer
+```
+
+# Import
+import it inside middleware in django settings
+```
+middlewares = [
+  ...,
+  querystringer.middleware.querystringer.QueryStringer,
+  ...,
+]
+```
+
+# Usage
+all requests will have an edited request
+and you can access them by `request.GET['queries']`
+
+
