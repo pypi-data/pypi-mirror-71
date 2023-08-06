@@ -1,0 +1,42 @@
+# the unique identifier for this engine, must be unique across all engines
+uuid: TMPL-UUID # CHANGE ME
+alias: "engine_name 1.0"
+description: A template, someone should change this string.
+# Specifying extra docker build arguments, this section is optional. If you are using a docker-compose file this section is ignored
+docker:
+  env_file: cool_env.env # standard .env file, the same as used by docker-compose, path is relative to the model file
+  docker_file: cool_docker.dockerfile # specify docker file location, relative to the model file
+  buildargs: # specify build args, will be overriden by any duplicate values in the env file
+    cool_var: "true"
+location:
+  repo: 445607516549.dkr.ecr.us-east-1.amazonaws.com
+  image: template/repo/engine_name
+  region: us-east-1
+  repo_type: aws
+categories:
+  - name: tutorial
+type: engine
+nnd_model_version: 2
+actions:
+  do_thing:
+    description: Do thing
+    display_name: Do Thing
+    parameters:
+      - name: test_parameter_1
+        display_name: Test Parameter 1
+        required: true
+        type: string
+      - name: test_parameter_2
+        display_name: Test Parameter 2
+        required: true
+        type: bool
+      - name: s3_info
+        display_name: S3 Info
+        type: group
+        parameters:
+          - connection_type_uuid: AWS5D-TO99M
+            description: AWS Credentials with access to the s3 bucket where the data table lives.  Should also have access to a temp directory.
+            display_name: AWS Token Credentials
+            name: aws_connection
+            required: false
+            type: connection
