@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "gvmkit-build"
+version = "0.1.2"
+description = ""
+authors = ["Przemysław K. Rekucki <prekucki@rcl.pl>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+docker = "^4.2.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = { version = "^19.10b0", python = "^3.6" }
+
+[tool.poetry.scripts]
+gvmkit-build = "gvmkit_build:build"
+
+[build-system]
+requires = ["intreehooks"]
+build-backend = "intreehooks:loader"
+
+[tool.intreehooks]
+build-backend = "poetry.masonry.api"
+
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+
