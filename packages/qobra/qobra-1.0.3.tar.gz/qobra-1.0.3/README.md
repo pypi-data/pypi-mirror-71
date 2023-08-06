@@ -1,0 +1,106 @@
+#### Contents
+- [Installation](#Installation)
+    - [Windows](#Installing-on-Windows) 
+- [Dependencies](#Dependencies)
+- [Configurations](#Configuration)
+- [Current Issues](#Current-Issues)
+
+# qobra
+
+Simple music player for the command line written in Python 🐍.
+
+![qobra player](qobra.jpg)
+
+### Why qobra?
+
+When it comes to minimal software, you want to use programs that do one thing,
+and do it well. This is exactly what qobra does: play music, and nothing else.
+
+As of version 1.3.0, with qobra you can:
+
+-   Display a list of your music.
+-   Play selected song.
+-   Play next or previous song.
+-   Pause a song.
+-   Toggle between Shuffle and Normal mode.
+-   Search for a song.
+
+### Installation
+
+qobra is available in the PyPI. To install it run:
+
+```bash
+pip install qobra
+```
+
+### Dependencies
+
+-   pygame
+
+### Usage {#usage}
+
+```bash
+qobra [options] [path to your music directory]
+```
+
+**Controls**
+| Key       | Function                |
+| --------- | ----------------------- |
+| k         | go up a song            |
+| j         | go down a song          |
+| l         | play selected song      |
+| p         | toggle pause state      |
+| q         | exit qobra              |
+| o         | play next song          |
+| i         | play previous song      |
+| s         | switch to shuffle mode  |
+| n         | switch to normal mode   |
+| /         | bring up the search box |
+| Enter     | submit search           |
+| Esc       | close the search box    |
+
+### Configuration
+
+qobra will look for a configuration file in ~/.config/qobra/config.py or use
+the default configuration if it can't find one. You can copy the sample
+config.py file in this repository to ~/.config/qobra/config.py if you want to
+have your configuration.
+
+You can customize qobra's colors in the config.py file, as well as set your
+music directory to avoid having to write it out on the command line:
+
+```python
+music_dir = "~/music"
+```
+
+### TO DO's
+
+-   [x] Make next song play after current one finishes.
+-   [x] Shuffle mode.
+-   [x] Resume song after pausing.
+-   [x] Format usage message
+-   [ ] Accept individual files as input.
+-   [x] Handle window resizing.
+-   [ ] Handle unsupported file formats
+-   [x] Filter songs
+-   [x] Add a config file
+
+### Current Issues
+
+-   qobra may misbehave if you resize the window while the search bar is
+    showing (why would you want to do that anyway?).
+-   qobra may engage in erratic behaviour if you try to play a song
+    with an unsupported file format.
+-   ~~qobra will crash if you attempt to run it in a terminal with height less
+    than or equal to 33 lines.~~
+-   ~~You won't see current playing status nor song if you resize your terminal
+    after executing qobra.~~
+
+### Bugs
+
+Please, feel free to report any bugs at alexander@alexandergoussas.com, or make
+a pull request.
+
+### Contribute
+
+If you'd like to contribute, e-mail me at alexander@alexandergoussas.com 😀.
