@@ -1,0 +1,16 @@
+{% extends 'djangoadmin/base/body/index_admin.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+{% include "djangoadmin/widgets/alert.html" %}
+<form method="POST" action="#" class="pr-1">
+{% csrf_token %}
+{% include "djangoadmin/widgets/TextInput_Form_Field.html" with field=category_form.title %}
+{% include "djangoadmin/widgets/TextArea_Form_Field.html" with field=category_form.description %}
+{% endblock body %}
+
+{% block sidebar-right %}
+{% include "djangoadmin/widgets/Select_Form_Field.html" with field=category_form.status is_submit="Save" %}
+{% include "djangoadmin/widgets/NumberInput_Form_Field.html" with field=category_form.serial %}
+</form>
+{% endblock sidebar-right %}
