@@ -1,0 +1,21 @@
+{% include 'django/forms/widgets/input.html' %}
+
+<sign-pad></sign-pad>
+
+<script>
+  const signPad = document.querySelector('sign-pad');
+  let image_input = document.getElementById('id_{{ widget.name }}');
+
+  signPad.addEventListener('signFinish', (event) => {
+    image_input.value = event.detail;
+  });
+
+  signPad.preview = true;
+  signPad.continue = true;
+  signPad.signBase64 = image_input.value;
+  signPad.signaturePadOptions = {
+    minWidth: 6,
+    canvasWidth: 800,
+    canvasHeight: 600,
+  };
+</script>
