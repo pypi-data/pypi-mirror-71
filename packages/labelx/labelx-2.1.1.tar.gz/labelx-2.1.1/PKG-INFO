@@ -1,0 +1,82 @@
+Metadata-Version: 1.2
+Name: labelx
+Version: 2.1.1
+Summary: Label Creator for GitLab Projects.
+Home-page: https://github.com/dalwar23/labelxg
+Author: Dalwar Hossain
+Author-email: dalwar23@protonmail.com
+License: GNU General Public License v3
+Description: ======
+        labelx
+        ======
+        
+        
+        .. image:: https://img.shields.io/pypi/v/labelx.svg
+                :target: https://pypi.python.org/pypi/labelx
+        
+        .. image:: https://readthedocs.org/projects/labelx/badge/?version=latest
+                :target: https://labelx.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        Label Creator for GitLab Projects.
+        
+        
+        * Free software: GNU General Public License v3
+        * Documentation: https://labelx.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * Show package information
+        * Create labels for GitLab projects
+        * Create badges for GitLab projects
+        
+        Requirements
+        ------------
+        
+        * python >= 3.6
+        * ``config.yaml`` at ``~/.confing/labelx/``
+        
+        .. code-block:: yaml
+        
+           ---
+           login:
+             host: gitlab.company.com
+             protocol: https
+             token: KHGJIO**-dA76VGHs36
+        
+        Credits
+        -------
+        
+        See `AUTHORS.rst <AUTHORS.rst>`_
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        1.0.1 (2020-03-26)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: labelx
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
