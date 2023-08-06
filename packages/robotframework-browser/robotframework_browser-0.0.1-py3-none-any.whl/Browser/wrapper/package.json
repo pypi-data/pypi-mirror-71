@@ -1,0 +1,29 @@
+{
+  "name": "robotframework-playwright",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "author": "Mikko Korpela <mikko.korpela@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "grpc-tools": "^1.9.0",
+    "grpc_tools_node_protoc_ts": "^4.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.7",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "grpc": "^1.24.2",
+    "playwright": "^1.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'precommit 🔱' && make lint-python &&  mypy .",
+      "pre-push": "echo 'prepush 🚀' && make utest && make atest"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
