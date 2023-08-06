@@ -1,0 +1,28 @@
+Type: IPython Notebook Extension
+Name: AI Visual Python
+Link: README.md
+Description: 코드를 몰라도 UI를 통해 AI 작업을 할 수 있게 만드는 AI Visual Python
+Main: Main.js
+Compatibility: 4.x, 5.x
+Parameters:
+- name: AI Visual Python
+  description: CodeEditorPage
+  input_type: checkbox
+  default: true
+- name: AI Visual Python
+  description: TemplatePage
+  input_type: checkbox
+  default: true
+- name: AI Visual Python
+  description: LoginPage
+  input_type: checkbox
+  default: true
+- name: AI Visual Python
+  description: SignUpPage
+  input_type: checkbox
+  default: true
+- name: AI Visual Python
+  description: "SettingPage"
+  input_type: list
+  list_element:
+    input_type: url
