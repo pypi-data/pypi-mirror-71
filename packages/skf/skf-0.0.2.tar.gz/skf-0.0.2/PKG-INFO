@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: skf
+Version: 0.0.2
+Summary: Safe Key Find in dict
+Home-page: https://github.com/rodrigofsacht/skf
+Author: Rodrigo Francisco Sacht
+Author-email: rodrigofsacht@gmail.com
+License: UNKNOWN
+Description: # skf
+        Safe Key Find in dict
+        
+        
+        Sample
+        
+        mydict = {
+            'address': {
+                'city': 'Ney York'
+            }
+        }
+        
+        skf(mydict, ['address', 'city'])
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.3
+Description-Content-Type: text/markdown
