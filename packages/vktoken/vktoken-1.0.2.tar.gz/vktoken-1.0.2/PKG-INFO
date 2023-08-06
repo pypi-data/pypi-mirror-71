@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: vktoken
+Version: 1.0.2
+Summary: A tool for getting VK access token
+Home-page: https://github.com/jieggii/vktoken
+License: MIT
+Keywords: vk,vkontakte
+Author: jieggii
+Author-email: jieggii.contact@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: pyperclip (>=1.8.0,<2.0.0)
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Project-URL: Bug Tracker, https://github.com/jieggii/vktoken/issues
+Project-URL: Repository, https://github.com/jieggii/vktoken
+Description-Content-Type: text/markdown
+
+# vktoken
+A tool for getting VK access token
+
+## Install:
+`pip install vktoken`
+
+## Run:
+`vktoken [--help] [--copy] [--version] login [password] [app]`
+
+## Examples:
+* `vktoken +12025550178`  
+* `vktoken --copy +12025550178  "MyPassword" iphone` 
+
+## Features:
+* Access token can be copied to the clipboard automatically if you use `--copy` key 
+* You can choose any VK app from the list: `android`, `iphone`, `ipad`, `windows-phone` and `desktop`
+
