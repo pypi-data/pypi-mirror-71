@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.8"
+  - "3.8-dev"
+env:
+  - DJANGO=3.0.3 DB=sqlite3
+before_install:
+  - export DJANGO_SETTINGS_MODULE=oms_cms.config.test_settings
+install:
+  - pip install -r req.txt
+script:
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - python manage.py test
