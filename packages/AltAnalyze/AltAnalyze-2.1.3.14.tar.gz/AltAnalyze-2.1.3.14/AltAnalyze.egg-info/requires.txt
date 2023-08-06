@@ -1,0 +1,35 @@
+numpy
+scipy
+pillow
+patsy
+pandas
+umap-learn
+nimfa
+networkx
+fastcluster
+requests
+lxml
+community
+
+[:"Windows" in sys_platform]
+pysam_windows
+wxpython
+annoy
+numba
+matplotlib
+
+[:"darwin" in sys_platform]
+pysam==0.13
+sklearn
+wxpython
+annoy
+numba
+
+[:"linux" in sys_platform]
+numba==0.44.0
+sklearn
+pysam
+matplotlib
+annoy
+wxpython
+pycairo
