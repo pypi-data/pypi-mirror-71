@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: pyproj-smthnspcl
+Version: 0.1
+Summary: easily create new python projects
+Home-page: UNKNOWN
+Author: Pascal Eberlein
+Author-email: pascal@eberlein.io
+License: UNKNOWN
+Description: ## pyproj
+        tool to speed up development<br>
+        ### features?
+        * [x] creates a project structure for you
+        * [x] compiles your project
+        * [x] pypi integration
+        > implies you have already created your pypirc and installed twine
+        ### how to ..
+        #### ... install
+        ```shell script
+        pip3 install git+https://github.com/smthnspcl/pyproj
+        ```
+        
+        #### ... use by cli
+        ```shell script
+        usage: pyproj [-h] -n NEW [--no-mit] -a AUTHOR
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -n NEW, --new NEW     project name
+          --no-mit
+          -a AUTHOR, --author AUTHOR
+                                author name
+        
+        eg.: pyproj -n "test" -a "Pascal Eberlein"
+        ```
+        #### ... use by code
+        ```python
+        from pyproj import Project
+        Project.new("testProject", True, "Pascal Eberlein")
+        ```
+Keywords: python project development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
