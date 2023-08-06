@@ -1,0 +1,11 @@
+include pythonnote/web/*.py
+graft pythonnote/web/static
+graft pythonnote/web/templates
+graft pythonnote/web/codemirror_python
+graft pythonnote/web/Skulpt
+
+include pythonnote/*.py
+include pythonnote/pythonnotes/*.py
+include pythonnote/pythonnote_md/*.md
+include pythonnote/logs/*.txt
+include imgs/*.png
