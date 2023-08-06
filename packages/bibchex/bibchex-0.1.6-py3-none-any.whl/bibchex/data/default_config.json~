@@ -1,0 +1,25 @@
+{
+		'sub': [
+				{
+						'select_field': 'type',
+						'select_re': 'article',
+						'required': ['author', 'title', 'journal', 'year']
+				},
+				{
+						'select_field': 'type',
+						'select_re': 'book',
+						'required': ['author', 'title', 'publisher', 'year']
+				},
+				{
+						'select_field': 'type',
+						'select_re': 'booklet',
+						'required': ['author', 'title']
+				},
+				{
+						'select_field': 'inproceedings',
+						'select_re': 'book',
+						'required': ['author', 'title', 'booktitle', 'year']
+				},
+
+		]
+}
