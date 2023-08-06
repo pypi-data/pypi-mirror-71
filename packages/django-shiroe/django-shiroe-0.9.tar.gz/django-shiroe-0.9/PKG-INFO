@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: django-shiroe
+Version: 0.9
+Summary: A RESTful blog app for django that you can use with any frontend framework.
+Home-page: https://readthedocs.org/projects/django-shiroe/
+Author: Aaron Kazah
+Author-email: aaronkazah@gmail.com
+License: MIT
+Description: Polls
+        =====
+        
+        A RESTful blog app for django that you can use with any frontend framework.
+        
+        
+        
+        Quick start
+        -----------
+        
+        1. Add these apps to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                "rest_framework",
+                "rest_framework.authtoken",
+                'blog',
+            ]
+        2. Include the polls URLconf in your project urls.py like this::
+        
+            path('api/blog/', include('blog.urls')),
+        
+        3. Run ``python manage.py migrate`` to create the polls models.
+        
+        4. Start the development server and visit http://127.0.0.1:8000/admin/
+           to create a blog post (you'll need the Admin app enabled).
+        
+        5. Visit http://127.0.0.1:8000/api/blog/posts to view posts
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
