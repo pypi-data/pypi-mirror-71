@@ -1,0 +1,21 @@
+nniExecution:
+  - property: "base_port"
+    value: "8080"
+
+  - property: "concurrency"
+    value: "8"
+
+  - property: "max_duration"
+    value: "30s"
+
+  - property: "max_trials"
+    value: "99999"
+
+  - property: "training_platform"
+    value: "local" # local, remote
+
+  - property: "tuner"
+    value: "TPE" # TPE, Random, Anneal, Evolution, BatchTuner
+
+  - property: "optimize_mode"
+    value: "maximize" # maximize or minimize
