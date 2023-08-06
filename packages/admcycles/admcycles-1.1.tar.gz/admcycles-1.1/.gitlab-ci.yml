@@ -1,0 +1,109 @@
+image: continuumio/miniconda3:latest
+
+variables:
+  SAGEMATH_VERSION: '9.1'
+  PYTHON_VERSION: '3'
+
+before_script:
+  # These are taken from SageMath's .ci/setup-make-parallelity.sh. If anything
+  # in our tests uses lots of RAM, then we should probably source the full
+  # script from SageMath instead.
+  - export CPUTHREADS=`cat /proc/cpuinfo | grep -E '^processor' | wc -l`
+  - export SAGE_NUM_THREADS=$((CPUTHREADS + 1))
+  - export MAKEFLAGS="-j $SAGE_NUM_THREADS -l $((CPUTHREADS - 1)).8"
+  # Enable packages from conda-forge
+  - conda config --add channels conda-forge
+  - conda config --set channel_priority strict
+  # Install the required bits of the SageMath distribution
+  - conda create -n sagemath sagelib=$SAGEMATH_VERSION python=$PYTHON_VERSION gap-defaults sympy matplotlib-base ipywidgets maxima
+  - source activate sagemath
+  # Work around https://github.com/conda-forge/sagelib-feedstock/issues/99
+  - ln -s `which python` $CONDA_PREFIX/bin/sage-system-python || true
+  # Install admcycles into our conda environment
+  - pip install .
+
+coverage:
+  script:
+    - sage -coverage --summary ${CI_PROJECT_DIR}/admcycles/*.py
+  coverage: '/^Global score: (\d+.\d+)\%/'
+
+test:
+  script:
+    # We cd to HOME since some sage commands refuse to run if others have write
+    # access to the current directory. Use ${CI_PROJECT_DIR} to reference the
+    # checked out source of admcycles.
+    - cd
+    # doctests
+    - sage -tp --force-lib --long ${CI_PROJECT_DIR}/admcycles
+    - sage -tp --force-lib --long ${CI_PROJECT_DIR}/docs/source
+    # unittests
+    - ${CI_PROJECT_DIR}/tests/run_tests.sh
+    # doctests from the manual
+    - cd ${CI_PROJECT_DIR}/docs/manual/
+    - sage -python extract_tests.py
+    - cd
+    - sage -t --force-lib ${CI_PROJECT_DIR}/docs/manual/doctests.rst
+
+test-89:
+  extends:
+    - test
+  variables:
+    SAGEMATH_VERSION: '8.9'
+    PYTHON_VERSION: '2.7'
+
+test-90:
+  extends:
+    - test
+  variables:
+    SAGEMATH_VERSION: '9.0'
+
+benchmark:
+  # Run benchmarks and publish the results as build artifacts.
+  # For this to work properly, you need to
+  # * Create another GitLab project, say admcycles-asv with an empty master branch.
+  # * Set the CI variable ASV_REPOSITORY to the git@ URL of its repository,
+  # * Create an SSH keypair, encode the private key with `base64 -w0` and set
+  #   the protected CI variable ASV_SECRET_KEY for the master branch of the
+  #   main admcycles repository.
+  # * Grant write access to the admcycles-asv repository to this SSH key
+  artifacts:
+    paths:
+      - .asv/html
+  script:
+    # Install ASV in a fresh environment
+    - conda deactivate
+    - conda create -n asv asv python=2.7 git coreutils
+    - source activate asv
+    # Perform minimal git configuration for ASV
+    - git config --global user.name 'CI Benchmark'
+    - git config --global user.email 'benchmark@ci.invalid'
+    - git config --global push.default nothing
+    # Extract ASV secret key from CI variables
+    - |
+      mkdir -p ~/.ssh
+      if echo "${ASV_SECRET_KEY:-nokey}" | base64 -d > ~/.ssh/id_rsa; then
+        chmod 400 ~/.ssh/id_rsa
+        export ASV_SECRET_KEY=yes
+      else
+        export ASV_SECRET_KEY=no
+      fi
+    - echo "gitlab.com,52.167.219.168 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFSMqzJeV9rUzU4kWitGjeR4PWSa29SPqJ1fVkhtj3Hw9xjLVXVYrU9QlYWrOLXBpQ6KWjbjTDTdDkoohFzgbEY=" > ~/.ssh/known_hosts
+    # Clone performance data of previous runs
+    - unset SSH_AUTH_SOCK
+    - rm -rf .asv/results
+    - git clone -b master ${ASV_REPOSITORY:-https://gitlab.com/jo314schmitt/admcycles-asv.git} .asv/results
+    # Configure the statistics for this CI runner
+    - cp asv-machine.generic.json ~/.asv-machine.json
+    # ASV needs us to be on the master branch (as configured in asv.conf.json.)
+    - git checkout -b master
+    # Run benchmarks once (so caches do not distort results)
+    - asv run --machine=GitLabCI --quick
+    # Publish raw results if we have the credentials
+    - pushd .asv/results
+    - git add . && git commit -m 'record ASV run'
+    - |
+      [[ ${ASV_SECRET_KEY} == "yes" ]] && git push origin master:master
+    - popd
+    # Render results for Pages and publish them if we can
+    - rm -rf .asv/pages
+    - asv publish --no-pull `git rev-list HEAD | tail -n 1`..HEAD

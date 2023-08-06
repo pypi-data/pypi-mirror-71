@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "project": "admcycles",
+    "project_url": "https://gitlab.com/jo314schmitt/admcycles",
+    "repo": ".",
+    "repo_subdir": ".",
+    "environment_type": "conda",
+    "show_commit_url": "https://gitlab.com/jo314schmitt/admcycles/commit/",
+    "conda_channels": ["conda-forge", "defaults"],
+    "matrix": {
+        "sagelib": ["9.0"],
+        "gap-defaults": [],
+        "sympy": [],
+        "matplotlib-base": [],
+        "ipywidgets": [],
+        "maxima": []
+    },
+    "results_dir": ".asv/results",
+    "html_dir": ".asv/html"
+}
