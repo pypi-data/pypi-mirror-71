@@ -1,0 +1,193 @@
+Metadata-Version: 2.1
+Name: ubox360
+Version: 0.3.0
+Summary: A tool to map joystick events to the one of an Xbox 360 controller
+Home-page: https://gitlab.com/albinou/python-ubox360
+Author: Albin Kauffmann
+Author-email: albin@kauff.org
+License: UNKNOWN
+Project-URL: Bug Reports, https://gitlab.com/albinou/python-ubox360/issues
+Project-URL: Source, https://gitlab.com/albinou/python-ubox360
+Description: # ubox360
+        
+        This python program can help you to map buttons and axes of a gamepad to match the layout of an Xbox 360 controller.
+        
+        [![Xbox 360 controller](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/360_controller.svg/512px-360_controller.svg.png)](https://commons.wikimedia.org/wiki/File:360_controller.svg)
+        
+        In other words, it can map gamepad axis and buttons (or even keys of a keyboard) to XBox 360 Linux events.
+        These XBox 360 controller Linux events (listed in /usr/include/linux/input-event-codes.h) are:
+        - axis: ABS_X, ABS_Y, ABS_Z, ABS_RX, ABS_RY, ABS_RZ, ABS_HAT0X, ABS_HAT0Y
+        - buttons: BTN_A, BTN_B, BTN_X, BTN_Y, BTN_TL, BTN_TR, BTN_SELECT, BTN_START, BTN_MODE, BTN_THUMBL, BTN_THUMBR
+        
+        This script (which is creating a virtual gamepad) is probably the latest solution.
+        If playing an SDL game, just consider using `gamecontroller` as explained in [README-controllermap.md](README-controllermap.md#play-sdl-games).
+        
+        `ubox360` program name comes from the fact that events binding is done in userspace.
+        
+        ## Installation
+        
+        ### Dependencies
+        
+        ubox360 depends on:
+        - python-evdev (automatically installed by `pip`)
+        - the uinput kernel module (mainline)
+        
+        ### Installation from Pypi
+        
+            pip install ubox360
+        
+        ### Installation from sources
+        
+            git clone git@gitlab.com:albinou/python-ubox360.git
+            cd python-ubox360
+            pip install .
+        
+        ## Configuration
+        
+        It is required to configure udev permissions rules prior to run ubox360.
+        The following instructions have been applied on an ArchLinux installation but they should be applicable to any Linux distribution using a recent version of systemd.
+        
+        ### uinput rule
+        
+        When loading the `uinput` kernel module, the device `/dev/uinput` belongs to root:root by default.
+        Let's create an `uinput` group for this special device:
+        
+            shell> sudo groupadd --system uinput
+        
+        ... and let's set permissions with a new udev rules file `/etc/udev/rules.d/99-uinput.rules`:
+        
+            shell> cat /etc/udev/rules.d/99-uinput.rules
+            SUBSYSTEM=="misc", KERNEL=="uinput", GROUP="uinput", MODE="0660"
+        
+        You can now load the `uinput` module:
+        
+            shell> sudo modprobe uinput
+            shell> ls -l /dev/uinput
+            crw-rw---- 1 root uinput 10, 223 May 22 21:42 /dev/uinput
+        
+        If permissions are wrong, you can try to trigger the udev rule:
+        
+            shell> sudo udevadm trigger /dev/uinput
+        
+        ### Gamepad event device rule
+        
+        The ubox360 program will copy events from the real device to a new virtual device.
+        In order to avoid your game to believe that 2 gamepads are connected to your computer, the real gamepad needs to be hidden.
+        This can be performed by removing read permissions to the current logged user by creating the udev rule `/etc/udev/rules.d/70.1-uaccess.rules` (don't forget to replace `idVendor` and `idProduct` with yours):
+        
+            shell> cat /etc/udev/rules.d/70.1-uaccess.rules
+            SUBSYSTEM=="input", ENV{ID_INPUT_JOYSTICK}=="?*", ATTRS{idVendor}=="0458", ATTRS{idProduct}=="100a", TAG-="uaccess"
+        
+        Once this rule has been written, you need to unplug and re-plug your gamepad (udevadm triggering does reset the permissions correctly).
+        
+        ## Usage
+        
+        Heyyy, we're almost ready!
+        
+        You first need to generate a `gamecontrollerdb.txt` mapping file with `controllermap` as explained in [README-controllermap.md](README-controllermap.md).
+        
+        Then, run ubox360 with the generated file:
+        
+            shell> sudo runuser --user=$USER --group=$USER --supp-group=input --supp-group=uinput -- ubox360 --controllerdb /PATH/TO/gamecontrollerdb.txt
+            Info: Adding a new gamepad mapping:
+              ,-- device /dev/input/event11, name "HID 0458:100a", phys "usb-0000:00:14.0-9/input0"
+              '-> device /dev/input/event21, name "ubox360", phys "py-evdev-uinput"
+        
+        You should see a new event file under `/dev/input`.
+        You can check everything is fine with `evtest`:
+        
+            shell> evtest /dev/input/event21
+            [...]
+            Event: time 1590177160.054931, type 3 (EV_ABS), code 2 (ABS_Z), value 255
+            Event: time 1590177160.054931, -------------- SYN_REPORT ------------
+            Event: time 1590177160.183246, type 3 (EV_ABS), code 2 (ABS_Z), value 0
+            Event: time 1590177160.183246, -------------- SYN_REPORT ------------
+            Event: time 1590177161.615009, type 3 (EV_ABS), code 5 (ABS_RZ), value 255
+            Event: time 1590177161.615009, -------------- SYN_REPORT ------------
+            Event: time 1590177161.758994, type 3 (EV_ABS), code 5 (ABS_RZ), value 0
+            Event: time 1590177161.758994, -------------- SYN_REPORT ------------
+        
+        Note that running `ubox360` with `runuser` is essential.
+        Here is an explanation of `runuser` options:
+        1. `--supp-group=input`:  allows access to `/dev/input/event*`
+        1. `--supp-group=uinput`:  allows access to `/dev/uinput`
+        1. `--user=$USER`: allows read access of `/dev/input/event21` by your UNIX user
+        
+        ## Using ubox360 with any input device (keyboard, keypad ...)
+        
+        `ubox360` can also be used with any input device generating evdev events.
+        To do so, the `gamecontrollerdb.txt` file must be created manually with a non-standard syntax.
+        
+        In the following instructions, let's we want to use a USB keyboard (here a simple keypad) as an XBox 360 controller.
+        
+            shell> lsusb
+            [...]
+            Bus 001 Device 028: ID 04d9:1203 Holtek Semiconductor, Inc. Keyboard
+            [...]
+        
+        The keypad vendor is 0x04d9 and the product is 0x1203.
+        
+        The following steps (explain below) must be followed:
+        1. exclude this input device from Xorg or Wayland
+        1. generate a custom `gamecontrollerdb.txt` file
+        1. run `ubox360`
+        
+        ### Exclude your device from your graphic environment
+        
+        #### Xorg
+        
+        Create an X11 configuration with a content like:
+        
+            shell> cat /etc/X11/xorg.conf.d/01-keypad.conf
+            Section "InputClass"
+                Identifier "Keypad"
+                MatchIsKeyboard "on"
+                MatchUSBID "04d9:1203"
+                
+                Option "Ignore" "true"
+            EndSection
+        
+        ### Generate the `gamecontrollerdb.txt` file
+        
+        The format of the `gamecontrollerdb.txt` file is:
+        
+            GAMEPAD_UUID,GAMEPAD_NAME,platform:Linux,BINDINGS
+        
+        where:
+        - GAMEPAD_UUID = bus type (swapped) + 0000 + vendor (swapped) + 0000 + product (swapped) + 0000 + version + 0000
+        - GAMEPAD_NAME = any suite of characters
+        - BINDINGS = list of "XBox-event:Linux-event"
+        
+        For example:
+        
+            shell> cat gamecontrollerdb.txt
+            03000000d90400000312000000010000,HID 04d9:1203,platform:Linux,a:KEY_KP6,b:KEY_KPPLUS,x:KEY_KP9,y:KEY_KPMINUS,back:KEY_BACKSPACE,start:KEY_KPASTERISK,leftshoulder:KEY_KP7,rightshoulder:KEY_KP8,leftx:KEY_KP1-KEY_KP3,lefty:KEY_KP5-KEY_KP2,lefttrigger:KEY_NUMLOCK,righttrigger:KEY_KPSLASH,
+        
+        ### Run `ubox360` as usual
+        
+            shell> sudo runuser --user=$USER --group=$USER --supp-group=input --supp-group=uinput -- ubox360 --controllerdb /PATH/TO/gamecontrollerdb.txt
+        
+        # Resources
+        
+        - http://libsdl.org
+        - https://wiki.libsdl.org/CategoryGameController
+        - http://hg.libsdl.org/SDL/raw-file/tip/test/README
+        - https://wiki.archlinux.org/index.php/Gamepad
+        - https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes
+        - https://wiki.archlinux.org/index.php/Keyboard_input#Identifying_scancodes
+        - https://www.linux.org/threads/xbox-360-controller.11422/
+        
+Keywords: gamepad joystick Xbox Xbox360 controller
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Games/Entertainment
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.5, <4
+Description-Content-Type: text/markdown
