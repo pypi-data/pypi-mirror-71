@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: celeryt
+Version: 0.9.7
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: diggersheep
+Author-email: alexandre.combeau@outlook.fr
+Maintainer: diggersheep
+Maintainer-email: alexandre.combeau@outlook.fr
+License: PSF
+Keywords: celery,skinos,project builder,unistra,Université de Strasbourg
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: docopt (<1.0.0,>=0.6.2)
+Requires-Dist: jinja2 (<3.0.0,>=2.11.2)
+
+# CeleryT
+
+# What is CeleryT?
+
+**CeleryT** is a project builder for Celery python project.
+
+
+## How to download it?
+
+```shell
+python3 -m pip install celeryt
+```
+
+## What can I do with celeryT?
+
+- You can create a project skeleton for Celery.
+- You can create a project skeleton for Celery with skinos extension.
+- It init automatically a git repository and can init git flow.
+- You can run celery command for test purpose (basic command)
+
+## How to run it?
+
+- new celery project: `celeryt new <project_name>`
+- new celery project with git flow: `celeryt new <project_name> --flow`
+- new celery project with skinos: `celeryt new <project_name> --skinos`
+- run celery command for dev or test: `celeryt run`
+- help: `celeryt help`
+
+## What's inside the project skeleton
+
+### Project structure
+```
+<project_name>/
+| <project_name>/
+|   | __init__.py 
+|   | celery.py 
+|   | get_settings.py 
+|   \ tasks.py
+| requirements/
+|   | common.txt
+|   \ dev.txt
+| settings/
+|   | base.py
+|   | test.py
+|   | dev.py
+|   | pprd.py
+|   \ prod.py
+| .coveragerc
+| .gitignore
+| README.md
+| requirements.txt
+\ tox.ini
+```
+
+### project technologies
+
+#### Application
+- Python
+- Celery
+- [celery-skinos](https://pypi.org/project/celery-skinos/)
+- sentry
+
+#### Tools
+- tox
+- coverage
+- git
+- git flow
+
+## Credit
+
+Created by: [Diggersheep (Alexandre COMBEAU)](https://github.com/diggersheep/)
+
+For [Université de Strasbourg (Unistra)](https://github.com/unistra)
+
+
