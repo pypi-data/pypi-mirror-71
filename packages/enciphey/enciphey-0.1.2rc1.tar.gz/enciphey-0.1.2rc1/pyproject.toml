@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "enciphey"
+version = "0.1.2rc1"
+description = "Randomly chooses an encryption"
+authors = ["Brandon <brandon@skerritt.blog>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+unicode = "^2.7"
+cipheycore = {version = "^0.1.5-rc.4", allow-prereleases = true}
+cipheydists = {version = "^0.1.3", allow-prereleases = true}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
