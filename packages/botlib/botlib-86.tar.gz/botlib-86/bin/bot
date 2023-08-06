@@ -1,0 +1,29 @@
+#!/usr/bin/python3 -u
+# BOTLIB - the bot library !
+#
+#
+
+__version__ = 86
+
+import os, sys ; sys.path.insert(0, os.getcwd())
+
+from bot.csl import Console
+from bot.irc import IRC
+from bot.krn import k
+from bot.shl import cfg, execute, parse_cli, setwd
+
+import sys
+
+def main():
+    parse_cli("bot")
+    setwd("bot")
+    k.start()
+    k.walk("mods")
+    if "-i" in sys.argv:
+        i = IRC()
+        i.start()
+    c = Console()
+    c.start()
+    k.wait()
+
+execute(main)
