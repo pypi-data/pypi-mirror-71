@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "youtube_dl_gui"
+version = "1.0.1"
+description = "Yet another youtube-dl frontend written in python3 and qt5"
+authors = ["Vadym Stupakov <vadim.stupakov@gmail.com>"]
+homepage = "https://github.com/Red-Eyed/youtube-dl-gui-qt5"
+
+[tool.poetry.scripts]
+youtube_dl_gui = "youtube_dl_gui.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyqt5 = "^5.15.0"
+youtube-dl = "^2020.6.16"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
