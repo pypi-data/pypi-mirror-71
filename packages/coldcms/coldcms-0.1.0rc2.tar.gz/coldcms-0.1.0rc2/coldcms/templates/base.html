@@ -1,0 +1,46 @@
+{% load assets %}
+{% load wagtailimages_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    {% block title %}
+      {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+    {% endblock %}
+    {% block title_suffix %}
+      {% with self.get_site.site_name as site_name %}
+        {% if site_name %}- {{ site_name }}{% endif %}
+      {% endwith %}
+    {% endblock %}
+  </title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {% image settings.site_settings.SiteSettings.logo fill-16x16 as favicon_custom %}
+
+  {% if favicon_custom %}
+    <link rel="icon" href="{{ favicon_custom.url }}">
+  {% endif %}
+
+  {% assets "css_all" %}
+    <link type="text/css" href="{{ ASSET_URL }}" rel="stylesheet"/>
+    {% if request.is_preview %}
+      {% if settings.site_settings.CSSStyleSheet.CSS_stylesheet %}
+        <link rel="stylesheet" type="text/css" href="/media/{{ settings.site_settings.CSSStyleSheet.CSS_stylesheet.file }}">
+      {% endif %}
+    {% endif %}
+  {% endassets %}
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+{% if not settings.site_settings.MenuOptions.hide_menu %}
+  {% include 'components/menu/index.html' %}
+{% endif %}
+{% block content %}{% endblock %}
+{% include 'components/footer.html' %}
+</body>
+</html>
