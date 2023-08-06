@@ -1,0 +1,173 @@
+Metadata-Version: 2.1
+Name: loggover
+Version: 0.0.6
+Summary: module to log requests and response
+Home-page: UNKNOWN
+Author: Priyansh
+Author-email: 17bcs140@ietdavv.edu.in
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.0
+Description-Content-Type: text/markdown
+
+<h2>Documentation</h2>
+
+In order to use this logger , all you need to do is to import it in your machine using:
+<pre>
+    <code>
+        pip install loggover
+    </code>
+</pre>
+
+After installation here comes the configuration part , one need to do in order to use this logger in flask application. 
+All you need to do is to copy below snippet and paste it in a file with name "config.json" (NOTE: file name must be same) in your current working directory.
+<pre><code>
+{
+    "project_id":"szfb72eUt5eRaWxaXE6J",
+    "auth_key":"ucdPnQgLqT2GPsquD9xv",
+    "includes":["/login"],
+    "levels":["*"],
+    "time_to_refresh_cofg_file" : "30"
+}
+</code></pre>
+lets look at the parameters we configured:-
+    <p>1. project_id (this is the project id of the project you created at viasocket.)</p>
+    <p>2. auth_key (this is the authkey of the project you created at viasocket.)</p>
+    <p>3. includes (it is list of routes whosev logs you want to log)</p>
+    <p>4. levels (it is list of levels containg logging levels whose logs you want to log (like error or warn or info) )</p>
+    <p>5. time_to_refresh_cofg(this is the time interval in "seconds" after which the endpoint "END_POINT_TO_SIMULATE_DB" will be automatically hit to get updated value of includes and levels)
+
+<i><b>Note: configure all the properties carefully and don't left any property empty.</b></i>
+
+<h3>Apart from configuration file, there is one more configurable property which you can set in your application using the method of logger.<h3>
+Refer below code snippet to configure "route_to_endpoint_map" parameters in your flask application:
+Actually "route_to_endpoint_map" parameters help you seperate your logs according to routes.
+<pre>
+    <code>
+map = {}
+map['/login'] = '/login'
+map['/register'] = '/register'
+map['/users/<id>'] = '/users'
+init.set_route_to_endpoint_map(map)
+    </code>
+</pre>
+
+<h5><i>hasshh!! we are done with this. Lets move forward.</i></h5>
+
+After successfully completing above step , lets move to the core functionality of our logger i.e logging request and response data. For this copy and paste below code in the end of your flask application.
+<pre><code>
+@app.before_request
+def start_timer():
+    print('before every request')
+    g.start = time.time()
+
+@app.after_request
+def fun(response):
+    loggover.log_request(response)
+    return response
+</code></pre>
+
+<h2>Heads up!! We are done.</h2>
+
+logger does not stop serving here only , it has something more for you. Apart from request and response logs  , if you want to log info or error or warning logs then for this logger has three more methods. you can use this methods anywhere you want.
+
+for reference see below snippet.
+<pre>
+<h3>info() method</h3><code>loggover.info('Information message')
+</code>
+</pre>
+
+<pre>
+<h3>warn() method</h3><code>loggover.warn('Warning!!')
+</code>
+</pre>
+
+<pre>
+<h3>error() method</h3><code>loggover.error('Opps!!Error!')
+</code>
+</pre>
+
+<h4>we are almost done now...but for better understanding about how to use this logger, have a look at complete flask application which uses this logger.</h4>
+
+<pre><code>
+import datetime
+import time
+import json
+import init
+
+from flask import Flask, g, request
+
+
+
+map = {}
+map['/login'] = '/login'
+map['/register'] = '/register'
+map['/users/<id>'] = '/users'
+init.set_route_to_endpoint_map(map)
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def index():
+    init.info('inside index')
+    print("index is running!")
+    return "Hello world"
+
+@app.route("/login")
+def login():
+    init.error('inside login')
+    print("on login page!")
+    return "login page"
+
+@app.route("/register")
+def register():
+    init.warn('inside register')
+    print("on register page!")
+    return "register page"
+
+@app.route("/logout")
+def logout():
+    init.info('inside logout')
+    print("on logout page!")
+    return "logout page"
+
+@app.route('/users/<id>')
+def print_user(id):
+    print (id)
+    print('url_rule ',request.url_rule)
+    return "user detail printed"
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+@app.before_request
+def start_timer():
+    print('before every request')
+    g.start = time.time()
+
+
+@app.after_request
+def fun(response):
+    init.log_request(response)
+    return response
+
+
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
