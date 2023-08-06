@@ -1,0 +1,43 @@
+image:
+  name: debian:buster-slim
+
+services:
+  - docker:dind
+
+stages:
+  - test
+  - build
+  - testbuild
+  - publish
+
+.install: &install
+  - 'apt-get update && apt-get install -qy python3-pytest python3-pytest-cov python3-pytest-mock python3-pip make black flake8 shunit2 git'
+  - python3 -m pip install flit
+
+before_script: *install
+
+unittests:
+  stage: test
+  script:
+    - python3 -m pytest --cov=tuxmake
+
+style:
+  stage: test
+  script:
+    - black --check .
+    - flake8 .
+
+build:
+  stage: build
+  script:
+    - git status
+    - flit --debug build
+  artifacts:
+    paths:
+      - dist/
+
+integration:
+  stage: testbuild
+  script:
+    - python3 -m pip install dist/*.whl
+    - make integration-tests
