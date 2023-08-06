@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: gavtk
+Version: 0.6
+Summary: Graph Analysis and Visualization ToolKit
+Home-page: UNKNOWN
+Author: Abhishek kumar Singh
+Author-email: abhishekkmr2000@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# GAVTK - Graph Analysis & Visualization ToolKit
+
+GAVTK is an Open Source python library for financial data / graphs Analysis and thier Visualization
+
+## Files
+
+* **Generaldistribution.py** - General Boiler Plate Class File for distributions (includes Parent Class)
+* **Binomialdistribution.py** - Binomial Distributions Class File (includes all the methods used for Binomially distributed data)
+* **Gaussiandistribution.py** - Gaussian Distributions Class Files (includes all the methods used for Normally distributed data)
+* **__init__.py** - Helper File for name conversion
+
+## Requirements 
+
+* python >= "3.6"
+* tkinter >= "8.6"
+* matplotlib >= "3.2.1"
+
+## Installation
+
+* Create Virtual Environment
+* Install all the required Files first using pip
+* Install GAVTK using pip
+```bash
+pip3 install gavtk
+```
+
+## Try It Out
+
+* SAMPLE
+```python
+>>> from gavtk import Gaussian, Binomial
+>>> g1 = Gaussian(10, 7)
+>>> g1.mean
+10
+>>> g1.stdev
+7
+>>> g1
+mean 10, standard deviation 7
+>>> b1 = Binomial(.4, 25)
+>>> b1
+mean 10.0, standard deviation 2.449489742783178, p 0.4, n 25
+```
+
