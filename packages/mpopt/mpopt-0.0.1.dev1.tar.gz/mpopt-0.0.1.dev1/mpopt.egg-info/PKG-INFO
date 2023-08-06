@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: mpopt
+Version: 0.0.1.dev1
+Summary: A Multi-phase nonlinear Optimal control problem solver using Pseudo-spectral collocation
+Home-page: https://github.com/mpopt
+Author: Devakumar THAMMISETTY
+Author-email: deva.aerospace@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/mpopt/mpopt/
+Description: # MultiPhase Optimal control problem solver (mpopt)
+        
+        *MPOPT* is a collection of modules to solve multi-stage optimal control problems(OCPs) using pseudo-spectral collocation method. This module creates Nonlinear programming problem (NLP) from the given OCP description, which is then solved by CasADi nlpsolver using various available plugins such as *ipopt*, *snopt* etc.
+        
+        ## Existing methods for the optimizer
+        1. Fixed-segment-widths
+        2. Adaptive-segment-widths (Iterative)
+        3. Adaptive-segment-widths (Solve at one go.)
+        
+        ### Examples
+        * Single-phase OCPs
+            - Moon lander (2-states, 1-control)
+            - Van der pol oscillator ocp (2-states, 1-control)
+            - Hyper-sensitive problem (1-state, 1-control)
+        
+        * Multi-stage OCPs
+            - Two-phase schwartz OCP (2 phases, 2-states, 1-control)
+            - Multi-stage launch vehicle trajectory optimization (4-phases, 7-states, 3-controls)
+        
+Keywords: optimal control,multi-phase OCP,collocation,adaptive grid refinement,nonlinear optimization
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3
+Description-Content-Type: text/markdown
