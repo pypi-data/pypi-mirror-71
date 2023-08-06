@@ -1,0 +1,25 @@
+#!/usr/bin/python3 -u
+# BOTLIB - the bot library !
+#
+#
+
+from bot.csl import Console
+from bot.irc import IRC
+from bot.krn import k
+from bot.shl import execute, parse_cli, setwd
+
+import sys
+
+def main():
+    parse_cli("botd")
+    setwd("botd")
+    k.start()
+    k.walk("botd")
+    if "-i" in sys.argv:
+        i = IRC()
+        i.start()
+    c = Console()
+    c.start()
+    k.wait()
+
+execute(main)

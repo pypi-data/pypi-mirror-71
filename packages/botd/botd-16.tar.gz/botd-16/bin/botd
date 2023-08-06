@@ -1,0 +1,26 @@
+#!/usr/bin/python3 -u
+# BOTLIB - the bot library !
+#
+#
+
+from bot.krn import k
+from bot.shl import daemon, execute, parse_cli, root, setwd
+from bot.irc import IRC
+from botd.rss import Fetcher
+
+## main
+
+def main():
+    setwd("botd")
+    if not root():
+        daemon()        
+    cfg = parse_cli("botd")
+    k.start()
+    k.walk("botd")
+    i = IRC()
+    i.start()
+    f = Fetcher()
+    f.start()
+    k.wait()
+       
+execute(main)
