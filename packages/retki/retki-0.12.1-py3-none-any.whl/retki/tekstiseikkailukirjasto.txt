@@ -1,0 +1,1031 @@
+> Retki.
+> Copyright (c) 2018 Iikka Hauhio.
+> Kaikki oikeudet pidätetään.
+>
+> Tämä on vapaa ohjelmisto. Voit levittää ja/tai muokata sitä
+> Free Software Foundationin GNU General Public License -lisenssin
+> ehdoilla (version 3 tai myöhemmän).
+>
+> Jos et saanut kopiota lisenssistä ohjelmiston mukana, voit ladata
+> sen osoitteesta http://www.gnu.org/licenses/.
+
+>>> Tekstiseikkailukirjasto
+
+>> Kuvaukset
+
+Asian kuvaus on yleensä "Ei mikään kiinnostava asia.".
+
+>> Esineet
+
+> Määritellään esineen yleiset ominaisuudet.
+> Sekä "kiinteä" että "tylsä" tarkoittavat, että esinettä ei voi ottaa mukaansa,
+> joskin antavat eri virheen.
+> Listaamattomia esineitä ei listata huoneen kuvauksessa.
+> Valaisevat esineet mahdollistavat pääsyn pimeisiin huoneisiin (ks. alempana).
+
+Esine on käsite.
+Esine voi olla kiinteä.
+Esine voi olla tylsä.
+
+Esine on joko listattu tai listaamaton.
+Esine on yleensä listattu.
+
+Esine on joko valaiseva tai valaisematon.
+Esine on yleensä valaisematon.
+
+>> Huoneet
+
+> Huone on tarkoittaa tekstiseikkailussa mitä tahansa paikkaa, jossa pelaaja voi olla.
+> Huone on "suljettu", jos pelaaja ei voi mennä sinne.
+> (Vaihtoehtoinen tapa estää pääsy huoneeseen on käyttää ovia.)
+> Seinä on "huone", joka merkitsee että huonetta ei ole.
+
+Huone on käsite.
+
+Huone on joko avoin tai suljettu.
+Huone on yleensä avoin.
+
+Huoneella on esinejoukoksi kutsuttu joukko esineitä.
+
+Huone on joko valaistu tai pimeä.
+Huone on yleensä valaistu.
+
+Seinä on suljettu huone.
+Seinän kuvaus on "Melko tavallinen seinä.".
+
+>> Sisältäjä
+
+> Sisältäjä on esine, jonka varassa voi olla muita esineitä.
+> Jos varassa olevat esineet ovat "sisällä", sisältäjä on ympäröivä;
+> jos taas ne ovat "päällä", sisältäjä on tukeva.
+
+Sisältäjä on esineen alakäsite.
+Sisältäjällä on sisältöjoukoksi kutsuttu joukko esineitä.
+Sisältäjä on joko tukeva tai ympäröivä.
+Sisältäjä on yleensä ympäröivä.
+
+>> Ihminen
+
+> Ihminen on pelissä olevien hahmojen yläkäsite.
+> (TODO: pitäisikö nimetä "hahmoksi"? Voiko hahmo olla eläin?)
+> Koska ihminen on inhimillinen, ihminen-tyyppisiin olioihin voi viitata hän-pronominilla.
+> Ihmisellä voi olla mukanaan esineitä, ja hän sijaitsee yleensä jossakin huoneessa.
+
+Ihminen on käsite.
+Ihminen on yleensä inhimillinen.
+Ihmisellä on sijainti, joka on huone.
+Ihmisellä on esineluetteloksi kutsuttu joukko esineitä.
+
+Huoneella on henkilöjoukoksi kutsuttu joukko ihmisiä.
+
+Ihminen on joko tietokoneen ohjaama tai pelaajan ohjaama.
+Ihminen on yleensä tietokoneen ohjaama.
+
+>> Pelaaja, fokalisoija
+
+> Määritellään pelaajaolio ja fokalisoija-muuttuja.
+> Fokalisoija viittaa siihen ihmiseen "jonka näkökulmasta tarina kerrotaan".
+
+Pelaaja on pelaajan ohjaama ihminen.
+"Olet mielestäsi melko hyvännäköinen."
+Tulkitse "itse" pelaajana.
+Tulkitse "sinä" pelaajana.
+
+Fokalisoija on ihminen.
+Fokalisoija on alussa pelaaja.
+
+>> Fokalisoijalle sanominen
+
+> Tällä komennolla voi raportoida toiminnosta vain, jos fokalisoija on pelaajan ohjaama.
+
+[Merkkijonon] fokalisoijalle sanominen on toiminto.
+Merkkijonon fokalisoijalle sanomisen komento on "sano fokalisoijalle [merkkijono]".
+
+Merkkijonon fokalisoijalle sanomisen aikana:
+	Jos fokalisoija on pelaajan ohjaama:
+		Sano se.
+
+>> Mukana oleminen
+
+Määritelmä. Kun esine on "[ihmisen (I)] mukana":
+	I:n esineluettelo sisältää sen
+
+Määritelmä. Kun esine "ei ole [ihmisen (I)] mukana":
+	I:n esineluettelo ei sisällä sitä
+
+Määritelmä. Kun esine on "mukana":
+	se on fokalisoijan mukana
+
+Määritelmä. Kun esine "ei ole mukana":
+	se ei ole fokalisoijan mukana
+
+>> Sisältäminen
+
+Määritelmä. Kun sisältäjä (S) on "tyhjä":
+	S:n sisältöjoukko ei sisällä yhtäkään esinettä
+
+Määritelmä. Kun sisältäjä (S) "ei ole tyhjä":
+	S:n sisältöjoukko sisältää yhdenkin esineen
+
+Määritelmä. Kun esine (E) on "[sisältäjän (S)] varassa":
+	jokin seuraavista:
+		S:n sisältöjoukko sisältää E:n
+		jollekin sisältäjälle (T) S:n sisältöjoukossa pätee:
+			E on T:n varassa
+
+Määritelmä. Kun esine (E) "ei ole [sisältäjän (S)] varassa":
+	kaikki seuraavista:
+		S:n sisältöjoukko ei sisällä E:tä
+		jokaiselle sisältäjälle (T) S:n sisältöjoukossa pätee:
+			E ei ole T:n varassa
+
+Määritelmä. Kun esine (E) on "[sisältäjän (S)] sisällä":
+	S on ympäröivä
+	E on S:n varassa
+
+Määritelmä. Kun esine (E) on "[sisältäjässä (S)]":
+	E on S:n sisällä
+
+Määritelmä. Kun esine (E) on "[sisältäjän (S)] päällä":
+	S on tukeva
+	E on S:n varassa
+
+Määritelmä. Kun esine (E) on "[sisältäjällä (S)]":
+	E on S:n päällä
+
+>> Huoneessa oleminen
+
+Määritelmä. Kun esine (E) on "[huoneessa (H)]":
+	jokin seuraavista:
+		H:n esinejoukko sisältää E:n
+		jollekin sisältäjälle (S) H:n esinejoukossa pätee:
+			E on S:n varassa
+
+Määritelmä. Kun esine (E) on "[huoneella (H)]":
+	E on H:ssa
+
+Määritelmä. Kun esine (E) "ei ole [huoneessa (H)]":
+	kaikki seuraavista:
+		H:n esinejoukko ei sisällä E:tä
+		jokaiselle sisältäjälle (S) H:n esinejoukossa pätee:
+			E ei ole S:n varassa
+
+Määritelmä. Kun ihminen (I) on "[huoneessa (H)]":
+	I:n sijainti on H
+	H:n henkilöjoukko sisältää I:n
+
+Määritelmä. Kun ihminen (I) on "[huoneella (H)]":
+	I on H:ssa
+
+Määritelmä. Kun ihminen (I) "ei ole [huoneessa (H)]":
+	H:n henkilöjoukko ei sisällä I:tä
+
+Määritelmä. Kun esine (E) on "näkyvillä":
+	jokin seuraavista:
+		E on fokalisoijan sijainnissa
+		E on fokalisoijan mukana
+		jollekin sisältäjälle (S) fokalisoijan esineluettelossa pätee:
+			E on S:n varassa
+
+Määritelmä. Kun esine (E) on "piilossa":
+	E ei ole fokalisoijan sijainnissa
+	fokalisoijan esineluettelo ei sisällä E:tä
+	jokaiselle sisältäjälle (S) fokalisoijan esineluettelossa pätee:
+		E ei ole S:n varassa
+
+Määritelmä. Kun ihminen (I) on "näkyvillä":
+	I on fokalisoijan sijainnissa
+
+Määritelmä. Kun ihminen (I) on "piilossa":
+	I ei ole fokalisoijan sijainnissa
+
+Tarkoittaako pelaaja esinettä:
+	Jos se on näkyvillä:
+		ehkä
+	Muuten:
+		varmasti ei
+
+Tarkoittaako pelaaja ihmistä:
+	Jos hän on näkyvillä:
+		ehkä
+	Muuten:
+		varmasti ei
+
+>> Avaaminen
+
+> Avaaminen on määritelty kahden toiminnon avulla:
+> "Esineen avaaminen" on toiminto, jonka onnistuessa suoritetaan "esineen avautuminen".
+> Syy tähän on, että esine voi joskus avautua myös muusta syystä kuin avaamisen johdosta.
+> Ohjelmoijan tulisi toteuttaa mieluummin "esineen avautumisen aikana" kuin "esineen avaamisen jälkeen".
+
+[Esineen] avautuminen on toiminto.
+Avautumisen komento on "[esine] avautuu nyt".
+
+Esine on joko avattava tai ei-avattava.
+Esine on yleensä ei-avattava.
+Esineellä on avaavaksi avaimeksi kutsuttu esine.
+
+[Esineen] avaaminen on toiminto.
+Avaamisen komento on "avaa nyt [esine]".
+Tulkitse "avaa [esine]" avaamisena.
+
+Ennen piilossa olevan esineen avaamista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen ei-avattavan esineen avaamista:
+	Sano "Ei [sitä] voi avata.".
+	Keskeytä toiminto.
+	(avattavuusehto)
+
+Juuri ennen esineen avaamista:
+	Jos fokalisoijan esineluettelo ei sisällä sen avaavaa avainta:
+		Sano fokalisoijalle "Sinulla ei ole oikeaa avainta.".
+		Keskeytä toiminto.
+	(avainehto)
+
+Esineen avaamisen aikana:
+	Se avautuu nyt.
+	(avautumissääntö)
+
+>> Listaaminen
+
+> Aputoiminto asioiden listaamiseksi huoneen kuvauksessa
+
+Listattavien asioiden määrä on kokonaisluku.
+Listattavien asioiden määrä on alussa yksi.
+
+[Asian] listaaminen on toiminto.
+Listaamisen komento on "listaa [asia]".
+
+Esineen listaamisen aikana:
+	Jos listattavien asioiden määrä on yksi:
+		Sano "Näet täällä [sen].".
+	Muulloin:
+		Sano "Näet täällä [listattavien asioiden määrä] [sitä].".
+
+Ihmisen listaamisen aikana:
+	Jos listattavien asioiden määrä on yksi:
+		Sano "[Hän] on täällä.".
+	Muulloin:
+		Sano "Näet täällä [listattavien asioiden määrä] [häntä].".
+
+>> Kuvaileminen
+
+> Toiminto ihmisen, esineen tai huoneen kuvailemiseksi.
+
+[Asian] kuvaileminen on toiminto.
+Kuvailemisen komento on "kuvaile [asiaa]".
+
+Asian kuvailemisen aikana:
+	Sano sen kuvaus.
+	(perussääntö)
+
+Huoneen kuvailemisen jälkeen:
+	Sano "[rivinvaihto][rivinvaihto]".
+	Toista jokaiselle ryhmälle samanlaisia listattuja esineitä (e) sen esinejoukossa:
+		Ryhmän koko listattavien asioiden määränä:
+			Listaa e.
+	Toista jokaiselle ryhmälle samanlaisia tietokoneen ohjaamia ihmisiä (i) sen henkilöjoukossa:
+		Ryhmän koko listattavien asioiden määränä:
+			Listaa i.
+	(esineiden listaamisen sääntö)
+
+Suljetun huoneen kuvailemisen jälkeen:
+	Sano "Et voi mennä sinne.".
+	(suljetun huoneen sääntö)
+
+Tukevan sisältäjän kuvailemisen jälkeen:
+	Sano "[rivinvaihto][rivinvaihto]".
+	Toista jokaiselle ryhmälle samanlaisia listattuja esineitä (e) sen sisältöjoukossa:
+		Jos ryhmän koko on 1:
+			Sano "Sen päällä on [e].[rivinvaihto]".
+		Muulloin:
+			Sano "Sen päällä on [ryhmän koko] [e:tä].[rivinvaihto]".
+	(tuettujen esineiden listaamisen sääntö)
+
+Ympäröivän sisältäjän kuvailemisen jälkeen:
+	Sano "[rivinvaihto][rivinvaihto]".
+	Toista jokaiselle ryhmälle samanlaisia listattuja esineitä (e) sen sisältöjoukossa:
+		Jos ryhmän koko on 1:
+			Sano "Sen sisällä on [e].[rivinvaihto]".
+		Muulloin:
+			Sano "Sen sisällä on [ryhmän koko] [e:tä].[rivinvaihto]".
+	(ympäröityjen esineiden listaamisen sääntö)
+
+>> Esitteleminen
+
+> Esittely kuvailee huoneen ja voi lisäksi kertoa lisätietoa (kuten huoneen nimen),
+> joka on tarpeellista vain huoneeseen siirryttäessä.
+> Jos tulevaisuudessa toteutetaan tiivistetyt esittelyt (huone esitellään vain yhden kerran),
+> se voidaan tehdä tässä.
+
+[Huoneen] esitteleminen on toiminto.
+Esittelemisen komento on "esittele [huone]".
+
+Huoneen esittelemisen aikana:
+	Sano "[Sen nimi koodissa][rivinvaihto][rivinvaihto]".
+	Kuvaile sitä.
+	(perussääntö)
+
+Pelin alkamisen jälkeen:
+	Esittele pelaajan sijainti.
+	(esittelysääntö)
+
+>> Katseleminen
+
+> Katseleminen on esittelemisen pelaajalle näkyvä komento,
+> jolla voi esitellä vain nykyisen sijainnin.
+
+Katseleminen on toiminto.
+Tulkitse "katsele" katselemisena.
+
+Katselemisen aikana:
+	Esittele pelaajan sijainti.
+	(perussääntö)
+
+>> Suunnat
+
+> Määritellään pääilmansuunnat ja ylös/alas-akseli.
+> Huoneet on yhdistetty suuntien avulla verkoksi.
+> Tätä varten huoneella on kaksi tietorakennetta:
+> naapurihuoneiden joukko ja
+> kuvaus suunnista naapurihuoneiksi.
+> ("Kuvaus" on hajautustaulu.)
+
+Suunta on käsite.
+Suunnalla on vastasuunnaksi kutsuttu suunta.
+
+Määritelmä. Kun suunta (A) on "pois [suunnasta (B)]":
+	A:n vastasuunta on B
+	B:n vastasuunta on A
+
+Pohjoinen on suunta.
+Etelä on suunta pois pohjoisesta.
+Länsi on suunta.
+Itä on suunta pois lännestä.
+
+Koillinen on suunta.
+Lounas on suunta pois koillisesta.
+Kaakko on suunta.
+Luode on suunta pois kaakosta.
+
+Ylös-suunta on suunta.
+Alas-suunta on suunta pois ylös-suunnasta.
+
+Sisään-suunta on suunta.
+Ulos-suunta on suunta pois sisään-suunnasta.
+
+Tulkitse "p" pohjoisena.
+Tulkitse "e" etelänä.
+Tulkitse "l" läntenä.
+Tulkitse "i" itänä.
+Tulkitse "ko" koillisena.
+Tulkitse "ka" kaakkona.
+Tulkitse "lo" lounaana.
+Tulkitse "lu" luoteena.
+Tulkitse "ylös" ylös-suuntana.
+Tulkitse "ylöspäin" ylös-suuntana.
+Tulkitse "y" ylös-suuntana.
+Tulkitse "alas" alas-suuntana.
+Tulkitse "alaspäin" alas-suuntana.
+Tulkitse "a" alas-suuntana.
+Tulkitse "sisään" sisään-suuntana.
+Tulkitse "sisäänpäin" sisään-suuntana.
+Tulkitse "s" sisään-suuntana.
+Tulkitse "ulos" ulos-suuntana.
+Tulkitse "ulospäin" ulos-suuntana.
+Tulkitse "u" ulos-suuntana.
+
+Ei-suunta on suunta.
+Ei-suunnan vastasuunta on ei-suunta.
+
+Kutakin suuntaa kohden huoneella voi olla naapurihuoneeksi siinä suunnassa kutsuttu huone.
+Huoneen naapurihuone suunnassa on yleensä seinä.
+
+Huoneella on naapurihuonejoukoksi kutsuttu joukko huoneita.
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] [suuntaan (tarkasteltava suunta)]":
+	B:n naapurihuone tarkasteltavassa suunnassa on A
+	A:n naapurihuone tarkasteltavan suunnan vastasuunnassa on B
+	A:n naapurihuonejoukko sisältää B:n
+	B:n naapurihuonejoukko sisältää A:n
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] ylös":
+	A on B:stä ylös-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] alas":
+	A on B:stä alas-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] ulos":
+	A on B:stä ulos-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] sisään":
+	A on B:stä sisään-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] [suuntaan (tarkasteltava suunta)] ulos":
+	A on B:stä ulos-suuntaan
+	A on B:stä tarkasteltavaan suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] [suuntaan (tarkasteltava suunta)] sisään":
+	A on B:stä sisään-suuntaan
+	A on B:stä tarkasteltavaan suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] ylös ulos":
+	A on B:stä ulos-suuntaan
+	A on B:stä ylös-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] ylös sisään":
+	A on B:stä sisään-suuntaan
+	A on B:stä ylös-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] alas ulos":
+	A on B:stä ulos-suuntaan
+	A on B:stä alas-suuntaan
+
+Määritelmä. Kun huone (A) on "[huoneesta (B)] alas sisään":
+	A on B:stä sisään-suuntaan
+	A on B:stä alas-suuntaan
+
+Määritelmä. Huone (A) on "[huoneen (B)] naapurihuone", jos:
+	B:n naapurihuonejoukko sisältää A:n
+
+Määritelmä. Huone (A) "ei ole [huoneen (B)] naapurihuone", jos:
+	B:n naapurihuonejoukko ei sisällä A:ta
+
+>> Ovi
+
+> Kahden huoneen välinen ovi määritellään esineenä,
+> joka on molempien huoneiden esinejoukossa.
+> Lisäksi molemmat huoneet ovat oven esinejoukossa.
+
+Ovi on esineen alakäsite.
+Ovi on yleensä avattava.
+Ovi on yleensä kiinteä.
+
+Ovi on joko lukittu tai lukitsematon.
+Ovi on yleensä lukittu.
+Ovella on huonejoukoksi kutsuttu joukko huoneita.
+
+Ovi on joko automaattisesti lukittuva tai manuaalisesti lukittava.
+Ovi on yleensä manuaalisesti lukittava.
+
+Määritelmä. Kun ovi on "[huoneen (A)] ja [huoneen (B)] välissä":
+	sen huonejoukko sisältää A:n
+	sen huonejoukko sisältää B:n
+	A:n esinejoukko sisältää sen
+	B:n esinejoukko sisältää sen
+
+Määritelmä. Kun ovi on "yksisuuntaisesti [huoneen (A)] ja [huoneen (B)] välissä":
+	sen huonejoukko sisältää A:n
+	sen huonejoukko sisältää B:n
+	A:n esinejoukko sisältää sen
+
+Oven avautumisen aikana:
+	Jos se on manuaalisesti lukittava:
+		Se on nyt lukitsematon.
+		Se on nyt ei-avattava.
+	(perussääntö)
+
+Oven avautumisen jälkeen:
+	Sano fokalisoijalle "[Se] avautuu.".
+	(raportointisääntö)
+
+>> Liikkuminen
+
+> Määritellään toiminnot liikkumiselle ja siirtymiselle.
+> "Huoneeseen liikkuminen" ja "suuntaan liikkuminen" ovat pelaajalle näkyviä toimintoja,
+> jotka onnistuessaan kutsuvat "siirtymistä", joka siirtää fokalisoijan annettuun huoneeseen.
+> (Vrt. vähän kuin avaaminen ja avautuminen)
+
+[Huoneeseen] siirtyminen on toiminto.
+Siirtymisen komento on "siirry nyt [huoneeseen]".
+
+[Huoneeseen] liikkuminen on toiminto.
+Huoneeseen liikkumisen komento on "liiku nyt [huoneeseen]".
+Tulkitse "liiku [huoneeseen]" huoneeseen liikkumisena.
+Tulkitse "liiku [huoneelle]" huoneeseen liikkumisena.
+Tulkitse "mene [huoneeseen]" huoneeseen liikkumisena.
+Tulkitse "mene [huoneelle]" huoneeseen liikkumisena.
+
+Ennen huoneeseen (H) liikkumista:
+	Jos H ei ole fokalisoijan sijainnin naapurihuone:
+		Sano fokalisoijalle "Et voi mennä sinne.".
+		Keskeytä toiminto.
+	(naapuruusehto)
+
+Huoneeseen (H) liikkumisen aikana:
+	Siirry nyt H:hon.
+	(perussääntö)
+
+[Suuntaan] liikkuminen on toiminto.
+Liikkumisen komento on "liiku nyt [suuntaan]".
+Tulkitse "liiku [suuntaan]" liikkumisena.
+Tulkitse "mene [suuntaan]" liikkumisena.
+Tulkitse "[suuntaan]" liikkumisena.
+Tulkitse "[suunta]" liikkumisena.
+
+Ei-suuntaan liikkumisen sijasta:
+	Sano "Et voi mennä sinne.".
+	(suunnan olemassaoloehto)
+
+Suuntaan (se suunta) liikkumisen aikana:
+	Siirry nyt fokalisoijan sijainnin naapurihuoneeseen siinä suunnassa.
+	(perussääntö)
+
+Ennen suljettuun huoneeseen siirtymistä:
+	Sano fokalisoijalle "Et voi mennä sinne.".
+	Keskeytä toiminto.
+	(avoimuusehto)
+
+Ennen pimeään huoneeseen siirtymistä:
+	Jos fokalisoijan esineluettelo ei sisällä yhtäkään valaisevaa esinettä:
+		Sano fokalisoijalle "Siellä on pimeää, etkä näkisi siellä mitään. Et voi mennä sinne.".
+		Keskeytä toiminto.
+	(valoisuusehto)
+
+Ennen huoneeseen (fokalisoijan määränpää) siirtymistä:
+	Toista jokaiselle näkyvillä olevalle lukitulle ovelle (ovi) fokalisoijan sijainnin esinejoukossa:
+		Jos oven huonejoukko sisältää fokalisoijan määränpään:
+			Sano fokalisoijalle "(avataan ensin [ovi])".
+			Avaa nyt ovi.
+			Sano fokalisoijalle "[rivinvaihto][rivinvaihto]".
+			Jos ovi on automaattisesti lukittuva:
+				Ovi on nyt lukittu.
+	(oven avaamissääntö)
+			
+Huoneeseen siirtymisen aikana:
+	Fokalisoija on nyt piilossa.
+	Fokalisoijan sijainti on nyt se.
+	Fokalisoija on nyt näkyvillä.
+	(perussääntö)
+
+Huoneeseen (H) siirtymisen jälkeen:
+	Jos fokalisoija on pelaajan ohjaama:
+		Esittele H.
+	(raportointisääntö)
+
+>> Erikoisia suuntia
+
+Ylös liikkuminen on toiminto.
+Tulkitse "mene ylös" ylös liikkumisena.
+Tulkitse "liiku ylös" ylös liikkumisena.
+
+Ylös liikkumisen sijasta:
+	Liiku nyt ylös-suuntaan.
+
+Tarkoittaako pelaaja ylös liikkumista:
+	todennäköisesti
+
+Alas liikkuminen on toiminto.
+Tulkitse "mene alas" alas liikkumisena.
+Tulkitse "liiku alas" alas liikkumisena.
+
+Alas liikkumisen sijasta:
+	Liiku nyt alas-suuntaan.
+
+Tarkoittaako pelaaja alas liikkumista:
+	todennäköisesti
+
+Ulos liikkuminen on toiminto.
+Tulkitse "mene ulos" ulos liikkumisena.
+Tulkitse "liiku ulos" ulos liikkumisena.
+
+Ulos liikkumisen sijasta:
+	Liiku nyt ulos-suuntaan.
+
+Tarkoittaako pelaaja ulos liikkumista:
+	todennäköisesti
+
+Sisään liikkuminen on toiminto.
+Tulkitse "mene sisään" sisään liikkumisena.
+Tulkitse "liiku sisään" sisään liikkumisena.
+
+Sisään liikkumisen sijasta:
+	Liiku nyt sisään-suuntaan.
+
+Tarkoittaako pelaaja sisään liikkumista:
+	todennäköisesti
+
+>> Ovesta meneminen
+
+> Liikkuminen ovesta.
+> TODO: Tällä hetkellä keskeyttää toiminnon onnistuessaan, vaikka tämä signaloi yleensä epäonnistumista.
+
+[Ovesta] meneminen on toiminto.
+Tulkitse "mene [ovesta]" ovesta menemisenä.
+
+Ennen lukitusta ovesta menemistä:
+	Sano fokalisoijalle "(avataan ensin [se])".
+	Avaa nyt se.
+	Sano fokalisoijalle "[rivinvaihto][rivinvaihto]".
+	Jos se on automaattisesti lukittuva:
+		Se on nyt lukittu.
+	(oven avaamissääntö)
+
+Ovesta menemisen kohde on huone.
+Ovesta menemisen kohde on alussa seinä.
+
+Ovesta (O) menemisen aikana:
+	Ovesta menemisen kohde on nyt seinä.
+	Toista jokaiselle huoneelle (naapurihuone) O:n huonejoukossa:
+		Jos fokalisoija ei ole naapurihuoneessa:
+			Ovesta menemisen kohde on nyt naapurihuone.
+	Jos ovesta menemisen kohde on seinä:
+		Sano fokalisoijalle "[O] ei vie mihinkään.".
+	Muulloin:
+		Liiku nyt ovesta menemisen kohteeseen.
+	(perussääntö)
+
+>> Katsominen
+
+> Katsominen eli tutkiminen kertoo pelaajalle lisätietoa annetusta asiasta.
+
+[Suuntaan] katsominen on toiminto.
+Tulkitse "katso [suuntaan]" suuntaan katsomisena.
+
+Suuntaan (se suunta) katsomisen aikana:
+	Sano "Näet [siinä suunnassa] [pelaajan sijainnin naapurihuoneen siinä suunnassa].".
+	(perussääntö)
+
+[Esineen] katsominen on toiminto.
+Tulkitse "katso [esinettä]" esineen katsomisena.
+Tulkitse "tutki [esinettä]" esineen katsomisena.
+Tulkitse "tutki [esine]" esineen katsomisena.
+Tulkitse "tarkastele [esinettä]" esineen katsomisena.
+Tulkitse "t [esine]" esineen katsomisena.
+Tulkitse "katso [esineen] sisälle" esineen katsomisena.
+Tulkitse "katso [esineen] sisään" esineen katsomisena.
+
+Ennen piilossa olevan esineen katsomista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Esineen katsomisen aikana:
+	Kuvaile sitä.
+	(perussääntö)
+
+[Ihmisen] katsominen on toiminto.
+Tulkitse "katso [ihmistä]" ihmisen katsomisena.
+Tulkitse "tutki [ihmistä]" ihmisen katsomisena.
+Tulkitse "tutki [ihminen]" ihmisen katsomisena.
+Tulkitse "tarkastele [ihmistä]" ihmisen katsomisena.
+Tulkitse "t [ihminen]" ihmisen katsomisena.
+
+Ennen piilossa olevan ihmisen katsomista:
+	Sano "[Hän] ei ole paikalla.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ihmisen katsomisen aikana:
+	Kuvaile häntä.
+	(perussääntö)
+
+>> Alle ja taakse katsominen
+
+[Esineen] alle katsominen on toiminto.
+Tulkitse "katso [esineen] alle" esineen alle katsomisena.
+
+Ennen piilossa olevan esineen alle katsomista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Esineen alle katsomisen aikana:
+	Sano "[Sen] alla ei ole mitään.".
+	(perussääntö)
+
+[Esineen] taakse katsominen on toiminto.
+Tulkitse "katso [esineen] taakse" esineen taakse katsomisena.
+
+Ennen piilossa olevan esineen taakse katsomista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Esineen taakse katsomisen aikana:
+	Sano "[Sen] takana ei ole mitään.".
+	(perussääntö)
+
+>> Ottaminen
+
+[Esineen] ottaminen on toiminto.
+Ottamisen komento on "ota nyt [esine]".
+Tulkitse "ota [esine]" ottamisena.
+
+Ennen piilossa olevan esineen ottamista:
+	Sano fokalisoijalle "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen fokalisoijan mukana olevan esineen ottamista:
+	Sano fokalisoijalle "Sinulla on se jo.".
+	Keskeytä toiminto.
+	(kantamattomuusehto)
+
+Juuri ennen kiinteän esineen ottamista:
+	Sano fokalisoijalle "Et pystyisi liikuttamaan sitä.".
+	Keskeytä toiminto.
+	(epäkiinteysehto)
+
+Tylsän esineen ottamisen sijasta:
+	Sano fokalisoijalle "Sinun ei tee mieli koskea [siihen].".
+	(tylsän esineen poikkeussääntö)
+
+Esineen ottamisen aikana:
+	Se on nyt piilossa.
+	Lisää se fokalisoijan esineluetteloon.
+	(perussääntö)
+
+Esineen ottamisen jälkeen:
+	Sano fokalisoijalle "Sinulla on nyt [se].".
+	(raportointisääntö)
+
+Tarkoittaako pelaaja piilossa olevan esineen ottamista:
+	varmasti ei
+
+Tarkoittaako pelaaja esineen ottamista:
+	Jos se on pelaajan mukana:
+		tuskin
+	Muuten:
+		ehkä
+
+>> Pudottaminen
+
+[Esineen] pudottaminen on toiminto.
+Pudottamisen komento on "pudota nyt [esine]".
+Tulkitse "pudota [esine]" pudottamisena.
+
+Ennen piilossa olevan esineen pudottamista:
+	Sano fokalisoijalle "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen esineen pudottamista:
+	Jos se ei ole mukana:
+		Sano fokalisoijalle "Et voi pudottaa [sitä], sillä se ei ole mukanasi.".
+		Keskeytä toiminto.
+	(mukanaoloehto)
+
+Esineen pudottamisen aikana:
+	Nyt se ei ole mukana.
+	Se on nyt näkyvillä.
+	(perussääntö)
+
+Esineen pudottamisen jälkeen:
+	Jos fokalisoija on pelaajan ohjaama:
+		Sano "Pudotat [sen].".
+	Muulloin:
+		Sano "[Fokalisoija] pudottaa [sen].".
+	(raportointisääntö)
+
+Tarkoittaako pelaaja esineen pudottamista:
+	Jos se ei ole pelaajan mukana:
+		tuskin
+	Muuten:
+		ehkä
+
+>> Fokalisoijan esineluettelon tulostaminen
+
+Esineluettelon tulostaminen on toiminto.
+Esineluettelon tulostamisen komento on "tulosta esineluettelo".
+Tulkitse "esineet" esineluettelon tulostamisena.
+Tulkitse "listaa esineet" esineluettelon tulostamisena.
+Tulkitse "reppu" esineluettelon tulostamisena.
+Tulkitse "tavarat" esineluettelon tulostamisena.
+Tulkitse "listaa tavarat" esineluettelon tulostamisena.
+
+Esineluettelon tulostamisen aikana:
+	Jos fokalisoija on pelaajan ohjaama:
+		Sano "Sinulla on mukanasi:[rivinvaihto]".
+	Muulloin:
+		Sano "[Fokalisoijalla] on mukanaan:[rivinvaihto]".
+	
+	Toista jokaiselle ryhmälle samanlaisia esineitä (e) fokalisoijan esineluettelossa:
+		Jos ryhmän koko on 1:
+			Sano "- [E].[rivinvaihto]".
+		Muulloin:
+			Sano "- [ryhmän koko] [e:tä].[rivinvaihto]".
+	(perussääntö)
+
+>> Lukeminen
+
+> Lukeminen tulostaa esineen "kirjoitus"-kentän arvon.
+> Kirjoitusta sisältävät esineet pitää erikseen määritellä sellaisiksi.
+
+Esine on joko kirjoitusta sisältämätön tai kirjoitusta sisältävä.
+Esine on yleensä kirjoitusta sisältämätön.
+
+Esineellä on kirjoitukseksi kutsuttu merkkijono.
+Esineen kirjoitus on yleensä "".
+
+[Esineen] lukeminen on toiminto.
+Tulkitse "lue [esine]" lukemisena.
+Tulkitse "lue [esinettä]" lukemisena.
+
+Ennen piilossa olevan esineen lukemista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Juuri ennen kirjoitusta sisältämättömän esineen lukemista:
+	Sano "[Se] ei sisällä mitään kirjoitusta.".
+	Keskeytä toiminto.
+	(sisältöehto)
+
+Kirjoitusta sisältävän esineen lukemisen aikana:
+	Sano "Luet [siihen] kirjoitetun tekstin:[rivinvaihto][rivinvaihto]".
+	Sano "[sen kirjoitus][rivinvaihto]".
+	(perussääntö)
+
+>> Puhuminen
+
+Ihminen on joko lähestyttävä tai ei-lähestyttävä.
+Ihminen on yleensä ei-lähestyttävä.
+
+[Ihmiselle] puhuminen on toiminto.
+Puhumisen komento on "puhu nyt [ihmiselle]".
+Tulkitse "puhu [ihmiselle]" puhumisena.
+
+Ennen piilossa olevalle ihmiselle puhumista:
+	Sano "[Hän] ei ole paikalla.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen ihmiselle puhumista:
+	Jos fokalisoija on hän:
+		Sano "Höpiset jotain yksin.".
+		Keskeytä toiminto.
+	(epäitseysehto)
+
+Ennen ei-lähestyttävälle ihmiselle puhumista:
+	Sano "[Hän] ei näytä kiinnostuneelta höpinästäsi.".
+	(lähestyttävyysehto)
+
+[Ihmiselle] [asian] kertominen on toiminto.
+Kertomisen komento on "kerro nyt [ihmiselle] [asiasta]".
+Tulkitse "kerro [ihmiselle] [asiasta]" kertomisena.
+Tulkitse "kerro [ihmiselle] [asia]" kertomisena.
+Tulkitse "kerro [asiasta] [ihmiselle]" kertomisena.
+Tulkitse "kerro [asia] [ihmiselle]" kertomisena.
+
+Ennen piilossa olevalle ihmiselle asian kertomista:
+	Sano "[Hän] ei ole paikalla.".
+	Keskeytä toiminto.
+	(ihmisen näkyvyysehto)
+
+Ennen ihmiselle piilossa olevan esineen kertomista:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(esineen näkyvyysehto)
+
+Ihmiselle asian kertomisen aikana:
+	Sano "Et tiedä, miten haluaisit kertoa [siitä].".
+	(perussääntö)
+
+[Ihmiseltä] [asiasta] kysyminen on toiminto.
+Kysymisen komento on "kysy nyt [ihmiseltä] [asiasta]".
+Tulkitse "kysy [ihmiseltä] [asiasta]" kysymisenä.
+Tulkitse "kysy [asiasta] [ihmiseltä]" kysymisenä.
+
+Ennen piilossa olevalta ihmiseltä asiasta kysymistä:
+	Sano "[Hän] ei ole paikalla.".
+	Keskeytä toiminto.
+	(ihmisen näkyvyysehto)
+
+Ennen ihmiseltä piilossa olevasta esineestä kysymistä:
+	Sano "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(esineen näkyvyysehto)
+
+Ihmiseltä asiasta kysymisen aikana:
+	Sano "Et tiedä, mitä haluaisit kysyä [siitä].".
+	(perussääntö)
+
+>> Sytyttäminen
+
+> Pelaaja voi sytyttää sytyttimellä syttyviksi merkittyjä esineitä.
+> Sytyttäminen ei oletuksena tee mitään,
+> joten jokaiselle syttyvälle eineelle pitäisi määritellä oma aikana-sääntö.
+
+Esine on joko syttyvä tai syttymätön.
+Esine on yleensä syttymätön.
+
+[Esineen] sytyttäminen on toiminto.
+Tulkitse "sytytä [esine]" sytyttämisenä.
+Tulkitse "polta [esine]" sytyttämisenä.
+
+Sytytin on esineen alakäsite.
+
+Ennen piilossa olevan esineen sytyttämistä:
+	Sano fokalisoijalle "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen tylsän esineen sytyttämistä:
+	Sano fokalisoijalle "Sinun ei tee mieli sytyttää [sitä].".
+	Keskeytä toiminto.
+	(kiinnostavuusehto)
+
+Ennen syttymättömän esineen sytyttämistä:
+	Sano fokalisoijalle "[Sitä] ei voi sytyttää.".
+	Keskeytä toiminto.
+	(syttyvyysehto)
+
+Ennen esineen sytyttämistä:
+	Jos fokalisoijan esineluettelo ei sisällä yhtäkään sytytintä:
+		Sano fokalisoijalle "Sinulla ei ole sytytintä.".
+		Keskeytä toiminto.
+	(sytytinehto)
+
+>> Hyökkääminen
+
+> Hyökkääminen toimii vastaavasti kuin sytyttäminen, eli oletuksena
+> ketään vastaan ei voi hyökätä eikä hyökkääminen tee mitään.
+
+[Ihmistä] vastaan hyökkääminen on toiminto.
+Ihmistä vastaan hyökkäämisen komento on "hyökkää nyt [ihmistä] vastaan".
+Tulkitse "hyökkää [ihmistä] vastaan" ihmistä vastaan hyökkäämisenä.
+Tulkitse "lyö [ihmistä]" ihmistä vastaan hyökkäämisenä.
+Tulkitse "iske [ihmistä]" ihmistä vastaan hyökkäämisenä.
+
+Ihminen on joko ystävällismielinen tai vihamielinen.
+Ihminen on yleensä ystävällismielinen.
+
+Ennen piilossa olevaa ihmistä vastaan hyökkäämistä:
+	Sano fokalisoijalle "[Hän] ei ole paikalla.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen ihmistä vastaan hyökkäämistä:
+	Jos fokalisoija on hän:
+		Sano fokalisoijalle "Et voi hyökätä itseäsi vastaan.".
+		Keskeytä toiminto.
+	(epäitseysehto)
+
+Juuri ennen ystävällismielistä ihmistä vastaan hyökkäämistä:
+	Jos fokalisoija on pelaajan ohjaama:
+		Sano "Et halua hyökätä [häntä] vastaan.".
+		Keskeytä toiminto.
+	(vihamielisyysehto)
+
+>> Syöminen
+
+> Syöminen tulostaa oletuksena tekstin "Syöt [sen].", mutta ei muuta.
+> Kuten sytyttämisessä, on määriteltävä oma aikana-sääntö esineelle,
+> jotta syömisellä olisi vaikutus.
+
+[Esineen] syöminen on toiminto.
+Syömisen komento on "syö nyt [esine]".
+Tulkitse "syö [esine]" syömisenä.
+
+Esine on joko syötävä tai syömäkelvoton.
+Esine on yleensä syömäkelvoton.
+
+Tarkoittaako pelaaja syömäkelvottoman esineen syömistä:
+	tuskin
+
+Ennen piilossa olevan esineen syömistä:
+	Sano fokalisoijalle "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen syömäkelvottoman esineen syömistä:
+	Sano fokalisoijalle "Et usko, että [sitä] kannattaa syödä.".
+	Keskeytä toiminto.
+	(syötävyysehto)
+
+Esineen syömisen jälkeen:
+	Sano fokalisoijalle "Syöt [sen].".
+	(raportointisääntö)
+
+>> Juominen
+
+> Juominen toimii täsmälleen samoin kuin syöminen.
+
+[Esineen] juominen on toiminto.
+Juomisen komento on "juo nyt [esine]".
+Tulkitse "juo [esine]" juomisena.
+
+Esine on joko juotava tai juomakelvoton.
+Esine on yleensä juomakelvoton.
+
+Tarkoittaako pelaaja juomakelvottoman esineen juomista:
+	tuskin
+
+Ennen piilossa olevan esineen juomista:
+	Sano fokalisoijalle "Et näe sellaista asiaa.".
+	Keskeytä toiminto.
+	(näkyvyysehto)
+
+Ennen juomakelvottoman esineen juomista:
+	Sano fokalisoijalle "Et usko, että [sitä] kannattaa juoda.".
+	Keskeytä toiminto.
+	(juotavuusehto)
+
+Esineen juomisen jälkeen:
+	Sano fokalisoijalle "Juot [sen].".
+	(raportointisääntö)
+
