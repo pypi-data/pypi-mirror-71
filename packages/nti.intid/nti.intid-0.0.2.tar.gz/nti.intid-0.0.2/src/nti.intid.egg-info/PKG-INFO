@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: nti.intid
+Version: 0.0.2
+Summary: Extensions for Zope3's intids.
+Home-page: https://github.com/NextThought/nti.intid
+Author: Jason Madden
+Author-email: jason@nextthought.com
+License: Apache
+Description: ===========
+         nti.intid
+        ===========
+        
+        .. image:: https://travis-ci.org/NextThought/nti.intid.svg?branch=master
+            :target: https://travis-ci.org/NextThought/nti.intid
+        
+        .. image:: https://coveralls.io/repos/github/NextThought/nti.intid/badge.svg?branch=master
+            :target: https://coveralls.io/github/NextThought/nti.intid?branch=master
+        
+        .. image:: https://readthedocs.org/projects/ntiintid/badge/?version=latest
+           :target: https://ntiintid.readthedocs.io/en/latest/?badge=latest
+           :alt: Documentation Status
+        
+        Extensions for Zope3's intid concept.
+        
+        See `zope.intid <https://pypi.org/project/zope.intid/>`_ and `zc.intid
+        <https://pypi.org/project/zc.intid/>`_ for information on the basics.
+        
+        
+        =========
+         Changes
+        =========
+        
+        
+        0.0.2 (2020-06-19)
+        ==================
+        
+        - Refactor tests to use ``nti.site.testing`` for DB and site management.
+        
+        
+        0.0.1 (2020-06-19)
+        ==================
+        
+        - First PyPI release.
+        
+        - The weak ref classes no longer have dictionaries for arbitrary
+          attributes. They never persisted arbitrary attributes.
+        
+Keywords: intid zope3
+Platform: UNKNOWN
+Classifier: Framework :: Zope3
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Provides-Extra: test
+Provides-Extra: docs
