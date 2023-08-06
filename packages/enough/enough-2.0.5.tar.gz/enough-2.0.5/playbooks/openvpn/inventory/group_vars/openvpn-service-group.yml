@@ -1,0 +1,5 @@
+---
+openvpn_active_clients:
+  - localhost
+openvpn_server_conf: |
+  push "route {{ openstack_internal_network_prefix }}.0 255.255.255.0"
