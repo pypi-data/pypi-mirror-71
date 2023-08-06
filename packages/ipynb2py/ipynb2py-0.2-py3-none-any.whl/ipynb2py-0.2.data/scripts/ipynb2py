@@ -1,0 +1,36 @@
+#!python
+
+import argparse
+import json
+from termcolor import colored
+
+
+def convert( args):
+    file_path = args.file
+    if file_path.split('.')[-1] != 'ipynb':
+	    colored(print('Not an ipynb file , please give correct path of an ipynb file') ,'red')
+	    return
+    print( 'Opening  your Ipynb file located at {}'.format(file_path))
+    try:
+        with open( file_path , 'r') as f:
+            content = f.read()
+    except Exception as e:
+        colored('Cannot open file {} due to \n {}'.format(file_path,e) , 'red')
+        return
+    json_content = json.loads( content)
+    cells = json_content['cells']
+    with open( file_path.split('.')[0] + '.py' , 'w') as f:
+        for cell in cells:
+            source = cell['source']
+            for line in source:
+                f.write(line)
+    f.close()
+    colored(print( 'Contents of file written at {}'.format(file_path.split('.')[0] + '.py')) , 'blue' )
+    print( 'Cmd + click on the link to access the file ^_^ 💫')
+
+
+
+parser = argparse.ArgumentParser( description='convert ipnyb to py')
+parser.add_argument('-f' , '--file' , help='Ipynb file path' , required=True)
+args = parser.parse_args()
+convert( args)
