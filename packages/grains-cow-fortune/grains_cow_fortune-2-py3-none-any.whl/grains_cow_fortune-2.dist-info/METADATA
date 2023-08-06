@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: grains-cow-fortune
+Version: 2
+Summary: Vertically extends the POP-based grains project and adds the cowsay and fortune GRAINS
+Home-page: https://gitlab.com/Akm0d/corn_cowsay
+Author: Tyler Johnson
+Author-email: tjohnson@saltstack.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: cowsay (>=2.0.3)
+Requires-Dist: pop (>=13)
+Requires-Dist: grainsv2
+
+=============
+GRAINS_COWSAY
+=============
+
+** A simple example of a vertically app merged grains project **
+
+
+INSTALLATION
+============
+
+
+
+With git::
+
+    git clone https://gitlab.com/saltstack/pop/grains.git
+    pip install -e grains
+
+With pip::
+
+    pip install corn_cowsay
+
+
+EXECUTION
+=========
+After installation the `grains` command should now be available if it wasn't already
+
+
+TESTING
+=======
+install `requirements-test.txt` with pip and run pytest::
+
+    pip install -r grains/requirements-test.txt
+    pytest grains/tests
+
+VERTICAL APP-MERGING
+====================
+Instructions for extending grains like this project does
+
+Install pop::
+
+    pip install --upgrade pop
+
+Create a new directory for the project::
+
+    mkdir grains_{project}
+    cd grains_{project}
+
+
+Use `pop-seed` to generate the structure of a project that extends `grains`::
+
+    pop-seed -t v pop_{kernel} -d grains
+
+* "-t v" specifies that this is a vertically app-merged project
+*  "-d grains" says that we want to implement the dynamic name of "grains"
+
+Add "grainsv2" to the requirements.txt::
+
+    echo "grainsv2" >> requirements.txt
+
+Note* url based reqs aren't supported on older versions of setuptools
+To pip install your vertically app-merged project install grains manually::
+
+    pip install -e git+https://gitlab.com/saltstack/pop/grains.git#egg=grainsv2
+
+And that's it!  Go to town extending grains
+Follow the conventions you see in gitlab.com/satlstack/pop/grains
+
+
