@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey">
+
+    <include package="collective.monkeypatcher" file="meta.zcml" />
+
+    <monkey:patch
+      description="Nao utiliza parametro Language quando utilizar elasticsearch."
+      class="eea.facetednavigation.browser.app.query.FacetedQueryHandler"
+      original="criteria"
+      replacement=".patches.criteria"
+      preconditions="collective.elasticsearch+=3.0.4"
+      />
+
+
+</configure>
