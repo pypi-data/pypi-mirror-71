@@ -1,0 +1,13 @@
+grainsv2>=9
+
+[:"BSD" in sys_platform]
+idem-bsd>=3
+
+[:"sunos" in sys_platform]
+idem-solaris>=3
+
+[:os_name == "AIX"]
+idem-aix>=3
+
+[:sys_platform == "linux"]
+idem-linux>=6.3
