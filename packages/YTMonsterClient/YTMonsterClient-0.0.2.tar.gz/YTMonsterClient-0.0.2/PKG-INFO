@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: YTMonsterClient
+Version: 0.0.2
+Summary: An API Client to use YTMonster API.
+Home-page: https://github.com/SignalDevX/YTMonsterClient
+Author: Signal
+Author-email: example@gmail.com
+License: MIT
+Description: # YTMonsterClient - An Extensive API Wrapper
+        An API wrapper for interacting with YTMonster programmatically.
+        
+        ## Some basic use:
+        ```py
+        from YTMonsterClient import YTMonsterClient
+        
+        client = YTMonsterClient.YTMonsterClient('exampleuser', 'examplepassword')
+        
+        print(client.get_like_video_from_exchanges())
+        print(client.get_channel_from_exchanges())
+        ```
+        
+        ## Installation
+        ```pip install YTMonsterClient```
+Keywords: YTMC
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.4.0
+Description-Content-Type: text/markdown
