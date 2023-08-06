@@ -1,0 +1,30 @@
+Metadata-Version: 1.2
+Name: bayespropestimation
+Version: 0.1.5
+Summary: Class method for the Bayesian estimation and comparison of proportions
+Home-page: https://github.com/oli-chipperfield/bayespropestimation
+Author: Oliver Chipperfield
+Author-email: omc0dev@googlemail.com
+License: MIT license
+Description: 
+        
+        Simple class and methods for the Bayesian estimation and comparison of proportions.  i.e. a simple Bayesian AB test of proportions.  
+        
+        - A user can input the results from two samples, A and B, and get estimates of the posterior density and their difference.  
+        
+        - Estimation is from simple simulation from the conjugate posterior distributions.  
+        
+        - Provides summary statistics and visualisations for the estimated parameters.
+        
+        - The prior distribution, sample count, random seed, credible intervals and parameter names can all be customised.
+        
+        
+Keywords: bayespropestimation
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7
