@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: regex-cleaner
+Version: 1.0.1
+Summary: A small package to convert verbose regex patterns to simple regex patterns.
+Home-page: https://github.com/lockieRichter/regex_cleaner
+Author: Lockie Richter
+Author-email: richter.lockie@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: regex
+
+# Regex Cleaner
+
+This is a simple python package that can be used to clean a verbose regex pattern of the comments and new lines and return the basic underlying pattern.
+
+## Installation
+
+```bash
+python -m pip install regex-cleaner
+```
+
+## Usage
+
+To clean a regex pattern, simply pass the verbose pattern string to the function `clean_regex`.
+
+```python
+pattern = """
+    \w\d{3} # Matches any letter followed by 3 digits.
+"""
+cleaned_regex = clean_regex(pattern)
+
+print(cleaned_regex)
+```
+
+```bash
+\w\d{3}
+```
+
+
