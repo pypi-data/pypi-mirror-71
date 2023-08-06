@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load helpers%}
+{% load buttons %}
+{% load static %}
+{% block content %}
+<div class="pull-right noprint">
+    {% block buttons %}{% endblock %}
+    {% if request.user.is_authenticated and table_config_form %}
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#tableconfig" title="Configure table"><i class="fa fa-cog"></i> Configure</button>
+    {% endif %}
+</div>
+<h1>{% block title %}Device Configuration Version{%endblock%}</h1>
+<div class="row">
+    <div class="col-md-12">
+       {% include table_template|default:'responsive_table.html' %}
+       {% include 'inc/paginator.html' with paginator=table.paginator page=table.page %}
+    </div>
+    <div class="clearfix"></div>
+    {% if table_config_form %}
+        {% include 'inc/table_config_form.html' %}
+    {% endif %}
+    {% comment %} <div class="col-md-3 noprint">
+        {% include  'inc/search_panel.html'%}
+    </div> {% endcomment %}
+</div>
+{% endblock %}

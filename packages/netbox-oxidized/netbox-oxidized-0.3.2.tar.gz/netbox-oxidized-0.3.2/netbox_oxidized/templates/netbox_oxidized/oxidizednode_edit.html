@@ -1,0 +1,24 @@
+ 45 lines (44 sloc) 1.53 KB
+{% extends 'utilities/obj_edit.html' %}
+{% load form_helpers %}
+
+{% block form %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Oxidized Node</strong></div>
+        <div class="panel-body">
+        {% render_field form.device %}
+        {% render_field form.name %}
+        {% render_field form.ipaddress %}
+        {% render_field form.node_model %}
+        {% render_field form.group %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+    $("a.set_model").click(function(e) {
+        e.preventDefault();
+        $("#id_" + $(this).attr("target")).val($(this).attr("data"));
+    });
+</script>
+{% endblock %}
