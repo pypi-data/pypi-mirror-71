@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: djangocomment
+Version: 2.2.0
+Summary: Djangocomment: Django Reusable Comment Application.
+Home-page: https://github.com/bhojrampawar/djangocomment
+Author: Bhojram pawar
+Author-email: bhojrampawar@hotmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
+Requires-Dist: django
+
+## Djangocomment: Django Reusable Comment Application.
+
+**Djangocomment** is a **Reusable Django app** which provides a full featured Comment functionality. The Djangocomment's Comment Model is rich features and powerful enough, You can start with Djangocomment without installation of any 3rd party packages.
+___
+
+
+## Installation:
+You can install **Djangocomment** from PyPI using **pip**.
+
+``` pip install djangocomment ```
+___
+
+
+## Configuration:
+***1\. Open the ```settings.py``` file of your project, And put djangocomment into ```INSTALLED_APPS```.***
+
+```python
+INSTALLED_APPS = (
+    'djangocomment',
+)
+```
+___
+
+
+## Complete the Djangocomment setup by running the following command one by one in the sequence.
+
+```python
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+___
+
+
+
