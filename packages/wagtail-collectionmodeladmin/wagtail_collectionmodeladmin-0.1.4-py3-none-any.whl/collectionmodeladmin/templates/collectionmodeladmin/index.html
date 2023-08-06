@@ -1,0 +1,36 @@
+{% extends "modeladmin/index.html" %}
+{% load collectionmodeladmin_tags %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {% setvar model_admin.model|get_app_name as app_name %}
+    {% setvar model_admin.model|get_model_name as model_name %}
+    <script>
+        window.headerSearch = {
+            url: "{% url app_name|add:'_'|add:model_name|add:'_modeladmin_index' %}",
+            termInput: "#id_q",
+            targetOutput: "#{{ app_name|add:'_'|add:model_name }}_modeladmin_index-results"
+        }
+
+        $(function() {
+            $('#collection_chooser_collection_id').on('change', function() {
+                this.form.submit();
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block result_list %}
+    {% if collections %}
+        {% setvar model_admin.model|get_app_name as app_name %}
+        {% setvar model_admin.model|get_model_name as model_name %}
+        <div class="nice-padding">
+            <form class="image-search search-bar" action="{% url app_name|add:'_'|add:model_name|add:'_modeladmin_index' %}" method="GET" novalidate>
+                <ul class="fields">
+                    {% include "wagtailadmin/shared/collection_chooser.html" %}
+                </ul>
+            </form>
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
