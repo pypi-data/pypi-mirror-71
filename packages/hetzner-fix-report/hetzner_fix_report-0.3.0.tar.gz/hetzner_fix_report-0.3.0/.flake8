@@ -1,0 +1,8 @@
+[flake8]
+exclude = build
+max_line_length=120
+
+per-file-ignores =
+    hetzner_fix_report/__init__.py:F401
+    setup.py:E121
+    other_project/*:W9
