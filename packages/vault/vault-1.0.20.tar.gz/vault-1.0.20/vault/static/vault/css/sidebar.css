@@ -1,0 +1,126 @@
+#sidebar {
+  position: relative;
+  width: 256px;
+  /*min-width: 200px;*/
+  color: white;
+  background: #285DC1 url(../img/bg-sidebar.svg) scroll no-repeat top left;
+  background-size: 100%;
+}
+
+#sidebar .vault-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+#sidebar .vault-logo img {
+  width: 55%;
+}
+
+#sidebar .current-project {
+  height: 40px;
+  width: 100%;
+}
+
+#sidebar .current-project button {
+  background-color: #1A3E7F;
+  border: none;
+  font-size: 14px;
+}
+
+#sidebar .current-project button.p-name {
+  width: 75%;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  border-radius: 20px 0 0 20px;
+  padding-left: 20px;
+}
+
+#sidebar .current-project button.p-options {
+  border-radius: 0 20px 20px 0;
+  padding-right: 20px;
+}
+
+#sidebar .separator {
+  margin: 0 0 15px;
+  padding-left: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#sidebar .icon {
+  display: inline-block;
+  width: 25px;
+  /*margin-right: 10px;*/
+}
+
+#sidebar ul {
+  padding: 0;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+#sidebar li {
+  margin: 0;
+  margin-right: -15px;
+}
+
+#sidebar li a,
+#sidebar li span {
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 10px;
+  display: block;
+  line-height: 30px;
+  color: #fff;
+  text-decoration: none;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+#sidebar li span {
+  color: #444;
+}
+
+#sidebar li a:hover {
+  color: #fff;
+  background-color: rgba(26, 62, 127, 0.75);
+}
+
+#sidebar ul.sub-menu {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+#sidebar ul.sub-menu .icon {
+  width: 15px;
+}
+
+#sidebar ul.sub-menu li {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+#sidebar ul.sub-menu li a,
+#sidebar ul.sub-menu li span {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#sidebar .sidebar-secrets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+#sidebar .sidebar-secrets .vault-env {
+  font-size: 32px;
+  font-weight: bolder;
+  text-align: center;
+  opacity: 0.15;
+  text-transform: uppercase;
+  color: white;
+}
