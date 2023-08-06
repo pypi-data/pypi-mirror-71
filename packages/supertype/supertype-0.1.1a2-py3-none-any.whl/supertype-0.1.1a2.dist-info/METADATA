@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: supertype
+Version: 0.1.1a2
+Summary: Secure one-to-many production and consumption library for Supertype
+Home-page: https://github.com/super-type/supertype
+Author: Carter Klein
+Author-email: carter@supertype.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Supertype Implement
+
+Implement is the backbone of Supertype. This library enables the easy, secure, and efficient end-to-end encrypted production and consumption of data between connected devices.
+
+## Functions:
+
+### produce(data, attribute, nuid)
+- data: the data to be encrypted and produced
+- attribute: the Supertype consumer attriubute you wish to produce to Supertype (see <TODO: add vendor dashboard link>)
+- supertype_id: the Supertype ID of the currently logged-in Supertype user
+
+### consume(supertype_id, attribute, date)
+- supertype_id: the Supertype ID of the currently logged-in Supertype user
+- attribute: the Supertype consumer attriubute you wish to consume (see <TODO: add vendor dashboard link>)
+- date: the date you want to receive data from
+
