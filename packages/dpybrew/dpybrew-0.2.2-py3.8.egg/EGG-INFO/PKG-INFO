@@ -1,0 +1,123 @@
+Metadata-Version: 1.2
+Name: dpybrew
+Version: 0.2.2
+Summary: A discord.py extension/service manager
+Home-page: https://github.com/sizumita/dpybrew
+Author: sizumita
+Author-email: 
+License: MIT license
+Description: =======
+        dpybrew
+        =======
+        
+        
+        .. image:: https://img.shields.io/pypi/v/dpybrew.svg
+                :target: https://pypi.python.org/pypi/dpybrew
+        
+        .. image:: https://img.shields.io/travis/sizumita/dpybrew.svg
+                :target: https://travis-ci.com/sizumita/dpybrew
+        
+        .. image:: https://readthedocs.org/projects/dpybrew/badge/?version=latest
+                :target: https://dpybrew.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        A discord.py extension/service manager
+        
+        
+        * Free software: MIT license
+        * Documentation: https://dpybrew.readthedocs.io.
+        
+        =============
+        Installation
+        =============
+        
+        You can install dpybrew from Pypi.
+        
+        .. code-block:: console
+        
+            $ pip install dpybrew
+        
+        
+        ======
+        Useage
+        ======
+        
+        -------------------
+        Show extension list
+        -------------------
+        
+        .. code-block:: console
+        
+            $ dpybrew list
+        
+        or
+        
+        .. code-block:: console
+        
+            $ dpybrew list your-extensions-path
+        
+        
+        ------------------
+        Install extensions
+        ------------------
+        
+        .. code-block:: console
+        
+            $ dpybrew install [extension-name]
+        
+        or
+        
+        .. code-block:: console
+        
+            $ dpybrew install git+url -dir cogs/
+        
+        All extensions -> https://gist.github.com/sizumita/19ec79e3ad0ecfae89cca665ddf717e1
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        ------------------
+        0.1.0 (2020-03-29)
+        ------------------
+        
+        * First release on PyPI.
+        
+        
+        ------------------
+        0.2.0 (2020-03-30)
+        ------------------
+        
+        * [Add] view extensions command.
+        * [Add] install extensions command.
+        
+Keywords: dpybrew
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
