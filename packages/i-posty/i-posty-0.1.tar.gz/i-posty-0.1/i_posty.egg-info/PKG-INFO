@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: i-posty
+Version: 0.1
+Summary: A lightweight command-line link shortening tool for Linux.
+Home-page: https://github.com/not-so-cool-anymore/posty/
+Author: Ivan Zlatanov
+Author-email: me@iv.an
+License: UNKNOWN
+Description: # Posty
+        
+        Posty is just a basic command line URL shortener that uses the Tinyurl API.
+        
+        ---
+        
+        ## Installation
+        You can install it from PyPi with `pip install Posty` or locally with `pip install .`.
+        
+        ## Usage
+        You can run Posty by writing `posty` on the command line. It will copy the content of your clipboard, validate if it is a valid URL
+        with Regex, shorten it and copy it to the clipboard again.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
