@@ -1,0 +1,17 @@
+include bark_ml/core.so
+include bark_ml/environments/blueprints/highway/city_highway_straight.xodr
+include bark_ml/environments/blueprints/intersection/4way_intersection.xodr
+include bark_ml/environments/blueprints/merging/DR_DEU_Merging_MT_v01_shifted.xodr
+include bark_ml/pip_package
+include bark_ml/py_tests
+include bark_ml/tests/py_behavior_tests
+include bark_ml/tests/py_environment_tests
+include bark_ml/tests/py_evaluator_tests
+include bark_ml/tests/py_library_tfa_tests
+include bark_ml/tests/py_observer_tests
+include external/bark_project/bark/core.so
+include external/bark_project/bark/python_wrapper/core.so
+include external/bazel_tools/tools/python/py3wrapper.sh
+include ject/bark/core.so
+include ject/bark/python_wrapper/core.so
+include ols/tools/python/py3wrapper.sh
