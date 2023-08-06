@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: phoebusgen
+Version: 0.0.2
+Summary: Control screen generator for Phoebus
+Home-page: https://github.com/tynanford/phoebusgen
+Author: Tynan Ford
+Author-email: tford@lbl.gov
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Software Development :: Code Generators
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+Python Module to Generate Phoebus Control Screens
+===
+
+Phoebus is the next generation of Control System Studio, a graphical platform for EPICS control systems.
+https://github.com/ControlSystemStudio/phoebus
+
+This module aims to provide a way to generate Phoebus xml through Python.
+
+# Requirements
+
+- Python >= 3.5
+- [pyyaml](https://pypi.org/project/PyYAML/)
+
+# Basics
+
+## phoebusgen.widget
+
+Low Level Python API to directly create Phoebus widgets
+
+Example
+- ```text_update_xml = phoebusgen.widget.TextUpdate(widget_name, pv_name, x, y, height, width)```
+
+
+## phoebusgen.screen 
+
+
+
+
+
