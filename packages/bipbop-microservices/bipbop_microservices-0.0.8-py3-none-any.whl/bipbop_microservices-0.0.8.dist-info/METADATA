@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: bipbop-microservices
+Version: 0.0.8
+Summary: IPC between BIPBOP APPs
+Home-page: https://github.com/bipbop/bipbop-microservices
+Author: Lucas Fernando Amorim
+Author-email: lf.amorim@bipbop.com.br
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Customer Service
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Microserviços BIPBOP - Python
+
+O objetivo desta aplicação é permitir que softwares de Machine Learning funcionem de maneira rápida, discreta e integrada nas aplicações BIPBOP.
+
+## TL-DR
+
+```python
+from bipbop_microservices import udp_server, register_service
+register_service('uppercase', lambda content: content.upper(), { type: "string" }, { type: "string" })
+udp_server().serve_forever()
+```
+
+
