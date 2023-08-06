@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: myxine-client
+Version: 0.1.0
+Summary: A Python client for the Myxine GUI server.
+Home-page: https://github.com/GaloisInc/myxine
+Author: Kenny Foner
+Author-email: kwf@very.science
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+
+# A Python client for Myxine
+
+[Myxine](https://github.com/GaloisInc/myxine) is a language-agnostic local
+server that lets you build interactive applications in the browser using a
+RESTful API. This package defines simple Python bindings for using Myxine to
+quickly prototype surprisingly high-performance GUIs.
+
+Myxine itself runs as a local server, separately from these bindings. It is
+built in Rust, and can be installed using the standard Rust build tool cargo:
+
+``` bash
+$ cargo install myxine
+```
+
+This Python package does not manage the myxine server process; it assumes that
+it is already running in the background (either started by an end-user, or
+managed by your own Python application).
+
+**Package versioning and stability:** This package should be considered in
+"alpha" stability at present. No compatibility between alpha versions is
+guaranteed.
+
+
