@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: django-mycli
+Version: 1.0.0
+Summary: Database runtime for Django that replaces mysql with mycli.
+Home-page: https://github.com/ashchristopher/django-mycli
+Author: Ash Christopher
+Author-email: ash.christopher@gmail.com
+License: BSD
+Description: 
+        ===============================
+        django-mycli
+        ===============================
+        
+        .. image:: https://img.shields.io/travis/ashchristopher/django-mycli.svg
+                :target: https://travis-ci.org/ashchristopher/django-mycli
+        
+        .. image:: https://img.shields.io/pypi/v/django-mycli.svg
+                :target: https://pypi.python.org/pypi/django-mycli
+        
+        
+        Alternate database runtime for Django that replaces mysql with mycli when
+        calling the Django `dbshell` management command.
+        
+        * Free software: BSD license
+        
+        Installation
+        ------------
+        
+        Installation is as simple as::
+        
+            $ pip install django-mycli
+        
+        Add ``django_mycli`` to your ``INSTALLED_APPS`` setting.
+        
+            INSTALLED_APPS = [
+                ...,
+                'django_mycli',
+            ]
+        
+        
+        Usage
+        -----
+        Call the `dbshell` command.
+        
+            ./manage.py dbshell
+        
+        
+        
+        
+        History
+        -------
+        
+        1.0.0 (2020-06-19)
+        ---------------------
+        * Support for Django 2.2 LTS and above
+        * Removed support for Python 3.4
+        * Add support for Python 3.8
+        
+        0.0.1 (2015-08-01)
+        ---------------------
+        * Initial release.
+        
+Keywords: django mycli mysql database
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
