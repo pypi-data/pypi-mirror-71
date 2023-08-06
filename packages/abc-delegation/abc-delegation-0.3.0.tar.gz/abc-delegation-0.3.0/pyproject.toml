@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "abc-delegation"
+version = "0.3.0"
+description = "A tool for automated delegation with abstract base classes"
+authors = ["Vladyslav Halchenko <valh@tuta.io>"]
+license = "MIT"
+readme = 'README.md'
+repository = "https://github.com/monomonedula/abc-delegation"
+homepage = "https://github.com/monomonedula/abc-delegation"
+keywords = ["decorator", "delegation", "ABC", "abstract-base-class", "metaclasses", "utility"]
+
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+pytest-cov = "^2.10.0"
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
