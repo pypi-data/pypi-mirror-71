@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: cv-py
+Version: 0.2.0
+Summary: Collection of tools and techniques to kick-start analysis of the COVID-19 Research Challenge Dataset 
+Author: Thurston Sexton
+Author-email: thurston.sexton@nist.gov
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Provides-Extra: flair
+Provides-Extra: spacy
+Provides-Extra: viz
+Requires-Dist: dacite (>=1.5.0,<2.0.0)
+Requires-Dist: dask[complete] (>=2.13.0,<3.0.0)
+Requires-Dist: flair (>=0.4.5,<0.5.0); extra == "flair"
+Requires-Dist: holoviews[recommended] (>=1.13.2,<2.0.0); extra == "viz"
+Requires-Dist: pandas (>=1.0.3,<2.0.0)
+Requires-Dist: panel (>=0.9.5,<0.10.0); extra == "viz"
+Requires-Dist: pyarrow (>=0.16.0,<0.17.0)
+Requires-Dist: requests (>=2.23.0,<3.0.0)
+Requires-Dist: scikit-learn (>=0.22.2,<0.23.0)
+Requires-Dist: scispacy (>=0.2.4,<0.3.0); extra == "spacy"
+Requires-Dist: seaborn (>=0.10.0,<0.11.0); extra == "viz"
+Requires-Dist: semantic_version (>=2.8.5,<3.0.0)
+Requires-Dist: textacy (>=0.10.0,<0.11.0); extra == "spacy"
+Requires-Dist: tqdm (>=4.43.0,<5.0.0)
