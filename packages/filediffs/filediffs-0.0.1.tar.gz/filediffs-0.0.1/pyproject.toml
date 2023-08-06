@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "filediffs"
+version = "0.0.1"
+description = "Separate two file into lines observed in both-/first_only-/second_only. Programmed using Cython."
+authors = ["Sebastian Cattes <sebastian.cattes@inwt-statistics.de>"]
+
+readme = 'README.md'
+keywords = ['separate files', 'compare files']
+
+exclude = ["separatefiles/tests/*"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+cython = { version = "0.29.19"}
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+cython = { version = "0.29.19"}
+
+[tool.poetry.scripts]
+my-script = 'separatefiles:separate_files_script'
+
+[build-system]
+requires = ["poetry>=1.0.3", "setuptools", "wheel", "cython==0.29.19"]
