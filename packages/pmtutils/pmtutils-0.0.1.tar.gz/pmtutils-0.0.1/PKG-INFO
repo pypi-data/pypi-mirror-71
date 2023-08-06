@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: pmtutils
+Version: 0.0.1
+Summary: Portable toolkit for interacting with the PyMetaTome pipeline
+Home-page: https://github.com/lambertsbennett/pmtutils
+Author: Bennett Lambert
+Author-email: lambertb@uw.edu
+License: UNKNOWN
+Download-URL: https://github.com/lambertsbennett/pmtutils/archive/v_01.tar.gz
+Description: ## pmtutils
+        PyMetaTome utilities. When working with the 
+        [PyMetaTome pipeline](https://github.com/armbrustlab/PyMetaTome),
+        there is a need for portable helper tools that can easily be added to custom 
+        containers. 
+        
+        These utilities are currently targeted at key processes in PyMetaTome:
+        
+        - Database creation and similarity matrix construction.
+        - YAML metadata file operations.
+        - Read sampling prior to bioinformatic analyses.
+        - Webhook handling.
+        
+        pmtutils requires [Samtools](http://www.htslib.org/download/) and [ClustalW2](http://www.clustal.org/clustal2/) for database creation.
+        
+        Python dependencies:
+        - [Biopython](https://biopython.org/)
+        - [ruamel_yaml](https://yaml.readthedocs.io/en/latest/overview.html)
+        - NumPy
+        - [flask](https://flask.palletsprojects.com/en/1.1.x/)
+        
+Keywords: Transcriptomics,Bioinformatics
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Development Status :: 2 - Pre-Alpha
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
