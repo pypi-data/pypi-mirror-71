@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: pyHM
+Version: 0.0.3
+Summary: Python Human Movement is a python package which imitates human movements
+Home-page: https://bitbucket.org/joetilsed/pyHM/
+Author: Joe Tilsed
+Author-email: Joe@Tilsed.com
+License: UNKNOWN
+Description: # Python Human Movements is a python package which imitates human movements
+        ###### Author: [Joe Tilsed](http://linkedin.com/in/joetilsed) | Created: 19.06.2020 | Last Updated: 20.06.2020 | Version 0.0.3
+        
+        # pyHM
+        
+        Python Human Movements is a python package which imitates human movements.
+        
+        ## Installation
+        
+            $ pip install pyHM
+        
+        ## Getting Started
+        
+        ### Mouse
+        Importing the mouse object from the parent package.
+        ```python
+        from pyHM import mouse
+        
+        print(type(mouse))
+        ```
+        ```
+        >> <class 'mouse.Mouse'>
+        ```
+        
+        #### Mouse.move()
+        Have your mouse move across your screen to an `(x, y)` coordinate like a human would. 
+        ```python
+        from pyHM import mouse
+        
+        destination_x = 16
+        destination_y = 25
+        
+        mouse.move(destination_x, destination_y)
+        ```
+        ```
+        >> *Your mouse cursor moves to (16, 25) as if it were a human*
+        ```
+        
+        You can also add a multiplier which will either speed-up or slow down the mouse movement depending on what you want.
+        The higher the number the slower the movement, you can also have floats such as `0.1337`.
+        ```python
+        from pyHM import mouse
+        
+        x = 5
+        y = 2
+        
+        mouse.move(x, y, multiplier=10)
+        ``` 
+        ```
+        >> *Your mouse cursor moves to (5, 2) as if it were a human
+            at about 10 times the speed*
+        ```
+        
+        ### Mouse.get_current_position()
+        This will return your mouses current x and y coordinate.
+        ```python
+        from pyHM import mouse
+        
+        print(mouse.get_current_position())
+        ```
+        ```
+        >> (1954, 122)
+        ```
+        
+        ###### # That's all folks...
+        
+Keywords: pyHM python human movements
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
