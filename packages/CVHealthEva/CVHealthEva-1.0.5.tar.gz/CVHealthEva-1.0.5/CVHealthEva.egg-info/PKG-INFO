@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: CVHealthEva
+Version: 1.0.5
+Summary: CVD score & CVD age
+Home-page: https://github.com/VVictorChen/CVHealthEva
+Author: Victor
+Author-email: chenweibang@genomics.cn
+License: UNKNOWN
+Description: # CVHealthEva
+        
+        The CVHealthEva is a python package that assists doctors to evaluate individual cardiovascular status. Users can use it to calculate the cardiovascular age, absolute risk score（ARS）and relative risk score (RRS) of individuals.
+        
+        
+        ## Installation and dependency package
+         dependency package	
+        ```
+        python >=3.6
+        xgboost >=0.90
+        ```
+         Installation
+        ```
+        pip install cvdscore
+        ```
+        
+        ## Example
+        ```
+        from xgboost import XGBClassifier
+        import pickle
+        import scipy.stats as st
+        import pandas as pd
+        import numpy as np
+        import cvdscore
+        test = pd.read_table('https://raw.githubusercontent.com/VVictorChen/cvdscore/master/Example/DEMO_TESTV2.csv',sep=',',encoding='utf_8_sig')
+        testdata= test.drop(['result_after3year'],axis =1 ,inplace=False) 
+        test.head()
+        X = preprocess(testdata)
+        X.head()
+        cvd_age = cvdage(X)
+        cvd_score = main_cvdscore(X)
+        ```
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
