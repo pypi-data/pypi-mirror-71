@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: bestpix
+Version: 1.2.4
+Summary: UNKNOWN
+Home-page: https://github.com/mkchuprin/BestPix
+Author: Michael Chuprin
+Author-email: mkchuprin@gmail.com
+License: GNU GPLv3
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: Flask (==1.1.2)
+Requires-Dist: pyheif (==0.4)
+Requires-Dist: Pillow (==7.1.2)
+
+# BestPix
+
+Use your Mac to see the photos your iPhone thinks are best.
+
+## Description 
+
+Each time you take a photo with your iPhone, a "beautifulness" score is given to that photo. This package shows you the 10 highest scoring photos.
+
+## Privacy
+
+This package does not upload any data. 
+
+
+## Install 
+1. Open your terminal and run the command `pip3 install bestpix`
+
+## Use
+1. Import your iPhone's photos to your Mac. Official instructions [here](https://support.apple.com/en-us/HT201302#importmac)
+2. Open your terminal and run the command `reveal`
+3. Using your web browser, go to `localhost:8442`
+
+## Uninstall 
+1. Open your terminal and run the command `cleanup`, then the command `pip3 uninstall bestpix`
+
