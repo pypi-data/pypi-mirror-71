@@ -1,0 +1,14 @@
+[Unit]
+Description=Odoo Service
+After=network.target
+
+[Service]
+User={{ user }}
+Type=simple
+WorkingDirectory={{ datadir }}
+ExecStart={{ venv }}/bin/python3 {{ srcdir }}/odoo-bin --config={{ confdir }}/odoo.conf
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
