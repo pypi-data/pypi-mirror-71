@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: simple-categories
+Version: 0.1.1
+Summary: Reads a categorized file and returns a dictionary
+Home-page: https://gitlab.com/Nerdeiro/category-lists
+Author: Bento Loewenstein Silveira
+Author-email: anarch157a@ninjazumbi.com
+License: GPL2
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+Reads lines from a plaintext file, separated by categories.
+
+To use use it, install the package and import on your project with
+
+    import catlist
+
+Then read a file with
+
+    categories = catlist.catlist(file_name)
+
+Category names are delimited by square brackets as the first and last
+characters of the line.
+
+Items in each category are just plain text, one item per line
+
+Any lines before the first category will be assigned to 'uncategorized'
+
+The format is simmilar to .ini files, only you don't have thei 'key'='value'
+structure in the items.
+
+Blank lines and lines that begin with '#' are ignored.
+
+Example of a file:
+
+```
+# the following lines will be assigned to 'uncategorized`
+
+Linux
+Windows
+MacOS
+
+[Directories]
+/home
+/usr
+/etc
+
+# this line will be ignored
+
+[Files]
+README.md
+module.py
+```
+
+
