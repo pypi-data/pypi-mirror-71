@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: dedupe-variable-ilcs
+Version: 0.1.0
+Summary: Dedupe variable for Illinois Compiled Statute (ILCS) codes
+Home-page: https://github.com/dedupeio/dedupe-variable-ilcs
+Author: DataMade
+License: The MIT License: http://www.opensource.org/licenses/mit-license.php
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Description-Content-Type: text/markdown
+Requires-Dist: ilcs-parser
+Requires-Dist: parseratorvariable
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: parserator ; extra == 'tests'
+
+# dedupe-variable-ilcs
+
+Dedupe variable for Illinois Compiled Statute (ILCS) codes.
+
+Part of the [Dedupe.io](https://dedupe.io/) cloud service and open source toolset for de-duplicating and finding fuzzy matches in your data.
+
+## Installation
+
+Install with `pip`:
+
+```
+pip install git+https://github.com/dedupeio/dedupe-variable-ilcs.git
+```
+
+## Development
+
+Local development requires an installation of Python.
+
+Install development requirements:
+
+```
+pip install -e .[tests]
+```
+
+Train the `ilcs_parser` model:
+
+```
+parserator train training/labeled.xml ilcs_parser
+```
+
+The variable should now be ready to use.
+
+### Running tests
+
+Run the tests:
+
+```
+pytest
+```
+
+All tests should pass.
+
+
