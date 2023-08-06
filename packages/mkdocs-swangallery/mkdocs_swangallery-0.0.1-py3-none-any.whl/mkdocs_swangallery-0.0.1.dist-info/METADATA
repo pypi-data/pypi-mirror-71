@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: mkdocs-swangallery
+Version: 0.0.1
+Summary: Plugin for MkDocs to genereate a SWAN Gallery
+Home-page: https://github.com/swan-cern/mkdocs-swangallery
+Author: Diogo Castro
+Author-email: diogo.castro@cern.ch
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Description-Content-Type: text/markdown
+Requires-Dist: mkdocs
+Requires-Dist: nbconvert
+Requires-Dist: nbformat
+Requires-Dist: premailer
+Requires-Dist: bs4
+
+# SWAN Gallery MkDocs plugin
+
+Plugin to automatically generate a [SWAN](https://cern.ch/swan) gallery using [MkDocs](https://www.mkdocs.org/).
+
+## How to use
+
+Install the package:
+```
+pip install mkdocs-swangallery
+```
+
+And add it to `mkdocs.yml`:
+```yml
+plugins:
+  - swangallery
+```
+
