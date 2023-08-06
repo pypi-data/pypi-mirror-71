@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "context_logging"
+version = "1.1.0"
+description = "Tool for easy logging with current context information"
+authors = ["Evgeniy Afonasev <ea.afonasev@gmail.com>"]
+license = "MIT"
+readme = 'README.md'
+repository = "https://github.com/Afonasev/context_logging"
+homepage = "https://pypi.org/project/context_logging"
+keywords = ["logging", "logger", "context"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+contextvars_executor = "^0.0.1"
+deprecated = "^1.2.10"
+pydantic = "^1"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^19.10b0", allow-prereleases = true}
+bumpversion = "^0.5"
+codecov = "^2.1.7"
+flake8-awesome = "^1"
+mypy = "*"
+pylint = "^2"
+pytest = "^5"
+pytest-asyncio = "^0.12"
+pytest-cov = "^2"
+pytest-deadfixtures = "^2"
+pytest-mock = "^2"
+unify = "^0.5"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
