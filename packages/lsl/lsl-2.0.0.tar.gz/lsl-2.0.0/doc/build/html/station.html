@@ -1,0 +1,634 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Station Meta-Data &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Session and Observation Specification for a Single LWA Station" href="sdf.html" />
+    <link rel="prev" title="LWA Swarm Observations" href="swarm.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sdf.html" title="Session and Observation Specification for a Single LWA Station"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="swarm.html" title="LWA Swarm Observations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="station-meta-data">
+<h1>Station Meta-Data<a class="headerlink" href="#station-meta-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-lsl.common.stations">
+<span id="station-level-data"></span><h2>Station-Level Data<a class="headerlink" href="#module-lsl.common.stations" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.common.stations.geo2ecef">
+<code class="descclassname">lsl.common.stations.</code><code class="descname">geo2ecef</code><span class="sig-paren">(</span><em>lat</em>, <em>lon</em>, <em>elev</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.geo2ecef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert latitude (rad), longitude (rad), elevation (m) to earth-
+centered, earth-fixed coordinates.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.stations.ecef2geo">
+<code class="descclassname">lsl.common.stations.</code><code class="descname">ecef2geo</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.ecef2geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert earth-centered, earth-fixed coordinates to (rad), longitude 
+(rad), elevation (m) using Bowring’s method.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.LWAStation">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">LWAStation</code><span class="sig-paren">(</span><em>name</em>, <em>lat</em>, <em>long</em>, <em>elev</em>, <em>id=''</em>, <em>antennas=None</em>, <em>interface=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to hold information about the a LWA station.  This object can
+create a ephem.Observer representation of itself and identify which stands
+were in use at a given time.  Stores station:
+* Name (name)
+* ID code (id)
+* Latitiude in radians [but initialized as degrees] (N is positive, lat)
+* Longitude in radians [but initialized as degrees] (W is negative, long)
+* Elevation in meters (elev)
+* List of Antenna instances (antennas)</p>
+<p>LWAStation provides several functional attributes for dealing with the 
+station’s location on Earth.  These include:
+* getObserver: Return an ephem.Observer instance representing the station
+* getAIPYLocation: Return a tuple for setting the location of an AIPY</p>
+<blockquote>
+<div>AntennaArray instance</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>getGeocentricLocation: Return a tuple of the EC-EF coordinates of the </dt>
+<dd>station</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>getECITransform: Return a 3x3 transformation matrix to convert antenna</dt>
+<dd>positions to ECI coordinates</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>getECIInverseTransform: Return a 3x3 transformation matrix to convert antenna</dt>
+<dd>positions from ECI coordinates</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>getENZOffset: Return the east, north, and vertical offsets to a point on</dt>
+<dd>the surface of the Earth</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>getPointingAndDistance: Return the pointing direction and distance to </dt>
+<dd>another location on the surface of the Earth</dd>
+</dl>
+</li>
+</ul>
+<p>LWAStation also provides several functional attributes for dealing with
+the station’s antennas.  These include:
+* getAntennas:  Return a list of antennas
+* getStands: Return a list of stands
+* getPols:  Return a list of polarizations
+* getCables: Return a list of cables</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.0: </span>Added a new ‘interface’ attribute which provides referenves to various modules
+to help interface with the station.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Converted LWAStation to be an instance of LWAStationBase and ephem.Observer
+to make it easier to work with ephem.Body objects.</p>
+<p>Added additional functions for dealing with other locations.</p>
+<p>Changed getECEFTransform() to getECITransform() to make the function name
+consistent with its purpose.</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.compute">
+<code class="descname">compute</code><span class="sig-paren">(</span><em>body</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the provided ephem.Body instance with the current location as 
+viewed from the site.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getAIPYLocation">
+<code class="descname">getAIPYLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getAIPYLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple that can be used by AIPY for specifying a array
+location.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getAntennas">
+<code class="descname">getAntennas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getAntennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of Antenna instances for the station, sorted by 
+digitizer number.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getCables">
+<code class="descname">getCables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getCables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Cable instances for each antenna, sorted by
+digitizer number.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getECIInverseTransform">
+<code class="descname">getECIInverseTransform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getECIInverseTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 3x3 transformation matrix that converts a baseline in 
+earth-centered inertial coordinates [x, y, z] to [east, north, 
+elevation] for that baseline.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getECITransform">
+<code class="descname">getECITransform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getECITransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 3x3 transformation matrix that converts a baseline in 
+[east, north, elevation] to earth-centered inertial coordinates
+for that baseline [x, y, z].  Based off the ‘local_to_eci’ 
+function in the lwda_fits-dev library.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getENZOffset">
+<code class="descname">getENZOffset</code><span class="sig-paren">(</span><em>locTo</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getENZOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given another location on the surface of the Earth, either as a 
+LWAStation instance or a three-element tuple of latitude (deg.), 
+longitude (deg.), and elevation (m), return the topocentric offset
+in meter along the east, north, and vertical directions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getGeocentricLocation">
+<code class="descname">getGeocentricLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getGeocentricLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with earth-centered, earth-fixed coordinates for the station.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getObserver">
+<code class="descname">getObserver</code><span class="sig-paren">(</span><em>date=None</em>, <em>JD=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a ephem.Observer object for this site.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getPointingAndDistance">
+<code class="descname">getPointingAndDistance</code><span class="sig-paren">(</span><em>locTo</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getPointingAndDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given another location on the surface of the Earth, either as a 
+LWAStation instance or a three-element tuple of latitude (deg.), 
+longitude (deg.), and elevation (m), return the bearing azimuth/
+elevation in radians and distance in meters to the location.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>Renamed from getPointingAndDirection to getPointingAndDistance</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getPols">
+<code class="descname">getPols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getPols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of polarization (0 == N-S; 1 == E-W) for each antenna, 
+sorted by digitizer number.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.LWAStation.getStands">
+<code class="descname">getStands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LWAStation.getStands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Stand instances for each antenna, sorted by 
+digitizer number.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.Antenna">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">Antenna</code><span class="sig-paren">(</span><em>id</em>, <em>arx=None</em>, <em>board=0</em>, <em>digitizer=0</em>, <em>input=''</em>, <em>stand=None</em>, <em>pol=0</em>, <em>theta=0.0</em>, <em>phi=0.0</em>, <em>fee=None</em>, <em>feePort=1</em>, <em>cable=None</em>, <em>status=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store the information about an antenna.  Stores antenna:
+* ID number (id)
+* ARX instance the antenna is attached to (arx)
+* DP1/ROACH board number (board)
+* DP1/ROACH  digitizer number (digitizer)
+* DP/ADP rack input connector (input)
+* Stand instance the antenna is part of (stand)
+* Polarization (0 == N-S; pol)
+* Antenna vertical mis-alignment in degrees (theta)
+* Antenna rotation mis-alignment in degrees (phi)
+* Fee instance the antenna is attached to (fee)
+* Port of the FEE used for the antenna (feePort)
+* Cable instance used to connect the antenna (cable)
+* Status of the antenna (status)</p>
+<p>Status codes are:
+* 0 == Not installed
+* 1 == Bad
+* 2 == Suspect, possibly bad
+* 3 == OK</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added an attribute to hold the DP rack input connector label.</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.stations.Antenna.getStatus">
+<code class="descname">getStatus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Antenna.getStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the combined antenna + FEE status as a two digit number 
+with the first digit representing the antenna status and the 
+second the FEE status.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Antenna.response">
+<code class="descname">response</code><span class="sig-paren">(</span><em>dB=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Antenna.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a two-element tuple (freq in Hz, mis-match efficiency) for a model LWA1 
+antenna from Hicks et al. (2012, PASP, 124, 1090).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.Stand">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">Stand</code><span class="sig-paren">(</span><em>id</em>, <em>x</em>, <em>y</em>, <em>z</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Stand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store the information (location and ID) about a stand.  
+Stores stand:
+* ID number (id)
+* Position relative to the center stake in meters (x,y,z)</p>
+<p>The x, y, and z positions can also be accessed through subscripts:
+Stand[0] = x
+Stand[1] = y
+Stand[2] = z</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added the option to get the positions via subscripts.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.FEE">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">FEE</code><span class="sig-paren">(</span><em>id</em>, <em>idNumber</em>, <em>gain1=0</em>, <em>gain2=0</em>, <em>status=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.FEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store the information about a FEE.  Stores FEE:
+* ID name (id)
+* ID number (idNumber)
+* Gain of port 1 (gain1)
+* Gain of part 2 (gain2)
+* Status (status)</p>
+<p>Status codes are:
+* 0 == Not installed
+* 1 == Bad
+* 2 == Suspect, possibly bad
+* 3 == OK</p>
+<dl class="method">
+<dt id="lsl.common.stations.FEE.response">
+<code class="descname">response</code><span class="sig-paren">(</span><em>dB=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.FEE.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a two-element tuple (freq in Hz, gain) for the frequency-
+dependent gain for a v1.7 FEE from LWA Memo #190, FEE0010, 
+Figure 3.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.Cable">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">Cable</code><span class="sig-paren">(</span><em>id</em>, <em>length</em>, <em>vf=0</em>, <em>dd=0</em>, <em>a0=0.00428</em>, <em>a1=0.0</em>, <em>aFreq=10000000.0</em>, <em>stretch=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store information about a cable.  Stores cable:
+* ID name (id)
+* Length in meters (length)
+* Velocity factor (fractional, vf)
+* Dispersive delay (seconds, dd)
+* Gain term that goes as the square root of frequency (a0)
+* Gain term that goes as frequency (a1)
+* Gain term reference frequency (Hz, aFreq)
+* Cable length stretch factor (stretch)
+* Clock offset (seconds, clockOffset)</p>
+<p>The object also as a functional attribute named ‘delay’ that computes the
+cable delay for a particular frequency or collection of frequencies in 
+Hz.</p>
+<dl class="method">
+<dt id="lsl.common.stations.Cable.attenuation">
+<code class="descname">attenuation</code><span class="sig-paren">(</span><em>frequency=49000000.0</em>, <em>dB=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.attenuation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the multiplicative factor needed to correct for the cable 
+loss for a specific frequency (in Hz).  If attenuations for more 
+than one frequency are needed, the frequencies can be passed in as 
+a numpy array.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added the <a href="#id1"><span class="problematic" id="id2">`</span></a>dB’ keyword to allow dB to be returned.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Cable.clearClockOffset">
+<code class="descname">clearClockOffset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.clearClockOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the clock offset of the cable model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Cable.delay">
+<code class="descname">delay</code><span class="sig-paren">(</span><em>frequency=49000000.0</em>, <em>ns=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the delay associated with the cable in second (or nanoseconds 
+if the ‘ns’ keyword is set to True) for a particular frequency or 
+collection of frequencies in Hz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Cable.gain">
+<code class="descname">gain</code><span class="sig-paren">(</span><em>frequency=49000000.0</em>, <em>dB=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the cable gain (“inverse loss”) for a specific frequency (in 
+Hz).  If gains for more than one frequency are needed, the 
+frequencies can be passed in as a numpy array.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added the <a href="#id3"><span class="problematic" id="id4">`</span></a>dB’ keyword to allow dB to be returned.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Cable.response">
+<code class="descname">response</code><span class="sig-paren">(</span><em>dB=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a two-element tuple (freq in Hz, attenuation) for the cable
+using the model from LWA Memo #170.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.Cable.setClockOffset">
+<code class="descname">setClockOffset</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.Cable.setClockOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a clock offset (in seconds) to the cable model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.ARX">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">ARX</code><span class="sig-paren">(</span><em>id</em>, <em>channel=0</em>, <em>aspChannel=0</em>, <em>input=''</em>, <em>output=''</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.ARX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store information about a ARX board/channel combination.  Stores ARX:
+* ID name (id)
+* Channel number (channel; 1-16)
+* ASP channel number (aspChannel; 1-520)
+* ASP rack input connector label (input)
+* ASP rack output connector label (output)</p>
+<p>The object also as a functional attribute named ‘delay’ that computes the
+cable delay for a particular frequency or collection of frequencies in 
+Hz.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added attributes to hold the ASP rack input and output connector 
+labels.</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.stations.ARX.response">
+<code class="descname">response</code><span class="sig-paren">(</span><em>filter='split'</em>, <em>dB=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.ARX.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a two-element tuple (freq in Hz, S21 magnitude in dB) for 
+the ARX response for the current board/channel from the “ARX0026” 
+memo on the “LWA Engineering Documents” wiki.  For ARX boards at 
+LWA-SV, data from the production tests are used.</p>
+<dl class="docutils">
+<dt>Filter options are:</dt>
+<dd><ul class="first last simple">
+<li>0 or ‘split’</li>
+<li>1 or ‘full’</li>
+<li>2 or ‘reduced’</li>
+<li>4 or <a class="reference external" href="mailto:'split&#37;&#52;&#48;3MHz">‘split<span>&#64;</span>3MHz</a>’</li>
+<li>5 of <a class="reference external" href="mailto:'full&#37;&#52;&#48;3MHz">‘full<span>&#64;</span>3MHz</a>’</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <a class="reference external" href="mailto:'split&#37;&#52;&#48;3MHz">‘split<span>&#64;</span>3MHz</a>’ or <a class="reference external" href="mailto:'full&#37;&#52;&#48;3MHz">‘full<span>&#64;</span>3MHz</a>’ are requested for LWA1, the
+values for ‘split’ and ‘full’ are returned instead.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Switched the filter numbers over to match what ASP uses 
+at LWA1 and LWA-SV.  Also, changed the default filter to
+‘split’ to match the default value for observations.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Add an option to specify whether the magnitude should be 
+returned in dB or not.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.LSLInterface">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">LSLInterface</code><span class="sig-paren">(</span><em>backend=None</em>, <em>mcs=None</em>, <em>sdf=None</em>, <em>metabundle=None</em>, <em>sdm=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.LSLInterface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to store information about how to work with the station in LSL.
+This includes names for the:
+* Backend module to use (backend)
+* MCS module to use (mcs)
+* SDF module to use (sdf)
+* Metadata module to use (metabundle)
+* SDM module to use (sdm)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.stations.parseSSMIF">
+<code class="descclassname">lsl.common.stations.</code><code class="descname">parseSSMIF</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.parseSSMIF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a SSMIF file, return a fully-filled LWAStation instance.  This function
+supports both human-readable files (filenames with ‘.txt’ extensions) or 
+binary packed files (filenames with ‘.dat’ extensions).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.stations.getFullStations">
+<code class="descclassname">lsl.common.stations.</code><code class="descname">getFullStations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.getFullStations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to return a list of full stations.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.stations.PrototypeStation">
+<em class="property">class </em><code class="descclassname">lsl.common.stations.</code><code class="descname">PrototypeStation</code><span class="sig-paren">(</span><em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.PrototypeStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>LWAStation class to provide backward compatiability to the 20-stand prototype 
+system.</p>
+<dl class="method">
+<dt id="lsl.common.stations.PrototypeStation.getAntennas">
+<code class="descname">getAntennas</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.PrototypeStation.getAntennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of Antenna instances for the station, sorted by 
+digitizer number, for a given DateTime instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.PrototypeStation.getCables">
+<code class="descname">getCables</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.PrototypeStation.getCables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Cable instances for each antenna, sorted by
+digitizer number, for a given DateTime instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.PrototypeStation.getPols">
+<code class="descname">getPols</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.PrototypeStation.getPols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of polarization (0 == N-S; 1 == E-W) for each antenna, 
+sorted by digitizer number, for a given DateTime instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.stations.PrototypeStation.getStands">
+<code class="descname">getStands</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.stations.PrototypeStation.getStands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of Stand instances for each antenna, sorted by 
+digitizer number, for a given DateTime instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="station-dynamic-mib-data">
+<h3>Station Dynamic MIB Data<a class="headerlink" href="#station-dynamic-mib-data" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-lsl.common.sdm"></span><dl class="class">
+<dt id="lsl.common.sdm.SubSystemStatus">
+<em class="property">class </em><code class="descclassname">lsl.common.sdm.</code><code class="descname">SubSystemStatus</code><span class="sig-paren">(</span><em>name</em>, <em>summary=6</em>, <em>info='UNK'</em>, <em>time=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SubSystemStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python object that holds the status for a particular subsystem in a SDM 
+file.</p>
+<dl class="method">
+<dt id="lsl.common.sdm.SubSystemStatus.binaryRead">
+<code class="descname">binaryRead</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SubSystemStatus.binaryRead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an open file handle, interpret it in the context of a 
+subsystem_status_struct C structure and update the Python instance accordingly.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdm.SubSubSystemStatus">
+<em class="property">class </em><code class="descclassname">lsl.common.sdm.</code><code class="descname">SubSubSystemStatus</code><span class="sig-paren">(</span><em>fee=None</em>, <em>rpd=None</em>, <em>sep=None</em>, <em>arb=None</em>, <em>dp1=None</em>, <em>dp2=None</em>, <em>dr=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SubSubSystemStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python object that holds the status for the sub-subsystems in a SDM file.</p>
+<dl class="method">
+<dt id="lsl.common.sdm.SubSubSystemStatus.binaryRead">
+<code class="descname">binaryRead</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SubSubSystemStatus.binaryRead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an open file handle, interpret it in the context of a 
+subsubsystem_status_struct C structure and update the Python instance accordingly.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdm.SDM">
+<em class="property">class </em><code class="descclassname">lsl.common.sdm.</code><code class="descname">SDM</code><span class="sig-paren">(</span><em>station=None</em>, <em>shl=None</em>, <em>asp=None</em>, <em>dp=None</em>, <em>dr=None</em>, <em>status=None</em>, <em>antStatus=None</em>, <em>dpoStatus=None</em>, <em>settings=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python object that holds the various bits of information in a binary-packed Station
+Dynamic MIB file (SDM file).</p>
+<dl class="method">
+<dt id="lsl.common.sdm.SDM.updateAntennas">
+<code class="descname">updateAntennas</code><span class="sig-paren">(</span><em>antennas</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.SDM.updateAntennas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of <a class="reference internal" href="#lsl.common.stations.Antenna" title="lsl.common.stations.Antenna"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.Antenna</span></code></a> instances, return a new list 
+of Antenna instances with updated antenna status codes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.sdm.parseSDM">
+<code class="descclassname">lsl.common.sdm.</code><code class="descname">parseSDM</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdm.parseSDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a filename, read the file’s contents into the SDM instance and return
+that instance.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="stand-level-data">
+<h2>Stand-Level Data<a class="headerlink" href="#stand-level-data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Station Meta-Data</a><ul>
+<li><a class="reference internal" href="#module-lsl.common.stations">Station-Level Data</a><ul>
+<li><a class="reference internal" href="#station-dynamic-mib-data">Station Dynamic MIB Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stand-level-data">Stand-Level Data</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="swarm.html"
+                        title="previous chapter">LWA Swarm Observations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sdf.html"
+                        title="next chapter">Session and Observation Specification for a Single LWA Station</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/station.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sdf.html" title="Session and Observation Specification for a Single LWA Station"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="swarm.html" title="LWA Swarm Observations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

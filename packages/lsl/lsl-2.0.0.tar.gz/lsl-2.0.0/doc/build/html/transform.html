@@ -1,0 +1,426 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Time and Position Transformation &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Math Utilities" href="mathutils.html" />
+    <link rel="prev" title="Catalogs and Sky Map" href="catalog.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mathutils.html" title="Math Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="catalog.html" title="Catalogs and Sky Map"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="time-and-position-transformation">
+<h1>Time and Position Transformation<a class="headerlink" href="#time-and-position-transformation" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.2.</span></p>
+</div>
+<span class="target" id="module-lsl.transform"></span><p>Time and position transform objects.</p>
+<div class="section" id="time">
+<h2>Time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.transform.Time">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">Time</code><span class="sig-paren">(</span><em>value</em>, <em>format='MJD'</em>, <em>timesys='UTC'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.Time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds an absolute time value and can manipulate the value in 
+various representations.</p>
+<p>After creation, a particular time format and time system may
+be accessed using the appropriate instance member.  If marked
+with ‘(S)’, the Time value may also be updated by setting the
+member to a new value.</p>
+<p>utc_jd (S)        - UTC standard Julian day
+utc_mjd (S)       - UTC modified Julian day
+utc_timet (S)     - UTC UNIX timet seconds
+utc_py_date (S)   - UTC python datetime.datetime object
+utc_ln_date (S)   - UTC libnova astro.date object
+utc_str           - UTC ISO8601 calendar string format</p>
+<p>tai_jd (S)        - TAI standard Julian day
+tai_mjd (S)       - TAI modified Julian day
+tai_timet (S)     - TAI UNIX timet seconds</p>
+<dl class="staticmethod">
+<dt id="lsl.transform.Time.date_ln_to_py">
+<em class="property">static </em><code class="descname">date_ln_to_py</code><span class="sig-paren">(</span><em>lnDate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.Time.date_ln_to_py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert libnova astro.date object into a python datetime.datetime
+object.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="lsl.transform.Time.date_py_to_ln">
+<em class="property">static </em><code class="descname">date_py_to_ln</code><span class="sig-paren">(</span><em>pyDate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.Time.date_py_to_ln" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert python datatime.datetime object into a libnova astro.date
+object.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="lsl.transform.Time.from_system">
+<em class="property">classmethod </em><code class="descname">from_system</code><span class="sig-paren">(</span><em>klass</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.Time.from_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a Time instance from current system clock value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.tai_jd">
+<code class="descname">tai_jd</code><a class="headerlink" href="#lsl.transform.Time.tai_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as TAI standard julian day (float).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.tai_mjd">
+<code class="descname">tai_mjd</code><a class="headerlink" href="#lsl.transform.Time.tai_mjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as TAI modified julian day (float).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.tai_timet">
+<code class="descname">tai_timet</code><a class="headerlink" href="#lsl.transform.Time.tai_timet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as TAI UNIX timet seconds.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_jd">
+<code class="descname">utc_jd</code><a class="headerlink" href="#lsl.transform.Time.utc_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as UTC standard julian day (float).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_ln_date">
+<code class="descname">utc_ln_date</code><a class="headerlink" href="#lsl.transform.Time.utc_ln_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as UTC calendar astro.date object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_mjd">
+<code class="descname">utc_mjd</code><a class="headerlink" href="#lsl.transform.Time.utc_mjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as UTC modified julian day (float).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_py_date">
+<code class="descname">utc_py_date</code><a class="headerlink" href="#lsl.transform.Time.utc_py_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formattes as UTC calendar datetime.datetime object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_str">
+<code class="descname">utc_str</code><a class="headerlink" href="#lsl.transform.Time.utc_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as UTC ISO 8601 calendar string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.Time.utc_timet">
+<code class="descname">utc_timet</code><a class="headerlink" href="#lsl.transform.Time.utc_timet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time value formatted as UTC UNIX timet seconds.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="celstial-positions">
+<h2>Celstial Positions<a class="headerlink" href="#celstial-positions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.transform.CelestialPosition">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">CelestialPosition</code><span class="sig-paren">(</span><em>value</em>, <em>format='EQU'</em>, <em>epoch='J2000'</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.CelestialPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds a celestial object position value and can manipulate
+the value in various representations.</p>
+<p>After creation, the celestial coordinates may be accessed in different
+formats and epoch by using the appropriate instance member.  If marked
+with ‘(S)’, the Time value may also be updated by setting the member to 
+a new value.</p>
+<p>j2000_equ (S)     - J2000 equatorial coordinates
+j2000_gal (S)     - J2000 galactic coordinates
+j2000_ecl (S)     - J2000 ecliptic coordinates</p>
+<p>b1950_equ (S)     - B1950 equatorial coordinates</p>
+<p>The instance methods apparent_equ() and apparent_ecl() may be used to
+get the apparent equatorial or ecliptic coordinates for a particular
+time.</p>
+<dl class="method">
+<dt id="lsl.transform.CelestialPosition.apparent_ecl">
+<code class="descname">apparent_ecl</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.CelestialPosition.apparent_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return position formatted as apparent ecliptic coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return alue is object of type astro.ecl_posn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.CelestialPosition.apparent_equ">
+<code class="descname">apparent_equ</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.CelestialPosition.apparent_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return position formatted as apparent equatorial coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is object of type astro.equ_posn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.CelestialPosition.b1950_equ">
+<code class="descname">b1950_equ</code><a class="headerlink" href="#lsl.transform.CelestialPosition.b1950_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as B1950 equatorial coordinates.
+Value is object of type astro.equ_posn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.CelestialPosition.j2000_ecl">
+<code class="descname">j2000_ecl</code><a class="headerlink" href="#lsl.transform.CelestialPosition.j2000_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as J2000 ecliptic coordinates.
+Value is object of type astro.ecl_posn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.CelestialPosition.j2000_equ">
+<code class="descname">j2000_equ</code><a class="headerlink" href="#lsl.transform.CelestialPosition.j2000_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as J2000 equatorial coordinates.
+Value is object of type astro.equ_posn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.CelestialPosition.j2000_gal">
+<code class="descname">j2000_gal</code><a class="headerlink" href="#lsl.transform.CelestialPosition.j2000_gal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as J2000 galactic coordinates.
+Value is object of type astro.gal_posn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.transform.PlanetaryPosition">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">PlanetaryPosition</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PlanetaryPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds a solar, lunar, or planetary position value and can manipulate
+the value in various representations.</p>
+<p>The instance methods apparent_equ() and apparent_ecl() may be used to
+get the apparent equatorial or ecliptic coordinates for a particular
+time.</p>
+<dl class="method">
+<dt id="lsl.transform.PlanetaryPosition.apparent_ecl">
+<code class="descname">apparent_ecl</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PlanetaryPosition.apparent_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as apparent ecliptic coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is object of type astro.ecl_posn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.PlanetaryPosition.apparent_equ">
+<code class="descname">apparent_equ</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PlanetaryPosition.apparent_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as apparent equatorial coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is object of type astro.equ_posn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.transform.SkyPosition">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">SkyPosition</code><a class="headerlink" href="#lsl.transform.SkyPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base abstract class for representing positions on the sky.</p>
+<dl class="method">
+<dt id="lsl.transform.SkyPosition.apparent_ecl">
+<code class="descname">apparent_ecl</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.SkyPosition.apparent_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return position formatted as apparent ecliptic coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return alue is object of type astro.ecl_posn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.SkyPosition.apparent_equ">
+<code class="descname">apparent_equ</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.SkyPosition.apparent_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return position formatted as apparent equatorial coordinates.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is object of type astro.equ_posn.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.transform.PointingDirection">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">PointingDirection</code><span class="sig-paren">(</span><em>source</em>, <em>site</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PointingDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent a target source object pointing direction for a particular ground
+site location.</p>
+<p>Each PointingDirection instance pairs a celestial position with a ground
+observation site position.  Each instance contains a ‘source’ member reference
+of type CelestialPosition or PlanetaryPosition and a ‘site’ member reference
+of type GeographicalPosition.</p>
+<p>The instance methods hrz() and dir_cos() may be called to get the
+pointing direction as horizontal coordinates or direction cosine components
+for a particular time of interest.  The rst() method may be called to get
+the rise, set, and transit ephemeris times.</p>
+<dl class="method">
+<dt id="lsl.transform.PointingDirection.dir_cos">
+<code class="descname">dir_cos</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PointingDirection.dir_cos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pointing direction as three direction cosine components.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is a tuple (l, m, n) of direction cosine components.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.PointingDirection.hrz">
+<code class="descname">hrz</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PointingDirection.hrz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pointing direction in horizontal coordinates as type 
+astro.hrz_posn.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.PointingDirection.rst">
+<code class="descname">rst</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.PointingDirection.rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the rise, set, and transit ephemeris times.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Return value is an object of type astro.rst_time, or None if
+the source is circumpolar.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="geographic-positions">
+<h2>Geographic Positions<a class="headerlink" href="#geographic-positions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.transform.GeographicalPosition">
+<em class="property">class </em><code class="descclassname">lsl.transform.</code><code class="descname">GeographicalPosition</code><span class="sig-paren">(</span><em>value</em>, <em>format='GEO'</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.GeographicalPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds a geographical position valuee and can manipulate the value in
+various representations.</p>
+<p>After creation, the celestial coordinates may be accessed in different
+formats and epoch by using the appropriate instance member.  If marked
+with ‘(S)’, the Time value may also be updated by setting the member to 
+a new value.</p>
+<p>geo (S)     - longitude and latitude degrees, elevation meters
+ecef (S)    - Earth centered rectilinear coordinates</p>
+<dl class="attribute">
+<dt id="lsl.transform.GeographicalPosition.ecef">
+<code class="descname">ecef</code><a class="headerlink" href="#lsl.transform.GeographicalPosition.ecef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as ECEF rectagular coordinates.
+Value is object of type astro.rect_posn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.transform.GeographicalPosition.geo">
+<code class="descname">geo</code><a class="headerlink" href="#lsl.transform.GeographicalPosition.geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position formatted as geodedic longitude, latitude, elevation.
+Value is object of type astro.geo_posn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.transform.GeographicalPosition.sidereal">
+<code class="descname">sidereal</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.transform.GeographicalPosition.sidereal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the apparent sidereal time for this location.
+The ‘<a class="reference internal" href="#time">time</a>’ parameter should be set to a Time instance providing
+the time of interest.
+Returns sidereal time as a float in range [0.0, 24.0).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Time and Position Transformation</a><ul>
+<li><a class="reference internal" href="#time">Time</a></li>
+<li><a class="reference internal" href="#celstial-positions">Celstial Positions</a></li>
+<li><a class="reference internal" href="#geographic-positions">Geographic Positions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="catalog.html"
+                        title="previous chapter">Catalogs and Sky Map</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mathutils.html"
+                        title="next chapter">Math Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/transform.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mathutils.html" title="Math Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="catalog.html" title="Catalogs and Sky Map"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

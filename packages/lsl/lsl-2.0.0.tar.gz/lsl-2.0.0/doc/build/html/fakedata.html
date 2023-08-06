@@ -1,0 +1,641 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fake Data &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RF Antenna Parameters" href="misc.html" />
+    <link rel="prev" title="Post-Acquisition Beam Forming" href="beamformer.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="RF Antenna Parameters"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="beamformer.html" title="Post-Acquisition Beam Forming"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-lsl.sim">
+<span id="fake-data"></span><h1>Fake Data<a class="headerlink" href="#module-lsl.sim" title="Permalink to this headline">¶</a></h1>
+<p>lsl.sim - Simulate various types of LWA data.  The following follow DP
+format writers are avaliable:</p>
+<blockquote>
+<div><ul class="simple">
+<li>tbw</li>
+<li>tbn</li>
+<li>drx</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>In addition, there are two simulation modules to generate fake data sets::</dt>
+<dd><ul class="first last simple">
+<li>dp  - generate DP-level data sets for basic signals and point source</li>
+<li>vis - generate visibility data sets for use with the aipy module</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="writers">
+<h2>Writers<a class="headerlink" href="#writers" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.3.</span></p>
+</div>
+<div class="section" id="module-lsl.sim.tbw">
+<span id="tbw"></span><h3>TBW<a class="headerlink" href="#module-lsl.sim.tbw" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lsl.sim.tbw.SimFrame">
+<em class="property">class </em><code class="descclassname">lsl.sim.tbw.</code><code class="descname">SimFrame</code><span class="sig-paren">(</span><em>stand=None</em>, <em>frameCount=None</em>, <em>dataBits=12</em>, <em>obsTime=None</em>, <em>xy=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.SimFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="readers.html#lsl.reader.tbw.Frame" title="lsl.reader.tbw.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbw.Frame</span></code></a></p>
+<p>tbw.SimFrame extends the <a class="reference internal" href="readers.html#lsl.reader.tbw.Frame" title="lsl.reader.tbw.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbw.Frame</span></code></a> object to yield a method 
+for easily creating DP ICD-compliant raw TBW frames.  Frames created with
+this method can be written to a file via the methods writeRawFrame() function.</p>
+<dl class="method">
+<dt id="lsl.sim.tbw.SimFrame.createRawFrame">
+<code class="descname">createRawFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.SimFrame.createRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-express a simulated TBW frame as a numpy array of unsigned 8-bit 
+integers.  Returns a numpy array if the frame  is valid.  If the frame 
+is not ICD-compliant, a errors.baseSimError-type error is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbw.SimFrame.isValid">
+<code class="descname">isValid</code><span class="sig-paren">(</span><em>raiseErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.SimFrame.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if simulated TBW frame is valid or not.  Valid frames return 
+True and invalid frames False.  If the ‘raiseErrors’ keyword is set, 
+isValid() raises an error when a problem with the frame structure is 
+encountered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbw.SimFrame.loadFrame">
+<code class="descname">loadFrame</code><span class="sig-paren">(</span><em>tbwFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.SimFrame.loadFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate the a tbw.SimFrame object with a pre-made frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbw.SimFrame.writeRawFrame">
+<code class="descname">writeRawFrame</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.SimFrame.writeRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a simulated TBW frame to a filehandle if the frame is valid.
+If the frame is not ICD-compliant, a errors.baseSimError-type error is 
+raised.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.tbw.frame2frame">
+<code class="descclassname">lsl.sim.tbw.</code><code class="descname">frame2frame</code><span class="sig-paren">(</span><em>tbwFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbw.frame2frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="readers.html#lsl.reader.tbw.Frame" title="lsl.reader.tbw.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbw.Frame</span></code></a> object to a raw DP TBW frame.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.sim.tbn">
+<span id="tbn"></span><h3>TBN<a class="headerlink" href="#module-lsl.sim.tbn" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lsl.sim.tbn.SimFrame">
+<em class="property">class </em><code class="descclassname">lsl.sim.tbn.</code><code class="descname">SimFrame</code><span class="sig-paren">(</span><em>stand=None</em>, <em>pol=None</em>, <em>centralFreq=None</em>, <em>gain=None</em>, <em>frameCount=None</em>, <em>obsTime=None</em>, <em>iq=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.SimFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="readers.html#lsl.reader.tbn.Frame" title="lsl.reader.tbn.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbn.Frame</span></code></a></p>
+<p>tbn.SimFrame extends the <a class="reference internal" href="readers.html#lsl.reader.tbn.Frame" title="lsl.reader.tbn.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbn.Frame</span></code></a> object to yield a method 
+for easily creating DP ICD-compliant raw TBN frames.  Frames created with
+this method can be written to a file via the methods writeRawFrame() function.</p>
+<dl class="method">
+<dt id="lsl.sim.tbn.SimFrame.createRawFrame">
+<code class="descname">createRawFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.SimFrame.createRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-express a simulated TBN frame as a numpy array of unsigned 8-bit 
+integers.  Returns a numpy array if the frame  is valid.  If the frame 
+is not ICD-compliant, a errors.baseSimError-type error is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbn.SimFrame.isValid">
+<code class="descname">isValid</code><span class="sig-paren">(</span><em>raiseErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.SimFrame.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if simulated TBN frame is valid or not.  Valid frames return 
+True and invalid frames False.  If the ‘raiseErrors’ keyword is set, 
+isValid raises an error when a problem is encountered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbn.SimFrame.loadFrame">
+<code class="descname">loadFrame</code><span class="sig-paren">(</span><em>tbnFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.SimFrame.loadFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate the a tbn.SimFrame object with a pre-made frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.tbn.SimFrame.writeRawFrame">
+<code class="descname">writeRawFrame</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.SimFrame.writeRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a simulated TBN frame to a filehandle if the frame is valid.
+If the frame is not ICD-compliant, a errors.baseSimError-type error 
+is raised.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.tbn.frame2frame">
+<code class="descclassname">lsl.sim.tbn.</code><code class="descname">frame2frame</code><span class="sig-paren">(</span><em>tbnFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.tbn.frame2frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="readers.html#lsl.reader.tbn.Frame" title="lsl.reader.tbn.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.tbn.Frame</span></code></a> object to a raw DP TBN frame.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.sim.drx">
+<span id="drx"></span><h3>DRX<a class="headerlink" href="#module-lsl.sim.drx" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lsl.sim.drx.SimFrame">
+<em class="property">class </em><code class="descclassname">lsl.sim.drx.</code><code class="descname">SimFrame</code><span class="sig-paren">(</span><em>beam=None</em>, <em>tune=None</em>, <em>pol=None</em>, <em>filterCode=None</em>, <em>timeOffset=None</em>, <em>frameCount=None</em>, <em>obsTime=None</em>, <em>flags=None</em>, <em>iq=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.SimFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="readers.html#lsl.reader.drx.Frame" title="lsl.reader.drx.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.drx.Frame</span></code></a></p>
+<p>drx.SimFrame extends the <a class="reference internal" href="readers.html#lsl.reader.drx.Frame" title="lsl.reader.drx.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.drx.Frame</span></code></a> object to yield a method 
+for easily creating DP ICD-compliant raw DRX frames.  Frames created with
+this method can be written to a file via the methods writeRawFrame() function.</p>
+<dl class="method">
+<dt id="lsl.sim.drx.SimFrame.createRawFrame">
+<code class="descname">createRawFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.SimFrame.createRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-express a simulated DRX frame as a numpy array of unsigned 8-bit 
+integers.  Returns a numpy array if the frame is valid.  If the frame 
+is not ICD-compliant, a errors.baseSimError-type error is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.drx.SimFrame.isValid">
+<code class="descname">isValid</code><span class="sig-paren">(</span><em>raiseErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.SimFrame.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if simulated DRX frame is valid or not.  Valid frames return 
+True and invalid frames False.  If the ‘raiseErrors’ keyword is set, 
+isValid raises an error when a problem is encountered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.drx.SimFrame.loadFrame">
+<code class="descname">loadFrame</code><span class="sig-paren">(</span><em>drxFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.SimFrame.loadFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate the a drx.SimFrame object with a pre-made frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.drx.SimFrame.writeRawFrame">
+<code class="descname">writeRawFrame</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.SimFrame.writeRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a simulated DRX frame to a filehandle if the frame is valid.
+If the frame is not ICD-compliant, a errors.baseSimError-type error 
+is raised.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.drx.frame2frame">
+<code class="descclassname">lsl.sim.drx.</code><code class="descname">frame2frame</code><span class="sig-paren">(</span><em>drxFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.drx.frame2frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="readers.html#lsl.reader.drx.Frame" title="lsl.reader.drx.Frame"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.drx.Frame</span></code></a> object to a raw DP DRX frame.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="simulators">
+<h2>Simulators<a class="headerlink" href="#simulators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="digitial-processor-data">
+<h3>Digitial Processor Data<a class="headerlink" href="#digitial-processor-data" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.3.</span></p>
+</div>
+<span class="target" id="module-lsl.sim.dp"></span><dl class="function">
+<dt id="lsl.sim.dp.basicSignal">
+<code class="descclassname">lsl.sim.dp.</code><code class="descname">basicSignal</code><span class="sig-paren">(</span><em>fh</em>, <em>stands</em>, <em>nFrames</em>, <em>mode='DRX'</em>, <em>filter=6</em>, <em>nTuning=2</em>, <em>bits=12</em>, <em>tStart=0</em>, <em>noiseStrength=0.1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.dp.basicSignal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a collection of frames with a basic test signal for TBW, TBN, 
+and DRX.  The signals for the three modes are:</p>
+<p>TBW
+* noise + 40 MHz signal for x-pol.
+* noise + 60 MHz signal for y-pol.</p>
+<blockquote>
+<div>-&gt; odd stands</div></blockquote>
+<ul class="simple">
+<li>noise + 30 MHz signal for x-pol.</li>
+<li><dl class="first docutils">
+<dt>noise + 50 MHz signal for ypol.</dt>
+<dd>-&gt; even stands</dd>
+</dl>
+</li>
+</ul>
+<p>TBN
+* noise + (sampleRate/4) kHz signal for x-pol. and noise +</p>
+<blockquote>
+<div>(-sampleRate/4) for y-pol.</div></blockquote>
+<p>DRX
+* noise + (sampleRate/4) kHz signal for x-pol. and noise +</p>
+<blockquote>
+<div>(-sampleRate/4) for y-pol. -&gt; tuning 1</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>noise + (-sampleRate/3) kHz signal for x-pol. and noise + </dt>
+<dd>(sampleRate/3) for y-pol. -&gt; tuning 2</dd>
+</dl>
+</li>
+</ul>
+<p>All modes need to have stands (beams in the case of DRX) and number of
+frames to generate.  TBW also needs to ‘bits’ keyword set to generate 
+either 12-bit or 4-bit data.  The TBN and DRX frames need the ‘filter’
+keyword set to specify the filter width.  In addition, the ‘stands’ 
+argument is interpreted as beam numbers for DRX.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.4: </span>Added the <cite>noiseStrength</cite> keyword to control how much noise is added to 
+the data.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.dp.pointSource">
+<code class="descclassname">lsl.sim.dp.</code><code class="descname">pointSource</code><span class="sig-paren">(</span><em>fh</em>, <em>stands</em>, <em>src</em>, <em>nFrames</em>, <em>mode='TBN'</em>, <em>CentralFreq=49000000.0</em>, <em>filter=7</em>, <em>bits=12</em>, <em>tStart=0</em>, <em>phaseCenter='z'</em>, <em>noiseStrength=0.1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.dp.pointSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a collection of frames with a point source signal for TBW
+and TBN.  The point source is specified as a aipy.src object.</p>
+<p>All modes need to have stands (beams in the case of DRX) and number of
+frames to generate.  TBW also needs to <a href="#id1"><span class="problematic" id="id2">`</span></a>bits’ keyword set to generate 
+either 12-bit or 4-bit data.  The TBN frames need the <a href="#id3"><span class="problematic" id="id4">`</span></a>filter’ keyword 
+set to specify the filter width.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.4: </span>Added the <cite>noiseStrength</cite> keyword to control how much noise is added to 
+the data.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.sim.vis">
+<span id="visibility-data"></span><h3>Visibility Data<a class="headerlink" href="#module-lsl.sim.vis" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lsl.sim.vis.RadioEarthSatellite">
+<em class="property">class </em><code class="descclassname">lsl.sim.vis.</code><code class="descname">RadioEarthSatellite</code><span class="sig-paren">(</span><em>tle</em>, <em>tfreq</em>, <em>tpower=0.0</em>, <em>tbw=1000000.0</em>, <em>ionref=(0.0</em>, <em>0.0)</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.RadioEarthSatellite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement a aipy.amp.RadioBody-lime simulation object for an Earth-
+orbiting satellite using a two-line element set.</p>
+<dl class="method">
+<dt id="lsl.sim.vis.RadioEarthSatellite.compute">
+<code class="descname">compute</code><span class="sig-paren">(</span><em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.RadioEarthSatellite.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update coordinates relative to the provided observer.  Must be
+called at each time step before accessing information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.RadioEarthSatellite.get_crds">
+<code class="descname">get_crds</code><span class="sig-paren">(</span><em>crdsys</em>, <em>ncrd=3</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.RadioEarthSatellite.get_crds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the coordinates of this location in the desired coordinate
+system (‘eq’,’top’) in the current epoch.  If ncrd=2, angular
+coordinates (ra/dec or az/alt) are returned, and if ncrd=3,
+xyz coordinates are returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.RadioEarthSatellite.get_jys">
+<code class="descname">get_jys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.RadioEarthSatellite.get_jys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the fluxes vs. freq that should be used for simulation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.RadioEarthSatellite.update_jys">
+<code class="descname">update_jys</code><span class="sig-paren">(</span><em>afreqs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.RadioEarthSatellite.update_jys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update fluxes relative to the provided observer.  Must be
+called at each time step before accessing information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.sim.vis.BeamAlm">
+<em class="property">class </em><code class="descclassname">lsl.sim.vis.</code><code class="descname">BeamAlm</code><span class="sig-paren">(</span><em>freqs</em>, <em>lmax=8</em>, <em>mmax=8</em>, <em>deg=7</em>, <em>nside=64</em>, <em>coeffs={}</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.BeamAlm" title="Permalink to this definition">¶</a></dt>
+<dd><p>AIPY-based representation of a beam model where each pointing has a 
+response defined as a polynomial in frequency, and the spatial 
+distributions of these coefficients decomposed into spherical 
+harmonics.</p>
+<p>This differs from the AIPY version in that the response() method 
+accepts two and three-dimensions arrays of topocentric coordinates, 
+similar to what aipy.img.ImgW.get_top() produces, and computes the 
+beam response at all points.</p>
+<dl class="method">
+<dt id="lsl.sim.vis.BeamAlm.response">
+<code class="descname">response</code><span class="sig-paren">(</span><em>top</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.BeamAlm.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return beam response across active band for specified topocentric 
+coordinates (x=E,y=N,z=UP). x,y,z may be multiple coordinates.  
+Returns ‘x’ pol (rotate pi/2 for ‘y’).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function also accepts two and three-dimensions arrays of 
+topocentric coordinates, similar to what aipy.img.ImgW.get_top() 
+produces, and computes the beam response at all points</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.sim.vis.Antenna">
+<em class="property">class </em><code class="descclassname">lsl.sim.vis.</code><code class="descname">Antenna</code><span class="sig-paren">(</span><em>x, y, z, beam, phsoff=[0.0, 0.0], bp_r=array([1]), bp_i=array([0]), amp=1, pointing=(0.0, 1.5707963267948966, 0), stand=0, **kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.Antenna" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modification to the aipy.amp.Antenna class to also store the stand ID 
+number in the Antenna.stand attribute.  This also add a getBeamShape 
+attribute that pulls in the old vis.getBeamShape function.</p>
+<dl class="method">
+<dt id="lsl.sim.vis.Antenna.bm_response">
+<code class="descname">bm_response</code><span class="sig-paren">(</span><em>top</em>, <em>pol='x'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.Antenna.bm_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return response of beam for specified polarization.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This differs from the AIPY implementation in that the LWA X-pol.
+is oriented N-S, not E-W.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function also accepts two and three-dimensions arrays of 
+topocentric coordinates, similar to what img.ImgW.get_top() 
+produces, and computes the beam response at all points.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.Antenna.get_beam_shape">
+<code class="descname">get_beam_shape</code><span class="sig-paren">(</span><em>pol='x'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.Antenna.get_beam_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 360 by 90 by nFreqs numpy array showing the beam pattern of a
+particular antenna in the array.  The first two dimensions of the output 
+array contain the azimuth (from 0 to 359 degrees in 1 degree steps) and 
+altitude (from 0 to 89 degrees in 1 degree steps).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.sim.vis.AntennaArray">
+<em class="property">class </em><code class="descclassname">lsl.sim.vis.</code><code class="descname">AntennaArray</code><span class="sig-paren">(</span><em>location</em>, <em>ants</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modification to the aipy.ant.AntennaArray class to add a function to 
+retrieve the stands stored in the AntennaArray.ants attribute.  Also add 
+a function to set the array time from a UNIX timestamp.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>Added an option to set the ASP filter for simulation proposes.  
+This updates the bandpasses used by AIPY to include the antenna
+impedance mis-match and the mean ARX response.</p>
+</div>
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.gen_phs_fast">
+<code class="descname">gen_phs_fast</code><span class="sig-paren">(</span><em>src</em>, <em>i</em>, <em>j</em>, <em>mfreq=0.15</em>, <em>ionref=None</em>, <em>srcshape=None</em>, <em>resolve_src=False</em>, <em>u=None</em>, <em>v=None</em>, <em>w=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.gen_phs_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return phasing that is multiplied to data to point to src - fast.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.gen_uvw_fast">
+<code class="descname">gen_uvw_fast</code><span class="sig-paren">(</span><em>i</em>, <em>j</em>, <em>src='z'</em>, <em>w_only=False</em>, <em>map=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.gen_uvw_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute uvw coordinates of baseline relative to provided RadioBody, 
+or ‘z’ for zenith uvw coordinates.  If w_only is True, only w (instead
+of (u,v,w) will be returned) - fast.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.get_baseline_fast">
+<code class="descname">get_baseline_fast</code><span class="sig-paren">(</span><em>i</em>, <em>j</em>, <em>src='z'</em>, <em>map=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.get_baseline_fast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the baseline corresponding to i,j in various coordinate 
+projections: src=’e’ for current equatorial, ‘z’ for zenith 
+topocentric, ‘r’ for unrotated equatorial, or a RadioBody for
+projection toward that source - fast.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.get_stands">
+<code class="descname">get_stands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.get_stands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a numpy array listing the stands found in the AntennaArray 
+object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.set_asp_filter">
+<code class="descname">set_asp_filter</code><span class="sig-paren">(</span><em>filter='split'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.set_asp_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the bandpasses for the antennas to include the effect of 
+the antenna impedance mis-match (IMM) and the mean LWA1 ARX 
+response.</p>
+<dl class="docutils">
+<dt>Valid filters are:</dt>
+<dd><ul class="first last simple">
+<li>split</li>
+<li>full</li>
+<li>reduced</li>
+<li><a class="reference external" href="mailto:split&#37;&#52;&#48;3MHz">split<span>&#64;</span>3MHz</a></li>
+<li><a class="reference external" href="mailto:full&#37;&#52;&#48;3MHz">full<span>&#64;</span>3MHz</a></li>
+<li>none</li>
+</ul>
+</dd>
+</dl>
+<p>None is a special case where both the IMM and ARX response are 
+removed, i.e., the bandpass is unity for all frequencies.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Added support for the <a class="reference external" href="mailto:'split&#37;&#52;&#48;3MHz">‘split<span>&#64;</span>3MHz</a>’ and <a class="reference external" href="mailto:'full&#37;&#52;&#48;3MHz">‘full<span>&#64;</span>3MHz</a>’ filters at
+LWA-SV.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.set_unixtime">
+<code class="descname">set_unixtime</code><span class="sig-paren">(</span><em>timestamp</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.set_unixtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the array time using a UNIX timestamp (epoch 1970).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.sim.vis.AntennaArray.sim">
+<code class="descname">sim</code><span class="sig-paren">(</span><em>i</em>, <em>j</em>, <em>pol='xx'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.AntennaArray.sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate visibilities for the specified (i,j) baseline and 
+polarization.  sim_cache() must be called at each time step before 
+this will return valid results.</p>
+<p>This function differs from aipy.amp.AntennaArray.sim in the fact that
+<em>ionref</em> and <em>srcshape</em> are both None in the call to gen_phs and that
+<em>resolve_src</em> is set to False.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.vis.buildSimArray">
+<code class="descclassname">lsl.sim.vis.</code><code class="descname">buildSimArray</code><span class="sig-paren">(</span><em>station</em>, <em>antennas</em>, <em>freq</em>, <em>jd=None</em>, <em>PosError=0.0</em>, <em>ForceFlat=False</em>, <em>ForceGaussian=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.buildSimArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a AIPY AntennaArray for simulation purposes.  Inputs are a station 
+object defined from the lwa_common module, a numpy array of stand 
+numbers, and a numpy array of frequencies in either Hz of GHz.  Optional 
+inputs are a Julian Date to set the array to and a positional error terms 
+that perturbs each of the stands in x, y, and z.  The output of this 
+module is an AIPY AntennaArray object.</p>
+<p>The shape of the antenna response is either flat (gain of 1 in all 
+directions), modeled by a 2-D Gaussian with the specified full width at
+half maximum in degrees, or modeled by a collection of spherical 
+harmonics that are polynomials in frequency.  The spherical harmonics 
+are used if the file ‘beam_shape.npz’ is found in the current directory.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.3: </span>Changed the meaning of the ForceGaussian parameters so that the
+Gaussian full width at half maximum in degrees is passed in.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>Moved the simulation code over from AIPY to the new _simFast module.  
+This should be much faster but under the caveats that the bandpass
+and antenna gain patterns are the same for all antennas.  This 
+should be a reasonable assumption for large-N arrays.</p>
+<p>Added an option to use a 2-D Gaussian beam pattern via the ForceGaussian
+keyword.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<code class="xref py py-mod docutils literal"><span class="pre">lsl.common.station</span></code> module instead of a list of stand ID numbers.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.vis.buildSimData">
+<code class="descclassname">lsl.sim.vis.</code><code class="descname">buildSimData</code><span class="sig-paren">(</span><em>aa, srcs, pols=['xx', 'yy', 'xy', 'yx'], jd=None, chan=None, phaseCenter='z', baselines=None, mask=None, flatResponse=False, resolve_src=False, verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.buildSimData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an AIPY AntennaArray object and a dictionary of sources from 
+aipy.src.get_catalog, returned a data dictionary of simulated data taken at 
+zenith.  Optinally, the data can be masked using some referenced (observed) 
+data set or only a specific sub-set of baselines.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>* Added a ‘flatResponse’ keyword to make it easy to toggle on and off
+  the spectral and spatial response of the array for the simulation
+* Added a ‘resolve_src’ keyword to turn on source resolution effects</p>
+</div>
+<dl class="docutils">
+<dt>..versionchanged:: 0.4.0</dt>
+<dd>Added the ‘pols’ keyword to only compute certain polarization components</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.vis.scaleData">
+<code class="descclassname">lsl.sim.vis.</code><code class="descname">scaleData</code><span class="sig-paren">(</span><em>dataDict</em>, <em>amps</em>, <em>delays</em>, <em>phaseOffsets=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.scaleData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a set of antenna-based real gain values and phase delays in ns to a 
+data dictionary.  Returned the new scaled and delayed dictionary.</p>
+<dl class="docutils">
+<dt>..versionchanged:: 0.6.3</dt>
+<dd>Added a keyword so that phase offsets (in radians) can also be specified</dd>
+<dt>..versionchanged:: 0.4.0</dt>
+<dd>The delays are now expected to be in nanoseconds rather than radians.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.vis.shiftData">
+<code class="descclassname">lsl.sim.vis.</code><code class="descname">shiftData</code><span class="sig-paren">(</span><em>dataDict</em>, <em>aa</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.shiftData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shift the uvw coordinates in one data dictionary to a new set of uvw 
+coordinates that correspond to a new AntennaArray object.  This is useful
+for looking at how positional errors in the array affect the data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.sim.vis.addBaselineNoise">
+<code class="descclassname">lsl.sim.vis.</code><code class="descname">addBaselineNoise</code><span class="sig-paren">(</span><em>dataDict</em>, <em>SEFD</em>, <em>tInt</em>, <em>bandwidth=None</em>, <em>efficiency=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.sim.vis.addBaselineNoise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a data dictionary of visibilities, an SEFD or array SEFDs in Jy, 
+and an integration time in seconds, add noise to the visibilities 
+assuming that the “weak source” limit.</p>
+<p>This function implements Equation 9-15 from Chapter 9 of “Synthesis 
+Imaging in Radio Astronomy II”.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.2.</span></p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Fake Data</a><ul>
+<li><a class="reference internal" href="#writers">Writers</a><ul>
+<li><a class="reference internal" href="#module-lsl.sim.tbw">TBW</a></li>
+<li><a class="reference internal" href="#module-lsl.sim.tbn">TBN</a></li>
+<li><a class="reference internal" href="#module-lsl.sim.drx">DRX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulators">Simulators</a><ul>
+<li><a class="reference internal" href="#digitial-processor-data">Digitial Processor Data</a></li>
+<li><a class="reference internal" href="#module-lsl.sim.vis">Visibility Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="beamformer.html"
+                        title="previous chapter">Post-Acquisition Beam Forming</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="misc.html"
+                        title="next chapter">RF Antenna Parameters</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fakedata.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="RF Antenna Parameters"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="beamformer.html" title="Post-Acquisition Beam Forming"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

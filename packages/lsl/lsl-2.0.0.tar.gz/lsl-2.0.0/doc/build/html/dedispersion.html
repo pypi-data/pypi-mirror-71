@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Dedispersion &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Catalogs and Sky Map" href="catalog.html" />
+    <link rel="prev" title="RFI Identification" href="kurtosis.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="catalog.html" title="Catalogs and Sky Map"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kurtosis.html" title="RFI Identification"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dedispersion">
+<h1>Dedispersion<a class="headerlink" href="#dedispersion" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.5.</span></p>
+</div>
+<span class="target" id="module-lsl.misc.dedispersion"></span><dl class="function">
+<dt id="lsl.misc.dedispersion.delay">
+<code class="descclassname">lsl.misc.dedispersion.</code><code class="descname">delay</code><span class="sig-paren">(</span><em>freq</em>, <em>dm</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.dedispersion.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the relative delay due to dispersion over a given frequency
+range in Hz for a particular dispersion measure in pc cm^-3.  Return 
+the dispersive delay in seconds.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.1: </span>If only a single frequency is provided, the returned delay is 
+relative to infinite frequency.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.dedispersion.incoherent">
+<code class="descclassname">lsl.misc.dedispersion.</code><code class="descname">incoherent</code><span class="sig-paren">(</span><em>freq</em>, <em>waterfall</em>, <em>tInt</em>, <em>dm</em>, <em>boundary='wrap'</em>, <em>fill_value=nan</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.dedispersion.incoherent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of frequencies in Hz, a 2-D array of spectra as a function of
+time (time by frequency), and an integration time in seconds, perform 
+incoherent dedispersion on the data.</p>
+<p>The ‘boundary’ keyword is used to control how the boundary is treated.  The
+two options are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>wrap - Wrap the time boundary for each frequency (default)</li>
+<li><dl class="first docutils">
+<dt>fill - Fill the data not within the dedispersed time range with</dt>
+<dd>the value specified by the ‘fill_value’ keyword</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.3: </span>Added in options for handling the boundary conditions</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.dedispersion.getCoherentSampleSize">
+<code class="descclassname">lsl.misc.dedispersion.</code><code class="descname">getCoherentSampleSize</code><span class="sig-paren">(</span><em>centralFreq</em>, <em>sampleRate</em>, <em>dm</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.dedispersion.getCoherentSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the number of samples needed to successfully apply coherent 
+dedispersion to a data stream.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.dedispersion.coherent">
+<code class="descclassname">lsl.misc.dedispersion.</code><code class="descname">coherent</code><span class="sig-paren">(</span><em>t</em>, <em>timeseries</em>, <em>centralFreq</em>, <em>sampleRate</em>, <em>dm</em>, <em>taper=False</em>, <em>previousTime=None</em>, <em>previousData=None</em>, <em>nextTime=None</em>, <em>nextData=None</em>, <em>enableCaching=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.dedispersion.coherent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple coherent dedispersion of complex-valued time-series data at a given central
+frequency and sample rate.  A tapering function can also be applied to the chirp of 
+the form:</p>
+<blockquote>
+<div><img class="math" src="_images/math/8497f85db06a82dcd731c244dd3e5cc7475b9d73.png" alt="\sqrt{1 + \left(\frac{\Delta f_{MHz}}{0.47 \times \mbox{BW}}\right)^{80}}"/>,</div></blockquote>
+<p>where <img class="math" src="_images/math/0cc4b071543689ae0e286bef9c09c338d05321ac.png" alt="\Delta f_{MHz}"/> is the frequency difference in MHz from the band 
+center and BW is the bandwidth in MHz.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At the large fractional bandwidths of LWA, the window size needed for coherent 
+dedispersion can be prohibitive.  For example, at 74 MHz with 19.6 MS/s and a
+DM or 10 pc / cm^3 this function uses a window size of about 268 million points.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>Added support for using PyFFTW instead of NumPy for the FFTs and iFFTs.
+Added a cache for storing the chrip function between subsequent calls</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.6.4: </span>Added support for keeping track of time through the dedispersion process.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="kurtosis.html"
+                        title="previous chapter">RFI Identification</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="catalog.html"
+                        title="next chapter">Catalogs and Sky Map</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dedispersion.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="catalog.html" title="Catalogs and Sky Map"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kurtosis.html" title="RFI Identification"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

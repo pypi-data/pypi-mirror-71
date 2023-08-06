@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LWA Software Library Documentation &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Requirements" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Requirements"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lwa-software-library-documentation">
+<h1>LWA Software Library Documentation<a class="headerlink" href="#lwa-software-library-documentation" title="Permalink to this headline">¶</a></h1>
+<p>This package contains a collection of tools for reading, format shifting,
+and analyzing LWA data.  It also contains the majority of the lwa_user
+library developed by NRL.</p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#installing">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#telemetry">Telemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnotes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rnotes.html#version-2-0-0">Version 2.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnotes.html#older-versions">Older Versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lwa_user.html">LWA_User Modules</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="general-utilities">
+<h2>General Utilities<a class="headerlink" href="#general-utilities" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="astro.html">Astronomical Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kurtosis.html">RFI Identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dedispersion.html">Dedispersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="catalog.html">Catalogs and Sky Map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html#catalogs">Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="catalog.html#sky-map">Sky Map</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transform.html">Time and Position Transformation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transform.html#time">Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform.html#celstial-positions">Celstial Positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform.html#geographic-positions">Geographic Positions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mathutils.html">Math Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Robust Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html#statistical-tests">Statistical Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paths.html">Module and Data Paths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busy.html">Busy Indicator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color.html">Color Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="progress.html">Progress Bar</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="lwa-specific-utilites">
+<h2>LWA-Specific Utilites<a class="headerlink" href="#lwa-specific-utilites" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="observations.html">Defining Single Station Observations and Observation Metadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="observations.html#module-lsl.common.sdf">Session Definition Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observations.html#module-lsl.common.metabundle">MCS Metadata Tarball Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observations.html#supporting-functions">Supporting Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="swarm.html">LWA Swarm Observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="swarm.html#module-lsl.common.idf">Interferometer Definition Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="station.html">Station Meta-Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="station.html#module-lsl.common.stations">Station-Level Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="station.html#stand-level-data">Stand-Level Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sdf.html">Session and Observation Specification for a Single LWA Station</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sdf.html#module-lsl.common.sdf">DP-Based Stations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdf.html#module-lsl.common.sdfADP">ADP-Based Stations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="idf.html">Run and Scan Specification for the LWA Swarm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readers.html">Data Readers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.ldp">LSL Developer Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.tbw">Low-Level TBW – DP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#low-level-tbf-adp">Low-Level TBF – ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.tbn">Low-Level TBN – DP and ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#low-level-cor-adp">Low-Level COR – ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.drx">Low-Level DRX – DP and ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#low-level-drx8-adp">Low-Level DRX8 – ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#low-level-dr-spectrometer-dp-and-adp">Low-Level DR Spectrometer – DP and ADP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.vdif">Low-Level VIDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readers.html#module-lsl.reader.errors">Reader Error Codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readers.html#module-lsl.reader.buffer">Reader Ring Buffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writers.html">Data Writers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writers.html#single-dish-fits">Single-Dish FITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writers.html#fits-idi">FITS IDI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writers.html#uvfits">UVFITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writers.html#module-lsl.writer.measurementset">Measurement Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writers.html#vdif">VDIF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spectra.html">Computing Spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlator.html">Correlation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="correlator.html#baseline-utilities">Baseline Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlator.html#computing-uvw-coordinates">Computing <em>uvw</em> Coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlator.html#module-lsl.correlator.filterbank">Polyphase Filter Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlator.html#fx-correlator">FX Correlator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#data-representation">Data Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#id1">Imaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#module-lsl.imaging.overlay">Plot Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#module-lsl.imaging.analysis">Basic Image Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#self-calibration">Self-Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imaging.html#module-lsl.imaging.deconv">Deconvolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="beamformer.html">Post-Acquisition Beam Forming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fakedata.html">Fake Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fakedata.html#writers">Writers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fakedata.html#simulators">Simulators</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">RF Antenna Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html#simulated-stand-response">Simulated Stand Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html#ionospheric-and-geomagnetic-field-models">Ionospheric and Geomagnetic Field Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html#conversion-helper-functions-for-argparse">Conversion Helper Functions for argparse</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="included-scripts">
+<h2>Included Scripts<a class="headerlink" href="#included-scripts" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">General Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#data-reading-and-writing">Data Reading and Writing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#data-analysis">Data Analysis</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="https://nbviewer.jupyter.org/github/lwa-project/lsl/blob/master/doc/notebooks/LSL%20General%20Tutorial.ipynb">General LSL Routines</a></li>
+<li><a class="reference external" href="https://nbviewer.jupyter.org/github/lwa-project/lsl/blob/master/doc/notebooks/LSL%20SDF%20Generation.ipynb">Building SDFs Programmatically</a></li>
+<li><a class="reference external" href="https://nbviewer.jupyter.org/github/lwa-project/lsl/blob/master/doc/notebooks/LSL%20MCS%20Metadata%20Tutorial.ipynb">Observation Metadata</a></li>
+<li><a class="reference external" href="https://nbviewer.jupyter.org/github/lwa-project/lsl/blob/master/doc/notebooks/LSL%20LDP%20Tutorial.ipynb">Working with Data</a></li>
+</ul>
+</div>
+<div class="section" id="advanced">
+<h1>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="c-extensions.html">C Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-extensions.html#module-lsl.reader._gofast">Go-Fast! Readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-extensions.html#power-spectral-density-calculation">Power Spectral Density Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-extensions.html#module-lsl.correlator._core">FX Correlator Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-extensions.html#module-lsl.common._fir">DP-Style Signal Processing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">LWA Software Library Documentation</a></li>
+<li><a class="reference internal" href="#contents">Contents</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#general-utilities">General Utilities</a></li>
+<li><a class="reference internal" href="#lwa-specific-utilites">LWA-Specific Utilites</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li><a class="reference internal" href="#included-scripts">Included Scripts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
+<li><a class="reference internal" href="#advanced">Advanced</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">Requirements</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Requirements"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

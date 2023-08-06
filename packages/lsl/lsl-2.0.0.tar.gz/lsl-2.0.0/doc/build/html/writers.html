@@ -1,0 +1,557 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Data Writers &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Computing Spectra" href="spectra.html" />
+    <link rel="prev" title="Data Readers" href="readers.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spectra.html" title="Computing Spectra"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="readers.html" title="Data Readers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="data-writers">
+<h1>Data Writers<a class="headerlink" href="#data-writers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="single-dish-fits">
+<h2>Single-Dish FITS<a class="headerlink" href="#single-dish-fits" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fits.gsfc.nasa.gov/registry/sdfits.html">SDFITS Standard</a></p>
+<span class="target" id="module-lsl.writer.sdfits"></span><dl class="class">
+<dt id="lsl.writer.sdfits.SD">
+<em class="property">class </em><code class="descclassname">lsl.writer.sdfits.</code><code class="descname">SD</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for storing spectrometer data and writing the data, along with array
+frequency setup, etc., to a SDFITS file that can be read into CASA via the
+sd.scantable() function.</p>
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.addComment">
+<code class="descname">addComment</code><span class="sig-paren">(</span><em>comment</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.addComment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a comment to data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.addDataSet">
+<code class="descname">addDataSet</code><span class="sig-paren">(</span><em>obsTime</em>, <em>intTime</em>, <em>beam</em>, <em>data</em>, <em>pol='XX'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.addDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a SpectrometerData object to store a collection of spectra.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.addHistory">
+<code class="descname">addHistory</code><span class="sig-paren">(</span><em>history</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.addHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a history entry to the data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close out the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.parseRefTime">
+<code class="descname">parseRefTime</code><span class="sig-paren">(</span><em>refTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.parseRefTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a time as either a integer, float, string, or datetime object, 
+convert it to a string in the formation ‘YYYY-MM-DDTHH:MM:SS’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.refTime2AstroDate">
+<code class="descname">refTime2AstroDate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.refTime2AstroDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a reference time string to an <a class="reference internal" href="astro.html#lsl.astro.date" title="lsl.astro.date"><code class="xref py py-class docutils literal"><span class="pre">lsl.astro.date</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.setFrequency">
+<code class="descname">setFrequency</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.setFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy array of frequencies, set the relevant common observation
+parameters and add an entry to the self.freq list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.setObserver">
+<code class="descname">setObserver</code><span class="sig-paren">(</span><em>observer</em>, <em>project='UNKNOWN'</em>, <em>mode='UNKNOWN'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.setObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the observer name, project, and observation mode (if given) to the 
+self.observer, self.project, and self.mode attributes, respectively.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.setSite">
+<code class="descname">setSite</code><span class="sig-paren">(</span><em>site</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.setSite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the TELESCOP keyword in the primary HDU using an <a class="reference internal" href="station.html#lsl.common.stations.LWAStation" title="lsl.common.stations.LWAStation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.LWAStation</span></code></a>
+object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.setStokes">
+<code class="descname">setStokes</code><span class="sig-paren">(</span><em>polList</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.setStokes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of Stokes parameters, update the object’s parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.sdfits.SD.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.sdfits.SD.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the SDFITS file will all of the tables in the correct order.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fits-idi">
+<h2>FITS IDI<a class="headerlink" href="#fits-idi" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fits.gsfc.nasa.gov/registry/fitsidi.html">FITS IDI Standard</a></p>
+<span class="target" id="module-lsl.writer.fitsidi"></span><dl class="class">
+<dt id="lsl.writer.fitsidi.IDI">
+<em class="property">class </em><code class="descclassname">lsl.writer.fitsidi.</code><code class="descname">IDI</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for storing visibility data and writing the data, along with array
+geometry, frequency setup, etc., to a FITS IDI file that can be read into 
+AIPS via the FITLD task.</p>
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.addComment">
+<code class="descname">addComment</code><span class="sig-paren">(</span><em>comment</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.addComment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a comment to data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.addDataSet">
+<code class="descname">addDataSet</code><span class="sig-paren">(</span><em>obsTime</em>, <em>intTime</em>, <em>baselines</em>, <em>visibilities</em>, <em>pol='XX'</em>, <em>source='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.addDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a UVData object to store a collection of visibilities.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+as part of the baselines.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Added a new ‘source’ keyword to set the phase center for the data.
+This can either by ‘z’ for zenith or a ephem.Body instances for a
+point on the sky.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.addHistory">
+<code class="descname">addHistory</code><span class="sig-paren">(</span><em>history</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.addHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a history entry to the data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close out the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.parseRefTime">
+<code class="descname">parseRefTime</code><span class="sig-paren">(</span><em>refTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.parseRefTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a time as either a integer, float, string, or datetime object, 
+convert it to a string in the formation ‘YYYY-MM-DDTHH:MM:SS’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.readArrayGeometry">
+<code class="descname">readArrayGeometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.readArrayGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with the array geodetic position and the local 
+positions for all antennas defined in the ARRAY_GEOMETRY table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.readArrayMapper">
+<code class="descname">readArrayMapper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.readArrayMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with the array NOSTA mapper and inverse mapper (both
+dictionaries.  If the stand IDs have not been mapped, return None for
+both.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.refTime2AstroDate">
+<code class="descname">refTime2AstroDate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.refTime2AstroDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a reference time string to an <a class="reference internal" href="astro.html#lsl.astro.date" title="lsl.astro.date"><code class="xref py py-class docutils literal"><span class="pre">lsl.astro.date</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.setFrequency">
+<code class="descname">setFrequency</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.setFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy array of frequencies, set the relevant common observation
+parameters and add an entry to the self.freq list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.setGeometry">
+<code class="descname">setGeometry</code><span class="sig-paren">(</span><em>site</em>, <em>antennas</em>, <em>bits=8</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.setGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a station and an array of stands, set the relevant common observation
+parameters and add entries to the self.array list.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+numbers.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.setStokes">
+<code class="descname">setStokes</code><span class="sig-paren">(</span><em>polList</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.setStokes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of Stokes parameters, update the object’s parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.fitsidi.IDI.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.IDI.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the FITS-IDI file will all of the tables in the 
+correct order.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.writer.fitsidi.AIPS">
+<em class="property">class </em><code class="descclassname">lsl.writer.fitsidi.</code><code class="descname">AIPS</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.AIPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of the FITS IDI writer for making files that <em>should</em> work 
+with AIPS nicely.  AIPS imposes a limit on antenna number of two digits
+(1-99).  This sub-class overwrite the setGeometry() function with one that
+enforces the two digit limit and maps accordingly.  It also sets the FITS
+<cite>LWATYPE</cite> keyword in the primary HDU to a value of <cite>IDI-AIPS-ZA</cite> to 
+distinguish files written by this writer from the standard IDI writer.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.writer.fitsidi.ExtendedIDI">
+<em class="property">class </em><code class="descclassname">lsl.writer.fitsidi.</code><code class="descname">ExtendedIDI</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.fitsidi.ExtendedIDI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of the FITS IDI writer for making files that support up to
+65,535 antennas.  This is done by changing the packing of baselines 
+stored in the UVDATA table.  The new packing for baseline (i,j) is:
+(i &lt;&lt; 16) &amp; (j)
+It also sets the FITS <cite>LWATYPE</cite> keyword in the primary HDU to a value 
+of <cite>IDI-EXTENDED-ZA</cite> to distinguish files written by this writer 
+from the standard IDI writer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="uvfits">
+<h2>UVFITS<a class="headerlink" href="#uvfits" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-lsl.writer.uvfits"></span><dl class="class">
+<dt id="lsl.writer.uvfits.UV">
+<em class="property">class </em><code class="descclassname">lsl.writer.uvfits.</code><code class="descname">UV</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for storing visibility data and writing the data, along with array
+geometry, frequency setup, etc., to a UVFITS file that can be read into 
+AIPS via the UVLOD task.</p>
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.addComment">
+<code class="descname">addComment</code><span class="sig-paren">(</span><em>comment</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.addComment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a comment to data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.addDataSet">
+<code class="descname">addDataSet</code><span class="sig-paren">(</span><em>obsTime</em>, <em>intTime</em>, <em>baselines</em>, <em>visibilities</em>, <em>pol='XX'</em>, <em>source='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.addDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a UVData object to store a collection of visibilities.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+as part of the baselines.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.addHistory">
+<code class="descname">addHistory</code><span class="sig-paren">(</span><em>history</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.addHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a history entry to the data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close out the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.parseRefTime">
+<code class="descname">parseRefTime</code><span class="sig-paren">(</span><em>refTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.parseRefTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a time as either a integer, float, string, or datetime object, 
+convert it to a string in the formation ‘YYYY-MM-DDTHH:MM:SS’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.readArrayGeometry">
+<code class="descname">readArrayGeometry</code><span class="sig-paren">(</span><em>dummy=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.readArrayGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with the array geodetic position and the local 
+positions for all antennas defined in the AIPS AN table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.readArrayMapper">
+<code class="descname">readArrayMapper</code><span class="sig-paren">(</span><em>dummy=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.readArrayMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple with the array NOSTA mapper and inverse mapper (both
+dictionaries.  If the stand IDs have not been mapped, return None for
+both.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.refTime2AstroDate">
+<code class="descname">refTime2AstroDate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.refTime2AstroDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a reference time string to an <a class="reference internal" href="astro.html#lsl.astro.date" title="lsl.astro.date"><code class="xref py py-class docutils literal"><span class="pre">lsl.astro.date</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.setFrequency">
+<code class="descname">setFrequency</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.setFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy array of frequencies, set the relevant common observation
+parameters and add an entry to the self.freq list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.setGeometry">
+<code class="descname">setGeometry</code><span class="sig-paren">(</span><em>site</em>, <em>antennas</em>, <em>bits=8</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.setGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a station and an array of stands, set the relevant common observation
+parameters and add entries to the self.array list.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+numbers.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.setStokes">
+<code class="descname">setStokes</code><span class="sig-paren">(</span><em>polList</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.setStokes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of Stokes parameters, update the object’s parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.uvfits.UV.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.uvfits.UV.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the FITS-IDI file will all of the tables in the 
+correct order.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.writer.measurementset">
+<span id="measurement-set"></span><h2>Measurement Set<a class="headerlink" href="#module-lsl.writer.measurementset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.writer.measurementset.MS">
+<em class="property">class </em><code class="descclassname">lsl.writer.measurementset.</code><code class="descname">MS</code><span class="sig-paren">(</span><em>filename</em>, <em>refTime=0.0</em>, <em>verbose=False</em>, <em>memmap=None</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for storing visibility data and writing the data, along with array
+geometry, frequency setup, etc., to a CASA measurement set.</p>
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.addDataSet">
+<code class="descname">addDataSet</code><span class="sig-paren">(</span><em>obsTime</em>, <em>intTime</em>, <em>baselines</em>, <em>visibilities</em>, <em>pol='XX'</em>, <em>source='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.addDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a UVData object to store a collection of visibilities.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+as part of the baselines.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Added a new ‘source’ keyword to set the phase center for the data.
+This can either by ‘z’ for zenith or a ephem.Body instances for a
+point on the sky.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close out the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.parseRefTime">
+<code class="descname">parseRefTime</code><span class="sig-paren">(</span><em>refTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.parseRefTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a time as either a integer, float, string, or datetime object, 
+convert it to a string in the formation ‘YYYY-MM-DDTHH:MM:SS’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.refTime2AstroDate">
+<code class="descname">refTime2AstroDate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.refTime2AstroDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a reference time string to an <a class="reference internal" href="astro.html#lsl.astro.date" title="lsl.astro.date"><code class="xref py py-class docutils literal"><span class="pre">lsl.astro.date</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.setFrequency">
+<code class="descname">setFrequency</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.setFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy array of frequencies, set the relevant common observation
+parameters and add an entry to the self.freq list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.setGeometry">
+<code class="descname">setGeometry</code><span class="sig-paren">(</span><em>site</em>, <em>antennas</em>, <em>bits=8</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.setGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a station and an array of stands, set the relevant common observation
+parameters and add entries to the self.array list.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+numbers.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.setStokes">
+<code class="descname">setStokes</code><span class="sig-paren">(</span><em>polList</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.setStokes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of Stokes parameters, update the object’s parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.measurementset.MS.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.measurementset.MS.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the FITS-IDI file will all of the tables in the 
+correct order.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="vdif">
+<h2>VDIF<a class="headerlink" href="#vdif" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.vlbi.org/vdif/docs/VDIF%20specification%20Release%201.0%20ratified.pdf">VDIF Standard</a> (PDF)</p>
+<span class="target" id="module-lsl.writer.vdif"></span><dl class="class">
+<dt id="lsl.writer.vdif.Frame">
+<em class="property">class </em><code class="descclassname">lsl.writer.vdif.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>stand=0</em>, <em>time=0</em>, <em>bits=8</em>, <em>data=None</em>, <em>sampleRate=196000000.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.vdif.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to create and write a VDIF (VLBI Data Interchange Format) 
+frame (version 1, June 26, 2009).</p>
+<dl class="method">
+<dt id="lsl.writer.vdif.Frame.createRawFrame">
+<code class="descname">createRawFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.vdif.Frame.createRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the data and information stored in the object, create a
+numpy array on unsigned 1-byte integers that represents the frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.writer.vdif.Frame.writeRawFrame">
+<code class="descname">writeRawFrame</code><span class="sig-paren">(</span><em>fh</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.writer.vdif.Frame.writeRawFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a numpy representation of the VDIF frame and then write 
+it to the specified file handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Writers</a><ul>
+<li><a class="reference internal" href="#single-dish-fits">Single-Dish FITS</a></li>
+<li><a class="reference internal" href="#fits-idi">FITS IDI</a></li>
+<li><a class="reference internal" href="#uvfits">UVFITS</a></li>
+<li><a class="reference internal" href="#module-lsl.writer.measurementset">Measurement Set</a></li>
+<li><a class="reference internal" href="#vdif">VDIF</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="readers.html"
+                        title="previous chapter">Data Readers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spectra.html"
+                        title="next chapter">Computing Spectra</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/writers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spectra.html" title="Computing Spectra"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="readers.html" title="Data Readers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

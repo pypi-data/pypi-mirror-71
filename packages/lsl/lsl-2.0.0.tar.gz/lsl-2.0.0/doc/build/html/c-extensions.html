@@ -1,0 +1,958 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>C Extensions &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="General Utilities" href="scripts.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="General Utilities"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="c-extensions">
+<h1>C Extensions<a class="headerlink" href="#c-extensions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The modules documented before are compiled C extensions and are subject
+to change.  It is recommended that users use the standard modules detailed
+in the previous sections over directly using these modules.</p>
+</div>
+<div class="section" id="module-lsl.reader._gofast">
+<span id="go-fast-readers"></span><h2>Go-Fast! Readers<a class="headerlink" href="#module-lsl.reader._gofast" title="Permalink to this headline">¶</a></h2>
+<p>Go Fast! (TM) - TBW, TBN, DRX, DR Spectrometer, and VDIF readers written in C</p>
+<dl class="function">
+<dt id="lsl.reader._gofast.readCOR">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readCOR</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readCOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single COR frame (header+data) and store the contents
+as a Frame object.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Updated readCOR for the switch over to 72 channels, complex64 data, and no
+data weights</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readDRSpec">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readDRSpec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readDRSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a DR spectrometer header structure and data and return
+a drspec.Frame instance.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function normalizes the spectra by the number of relevant fills.  For
+products that are a function of more than one primary input, i.e., XY* or
+I, the minimum fill of X and Y are used for normalization.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readDRX">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readDRX</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readDRX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single DRX frame (header+data) and store the contents
+as a Frame object.  This function serves as a replacement for the pure python
+reader lsl.reader.drx.readFrame.</p>
+<p>In order to use this reader in place of lsl.reader.drx.readFrame change:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.tbn</span> <span class="k">as</span> <span class="nn">drx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-drx-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">drx</span><span class="o">.</span><span class="n">readFrame</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.drx</span> <span class="k">as</span> <span class="nn">drx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lsl.reader._gofast</span> <span class="k">import</span> <span class="n">ReadDRX</span><span class="p">,</span> <span class="n">syncError</span><span class="p">,</span> <span class="n">eofError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-drx-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">readDRX</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">tbn</span><span class="o">.</span><span class="n">Frame</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>In addition, the exceptions checked for in the try…except blocks wrapping the
+frame reader need to be changed to ‘IOError’ since syncError and eofError are
+are sub-classes of IOError.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>The Go Fast! readers are the default readers used by the <a class="reference internal" href="readers.html#module-lsl.reader.drx" title="lsl.reader.drx"><code class="xref py py-mod docutils literal"><span class="pre">lsl.reader.drx</span></code></a>
+module.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readTBF">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readTBF</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readTBF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBW frame (header+data) and store the contents
+as a Frame object.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readTBN">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readTBN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readTBN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBN frame (header+data) and store the contents
+as a Frame object.  This function serves as a replacement for the pure python
+reader lsl.reader.tbn.readFrame.</p>
+<p>In order to use this reader in place of lsl.reader.tbn.readFrame change:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.tbn</span> <span class="k">as</span> <span class="nn">tbn</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-tbn-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">tbn</span><span class="o">.</span><span class="n">readFrame</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.tbn</span> <span class="k">as</span> <span class="nn">tbn</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lsl.reader._gofast</span> <span class="k">import</span> <span class="n">ReadTBN</span><span class="p">,</span> <span class="n">syncError</span><span class="p">,</span> <span class="n">eofError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-tbn-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt; frame = readTBN(fh, tbn.Frame())</span>
+</pre></div>
+</div>
+<p>In addition, the exceptions checked for in the try…except blocks wrapping the
+frame reader need to be changed to ‘IOError’ since syncError and eofError are
+are sub-classes of IOError.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>The Go Fast! readers are the default readers used by the <a class="reference internal" href="readers.html#module-lsl.reader.tbn" title="lsl.reader.tbn"><code class="xref py py-mod docutils literal"><span class="pre">lsl.reader.tbn</span></code></a>
+module.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readTBW">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readTBW</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readTBW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBW frame (header+data) and store the contents
+as a Frame object.  This function serves as a replacement for the pure python
+reader lsl.reader.tbw.readFrame.</p>
+<p>In order to use this reader in place of lsl.reader.tbw.readFrame change:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.tbw</span> <span class="k">as</span> <span class="nn">tbw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-tbw-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">tbw</span><span class="o">.</span><span class="n">readFrame</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.tbw</span> <span class="k">as</span> <span class="nn">tbw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lsl.reader._gofast</span> <span class="k">import</span> <span class="n">ReadTBW</span><span class="p">,</span> <span class="n">syncError</span><span class="p">,</span> <span class="n">eofError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-tbw-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">readTBW</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">tbw</span><span class="o">.</span><span class="n">Frame</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>In addition, the exceptions checked for in the try…except blocks wrapping the
+frame reader need to be changed to ‘IOError’ since syncError and eofError are
+are sub-classes of IOError.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>The Go Fast! readers are the default readers used by the <a class="reference internal" href="readers.html#module-lsl.reader.tbw" title="lsl.reader.tbw"><code class="xref py py-mod docutils literal"><span class="pre">lsl.reader.tbw</span></code></a>
+module.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader._gofast.readVDIF">
+<code class="descclassname">lsl.reader._gofast.</code><code class="descname">readVDIF</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader._gofast.readVDIF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single VDIF frame (header+data) and store the contents
+as a Frame object.  This function serves as a replacement for the pure python
+reader lsl.reader.vdif.readFrame.</p>
+<p>In order to use this reader in place of lsl.reader.vdif.readFrame change:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.vdif</span> <span class="k">as</span> <span class="nn">vdif</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-vdif-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">vdif</span><span class="o">.</span><span class="n">readFrame</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lsl.reader.vdif</span> <span class="k">as</span> <span class="nn">vdif</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lsl.reader._vdif</span> <span class="k">import</span> <span class="n">readVDIF</span><span class="p">,</span> <span class="n">syncError</span><span class="p">,</span> <span class="n">eofError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some-vdif-file.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt; frame = readVDIF(fh, vdif.Frame())</span>
+</pre></div>
+</div>
+<p>In addition, the exceptions checked for in the try…except blocks wrapping the
+frame reader need to be changed to ‘IOError’ since syncError and eofError are
+are sub-classes of IOError.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="power-spectral-density-calculation">
+<h2>Power Spectral Density Calculation<a class="headerlink" href="#power-spectral-density-calculation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-lsl.correlator._spec">
+<span id="linear-polarization"></span><h3>Linear Polarization<a class="headerlink" href="#module-lsl.correlator._spec" title="Permalink to this headline">¶</a></h3>
+<p>Extension to take timeseries data and convert it to the frequency domain.</p>
+<dl class="docutils">
+<dt>The functions defined in this module are:</dt>
+<dd><ul class="first last simple">
+<li>FPSDR2 -  FFT and integrate function for computing a series of overlapped
+Fourier transforms for a real-valued (TBW) signal from a collection of
+stands all at once.</li>
+<li>FPSDR3 - Similar to FPSDR2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBPSDR2 - Similar to FPSDR2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+<li>FPSDC2 - FFT and integrate function for computing a series of overlapped
+Fourier transforms for a complex-valued (TBN and DRX) signal from a 
+collection of stands/beams all at once.</li>
+<li>FPSDC3 - Similar to FPSDC2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBPSDC3 - Similar to FPSDC2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+</ul>
+</dd>
+</dl>
+<p>See the inidividual functions for more details.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.1: </span>Removed the polyphase filterbank versions of the four core functions.</p>
+</div>
+<dl class="function">
+<dt id="lsl.correlator._spec.FPSDC2">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">FPSDC2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.FPSDC2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of Fourier transforms on complex-valued data to get the
+PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._spec.FPSDC3">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">FPSDC3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.FPSDC3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of Fourier transforms with windows on complex-valued data
+to get the PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>window: Callable Python function for generating the window or None for no window</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._spec.FPSDR2">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">FPSDR2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.FPSDR2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of Fourier transforms on real-valued data to get the PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._spec.FPSDR3">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">FPSDR3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.FPSDR3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of Fourier transforms with windows on real-valued data to
+get the PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>window: Callable Python function for generating the window or None for no window</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._spec.PFBPSDC2">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">PFBPSDC2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.PFBPSDC2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of polyphase filter bank transforms (4-tap plus a
+Hanning window) on complex-valued data to get the PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._spec.PFBPSDR2">
+<code class="descclassname">lsl.correlator._spec.</code><code class="descname">PFBPSDR2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._spec.PFBPSDR2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of polyphase filter bank transforms (4-tap plus a
+Hanning window) on real-valued data to get the PSD.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>psd: 2-D numpy.double (stands by channels) of PSD data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.correlator._stokes">
+<span id="stokes-parameters"></span><h3>Stokes Parameters<a class="headerlink" href="#module-lsl.correlator._stokes" title="Permalink to this headline">¶</a></h3>
+<p>Extension to take X and Y timeseries data and create the four Stokes
+parameters.</p>
+<dl class="docutils">
+<dt>The functions defined in this module are:</dt>
+<dd><ul class="first last simple">
+<li>FPSDR2 -  FFT and integrate function for computing a series of overlapped
+Fourier transforms for a real-valued (TBW) signal from a collection of
+stands all at once.</li>
+<li>FPSDR3 - Similar to FPSDR2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBPSDR2 - Similar to FPSDR2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+<li>FPSDC2 - FFT and integrate function for computing a series of overlapped
+Fourier transforms for a complex-valued (TBN and DRX) signal from a 
+collection of stands/beams all at once.</li>
+<li>FPSDC3 - Similar to FPSDC2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBPSDC3 - Similar to FPSDC2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+</ul>
+</dd>
+</dl>
+<p>Also included is an X-Engine for use with the lsl.correlator._core module to
+perform cross-correlations for the stokes parameters.</p>
+<p>See the inidividual functions for more details.</p>
+</div>
+</div>
+<div class="section" id="module-lsl.correlator._core">
+<span id="fx-correlator-core"></span><h2>FX Correlator Core<a class="headerlink" href="#module-lsl.correlator._core" title="Permalink to this headline">¶</a></h2>
+<p>C-based F and X engines for the LWA software FX correlator.  These function
+are meant to provide an alternative to the lsl.correlator.fx.correlate function and 
+provide a much-needed speed boost to cross-correlation.</p>
+<dl class="docutils">
+<dt>The function defined in this module are:</dt>
+<dd><ul class="first last simple">
+<li>FEngineR2 -F-engine for computing a series of overlapped Fourier transforms with
+delay corrections for a real-valued (TBW) signal from a collection of stands all at
+once.</li>
+<li>FEngineR3 - Similar to FEngineR2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBEngineR2 - Similar to FEngineR2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+<li>FEngineC2 - F-engine for computing a series of overlapped Fourier transforms with
+delay corrections for a complex-valued (TBN) signal from a collection of stands all at
+once.</li>
+<li>FEngineC3 - Similar to FEngineC2, but allows for a window function to be applied
+to the data.</li>
+<li>PFBEngineC2 - Similar to FEngineC2, but using a 4-tap + Hanning windowed polyphase
+filter bank.</li>
+<li>XEngine2 - Similar to XEngine, but works with a collection of stands all at
+once.</li>
+</ul>
+</dd>
+</dl>
+<p>See the inidividual functions for more details.</p>
+<dl class="function">
+<dt id="lsl.correlator._core.FEngineC2">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">FEngineC2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.FEngineC2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped Fourier transforms on complex-valued data
+using OpenMP.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=100e3)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.FEngineC3">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">FEngineC3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.FEngineC3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped Fourier transforms on complex-valued data
+using OpenMP and allow for windowing of the data.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=100e3)</li>
+<li>window: Callable Python function for generating the window or None for no window</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.FEngineR2">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">FEngineR2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.FEngineR2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped Fourier transforms on real-valued data using
+OpenMP.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=196e6)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.FEngineR3">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">FEngineR3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.FEngineR3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped Fourier transforms on real-valued data using
+OpenMP and windows.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=196e6)</li>
+<li>window: Callable Python function for generating the window or None for no window</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.PFBEngineC2">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">PFBEngineC2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.PFBEngineC2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped polyphase filter bank transforms (4-tap plus a
+Hanning window) on complex-valued data using OpenMP.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.complex64 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=100e3)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.PFBEngineR2">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">PFBEngineR2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.PFBEngineR2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a series of overlapped polyphase filter bank transforms (4-tap plus a
+Hanning window) on real-valued data using OpenMP.</p>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>signals: 2-D numpy.int16 (stands by samples) array of data to FFT</li>
+<li>frequency: 1-D numpy.double array of frequency values in Hz for the
+FFT channels</li>
+<li>delays: 1-D numpy.double array of delays to apply to each stand</li>
+</ul>
+</dd>
+<dt>Input keywords are:</dt>
+<dd><ul class="first last simple">
+<li>LFFT: number of FFT channels to make (default=64)</li>
+<li>Overlap: number of overlapped FFTs to use (default=1)</li>
+<li>SampleRate: sample rate of the data (default=196e6)</li>
+<li>ClipLevel: count value of ‘bad’ data.  FFT windows with instantaneous powers
+greater than or equal to this value greater are zeroed.  Setting the ClipLevel
+to zero disables time-domain blanking</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>fsignals: 3-D numpy.complex64 (stands by channels by FFT_set) of FFTd
+data</li>
+<li>valid: 2-D numpy.uint8 (stands by FFT_set) of whether or not the FFT
+set is valid (1) or not (0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.XEngine2">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">XEngine2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.XEngine2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform all XMACs for a data stream out of the F engine using OpenMP.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5: </span>The second signal is not longer input as a conjugated array.  Rather
+the conjucation is performed as part of the cross-correlation.</p>
+</div>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>fsignals1: 3-D numpy.complex64 (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>fsignals2: 3-D numpy.complex64 (stand by channels by FFT_set) array of
+FFTd data from an F engine.</li>
+<li>sigValid1: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the first signal.</li>
+<li>sigValid2: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the second signal.</li>
+</ul>
+</dd>
+<dt>Ouputs:</dt>
+<dd><ul class="first last simple">
+<li>visibility: 2-D numpy.complex64 (baseline by channel) array of cross-
+correlated and averaged visibility data.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator._core.XEngine3">
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">XEngine3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator._core.XEngine3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform all XMACs for a data stream out of the F engine using OpenMP that
+creates the four linear polarization products</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.1.2.</span></p>
+</div>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>fsignals1: 3-D numpy.cdouble (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>fsignals2: 3-D numpy.cdouble (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>sigValid1: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the first signal.</li>
+<li>sigValid2: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the second signal.</li>
+</ul>
+</dd>
+<dt>Ouputs:</dt>
+<dd><ul class="first simple">
+<li>visibility: 3-D numpy.cdouble (Stokes parameter (XX,XY,YX,YY) by baseline by</li>
+</ul>
+<p class="last">channel) array of cross-correlated and averaged visibility data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">XEngine2</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Perform all XMACs for a data stream out of the F engine using OpenMP.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5: </span>The second signal is not longer input as a conjugated array.  Rather
+the conjucation is performed as part of the cross-correlation.</p>
+</div>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>fsignals1: 3-D numpy.complex64 (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>fsignals2: 3-D numpy.complex64 (stand by channels by FFT_set) array of
+FFTd data from an F engine.</li>
+<li>sigValid1: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the first signal.</li>
+<li>sigValid2: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the second signal.</li>
+</ul>
+</dd>
+<dt>Ouputs:</dt>
+<dd><ul class="first last simple">
+<li>visibility: 2-D numpy.complex64 (baseline by channel) array of cross-
+correlated and averaged visibility data.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">lsl.correlator._core.</code><code class="descname">XEngine3</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Perform all XMACs for a data stream out of the F engine using OpenMP that
+creates the four linear polarization products</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.1.2.</span></p>
+</div>
+<dl class="docutils">
+<dt>Input arguments are:</dt>
+<dd><ul class="first last simple">
+<li>fsignals1: 3-D numpy.cdouble (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>fsignals2: 3-D numpy.cdouble (stand by channels by FFT_set) array of FFTd
+data from an F engine.</li>
+<li>sigValid1: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the first signal.</li>
+<li>sigValid2: 1-D numpy.uint8 (FFT_set) array of whether or not the FFT_set is
+valid (1) or not (0) for the second signal.</li>
+</ul>
+</dd>
+<dt>Ouputs:</dt>
+<dd><ul class="first simple">
+<li>visibility: 3-D numpy.cdouble (Stokes parameter (XX,XY,YX,YY) by baseline by</li>
+</ul>
+<p class="last">channel) array of cross-correlated and averaged visibility data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.common._fir">
+<span id="dp-style-signal-processing"></span><h2>DP-Style Signal Processing<a class="headerlink" href="#module-lsl.common._fir" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a collection of function to speed up FIR filtering of TBW
+data (represented as numpy.int16 arrays) and the SoftwareDP class.  The funtions
+provided in this module are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>integer16: Apply a FIR filter to numpy.int16 data,</li>
+<li>integer16Delayed: Apply a FIFO delay and a FIR filter to numpy.int16 data, and</li>
+<li>integerBeamformer: Software implementation of the DP beamformer.</li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="lsl.common._fir.integer16">
+<code class="descclassname">lsl.common._fir.</code><code class="descname">integer16</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common._fir.integer16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a 1-D numpy.int16 array of data values and a numpy.int16 array of FIR
+coefficients, apply the coefficients to the data.</p>
+<dl class="docutils">
+<dt>Inputs arguments are:</dt>
+<dd><ul class="first last simple">
+<li>data: 1-D numpy.int16 array of data</li>
+<li>coeffs: 1-D numpy.int16 array of FIR coefficients</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>result: 1-D numpy.float32 array of the filtered data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common._fir.integer16Delayed">
+<code class="descclassname">lsl.common._fir.</code><code class="descname">integer16Delayed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common._fir.integer16Delayed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a 1-D numpy.int16 array of data values, a numpy.int16 array of FIR
+coefficients, and a FIFO sample delay, delay the signal and apply the
+coefficients to the data.</p>
+<dl class="docutils">
+<dt>Inputs arguments are:</dt>
+<dd><ul class="first last simple">
+<li>data: 1-D numpy.int16 array of data</li>
+<li>coeffs: 1-D numpy.int16 array of FIR coefficients</li>
+<li>sampleDelay: interger number of samples to delay the signal (must be &gt;=0)</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li>result: 1-D numpy.float32 array of the delayed and filtered data</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common._fir.integerBeamformer">
+<code class="descclassname">lsl.common._fir.</code><code class="descname">integerBeamformer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common._fir.integerBeamformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a 2-D numpy.int16 array (stands by samples) of data values, 3-D array of FIR
+filter coefficients (stands by filters by taps), a 1-D numpy.int16 array of course
+(FIFO) delays, a 1-D numpy.int16 array of fine delay FIR filters, and a 2-D array of
+gains (stands by [XX, XY, YX, YY]), apply the delays and sum the signals.</p>
+<dl class="docutils">
+<dt>Inputs arguments are:</dt>
+<dd><ul class="first last simple">
+<li>data: 2-D numpy.int16 array of data (stands by samples)</li>
+<li>coeffs: 3-D numpy.int16 array of FIR coefficients (stands by filters by taps)</li>
+<li>course: 1-D numpy.int16 array of FIFO delays in samples</li>
+<li>fine: 1-D numpy.int16 array of which FIR filter to apply for fine delay</li>
+<li><dl class="first docutils">
+<dt>gain: 2-D numpy.int16 arry of gains (stands by [XX, XY, YX, YY]), where XX is the X</dt>
+<dd>contribution to the output X pol., XY is the X contribution to the output Y
+pol., YX is the Y contribtion to the output X pol., and YY is the Y contribu-
+tion to the output Y pol.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Outputs:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>results: two element tuple (output X, outpuY) of the beamformer sum.  Each element is</dt>
+<dd>a 1-D numpy.float32 array.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The structure of data is assumed to be that the polarizations are ordered, e.g., the X
+polarization of stand 1 is immediately followed by the Y polarization.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">C Extensions</a><ul>
+<li><a class="reference internal" href="#module-lsl.reader._gofast">Go-Fast! Readers</a></li>
+<li><a class="reference internal" href="#power-spectral-density-calculation">Power Spectral Density Calculation</a><ul>
+<li><a class="reference internal" href="#module-lsl.correlator._spec">Linear Polarization</a></li>
+<li><a class="reference internal" href="#module-lsl.correlator._stokes">Stokes Parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lsl.correlator._core">FX Correlator Core</a></li>
+<li><a class="reference internal" href="#module-lsl.common._fir">DP-Style Signal Processing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scripts.html"
+                        title="previous chapter">General Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/c-extensions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="General Utilities"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

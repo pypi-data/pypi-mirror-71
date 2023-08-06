@@ -1,0 +1,473 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Run and Scan Specification for the LWA Swarm &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Readers" href="readers.html" />
+    <link rel="prev" title="Session and Observation Specification for a Single LWA Station" href="sdf.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readers.html" title="Data Readers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sdf.html" title="Session and Observation Specification for a Single LWA Station"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-lsl.common.idf">
+<span id="run-and-scan-specification-for-the-lwa-swarm"></span><h1>Run and Scan Specification for the LWA Swarm<a class="headerlink" href="#module-lsl.common.idf" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lsl.common.idf.Observer">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Observer</code><span class="sig-paren">(</span><em>name</em>, <em>id</em>, <em>first=None</em>, <em>last=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold information about an observer.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.ProjectOffice">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">ProjectOffice</code><span class="sig-paren">(</span><em>project=None</em>, <em>runs=None</em>, <em>scans=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.ProjectOffice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold comments from the LWA object office.  This class isn’t really 
+needed to create ID files, but it is helpful for parsing ID files.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.Project">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>observer</em>, <em>name</em>, <em>id</em>, <em>runs=None</em>, <em>comments=None</em>, <em>projectOffice=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold all the information about a specific interferometer run for a 
+project/proposal.</p>
+<dl class="method">
+<dt id="lsl.common.idf.Project.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newRun</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new run to the list of runs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Project.generateSDFs">
+<code class="descname">generateSDFs</code><span class="sig-paren">(</span><em>starting_session_id=1</em>, <em>run=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.generateSDFs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the ID file into a collection of <cite>lsl.common.sdfADP.Project</cite> instances
+that can be used to write SD files.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Project.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>run=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a run definition file that corresponds to the specified 
+run.  Returns the ID file’s contents as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Project.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the various runs that are part of this project.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Project.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Examine all of the runs and all of their scans to check
+for validity.  If everything is valid, return True.  Otherwise, return
+False.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Project.writeto">
+<code class="descname">writeto</code><span class="sig-paren">(</span><em>filename</em>, <em>run=0</em>, <em>verbose=False</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Project.writeto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a run definition file that corresponds to the specified 
+run and write it to the provided filename.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.Run">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Run</code><span class="sig-paren">(</span><em>name, id, scans=None, dataReturnMethod='DRSU', comments=None, corr_channels=256, corr_inttime=1.0, corr_basis='linear', stations=[&lt;ephem.Observer date='2020/6/14 18:19:04' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;, &lt;ephem.Observer date='2020/6/14 18:19:04' epoch='2000/1/1 12:00:00' lon='-106:53:08.8' lat='34:20:54.1' elevation=1477.8m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;]</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold all of the scans in an interferometer run.</p>
+<dl class="method">
+<dt id="lsl.common.idf.Run.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newScan</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new Scan to the list of scans.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setCorrelatorBasis">
+<code class="descname">setCorrelatorBasis</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setCorrelatorBasis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the correlator output polarization basis.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setCorrelatorChannels">
+<code class="descname">setCorrelatorChannels</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setCorrelatorChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of spectrometer channels to generate, 0 to disable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setCorrelatorInttime">
+<code class="descname">setCorrelatorInttime</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setCorrelatorInttime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of spectrometer FFT integrations to use, 0 to disable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setDataReturnMethod">
+<code class="descname">setDataReturnMethod</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setDataReturnMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the data return method for the run.  Valid values are: UCF, DRSU, and 
+‘USB Harddrives’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setStations">
+<code class="descname">setStations</code><span class="sig-paren">(</span><em>stations</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setStations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the stations used by the project for source computations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.setUCFUsername">
+<code class="descname">setUCFUsername</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.setUCFUsername" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the username to use for UCF data copies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the various scans in the run.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Run.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Run.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Examine all of the scans associated with the run to check
+for validity.  If everything is valid, return True.  Otherwise, return
+False.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.Scan">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Scan</code><span class="sig-paren">(</span><em>target, intent, start, duration, mode, ra, dec, frequency1, frequency2, filter, gain=-1, pm=[0.0, 0.0], comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold the specifics of a scans.  It currently
+handles TRK_RADEC, TRK_SOL, and TRK_JOV.</p>
+<dl class="method">
+<dt id="lsl.common.idf.Scan.addAltPhaseCenter">
+<code class="descname">addAltPhaseCenter</code><span class="sig-paren">(</span><em>target_or_apc</em>, <em>intent=None</em>, <em>ra=None</em>, <em>dec=None</em>, <em>pm=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.addAltPhaseCenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an alternate phase center to the scan.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.computeVisibility">
+<code class="descname">computeVisibility</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:19:04' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.computeVisibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the fractional visibility of the target during the scan 
+period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.estimateBytes">
+<code class="descname">estimateBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.estimateBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the data volume for the specified type and duration of 
+scans.  For DRX:</p>
+<blockquote>
+<div>bytes = duration * sampleRate / 4096 * 4128 bytes * 2 tunings * 2 pols.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getDuration">
+<code class="descname">getDuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the self.duration string with the format of HH:MM:SS.SSS to return the
+number of milliseconds in that period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the scan is 
+pointed.  None if the scan mode is TBN.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getFrequency1">
+<code class="descname">getFrequency1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the first frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getFrequency2">
+<code class="descname">getFrequency2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getFrequency2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the second frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getMJD">
+<code class="descname">getMJD</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getMJD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the modified Julian Date corresponding to the date/time of the
+self.start string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.getMPM">
+<code class="descname">getMPM</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.getMPM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of milliseconds between the date/time specified in the
+self.start string and the previous UT midnight.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.setDuration">
+<code class="descname">setDuration</code><span class="sig-paren">(</span><em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.setDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the scan duration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.setFrequency1">
+<code class="descname">setFrequency1</code><span class="sig-paren">(</span><em>frequency1</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.setFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the frequency in Hz corresponding to tuning 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.setFrequency2">
+<code class="descname">setFrequency2</code><span class="sig-paren">(</span><em>frequency2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.setFrequency2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the frequency in Hz correpsonding to tuning 2.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.setStart">
+<code class="descname">setStart</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.setStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the scan start time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the computed parameters from the string values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.Scan.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Scan.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the scan and return True if it is valid, False otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.DRX">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">DRX</code><span class="sig-paren">(</span><em>target, intent, start, duration, ra, dec, frequency1, frequency2, filter, gain=-1, pm=[0.0, 0.0], comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.DRX" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>scan target</li>
+<li>scan intent</li>
+<li>scan start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>scan duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>scan RA in hours, J2000.0 or ephem.hours instance</li>
+<li>scan Dec in degrees, J2000.0 or ephem.hours instance</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>comments - comments about the scan</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.idf.DRX.setDec">
+<code class="descname">setDec</code><span class="sig-paren">(</span><em>dec</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.DRX.setDec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing Dec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.DRX.setPM">
+<code class="descname">setPM</code><span class="sig-paren">(</span><em>ra_dec</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.DRX.setPM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the proper motion of the target in mas/yr.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.idf.DRX.setRA">
+<code class="descname">setRA</code><span class="sig-paren">(</span><em>ra</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.DRX.setRA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing RA.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.Solar">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Solar</code><span class="sig-paren">(</span><em>target</em>, <em>intent</em>, <em>start</em>, <em>duration</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Solar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of DRX specifically for Solar DRX scans.   It features a
+reduced number of parameters needed to setup the scan.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>scan target</li>
+<li>scan intent</li>
+<li>scan start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>scan duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>comments - comments about the scan</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.idf.Solar.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Solar.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the scan is 
+pointed.  None if the scan mode is TBN.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.idf.Jovian">
+<em class="property">class </em><code class="descclassname">lsl.common.idf.</code><code class="descname">Jovian</code><span class="sig-paren">(</span><em>target</em>, <em>intent</em>, <em>start</em>, <em>duration</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Jovian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of DRX specifically for Jovian DRX scans.   It features a
+reduced number of parameters needed to setup the scan.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>scan target</li>
+<li>scan intent</li>
+<li>scan start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>scan duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>scan tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>comments - comments about the scan</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.idf.Jovian.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.Jovian.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the scan is 
+pointed.  None if the scan mode is TBN.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.idf.parseIDF">
+<code class="descclassname">lsl.common.idf.</code><code class="descname">parseIDF</code><span class="sig-paren">(</span><em>filename</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.parseIDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a filename, read the file’s contents into the IDF instance and return
+that instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.idf.getScanStartStop">
+<code class="descclassname">lsl.common.idf.</code><code class="descname">getScanStartStop</code><span class="sig-paren">(</span><em>obs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.getScanStartStop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a scan, get the start and stop times (returned as a two-
+element tuple of UTC datetime instances).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.idf.isValid">
+<code class="descclassname">lsl.common.idf.</code><code class="descname">isValid</code><span class="sig-paren">(</span><em>filename</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.idf.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a filename, see if it is valid IDF file or not.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sdf.html"
+                        title="previous chapter">Session and Observation Specification for a Single LWA Station</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="readers.html"
+                        title="next chapter">Data Readers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/idf.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readers.html" title="Data Readers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sdf.html" title="Session and Observation Specification for a Single LWA Station"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

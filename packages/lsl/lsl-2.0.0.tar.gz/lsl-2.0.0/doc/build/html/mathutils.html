@@ -1,0 +1,446 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Math Utilities &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Robust Statistics" href="robust.html" />
+    <link rel="prev" title="Time and Position Transformation" href="transform.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="robust.html" title="Robust Statistics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="transform.html" title="Time and Position Transformation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-lsl.misc.mathutil">
+<span id="math-utilities"></span><h1>Math Utilities<a class="headerlink" href="#module-lsl.misc.mathutil" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="lsl.misc.mathutil.regrid">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">regrid</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>newx</em>, <em>allow_extrapolation=False</em>, <em>method='spline'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.regrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regrid data from x,y onto newx. If allow_extrapolation is True,
+extrapolation is attempted if the method supports it.  Supported
+methods are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>linear</li>
+<li>spline</li>
+</ul>
+</div></blockquote>
+<p>Use of this function may require the scipy extension package.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.downsample">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">downsample</code><span class="sig-paren">(</span><em>vector</em>, <em>factor</em>, <em>rescale=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.downsample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downsample (i.e. co-add consecutive numbers) a vector by an integer 
+factor.  Trims the input timeseries to be a multiple of the downsample 
+factor, if needed.  If rescale == True, then divides each sum by factor 
+to produce a mean value, otherwise just adds the values in the vector.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.smooth">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">smooth</code><span class="sig-paren">(</span><em>x</em>, <em>window_len=10</em>, <em>window='hanning'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooth the data using a window with requested size.  Stolen from SciPy 
+Cookbook at <a class="reference external" href="http://www.scipy.org/Cookbook/SignalSmooth">http://www.scipy.org/Cookbook/SignalSmooth</a></p>
+<p>This method is based on the convolution of a scaled window with the signal.
+The signal is prepared by introducing reflected copies of the signal 
+(with the window size) in both ends so that transient parts are minimized
+in the begining and end part of the output signal.</p>
+<dl class="docutils">
+<dt>Input:</dt>
+<dd><ul class="first last simple">
+<li>x: the input signal</li>
+<li>window_len: the dimension of the smoothing window</li>
+<li><dl class="first docutils">
+<dt>window: the type of window from ‘flat’, ‘hanning’, ‘hamming’, </dt>
+<dd>‘bartlett’, ‘blackman’ flat window will produce a moving 
+average smoothing.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Output:</dt>
+<dd><ul class="first last simple">
+<li>the smoothed signal</li>
+</ul>
+</dd>
+<dt>Example:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">*</span><span class="mf">0.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">=</span><span class="n">smooth</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
+scipy.signal.lfilter</p>
+</div>
+<p>TODO: the window parameter could be the window itself if an array instead of a string</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.cmagnitude">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">cmagnitude</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.cmagnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the polar magnitudes of complex values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.cphase">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">cphase</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.cphase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the polar phases of complex values as radians.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.cpolar">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">cpolar</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.cpolar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the polar (magnitude, phase) representation of complex
+values (real, imaginary).  The return value is an array of shape (N,2),
+where N is the length of the cmplx input array.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.crect">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">crect</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.crect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the rectilinear (real, imaginary) representation of complex
+values (magnitude, phase).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.creal">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">creal</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.creal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the real rectilinear component from complex values
+expressed in polar form (magnitude, phase).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.cimag">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">cimag</code><span class="sig-paren">(</span><em>cmplx</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.cimag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the imaginary rectilinear component from complex values
+expressed in polar form (magnitude, phase).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.to_dB">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">to_dB</code><span class="sig-paren">(</span><em>factor</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.to_dB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert from linear units to decibels.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.from_dB">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">from_dB</code><span class="sig-paren">(</span><em>dB</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.from_dB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert from decibels to linear units.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.ndft">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">ndft</code><span class="sig-paren">(</span><em>t</em>, <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.ndft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of times and a list of data values, compute a non-uniform 
+discrete Fourier transform (NDFT) of the data.  Returns a two element 
+tuple of frequency and the complex NDFT result.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.savitzky_golay">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">savitzky_golay</code><span class="sig-paren">(</span><em>y</em>, <em>window_size</em>, <em>order</em>, <em>deriv=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.savitzky_golay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooth (and optionally differentiate) data with a Savitzky-Golay filter.
+The Savitzky-Golay filter removes high frequency noise from data.  It has 
+the advantage of preserving the original shape and features of the signal 
+better than other types of filtering approaches, such as moving averages 
+techhniques.</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li>y: array_like, shape (N,) = the values of the time history of the signal.</li>
+<li>window_size: int = the length of the window. Must be an odd integer number.</li>
+<li><dl class="first docutils">
+<dt>order: int = the order of the polynomial used in the filtering.  Must be </dt>
+<dd>less then <cite>window_size</cite> - 1.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>deriv: int = the order of the derivative to compute (default = 0 means </dt>
+<dd>only smoothing)</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>ys: ndarray, shape (N) = the smoothed signal (or it’s n-th derivative).</li>
+</ul>
+</dd>
+<dt>Notes:</dt>
+<dd>The Savitzky-Golay is a type of low-pass filter, particularly suited for 
+smoothing noisy data. The main idea behind this approach is to make for each 
+point a least-square fit with a polynomial of high order over a odd-sized 
+window centered at the point.</dd>
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ysg</span> <span class="o">=</span> <span class="n">savitzky_golay</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Noisy signal&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original signal&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ysg</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Filtered signal&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>References:
+1. A. Savitzky, M. J. E. Golay, Smoothing and Differentiation of Data by</p>
+<blockquote>
+<div>Simplified Least Squares Procedures. Analytical Chemistry, 1964, 36 (8), 
+pp 1627-1639.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><dl class="first docutils">
+<dt>Numerical Recipes 3rd Edition: The Art of Scientific Computing W.H. Press,</dt>
+<dd>S.A. Teukolsky, W.T. Vetterling, B.P. Flannery Cambridge University Press 
+ISBN-13: 9780521880688</dd>
+</dl>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.gaussian1d">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">gaussian1d</code><span class="sig-paren">(</span><em>height</em>, <em>center</em>, <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.gaussian1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a function that generates a 1-D gaussian with the specified
+height, mean, and standard deviation.</p>
+<p>Example:
+&gt;&gt;&gt; height = 1
+&gt;&gt;&gt; center = 5.0
+&gt;&gt;&gt; width = 2.1
+&gt;&gt;&gt; gauFnc = guassian1d(height, center, width)
+&gt;&gt;&gt; value = gauFnc(numpy.arange(0, 100))</p>
+<p>Based on: <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/gaussfitter.py">http://code.google.com/p/agpy/source/browse/trunk/agpy/gaussfitter.py</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.gaussian2d">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">gaussian2d</code><span class="sig-paren">(</span><em>height</em>, <em>centerX</em>, <em>centerY</em>, <em>widthMaj</em>, <em>widthMin</em>, <em>angle=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.gaussian2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a function that generates a 2-D gaussian with the specified 
+height, mean (for both X and Y), standard deviation (for both major and 
+minor axes), and rotation angle from the X axis in degrees.</p>
+<p>Based on: <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/gaussfitter.py">http://code.google.com/p/agpy/source/browse/trunk/agpy/gaussfitter.py</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.gaussparams">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">gaussparams</code><span class="sig-paren">(</span><em>data</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.gaussparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the parameters (height, center, width) for a gaussian.  The 
+return order is:</p>
+<blockquote>
+<div>1-D: height, center, width
+2-D: height, center x, center y, width x, width y, position angle</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The 2-D fits always return a position angle of zero since the
+routine decomposes the process into two 1-D fits.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.sphfit">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">sphfit</code><span class="sig-paren">(</span><em>az</em>, <em>alt</em>, <em>data</em>, <em>lmax=5</em>, <em>degrees=False</em>, <em>realOnly=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.sphfit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decompose a spherical or semi-spherical data set into spherical harmonics.</p>
+<dl class="docutils">
+<dt>Inputs:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>az: 2-D numpy array of azimuth coordinates in radians or degrees if the </dt>
+<dd><cite>degrees</cite> keyword is set</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>alt: 2-D numpy array of altitude coordinates in radian or degrees if the </dt>
+<dd><cite>degrees</cite> keyword is set</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>data: 2-D numpy array of the data to be fit.  If the data array is purely</dt>
+<dd>real, then the <cite>realOnly</cite> keyword can be set which speeds up the 
+decomposition</dd>
+</dl>
+</li>
+<li>lmax: integer setting the maximum order harmonic to fit</li>
+</ul>
+</dd>
+<dt>Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>degrees: boolean of whether or not the input azimuth and altitude coordinates</dt>
+<dd>are in degrees or not</dd>
+</dl>
+</li>
+<li>realOnly: boolean of whether or not the input data is purely real or not.  If
+the data are real, only coefficients for modes &gt;=0 are computed.</li>
+</ul>
+</dd>
+</dl>
+<p>Returned is a 1-D complex numpy array with the spherical harmonic coefficients 
+packed packed in order of increasing harmonic order and increasing mode, i.e.,
+(0,0), (1,-1), (1,0), (1,1), (2,-2), etc.  If the <cite>realOnly</cite> keyword has been 
+set, the negative coefficients for the negative modes are excluded from the 
+output array.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">sphfit was designed to fit the LWA dipole response pattern as a function of
+azimuth and elevation.  Elevation angles are mapped to theta angles by adding
+pi/2 so that an elevation of 90 degrees corresponds to a theta of 180 degrees.
+To fit in terms of spherical coordianates, subtract pi/2 from the theta values
+before running.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.mathutil.sphval">
+<code class="descclassname">lsl.misc.mathutil.</code><code class="descname">sphval</code><span class="sig-paren">(</span><em>terms</em>, <em>az</em>, <em>alt</em>, <em>degrees=False</em>, <em>realOnly=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.mathutil.sphval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate a set of spherical harmonic coefficents at a specified set of
+azimuth and altitude coordinates.</p>
+<dl class="docutils">
+<dt>Inputs:</dt>
+<dd><ul class="first last simple">
+<li>terms: 1-D complex numpy array, typically from sphfit</li>
+<li><dl class="first docutils">
+<dt>az: 2-D numpy array of azimuth coordinates in radians or degrees if the </dt>
+<dd><cite>degrees</cite> keyword is set</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>alt: 2-D numpy array of altitude coordinates in radian or degrees if the </dt>
+<dd><cite>degrees</cite> keyword is set</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>degrees: boolean of whether or not the input azimuth and altitude coordinates</dt>
+<dd>are in degrees or not</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>realOnly: boolean of whether or not the input data is purely real or not.  If</dt>
+<dd>the data are real, only coefficients for modes &gt;=0 are computed.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a 2-D numpy array of the harmoics evalated and summed at the given 
+coordinates.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">sphfit was designed to fit the LWA dipole response pattern as a function of
+azimuth and elevation.  Elevation angles are mapped to theta angles by adding
+pi/2 so that an elevation of 90 degrees corresponds to a theta of 180 degrees.
+To spherical harmonics in terms of spherical coordianates, subtract pi/2 from 
+the theta values before running.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="transform.html"
+                        title="previous chapter">Time and Position Transformation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="robust.html"
+                        title="next chapter">Robust Statistics</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/mathutils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="robust.html" title="Robust Statistics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="transform.html" title="Time and Position Transformation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,770 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Imaging &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Post-Acquisition Beam Forming" href="beamformer.html" />
+    <link rel="prev" title="Correlation" href="correlator.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="beamformer.html" title="Post-Acquisition Beam Forming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="correlator.html" title="Correlation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="imaging">
+<h1>Imaging<a class="headerlink" href="#imaging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-representation">
+<h2>Data Representation<a class="headerlink" href="#data-representation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id1">
+<h2>Imaging<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-lsl.imaging.utils"></span><dl class="function">
+<dt id="lsl.imaging.utils.baselineOrder">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">baselineOrder</code><span class="sig-paren">(</span><em>bls</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.baselineOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like numpy.argsort(), but for a list of two-element tuples of baseline 
+pairs.  The resulting lists can then be used to sort a data dictionary
+a la sortDataDict().</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.sortDataDict">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">sortDataDict</code><span class="sig-paren">(</span><em>dataDict</em>, <em>order=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.sortDataDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort a data dictionary by the specified order.  If no order is supplied, 
+the data dictionary is sorted by baseline using baselineOrder().</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.pruneBaselineRange">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">pruneBaselineRange</code><span class="sig-paren">(</span><em>dataDict</em>, <em>uvMin=0</em>, <em>uvMax=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.pruneBaselineRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prune baselines from a data dictionary that are less than uvMin or
+greater than or equal to uvMax.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">uvMin and uvMax should be specified in lambda</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.rephaseData">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">rephaseData</code><span class="sig-paren">(</span><em>aa</em>, <em>dataDict</em>, <em>currentPhaseCenter='z'</em>, <em>newPhaseCenter='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.rephaseData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an AntennaArray instance and a data dictionary, re-phase the data 
+to change the pointing center.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.CorrelatedData">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">CorrelatedData</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in and work with FITS IDI and UVFITS files.  Returns either a 
+CorrelateDataIDI or CorrelatedDataUV instance.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.imaging.utils.CorrelatedDataIDI">
+<em class="property">class </em><code class="descclassname">lsl.imaging.utils.</code><code class="descname">CorrelatedDataIDI</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataIDI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make accessing information about a FITS IDI easy.  This wraps 
+all of the “messy” machinery needed to extract both the metadata and data 
+from the file and return them as common LSL objects.</p>
+<dl class="docutils">
+<dt>This class has three main attributes to interact with:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>getAntennaArray - Return a <code class="xref py py-class docutils literal"><span class="pre">lsl.sim.vim.AntennaArray</span></code> instance</dt>
+<dd>that represents the array where the data was obtained.  
+This is useful for simulation proposes and computing 
+source positions.</dd>
+</dl>
+</li>
+<li>getObserver - Return a ephem.Observer instance representing the array</li>
+<li><dl class="first docutils">
+<dt>getDataSet - Return a data dictionary of all baselines for a given set</dt>
+<dd>of observations</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>The class also includes a variety of useful metadata attributes:</dt>
+<dd><ul class="first last simple">
+<li>pols - Numpy array of polarization product codes</li>
+<li>freq - Numpy array of frequency channels in Hz</li>
+<li><dl class="first docutils">
+<dt>station - LSL <a class="reference internal" href="station.html#lsl.common.stations.LWAStation" title="lsl.common.stations.LWAStation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.LWAStation</span></code></a> instance for the</dt>
+<dd>array</dd>
+</dl>
+</li>
+<li>dateObs - Datetime object for the reference date of the FIT IDI file</li>
+<li>antennas - List of <a class="reference internal" href="station.html#lsl.common.stations.Antenna" title="lsl.common.stations.Antenna"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.Antenna</span></code></a> instances</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The CorrelatedData.antennas attribute should be used over 
+CorrelatedData.station.getAntennas() since the mapping in the FITS IDI
+file may not be the same as the digitizer order.</p>
+</div>
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataIDI.getAntennaArray">
+<code class="descname">getAntennaArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataIDI.getAntennaArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an AIPY AntennaArray instance for the array that made the 
+observations contained here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataIDI.getDataSet">
+<code class="descname">getDataSet</code><span class="sig-paren">(</span><em>set</em>, <em>includeAuto=False</em>, <em>sort=True</em>, <em>uvMin=0</em>, <em>uvMax=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataIDI.getDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a baseline sorted data dictionary for the specified data set.  
+By default this excludes the autocorrelations.  To include 
+autocorrelations set the value of ‘includeAuto’ to True.  Setting the
+‘sort’ keyword to False will disable the baseline sorting.  Optionally,
+baselines with lengths between uvMin and uvMax can only be returned.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">uvMin and uvMax should be specified in lambda</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>‘set’ can now be either an integer or a list to pull back multiple 
+integrations.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataIDI.getObserver">
+<code class="descname">getObserver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataIDI.getObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a ephem.Observer instances for the array described in the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.imaging.utils.CorrelatedDataUV">
+<em class="property">class </em><code class="descclassname">lsl.imaging.utils.</code><code class="descname">CorrelatedDataUV</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataUV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make accessing information about a UVFITS file easy.  This wraps 
+all of the “messy” machinery needed to extract both the metadata and data 
+from the file and return them as common LSL objects.</p>
+<dl class="docutils">
+<dt>This class has three main attributes to interact with:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>getAntennaArray - Return a <code class="xref py py-class docutils literal"><span class="pre">lsl.sim.vim.AntennaArray</span></code> instance</dt>
+<dd>that represents the array where the data was obtained.  
+This is useful for simulation proposes and computing 
+source positions.</dd>
+</dl>
+</li>
+<li>getObserver - Return a ephem.Observer instance representing the array</li>
+<li><dl class="first docutils">
+<dt>getDataSet - Return a data dictionary of all baselines for a given set</dt>
+<dd>of observations</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>The class also includes a variety of useful metadata attributes:</dt>
+<dd><ul class="first last simple">
+<li>pols - Numpy array of polarization product codes</li>
+<li>freq - Numpy array of frequency channels in Hz</li>
+<li><dl class="first docutils">
+<dt>station - LSL <a class="reference internal" href="station.html#lsl.common.stations.LWAStation" title="lsl.common.stations.LWAStation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.LWAStation</span></code></a> instance for the</dt>
+<dd>array</dd>
+</dl>
+</li>
+<li>dateObs - Datetime object for the reference date of the FIT IDI file</li>
+<li>antennas - List of <a class="reference internal" href="station.html#lsl.common.stations.Antenna" title="lsl.common.stations.Antenna"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.Antenna</span></code></a> instances</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The CorrelatedDataUV.antennas attribute should be used over 
+CorrelatedDataUV.station.getAntennas() since the mapping in the UVFITS
+file may not be the same as the digitizer order.</p>
+</div>
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataUV.getAntennaArray">
+<code class="descname">getAntennaArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataUV.getAntennaArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an AIPY AntennaArray instance for the array that made the 
+observations contained here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataUV.getDataSet">
+<code class="descname">getDataSet</code><span class="sig-paren">(</span><em>set</em>, <em>includeAuto=False</em>, <em>sort=True</em>, <em>uvMin=0</em>, <em>uvMax=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataUV.getDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a baseline sorted data dictionary for the specified data set.  
+By default this excludes the autocorrelations.  To include 
+autocorrelations set the value of ‘includeAuto’ to True.  Setting the
+‘sort’ keyword to False will disable the baseline sorting.  Optionally,
+baselines with lengths between uvMin and uvMax can only be returned.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">uvMin and uvMax should be specified in lambda</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>‘set’ can now be either an integer or a list to pull back multiple 
+integrations.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataUV.getObserver">
+<code class="descname">getObserver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataUV.getObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a ephem.Observer instances for the array described in the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.imaging.utils.CorrelatedDataMS">
+<em class="property">class </em><code class="descclassname">lsl.imaging.utils.</code><code class="descname">CorrelatedDataMS</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make accessing information about a MS easy.  This wraps 
+all of the “messy” machinery needed to extract both the metadata and data 
+from the file and return them as common LSL objects.</p>
+<dl class="docutils">
+<dt>This class has three main attributes to interact with:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>getAntennaArray - Return a <code class="xref py py-class docutils literal"><span class="pre">lsl.sim.vim.AntennaArray</span></code> instance</dt>
+<dd>that represents the array where the data was obtained.  
+This is useful for simulation proposes and computing 
+source positions.</dd>
+</dl>
+</li>
+<li>getObserver - Return a ephem.Observer instance representing the array</li>
+<li><dl class="first docutils">
+<dt>getDataSet - Return a data dictionary of all baselines for a given set</dt>
+<dd>of observations</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>The class also includes a variety of useful metadata attributes:</dt>
+<dd><ul class="first last simple">
+<li>pols - Numpy array of polarization product codes</li>
+<li>freq - Numpy array of frequency channels in Hz</li>
+<li><dl class="first docutils">
+<dt>station - LSL <a class="reference internal" href="station.html#lsl.common.stations.LWAStation" title="lsl.common.stations.LWAStation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.LWAStation</span></code></a> instance for the</dt>
+<dd>array</dd>
+</dl>
+</li>
+<li>dateObs - Datetime object for the reference date of the FIT IDI file</li>
+<li>antennas - List of <a class="reference internal" href="station.html#lsl.common.stations.Antenna" title="lsl.common.stations.Antenna"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.Antenna</span></code></a> instances</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The CorrelatedDataMS.antennas attribute should be used over 
+CorrelatedDataMS.station.getAntennas() since the mapping in the MS
+may not be the same as the digitizer order.</p>
+</div>
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataMS.getAntennaArray">
+<code class="descname">getAntennaArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataMS.getAntennaArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an AIPY AntennaArray instance for the array that made the 
+observations contained here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataMS.getDataSet">
+<code class="descname">getDataSet</code><span class="sig-paren">(</span><em>set</em>, <em>includeAuto=False</em>, <em>sort=True</em>, <em>uvMin=0</em>, <em>uvMax=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataMS.getDataSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a baseline sorted data dictionary for the specified data set.  
+By default this excludes the autocorrelations.  To include 
+autocorrelations set the value of ‘includeAuto’ to True.  Setting the
+‘sort’ keyword to False will disable the baseline sorting.  Optionally,
+baselines with lengths between uvMin and uvMax can only be returned.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">uvMin and uvMax should be specified in lambda</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>‘set’ can now be either an integer or a list to pull back multiple 
+integrations.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.CorrelatedDataMS.getObserver">
+<code class="descname">getObserver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.CorrelatedDataMS.getObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a ephem.Observer instances for the array described in the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.imaging.utils.ImgWPlus">
+<em class="property">class </em><code class="descclassname">lsl.imaging.utils.</code><code class="descname">ImgWPlus</code><span class="sig-paren">(</span><em>size=100</em>, <em>res=1</em>, <em>wres=0.5</em>, <em>mf_order=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of the aipy.img.ImgW class that adds support for different 
+visibility weighting scheme and uv plane tapering.  This class also
+adds in a couple of additional methods that help determine the size of
+the field of view and the pixels near the phase center.</p>
+<dl class="method">
+<dt id="lsl.imaging.utils.ImgWPlus.bm_image">
+<code class="descname">bm_image</code><span class="sig-paren">(</span><em>center=(0</em>, <em>0)</em>, <em>term=None</em>, <em>weighting='natural'</em>, <em>localFraction=0.5</em>, <em>robust=0.0</em>, <em>taper=(0.0</em>, <em>0.0)</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus.bm_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the inverse FFT of the sample weightings (for all mf_order
+terms, or the specified term if supplied), with the 0,0 point
+moved to ‘center’.  In the images return north is up and east is 
+to the left.</p>
+<p>There are a few keywords that control how the image is formed.  
+There are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>weighting - The weighting scheme (‘natural’, ‘uniform’, or </dt>
+<dd>‘briggs’) used on the data;</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>localFraction - The fraction of the uv grid that is consider </dt>
+<dd>“local” for the ‘uniform’ and ‘briggs’ methods;</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>robust - The value for the weighting robustness under the </dt>
+<dd>‘briggs’ method; and</dd>
+</dl>
+</li>
+<li>taper - The size of u and v Gaussian tapers at the 30% level.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.ImgWPlus.getFieldOfView">
+<code class="descname">getFieldOfView</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus.getFieldOfView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the approximate size of the field of view in radians.  The 
+field of view calculate is based off the maximum and minimum values
+of L found for the inverted uv matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.ImgWPlus.getPixelSize">
+<code class="descname">getPixelSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus.getPixelSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the approximate size of pixels at the phase center in radians.
+The pixel size is averaged over the four pixels that neighboor the 
+phase center.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.ImgWPlus.image">
+<code class="descname">image</code><span class="sig-paren">(</span><em>center=(0</em>, <em>0)</em>, <em>weighting='natural'</em>, <em>localFraction=0.5</em>, <em>robust=0.0</em>, <em>taper=(0.0</em>, <em>0.0)</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the inverse FFT of the UV matrix, with the 0,0 point moved
+to ‘center’.  In the images return north is up and east is 
+to the left.</p>
+<p>There are a few keywords that control how the image is formed.  
+There are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>weighting - The weighting scheme (‘natural’, ‘uniform’, or </dt>
+<dd>‘briggs’) used on the data;</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>localFraction - The fraction of the uv grid that is consider </dt>
+<dd>“local” for the ‘uniform’ and ‘briggs’ methods;</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>robust - The value for the weighting robustness under the </dt>
+<dd>‘briggs’ method; and</dd>
+</dl>
+</li>
+<li>taper - The size of u and v Gaussian tapers at the 30% level.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.imaging.utils.ImgWPlus.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>uvw</em>, <em>data</em>, <em>wgts=None</em>, <em>invker2=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.ImgWPlus.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Img.put, only now the w component is projected to the w=0
+plane before applying the data to the UV matrix.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.buildGriddedImage">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">buildGriddedImage</code><span class="sig-paren">(</span><em>dataDict</em>, <em>MapSize=80</em>, <em>MapRes=0.5</em>, <em>MapWRes=0.1</em>, <em>pol='xx'</em>, <em>chan=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.buildGriddedImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a data dictionary, build an aipy.img.ImgW object of gridded uv data 
+which can be used for imaging.  The ImgW object itself is returned by this 
+function to make it more versatile.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.plotGriddedImage">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">plotGriddedImage</code><span class="sig-paren">(</span><em>ax</em>, <em>gimg</em>, <em>shifted=True</em>, <em>origin='lower'</em>, <em>interpolation='nearest'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.plotGriddedImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a blank matplotlib axes instance and a gridded image generated by 
+the buildGriddedImage() function, plot the image on the axes and setup
+the basic coordinate system.  This function returns the matplotlib object
+added to the plot</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Changed the function to return the matplotlib object plotted so
+that colorbars can be added</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Added a ‘shifted’ keyword to control whether or not the image
+is centered or not.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.getImageRADec">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">getImageRADec</code><span class="sig-paren">(</span><em>gimg</em>, <em>aa</em>, <em>phaseCenter='z'</em>, <em>shifted=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.getImageRADec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a gridded image generated by the buildGriddedImage() function
+and an AntennaArray instance, return a two-element tuple containing
+the RA and dec. values (in radians) for each pixel in the image.</p>
+<p>The ‘phaseCenter’ keyword controls what the phase center of the image 
+is and defaults to zenith.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.utils.getImageAzEl">
+<code class="descclassname">lsl.imaging.utils.</code><code class="descname">getImageAzEl</code><span class="sig-paren">(</span><em>gimg</em>, <em>aa</em>, <em>phaseCenter='z'</em>, <em>shifted=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.utils.getImageAzEl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a gridded image generated by the buildGriddedImage() function
+and an AntennaArray instance, return a two-element tuple containing
+the azimuth and elevation (altitude), both in radians, for each pixel
+in the image.</p>
+<p>The ‘phaseCenter’ keyword controls what the phase center of the image 
+is and defaults to zenith.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.imaging.overlay">
+<span id="plot-overlays"></span><h2>Plot Overlays<a class="headerlink" href="#module-lsl.imaging.overlay" title="Permalink to this headline">¶</a></h2>
+<p>Module that provides a variety of overlays for all-sky images.  These overlays
+include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the locations and names of sources,</li>
+<li>the horizon,</li>
+<li>a graticle showing lines of constant RA and dec., and</li>
+<li>a graticle showing lines of constant azimuth and elevation.</li>
+</ul>
+</div></blockquote>
+<p>All of the functions in this module accept a matplotlib axes instances that 
+is used for plotting.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Added support for overlaying on images with non-zenith phase centers</p>
+</div>
+<dl class="function">
+<dt id="lsl.imaging.overlay.sources">
+<code class="descclassname">lsl.imaging.overlay.</code><code class="descname">sources</code><span class="sig-paren">(</span><em>ax</em>, <em>aa</em>, <em>srcs</em>, <em>phaseCenter='z'</em>, <em>label=True</em>, <em>marker='x'</em>, <em>color='white'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.overlay.sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matplotlib axis instance showing an image of the sky, plot the
+locations of the srcs given in the ‘srcs’ dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.overlay.horizon">
+<code class="descclassname">lsl.imaging.overlay.</code><code class="descname">horizon</code><span class="sig-paren">(</span><em>ax</em>, <em>aa</em>, <em>phaseCenter='z'</em>, <em>color='white'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.overlay.horizon" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matplotlib axis instance showing an image of the sky, plot the horizon.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Added a new argument for the AntennaArray instance to provide a 
+uniform default call for all functions.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.overlay.graticleRADec">
+<code class="descclassname">lsl.imaging.overlay.</code><code class="descname">graticleRADec</code><span class="sig-paren">(</span><em>ax</em>, <em>aa</em>, <em>phaseCenter='z'</em>, <em>label=True</em>, <em>color='white'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.overlay.graticleRADec" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matplotlib axis instance showing an image of the sky, plot lines of
+constant declinate and RA.  Declinations are spaced at 20 degree intervals
+and RAs are spaced at 2 hour intervals.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.overlay.graticleAzEl">
+<code class="descclassname">lsl.imaging.overlay.</code><code class="descname">graticleAzEl</code><span class="sig-paren">(</span><em>ax</em>, <em>aa</em>, <em>phaseCenter='z'</em>, <em>label=True</em>, <em>color='white'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.overlay.graticleAzEl" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a matplotlib axis instance showing an image of the sky, plot lines of
+constant azimuth and elevation.  Elevations are spaced at 20 degree intervals
+and azimuths are spaced at 45 degree intervals</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.imaging.analysis">
+<span id="basic-image-analysis"></span><h2>Basic Image Analysis<a class="headerlink" href="#module-lsl.imaging.analysis" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.imaging.analysis.estimateBackground">
+<code class="descclassname">lsl.imaging.analysis.</code><code class="descname">estimateBackground</code><span class="sig-paren">(</span><em>image</em>, <em>window=32</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.analysis.estimateBackground" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a 2-D image, estimate and return the background a la SExtractor.</p>
+<dl class="docutils">
+<dt>This works by:</dt>
+<dd><ol class="first last arabic">
+<li><p class="first">Dividing the image into a number of half-overlapped tiles that are
+‘window’ by ‘window’ pixels in size.</p>
+</li>
+<li><p class="first">Computing the mean and standard deviation within the tile both
+with and without 3*sigma clipping applied.</p>
+</li>
+<li><p class="first">Using the tile statistics, determine if the tile is empty, i.e.,
+the standard deviation has changed by less than 20%, or full.</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>If the tile is empty, use the clipped mean for the background.</li>
+<li>Otherwise, use 2.5*median - 1.5*mean.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Once all of the tiles have been processes, median filter them to 
+remove those that are anomalously high.</p>
+</li>
+<li><p class="first">Build a bicubic spline to interpolate the background back to the
+original image size.</p>
+</li>
+<li><p class="first">Evaluate the spline and return.</p>
+</li>
+</ol>
+</dd>
+<dt>For more information on the SExtractor method, see:</dt>
+<dd><ul class="first last simple">
+<li>Bertin &amp; Arnouts (1996, AApS, 317, 393)</li>
+<li><a class="reference external" href="https://www.astromatic.net/pubsvn/software/sextractor/trunk/doc/sextractor.pdf">https://www.astromatic.net/pubsvn/software/sextractor/trunk/doc/sextractor.pdf</a></li>
+<li><a class="reference external" href="http://www.astr.tohoku.ac.jp/~akhlaghi/sextractor_notes.html">http://www.astr.tohoku.ac.jp/~akhlaghi/sextractor_notes.html</a></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.analysis.findPointSources">
+<code class="descclassname">lsl.imaging.analysis.</code><code class="descname">findPointSources</code><span class="sig-paren">(</span><em>image, threshold=4.0, fwhm=1.0, sharp=[0.2, 1.0], round=[-1.0, 1.0], backgroundSize=16, verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.analysis.findPointSources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a 2-D image, find all of the point sources in it that meet the
+selection criteria provided via the keywords.  These are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>threshold: detection threshold in counts about the background</li>
+<li>fwhm: source full width half max. in pixel</li>
+<li><dl class="first docutils">
+<dt>sharp: two-element array that defines the lower and upper bounds</dt>
+<dd>on the source sharpness</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>round: two-element array that defines the lower and upper bounds</dt>
+<dd>on the source roundness</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Background estimation and removal is handled by the estimateBackground()
+function in this module that implements a SExtractor-like method.  This
+can be disabled by setting the ‘backgroundSize’ keyword to 0.  For 
+details see <a class="reference internal" href="#lsl.imaging.analysis.estimateBackground" title="lsl.imaging.analysis.estimateBackground"><code class="xref py py-func docutils literal"><span class="pre">lsl.imaging.analysis.estimateBackground()</span></code></a>.</p>
+<p>The output of this function is a five-element tuple of 1-D NumPy arrays
+that store information for each source.  The elements are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>x: intensity-weighted center - x coordinate</li>
+<li>y: intensity-weighted center - y coordinate</li>
+<li>flux: peak count value - input image units</li>
+<li>sharpness: sharpness statistic</li>
+<li>roundness: roundness statistic</li>
+</ul>
+</div></blockquote>
+<p>This function is based on the FIND procedure from the AstroIDL User’s
+Library that was written by W. Landsman (Hughes STX).</p>
+<p>For additional information about the original IDL routines, see:
+<a class="reference external" href="http://idlastro.gsfc.nasa.gov/contents.html#C2">http://idlastro.gsfc.nasa.gov/contents.html#C2</a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="self-calibration">
+<h2>Self-Calibration<a class="headerlink" href="#self-calibration" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lsl.imaging.deconv">
+<span id="deconvolution"></span><h2>Deconvolution<a class="headerlink" href="#module-lsl.imaging.deconv" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.imaging.deconv.clean">
+<code class="descclassname">lsl.imaging.deconv.</code><code class="descname">clean</code><span class="sig-paren">(</span><em>aa</em>, <em>dataDict</em>, <em>aipyImg</em>, <em>imageInput=None</em>, <em>MapSize=80</em>, <em>MapRes=0.5</em>, <em>MapWRes=0.1</em>, <em>pol='xx'</em>, <em>chan=None</em>, <em>gain=0.2</em>, <em>maxIter=150</em>, <em>sigma=3.0</em>, <em>verbose=True</em>, <em>plot=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.deconv.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a AIPY antenna array instance, a data dictionary, and an AIPY ImgW 
+instance filled with data, return a deconvolved image.  This function 
+uses a CLEAN-like method that computes the array beam for each peak in 
+the flux.  Thus the CLEAN loop becomes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Find the peak flux in the residual image</li>
+<li>Compute the systems response to a point source at that location</li>
+<li>Remove the scaled porition of this beam from the residuals</li>
+<li>Go to 1.</li>
+</ol>
+</div></blockquote>
+<dl class="docutils">
+<dt>CLEAN tuning parameters:</dt>
+<dd><ul class="first last simple">
+<li>gain - CLEAN loop gain (default 0.2)</li>
+<li>maxIter - Maximum number of iterations (default 150)</li>
+<li>sigma - Threshold in sigma to stop cleaning (default 3.0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.deconv.cleanSources">
+<code class="descclassname">lsl.imaging.deconv.</code><code class="descname">cleanSources</code><span class="sig-paren">(</span><em>aa</em>, <em>dataDict</em>, <em>aipyImg</em>, <em>srcs</em>, <em>imageInput=None</em>, <em>MapSize=80</em>, <em>MapRes=0.5</em>, <em>MapWRes=0.1</em>, <em>pol='xx'</em>, <em>chan=None</em>, <em>gain=0.1</em>, <em>maxIter=150</em>, <em>sigma=2.0</em>, <em>verbose=True</em>, <em>plot=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.deconv.cleanSources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a AIPY antenna array instance, a data dictionary, an AIPY ImgW 
+instance filled with data, and a dictionary of sources, return the CLEAN
+components and the residuals map.  This function uses a CLEAN-like method
+that computes the array beam for each peak in the flux.  Thus the CLEAN 
+loop becomes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Find the peak flux in the residual image</li>
+<li>Compute the systems response to a point source at that location</li>
+<li>Remove the scaled porition of this beam from the residuals</li>
+<li>Go to 1.</li>
+</ol>
+</div></blockquote>
+<p>This function differs from clean() in that it only cleans localized 
+regions around each source rather than the whole image.  This is
+intended to help the mem() function along.</p>
+<dl class="docutils">
+<dt>CLEAN tuning parameters:</dt>
+<dd><ul class="first last simple">
+<li>gain - CLEAN loop gain (default 0.1)</li>
+<li>maxIter - Maximum number of iterations (default 150)</li>
+<li>sigma - Threshold in sigma to stop cleaning (default 2.0)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.imaging.deconv.lsq">
+<code class="descclassname">lsl.imaging.deconv.</code><code class="descname">lsq</code><span class="sig-paren">(</span><em>aa</em>, <em>dataDict</em>, <em>aipyImg</em>, <em>imageInput=None</em>, <em>MapSize=80</em>, <em>MapRes=0.5</em>, <em>MapWRes=0.1</em>, <em>pol='xx'</em>, <em>chan=None</em>, <em>gain=0.05</em>, <em>maxIter=150</em>, <em>rtol=1e-09</em>, <em>verbose=True</em>, <em>plot=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.imaging.deconv.lsq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a AIPY antenna array instance, a data dictionary, and an AIPY ImgW 
+instance filled with data, return a deconvolved image.  This function 
+implements a least squares deconvolution.</p>
+<dl class="docutils">
+<dt>Least squares tuning parameters:</dt>
+<dd><ul class="first last simple">
+<li>gain - least squares loop gain (default 0.05)</li>
+<li>maxIter - Maximum number of iteration (default 150)</li>
+<li><dl class="first docutils">
+<dt>rtol - Minimum change in the residual RMS between iterations</dt>
+<dd>(default 1e-9)</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Imaging</a><ul>
+<li><a class="reference internal" href="#data-representation">Data Representation</a></li>
+<li><a class="reference internal" href="#id1">Imaging</a></li>
+<li><a class="reference internal" href="#module-lsl.imaging.overlay">Plot Overlays</a></li>
+<li><a class="reference internal" href="#module-lsl.imaging.analysis">Basic Image Analysis</a></li>
+<li><a class="reference internal" href="#self-calibration">Self-Calibration</a></li>
+<li><a class="reference internal" href="#module-lsl.imaging.deconv">Deconvolution</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="correlator.html"
+                        title="previous chapter">Correlation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="beamformer.html"
+                        title="next chapter">Post-Acquisition Beam Forming</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/imaging.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="beamformer.html" title="Post-Acquisition Beam Forming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="correlator.html" title="Correlation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

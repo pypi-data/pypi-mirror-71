@@ -1,0 +1,1383 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Astronomical Utilities &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RFI Identification" href="kurtosis.html" />
+    <link rel="prev" title="LWA_User Modules" href="lwa_user.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kurtosis.html" title="RFI Identification"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lwa_user.html" title="LWA_User Modules"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="astronomical-utilities">
+<h1>Astronomical Utilities<a class="headerlink" href="#astronomical-utilities" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.2.</span></p>
+</div>
+<span class="target" id="module-lsl.astro"></span><dl class="data">
+<dt id="lsl.astro.B1950_UTC_JD">
+<code class="descclassname">lsl.astro.</code><code class="descname">B1950_UTC_JD</code><em class="property"> = 2433282.4235</em><a class="headerlink" href="#lsl.astro.B1950_UTC_JD" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTC Julian day of J2000.0 coordinate epoch.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.B1950_to_J2000">
+<code class="descclassname">lsl.astro.</code><code class="descname">B1950_to_J2000</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.B1950_to_J2000" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert B1950 epoch to J2000 epoch for equatorial coordinates.</p>
+<p>Param: pos - object of type equ_posn giving B1950 coordinates</p>
+<p>Returns: object of type equ_posn giving J2000 coordinates.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The accuracy of this function is about 0.01 degrees.</p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.DJD_OFFSET">
+<code class="descclassname">lsl.astro.</code><code class="descname">DJD_OFFSET</code><em class="property"> = 2415020.0</em><a class="headerlink" href="#lsl.astro.DJD_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset in days between UNIX time (epoch 1970/01/01) and standard Julian day.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.J2000_UTC_JD">
+<code class="descclassname">lsl.astro.</code><code class="descname">J2000_UTC_JD</code><em class="property"> = 2451545.0</em><a class="headerlink" href="#lsl.astro.J2000_UTC_JD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Difference in seconds between TT and TAI times.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.J2000_to_B1950">
+<code class="descclassname">lsl.astro.</code><code class="descname">J2000_to_B1950</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.J2000_to_B1950" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert J2000 epoch to B1950 epoch for equatorial coordinates.</p>
+<p>Param: pos - object of type equ_posn giving J2000 coordinates</p>
+<p>Returns: object of type equ_posn giving B1950 coordinates.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The accuracy of this function is about 0.01 degrees.</p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.MJD_OFFSET">
+<code class="descclassname">lsl.astro.</code><code class="descname">MJD_OFFSET</code><em class="property"> = 2400000.5</em><a class="headerlink" href="#lsl.astro.MJD_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset in days between standard Julian day and Dublin Julian day.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.SECS_IN_DAY">
+<code class="descclassname">lsl.astro.</code><code class="descname">SECS_IN_DAY</code><em class="property"> = 86400.0</em><a class="headerlink" href="#lsl.astro.SECS_IN_DAY" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTC Julian day of B1950.0 coordinate epoch.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.TAI_TT_OFFSET">
+<code class="descclassname">lsl.astro.</code><code class="descname">TAI_TT_OFFSET</code><em class="property"> = 32.184</em><a class="headerlink" href="#lsl.astro.TAI_TT_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>”
+Velocity of light in meters/second.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="lsl.astro.UNIX_OFFSET">
+<code class="descclassname">lsl.astro.</code><code class="descname">UNIX_OFFSET</code><em class="property"> = 2440587.5</em><a class="headerlink" href="#lsl.astro.UNIX_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of seconds in one day</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.add_hms">
+<code class="descclassname">lsl.astro.</code><code class="descname">add_hms</code><span class="sig-paren">(</span><em>source</em>, <em>dest</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.add_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds time/angle hours, minutes, seconds.</p>
+<p>Param: source - Object of type hms represeting angle 1.
+Param: dest   - Object of type hms represeting angle 2.</p>
+<p>Returns object of type hms representing sum of angles.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.add_secs_hms">
+<code class="descclassname">lsl.astro.</code><code class="descname">add_secs_hms</code><span class="sig-paren">(</span><em>hms</em>, <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.add_secs_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add seconds to time/angle hours, minutes, seconds.</p>
+<p>Param: hms      - Object of type hms representing angle.
+Param: seconds  - Seconds offset (float) to add to angle.</p>
+<p>Returns object of type hms representing angle + offset.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.date">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">date</code><span class="sig-paren">(</span><em>years=2000</em>, <em>months=1</em>, <em>days=1</em>, <em>hours=0</em>, <em>minutes=0</em>, <em>seconds=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents UT time in calendar units.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>years   - Date years (integer).
+months  - Date months (integer).
+days    - Date days (integer).
+hours   - Date hours (integer).
+minutes - Date minutes (integer).
+seconds - Date seconds (float).</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.date.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>dateStr</em>, <em>timeStr</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.date.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load date object from formatted strings.</p>
+<p>Param: dateStr - A string of format YYYY-MM-DD giving date.
+Param: timeStr - A string of format HH:MM:SS.S giving time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.date.to_jd">
+<code class="descname">to_jd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.date.to_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert calendar time to Julian day.
+Returns UTC time in Julian days (float).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.date.to_zone">
+<code class="descname">to_zone</code><span class="sig-paren">(</span><em>gmtoff=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.date.to_zone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert UTC calendar time to local calendar time.</p>
+<dl class="docutils">
+<dt>Param: gmtoff - local seconds offset from UTC (integer -43200 to 43200).</dt>
+<dd>if set to None, the time module offset value is used for
+current location</dd>
+</dl>
+<p>Returns object of type zonedate representing local time.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.date_to_zonedate">
+<code class="descclassname">lsl.astro.</code><code class="descname">date_to_zonedate</code><span class="sig-paren">(</span><em>date</em>, <em>gmtoff</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.date_to_zonedate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert UTC calendar time to local calendar time.</p>
+<p>Param: date   - A date object representing UTC time.
+Param: gmtoff - Seconds offset from UTC (integer -43200 to 43200).</p>
+<p>Returns object of type zonedate representing local time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.deg_to_dms">
+<code class="descclassname">lsl.astro.</code><code class="descname">deg_to_dms</code><span class="sig-paren">(</span><em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.deg_to_dms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles float degrees to degrees, minutes, seconds.</p>
+<p>Param: degrees - Angle in degrees (float).</p>
+<p>Returns object of type dms representing angle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.deg_to_hms">
+<code class="descclassname">lsl.astro.</code><code class="descname">deg_to_hms</code><span class="sig-paren">(</span><em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.deg_to_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles float degrees to hours, minutes, seconds.</p>
+<p>Param: degrees - Angle in degrees (float).</p>
+<p>Returns object of type hms representing angle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.deg_to_rad">
+<code class="descclassname">lsl.astro.</code><code class="descname">deg_to_rad</code><span class="sig-paren">(</span><em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.deg_to_rad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert degres to radians.</p>
+<p>Param: degrees - Angle in degrees (float).</p>
+<p>Returns angle in radians (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.deg_to_sec">
+<code class="descclassname">lsl.astro.</code><code class="descname">deg_to_sec</code><span class="sig-paren">(</span><em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.deg_to_sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert longitude degrees into time seconds.</p>
+<p>Param: degrees - longitude (float degrees)</p>
+<p>Returns: Seconds (float) offset in time for longitude.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.dir_cos">
+<code class="descclassname">lsl.astro.</code><code class="descname">dir_cos</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dir_cos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get direction cosines from azimuth and zenith angles.
+This function calculates the cosine values based on the LWA coordinate system:
+l = unit vector in E direction (azimuth = 90)
+m = unit vector in N direction (azimuth = 0)
+n = unit vector in zenith direction (zenith = 0, altitude = 90)</p>
+<p>Param: posn - object of type hrz_posn giving local position</p>
+<p>Returns a tuple (l,m,n) of float values for the direction cosines.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.dms">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">dms</code><span class="sig-paren">(</span><em>neg=False</em>, <em>degrees=0</em>, <em>minutes=0</em>, <em>seconds=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents angles in degrees, minutes, seconds.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd><dl class="first docutils">
+<dt>neg     - True if measured west of GM, south of EQ</dt>
+<dd>False if measured east of GM, north of EQ.</dd>
+</dl>
+<p class="last">degrees - Angle degrees (integer).
+minutes - Angle minutes (integer).
+seconds - Angle seconds (float).</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.dms.to_deg">
+<code class="descname">to_deg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dms.to_deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles degrees, minutes, seconds to float degrees.
+Returns angle in degrees (float).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.dms.to_hms">
+<code class="descname">to_hms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dms.to_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles degrees, minutes seconds to hours, minutes, seconds.
+Returns: object of type hms representing angle.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.dms_to_deg">
+<code class="descclassname">lsl.astro.</code><code class="descname">dms_to_deg</code><span class="sig-paren">(</span><em>dms</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dms_to_deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles degrees, minutes, seconds to float degrees.</p>
+<p>Param: dms - Object of type dms representing angle.</p>
+<p>Returns angle in degrees (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.dms_to_rad">
+<code class="descclassname">lsl.astro.</code><code class="descname">dms_to_rad</code><span class="sig-paren">(</span><em>dms</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.dms_to_rad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles degrees, minutes, seconds to radians.</p>
+<p>Param: dms - Object of type dms representing angle.</p>
+<p>Returns angle in radians (float).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.ecl_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">ecl_posn</code><span class="sig-paren">(</span><em>lng=0.0</em>, <em>lat=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.ecl_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents position as ecliptic longitude and latitude.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>lng - Position longitude coordinate (float degrees).
+lat - Position latitude coordinate (float degrees).</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>ecl_posn[0] = lng
+ecl_posn[1] = lat</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.ecl_posn.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.ecl_posn.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (lng, lat) where lng is an dms object and
+lat is a dms object representing longitude and latitude
+position coordinates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.ecl_posn.to_equ">
+<code class="descname">to_equ</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.ecl_posn.to_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get equatorial coordinates from ecliptical coordinates for a given time.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.equ_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">equ_posn</code><span class="sig-paren">(</span><em>ra=0.0</em>, <em>dec=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents equatoral/celestial position coordinates.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>ra  - Position right ascension angle (float degrees).
+dec - Position declination angle (float degrees).</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>equ_posn[0] = ra
+equ_posn[1] = dec</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.equ_posn.angular_separation">
+<code class="descname">angular_separation</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.angular_separation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get angular separation from equatorial position.</p>
+<p>Param: posn - Object of type equ_posn representing body 2 position.</p>
+<p>Returns angular separation in degrees (float).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.equ_posn.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (ra, dec) where ra is an hms object and
+dec is a dms object representing ra and dec position coordinates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.equ_posn.precess">
+<code class="descname">precess</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.precess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get position of celestial object accounting for precession.
+The equatorial coordinates should be for the J2000 epoch.</p>
+<p>Param: jD - UTC Julian day (float) to measure position.</p>
+<p>Returns: Adjusted equatorial position of object as type equ_posn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.equ_posn.to_ecl">
+<code class="descname">to_ecl</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.to_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ecliptical coordinates from equatorial coordinates.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type lnlat_posn representing eclipitcal position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.equ_posn.to_gal">
+<code class="descname">to_gal</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.to_gal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get J2000 galactic coordinates from apparent equatorial coordinates.</p>
+<p>Param: jD - UTC Julian day to get position.</p>
+<p>Returns object of type gal_posn representing object’s galactic 
+position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.equ_posn.to_hrz">
+<code class="descname">to_hrz</code><span class="sig-paren">(</span><em>observer</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.equ_posn.to_hrz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get local horizontal coordinates from equatorial/celestial coordinates.</p>
+<p>Param: observer - Object of type lnlat_posn representing observer position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type hrz_posn representing local position.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.gal_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">gal_posn</code><span class="sig-paren">(</span><em>l=0.0</em>, <em>b=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.gal_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents galactic position coordinates.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>l - Position longitude angle (float degrees).
+b - Position latitude angle (float degrees).</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>gal_posn[0] = l
+gal_posn[1] = b</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.gal_posn.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.gal_posn.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (lng, lat) where lng is an dms object and
+lat is a dms object representing galactic longitude and latitude
+position coordinates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.gal_posn.to_equ">
+<code class="descname">to_equ</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.gal_posn.to_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get apparent equatorial coordinates from J2000 galactic coordinates.</p>
+<p>Param: jD - UTC Julian day to get position.</p>
+<p>Returns object of type equ_posn representing object’s apparent
+equatorial position.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.geo_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">geo_posn</code><span class="sig-paren">(</span><em>lng=0.0</em>, <em>lat=0.0</em>, <em>elv=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.geo_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent geographical position in terms of longitude, lattitude,
+and elevation.  This is a set of geodetic coordinates based on the WGS84 model.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>lng - longitude (float)
+lat - latitude (float)
+elv - elevation (float)</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>geo_posn[0] = lng
+geo_posn[1] = lat
+geo_posn[2] = elv</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_angular_separation">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_angular_separation</code><span class="sig-paren">(</span><em>posn1</em>, <em>posn2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_angular_separation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get angular separation from equatorial positions.</p>
+<p>Param: posn1 - Object of type equ_posn representing body 1 position.
+Param: posn2 - Object of type equ_posn representing body 2 position.</p>
+<p>Returns angular separation in degrees (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_apparent_posn">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_apparent_posn</code><span class="sig-paren">(</span><em>mean_position</em>, <em>jD</em>, <em>proper_motion=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_apparent_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get apparent position of celestial object accounting for precession, nutation, 
+aberration, and optionally proper motion.</p>
+<dl class="docutils">
+<dt>Param: mean_position  - J2000 equatorial mean position of object as type </dt>
+<dd>equ_posn.</dd>
+</dl>
+<p>Param: jD             - UTC Julian day (float) to measure position.
+Param: proper_motion  - object of type equ_posn giving object’s proper motion</p>
+<blockquote>
+<div>(optional).</div></blockquote>
+<p>Returns: Apparent equatorial position of object as type equ_posn.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_apparent_sidereal_time">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_apparent_sidereal_time</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_apparent_sidereal_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get apparent sidereal time from Julian day.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns GM apparent sidereal time (float hours).</p>
+<p>From: <a class="reference external" href="http://aa.usno.navy.mil/faq/docs/GAST.php">http://aa.usno.navy.mil/faq/docs/GAST.php</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_date">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_date</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert Julian day to calendar time.</p>
+<p>Param: jD - UTC time in Julian days (float).</p>
+<p>Returns object of type date representing UTC time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_date_from_sys">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_date_from_sys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_date_from_sys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets calendar time from system clock.</p>
+<p>Returns object of type date representing UTC time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_day_of_week">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_day_of_week</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_day_of_week" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets day of week from calendar time.</p>
+<p>Param: date - Object of type date representing UTC time.</p>
+<p>Returns day of week (0 = Sunday, 6 = Saturday).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_ecl_from_equ">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_ecl_from_equ</code><span class="sig-paren">(</span><em>object_</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_ecl_from_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ecliptical coordinates from equatorial coordinates for a given time.</p>
+<p>Param: <a href="#id1"><span class="problematic" id="id2">object_</span></a>  - Object of type equ_posn representing equatorial position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type ecl_posn representing ecliptic position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_ecl_from_rect">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_ecl_from_rect</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_ecl_from_rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ecliptical coordinates from rectangular coordinates.</p>
+<p>Param: rect - Object of type rect_posn representing position.</p>
+<p>Returns object of type lnlat_posn representing ecliptical position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ2000_from_gal">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ2000_from_gal</code><span class="sig-paren">(</span><em>object_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ2000_from_gal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get J2000 equatorial coordinates from galactic coordinates.</p>
+<p>Param: <a href="#id3"><span class="problematic" id="id4">object_</span></a> - Object of type gal_posn representing galactic position.</p>
+<p>Returns object of type equ_posn representing J2000 equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_aber">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_aber</code><span class="sig-paren">(</span><em>mean_position</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_aber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get position of celestial object accounting for aberration.</p>
+<dl class="docutils">
+<dt>Param: mean_position  - J2000 equatorial mean position of object as type </dt>
+<dd>equ_posn.</dd>
+</dl>
+<p>Param: jD             - UTC Julian day (float) to measure aberration.</p>
+<p>Returns: Adjusted equatorial position of object as type equ_posn.</p>
+<p>Based on the libnova ln_get_equ_aber() function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_from_ecl">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_from_ecl</code><span class="sig-paren">(</span><em>object_</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_from_ecl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get equatorial coordinates from ecliptical coordinates for a given time.</p>
+<p>Param: <a href="#id5"><span class="problematic" id="id6">object_</span></a>  - Object of type lnlat_posn representing ecliptic position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_from_gal">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_from_gal</code><span class="sig-paren">(</span><em>object_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_from_gal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get B1950 equatorial coordinates from galactic coordinates.</p>
+<p>Param: <a href="#id7"><span class="problematic" id="id8">object_</span></a> - Object of type gal_posn representing galactic position.</p>
+<p>Returns object of type equ_posn representing B1950 equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_from_hrz">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_from_hrz</code><span class="sig-paren">(</span><em>object_</em>, <em>observer</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_from_hrz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get equatorial/celestial coordinates from local horizontal coordinates.</p>
+<p>Param: <a href="#id9"><span class="problematic" id="id10">object_</span></a>  - Object of type hrz_posn representing horizontal position.
+Param: observer - Object of type lnlat_posn representing observer position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_from_rect">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_from_rect</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_from_rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform rectangular coordinates to equatorial coordinates.</p>
+<p>Param: posn - Object of type rect_posn giving position.</p>
+<p>Returns: Object of type equ_posn giving equatorial coordinates.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_nut">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_nut</code><span class="sig-paren">(</span><em>position</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_nut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the position of a celesital object accounting for nutation.</p>
+<dl class="docutils">
+<dt>Param: mean_position  -  Equatorial position of object as type </dt>
+<dd>equ_posn.</dd>
+</dl>
+<p>Param: jD             - UTC Julian day (float) to measure nutation.</p>
+<p>Returns: Adjusted equatorial position of object as type equ_posn.</p>
+<p>Based on the AstroIDL co_nutate.pro procedure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_pm">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_pm</code><span class="sig-paren">(</span><em>mean_position</em>, <em>proper_motion</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_pm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjusts equatorial position of a stellar object accouting for proper motion.</p>
+<p>Param: mean_position - J2000 equatorial mean position of object as type equ_posn.
+Param: proper_motion - Object of type equ_posn giving object’s proper motion</p>
+<blockquote>
+<div>(units are deg/year).</div></blockquote>
+<p>Param: jD - UTC Julian day (float) to measure position.</p>
+<p>Returns: Adjusted equatorial position of object as type equ_posn.</p>
+<p>Based on pm.f, dcs2c.f, and dcc2s.f from SLALIB.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_prec">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_prec</code><span class="sig-paren">(</span><em>mean_position</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_prec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get position of celestial object accounting for precession.
+Only works for converting to and from J2000 epoch.</p>
+<p>Param: mean_position - J2000 equatorial mean position of object as type equ_posn.
+Param: jD - UTC Julian day (float) to measure position.</p>
+<p>Returns: Adjusted equatorial position of object as type equ_posn.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_equ_prec2">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_equ_prec2</code><span class="sig-paren">(</span><em>mean_position</em>, <em>fromJD</em>, <em>toJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_equ_prec2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get position of celestial object accounting for precession.</p>
+<p>Param: mean_position  - equatorial first position of object as type equ_posn.
+Param: fromJD         - UTC Julian day (float) of first time.
+Param: toJD           - UTC Julian day (float) of second time.</p>
+<dl class="docutils">
+<dt>Returns: Equatorial position of object as type equ_posn converted from</dt>
+<dd>time 1 to time 2.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_gal_from_equ">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_gal_from_equ</code><span class="sig-paren">(</span><em>object_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_gal_from_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get galactic coordinates from B1950 equatorial coordinates.</p>
+<dl class="docutils">
+<dt>Param: <a href="#id11"><span class="problematic" id="id12">object_</span></a> - Object of type equ_posn representing B1950 equatorial </dt>
+<dd>position.</dd>
+</dl>
+<p>Returns object of type gal_posn representing galactic position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_gal_from_equ2000">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_gal_from_equ2000</code><span class="sig-paren">(</span><em>object_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_gal_from_equ2000" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get galactic coordinates from J2000 equatorial coordinates.</p>
+<dl class="docutils">
+<dt>Param: <a href="#id13"><span class="problematic" id="id14">object_</span></a> - Object of type equ_posn representing J2000 equatorial </dt>
+<dd>position.</dd>
+</dl>
+<p>Returns object of type gal_posn representing galactic position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_geo_from_rect">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_geo_from_rect</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_geo_from_rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform ECEF rectangular coordinates to geographical coordinates.
+Adapoted from “Satellite Orbits”, Montenbruck and Gill 2005, 5.85 - 5.88.
+Also see gpstk ECEF::asGeodetic() method.</p>
+<p>Param: posn - object of type rect_posn giving position.</p>
+<p>Returns: object of type geo_posn giving geographical coordinates.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_gmtoff">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_gmtoff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_gmtoff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get local UTC offset based on Python time module and system info.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_hrz_from_equ">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_hrz_from_equ</code><span class="sig-paren">(</span><em>object_</em>, <em>observer</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_hrz_from_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get local horizontal coordinates from equatorial/celestial coordinates.</p>
+<p>Param: <a href="#id15"><span class="problematic" id="id16">object_</span></a>  - Object of type equ_posn representing celestial position.
+Param: observer - Object of type lnlat_posn representing observer position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type hrz_posn representing local position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_julian_day">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_julian_day</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_julian_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert calendar time to Julian day.</p>
+<p>Param: date - Object of type date representing UTC time.</p>
+<p>Returns UTC time in Julian days (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_julian_from_sys">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_julian_from_sys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_julian_from_sys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns UTC Julian day (float) from system clock.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_julian_from_timet">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_julian_from_timet</code><span class="sig-paren">(</span><em>time_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_julian_from_timet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets Julian day from Unix time.</p>
+<p>Param: <a href="#id17"><span class="problematic" id="id18">time_</span></a> - Unix timet in seconds (integer)</p>
+<p>Returns UTC Julian day (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_julian_local_date">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_julian_local_date</code><span class="sig-paren">(</span><em>zonedate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_julian_local_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert local calendar time to Julian day.</p>
+<p>Param: zonedate - Object of type zonedate representing local time.</p>
+<p>Returns UTC time in Julian days (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_jupiter_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_jupiter_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_jupiter_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Jupiter’s apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, but not nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_jupiter_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_jupiter_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_jupiter_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Jupiter’s rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_local_sidereal_time">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_local_sidereal_time</code><span class="sig-paren">(</span><em>lng</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_local_sidereal_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get apparent local sidereal time from Julian day.</p>
+<p>Param: lng  - longitude degrees (float), E = positive, W = negative 
+Param: jD   - UTC Julian day (float).</p>
+<p>Returns: Local mean sidereal time (float hours).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_lunar_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_lunar_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_lunar_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Moon’s apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, but not nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_lunar_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_lunar_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_lunar_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Moon’s rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_mars_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_mars_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_mars_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Mars’ apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, but not nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_mars_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_mars_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_mars_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Mars’ rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_mean_sidereal_time">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_mean_sidereal_time</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_mean_sidereal_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get mean sidereal time from Julian day.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns GM mean sidereal time (float hours).</p>
+<p>From: <a class="reference external" href="http://aa.usno.navy.mil/faq/docs/GAST.php">http://aa.usno.navy.mil/faq/docs/GAST.php</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_nutation">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_nutation</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_nutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get nutation corrections for a given time.</p>
+<p>Param: jD - UTC Julian day (float) to measure nutation.</p>
+<p>Returns: Nutation corrections as object of type nutation.</p>
+<p>Based on the nutate.pro and co_nutate.pro from the AstroIDL
+library.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_object_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_object_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em>, <em>object_</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_object_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get rise, set, and transit times of a celstial object.</p>
+<p>Param: jD       - UTC Julian day (float) target time.
+Param: observer - object of type lnlat_posn giving observer position
+Param: <a href="#id19"><span class="problematic" id="id20">object_</span></a>  - object of type equ_posn giving target equatorial position</p>
+<dl class="docutils">
+<dt>Returns: Object of type rst_time giving object’s ephemeris UTC times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_precession">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_precession</code><span class="sig-paren">(</span><em>jD1</em>, <em>pos</em>, <em>jD2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_precession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Caculate precession of equatorial coordinates from one epoch to
+another.</p>
+<p>Param: jD1 - UTC Julian day of epoch 1.
+Param: pos - object of type equ_posn giving epoch 1 position
+Param: jD2 - UTC Julian day of epoch 2.</p>
+<p>Returns: object of type equ_posn giving epoch 2 position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_rect_from_equ">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_rect_from_equ</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_rect_from_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform equatorial coordinates to rectangular coordinates.</p>
+<p>Param: posn - Object of type equ_posn giving position.</p>
+<p>Returns: Object of type rect_posn giving rectangular coordinates (normallized to 1).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_rect_from_geo">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_rect_from_geo</code><span class="sig-paren">(</span><em>posn</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_rect_from_geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform geographical coordinates to ECEF rectangular coordinates.
+Adopted from “Satellite Orbits”, Montenbruck and Gill 2005, 5.83 - 5.84.
+Also see gpstk Geodetic::asECEF() method.</p>
+<p>Param: posn - object of type geo_posn giving geographical coordinates.</p>
+<p>Returns: object of type rect_posn giving ECEF position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_rel_posn_angle">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_rel_posn_angle</code><span class="sig-paren">(</span><em>posn1</em>, <em>posn2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_rel_posn_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get relative position angle from equatorial positions.</p>
+<p>Param: posn1 - Object of type equ_posn representing body 1 position.
+Param: posn2 - Object of type equ_posn representing body 2 position.</p>
+<p>Returns position angle in degrees (float).</p>
+<p>Based on dpav.f from SLALIB.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_saturn_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_saturn_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_saturn_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Saturn’s apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, but not nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_saturn_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_saturn_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_saturn_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Saturn’s rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_solar_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_solar_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_solar_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Sun’s apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, and nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_solar_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_solar_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_solar_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Sun’s rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar..</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_tai_from_sys">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_tai_from_sys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_tai_from_sys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current time taken from the system clock as a
+TAI MJD (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_timet_from_julian">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_timet_from_julian</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_timet_from_julian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets Unix time from Julian day.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns Unix timet in seconds (integer).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_venus_equ_coords">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_venus_equ_coords</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_venus_equ_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Venus’ apparent equatorial coordinates from Julian day.
+Accounts for aberration and precession, but not nutation.</p>
+<p>Param: jD - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.get_venus_rst">
+<code class="descclassname">lsl.astro.</code><code class="descname">get_venus_rst</code><span class="sig-paren">(</span><em>jD</em>, <em>observer</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.get_venus_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Venus’ rise, transit, set times from Julian day.</p>
+<p>Param: jD       - UTC Julian day (float).
+Param: observer - Object of type lnlat_posn representing observer position.</p>
+<dl class="docutils">
+<dt>Returns Object of type rst_time represeting UTC ephemeris times,</dt>
+<dd>or None if the object is circumpolar.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.hms">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">hms</code><span class="sig-paren">(</span><em>hours=0</em>, <em>minutes=0</em>, <em>seconds=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents times/angles in hours, minutes, seconds.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>hours - Angle/time hours (integer).
+minutes - Angle/time minutes (integer).
+seconds - Angle/time seconds (float).</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.hms.to_deg">
+<code class="descname">to_deg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms.to_deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles hours, minutes, seconds to float degrees.
+Returns angle in degrees (float).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.hms.to_dms">
+<code class="descname">to_dms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms.to_dms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angle hours, minutes, seconds to degrees, minutes, seconds.
+Returns: object of type dms representing angle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.hms.to_sec">
+<code class="descname">to_sec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms.to_sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angle hours, minutes, seconds to seconds.
+Returns: time/angle as seconds.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.hms_to_deg">
+<code class="descclassname">lsl.astro.</code><code class="descname">hms_to_deg</code><span class="sig-paren">(</span><em>hms</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms_to_deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles hours, minutes, seconds to float degrees.</p>
+<p>Param: hms - Object of type hms representing angle.</p>
+<p>Returns angle in degrees (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.hms_to_rad">
+<code class="descclassname">lsl.astro.</code><code class="descname">hms_to_rad</code><span class="sig-paren">(</span><em>hms</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms_to_rad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles hours, minutes, seconds to float radians.</p>
+<p>Param: hms - Object of type hms representing angle.</p>
+<p>Returns angle in radians (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.hms_to_sec">
+<code class="descclassname">lsl.astro.</code><code class="descname">hms_to_sec</code><span class="sig-paren">(</span><em>hms</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hms_to_sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert hours, minutes, seconds to seconds.</p>
+<p>Param: hms - object of type hms representing time/angle.</p>
+<p>Returns: Seconds (float) offset of time/angle.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.hrz_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">hrz_posn</code><span class="sig-paren">(</span><em>az=0.0</em>, <em>alt=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hrz_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents horizontal local position coordinates.  LWA measures azimuth angle clockwise 
+from north to east, with due north equal to 0 degrees.  Also, method for using zenith 
+angle instead of altitude angle have been added.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>az  - Position azimuth angle (float degrees).
+alt - Position altitude angle (float degrees)</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>hrz_posn[0] = az
+hrz_posn[1] = alt</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.hrz_posn.dir_cos">
+<code class="descname">dir_cos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hrz_posn.dir_cos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get direction cosines from horizontal coordinates.</p>
+<dl class="docutils">
+<dt>Returns: A tuple (l,m,n) of float values for the direction cosines.</dt>
+<dd>l = unit vector in E direction (azimuth = 90)
+m = unit vector in N direction (azimuth = 0)
+n = unit vector in zenith direction (zenith = 0, altitude = 90)</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.hrz_posn.to_equ">
+<code class="descname">to_equ</code><span class="sig-paren">(</span><em>observer</em>, <em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hrz_posn.to_equ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get equatorial/celestial coordinates from local horizontal coordinates.</p>
+<p>Param: observer - Object of type lnlat_posn representing observer position.
+Param: jD       - UTC Julian day (float).</p>
+<p>Returns object of type equ_posn representing equatorial position.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.hrz_posn.zen">
+<code class="descname">zen</code><span class="sig-paren">(</span><em>value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hrz_posn.zen" title="Permalink to this definition">¶</a></dt>
+<dd><p>If value is None, returns position zenith angle (float degrees 
+[0, 180])  Otherwise, sets the altitude according to the zenith angle
+value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.hrz_to_nswe">
+<code class="descclassname">lsl.astro.</code><code class="descname">hrz_to_nswe</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.hrz_to_nswe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get cardinal/ordinal azimuth direction.</p>
+<p>Param: pos - Object of type hrz_posn giving local position.</p>
+<p>Returns string giving direction.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.jd_to_mjd">
+<code class="descclassname">lsl.astro.</code><code class="descname">jd_to_mjd</code><span class="sig-paren">(</span><em>jd</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.jd_to_mjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get modified julian day value from julian day value.</p>
+<p>Param: jd - julian day (should be &gt;= 2400000.5)</p>
+<p>Returns: Modified julian day.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.jd_to_sec">
+<code class="descclassname">lsl.astro.</code><code class="descname">jd_to_sec</code><span class="sig-paren">(</span><em>jD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.jd_to_sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert Julian days into seconds.</p>
+<p>Param: jD - Julian days (float).</p>
+<p>Returns: Seconds as a float.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.leap_secs">
+<code class="descclassname">lsl.astro.</code><code class="descname">leap_secs</code><span class="sig-paren">(</span><em>utcJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.leap_secs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of leap seconds for given UTC time value.</p>
+<dl class="docutils">
+<dt>Param: utcJD - The UTC JD time.</dt>
+<dd>This should be greater than 2441317.5 (1972 JAN  1).</dd>
+</dl>
+<p>Returns: The number of leap seconds (float) for the UTC time.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.lnlat_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">lnlat_posn</code><span class="sig-paren">(</span><em>lng=0.0</em>, <em>lat=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.lnlat_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents position coordinates in latitude and longitude.
+When representing a geographical location, the longitude is negative
+when measured west of GM and positive is measured east of GM.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>lng - Position longitude coordinate (float degrees).
+lat - Position latitude coordinate (float degrees).</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>lnlat_posn[0] = lng
+lnlat_posn[1] = lat</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.lnlat_posn.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.lnlat_posn.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (lng, lat) where lng is an dms object and
+lat is a dms object representing longitude and latitude
+position coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.mjd_to_jd">
+<code class="descclassname">lsl.astro.</code><code class="descname">mjd_to_jd</code><span class="sig-paren">(</span><em>mjd</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.mjd_to_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get julian day value from modified julian day value.</p>
+<p>Param: mjd - modified julian day (should be &gt;= 0.0)</p>
+<p>Returns: Julian day.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.nutation">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">nutation</code><span class="sig-paren">(</span><em>longitude=0.0</em>, <em>obliquity=0.0</em>, <em>ecliptic=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.nutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides nutation information in longitude and obliquity.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>longitude - Nutation in longitude (float degrees).
+obliquity - Nutation in ecliptic obliquity (float degrees).
+ecliptic - Obliquity of the ecliptic (float degrees).</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.nutation.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.nutation.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (lng, obl, ecl) where lng is an dms object,
+obl is a dms object, and ecl is a dms object representing nutation
+in longitude and obliquity, and obliquity of the ecliptic.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.rad_to_deg">
+<code class="descclassname">lsl.astro.</code><code class="descname">rad_to_deg</code><span class="sig-paren">(</span><em>radians</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rad_to_deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert radians to degrees.</p>
+<p>Param: radians - Angle in radians (float).</p>
+<p>Returns angle in degrees (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.rad_to_dms">
+<code class="descclassname">lsl.astro.</code><code class="descname">rad_to_dms</code><span class="sig-paren">(</span><em>radians</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rad_to_dms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles float radians to degrees, minutes, seconds.</p>
+<p>Param: radians - Angle in radians (float).</p>
+<p>Returns object of type dms representing angle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.rad_to_hms">
+<code class="descclassname">lsl.astro.</code><code class="descname">rad_to_hms</code><span class="sig-paren">(</span><em>radians</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rad_to_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert angles float radians to hours, minutes, seconds.</p>
+<p>Param: radians - Angle in radians (float).</p>
+<p>Returns object of type hms representing angle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.range_degrees">
+<code class="descclassname">lsl.astro.</code><code class="descname">range_degrees</code><span class="sig-paren">(</span><em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.range_degrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put angle into range [0, 360].</p>
+<p>Param: degrees - large angle (float degrees)</p>
+<p>Returns: angle in range (float degrees)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.range_hours">
+<code class="descclassname">lsl.astro.</code><code class="descname">range_hours</code><span class="sig-paren">(</span><em>hours</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.range_hours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put an hour time value into the correct range [0.0, 24.0].</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.rect_posn">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">rect_posn</code><span class="sig-paren">(</span><em>X=0.0</em>, <em>Y=0.0</em>, <em>Z=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rect_posn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents rectangular/Cartesian position coordinates.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>X - Position X coordinate (float).
+Y - Position Y coordinate (float).
+Z - Position Z coordinate (float).</dd>
+<dt>Members may also be accessed by subscript:</dt>
+<dd>rect_posn[0] = X
+rect_posn[1] = Y
+rect_posn[2] = Z</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.rst_time">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">rst_time</code><span class="sig-paren">(</span><em>rise=None</em>, <em>set=None</em>, <em>transit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rst_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents ephemeris rist, set, and transit times.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>rise    - Rise time in UTC Julian days (float).
+set     - Set time in UTC Julian days (float).
+transit - Transit time in UTC Julian days (float).</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.rst_time.format">
+<code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.rst_time.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (rise, set, transit) where all three are date
+objects representing the ephemeris times.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.sec_to_jd">
+<code class="descclassname">lsl.astro.</code><code class="descname">sec_to_jd</code><span class="sig-paren">(</span><em>secs</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.sec_to_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert seconds into julian days.</p>
+<p>Param: secs - seconds (float)</p>
+<p>Returns: Julian days as a float.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.tai_to_tt">
+<code class="descclassname">lsl.astro.</code><code class="descname">tai_to_tt</code><span class="sig-paren">(</span><em>taiJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.tai_to_tt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TT JD time value for a given TAI JD time value.</p>
+<p>Param: taiJD - The TAI JD time (float).</p>
+<p>Returns: The TT JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.tai_to_utc">
+<code class="descclassname">lsl.astro.</code><code class="descname">tai_to_utc</code><span class="sig-paren">(</span><em>taiJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.tai_to_utc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the UTC JD time value for a given TAI JD time value.</p>
+<dl class="docutils">
+<dt>Param: taiJD - The TAI JD time (float).</dt>
+<dd>This should be greater than 2441317.5 (1972 JAN  1).</dd>
+</dl>
+<p>Returns: The UTC JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.taimjd_to_unix">
+<code class="descclassname">lsl.astro.</code><code class="descname">taimjd_to_unix</code><span class="sig-paren">(</span><em>taiMJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.taimjd_to_unix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get UNIX time value for a given TAI MJDvalue.</p>
+<p>Param: taiMJD - The TAI MJD time (float).</p>
+<p>Returns: The UNIX time</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.taimjd_to_utcjd">
+<code class="descclassname">lsl.astro.</code><code class="descname">taimjd_to_utcjd</code><span class="sig-paren">(</span><em>taiMJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.taimjd_to_utcjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the UTC JD time value for a given TAI MJD value.</p>
+<p>Param: mjdTAI - The TAI MJD time (float).</p>
+<p>Returns: The UTC JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.tt_to_tai">
+<code class="descclassname">lsl.astro.</code><code class="descname">tt_to_tai</code><span class="sig-paren">(</span><em>ttJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.tt_to_tai" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TAI JD time value for a given TT JD time value.</p>
+<p>Param: ttJD - The TT JD time (float).</p>
+<p>Returns: The TAI JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.tt_to_tdb">
+<code class="descclassname">lsl.astro.</code><code class="descname">tt_to_tdb</code><span class="sig-paren">(</span><em>ttJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.tt_to_tdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TDB JD time value for a given TT JD time value.
+Adopted from “Astronomical Almanac Supplement”, Seidelmann 1992, 2.222-1.</p>
+<p>Param: ttJD - The TT JD time (float).</p>
+<p>Returns: The TDB JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.tt_to_utc">
+<code class="descclassname">lsl.astro.</code><code class="descname">tt_to_utc</code><span class="sig-paren">(</span><em>ttJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.tt_to_utc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the UTC JD time value for a given TT JD time value.</p>
+<p>Param: ttJD - The TT JD time (float).</p>
+<p>Returns: The UTC JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.unix_to_taimjd">
+<code class="descclassname">lsl.astro.</code><code class="descname">unix_to_taimjd</code><span class="sig-paren">(</span><em>unixTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.unix_to_taimjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TAI MJD time value for a given UNIX time value.</p>
+<p>Param: unixTime - the UNIX time (int/float)</p>
+<p>Returns: The TAI MJD value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.unix_to_utcjd">
+<code class="descclassname">lsl.astro.</code><code class="descname">unix_to_utcjd</code><span class="sig-paren">(</span><em>unixTime</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.unix_to_utcjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the UTC JD time value for a given UNIX time value.</p>
+<p>Param: unixTime - the UNIX time (int/float)</p>
+<p>Returns: The UTC JD value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.utc_to_tai">
+<code class="descclassname">lsl.astro.</code><code class="descname">utc_to_tai</code><span class="sig-paren">(</span><em>utcJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.utc_to_tai" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TAI JD time value for a given UTC JD time value.</p>
+<dl class="docutils">
+<dt>Param: utcJD - The UTC JD time (float).</dt>
+<dd>This should be greater than 2441317.5 (1972 JAN  1).</dd>
+</dl>
+<p>Returns: The TAI JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.utc_to_tt">
+<code class="descclassname">lsl.astro.</code><code class="descname">utc_to_tt</code><span class="sig-paren">(</span><em>utcJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.utc_to_tt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TT JD time value for a given UTC JD time value.</p>
+<p>Param: utcJD - The UTC JD time (float).</p>
+<p>Returns: The TT JD value (float).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.utcjd_to_taimjd">
+<code class="descclassname">lsl.astro.</code><code class="descname">utcjd_to_taimjd</code><span class="sig-paren">(</span><em>utcJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.utcjd_to_taimjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TAI MJD time value for a given UTC JD value.</p>
+<p>Param: utcJD - The UTC JD time (float).</p>
+<p>Returns: The TAI MJD value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.utcjd_to_unix">
+<code class="descclassname">lsl.astro.</code><code class="descname">utcjd_to_unix</code><span class="sig-paren">(</span><em>utcJD</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.utcjd_to_unix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get UNIX time value for a given UTC JD value.</p>
+<p>Param: utcJD - The UTC JD time (float).</p>
+<p>Returns: The UNIX time</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.astro.zonedate">
+<em class="property">class </em><code class="descclassname">lsl.astro.</code><code class="descname">zonedate</code><span class="sig-paren">(</span><em>years=2000</em>, <em>months=1</em>, <em>days=1</em>, <em>hours=0</em>, <em>minutes=0</em>, <em>seconds=0.0</em>, <em>gmtoff=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.zonedate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents local time in calendar units.</p>
+<dl class="docutils">
+<dt>Public members:</dt>
+<dd>years   - Date years (integer).
+months  - Date months (integer).
+days    - Date days (integer).
+hours   - Date hours (integer).
+minutes - Date minutes (integer).
+seconds - Date seconds (float).
+gmtoff  - Seconds offset from GM (integer).</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.astro.zonedate.to_date">
+<code class="descname">to_date</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.zonedate.to_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert local calendar time to UTC calendar time.
+Returns object of type date representing UTC time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.astro.zonedate.to_jd">
+<code class="descname">to_jd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.zonedate.to_jd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert calendar time to Julian day.
+Returns UTC time in Julian days (float).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.astro.zonedate_to_date">
+<code class="descclassname">lsl.astro.</code><code class="descname">zonedate_to_date</code><span class="sig-paren">(</span><em>zonedate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.astro.zonedate_to_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert local calendar time to UTC calendar time.</p>
+<p>Param: zonedate - Object of type zonedate representing local time.</p>
+<p>Returns object of type date representing UTC time.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lwa_user.html"
+                        title="previous chapter">LWA_User Modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="kurtosis.html"
+                        title="next chapter">RFI Identification</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/astro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="kurtosis.html" title="RFI Identification"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lwa_user.html" title="LWA_User Modules"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

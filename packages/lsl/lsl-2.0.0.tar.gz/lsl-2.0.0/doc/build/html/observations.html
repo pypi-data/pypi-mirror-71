@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Defining Single Station Observations and Observation Metadata &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LWA Swarm Observations" href="swarm.html" />
+    <link rel="prev" title="Progress Bar" href="progress.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="swarm.html" title="LWA Swarm Observations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="progress.html" title="Progress Bar"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="defining-single-station-observations-and-observation-metadata">
+<h1>Defining Single Station Observations and Observation Metadata<a class="headerlink" href="#defining-single-station-observations-and-observation-metadata" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-lsl.common.sdf">
+<span id="session-definition-files"></span><h2>Session Definition Files<a class="headerlink" href="#module-lsl.common.sdf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="session-structure">
+<h3>Session Structure<a class="headerlink" href="#session-structure" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#module-lsl.common.sdf" title="lsl.common.sdf"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.sdf</span></code></a> (DP-based stations) and <a class="reference internal" href="sdf.html#module-lsl.common.sdfADP" title="lsl.common.sdfADP"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.sdfADP</span></code></a> (ADP-based stations) provide means to represent a set of observations as Python objects.  For each
+<a class="reference internal" href="#lsl.common.sdf.Project" title="lsl.common.sdf.Project"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.Project</span></code></a>, there is:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>An observer (<a class="reference internal" href="#lsl.common.sdf.Observer" title="lsl.common.sdf.Observer"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.Observer</span></code></a>)</li>
+<li>The project office comments (<a class="reference internal" href="#lsl.common.sdf.ProjectOffice" title="lsl.common.sdf.ProjectOffice"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.ProjectOffice</span></code></a>)</li>
+<li>A single session that defines the SDF (<a class="reference internal" href="#lsl.common.sdf.Session" title="lsl.common.sdf.Session"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.Session</span></code></a>)</li>
+</ol>
+</div></blockquote>
+<p>The session contains one or more observerions (<a class="reference internal" href="#lsl.common.sdf.Observation" title="lsl.common.sdf.Observation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.Observation</span></code></a>).  Each observing mode supported
+by the LWA is sub-classed (see below).</p>
+<dl class="class">
+<dt id="lsl.common.sdf.Project">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>observer</em>, <em>name</em>, <em>id</em>, <em>sessions=None</em>, <em>comments=None</em>, <em>projectOffice=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold all the information about a specific session for a 
+project/proposal.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Added a new writeto() method to directly write the SDF to a file.</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.sdf.Project.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newSession</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new Session to the list of sessions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Project.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>session=0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a session definition file that corresponds to the specified 
+session.  Returns the SD file’s contents as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Project.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the various sessions that are part of this project.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Project.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Examine all of the sessions and all of their observations to check
+for validity.  If everything is valid, return True.  Otherwise, return
+False.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Project.writeto">
+<code class="descname">writeto</code><span class="sig-paren">(</span><em>filename</em>, <em>session=0</em>, <em>verbose=False</em>, <em>clobber=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Project.writeto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a session definition file that corresponds to the specified 
+session and write it to the provided filename.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Observer">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Observer</code><span class="sig-paren">(</span><em>name</em>, <em>id</em>, <em>first=None</em>, <em>last=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold information about an observer.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.ProjectOffice">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">ProjectOffice</code><span class="sig-paren">(</span><em>project=None</em>, <em>sessions=None</em>, <em>observations=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.ProjectOffice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold comments from the LWA object office.  This class isn’t really 
+needed to create SD files, but it is helpful for parsing SD files.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Session">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Session</code><span class="sig-paren">(</span><em>name</em>, <em>id</em>, <em>observations=None</em>, <em>dataReturnMethod='DRSU'</em>, <em>comments=None</em>, <em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold all of the observations in a session.</p>
+<dl class="method">
+<dt id="lsl.common.sdf.Session.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newObservation</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new Observation to the list of observations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setConfigurationAuthority">
+<code class="descname">setConfigurationAuthority</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setConfigurationAuthority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the configuration request authority to a particular value in the range of
+0 to 65,535.  Higher values provide higher authority to set FEE and ASP 
+parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setDRXBeam">
+<code class="descname">setDRXBeam</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setDRXBeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the beam to use in the range of 1 to 4 or -1 to let MCS decide.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setDataReturnMethod">
+<code class="descname">setDataReturnMethod</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setDataReturnMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the data return method for the session.  Valid values are: UCF, DRSU, and 
+‘USB Harddrives’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setMIBRecordInterval">
+<code class="descname">setMIBRecordInterval</code><span class="sig-paren">(</span><em>component</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setMIBRecordInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the record interval for one of the level-1 subsystems (ASP, <a href="#id1"><span class="problematic" id="id2">DP_</span></a>, etc.) to
+a particular value in minutes.  A KeyError is raised if an invalid sub-system is
+specified.</p>
+<dl class="docutils">
+<dt>Special Values are:</dt>
+<dd><ul class="first last simple">
+<li>-1 = use the MCS default interval</li>
+<li>0 = never record the MIB entries (the entries are still updated, however)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setMIBUpdateInterval">
+<code class="descname">setMIBUpdateInterval</code><span class="sig-paren">(</span><em>component</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setMIBUpdateInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the update interval for one of the level-1 subsystems (ASP, <a href="#id3"><span class="problematic" id="id4">DP_</span></a>, etc.) to 
+a particular value in minutes.  A KeyError is raised if an invalid sub-system is
+specified.</p>
+<dl class="docutils">
+<dt>Special Values are:</dt>
+<dd><ul class="first last simple">
+<li>-1 = use the MCS default interval</li>
+<li>0 = request no updates to the MIB entries</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setSpectrometerChannels">
+<code class="descname">setSpectrometerChannels</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setSpectrometerChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of spectrometer channels to generate, 0 to disable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setSpectrometerIntegration">
+<code class="descname">setSpectrometerIntegration</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setSpectrometerIntegration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of spectrometer FFT integrations to use, 0 to disable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setSpectrometerMetatag">
+<code class="descname">setSpectrometerMetatag</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setSpectrometerMetatag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the spectrometer metatag, ‘’ to disable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setStation">
+<code class="descname">setStation</code><span class="sig-paren">(</span><em>station</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the station used by the project for source computations.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.setUCFUsername">
+<code class="descname">setUCFUsername</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.setUCFUsername" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the username to use for UCF data copies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the various observations in the session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Session.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Session.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Examine all of the observations associated with the session to check
+for validity.  If everything is valid, return True.  Otherwise, return
+False.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Observation">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Observation</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>duration</em>, <em>mode</em>, <em>ra</em>, <em>dec</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>MaxSNR=False</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to hold the specifics of an observations.  It currently
+handles TBW, TBN, TRK_RADEC, TRK_SOL, TRK_JOV, and Stepped</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added support for RA/dec values as ephem.hours/ephem.degrees instances</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.computeVisibility">
+<code class="descname">computeVisibility</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.computeVisibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Place holder for functions that return the fractional visibility of the 
+target during the observation period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.estimateBytes">
+<code class="descname">estimateBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.estimateBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Place holder for functions that return the estimate size of the data
+set being defined by the observation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getBeamType">
+<code class="descname">getBeamType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getBeamType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a valid value for beam type based on whether maximum S/N beam 
+forming has been requested.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getDuration">
+<code class="descname">getDuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the self.duration string with the format of HH:MM:SS.SSS to return the
+number of milliseconds in that period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Place holder for functions that return ephem.Body objects (or None)
+that define the pointing center of the observation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getFrequency1">
+<code class="descname">getFrequency1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the first frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getFrequency2">
+<code class="descname">getFrequency2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getFrequency2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the second frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getMJD">
+<code class="descname">getMJD</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getMJD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the modified Julian Date corresponding to the date/time of the
+self.start string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.getMPM">
+<code class="descname">getMPM</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.getMPM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of milliseconds between the date/time specified in the
+self.start string and the previous UT midnight.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.setStart">
+<code class="descname">setStart</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.setStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the observation start time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the computed parameters from the string values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Observation.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Observation.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Place holder for functions that evaluate the observation and return True 
+if it is valid, False otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="observing-modes">
+<h3>Observing Modes<a class="headerlink" href="#observing-modes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lsl.common.sdf.TBW">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">TBW</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>samples</em>, <em>bits=12</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of Observation specifically for TBW observations.  It features a
+reduced number of parameters needed to setup the observation and provides extra
+information about the number of data bits and the number of samples.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">TBW read-out times in ms are calculated using (samples/196000+1)*5000 per
+MCS</p>
+</div>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string)</li>
+<li>integer number of samples</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>bits - number of data bits (4 or 12)</li>
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.TBW.estimateBytes">
+<code class="descname">estimateBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBW.estimateBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the data volume for the specified type and duration of 
+observations.  For TBW:</p>
+<blockquote>
+<div>bytes = samples / samplesPerFrame * 1224 bytes * 260 stands</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.TBW.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBW.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the computed parameters from the string values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.TBW.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBW.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the observation and return True if it is valid, False
+otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.TBN">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">TBN</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>duration</em>, <em>frequency</em>, <em>filter</em>, <em>gain=-1</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of Observation specifically for TBN observations.   It features a
+reduced number of parameters needed to setup the observation.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>observation duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>observation frequency (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.TBN.estimateBytes">
+<code class="descname">estimateBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBN.estimateBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the data volume for the specified type and duration of 
+observations.  For TBN:</p>
+<blockquote>
+<div>bytes = duration * sampleRate / 512 * 1048 bytes * 260 stands * 2 pols.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.TBN.setDuration">
+<code class="descname">setDuration</code><span class="sig-paren">(</span><em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBN.setDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the observation duration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.TBN.setFrequency1">
+<code class="descname">setFrequency1</code><span class="sig-paren">(</span><em>frequency1</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBN.setFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the frequency in Hz corresponding to tuning 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.TBN.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.TBN.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the observation and return True if it is valid, False
+otherwise.</p>
+<dl class="docutils">
+<dt>..note::</dt>
+<dd>This version of sdf allows for TBN tuning between 5 and 93 MHz.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.DRX">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">DRX</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>duration</em>, <em>ra</em>, <em>dec</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>MaxSNR=False</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.DRX" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>observation duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>observation RA in hours, J2000.0 or ephem.hours instance</li>
+<li>observation Dec in degrees, J2000.0 or ephem.hours instance</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>MaxSNR - specifies if maximum signal-to-noise beam forming is to be used</dt>
+<dd>(default = False)</dd>
+</dl>
+</li>
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.DRX.setDec">
+<code class="descname">setDec</code><span class="sig-paren">(</span><em>dec</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.DRX.setDec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing Dec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.DRX.setRA">
+<code class="descname">setRA</code><span class="sig-paren">(</span><em>ra</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.DRX.setRA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing RA.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Solar">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Solar</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>duration</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>MaxSNR=False</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Solar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of DRX specifically for Solar DRX observations.   It features a
+reduced number of parameters needed to setup the observation.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>observation duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>MaxSNR - specifies if maximum signal-to-noise beam forming is to be used</dt>
+<dd>(default = False)</dd>
+</dl>
+</li>
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.Solar.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Solar.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the observation is 
+pointed.  None if the observation mode is either TBN or TBW.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Jovian">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Jovian</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>duration</em>, <em>frequency1</em>, <em>frequency2</em>, <em>filter</em>, <em>gain=-1</em>, <em>MaxSNR=False</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Jovian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of DRX specifically for Jovian DRX observations.   It features a
+reduced number of parameters needed to setup the observation.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>observation duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>MaxSNR - specifies if maximum signal-to-noise beam forming is to be used</dt>
+<dd>(default = False)</dd>
+</dl>
+</li>
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.Jovian.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Jovian.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the observation is 
+pointed.  None if the observation mode is either TBN or TBW.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.Stepped">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">Stepped</code><span class="sig-paren">(</span><em>name</em>, <em>target</em>, <em>start</em>, <em>filter</em>, <em>steps=None</em>, <em>RADec=True</em>, <em>gain=-1</em>, <em>comments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-class of Observation for dealing with STEPPED-mode observations.  It 
+features a reduced number of parameters needed to setup the observation and added
+support for the individual steps.</p>
+<dl class="docutils">
+<dt>Required Arguments:</dt>
+<dd><ul class="first last simple">
+<li>observation name</li>
+<li>observation target</li>
+<li>observation start date/time (UTC YYYY/MM/DD HH:MM:SS.SSS string or timezone-
+aware datetime instance)</li>
+<li>integer filter code</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>steps - array of BeamStep objects that specify the different steps</li>
+<li>comments - comments about the observation</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>newStep</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new BeamStep step to the list of steps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.computeVisibility">
+<code class="descname">computeVisibility</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.computeVisibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the fractional visibility of the target during the observation 
+period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.estimateBytes">
+<code class="descname">estimateBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.estimateBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the data volume for the specified type and duration of 
+observations.  For DRX:</p>
+<blockquote>
+<div>bytes = duration * sampleRate / 4096 * 4128 bytes * 2 tunings * 2 pols.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.getDuration">
+<code class="descname">getDuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.getDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the list of BeamStep objects to get the total observation 
+duration as the number of milliseconds in that period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.setBeamDipoleMode">
+<code class="descname">setBeamDipoleMode</code><span class="sig-paren">(</span><em>stand</em>, <em>beamGain=0.04</em>, <em>dipoleGain=1.0</em>, <em>pol='X'</em>, <em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.setBeamDipoleMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the current observation to a ‘beam-dipole mode’ 
+observation with the specified stand.  Setting the stand to zero
+will disable the ‘beam-dipole mode’ for this observation’.</p>
+<dl class="docutils">
+<dt>Keywords:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>beamGain - BAM gain to use for each dipole in the beam</dt>
+<dd>default: 0.04; range: 0.0 to 1.0</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>dipoleGain - BAM gain to use for the single dipole</dt>
+<dd>default: 1.0; range: 0.0 to 1.0</dd>
+</dl>
+</li>
+<li>pol - Polarization to record  default: “X”</li>
+<li><dl class="first docutils">
+<dt>station - lsl.common.stations instance to use for mapping</dt>
+<dd>default: lsl.common.stations.lwa1</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the computed parameters from the string values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.Stepped.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.Stepped.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the observation and return True if it is valid, False
+otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.common.sdf.BeamStep">
+<em class="property">class </em><code class="descclassname">lsl.common.sdf.</code><code class="descname">BeamStep</code><span class="sig-paren">(</span><em>c1</em>, <em>c2</em>, <em>duration</em>, <em>frequency1</em>, <em>frequency2</em>, <em>RADec=True</em>, <em>MaxSNR=False</em>, <em>SpecDelays=None</em>, <em>SpecGains=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for holding all of the information (pointing center, tuning frequencies, 
+etc.)associated with a particular step.</p>
+<dl class="docutils">
+<dt>Required Keywords:</dt>
+<dd><ul class="first last simple">
+<li>pointing coordinate 1 (RA [hours] or azimuth [degrees] or ephem.hours/ephem.degrees 
+instance)</li>
+<li>pointing coordinate 2 (dec or elevation/altitude [degrees] or ephem.degrees instance)</li>
+<li>observation duration (HH:MM:SS.SSS string or timedelta instance)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+<li>observation tuning frequency 1 (Hz)</li>
+</ul>
+</dd>
+<dt>Optional Keywords:</dt>
+<dd><ul class="first last simple">
+<li>RADec - whether the coordinates are in RA/Dec or Az/El pairs (default=RA/Dec)</li>
+<li><dl class="first docutils">
+<dt>MaxSNR - specifies if maximum signal-to-noise beam forming is to be used</dt>
+<dd>(default = False)</dd>
+</dl>
+</li>
+<li>SpecDelays - 520 list of delays to apply for each antenna</li>
+<li>SpecGains - 260 by 2 by 2 list of gains ([[XY, XY], [YX, YY]]) to apply for each antenna</li>
+</ul>
+</dd>
+</dl>
+<p>If <cite>SpecDelays</cite> is specified, <cite>SpecGains</cite> must also be specified.
+Specifying both <cite>SpecDelays</cite> and <cite>SpecGains</cite> overrides the <cite>MaxSNR</cite> keyword.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added support for azimuth/altitude and RA/dec values as ephem.hours/ephem.degrees 
+instances</p>
+</div>
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.getBeamType">
+<code class="descname">getBeamType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.getBeamType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a valid value for beam type based on whether maximum S/N beam 
+forming has been requested.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.getDuration">
+<code class="descname">getDuration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.getDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the self.duration string with the format of HH:MM:SS.SSS to return the
+number of milliseconds in that period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.getFixedBody">
+<code class="descname">getFixedBody</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.getFixedBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an ephem.Body object corresponding to where the observation is 
+pointed.  None if the observation mode is either TBN or TBW.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.getFrequency1">
+<code class="descname">getFrequency1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.getFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the first frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.getFrequency2">
+<code class="descname">getFrequency2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.getFrequency2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of “tuning words” corresponding to the second frequency.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.setC1">
+<code class="descname">setC1</code><span class="sig-paren">(</span><em>c1</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.setC1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing c1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.setC2">
+<code class="descname">setC2</code><span class="sig-paren">(</span><em>c2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.setC2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the pointing c2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.setDuration">
+<code class="descname">setDuration</code><span class="sig-paren">(</span><em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.setDuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the observation duration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.setFrequency1">
+<code class="descname">setFrequency1</code><span class="sig-paren">(</span><em>frequency1</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.setFrequency1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the frequency in Hz corresponding to tuning 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.setFrequency2">
+<code class="descname">setFrequency2</code><span class="sig-paren">(</span><em>frequency2</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.setFrequency2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the frequency in Hz correpsonding to tuning 2.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the settings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.common.sdf.BeamStep.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>station=&lt;ephem.Observer date='2020/6/14 18:20:34' epoch='2000/1/1 12:00:00' lon='-107:37:42.1' lat='34:04:08.0' elevation=2133.6m horizon=0:00:00.0 temp=15.0C pressure=0.0mBar&gt;</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.sdf.BeamStep.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the step and return True if it is valid, False otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lsl.common.metabundle">
+<span id="mcs-metadata-tarball-utilities"></span><h2>MCS Metadata Tarball Utilities<a class="headerlink" href="#module-lsl.common.metabundle" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.common.metabundle.readSESFile">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">readSESFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.readSESFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a session specification file (MCS0030, Section 5) and return the data
+as a dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.readOBSFile">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">readOBSFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.readOBSFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a observation specification file (MCS0030, Section 6) and return the
+data as a dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.readCSFile">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">readCSFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.readCSFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a command script file (MCS0030, currently undocumented) and return the
+data as a list of dictionaries.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getSDM">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getSDM</code><span class="sig-paren">(</span><em>tarname</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getSDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the information stored in the 
+dynamic/sdm.dat file and return a <a class="reference internal" href="station.html#lsl.common.sdm.SDM" title="lsl.common.sdm.SDM"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdm.SDM</span></code></a> instance
+describing the dynamic condition of the station.</p>
+<p>If a sdm.dat file cannot be found in the tarball, None is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getStation">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getStation</code><span class="sig-paren">(</span><em>tarname</em>, <em>ApplySDM=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the information stored in the ssmif.dat 
+file and return a <a class="reference internal" href="station.html#lsl.common.stations.LWAStation" title="lsl.common.stations.LWAStation"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.LWAStation</span></code></a> object.  Optionally, 
+update the <a class="reference internal" href="station.html#lsl.common.stations.Antenna" title="lsl.common.stations.Antenna"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.stations.Antenna</span></code></a> instances associated whith the
+LWAStation object using the included SDM file.</p>
+<p>If a ssmif.dat file cannot be found in the tarball, None is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getSessionMetaData">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getSessionMetaData</code><span class="sig-paren">(</span><em>tarname</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getSessionMetaData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the session meta-data file (MCS0030, 
+Section 7) and return a dictionary of observations that contain dictionaries 
+of the OP_TAG (tag), DRSU Barcode (drsu), OBS_OUTCOME (outcome), and the 
+MSG (msg).</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.6.5: </span>Update to the new _metadata.txt format</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getSessionSpec">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getSessionSpec</code><span class="sig-paren">(</span><em>tarname</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getSessionSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the session specification file (MCS0030, 
+Section 5) and return a dictionary of parameters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getObservationSpec">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getObservationSpec</code><span class="sig-paren">(</span><em>tarname</em>, <em>selectObs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getObservationSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract one or more observation specification 
+file (MCS0030, Section 6) and return a list of dictionaries corresponding to
+each OBS file.  If the <cite>selectObs</cite> keyword is set to a list of observation
+numbers, only observations matching the numbers in <cite>selectObs</cite> are returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getSessionDefinition">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getSessionDefinition</code><span class="sig-paren">(</span><em>tarname</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getSessionDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the session specification file, the 
+session meta-data file, and all observation specification files to build up
+a SDF-representation of the session.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function returns a full <a class="reference internal" href="#lsl.common.sdf.Project" title="lsl.common.sdf.Project"><code class="xref py py-class docutils literal"><span class="pre">lsl.common.sdf.Project</span></code></a> instance 
+with the session in question stored under <cite>project.sessions[0]</cite> and the 
+observations under <cite>project.sessions[0].observations</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getCommandScript">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getCommandScript</code><span class="sig-paren">(</span><em>tarname</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getCommandScript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the command script and parse it.  The
+commands are returned as a list of dictionaries (one dictionary per command).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getASPConfiguration">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getASPConfiguration</code><span class="sig-paren">(</span><em>tarname</em>, <em>which='beginning'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getASPConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MCS meta-data tarball, extract the ASP MIB contained in it and return 
+a dictionary of values for the filter, AT1, AT2, and ATSplit.  The ‘which’
+keyword is used to specify whether or not the configuration returned is at the
+beginning (default) or end of the session.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.getASPConfigurationSummary">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">getASPConfigurationSummary</code><span class="sig-paren">(</span><em>tarname</em>, <em>which='beginning'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.getASPConfigurationSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to getASPConfiguration, but returns only a single value for each
+of the four ASP paramters:  filter, AT, AT2, and ATSplit.  The values
+are based off the mode of the parameter.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.metabundle.isValid">
+<code class="descclassname">lsl.common.metabundle.</code><code class="descname">isValid</code><span class="sig-paren">(</span><em>tarname</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.metabundle.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a filename, see if it is valid metadata tarball or not.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="supporting-functions">
+<h2>Supporting Functions<a class="headerlink" href="#supporting-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conversion-to-from-mjd-and-mpm">
+<h3>Conversion to/from MJD and MPM<a class="headerlink" href="#conversion-to-from-mjd-and-mpm" title="Permalink to this headline">¶</a></h3>
+<p>These functions convert Python datetime instances to modified Julian Data (MJD) and
+milliseconds past midnight (MPM) pairs.</p>
+</div>
+<div class="section" id="specifiying-delay-and-gains-for-the-digital-processor">
+<h3>Specifiying Delay and Gains for the Digital Processor<a class="headerlink" href="#specifiying-delay-and-gains-for-the-digital-processor" title="Permalink to this headline">¶</a></h3>
+<p>These functions are intended to help define observations that are run in Stepped mode with
+the beamforming method set to “SPEC_DELAYS_GAINS”.</p>
+<dl class="function">
+<dt id="lsl.common.mcs.delaytoMCSD">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">delaytoMCSD</code><span class="sig-paren">(</span><em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.delaytoMCSD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a delay in ns, convert it to a course and fine portion and into 
+the form expected by MCS in a custom beamforming SDF (little endian 
+16.12 unsigned integer).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.mcs.MCSDtodelay">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">MCSDtodelay</code><span class="sig-paren">(</span><em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.MCSDtodelay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given delay value from an OBS_BEAM_DELAY field in a custom beamforming 
+SDF, return the delay in ns.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.mcs.gaintoMCSG">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">gaintoMCSG</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.gaintoMCSG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a gain (between 0 and 1), convert it to a gain in the form 
+expected by MCS in a custom beamforming SDF (little endian 16.1 
+signed integer).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.mcs.MCSGtogain">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">MCSGtogain</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.MCSGtogain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a gain value from an OBS_BEAM_GAIN field in a custom beamforming
+SDF, return the decimal equivalent.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.3.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="interpretting-mcs-numeric-codes">
+<h3>Interpretting MCS Numeric Codes<a class="headerlink" href="#interpretting-mcs-numeric-codes" title="Permalink to this headline">¶</a></h3>
+<p>These functions convert various MCS numeric codes found in the metatdata into strings.</p>
+<dl class="function">
+<dt id="lsl.common.mcs.status2string">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">status2string</code><span class="sig-paren">(</span><em>code</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.status2string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a numerical MCS status code to a string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.common.mcs.summary2string">
+<code class="descclassname">lsl.common.mcs.</code><code class="descname">summary2string</code><span class="sig-paren">(</span><em>code</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.common.mcs.summary2string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a numerical MCS overall status code to an explination.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Defining Single Station Observations and Observation Metadata</a><ul>
+<li><a class="reference internal" href="#module-lsl.common.sdf">Session Definition Files</a><ul>
+<li><a class="reference internal" href="#session-structure">Session Structure</a></li>
+<li><a class="reference internal" href="#observing-modes">Observing Modes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lsl.common.metabundle">MCS Metadata Tarball Utilities</a></li>
+<li><a class="reference internal" href="#supporting-functions">Supporting Functions</a><ul>
+<li><a class="reference internal" href="#conversion-to-from-mjd-and-mpm">Conversion to/from MJD and MPM</a></li>
+<li><a class="reference internal" href="#specifiying-delay-and-gains-for-the-digital-processor">Specifiying Delay and Gains for the Digital Processor</a></li>
+<li><a class="reference internal" href="#interpretting-mcs-numeric-codes">Interpretting MCS Numeric Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="progress.html"
+                        title="previous chapter">Progress Bar</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="swarm.html"
+                        title="next chapter">LWA Swarm Observations</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/observations.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="swarm.html" title="LWA Swarm Observations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="progress.html" title="Progress Bar"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

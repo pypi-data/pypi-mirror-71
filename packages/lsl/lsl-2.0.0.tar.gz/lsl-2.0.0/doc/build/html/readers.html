@@ -1,0 +1,2145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Data Readers &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Writers" href="writers.html" />
+    <link rel="prev" title="Run and Scan Specification for the LWA Swarm" href="idf.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="writers.html" title="Data Writers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="idf.html" title="Run and Scan Specification for the LWA Swarm"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="data-readers">
+<h1>Data Readers<a class="headerlink" href="#data-readers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-lsl.reader.ldp">
+<span id="lsl-developer-primitives"></span><h2>LSL Developer Primitives<a class="headerlink" href="#module-lsl.reader.ldp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.reader.ldp.TBWFile">
+<em class="property">class </em><code class="descclassname">lsl.reader.ldp.</code><code class="descname">TBWFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBWFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make it easy to interface with a TBW file.  Methods defined for this class are:
+* getInfo - Get information about the file’s contents
+* getRemainingFrameCount - Get the number of frames remaining in the file
+* readFrame - Read and return a single <cite>lsl.reader.tbw.Frame</cite> instance
+* read - Read in the capture and return it as a numpy array</p>
+<dl class="method">
+<dt id="lsl.reader.ldp.TBWFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>duration=None</em>, <em>timeInSamples=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBWFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return the entire TBW capture.  This function returns 
+a three-element tuple with elements of:
+0) the actual duration of data read in, 
+1) the time tag for the first sample, and
+2) a 2-D Numpy array of data.</p>
+<p>The time tag is returned as seconds since the UNIX epoch by default.
+However, the time tags can be returns as samples at fS if the 
+timeInSamples keyword is set.</p>
+<p>The sorting order of the output data array is by 
+digitizer number - 1.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Setting the ‘duration’ keyword has no effect on the read 
+process because the entire capture is always read in.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBWFile.readFrame">
+<code class="descname">readFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBWFile.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return a single <cite>lsl.reader.tbw.Frame</cite> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.ldp.TBNFile">
+<em class="property">class </em><code class="descclassname">lsl.reader.ldp.</code><code class="descname">TBNFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBNFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make it easy to interface with a TBN file.  Methods defined for this class are:
+* getInfo - Get information about the file’s contents
+* getRemainingFrameCount - Get the number of frames remaining in the file
+* offset - Offset a specified number of seconds into the file
+* readFrame - Read and return a single <cite>lsl.reader.tbn.Frame</cite> instance
+* read - Read a chunk of data in and return it as a numpy array
+* estimateLevels - Estimate the n-sigma level for the absolute value of the voltages</p>
+<dl class="method">
+<dt id="lsl.reader.ldp.TBNFile.estimateLevels">
+<code class="descname">estimateLevels</code><span class="sig-paren">(</span><em>nFrames=100</em>, <em>Sigma=5.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBNFile.estimateLevels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the n-sigma level for the absolute value of the voltages.  
+Returns a list with indicies that are the digitizer numbers minus one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBNFile.offset">
+<code class="descname">offset</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBNFile.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset a specified number of seconds in an open TBN file.  This function 
+returns the exact offset time.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The offset provided by this function is relatively crude due to the
+structure of TBN files.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.4: </span>Offsets are now relative to the current location in the file rather
+than to the start of the file</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBNFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>duration</em>, <em>timeInSamples=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBNFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a chunk (in seconds) of TBN data.  This function returns 
+a three-element tuple with elements of:
+0) the actual duration of data read in, 
+1) the time tag for the first sample, and
+2) a 2-D Numpy array of data.</p>
+<p>The time tag is returned as seconds since the UNIX epoch by default.
+However, the time tags can be returns as samples at fS if the 
+timeInSamples keyword is set.</p>
+<p>The sorting order of the output data array is by 
+digitizer number - 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBNFile.readFrame">
+<code class="descname">readFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBNFile.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return a single <cite>lsl.reader.tbn.Frame</cite> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.ldp.DRXFile">
+<em class="property">class </em><code class="descclassname">lsl.reader.ldp.</code><code class="descname">DRXFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRXFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make it easy to interface with a DRX file.  Methods defined for this class are:
+* getInfo - Get information about the file’s contents
+* getRemainingFrameCount - Get the number of frames remaining in the file
+* offset - Offset a specified number of seconds into the file
+* readFrame - Read and return a single <cite>lsl.reader.drx.Frame</cite> instance
+* read - Read a chunk of data in and return it as a numpy array
+* estimateLevels - Estimate the n-sigma level for the absolute value of the voltages</p>
+<dl class="method">
+<dt id="lsl.reader.ldp.DRXFile.estimateLevels">
+<code class="descname">estimateLevels</code><span class="sig-paren">(</span><em>nFrames=100</em>, <em>Sigma=5.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRXFile.estimateLevels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the n-sigma level for the absolute value of the voltages.  
+Returns a list with indicies corresponding to:
+0)  Tuning 1, X pol.
+1)  Tuning 1, Y pol.
+2)  Tuning 2, X pol.
+3)  Tuning 2, Y pol.</p>
+<dl class="docutils">
+<dt>..note::</dt>
+<dd>The returned list always has four items, regardless of whether 
+or not the input DRX file has one or two tunings.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.DRXFile.offset">
+<code class="descname">offset</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRXFile.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset a specified number of seconds in an open DRX file.  This function 
+returns the exact offset time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.DRXFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>duration</em>, <em>timeInSamples=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRXFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an open DRX file and an amount of data to read in in seconds, read 
+in the data and return a three-element tuple of the actual duration read 
+in, the time for the first sample, and the data as numpy 
+array.</p>
+<dl class="docutils">
+<dt>..note::</dt>
+<dd>This function always returns a 2-D array with the first dimension
+holding four elements.  These elements contain, in order:
+* Tuning 1, polarization X
+* Tuning 1, polarization Y
+* Tuning 2, polarization X
+* Tuning 2, polarization Y</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.DRXFile.readFrame">
+<code class="descname">readFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRXFile.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return a single <cite>lsl.reader.drx.Frame</cite> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.ldp.DRSpecFile">
+<em class="property">class </em><code class="descclassname">lsl.reader.ldp.</code><code class="descname">DRSpecFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRSpecFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make it easy to interface with a DR Spectrometer file.  
+Methods defined for this class are:
+* getInfo - Get information about the file’s contents
+* getRemainingFrameCount - Get the number of frames remaining in the file
+* offset - Offset a specified number of seconds into the file
+* readFrame - Read and return a single <cite>lsl.reader.drspec.Frame</cite> instance
+* read - Read a chunk of data in and return it as a numpy array</p>
+<dl class="method">
+<dt id="lsl.reader.ldp.DRSpecFile.offset">
+<code class="descname">offset</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRSpecFile.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset a specified number of seconds in an open DR spectrometer file.  This 
+function returns the exact offset time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.DRSpecFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>duration</em>, <em>timeInSamples=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRSpecFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an open DR spectrometer file and an amount of data read in in 
+seconds, read in the data and return a three-element tuple of the actual 
+duration read in, the times at the beginning of each stream, and the 
+data as numpy array.</p>
+<dl class="docutils">
+<dt>..note::</dt>
+<dd>This function always returns a 3-D array with the first dimension
+indexing over data product, the second over time and the third over
+frequency channel.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.DRSpecFile.readFrame">
+<code class="descname">readFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.DRSpecFile.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return a single <cite>lsl.reader.drspec.Frame</cite> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.ldp.TBFFile">
+<em class="property">class </em><code class="descclassname">lsl.reader.ldp.</code><code class="descname">TBFFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBFFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to make it easy to interface with a TBF file.  Methods defined for this class are:
+* getInfo - Get information about the file’s contents
+* getRemainingFrameCount - Get the number of frames remaining in the file
+* offset - Offset a specified number of seconds into the file
+* readFrame - Read and return a single <cite>lsl.reader.tbw.Frame</cite> instance
+* read - Read in the capture and return it as a numpy array</p>
+<dl class="method">
+<dt id="lsl.reader.ldp.TBFFile.offset">
+<code class="descname">offset</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBFFile.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset a specified number of seconds in an open TBF file.  This function 
+returns the exact offset time.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The offset provided by this function is relatively crude due to the
+structure of TBF files.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.4: </span>Offsets are now relative to the current location in the file rather
+than to the start of the file</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBFFile.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>duration=None</em>, <em>timeInSamples=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBFFile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return the entire TBF capture.  This function returns 
+a three-element tuple with elements of:
+0) the actual duration of data read in, 
+1) the time tag for the first sample, and
+2) a 3-D Numpy array of data.</p>
+<p>The time tag is returned as seconds since the UNIX epoch by default.
+However, the time tags can be returns as samples at fS if the 
+timeInSamples keyword is set.</p>
+<p>The sorting order of the output data array is by 
+digitizer number - 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.ldp.TBFFile.readFrame">
+<code class="descname">readFrame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.TBFFile.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and return a single <cite>lsl.reader.tbf.Frame</cite> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.ldp.LWA1DataFile">
+<code class="descclassname">lsl.reader.ldp.</code><code class="descname">LWA1DataFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.LWA1DataFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around the various LWA1-related classes defined here that takes
+a file, determines the data type, and initializes and returns the 
+appropriate LDP class.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.ldp.LWASVDataFile">
+<code class="descclassname">lsl.reader.ldp.</code><code class="descname">LWASVDataFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.LWASVDataFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around the various LWA-SV-related classes defined here that takes
+a file, determines the data type, and initializes and returns the 
+appropriate LDP class.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.ldp.LWADataFile">
+<code class="descclassname">lsl.reader.ldp.</code><code class="descname">LWADataFile</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fh=None</em>, <em>ignoreTimeTagErrors=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.ldp.LWADataFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around the various classes defined here that takes a file, 
+determines the data type, and initializes and returns the appropriate
+LDP class.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.reader.tbw">
+<span id="low-level-tbw-dp"></span><h2>Low-Level TBW – DP<a class="headerlink" href="#module-lsl.reader.tbw" title="Permalink to this headline">¶</a></h2>
+<p>Python module to reading in data from both 12-bit and 4-bit TBW files.  
+This module defines the following classes for storing the TBW data found in
+a file:</p>
+<dl class="docutils">
+<dt>Frame</dt>
+<dd><p class="first">object that contains all data associated with a particular TBW frame.  The 
+primary consituents of each frame are:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>FrameHeader - the TBW frame header object and</li>
+<li>FrameData   - the TBW frame data object.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>Combined, these two objects contain all of the information found in the 
+original TBW frame.</p>
+<dl class="docutils">
+<dt>The functions defined in this module fall into two class:</dt>
+<dd><ol class="first last arabic simple">
+<li>convert a frame in a file to a Frame object and</li>
+<li>describe the format of the data in the file.</li>
+</ol>
+</dd>
+</dl>
+<p>For reading in data, use the readFrame function.  It takes a python file-
+handle as an input and returns a fully-filled Frame object.  readFrame 
+is designed to work with both 4-bit and 12-bit observations.</p>
+<p>For describing the format of data in the file, two function are provided:</p>
+<dl class="docutils">
+<dt>getDataBits</dt>
+<dd>read in the first frame of an open file handle and return whether or not 
+the data is 12 or 4-bit</dd>
+<dt>getFramesPerObs</dt>
+<dd>read in the first several frames to see how many stands are found in the 
+data.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is a little flaky on TBW data sets that have less 
+than a full complement or 12M (36M) samples.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over from pure Python readers to the new C-base Go Fast! readers.</p>
+</div>
+<dl class="class">
+<dt id="lsl.reader.tbw.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbw.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>frameCount=None</em>, <em>secondsCount=None</em>, <em>tbwID=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a TBW 
+frame.  All three fields listed in the DP ICD version H are stored as 
+well as the original binary header data.</p>
+<dl class="method">
+<dt id="lsl.reader.tbw.FrameHeader.getDataBits">
+<code class="descname">getDataBits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameHeader.getDataBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to parse the TBW ID field and return the size of number of 
+bits that comprise the data.  12 is returned for 12-bit data, and 4 
+for 4-bit data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbw.FrameHeader.isTBW">
+<code class="descname">isTBW</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameHeader.isTBW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to check if the data is really TBW and not TBN by examining
+the TBW ID field.  Returns True if the data is TBW, false otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbw.FrameHeader.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameHeader.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to parse the TBW ID field and return the stand number.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbw.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbw.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>samples=400</em>, <em>xy=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a TBW
+frame.  Both fields listed in the DP ICD version H are stored.</p>
+<dl class="method">
+<dt id="lsl.reader.tbw.FrameData.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.FrameData.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbw.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbw.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single TBW 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<dl class="method">
+<dt id="lsl.reader.tbw.Frame.getDataBits">
+<code class="descname">getDataBits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.Frame.getDataBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getDataBits 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbw.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getTime function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbw.Frame.isTBW">
+<code class="descname">isTBW</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.Frame.isTBW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.isTBW function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbw.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseID 
+function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbw.readFrame">
+<code class="descclassname">lsl.reader.tbw.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBW frame (header+data) and store the 
+contents as a Frame object.  This function wraps readerHeader and 
+readData[(12)|4].</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbw.getDataBits">
+<code class="descclassname">lsl.reader.tbw.</code><code class="descname">getDataBits</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.getDataBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the number of data bits used in the file be reading in the 
+first frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbw.getFramesPerObs">
+<code class="descclassname">lsl.reader.tbw.</code><code class="descname">getFramesPerObs</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbw.getFramesPerObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many frames are present per observation by examining 
+the first frames for what would be 260 stands.  This is done by reading
+two frames and then skipping the next 30,000.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Post-IOC it is probably simpler to adopt a value of the number of 
+frames per observation of 260 rather than try to find it from the
+file.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="low-level-tbf-adp">
+<h2>Low-Level TBF – ADP<a class="headerlink" href="#low-level-tbf-adp" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.</span></p>
+</div>
+<span class="target" id="module-lsl.reader.tbf"></span><p>Python module to reading in data from TBF files.  This module defines the 
+following classes for storing the TBF data found in a file:</p>
+<dl class="docutils">
+<dt>Frame</dt>
+<dd><p class="first">object that contains all data associated with a particular TBF frame.  The 
+primary consituents of each frame are:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>FrameHeader - the TBF frame header object and</li>
+<li>FrameData   - the TBF frame data object.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>Combined, these two objects contain all of the information found in the 
+original TBF frame.</p>
+<dl class="docutils">
+<dt>The functions defined in this module fall into two class:</dt>
+<dd><ol class="first last arabic simple">
+<li>convert a frame in a file to a Frame object and</li>
+<li>describe the format of the data in the file.</li>
+</ol>
+</dd>
+</dl>
+<p>For reading in data, use the readFrame function.  It takes a python file-
+handle as an input and returns a fully-filled Frame object.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+<dl class="class">
+<dt id="lsl.reader.tbf.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbf.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>id=None</em>, <em>frameCount=None</em>, <em>secondsCount=None</em>, <em>firstChan=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a TBF 
+frame.  All three fields listed in the DP ICD version H are stored as 
+well as the original binary header data.</p>
+<dl class="method">
+<dt id="lsl.reader.tbf.FrameHeader.getChannelFreqs">
+<code class="descname">getChannelFreqs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.FrameHeader.getChannelFreqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a numpy.float32 array for the center frequencies, in Hz, of
+each channel in the data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbf.FrameHeader.isTBF">
+<code class="descname">isTBF</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.FrameHeader.isTBF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to check if the data is really TBF.  Returns True if the 
+data is TBF, false otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbf.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbf.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>fDomain=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a TBF
+frame.  Both fields listed in the DP ICD version H are stored.</p>
+<dl class="method">
+<dt id="lsl.reader.tbf.FrameData.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.FrameData.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbf.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbf.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single TBF 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<dl class="method">
+<dt id="lsl.reader.tbf.Frame.getChannelFreqs">
+<code class="descname">getChannelFreqs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.Frame.getChannelFreqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getChannelFreqs function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbf.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getTime function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbf.Frame.isTBF">
+<code class="descname">isTBF</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.Frame.isTBF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.isTBF function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbf.readFrame">
+<code class="descclassname">lsl.reader.tbf.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBF frame (header+data) and store the 
+contents as a Frame object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbf.getFramesPerObs">
+<code class="descclassname">lsl.reader.tbf.</code><code class="descname">getFramesPerObs</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.getFramesPerObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many frames are present per time stamp by examining the 
+first 1000 TBF records.  Return the number of frames per observation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbf.getFirstFrameCount">
+<code class="descclassname">lsl.reader.tbf.</code><code class="descname">getFirstFrameCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.getFirstFrameCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return the lowest frame count encountered in a TBF file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbf.getChannelCount">
+<code class="descclassname">lsl.reader.tbf.</code><code class="descname">getChannelCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.getChannelCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the total number of channels that are present by examining 
+the first 1000 TBF records.  Return the number of channels found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbf.getFirstChannel">
+<code class="descclassname">lsl.reader.tbf.</code><code class="descname">getFirstChannel</code><span class="sig-paren">(</span><em>filehandle</em>, <em>frequency=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbf.getFirstChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return the lowest frequency channel in a TBF file.  If the 
+<cite>frequency</cite> keyword is True the returned value is in Hz.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.reader.tbn">
+<span id="low-level-tbn-dp-and-adp"></span><h2>Low-Level TBN – DP and ADP<a class="headerlink" href="#module-lsl.reader.tbn" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.reader.tbn.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbn.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>frameCount=None</em>, <em>tuningWord=None</em>, <em>tbnID=None</em>, <em>gain=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a TBW 
+frame.  All three fields listed in the DP ICD version H are stored as 
+well as the original binary header data.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5.0: </span>Added various attributes to retrieve the central frequnecy 
+and gain that are part of the ECR 11 changes.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the tuning word to a frequency in Hz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the sample rate in Hz to a filter code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.getGain">
+<code class="descname">getGain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.getGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current TBN gain for this frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.isTBN">
+<code class="descname">isTBN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.isTBN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to check if the data is really TBN and not TBW by examining
+the TBN ID field.  Returns True if the data is TBN, false otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to parse the TBN ID field and return a tuple of the stand 
+number and polarization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameHeader.setSampleRate">
+<code class="descname">setSampleRate</code><span class="sig-paren">(</span><em>sampleRate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameHeader.setSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set the sample rate of the TBN data in Hz.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbn.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbn.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>iq=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a TBN
+frame.  Both fields listed in the DP ICD version H are stored.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5.0: </span>Removed various attributes related to storing a central frequnecy 
+and gain that aren’t needed with ECR 11.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.tbn.FrameData.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.FrameData.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.tbn.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.tbn.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single TBN 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5.0: </span>Removed various attributes related to storing a central frequnecy 
+and gain that aren’t needed with ECR 11.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getCentralFreq function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getFilterCode function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.getGain">
+<code class="descname">getGain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.getGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getGain function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getTime function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.isTBN">
+<code class="descname">isTBN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.isTBN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.isTBN function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseID function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.tbn.Frame.setSampleRate">
+<code class="descname">setSampleRate</code><span class="sig-paren">(</span><em>sampleRate</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.Frame.setSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.setSampleRate function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbn.readFrame">
+<code class="descclassname">lsl.reader.tbn.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>SampleRate=None</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single TBN frame (header+data) and store the 
+contents as a Frame object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbn.getSampleRate">
+<code class="descclassname">lsl.reader.tbn.</code><code class="descname">getSampleRate</code><span class="sig-paren">(</span><em>filehandle</em>, <em>nFrames=None</em>, <em>FilterCode=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the sampling rate/filter code is from consecutive sets of 
+observations.  By default, the rate in Hz is returned.  However, the 
+corresponding filter code can be returned instead by setting the FilterCode
+keyword to True.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.tbn.getFramesPerObs">
+<code class="descclassname">lsl.reader.tbn.</code><code class="descname">getFramesPerObs</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.tbn.getFramesPerObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many frames are present per observation by examining 
+the first 2,080 TBN frames.  Return the number of frames per observations 
+as a two-   element tuple, one for each polarization.</p>
+<p>So many TBN frames are read in order to try to compensate for the inter-
+leaving of the packets from the various DP1 boards during the recording.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Post-IOC it is probably simpler to adopt a value of the number of 
+frames per observation of 520 rather than try to find it from the
+file.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="low-level-cor-adp">
+<h2>Low-Level COR – ADP<a class="headerlink" href="#low-level-cor-adp" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.</span></p>
+</div>
+<span class="target" id="module-lsl.reader.cor"></span><p>Python module to reading in data from COR files.  This module defines the 
+following classes for storing the COR data found in a file:</p>
+<dl class="docutils">
+<dt>Frame</dt>
+<dd><p class="first">object that contains all data associated with a particular COR frame.  The 
+primary consituents of each frame are:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>FrameHeader - the COR frame header object and</li>
+<li>FrameData   - the COR frame data object.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>Combined, these two objects contain all of the information found in the 
+original COR frame.</p>
+<dl class="docutils">
+<dt>The functions defined in this module fall into two class:</dt>
+<dd><ol class="first last arabic simple">
+<li>convert a frame in a file to a Frame object and</li>
+<li>describe the format of the data in the file.</li>
+</ol>
+</dd>
+</dl>
+<p>For reading in data, use the readFrame function.  It takes a python file-
+handle as an input and returns a fully-filled Frame object.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.1: </span>Updated for the switch over to 72 channels, complex64 data, and no
+data weights</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.0.</span></p>
+</div>
+<dl class="class">
+<dt id="lsl.reader.cor.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.cor.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>id=None</em>, <em>frameCount=None</em>, <em>secondsCount=None</em>, <em>firstChan=None</em>, <em>gain=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a COR 
+frame.  All three fields listed in the DP ICD version H are stored as 
+well as the original binary header data.</p>
+<dl class="method">
+<dt id="lsl.reader.cor.FrameHeader.getChannelFreqs">
+<code class="descname">getChannelFreqs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameHeader.getChannelFreqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a numpy.float32 array for the center frequencies, in Hz, of
+each channel in the data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.FrameHeader.getGain">
+<code class="descname">getGain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameHeader.getGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current TBN gain for this frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.FrameHeader.isCOR">
+<code class="descname">isCOR</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameHeader.isCOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to check if the data is really COR.  Returns True if the 
+data is COR, false otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.cor.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.cor.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>nAvg=None</em>, <em>stand0=None</em>, <em>stand1=None</em>, <em>vis=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a COR
+frame.</p>
+<dl class="method">
+<dt id="lsl.reader.cor.FrameData.getIntegrationTime">
+<code class="descname">getIntegrationTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameData.getIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the integration time of the visibility in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.FrameData.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameData.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.FrameData.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.FrameData.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of the two stands that contribute the this frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.cor.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.cor.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single COR 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.getChannelFreqs">
+<code class="descname">getChannelFreqs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.getChannelFreqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getChannelFreqs function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.getGain">
+<code class="descname">getGain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.getGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getGain function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.getIntegrationTime">
+<code class="descname">getIntegrationTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.getIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getIntegrationTime
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getTime function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.isCOR">
+<code class="descname">isCOR</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.isCOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.isCOR function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.cor.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.parseID function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.cor.readFrame">
+<code class="descclassname">lsl.reader.cor.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single COR frame (header+data) and store the 
+contents as a Frame object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.cor.getFramesPerObs">
+<code class="descclassname">lsl.reader.cor.</code><code class="descname">getFramesPerObs</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.getFramesPerObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many frames are present per time stamp by examining the 
+first several COR records.  Return the number of frames per observation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.cor.getChannelCount">
+<code class="descclassname">lsl.reader.cor.</code><code class="descname">getChannelCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.getChannelCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the total number of channels that are present by examining 
+the first several COR records.  Return the number of channels found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.cor.getBaselineCount">
+<code class="descclassname">lsl.reader.cor.</code><code class="descname">getBaselineCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.cor.getBaselineCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the total number of baselines that are present by examining the 
+first several COR records.  Return the number of baselines found.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.reader.drx">
+<span id="low-level-drx-dp-and-adp"></span><h2>Low-Level DRX – DP and ADP<a class="headerlink" href="#module-lsl.reader.drx" title="Permalink to this headline">¶</a></h2>
+<p>Python module to read in DRX data.  This module defines the following 
+classes for storing the DRX data found in a file:</p>
+<dl class="docutils">
+<dt>Frame</dt>
+<dd><p class="first">object that contains all data associated with a particular DRX frame.  
+The primary constituents of each frame are:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>FrameHeader - the DRX frame header object and</li>
+<li>FrameData   - the DRX frame data object.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>Combined, these two objects contain all of the information found in the 
+original DRX frame.</p>
+<p>ObservingBlock
+object that stores a collection of Frames for all beams/tunings/
+polarizations for a particular time.</p>
+<dl class="docutils">
+<dt>The functions defined in this module fall into two class:</dt>
+<dd><ol class="first last arabic simple">
+<li>convert a frame in a file to a Frame object and</li>
+<li>describe the format of the data in the file.</li>
+</ol>
+</dd>
+</dl>
+<p>For reading in data, use the readFrame function.  It takes a python file-
+handle as an input and returns a fully-filled Frame object.  The readBlock
+function reads in a (user-defined) number of DRX frames and returns a 
+ObservingBlock object.</p>
+<p>For describing the format of data in the file, two function are provided:</p>
+<dl class="docutils">
+<dt>getBeamCount</dt>
+<dd>read in the first few frames of an open file handle and return how many 
+beams are present in the file.</dd>
+<dt>getFramesPerObs</dt>
+<dd>read in the first several frames to see how many frames (tunings/polarizations)
+are associated with each beam.</dd>
+<dt>..versionchanged:: 1.2.0</dt>
+<dd>Dropped support for ObservingBlock since the lsl.reader.buffer modules does
+a better job.</dd>
+</dl>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over from pure Python readers to the new C-base Go Fast! readers.</p>
+</div>
+<dl class="class">
+<dt id="lsl.reader.drx.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.drx.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>frameCount=None</em>, <em>drxID=None</em>, <em>secondsCount=None</em>, <em>decimation=None</em>, <em>timeOffset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a DRX 
+frame.  All six fields listed in the DP ICD version H are stored as 
+well as the original binary header data.</p>
+<dl class="method">
+<dt id="lsl.reader.drx.FrameHeader.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameHeader.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the sample rate in Hz to a filter code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.FrameHeader.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameHeader.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sample rate of the data in samples/second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.FrameHeader.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameHeader.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the DRX ID into a tuple containing the beam (1 through
+4), tunning (1 and 2), and polarization (0 and 1).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.drx.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.drx.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>tuningWord=None</em>, <em>flags=None</em>, <em>iq=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a DRX
+frame.  All three fields listed in the DP ICD version H are stored.</p>
+<dl class="method">
+<dt id="lsl.reader.drx.FrameData.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameData.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set the central frequency of the DRX data in Hz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.FrameData.setGain">
+<code class="descname">setGain</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.FrameData.setGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set the gain of the DRX data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.drx.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.drx.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single DRX 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getCentralFreq function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getFilterCode function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getSampleRate 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseID 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drx.Frame.setGain">
+<code class="descname">setGain</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.Frame.setGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.setGain function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drx.readFrame">
+<code class="descclassname">lsl.reader.drx.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>Gain=None</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single DRX frame (header+data) and store the 
+contents as a Frame object.  This function wraps readerHeader and 
+readData.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drx.getSampleRate">
+<code class="descclassname">lsl.reader.drx.</code><code class="descname">getSampleRate</code><span class="sig-paren">(</span><em>filehandle</em>, <em>nFrames=None</em>, <em>FilterCode=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the sampling rate/filter code is from a single observations.  
+By default, the rate in Hz is returned.  However, the corresponding filter 
+code can be returned instead by setting the FilterCode keyword to true.</p>
+<p>This function is included to make easier to write code for TBN analysis and 
+modify it for DRX data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drx.getBeamCount">
+<code class="descclassname">lsl.reader.drx.</code><code class="descname">getBeamCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.getBeamCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many beams are present by examining the first 32 DRX
+records.  Return the number of beams found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drx.getFramesPerObs">
+<code class="descclassname">lsl.reader.drx.</code><code class="descname">getFramesPerObs</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drx.getFramesPerObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many frames are present per beam by examining the first 
+32 DRX records.  Return the number of frames per observations as a four-
+element tuple, one for each beam.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="low-level-drx8-adp">
+<h2>Low-Level DRX8 – ADP<a class="headerlink" href="#low-level-drx8-adp" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="low-level-dr-spectrometer-dp-and-adp">
+<h2>Low-Level DR Spectrometer – DP and ADP<a class="headerlink" href="#low-level-dr-spectrometer-dp-and-adp" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.5.</span></p>
+</div>
+<span class="target" id="module-lsl.reader.drspec"></span><dl class="class">
+<dt id="lsl.reader.drspec.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.drspec.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>beam=0</em>, <em>format=0</em>, <em>decimation=None</em>, <em>timeOffset=None</em>, <em>nInts=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a DR spectrometer/DRX 
+frame.</p>
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.containsLinearData">
+<code class="descname">containsLinearData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.containsLinearData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether or not the frame contains linear polarization 
+products or not.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.containsStokesData">
+<code class="descname">containsStokesData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.containsStokesData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether or not the frame contains Stokes polarization
+parameters or not.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.getDataProducts">
+<code class="descname">getDataProducts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.getDataProducts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of data products contained in the file.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.getFFTsPerIntegration">
+<code class="descname">getFFTsPerIntegration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.getFFTsPerIntegration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of FFT windows per integration.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the sample rate in Hz to a filter code.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sample rate of the data in samples/second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameHeader.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameHeader.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the beam the frame corresponds to.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.drspec.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.drspec.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>timeTag=None</em>, <em>tuningWords=None</em>, <em>fills=None</em>, <em>errors=None</em>, <em>saturations=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a DR spectrometer/
+DRX frame.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.5.3: </span>Added the saturations field to keep up with saturation counts.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.6.0: </span>The attributes that store the data are not defined until a frame is read in order
+to account for the fact that spectrometer files can store either linear or Stokes
+data.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameData.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><em>which=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameData.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set the central frequency of the DRX data in Hz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.FrameData.setGain">
+<code class="descname">setGain</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.FrameData.setGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set the gain of the DRX data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.drspec.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.drspec.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single DR spectrometer/
+DRX frame.  It’s properties are FrameHeader and FrameDataLinear/FrameDataStokes
+objects.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.6.0: </span>By default the data contained with in a frame is normalized by the number of
+fills (header.fills parameter).  For data products that are a function of more
+than one primary input, i.e., XY* or I, the minimum fill of X and Y are used 
+for normalization.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.containsLinearData">
+<code class="descname">containsLinearData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.containsLinearData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeder.containsLinearData
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.containsStokesData">
+<code class="descname">containsStokesData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.containsStokesData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeder.containsStokesData
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><em>which=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.getCentralFreq function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getDataProducts">
+<code class="descname">getDataProducts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getDataProducts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeder.getDataProducts
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getFFTsPerIntegration">
+<code class="descname">getFFTsPerIntegration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getFFTsPerIntegration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conveinence wrapper for the Frame.FrameHeader.getFFTsPerIntegration 
+function.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getFilterCode">
+<code class="descname">getFilterCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getFilterCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getFilterCode function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getIntegrationTime">
+<code class="descname">getIntegrationTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the integration time for data in seconds.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getSampleRate 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag from samples since the UNIX epoch
+(UTC 1970-01-01 00:00:00) to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.getTransformSize">
+<code class="descname">getTransformSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.getTransformSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the transform size is.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseID 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.drspec.Frame.setGain">
+<code class="descname">setGain</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.Frame.setGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameData.setGain function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.readFrame">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>Gain=None</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single DR spectrometer/DRX frame (header+data) and 
+store the contents as a Frame object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getDataProducts">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getDataProducts</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getDataProducts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the data products contained in the file by looking at a frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.containsLinearData">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">containsLinearData</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.containsLinearData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out if the file contains linear polarization products or not.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.containsStokesData">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">containsStokesData</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.containsStokesData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out if the file contains Stokes parameters or not.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getSampleRate">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getSampleRate</code><span class="sig-paren">(</span><em>filehandle</em>, <em>nFrames=None</em>, <em>FilterCode=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the sampling rate/filter code is from a single observations.  
+By default, the rate in Hz is returned.  However, the corresponding filter 
+code can be returned instead by setting the FilterCode keyword to true.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getFrameSize">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getFrameSize</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getFrameSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the frame size in a file is at the current file location.
+Returns the frame size in bytes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getFFTsPerIntegration">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getFFTsPerIntegration</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getFFTsPerIntegration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the number of FFT windows per integration is at the 
+current file location.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getTransformSize">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getTransformSize</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getTransformSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the transform size in a file is at the current file 
+location.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.drspec.getIntegrationTime">
+<code class="descclassname">lsl.reader.drspec.</code><code class="descname">getIntegrationTime</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.drspec.getIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the integration time is at the current file location.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.reader.vdif">
+<span id="low-level-vidf"></span><h2>Low-Level VIDF<a class="headerlink" href="#module-lsl.reader.vdif" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lsl.reader.vdif.FrameHeader">
+<em class="property">class </em><code class="descclassname">lsl.reader.vdif.</code><code class="descname">FrameHeader</code><span class="sig-paren">(</span><em>isInvalid=0</em>, <em>isLegacy=0</em>, <em>secondsFromEpoch=0</em>, <em>refEpoch=0</em>, <em>frameInSecond=0</em>, <em>version=1</em>, <em>nChan=0</em>, <em>frameLength=0</em>, <em>isComplex='C'</em>, <em>bitsPerSample=0</em>, <em>threadID=0</em>, <em>stationID=0</em>, <em>extendedData1=None</em>, <em>extendedData2=None</em>, <em>extendedData3=None</em>, <em>extendedData4=None</em>, <em>sampleRate=0.0</em>, <em>centralFreq=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the header of a VDIF 
+frame.  Most fields in the VDIF version 1.1.1 header are stored.</p>
+<dl class="method">
+<dt id="lsl.reader.vdif.FrameHeader.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to get the central frequency of the VDIF data in Hz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.FrameHeader.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sample rate of the data in samples/second.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.FrameHeader.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to convert the time tag to seconds since the UNIX epoch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.FrameHeader.parseExtendedUserData">
+<code class="descname">parseExtendedUserData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader.parseExtendedUserData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the extended user data if it was included with the reader.  
+The data is returned as a dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.FrameHeader.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameHeader.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a two-element tuple of the station ID and thread ID.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The station ID is always returned as numeric.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.vdif.FrameData">
+<em class="property">class </em><code class="descclassname">lsl.reader.vdif.</code><code class="descname">FrameData</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.FrameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information found in the data section of a VDIF
+frame.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unlike the other readers in the <code class="xref py py-mod docutils literal"><span class="pre">lsl.reader</span></code> module the
+data are stored as numpy.float32 values.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.vdif.Frame">
+<em class="property">class </em><code class="descclassname">lsl.reader.vdif.</code><code class="descname">Frame</code><span class="sig-paren">(</span><em>header=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that stores the information contained within a single VDIF 
+frame.  It’s properties are FrameHeader and FrameData objects.</p>
+<dl class="method">
+<dt id="lsl.reader.vdif.Frame.getCentralFreq">
+<code class="descname">getCentralFreq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame.getCentralFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getCentralFreq function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.Frame.getSampleRate">
+<code class="descname">getSampleRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getSampleRate function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.Frame.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.getTime function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.Frame.parseExtendedUserData">
+<code class="descname">parseExtendedUserData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame.parseExtendedUserData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseExtendedUserData
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.vdif.Frame.parseID">
+<code class="descname">parseID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.Frame.parseID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience wrapper for the Frame.FrameHeader.parseID 
+function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.readGUPPIHeader">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">readGUPPIHeader</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.readGUPPIHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a GUPPI header at the start of a VDIF file from the VLA.  The 
+contents of the header are returned as a dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.readFrame">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">readFrame</code><span class="sig-paren">(</span><em>filehandle</em>, <em>sampleRate=0.0</em>, <em>centralFreq=0.0</em>, <em>Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.readFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to read in a single VDIF frame (header+data) and store the 
+contents as a Frame object.  This function wraps the _readerHeader and 
+_readData functions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.getFrameSize">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">getFrameSize</code><span class="sig-paren">(</span><em>filehandle</em>, <em>nFrames=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.getFrameSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out what the frame size is in bytes from a single observation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.getThreadCount">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">getThreadCount</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.getThreadCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out how many thrads are present by examining the first 1024
+records.  Return the number of threads found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.getFramesPerSecond">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">getFramesPerSecond</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.getFramesPerSecond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find out the number of frames per second in a file by watching how the 
+headers change.  Returns the number of frames in a second.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.vdif.getSampleRate">
+<code class="descclassname">lsl.reader.vdif.</code><code class="descname">getSampleRate</code><span class="sig-paren">(</span><em>filehandle</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.vdif.getSampleRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return the sample rate in Hz by looking at how many frames 
+there are per second and how many samples there are in a frame.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lsl.reader.errors">
+<span id="reader-error-codes"></span><h2>Reader Error Codes<a class="headerlink" href="#module-lsl.reader.errors" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="lsl.reader.errors.baseReaderError">
+<em class="property">exception </em><code class="descclassname">lsl.reader.errors.</code><code class="descname">baseReaderError</code><span class="sig-paren">(</span><em>strerror</em>, <em>errno='-1'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.errors.baseReaderError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for file I/O problem during numpy.fromfile calls and out-of-
+sync Mark5C headers.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lsl.reader.errors.eofError">
+<em class="property">exception </em><code class="descclassname">lsl.reader.errors.</code><code class="descname">eofError</code><a class="headerlink" href="#lsl.reader.errors.eofError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extension to the base class for dealing with EOF errors.  The error code
+is 1.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lsl.reader.errors.syncError">
+<em class="property">exception </em><code class="descclassname">lsl.reader.errors.</code><code class="descname">syncError</code><span class="sig-paren">(</span><em>location=None</em>, <em>sync1=None</em>, <em>sync2=None</em>, <em>sync3=None</em>, <em>sync4=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.errors.syncError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extension to the base class for dealing with Mark 5C header sync word 
+problems.  If the sync word doesn’t match what is expected.  The error code 
+is 3.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lsl.reader.errors.notTBNError">
+<em class="property">exception </em><code class="descclassname">lsl.reader.errors.</code><code class="descname">notTBNError</code><a class="headerlink" href="#lsl.reader.errors.notTBNError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extenstion to the base class for dealing with trying to read in TBW data 
+with a TBN reader.  The error code is 4.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lsl.reader.errors.notTBWError">
+<em class="property">exception </em><code class="descclassname">lsl.reader.errors.</code><code class="descname">notTBWError</code><a class="headerlink" href="#lsl.reader.errors.notTBWError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extenstion to the base class for dealing with trying to read in TBN data 
+with a TBW reader.  The error code is 5.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.reader.errors.listErrorCodes">
+<code class="descclassname">lsl.reader.errors.</code><code class="descname">listErrorCodes</code><span class="sig-paren">(</span><em>errno=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.errors.listErrorCodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to provide a list of errors defined in this file.  It 
+alternatively takes an error code using the ‘errno’ keyword and returns its
+description.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lsl.reader.buffer">
+<span id="reader-ring-buffer"></span><h1>Reader Ring Buffer<a class="headerlink" href="#module-lsl.reader.buffer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lsl.reader.buffer.FrameBuffer">
+<em class="property">class </em><code class="descclassname">lsl.reader.buffer.</code><code class="descname">FrameBuffer</code><span class="sig-paren">(</span><em>mode='TBN'</em>, <em>stands=[]</em>, <em>beams=[]</em>, <em>tunes=[]</em>, <em>pols=[]</em>, <em>chans=[]</em>, <em>threads=[]</em>, <em>nSegments=6</em>, <em>ReorderFrames=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Frame buffer for re-ordering TBN and DRX frames in time order.  
+This class is filled with frames and a returns a frame list when 
+the ‘nSegments’ starts filling.  In that case, the oldest segment 
+is returned.</p>
+<p>The buffer also keeps track of what has already been read out so 
+that tardy frames are just dropped.  For buffers that are read out,
+missing frames are replaced with frames filled with zeros.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to the nature of the buffer, it is possible that there will
+still be ‘nSegments’-1 segements in the buffer that are either
+full or partially full.  This can be retrieved using the buffer’s 
+‘flush()’ function.</p>
+</div>
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>frames</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a new frame to the buffer with the appropriate time tag.  
+True is returned if the frame was added to the buffer and False if 
+the frame was dropped because it belongs to a buffer that has 
+already been returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.calcFrames">
+<code class="descname">calcFrames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.calcFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the maximum number of frames that we expect from 
+the setup of the observations and a list of tuples that describes
+all of the possible stand/pol combination.</p>
+<p>This will be overridden by sub-classes of FrameBuffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.createFill">
+<code class="descname">createFill</code><span class="sig-paren">(</span><em>key</em>, <em>frameParameters</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.createFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ‘fill’ frame of zeros using an existing good
+packet as a template.</p>
+<p>This will be overridden by sub-classes of FrameBuffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.figureOfMerit">
+<code class="descname">figureOfMerit</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.figureOfMerit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure of merit for storing/sorting frames in the ring buffer.</p>
+<p>This will be overridden by sub-classes of FrameBuffer.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.reader.buffer.FrameBuffer.filled">
+<code class="descname">filled</code><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.filled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether or not the ring buffer is full or not.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator to return all of the remaining frames in the buffer 
+from buffers that are considered ‘full’.  Afterwards, delete all 
+buffers.  This is useful for emptying the buffer after reading 
+in all of the data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible for this function to return list of packets that
+are mostly invalid.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>keyToReturn=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of frames that consitute a ‘full’ buffer.  Afterwards, 
+delete that buffer and mark it as closed so that any missing frames that
+are recieved late are dropped.  If none of the buffers are ready to be 
+dumped, None is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.isEmpty">
+<code class="descname">isEmpty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.isEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if there is anything in the buffer or not.  Returns False 
+if there is, True if there is not.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lsl.reader.buffer.FrameBuffer.overfilled">
+<code class="descname">overfilled</code><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.overfilled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether or not the ring buffer has too many segements or not.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.peek">
+<code class="descname">peek</code><span class="sig-paren">(</span><em>require_filled=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.peek" title="Permalink to this definition">¶</a></dt>
+<dd><p>Peek into the buffer to see what the next key to be retruned by a 
+call to get() will be.  Returns None if the buffer is not full and
+<cite>required_filled</cite> is True.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synonymous with ‘append’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emtpy the contents of the buffer and reset it to a clean state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.FrameBuffer.status">
+<code class="descname">status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.FrameBuffer.status" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Print out the status of the buffer.  This contains information about:</dt>
+<dd><ol class="first last arabic simple">
+<li>The current buffer fill level</li>
+<li>The numer of full and partial buffer dumps preformed</li>
+<li>The number of missing frames that fill packets needed to be created
+for</li>
+<li>The number of frames that arrived too late to be incorporated into 
+one of the ring buffers</li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.buffer.TBNFrameBuffer">
+<em class="property">class </em><code class="descclassname">lsl.reader.buffer.</code><code class="descname">TBNFrameBuffer</code><span class="sig-paren">(</span><em>stands=[], pols=[0, 1], nSegments=20, ReorderFrames=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBNFrameBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a></p>
+<p>A sub-type of FrameBuffer specifically for dealing with TBN frames.
+See <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a> for a description of how the 
+buffering is implemented.</p>
+<dl class="docutils">
+<dt>Keywords:</dt>
+<dd><dl class="first last docutils">
+<dt>stands</dt>
+<dd>list of stand to expect packets for</dd>
+<dt>pols</dt>
+<dd>list of polarizations to expect packets for</dd>
+<dt>nSegments</dt>
+<dd>number of ring segments to use for the buffer (default is 20)</dd>
+<dt>ReorderFrames</dt>
+<dd>whether or not to reorder frames returned by get() or flush() by 
+stand/polarization (default is False)</dd>
+</dl>
+</dd>
+</dl>
+<p>The number of segements in the ring can be converted to a buffer time in 
+seconds:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">Segments</td>
+<td colspan="7">TBN Filter Code</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>5.1</td>
+<td>1.6</td>
+<td>0.8</td>
+<td>0.4</td>
+<td>0.2</td>
+<td>0.1</td>
+<td>0.05</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>10.2</td>
+<td>3.3</td>
+<td>1.6</td>
+<td>0.8</td>
+<td>0.4</td>
+<td>0.2</td>
+<td>0.10</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>15.4</td>
+<td>4.9</td>
+<td>2.5</td>
+<td>1.2</td>
+<td>0.6</td>
+<td>0.3</td>
+<td>0.15</td>
+</tr>
+<tr class="row-even"><td>40</td>
+<td>20.5</td>
+<td>6.6</td>
+<td>3.3</td>
+<td>1.6</td>
+<td>0.8</td>
+<td>0.4</td>
+<td>0.20</td>
+</tr>
+<tr class="row-odd"><td>50</td>
+<td>25.6</td>
+<td>8.2</td>
+<td>4.1</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>0.5</td>
+<td>0.26</td>
+</tr>
+<tr class="row-even"><td>100</td>
+<td>51.2</td>
+<td>16.4</td>
+<td>8.2</td>
+<td>4.1</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>0.51</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lsl.reader.buffer.TBNFrameBuffer.calcFrames">
+<code class="descname">calcFrames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBNFrameBuffer.calcFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the maximum number of frames that we expect from 
+the setup of the observations and a list of tuples that describes
+all of the possible stand/pol combination.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.TBNFrameBuffer.createFill">
+<code class="descname">createFill</code><span class="sig-paren">(</span><em>key</em>, <em>frameParameters</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBNFrameBuffer.createFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ‘fill’ frame of zeros using an existing good
+packet as a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.TBNFrameBuffer.figureOfMerit">
+<code class="descname">figureOfMerit</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBNFrameBuffer.figureOfMerit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Figure of merit for sorting frames.  For TBN it is:</dt>
+<dd>&lt;frame timetag in ticks&gt;</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.buffer.DRXFrameBuffer">
+<em class="property">class </em><code class="descclassname">lsl.reader.buffer.</code><code class="descname">DRXFrameBuffer</code><span class="sig-paren">(</span><em>beams=[], tunes=[1, 2], pols=[0, 1], nSegments=20, ReorderFrames=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.DRXFrameBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a></p>
+<p>A sub-type of FrameBuffer specifically for dealing with DRX frames.
+See <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a> for a description of how the 
+buffering is implemented.</p>
+<dl class="docutils">
+<dt>Keywords:</dt>
+<dd><dl class="first last docutils">
+<dt>beams</dt>
+<dd>list of beam to expect packets for</dd>
+<dt>tunes</dt>
+<dd>list of tunings to expect packets for</dd>
+<dt>pols</dt>
+<dd>list of polarizations to expect packets for</dd>
+<dt>nSegments</dt>
+<dd>number of ring segments to use for the buffer (default is 20)</dd>
+<dt>ReorderFrames</dt>
+<dd>whether or not to reorder frames returned by get() or flush() by 
+stand/polarization (default is False)</dd>
+</dl>
+</dd>
+</dl>
+<p>The number of segements in the ring can be converted to a buffer time in 
+seconds:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="2">Segments</td>
+<td colspan="7">DRX Filter Code</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>0.16</td>
+<td>0.08</td>
+<td>0.04</td>
+<td>0.02</td>
+<td>0.01</td>
+<td>0.004</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>0.33</td>
+<td>0.16</td>
+<td>0.08</td>
+<td>0.04</td>
+<td>0.02</td>
+<td>0.008</td>
+<td>0.004</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>0.49</td>
+<td>0.25</td>
+<td>0.12</td>
+<td>0.06</td>
+<td>0.03</td>
+<td>0.013</td>
+<td>0.006</td>
+</tr>
+<tr class="row-even"><td>40</td>
+<td>0.66</td>
+<td>0.33</td>
+<td>0.16</td>
+<td>0.08</td>
+<td>0.03</td>
+<td>0.017</td>
+<td>0.008</td>
+</tr>
+<tr class="row-odd"><td>50</td>
+<td>0.82</td>
+<td>0.41</td>
+<td>0.20</td>
+<td>0.10</td>
+<td>0.04</td>
+<td>0.021</td>
+<td>0.010</td>
+</tr>
+<tr class="row-even"><td>100</td>
+<td>1.64</td>
+<td>0.82</td>
+<td>0.41</td>
+<td>0.20</td>
+<td>0.08</td>
+<td>0.042</td>
+<td>0.021</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lsl.reader.buffer.DRXFrameBuffer.calcFrames">
+<code class="descname">calcFrames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.DRXFrameBuffer.calcFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the maximum number of frames that we expect from 
+the setup of the observations and a list of tuples that describes
+all of the possible stand/pol combination.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.DRXFrameBuffer.createFill">
+<code class="descname">createFill</code><span class="sig-paren">(</span><em>key</em>, <em>frameParameters</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.DRXFrameBuffer.createFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ‘fill’ frame of zeros using an existing good
+packet as a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.DRXFrameBuffer.figureOfMerit">
+<code class="descname">figureOfMerit</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.DRXFrameBuffer.figureOfMerit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Figure of merit for sorting frames.  For DRX it is:</dt>
+<dd>&lt;frame timetag in ticks&gt;</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.buffer.TBFFrameBuffer">
+<em class="property">class </em><code class="descclassname">lsl.reader.buffer.</code><code class="descname">TBFFrameBuffer</code><span class="sig-paren">(</span><em>chans</em>, <em>nSegments=25</em>, <em>ReorderFrames=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBFFrameBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a></p>
+<p>A sub-type of FrameBuffer specifically for dealing with TBF frames.
+See <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a> for a description of how the 
+buffering is implemented.</p>
+<dl class="docutils">
+<dt>Keywords:</dt>
+<dd><dl class="first last docutils">
+<dt>chans</dt>
+<dd>list of start channel numbers to expect data for</dd>
+<dt>nSegments</dt>
+<dd>number of ring segments to use for the buffer (default is 25)</dd>
+<dt>ReorderFrames</dt>
+<dd>whether or not to reorder frames returned by get() or flush() by 
+start channel (default is False)</dd>
+</dl>
+</dd>
+</dl>
+<p>The number of segements in the ring can be converted to a buffer time in 
+seconds:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Segments</td>
+<td>Time</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-odd"><td>25</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td>50</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td>100</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td>200</td>
+<td>0.008</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lsl.reader.buffer.TBFFrameBuffer.calcFrames">
+<code class="descname">calcFrames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBFFrameBuffer.calcFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the maximum number of frames that we expect from 
+the setup of the observations and a list of tuples that describes
+all of the possible stand/pol combination.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.TBFFrameBuffer.createFill">
+<code class="descname">createFill</code><span class="sig-paren">(</span><em>key</em>, <em>frameParameters</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBFFrameBuffer.createFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ‘fill’ frame of zeros using an existing good
+packet as a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.TBFFrameBuffer.figureOfMerit">
+<code class="descname">figureOfMerit</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.TBFFrameBuffer.figureOfMerit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure of merit for sorting frames.  For TBF this is:
+frame.data.timeTag</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lsl.reader.buffer.VDIFFrameBuffer">
+<em class="property">class </em><code class="descclassname">lsl.reader.buffer.</code><code class="descname">VDIFFrameBuffer</code><span class="sig-paren">(</span><em>threads=[0, 1], nSegments=10, ReorderFrames=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.VDIFFrameBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a></p>
+<p>A sub-type of FrameBuffer specifically for dealing with VDIF frames.
+See <a class="reference internal" href="#lsl.reader.buffer.FrameBuffer" title="lsl.reader.buffer.FrameBuffer"><code class="xref py py-class docutils literal"><span class="pre">lsl.reader.buffer.FrameBuffer</span></code></a> for a description of how the 
+buffering is implemented.</p>
+<dl class="docutils">
+<dt>Keywords:</dt>
+<dd><dl class="first last docutils">
+<dt>threads</dt>
+<dd>list of thread IDs to expect data for</dd>
+<dt>nSegments</dt>
+<dd>number of ring segments to use for the buffer (default is 10)</dd>
+<dt>ReorderFrames</dt>
+<dd>whether or not to reorder frames returned by get() or flush() by 
+stand/polarization (default is False)</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lsl.reader.buffer.VDIFFrameBuffer.calcFrames">
+<code class="descname">calcFrames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.VDIFFrameBuffer.calcFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the maximum number of frames that we expect from 
+the setup of the observations and a list of tuples that describes
+all of the possible stand/pol combination.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.VDIFFrameBuffer.createFill">
+<code class="descname">createFill</code><span class="sig-paren">(</span><em>key</em>, <em>frameParameters</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.VDIFFrameBuffer.createFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ‘fill’ frame of zeros using an existing good
+packet as a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lsl.reader.buffer.VDIFFrameBuffer.figureOfMerit">
+<code class="descname">figureOfMerit</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.reader.buffer.VDIFFrameBuffer.figureOfMerit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure of merit for sorting frames.  For VIDF this is:
+secondsFromEpoch * 1000000 + frameInSecond</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Readers</a><ul>
+<li><a class="reference internal" href="#module-lsl.reader.ldp">LSL Developer Primitives</a></li>
+<li><a class="reference internal" href="#module-lsl.reader.tbw">Low-Level TBW – DP</a></li>
+<li><a class="reference internal" href="#low-level-tbf-adp">Low-Level TBF – ADP</a></li>
+<li><a class="reference internal" href="#module-lsl.reader.tbn">Low-Level TBN – DP and ADP</a></li>
+<li><a class="reference internal" href="#low-level-cor-adp">Low-Level COR – ADP</a></li>
+<li><a class="reference internal" href="#module-lsl.reader.drx">Low-Level DRX – DP and ADP</a></li>
+<li><a class="reference internal" href="#low-level-drx8-adp">Low-Level DRX8 – ADP</a></li>
+<li><a class="reference internal" href="#low-level-dr-spectrometer-dp-and-adp">Low-Level DR Spectrometer – DP and ADP</a></li>
+<li><a class="reference internal" href="#module-lsl.reader.vdif">Low-Level VIDF</a></li>
+<li><a class="reference internal" href="#module-lsl.reader.errors">Reader Error Codes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lsl.reader.buffer">Reader Ring Buffer</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="idf.html"
+                        title="previous chapter">Run and Scan Specification for the LWA Swarm</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="writers.html"
+                        title="next chapter">Data Writers</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/readers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="writers.html" title="Data Writers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="idf.html" title="Run and Scan Specification for the LWA Swarm"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>General Utilities &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C Extensions" href="c-extensions.html" />
+    <link rel="prev" title="RF Antenna Parameters" href="misc.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="c-extensions.html" title="C Extensions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="RF Antenna Parameters"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="general-utilities">
+<h1>General Utilities<a class="headerlink" href="#general-utilities" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>gatherDebugging.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Script to gather information about the Pytho/numpy/LSL install to help with troubleshooting.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">gatherDebugging.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>lslTelemetry.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Script to change the LSL telemetry setting.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">lslTelemetry.py [options]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-e</span>, <span class="option">--enabled</span></kbd></td>
+<td><p class="first last">Enable telemetry for LSL</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span>, <span class="option">--disable</span></kbd></td>
+<td><p class="first last">Disable telemetry for LSL</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-k</span>, <span class="option">--key</span></kbd></td>
+<td><p class="first last">Show install identification key</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>makeWisdom.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Build LSL-specific FFTW wisdom and save it to a file within the LSL distribution.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">makeWisdom.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>updateLSLSSMIF.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Update the internal LWA1 SSMIF used by LSL.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">updateLSLSSMIF.py [options]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-u</span>, <span class="option">--update</span></kbd></td>
+<td><p class="first last">Update the default LWA1 SSMIF</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-r</span>, <span class="option">--revert</span></kbd></td>
+<td><p class="first last">Revert the default LWA1 SSMIF to an older version</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>astroevents.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Application to display rise, transit, and set times for various astronomical sources from LWA-1 for the current date.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">astroevents.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>astrostatus.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Application to calculate real-time ephemeris for a LWA site.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">astrostatus.py [options]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">show this help message and exit</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-s <var>SITE</var></span>, <span class="option">--site=<var>SITE</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">site name (default LWA-1)</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>driftcurve.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Generate a drift curve for a dipole at LWA-1 observing at a given frequency in MHz.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">driftcurve.py [OPTIONS]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-f</span>, <span class="option">--freq</span></kbd></td>
+<td><p class="first last">Frequency of the observations in MHz (default = 74 MHz)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-p</span>, <span class="option">--polarization</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Polarization of the observations (NS or EW; default = EW)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l</span>, <span class="option">--lf-map</span></kbd></td>
+<td><p class="first last">Use LF map instead of GSM</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-t</span>, <span class="option">--time-step</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Time step of simulations in minutes (default = 10)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-x</span>, <span class="option">--do-plot</span></kbd></td>
+<td><p class="first last">Plot the driftcurve data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td><p class="first last">Run driftcurve in vebose mode</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>getIonosphericRM.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Estimate the ionospheric contribution to the RM for an observation using the IGS final product and the IGRF.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">getIonosphericRM.py [options] RA Dec Start Stop</p>
+<p>RA:     J2000 right ascension in HH:MM:SS[.SSS]</p>
+<p>Dec:    J2000 declination in sDD:MM:SS[.SSS]</p>
+<p>Start:  YYYY/MM/DD HH:MM:SS start time in UTC</p>
+<p>Stop:   YYYY/MM/DD HH:MM:SS stop time in UTC</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n</span>, <span class="option">--n-samples</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Number of samples to take between the start and stop times (default = 11)</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>lwa_cat_view.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Simple LWDA astronomical source catalogue display application.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">lwa_cat_view.py [options]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">show this help message and exit</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-s <var>SITE</var></span>, <span class="option">--site=<var>SITE</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">site name (default LWDA)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-p <var>PERIOD</var></span>, <span class="option">--period=<var>PERIOD</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">update period in seconds (default 5)</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>inspectTarball.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Given a MCS metadata tarball, print out details of the associated observations.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">inspectTarball.py metaData</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>plotAntenna.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Plot the relative dipole response for both polarizations of an isolated LWA-1 antenna at a particular frequency.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">plotAntenna.py [OPTIONS]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-f</span>, <span class="option">--freq</span></kbd></td>
+<td><p class="first last">Frequency of the observations in MHz (default = 74 MHz)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td><p class="first last">Run plotAntenna in vebose mode</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>plotStands.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Plot the x, y, and z locations of stands at LWA-1.  Also, mark and label particular stands, if requested.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">plotStands.py [OPTIONS] [stand1 [stand2 […]]]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l</span>, <span class="option">--label</span></kbd></td>
+<td><p class="first last">Label the stands with their ID numbers
+(default = No)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td><p class="first last">Run plotStands in vebose mode</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Filename to save the plot to (default = do not save)</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>plotUVCoverage.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Randomly select 20 antennae from LWA-1 and plot the uv-plane coverage for
+a zenith snapshot and the expected beam.  Alternatively, select some
+FRACTION of the stands with installed FEEs to use or use the specified
+list of stands.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">plotUVCoverage.py [FRACTION | STAND LIST]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--frequency</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Frequency in MHz to compute the uv coverage (default
+50 MHz)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Filename to save the plot to (default = do not save)</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-reading-and-writing">
+<h1>Data Reading and Writing<a class="headerlink" href="#data-reading-and-writing" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>splitTBN.py</dt>
+<dd><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Split a TBN file containing multiple seconds into several files</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">splitTBN.py [options] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span>, <span class="option">--count</span></kbd></td>
+<td><p class="first last">Number of seconds to keep</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--offset</span></kbd></td>
+<td><p class="first last">Number of seconds to skip before splitting</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span>, <span class="option">--date</span></kbd></td>
+<td><p class="first last">Label the split files with a date rather than a squence number</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This script does not use a <a class="reference internal" href="readers.html#module-lsl.reader.buffer" title="lsl.reader.buffer"><code class="xref py py-mod docutils literal"><span class="pre">lsl.reader.buffer</span></code></a> buffer to try to re-order or verify all
+packets and simply splits files based on size.</p>
+</div>
+</dd>
+<dt>splitDRX.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Split a DRX file containing multiple seconds into several files</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">splitDRX.py [options] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span>, <span class="option">--count</span></kbd></td>
+<td><p class="first last">Number of seconds to keep</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--offset</span></kbd></td>
+<td><p class="first last">Number of seconds to skip before splitting</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span>, <span class="option">--date</span></kbd></td>
+<td><p class="first last">Label the split files with a date rather than a squence number</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>splitSession.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Given a MCS metadata tarball and a session DRX recording, split the session
+recording into the individual observations.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">splitSession.py metaData data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>plotMapper.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Read and plot the NOSTA_MAPPER table in a FITS IDI file writen by
+<a class="reference internal" href="writers.html#module-lsl.writer.fitsidi" title="lsl.writer.fitsidi"><code class="xref py py-mod docutils literal"><span class="pre">lsl.writer.fitsidi</span></code></a> if it exists.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">plotMapper.py file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-analysis">
+<h1>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>tbwSpectra.py</dt>
+<dd><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Given a TBW file, plot the time averaged spectra for each digitizer input.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">tbwSpectra.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span>, <span class="option">--bartlett</span></kbd></td>
+<td><p class="first last">Apply a Bartlett window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-b</span>, <span class="option">--blackman</span></kbd></td>
+<td><p class="first last">Apply a Blackman window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-n</span>, <span class="option">--hanning</span></kbd></td>
+<td><p class="first last">Apply a Hanning window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run tbwSpectra in silent mode</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l</span>, <span class="option">--fft-length</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Set FFT length (default = 4096)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-g</span>, <span class="option">--gain-correct</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Correct signals for the cable losses</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--stack</span></kbd></td>
+<td><p class="first last">Stack spectra in groups of 6 (if ‘-g’ is enabled only)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-d</span>, <span class="option">--disable-chunks</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Display plotting chunks in addition to the global average</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Output file name for spectra imag</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">tbwSpectra.py currently assumed that the system it is running on has enough memory to read in
+a full TBW capture.  Due to data representation and processing overheads this amounts to about
+16 GB.</p>
+</div>
+</dd>
+<dt>tbnSpectra.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Given a TBN file, plot the time averaged spectra for each digitizer input.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">tbnSpectra.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span>, <span class="option">--bartlett</span></kbd></td>
+<td><p class="first last">Apply a Bartlett window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-b</span>, <span class="option">--blackman</span></kbd></td>
+<td><p class="first last">Apply a Blackman window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-n</span>, <span class="option">--hanning</span></kbd></td>
+<td><p class="first last">Apply a Hanning window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--skip</span></kbd></td>
+<td><p class="first last">Skip the specified number of seconds at the beginning of the file (default = 0)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-a</span>, <span class="option">--average</span></kbd></td>
+<td><p class="first last">Number of seconds of data to average for spectra (default = 10)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run tbwSpectra in silent mode</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l</span>, <span class="option">--fft-length</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Set FFT length (default = 4096)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-d</span>, <span class="option">--disable-chunks</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Display plotting chunks in addition to the global average</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Output file name for spectra image</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>drxSpectra.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Given a DRX file, plot the time averaged spectra for each beam output.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">drxSpectra.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span>, <span class="option">--bartlett</span></kbd></td>
+<td><p class="first last">Apply a Bartlett window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-b</span>, <span class="option">--blackman</span></kbd></td>
+<td><p class="first last">Apply a Blackman window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-n</span>, <span class="option">--hanning</span></kbd></td>
+<td><p class="first last">Apply a Hanning window to the data</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--skip</span></kbd></td>
+<td><p class="first last">Skip the specified number of seconds at the beginning of the file (default = 0)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-a</span>, <span class="option">--average</span></kbd></td>
+<td><p class="first last">Number of seconds of data to average for spectra (default = 10)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run tbwSpectra in silent mode</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l</span>, <span class="option">--fft-length</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Set FFT length (default = 4096)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-d</span>, <span class="option">--disable-chunks</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Display plotting chunks in addition to the global average</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Output file name for spectra image</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>drSpecSpectra.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Given a DR spectrometer file, plot the time averaged spectra for each beam output.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">drSpecSpectra.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--skip</span></kbd></td>
+<td><p class="first last">Skip the specified number of seconds at the beginning
+of the file (default = 0)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-a</span>, <span class="option">--average</span></kbd></td>
+<td><p class="first last">Number of seconds of data to average for spectra
+(default = 10)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run drSpecSpectra in silent mode</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-d</span>, <span class="option">--disable-chunks</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Display plotting chunks in addition to the global
+average</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--output</span></kbd></td>
+<td><p class="first last">Output file name for spectra image</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>correlateTBW.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Cross-correlate data in a TBW file</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">correlateTBW.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-l</span>, <span class="option">--fft-length</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Set FFT length (default = 2048)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run correlateTBW in silent mode</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-x</span>, <span class="option">--xx</span></kbd></td>
+<td><p class="first last">Compute only the XX polarization product (default)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-y</span>, <span class="option">--yy</span></kbd></td>
+<td><p class="first last">Compute only the YY polarization product</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-2</span>, <span class="option">--two-products</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Compute both the XX and YY polarization products</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>correlateTBN.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Example script that reads in TBN data and runs a cross-correlation on it.
+The results are saved in the Miriad UV format.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">correlateTBN.py [OPTIONS] file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--metadata</span></kbd></td>
+<td><p class="first last">Name of SSMIF or metadata tarball file to use for
+mappings</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--fft-length</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Set FFT length (default = 256)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span>, <span class="option">--avg-time</span></kbd></td>
+<td><p class="first last">Window to average visibilities in time (seconds;
+default = 6 s)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--samples</span></kbd></td>
+<td><p class="first last">Number of average visibilities to generate
+(default = 10)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--offset</span></kbd></td>
+<td><p class="first last">Seconds to skip from the beginning of the file</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-q</span>, <span class="option">--quiet</span></kbd></td>
+<td><p class="first last">Run correlateTBN in silent mode</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-x</span>, <span class="option">--xx</span></kbd></td>
+<td><p class="first last">Compute only the XX polarization product (default)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-y</span>, <span class="option">--yy</span></kbd></td>
+<td><p class="first last">Compute only the YY polarization product</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-2</span>, <span class="option">--two-products</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Compute both the XX and YY polarization products</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-4</span>, <span class="option">--four-products</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Compute all for polariation products:  XX, YY, XY,
+and YX.</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>possm.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body">Script that takes a FITS IDI file and mimics the AIPS task POSSM by plotting
+average cross-power spectra for all baselines in the FITS IDI file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body">possm.py file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>imageIDI.py</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Script that takes a FITS IDI file and images the data.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Usage:</th><td class="field-body"><p class="first">imageIDI.py file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Options:</th><td class="field-body"><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td><p class="first last">Display this help information</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-1</span>, <span class="option">--freq-start</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">First frequency to image in MHz (Default = 10 MHz)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-2</span>, <span class="option">--freq-stop</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Last frequency to image in MHz (Default = 88 MHz)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span>, <span class="option">--dataset</span></kbd></td>
+<td><p class="first last">Data set to image (Default = All)</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span>, <span class="option">--uv-min</span></kbd></td>
+<td><p class="first last">Minimun baseline uvw length to include
+(Default = 0 lambda at midpoint frequency)</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n</span>, <span class="option">--no-labels</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first last">Disable source and grid labels</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-g</span>, <span class="option">--no-grid</span></kbd></td>
+<td><p class="first last">Disable the RA/Dec grid</p>
+</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">General Utilities</a></li>
+<li><a class="reference internal" href="#data-reading-and-writing">Data Reading and Writing</a></li>
+<li><a class="reference internal" href="#data-analysis">Data Analysis</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="misc.html"
+                        title="previous chapter">RF Antenna Parameters</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="c-extensions.html"
+                        title="next chapter">C Extensions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/scripts.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="c-extensions.html" title="C Extensions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="misc.html" title="RF Antenna Parameters"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

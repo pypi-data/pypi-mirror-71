@@ -1,0 +1,471 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>RF Antenna Parameters &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="General Utilities" href="scripts.html" />
+    <link rel="prev" title="Fake Data" href="fakedata.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="General Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fakedata.html" title="Fake Data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-lsl.misc.rfutil">
+<span id="rf-antenna-parameters"></span><h1>RF Antenna Parameters<a class="headerlink" href="#module-lsl.misc.rfutil" title="Permalink to this headline">¶</a></h1>
+<p>A collection of utilities to help convert RF engineering/communications terms
+into radio astronomy terms.  This module is geared toward taking antenna 
+parameters in dBi or dBd and converting them into meaningful RA gains in
+K/Jy and then using those to get a system equivalent flux density.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.3.</span></p>
+</div>
+<dl class="function">
+<dt id="lsl.misc.rfutil.dBd2dBi">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">dBd2dBi</code><span class="sig-paren">(</span><em>dBd</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.dBd2dBi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an antenna gain in dBb (gain relative to the maximum gain of a
+half-wave dipole) into a gain in dBi (gain relative to an isotropic 
+antenna).</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">dBd2dBi</code><span class="sig-paren">(</span><em>dBd</em><span class="sig-paren">)</span></dt>
+<dd><p>Convert an antenna gain in dBb (gain relative to the maximum gain of a
+half-wave dipole) into a gain in dBi (gain relative to an isotropic 
+antenna).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.dBi2gain">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">dBi2gain</code><span class="sig-paren">(</span><em>dBi</em>, <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.dBi2gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an antenna gain in dBi (gain relative to an isotropic antenna) 
+at a particular frequency in Hz into a gain in K/Jy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.dBd2gain">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">dBd2gain</code><span class="sig-paren">(</span><em>dBd</em>, <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.dBd2gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an antenna gain in dBd (gain relative to the maximum gain of a
+half-wave dipole) at a particular frequency in Hz into a gain in K/Jy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.gain2dBi">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">gain2dBi</code><span class="sig-paren">(</span><em>gain</em>, <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.gain2dBi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an antenna gain in K/Jy at a particular frequency in Hz into a
+gain in dBi (gain relative to an isotropic antenna).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.gain2dBd">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">gain2dBd</code><span class="sig-paren">(</span><em>gain</em>, <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.gain2dBd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an antenna gain in K/Jy at a particular frequency in Hz into a
+gain in dBd (gain relative to the maximum gain of a half-wave dipole).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.calculateSEFD">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">calculateSEFD</code><span class="sig-paren">(</span><em>Tsys</em>, <em>gain=None</em>, <em>area=None</em>, <em>efficiency=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.calculateSEFD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a variety of parameters, calculate the system equivalent flux 
+density in Jy for an antenna.  The parameters are:
+* Tsys - system temperature in K - required
+* gain - antenna gain in K/Jy - optional
+* area - antenna collecting area in m^2 - optional
+* efficiency - aperture efficiency - optional</p>
+<p>Of the optional parameters either ‘gain’ needs to be supplied or
+both ‘area’ and ‘efficiency’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.calculateEffectiveArea">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">calculateEffectiveArea</code><span class="sig-paren">(</span><em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.calculateEffectiveArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the gain of an antenna in K/Jy, calculate the effective collecting
+area in square meters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.Jy2dBm">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">Jy2dBm</code><span class="sig-paren">(</span><em>flux</em>, <em>bandwidth</em>, <em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.Jy2dBm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a flux density in Jy into a received signal strength in dBm 
+under the assumptions of:
+* signal bandwidth in Hz
+* antenna gain in K/Jy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.rfutil.dBm2Jy">
+<code class="descclassname">lsl.misc.rfutil.</code><code class="descname">dBm2Jy</code><span class="sig-paren">(</span><em>dBm</em>, <em>bandwidth</em>, <em>gain</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.rfutil.dBm2Jy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a received signal strength in dBm into a flux density in Jy under
+the assumptions of:
+* signal bandwidth in Hz
+* antenna gain in K/Jy</p>
+</dd></dl>
+
+</div>
+<div class="section" id="simulated-stand-response">
+<h1>Simulated Stand Response<a class="headerlink" href="#simulated-stand-response" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="ionospheric-and-geomagnetic-field-models">
+<h1>Ionospheric and Geomagnetic Field Models<a class="headerlink" href="#ionospheric-and-geomagnetic-field-models" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.1.0.</span></p>
+</div>
+<span class="target" id="module-lsl.misc.ionosphere"></span><dl class="function">
+<dt id="lsl.misc.ionosphere.getMagneticField">
+<code class="descclassname">lsl.misc.ionosphere.</code><code class="descname">getMagneticField</code><span class="sig-paren">(</span><em>lat</em>, <em>lng</em>, <em>elev</em>, <em>mjd=None</em>, <em>ecef=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.ionosphere.getMagneticField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a geodetic location described by a latitude in degrees (North 
+positive), a longitude in degrees (West negative), an elevation 
+in meters and an MJD value, compute the Earth’s magnetic field in that 
+location and return a three-element tuple of the magnetic field’s 
+components in nT.  By default these are in topocentric coordinates of
+(North, East, Up).  To return values in ECEF, set the ‘ecef’ keyword to
+True.  If the MJD file is None, the current time is used.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The convention used for the topocentric coordinates differs
+from what the IGRF uses in the sense that the zenith direction
+points up rather than down.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.ionosphere.computeMagneticDeclination">
+<code class="descclassname">lsl.misc.ionosphere.</code><code class="descname">computeMagneticDeclination</code><span class="sig-paren">(</span><em>Bn</em>, <em>Be</em>, <em>Bz</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.ionosphere.computeMagneticDeclination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the topocentric output of getMagneticField(), compute and return 
+the magnetic declination (deviation between magnetic north and true 
+north) in degrees.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The declination is poorly defined (NaN) around the magnetic poles
+where the horizontal field strength is less than 100 nT.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.ionosphere.computeMagneticInclination">
+<code class="descclassname">lsl.misc.ionosphere.</code><code class="descname">computeMagneticInclination</code><span class="sig-paren">(</span><em>Bn</em>, <em>Be</em>, <em>Bz</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.ionosphere.computeMagneticInclination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the topocentric output of getMagneticField(), compute and return 
+the magnetic inclination or magnetic dip (angle between the magnetic 
+field and the horizontal) in degrees.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.ionosphere.getTECValue">
+<code class="descclassname">lsl.misc.ionosphere.</code><code class="descname">getTECValue</code><span class="sig-paren">(</span><em>mjd</em>, <em>lat=None</em>, <em>lng=None</em>, <em>includeRMS=False</em>, <em>timeout=120</em>, <em>type='IGS'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.ionosphere.getTECValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an MJD value and, optionally, a latitude and longitude in degrees, 
+compute the TEC value in TECU above that location using data from the 
+IGS or CODE (depending on the value of the ‘type’ keyword).  If the 
+‘includeRMS’ keyword is set to True, also return the RMS in the TEC 
+value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.ionosphere.getIonosphericPiercePoint">
+<code class="descclassname">lsl.misc.ionosphere.</code><code class="descname">getIonosphericPiercePoint</code><span class="sig-paren">(</span><em>site</em>, <em>az</em>, <em>el</em>, <em>height=450000.0</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.ionosphere.getIonosphericPiercePoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a site and a pointing direction (azimuth and elevation in degrees),
+compute the location of the ionospheric pierce  point.  Since the height
+assumed for the ionosphere is model-dependent the ‘height’ keyword sets 
+the elevation to use in meters.  Returns a three-element tuple of 
+latitude (degrees, North is positive), longitude (degrees, East is 
+positive), and elevation (meters).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="conversion-helper-functions-for-argparse">
+<h1>Conversion Helper Functions for argparse<a class="headerlink" href="#conversion-helper-functions-for-argparse" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.2.4.</span></p>
+</div>
+<span class="target" id="module-lsl.misc.parser"></span><dl class="function">
+<dt id="lsl.misc.parser.positive_or_zero_int">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">positive_or_zero_int</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.positive_or_zero_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a positive (&gt;=0) integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.positive_int">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">positive_int</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.positive_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a positive (&gt;0) integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.positive_or_zero_float">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">positive_or_zero_float</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.positive_or_zero_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a positive (&gt;=0.0) float.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.positive_float">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">positive_float</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.positive_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a positive (&gt;0.0) float.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.frequency">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">frequency</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a frequency to a float Hz value.  This function accepts a variety 
+of string formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li>pure float values are intepreted to be in MHz (45.0 -&gt; 45e6)</li>
+<li><dl class="first docutils">
+<dt>number/unit pairs are allowed so long as they are in:</dt>
+<dd><ul class="first last">
+<li>[prefix]m, A, or ang for wavelength and</li>
+<li>[prefix]Hz for frequency</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.frequency_range">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">frequency_range</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.frequency_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a frequency to a float Hz value.  This function accepts a variety 
+of string formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a ‘number~number’ is interpretted as a range in MHz</li>
+<li>a ‘number/unit~number/unit’ is converted to a range in Hz</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For ranges, a two-element list is returned where the first value
+is less than the second.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.wavelength">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">wavelength</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.wavelength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a wavelength to a float m value.  This function accepts a variety 
+of string formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li>pure float values are intepreted to be in m (45.0 -&gt; 45.0)</li>
+<li><dl class="first docutils">
+<dt>number/unit pairs are allowed so long as they are in:</dt>
+<dd><ul class="first last">
+<li>[prefix]m, A, or ang for wavelength and</li>
+<li>[prefix]Hz for frequency</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.wavelength_range">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">wavelength_range</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.wavelength_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a wavelength to a float m value.  This function accepts a variety 
+of string formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a ‘number~number’ is interpretted as a range in m</li>
+<li>a ‘number/unit~number/unit’ is converted to a range in m</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For ranges, a two-element list is returned where the first value
+is less than the second.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.date">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">date</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a data as either a YYYY[-/]MM[-/]DD or MJD string into a 
+YYYY/MM/DD string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.mjd">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">mjd</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.mjd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a data as either a YYYY[-/]MM[-/]DD or MJD string into an integer
+MJD.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.time">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">time</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covnert a time as HH:MM:SS[.SSS] or MPM string into a HH:MM:SS.SSSSSS 
+string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.mpm">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">mpm</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.mpm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covnert a time as HH:MM:SS[.SSS] or MPM string into an MPM integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.hours">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">hours</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.hours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a ‘HH[:MM[:SS[.SSS]]]’ string into an ephem.hours instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.csv_hours_list">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">csv_hours_list</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.csv_hours_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a comma-separated list of ‘HH[:MM[:SS.[SSS]]]’ string into a list 
+of ephem.hours instances.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.degrees">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">degrees</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.degrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a ‘sDD[:MM[:SS[.SSS]]]’ string into an ephem.degrees instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.csv_degrees_list">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">csv_degrees_list</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.csv_degrees_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a comma-separated list of ‘sDD[:MM[:SS.[SSS]]]’ string into a list 
+of ephem.degrees instances.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.csv_int_list">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">csv_int_list</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.csv_int_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a comma-separated list of integers into a list of integers.  This 
+function also allows for ranges to be specifed using the ‘~’ character.  
+This formatting converts ‘start~stop’ to ‘range(start, stop+1)’.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.csv_baseline_list">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">csv_baseline_list</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.csv_baseline_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a comma-separated list of baslines pairs into a list of baseline
+pairs.  Baseline pairs are defined as ‘antenna1-antenna2’ where ‘antenna1’
+and ‘antenna2’ are both integers or ranges denoted by the ‘~’ character.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.misc.parser.csv_hostname_list">
+<code class="descclassname">lsl.misc.parser.</code><code class="descname">csv_hostname_list</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.misc.parser.csv_hostname_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a comma-separated list of IPv4 addresses/hostnames into a list 
+IPv4 addresses/hostnames.  This function support indexing with the ‘~’ 
+character so long as:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the character is in any one of the IPv4 bytes or</li>
+<li>the character is at the end of a hostname which ends with a number</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RF Antenna Parameters</a></li>
+<li><a class="reference internal" href="#simulated-stand-response">Simulated Stand Response</a></li>
+<li><a class="reference internal" href="#ionospheric-and-geomagnetic-field-models">Ionospheric and Geomagnetic Field Models</a></li>
+<li><a class="reference internal" href="#conversion-helper-functions-for-argparse">Conversion Helper Functions for argparse</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fakedata.html"
+                        title="previous chapter">Fake Data</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="scripts.html"
+                        title="next chapter">General Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/misc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="General Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fakedata.html" title="Fake Data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

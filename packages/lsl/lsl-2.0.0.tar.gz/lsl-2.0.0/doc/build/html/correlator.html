@@ -1,0 +1,227 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Correlation &#8212; LWA Software Library 2.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Imaging" href="imaging.html" />
+    <link rel="prev" title="Computing Spectra" href="spectra.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="imaging.html" title="Imaging"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spectra.html" title="Computing Spectra"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-lsl.correlator.fx">
+<span id="correlation"></span><h1>Correlation<a class="headerlink" href="#module-lsl.correlator.fx" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="baseline-utilities">
+<h2>Baseline Utilities<a class="headerlink" href="#baseline-utilities" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="computing-uvw-coordinates">
+<h2>Computing <em>uvw</em> Coordinates<a class="headerlink" href="#computing-uvw-coordinates" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lsl.correlator.filterbank">
+<span id="polyphase-filter-bank"></span><h2>Polyphase Filter Bank<a class="headerlink" href="#module-lsl.correlator.filterbank" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>P=1</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft" title="Permalink to this definition">¶</a></dt>
+<dd><p>FFT-based poly-phase filter bank for creating N channels with P
+taps.  Optionally, a window function can be specified using the 
+‘window’ keyword.  See <code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.fx.calcSpectra</span></code> for 
+details on using window functions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft2">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft2</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-type of <a class="reference internal" href="#lsl.correlator.filterbank.fft" title="lsl.correlator.filterbank.fft"><code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.filterbank.fft</span></code></a> that uses two taps.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft4">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft4</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-type of <a class="reference internal" href="#lsl.correlator.filterbank.fft" title="lsl.correlator.filterbank.fft"><code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.filterbank.fft</span></code></a> that uses four taps.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft8">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft8</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-type of <a class="reference internal" href="#lsl.correlator.filterbank.fft" title="lsl.correlator.filterbank.fft"><code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.filterbank.fft</span></code></a> that uses eight taps.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft16">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft16</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-type of <a class="reference internal" href="#lsl.correlator.filterbank.fft" title="lsl.correlator.filterbank.fft"><code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.filterbank.fft</span></code></a> that uses 16 taps.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.filterbank.fft32">
+<code class="descclassname">lsl.correlator.filterbank.</code><code class="descname">fft32</code><span class="sig-paren">(</span><em>signal</em>, <em>N</em>, <em>window=&lt;function noWindow&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.filterbank.fft32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sub-type of <a class="reference internal" href="#lsl.correlator.filterbank.fft" title="lsl.correlator.filterbank.fft"><code class="xref py py-mod docutils literal"><span class="pre">lsl.correlator.filterbank.fft</span></code></a> that uses 32 taps.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fx-correlator">
+<h2>FX Correlator<a class="headerlink" href="#fx-correlator" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="lsl.correlator.fx.FXMaster">
+<code class="descclassname">lsl.correlator.fx.</code><code class="descname">FXMaster</code><span class="sig-paren">(</span><em>signals</em>, <em>antennas</em>, <em>LFFT=64</em>, <em>Overlap=1</em>, <em>IncludeAuto=False</em>, <em>verbose=False</em>, <em>window=&lt;function noWindow&gt;</em>, <em>pfb=False</em>, <em>SampleRate=None</em>, <em>CentralFreq=0.0</em>, <em>Pol='XX'</em>, <em>GainCorrect=False</em>, <em>ReturnBaselines=False</em>, <em>ClipLevel=0</em>, <em>phaseCenter='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.fx.FXMaster" title="Permalink to this definition">¶</a></dt>
+<dd><p>A more advanced version of FXCorrelator for TBW and TBN data.  Given an 
+2-D array of signals (stands, time-series) and an array of stands, compute 
+the cross-correlation of the data for all baselines.  Return the frequencies 
+and visibilities as a two-elements tuple.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 0.4.0: </span>Switched over to passing in Antenna instances generated by the
+<a class="reference internal" href="station.html#module-lsl.common.stations" title="lsl.common.stations"><code class="xref py py-mod docutils literal"><span class="pre">lsl.common.stations</span></code></a> module instead of a list of stand ID
+numbers.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added a phase-center keyword that accept a two-element tuple of 
+azimuth and elelvation (in degrees) to change where the 
+correlations are phased to</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Made the ‘phaseCenter’ keyword more flexible.  It can now be either:
+* ‘z’ to denote the zenith,
+* a ephem.Body instances which has been computed for the observer, or
+* a two-element tuple of azimuth, elevation in degrees.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.5: </span>Added the ‘pfb’ keyword.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lsl.correlator.fx.FXStokes">
+<code class="descclassname">lsl.correlator.fx.</code><code class="descname">FXStokes</code><span class="sig-paren">(</span><em>signals</em>, <em>antennas</em>, <em>LFFT=64</em>, <em>Overlap=1</em>, <em>IncludeAuto=False</em>, <em>verbose=False</em>, <em>window=&lt;function noWindow&gt;</em>, <em>pfb=False</em>, <em>SampleRate=None</em>, <em>CentralFreq=0.0</em>, <em>GainCorrect=False</em>, <em>ReturnBaselines=False</em>, <em>ClipLevel=0</em>, <em>phaseCenter='z'</em><span class="sig-paren">)</span><a class="headerlink" href="#lsl.correlator.fx.FXStokes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A more advanced version of FXCorrelator for TBW and TBN data.  Given an 
+2-D array of signals (stands, time-series) and an array of stands, compute 
+the cross-correlation of the data for all baselines.  Return the frequencies 
+and visibilities as a two-elements tuple.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.0.0: </span>Added a phase-center keyword that accept a two-element tuple of 
+azimuth and elelvation (in degrees) to change where the 
+correlations are phased to</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.1.0: </span>Made the ‘phaseCenter’ keyword more flexible.  It can now be either:
+* ‘z’ to denote the zenith,
+* a ephem.Body instances which has been computed for the observer, or
+* a two-element tuple of azimuth, elevation in degrees.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 1.2.5: </span>Added the ‘pfb’ keyword.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Correlation</a><ul>
+<li><a class="reference internal" href="#baseline-utilities">Baseline Utilities</a></li>
+<li><a class="reference internal" href="#computing-uvw-coordinates">Computing <em>uvw</em> Coordinates</a></li>
+<li><a class="reference internal" href="#module-lsl.correlator.filterbank">Polyphase Filter Bank</a></li>
+<li><a class="reference internal" href="#fx-correlator">FX Correlator</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spectra.html"
+                        title="previous chapter">Computing Spectra</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="imaging.html"
+                        title="next chapter">Imaging</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/correlator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="imaging.html" title="Imaging"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spectra.html" title="Computing Spectra"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LWA Software Library 2.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Jayce Dowell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>
