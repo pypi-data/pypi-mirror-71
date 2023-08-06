@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: pycorona
+Version: 0.3.5
+Summary: pycorona is a package to get Coronavirus stats of any country
+Home-page: https://github.com/toxicrecker/pycorona
+Author: toxicrecker
+Author-email: reck.channel.mainlead@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# pycorona
+pycovid is a library that is used to get coronavirus condition (i.e. active cases, deaths, etc) of any country.
+
+# Usage
+```python
+from pycorona import Country
+
+country = Country("USA")
+cases = country.total_cases()
+print(cases)
+> 2,234,475
+```
+
+Attributes available -
+```python
+continent()
+flag()
+total_cases()
+today_cases()
+total_deaths()
+today_deaths()
+recovered()
+critical_cases()
+active_cases()
+tests()
+```
+
+Note - This package is currently under development
+
