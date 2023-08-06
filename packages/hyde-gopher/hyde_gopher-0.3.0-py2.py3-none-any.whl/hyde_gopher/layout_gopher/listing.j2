@@ -1,0 +1,8 @@
+{% extends "base.j2" %}
+{% from "macros.j2" import render_excerpt with context  %}
+{% block main_gopher %}
+{{ resource.meta.title | banner }}
+{% for res in resource.node.walk_resources_sorted_by_time() %}
+{{ render_excerpt(res) }}
+{% endfor %}
+{% endblock %}

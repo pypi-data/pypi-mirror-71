@@ -1,0 +1,23 @@
+{% macro render_excerpt(res, class=None) %}
+{% refer to res.url as post %}
+{{ gopher_menu.dir(res.meta.title, content_url(res.url)) }}
+{{ post.excerpt|html2gopher }}
+Published: {{ res.meta.created.strftime('%a, %d %b %Y') }}
+----------------------------------------------------------------------
+{% endmacro %}
+
+{% macro render_nav(menu, cls=None) -%}
+{% if menu -%}
+{% for item in menu -%}
+{% if item.url in resource.url or resource.url == "/index.html" -%}
+{# linebreak #}
+
+{{ gopher_menu.dir( item.name, content_url(item.url) ) }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+
+{% macro img(caption) %}
+{{ gopher_menu.image("Image: " + caption, caller()) }}
+{% endmacro %}

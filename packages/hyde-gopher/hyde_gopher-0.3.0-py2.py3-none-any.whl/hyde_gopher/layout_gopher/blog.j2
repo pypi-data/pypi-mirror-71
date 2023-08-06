@@ -1,0 +1,28 @@
+{% extends "base.j2" %}
+
+{% block main_gopher -%}
+{{ resource.meta.title | banner }}
+Published: {{ resource.meta.created.strftime('%a, %d %b %Y') }}
+
+{% if resource.meta.tags %}
+Tags:
+{% for tag in resource.meta.tags %}
+{{ gopher_menu.dir(tag, content_url('blog/tags/'~tag~'.html')) }}
+{% endfor %}
+
+{% endif %}
+{% if resource.next_by_time -%}
+{{ gopher_menu.dir("Previous post: " + resource.next_by_time.meta.title, content_url(resource.next_by_time.url)) }}
+{# linebreak #}
+{%- endif %}
+{% if resource.prev_by_time -%}
+{{ gopher_menu.dir("Next post: " + resource.prev_by_time.meta.title, content_url(resource.prev_by_time.url)) }}
+{# linebreak #}
+{%- endif %}
+
+{% filter md2gopher -%}
+{% mark post -%}
+{% block post -%}{%- endblock %}
+{%- endmark %}
+{%- endfilter %}
+{%- endblock %}

@@ -1,0 +1,21 @@
+{% from "macros.j2" import img %}
+{% block starthead %}{% endblock starthead %}
+{{ resource.meta.get("title" + "- ", "") + "SITE_TITLE" | banner }}
+{% block content %}
+{% block nav %}
+{% from "macros.j2" import render_nav with context %}
+{{ render_nav(menu, 'main_nav') }}
+{% endblock %}
+
+{% block main_gopher -%}
+-----------------------------------------------------------------------
+
+{% filter html2gopher -%}
+{% block main %}
+{% endblock main %}
+{%- endfilter %}
+{%- endblock main_gopher %}
+{% endblock content%}
+
+-----------------------------------------------------------------------
+Powered by hyde & hyde-gopher.
