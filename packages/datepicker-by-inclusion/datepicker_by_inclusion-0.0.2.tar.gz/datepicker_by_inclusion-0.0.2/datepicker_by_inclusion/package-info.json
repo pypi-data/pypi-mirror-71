@@ -1,0 +1,51 @@
+{
+  "name": "datepicker_by_inclusion",
+  "version": "0.0.1",
+  "description": "Adapts react-datepicker for use in Dash, specifically to bring in the includeDates functionality",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "webpack-serve --config ./webpack.serve.config.js --open",
+    "validate-init": "python _validate_init.py",
+    "prepublishOnly": "npm run validate-init",
+    "build:js": "webpack --mode production",
+    "build:py_and_r": "dash-generate-components ./src/lib/components datepicker_by_inclusion -p package-info.json --r-prefix ''",
+    "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
+    "build": "npm run build:js && npm run build:py_and_r",
+    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
+  },
+  "author": "John Choiniere <john.choiniere@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "ramda": "^0.26.1",
+    "react-datepicker": "^2.16.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "copyfiles": "^2.3.0",
+    "css-loader": "^3.6.0",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-react": "^7.20.0",
+    "npm": "^6.14.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-docgen": "^4.1.1",
+    "react-dom": "^16.13.1",
+    "style-loader": "^0.23.1",
+    "styled-jsx": "^3.3.0",
+    "webpack": "4.36.1",
+    "webpack-cli": "3.3.6",
+    "webpack-serve": "3.1.0"
+  },
+  "engines": {
+    "node": ">=8.11.0",
+    "npm": ">=6.1.0"
+  }
+}
