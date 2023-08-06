@@ -1,0 +1,37 @@
+# macOS
+*.DS_Store
+
+# Editor files
+**/.vscode
+.idea/*
+
+# Python filees
+__pycache__/*
+*.pyc
+
+# Generated log files - tmux
+*.log
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Testing
+.pytest_cache
+.pytest_cache/*
+
+### JupyterNotebooks ###
+# gitignore template for Jupyter Notebooks
+# website: http://jupyter.org/
+
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Data files
+*.loom
