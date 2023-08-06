@@ -1,0 +1,57 @@
+Metadata-Version: 1.0
+Name: pyLIA
+Version: 0.6
+Summary: Module for Lock-In Analysis
+Home-page: https://github.com/LolloCappo/pyLIA
+Author: Lorenzo Capponi
+Author-email: lorenzocapponi@outlook.it
+License: UNKNOWN
+Description: ï»¿Digital lock-in analysis
+        ---------------------------------------------
+        
+        Perform digital lock-in analysis built for thermal analysis
+        
+        
+        Installing this package
+        -----------------------
+        
+        Use `pip` to install it by:
+        
+        .. code-block:: console
+        
+            $ pip install pyLIA
+        
+        
+        Simple examples
+        ---------------
+        
+        Here is a simple example on how to use the code:
+        
+        .. code-block:: python
+        
+        	import pyLIA
+        	import numpy as np
+        	import matplotlib.pyplot as plt
+        
+        	data = np.load('camera.npy') ## Thermal acquisition
+        	fs = 400  ## Sampling freqency of the thermal video [Hz]
+        	fl = 55  ## Load freqency of the excitation test [Hz]
+        
+        	mag, ph = pyLIA.LIA(data, fs, fl)
+        
+        	plt.figure()
+        	plt.imshow(mag)
+        	cbar = plt.colorbar()
+        	cbar.set_label('[unit]')
+        
+        	plt.figure()
+        	plt.imshow(ph)
+        	cbar = plt.colorbar()
+        	cbar.set_label('[deg]')
+            
+        
+        
+        Reference:
+        <https://www.sciencedirect.com/science/article/pii/S0142112320301924>
+        
+Platform: UNKNOWN
