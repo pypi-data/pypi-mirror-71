@@ -1,0 +1,177 @@
+{
+    "$id": "https://liske.github.io/ifstate/schema/ifstate.conf.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ifstate.conf",
+    "description": "IfState Configuration Schema",
+    "type": "object",
+    "properties": {
+        "options": {
+            "description": "global configuration settings",
+            "type": "object"
+        },
+        "ignore": {
+            "description": "ignore patterns to skip interface, ip address or routing objects",
+            "type": "object",
+            "properties": {
+                "ipaddr": {
+                    "description": "list of ip address prefixes to be ignored",
+                    "type": "array",
+                    "items": {
+                        "description": "ip address with prefix length",
+                        "type": "string",
+                        "examples": [
+                            "fe80::/10"
+                        ]
+                    }
+                },
+                "ifname": {
+                    "description": "interface names matching this list of regex will be ignored",
+                    "type": "array",
+                    "items": {
+                        "description": "regex to match interface name",
+                        "examples": [
+                            "^docker\\d+",
+                            "^lo$",
+                            "^ppp\\d+$",
+                            "^veth"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "routes": {
+                    "description": "filter routes by options",
+                    "type": "object",
+                    "properties": {
+                        "protos": {
+                            "type": "array",
+                            "items": {
+                                "description": "protocol number (`/etc/iproute2/rt_protos`)",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "interfaces": {
+            "description": "list of interface settings (link settings and ip addresses)",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "name of the interface",
+                        "type": "string"
+                    },
+                    "addresses": {
+                        "description": "ip addresses of the interface",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "examples": [
+                                "192.0.2.1",
+                                "192.168.0.1/24",
+                                "2001:db8::1/64"
+                            ]
+                        }
+                    },
+                    "link": {
+                        "description": "link settings of the interface",
+                        "type": "object",
+                        "required": [
+                            "kind"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "description": "link type",
+                                "enum": [
+                                    "bond",
+                                    "bridge",
+                                    "geneve",
+                                    "gre",
+                                    "gretap",
+                                    "gtp",
+                                    "ip6gre",
+                                    "ip6gretap",
+                                    "ip6tnl",
+                                    "ipip",
+                                    "ipoib",
+                                    "ipvlan",
+                                    "macvlan",
+                                    "macvtap",
+                                    "physical",
+                                    "sit",
+                                    "team",
+                                    "tuntap",
+                                    "veth",
+                                    "vlan",
+                                    "vrf",
+                                    "vti",
+                                    "vti6",
+                                    "vxlan",
+                                    "xfrm"
+                                ]
+                            },
+                            "link": {
+                                "type": ["integer", "string"],
+                                "description": "specifies a parent device name or index"
+                            },
+                            "master": {
+                                "type": ["integer", "string"],
+                                "description": "specifies a master device name or index"
+                            },
+                            "state": {
+                                "type": "string",
+                                "description": "change device state",
+                                "enum": ["up", "down"]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "type": "object",
+            "properties": {
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "to"
+                        ],
+                        "properties": {
+                            "dev": {
+                                "type": ["integer", "string"]
+                            },
+                            "proto": {
+                                "type": ["integer", "string"],
+                                "default": "boot"
+                            },
+                            "realm": {
+                                "type": ["integer", "string"]
+                            },
+                            "scope": {
+                                "type": ["integer", "string"]
+                            },
+                            "table": {
+                                "type": ["integer", "string"],
+                                "default": "main"
+                            },
+                            "to": {
+                                "type": "string"
+                            },
+                            "via": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
