@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.utils.codec module &mdash; tlslite-ng 0.8.0-alpha38 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.utils.compat module" href="tlslite.utils.compat.html" />
+    <link rel="prev" title="tlslite.utils.cipherfactory module" href="tlslite.utils.cipherfactory.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.integration.html">tlslite.integration package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tlslite.utils.html">tlslite.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+          <li><a href="tlslite.utils.html">tlslite.utils package</a> &raquo;</li>
+        
+      <li>tlslite.utils.codec module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.utils.codec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.utils.codec">
+<span id="tlslite-utils-codec-module"></span><h1>tlslite.utils.codec module<a class="headerlink" href="#module-tlslite.utils.codec" title="Permalink to this headline">¶</a></h1>
+<p>Classes for reading/writing binary data (such as TLS records).</p>
+<dl class="exception">
+<dt id="tlslite.utils.codec.BadCertificateError">
+<em class="property">exception </em><code class="sig-prename descclassname">tlslite.utils.codec.</code><code class="sig-name descname">BadCertificateError</code><a class="headerlink" href="#tlslite.utils.codec.BadCertificateError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#SyntaxError" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SyntaxError</span></code></a></p>
+<p>Exception raised in case of bad certificate.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="tlslite.utils.codec.DecodeError">
+<em class="property">exception </em><code class="sig-prename descclassname">tlslite.utils.codec.</code><code class="sig-name descname">DecodeError</code><a class="headerlink" href="#tlslite.utils.codec.DecodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#SyntaxError" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SyntaxError</span></code></a></p>
+<p>Exception raised in case of decoding errors.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.utils.codec.Parser">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.utils.codec.</code><code class="sig-name descname">Parser</code><span class="sig-paren">(</span><em class="sig-param">bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Parser for TLV and LV byte-based encodings.</p>
+<p>Parser that can handle arbitrary byte-based encodings usually employed in
+Type-Length-Value or Length-Value binary encoding protocols like ASN.1
+or TLS</p>
+<p>Note: if the raw bytes don’t match expected values (like trying to
+read a 4-byte integer from a 2-byte buffer), most methods will raise a
+DecodeError exception.</p>
+<p>TODO: don’t use an exception used by language parser to indicate errors
+in application code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><strong>bytes</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – data to be interpreted (buffer)</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – current position in the buffer</p></li>
+<li><p><strong>lengthCheck</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size of struct being parsed</p></li>
+<li><p><strong>indexCheck</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – position at which the structure begins in buffer</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind raw bytes with parser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – bytes to be parsed/interpreted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.atLengthCheck">
+<code class="sig-name descname">atLengthCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.atLengthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if there is data in structure left for parsing.</p>
+<p>Returns True if the whole structure was parsed, False if there is
+some data left.</p>
+<p>Will raise an exception if overflow occured (amount of data read was
+greater than expected size)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a single big-endian integer value encoded in ‘length’ bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes in which the value is encoded in</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getFixBytes">
+<code class="sig-name descname">getFixBytes</code><span class="sig-paren">(</span><em class="sig-param">lengthBytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getFixBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a string of bytes encoded in ‘lengthBytes’ bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lengthBytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes to return</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getFixList">
+<code class="sig-name descname">getFixList</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">lengthList</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getFixList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a list of static length with same-sized ints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size in bytes of a single element in list</p></li>
+<li><p><strong>lengthList</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of elements in list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getRemainingLength">
+<code class="sig-name descname">getRemainingLength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getRemainingLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return amount of data remaining in struct being parsed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getVarBytes">
+<code class="sig-name descname">getVarBytes</code><span class="sig-paren">(</span><em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getVarBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a variable length string with a fixed length.</p>
+<p>see Writer.add_var_bytes() for an inverse of this method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes in which the length of the string
+is encoded in</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getVarList">
+<code class="sig-name descname">getVarList</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getVarList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a variable length list of same-sized integers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size in bytes of a single element</p></li>
+<li><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size of the encoded length of the list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.getVarTupleList">
+<code class="sig-name descname">getVarTupleList</code><span class="sig-paren">(</span><em class="sig-param">elemLength</em>, <em class="sig-param">elemNum</em>, <em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.getVarTupleList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a variable length list of same sized tuples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elemLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length in bytes of single tuple element</p></li>
+<li><p><strong>elemNum</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of elements in tuple</p></li>
+<li><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length in bytes of the list length variable</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.setLengthCheck">
+<code class="sig-name descname">setLengthCheck</code><span class="sig-paren">(</span><em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.setLengthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set length of struct and start a length check for parsing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – expected size of parsed struct in bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.startLengthCheck">
+<code class="sig-name descname">startLengthCheck</code><span class="sig-paren">(</span><em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.startLengthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read length of struct and start a length check for parsing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes in which the length is encoded</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Parser.stopLengthCheck">
+<code class="sig-name descname">stopLengthCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Parser.stopLengthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop struct parsing, verify that no under- or overflow occurred.</p>
+<p>In case the expected length was mismatched with actual length of
+processed data, raises an exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.utils.codec.Writer">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.utils.codec.</code><code class="sig-name descname">Writer</code><a class="headerlink" href="#tlslite.utils.codec.Writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Serialisation helper for complex byte-based structures.</p>
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise the serializer with no data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a single positive integer value x, encode it in length bytes</p>
+<p>Encode positive integer x in big-endian format using length bytes,
+add to the internal buffer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – value to encode</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes to use for encoding the value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addFixSeq">
+<code class="sig-name descname">addFixSeq</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addFixSeq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a list of items, encode every item in length bytes</p>
+<p>Uses the unbounded iterable seq to produce items, each of
+which is then encoded to length bytes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>iterable of int</em>) – list of positive integers to encode</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes to which encode every element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addFour">
+<code class="sig-name descname">addFour</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addFour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a four-byte wide element to buffer, see add().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addOne">
+<code class="sig-name descname">addOne</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addOne" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a single-byte wide element to buffer, see add().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addThree">
+<code class="sig-name descname">addThree</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addThree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a three-byte wide element to buffer, see add().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addTwo">
+<code class="sig-name descname">addTwo</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addTwo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a double-byte wide element to buffer, see add().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addVarSeq">
+<code class="sig-name descname">addVarSeq</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">length</em>, <em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addVarSeq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a bounded list of same-sized values</p>
+<p>Create a list of specific length with all items being of the same
+size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>list of int</em>) – list of positive integers to encode</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – amount of bytes in which to encode every item</p></li>
+<li><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – amount of bytes in which to encode the overall
+length of the array</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.addVarTupleSeq">
+<code class="sig-name descname">addVarTupleSeq</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">length</em>, <em class="sig-param">lengthLength</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.addVarTupleSeq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a variable length list of same-sized element tuples.</p>
+<p>Note that all tuples must have the same size.</p>
+<p>Inverse of Parser.getVarTupleList()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>enumerable</em>) – list of tuples</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of single element in tuple</p></li>
+<li><p><strong>lengthLength</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length in bytes of overall length field</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.codec.Writer.add_var_bytes">
+<code class="sig-name descname">add_var_bytes</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">length_length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.codec.Writer.add_var_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a variable length array of bytes.</p>
+<p>Inverse of Parser.getVarBytes()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><em>bytes</em></a>) – bytes to add to the buffer</p></li>
+<li><p><strong>length_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size of the field to represent the length
+of the data string</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.utils.compat.html" class="btn btn-neutral float-right" title="tlslite.utils.compat module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.utils.cipherfactory.html" class="btn btn-neutral float-left" title="tlslite.utils.cipherfactory module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

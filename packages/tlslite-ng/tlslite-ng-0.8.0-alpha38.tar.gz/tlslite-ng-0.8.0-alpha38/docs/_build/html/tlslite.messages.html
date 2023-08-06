@@ -1,0 +1,1721 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.messages module &mdash; tlslite-ng 0.8.0-alpha38 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.messagesocket module" href="tlslite.messagesocket.html" />
+    <link rel="prev" title="tlslite.mathtls module" href="tlslite.mathtls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.api.html">tlslite.api module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.basedb.html">tlslite.basedb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.bufferedsocket.html">tlslite.bufferedsocket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.checker.html">tlslite.checker module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.constants.html">tlslite.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.defragmenter.html">tlslite.defragmenter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.dh.html">tlslite.dh module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.errors.html">tlslite.errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.extensions.html">tlslite.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakehashes.html">tlslite.handshakehashes module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakehelpers.html">tlslite.handshakehelpers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakesettings.html">tlslite.handshakesettings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.keyexchange.html">tlslite.keyexchange module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.mathtls.html">tlslite.mathtls module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tlslite.messages module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.messagesocket.html">tlslite.messagesocket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.recordlayer.html">tlslite.recordlayer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.session.html">tlslite.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.sessioncache.html">tlslite.sessioncache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.tlsconnection.html">tlslite.tlsconnection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.tlsrecordlayer.html">tlslite.tlsrecordlayer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.verifierdb.html">tlslite.verifierdb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.x509.html">tlslite.x509 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.x509certchain.html">tlslite.x509certchain module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+      <li>tlslite.messages module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.messages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.messages">
+<span id="tlslite-messages-module"></span><h1>tlslite.messages module<a class="headerlink" href="#module-tlslite.messages" title="Permalink to this headline">¶</a></h1>
+<p>Classes representing TLS messages.</p>
+<dl class="class">
+<dt id="tlslite.messages.Alert">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">Alert</code><a class="headerlink" href="#tlslite.messages.Alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.Alert.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">description</em>, <em class="sig-param">level=2</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.descriptionName">
+<em class="property">property </em><code class="sig-name descname">descriptionName</code><a class="headerlink" href="#tlslite.messages.Alert.descriptionName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.levelName">
+<em class="property">property </em><code class="sig-name descname">levelName</code><a class="headerlink" href="#tlslite.messages.Alert.levelName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Alert.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Alert.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ApplicationData">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ApplicationData</code><a class="headerlink" href="#tlslite.messages.ApplicationData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.ApplicationData.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ApplicationData.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ApplicationData.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ApplicationData.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ApplicationData.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ApplicationData.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ApplicationData.splitFirstByte">
+<code class="sig-name descname">splitFirstByte</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ApplicationData.splitFirstByte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ApplicationData.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ApplicationData.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.Certificate">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">Certificate</code><span class="sig-paren">(</span><em class="sig-param">certificateType</em>, <em class="sig-param">version=(3</em>, <em class="sig-param">2)</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.Certificate.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">certificateType</em>, <em class="sig-param">version=(3</em>, <em class="sig-param">2)</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Certificate.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Certificate.cert_chain">
+<em class="property">property </em><code class="sig-name descname">cert_chain</code><a class="headerlink" href="#tlslite.messages.Certificate.cert_chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for the cert_chain property.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Certificate.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">cert_chain</em>, <em class="sig-param">context=b''</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise fields of the class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Certificate.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Certificate.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Certificate.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.CertificateEntry">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">CertificateEntry</code><span class="sig-paren">(</span><em class="sig-param">certificateType</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Object storing a single certificate from TLS 1.3.</p>
+<p>Stores a certificate (or possibly a raw public key) together with
+associated extensions</p>
+<dl class="method">
+<dt id="tlslite.messages.CertificateEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">certificateType</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise the object for given certificate type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateEntry.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateEntry.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">certificate</em>, <em class="sig-param">extensions</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all values of the certificate entry.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateEntry.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise the object from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateEntry.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateEntry.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.CertificateRequest">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">CertificateRequest</code><span class="sig-paren">(</span><em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HelloMessage" title="tlslite.messages.HelloMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HelloMessage</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.CertificateRequest.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateRequest.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateRequest.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">certificate_types=None</em>, <em class="sig-param">certificate_authorities=None</em>, <em class="sig-param">sig_algs=None</em>, <em class="sig-param">context=b''</em>, <em class="sig-param">extensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateRequest.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Certificate Request message.
+For TLS 1.3 only the context and extensions parameters should be
+provided, the others are ignored.
+For TLS versions below 1.3 instead only the first three parameters
+are considered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateRequest.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateRequest.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateRequest.supported_signature_algs">
+<em class="property">property </em><code class="sig-name descname">supported_signature_algs</code><a class="headerlink" href="#tlslite.messages.CertificateRequest.supported_signature_algs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of supported algorithms.</p>
+<p>We store the list in an extension even for TLS &lt; 1.3
+Extensions are used/valid only for TLS 1.3 but they are a good
+unified storage mechanism for all versions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateRequest.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateRequest.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.CertificateStatus">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">CertificateStatus</code><a class="headerlink" href="#tlslite.messages.CertificateStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling of the CertificateStatus message from RFC 6066.</p>
+<p>Handling of the handshake protocol message that includes the OCSP staple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – type of response returned</p></li>
+<li><p><a class="reference internal" href="tlslite.constants.html#tlslite.constants.CertificateStatusType.ocsp" title="tlslite.constants.CertificateStatusType.ocsp"><strong>ocsp</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – OCSPResponse from RFC 2560</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.CertificateStatus.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateStatus.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the objet, set its type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateStatus.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">status_type</em>, <em class="sig-param">ocsp</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateStatus.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up message payload.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateStatus.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateStatus.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise the message from one the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateStatus.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateStatus.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.CertificateVerify">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">CertificateVerify</code><span class="sig-paren">(</span><em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateVerify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Serializer for TLS handshake protocol Certificate Verify message.</p>
+<dl class="method">
+<dt id="tlslite.messages.CertificateVerify.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateVerify.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>version</strong> – TLS protocol version in use</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateVerify.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">signature</em>, <em class="sig-param">signatureAlgorithm=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateVerify.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide data for serialisation of message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signature</strong> – signature carried in the message</p></li>
+<li><p><strong>signatureAlgorithm</strong> – signature algorithm used to make the
+signature (TLSv1.2 only)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateVerify.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateVerify.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize message from parser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parser</strong> – parser with data to read</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.CertificateVerify.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.CertificateVerify.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize the data to bytearray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ChangeCipherSpec">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ChangeCipherSpec</code><a class="headerlink" href="#tlslite.messages.ChangeCipherSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.ChangeCipherSpec.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ChangeCipherSpec.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ChangeCipherSpec.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ChangeCipherSpec.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ChangeCipherSpec.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ChangeCipherSpec.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ChangeCipherSpec.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ChangeCipherSpec.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ClientFinished">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ClientFinished</code><a class="headerlink" href="#tlslite.messages.ClientFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.SSL2Finished" title="tlslite.messages.SSL2Finished"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.SSL2Finished</span></code></a></p>
+<p>Handling of SSLv2 CLIENT-FINISHED message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>verify_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – payload of the message, should be the CONNECTION-ID</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ClientFinished.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientFinished.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ClientHello">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ClientHello</code><span class="sig-paren">(</span><em class="sig-param">ssl2=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HelloMessage" title="tlslite.messages.HelloMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HelloMessage</span></code></a></p>
+<p>Class for handling the ClientHello SSLv2/SSLv3/TLS message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#tlslite.messages.ClientHello.certificate_types" title="tlslite.messages.ClientHello.certificate_types"><strong>certificate_types</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of supported certificate types
+(deprecated)</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.ClientHello.srp_username" title="tlslite.messages.ClientHello.srp_username"><strong>srp_username</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – name of the user in SRP extension (deprecated)</p></li>
+<li><p><strong>supports_npn</strong> (<em>boolean</em>) – NPN extension presence (deprecated)</p></li>
+<li><p><strong>tack</strong> (<em>boolean</em>) – TACK extension presence (deprecated)</p></li>
+<li><p><strong>server_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – first host_name (type 0) present in SNI extension
+(deprecated)</p></li>
+<li><p><a class="reference internal" href="tlslite.extensions.html#module-tlslite.extensions" title="tlslite.extensions"><strong>extensions</strong></a> (list of <code class="xref py py-class docutils literal notranslate"><span class="pre">TLSExtension</span></code>) – list of TLS extensions parsed from wire or to send, see
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TLSExtension</span></code> and child classes for exact examples</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ssl2=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return machine readable representation of Client Hello.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return human readable representation of Client Hello.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.certificate_types">
+<em class="property">property </em><code class="sig-name descname">certificate_types</code><a class="headerlink" href="#tlslite.messages.ClientHello.certificate_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of certificate types supported.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5: </span>use extensions field to get the extension for inspection</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">version</em>, <em class="sig-param">random</em>, <em class="sig-param">session_id</em>, <em class="sig-param">cipher_suites</em>, <em class="sig-param">certificate_types=None</em>, <em class="sig-param">srpUsername=None</em>, <em class="sig-param">tack=False</em>, <em class="sig-param">supports_npn=None</em>, <em class="sig-param">serverName=None</em>, <em class="sig-param">extensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ClientHello message for sending.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – the highest supported TLS version encoded as two int
+tuple</p></li>
+<li><p><strong>random</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – client provided random value, in old versions of TLS
+(before 1.2) the first 32 bits should include system time, also
+used as the “challenge” field in SSLv2</p></li>
+<li><p><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – ID of session, set when doing session resumption</p></li>
+<li><p><strong>cipher_suites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of ciphersuites advertised as supported</p></li>
+<li><p><strong>certificate_types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of supported certificate types, uses
+TLS extension for signalling, as such requires TLS1.0 to work</p></li>
+<li><p><strong>srpUsername</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – utf-8 encoded username for SRP, TLS extension</p></li>
+<li><p><strong>tack</strong> (<em>boolean</em>) – whatever to advertise support for TACK, TLS extension</p></li>
+<li><p><strong>supports_npn</strong> (<em>boolean</em>) – whatever to advertise support for NPN, TLS
+extension</p></li>
+<li><p><strong>serverName</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – the hostname to request in server name indication
+extension, TLS extension. Note that SNI allows to set multiple
+hostnames and values that are not hostnames, use
+<a class="reference internal" href="tlslite.extensions.html#tlslite.extensions.SNIExtension" title="tlslite.extensions.SNIExtension"><code class="xref py py-class docutils literal notranslate"><span class="pre">SNIExtension</span></code></a>
+together with <code class="xref py py-obj docutils literal notranslate"><span class="pre">extensions</span></code> to use it.</p></li>
+<li><p><strong>extensions</strong> (list of <a class="reference internal" href="tlslite.extensions.html#tlslite.extensions.TLSExtension" title="tlslite.extensions.TLSExtension"><code class="xref py py-class docutils literal notranslate"><span class="pre">TLSExtension</span></code></a>) – list of extensions to advertise</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise object from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.psk_truncate">
+<code class="sig-name descname">psk_truncate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.psk_truncate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a truncated encoding of message without binders.</p>
+<p>In TLS 1.3, with PSK exchange, the ClientHello message is signed
+by the binders in it. Return the part that is symmetrically signed
+by those binders.</p>
+<p>See “PSK Binder” in draft-ietf-tls-tls13-23.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.server_name">
+<em class="property">property </em><code class="sig-name descname">server_name</code><a class="headerlink" href="#tlslite.messages.ClientHello.server_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first host_name present in SNI extension.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5: </span>use extensions field to get the extension for inspection</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.srp_username">
+<em class="property">property </em><code class="sig-name descname">srp_username</code><a class="headerlink" href="#tlslite.messages.ClientHello.srp_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return username for the SRP.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5: </span>use extensions field to get the extension for inspection</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.supports_npn">
+<em class="property">property </em><code class="sig-name descname">supports_npn</code><a class="headerlink" href="#tlslite.messages.ClientHello.supports_npn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether client supports NPN extension.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5: </span>use extensions field to get the extension for inspection</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.tack">
+<em class="property">property </em><code class="sig-name descname">tack</code><a class="headerlink" href="#tlslite.messages.ClientHello.tack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the client supports TACK.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5: </span>use extensions field to get the extension for inspection</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientHello.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientHello.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise object to on the wire data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ClientKeyExchange">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ClientKeyExchange</code><span class="sig-paren">(</span><em class="sig-param">cipherSuite</em>, <em class="sig-param">version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling of TLS Handshake protocol ClientKeyExchange message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cipherSuite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the cipher suite id used for the connection</p></li>
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>)</em>) – TLS protocol version used for the connection</p></li>
+<li><p><strong>srp_A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – SRP protocol client answer value</p></li>
+<li><p><strong>dh_Yc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – client Finite Field Diffie-Hellman protocol key share</p></li>
+<li><p><strong>ecdh_Yc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – encoded curve coordinates</p></li>
+<li><p><strong>encryptedPreMasterSecret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – client selected PremMaster secret encrypted
+with server public key (from certificate)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cipherSuite</em>, <em class="sig-param">version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise ClientKeyExchange for reading or writing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cipherSuite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of the ciphersuite selected by server</p></li>
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>)</em>) – protocol version selected by server</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.createDH">
+<code class="sig-name descname">createDH</code><span class="sig-paren">(</span><em class="sig-param">dh_Yc</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.createDH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the client FFDH key share.</p>
+<p>returns self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tlslite.messages.ClientKeyExchange" title="tlslite.messages.ClientKeyExchange">ClientKeyExchange</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.createECDH">
+<code class="sig-name descname">createECDH</code><span class="sig-paren">(</span><em class="sig-param">ecdh_Yc</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.createECDH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the client ECDH key share.</p>
+<p>returns self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tlslite.messages.ClientKeyExchange" title="tlslite.messages.ClientKeyExchange">ClientKeyExchange</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.createRSA">
+<code class="sig-name descname">createRSA</code><span class="sig-paren">(</span><em class="sig-param">encryptedPreMasterSecret</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.createRSA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the encrypted PreMaster Secret.</p>
+<p>returns self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tlslite.messages.ClientKeyExchange" title="tlslite.messages.ClientKeyExchange">ClientKeyExchange</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.createSRP">
+<code class="sig-name descname">createSRP</code><span class="sig-paren">(</span><em class="sig-param">srp_A</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.createSRP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the SRP client answer.</p>
+<p>returns self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>srp_A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – client SRP answer</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#tlslite.messages.ClientKeyExchange" title="tlslite.messages.ClientKeyExchange">ClientKeyExchange</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise the message from <code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code>,</p>
+<p>returns self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tlslite.messages.ClientKeyExchange" title="tlslite.messages.ClientKeyExchange">ClientKeyExchange</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientKeyExchange.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientKeyExchange.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ClientMasterKey">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ClientMasterKey</code><a class="headerlink" href="#tlslite.messages.ClientMasterKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling of SSLv2 CLIENT-MASTER-KEY message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cipher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – negotiated cipher</p></li>
+<li><p><strong>clear_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – the part of master secret key that is sent in clear for
+export cipher suites</p></li>
+<li><p><strong>encrypted_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – (part of) master secret encrypted using server key</p></li>
+<li><p><strong>key_argument</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – additional key argument for block ciphers</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ClientMasterKey.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientMasterKey.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientMasterKey.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">cipher</em>, <em class="sig-param">clear_key</em>, <em class="sig-param">encrypted_key</em>, <em class="sig-param">key_argument</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientMasterKey.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set values of the CLIENT-MASTER-KEY object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientMasterKey.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientMasterKey.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise object from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ClientMasterKey.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ClientMasterKey.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the object to on the wire data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.EncryptedExtensions">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">EncryptedExtensions</code><a class="headerlink" href="#tlslite.messages.EncryptedExtensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HelloMessage" title="tlslite.messages.HelloMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HelloMessage</span></code></a></p>
+<p>Handling of the TLS1.3 Encrypted Extensions message.</p>
+<dl class="method">
+<dt id="tlslite.messages.EncryptedExtensions.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.EncryptedExtensions.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.EncryptedExtensions.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">extensions</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.EncryptedExtensions.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the extensions in the message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.EncryptedExtensions.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.EncryptedExtensions.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the extensions from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.EncryptedExtensions.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.EncryptedExtensions.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the message to on the wire data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.Finished">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">Finished</code><span class="sig-paren">(</span><em class="sig-param">version</em>, <em class="sig-param">hash_length=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.Finished.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">version</em>, <em class="sig-param">hash_length=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Finished.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Finished.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">verify_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Finished.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Finished.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Finished.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Finished.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Finished.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.HandshakeMsg">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">HandshakeMsg</code><span class="sig-paren">(</span><em class="sig-param">handshakeType</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HandshakeMsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.HandshakeMsg.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">handshakeType</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HandshakeMsg.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HandshakeMsg.postWrite">
+<code class="sig-name descname">postWrite</code><span class="sig-paren">(</span><em class="sig-param">w</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HandshakeMsg.postWrite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.Heartbeat">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">Heartbeat</code><a class="headerlink" href="#tlslite.messages.Heartbeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Handling Heartbeat messages from RFC 6520</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message_type</strong> – type of message (response or request)</p></li>
+<li><p><strong>payload</strong> – payload</p></li>
+<li><p><strong>padding</strong> – random padding of selected length</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return human readable representation of heartbeat message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">message_type</em>, <em class="sig-param">payload</em>, <em class="sig-param">padding_length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create heartbeat request or response with selected parameters</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.create_response">
+<code class="sig-name descname">create_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.create_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates heartbeat response based on request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize heartbeat message from parser.</p>
+<p>We are reading only message type and payload, ignoring
+leftover bytes (padding).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Heartbeat.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Heartbeat.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise heartbeat message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.HelloMessage">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">HelloMessage</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Class for sharing code between <a class="reference internal" href="#tlslite.messages.ClientHello" title="tlslite.messages.ClientHello"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientHello</span></code></a> and
+<a class="reference internal" href="#tlslite.messages.ServerHello" title="tlslite.messages.ServerHello"><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerHello</span></code></a>.</p>
+<dl class="method">
+<dt id="tlslite.messages.HelloMessage.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloMessage.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HelloMessage.addExtension">
+<code class="sig-name descname">addExtension</code><span class="sig-paren">(</span><em class="sig-param">ext</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloMessage.addExtension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add extension to internal list of extensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ext</strong> (<a class="reference internal" href="tlslite.extensions.html#tlslite.extensions.TLSExtension" title="tlslite.extensions.TLSExtension"><em>TLSExtension</em></a>) – extension object to add to list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HelloMessage.getExtension">
+<code class="sig-name descname">getExtension</code><span class="sig-paren">(</span><em class="sig-param">extType</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloMessage.getExtension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return extension of given type if present, None otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="tlslite.extensions.html#tlslite.extensions.TLSExtension" title="tlslite.extensions.TLSExtension">TLSExtension</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSInternalError" title="tlslite.errors.TLSInternalError"><strong>TLSInternalError</strong></a> – when there are multiple extensions of the
+same type</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.HelloRequest">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">HelloRequest</code><a class="headerlink" href="#tlslite.messages.HelloRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling of Hello Request messages.</p>
+<dl class="method">
+<dt id="tlslite.messages.HelloRequest.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloRequest.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HelloRequest.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloRequest.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HelloRequest.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloRequest.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.HelloRequest.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.HelloRequest.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.KeyUpdate">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">KeyUpdate</code><a class="headerlink" href="#tlslite.messages.KeyUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling KeyUpdate message from RFC 8446</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>message_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – type of message (update_not_requested or
+update_requested)</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.KeyUpdate.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.KeyUpdate.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.KeyUpdate.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">message_type</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.KeyUpdate.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create KeyUpdate message with selected parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.KeyUpdate.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.KeyUpdate.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize keyupdate message from parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.KeyUpdate.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.KeyUpdate.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise keyupdate message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.Message">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">Message</code><span class="sig-paren">(</span><em class="sig-param">contentType</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Generic TLS message.</p>
+<dl class="method">
+<dt id="tlslite.messages.Message.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contentType</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Message.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize object with specified contentType and data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contentType</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – TLS record layer content type of associated data</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – data</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.Message.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.Message.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return serialised object data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.NewSessionTicket">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">NewSessionTicket</code><a class="headerlink" href="#tlslite.messages.NewSessionTicket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HelloMessage" title="tlslite.messages.HelloMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HelloMessage</span></code></a></p>
+<p>Handling of the TLS1.3 New Session Ticket message.</p>
+<dl class="method">
+<dt id="tlslite.messages.NewSessionTicket.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NewSessionTicket.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create New Session Ticket object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NewSessionTicket.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">ticket_lifetime</em>, <em class="sig-param">ticket_age_add</em>, <em class="sig-param">ticket_nonce</em>, <em class="sig-param">ticket</em>, <em class="sig-param">extensions</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NewSessionTicket.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a New Session Ticket.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NewSessionTicket.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NewSessionTicket.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the object from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NewSessionTicket.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NewSessionTicket.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the message to on the wire data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.NextProtocol">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">NextProtocol</code><a class="headerlink" href="#tlslite.messages.NextProtocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.NextProtocol.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NextProtocol.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NextProtocol.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">next_proto</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NextProtocol.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NextProtocol.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NextProtocol.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.NextProtocol.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">trial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.NextProtocol.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.RecordHeader">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">RecordHeader</code><span class="sig-paren">(</span><em class="sig-param">ssl2</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Generic interface to SSLv2 and SSLv3 (and later) record headers.</p>
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">ssl2</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define instance variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.RecordHeader2">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">RecordHeader2</code><a class="headerlink" href="#tlslite.messages.RecordHeader2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.RecordHeader" title="tlslite.messages.RecordHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.RecordHeader</span></code></a></p>
+<p>SSLv2 record header.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes added at end of message to make it multiple
+of block cipher size</p></li>
+<li><p><strong>securityEscape</strong> (<em>boolean</em>) – whether the record contains a security escape message</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader2.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a SSLv2 style class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader2.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">padding=0</em>, <em class="sig-param">securityEscape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader2.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set object’s values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader2.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader2.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise object from Parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader2.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader2.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise object to bytearray.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.RecordHeader3">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">RecordHeader3</code><a class="headerlink" href="#tlslite.messages.RecordHeader3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.RecordHeader" title="tlslite.messages.RecordHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.RecordHeader</span></code></a></p>
+<p>SSLv3 (and later) TLS record header.</p>
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a SSLv3 style class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">version</em>, <em class="sig-param">type</em>, <em class="sig-param">length</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set object values for writing (serialisation).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise object from Parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.typeName">
+<em class="property">property </em><code class="sig-name descname">typeName</code><a class="headerlink" href="#tlslite.messages.RecordHeader3.typeName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.RecordHeader3.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.RecordHeader3.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise object to bytearray.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.SSL2Finished">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">SSL2Finished</code><span class="sig-paren">(</span><em class="sig-param">msg_type</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SSL2Finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling of the SSL2 FINISHED messages.</p>
+<dl class="method">
+<dt id="tlslite.messages.SSL2Finished.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">msg_type</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SSL2Finished.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SSL2Finished.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">verify_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SSL2Finished.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the message payload.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SSL2Finished.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SSL2Finished.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise the message from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SSL2Finished.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SSL2Finished.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the message to on the wire data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ServerFinished">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ServerFinished</code><a class="headerlink" href="#tlslite.messages.ServerFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.SSL2Finished" title="tlslite.messages.SSL2Finished"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.SSL2Finished</span></code></a></p>
+<p>Handling of SSLv2 SERVER-FINISHED message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>verify_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – payload of the message, should be SESSION-ID</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ServerFinished.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerFinished.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ServerHello">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ServerHello</code><a class="headerlink" href="#tlslite.messages.ServerHello" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HelloMessage" title="tlslite.messages.HelloMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HelloMessage</span></code></a></p>
+<p>Handling of Server Hello messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>server_version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – protocol version encoded as two int tuple</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/random.html#module-random" title="(in Python v3.8)"><strong>random</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – server random value</p></li>
+<li><p><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – session identifier for resumption</p></li>
+<li><p><strong>cipher_suite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – server selected cipher_suite</p></li>
+<li><p><strong>compression_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – server selected compression method</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.ServerHello.next_protos" title="tlslite.messages.ServerHello.next_protos"><strong>next_protos</strong></a> (<em>list of bytearray</em>) – list of advertised protocols in NPN extension</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.ServerHello.next_protos_advertised" title="tlslite.messages.ServerHello.next_protos_advertised"><strong>next_protos_advertised</strong></a> (<em>list of bytearray</em>) – list of protocols advertised in NPN extension</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.ServerHello.certificate_type" title="tlslite.messages.ServerHello.certificate_type"><strong>certificate_type</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – certificate type selected by server</p></li>
+<li><p><a class="reference internal" href="tlslite.extensions.html#module-tlslite.extensions" title="tlslite.extensions"><strong>extensions</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of TLS extensions present in server_hello message,
+see <a class="reference internal" href="tlslite.extensions.html#tlslite.extensions.TLSExtension" title="tlslite.extensions.TLSExtension"><code class="xref py py-class docutils literal notranslate"><span class="pre">TLSExtension</span></code></a> and child classes for exact
+examples</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise ServerHello object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.certificate_type">
+<em class="property">property </em><code class="sig-name descname">certificate_type</code><a class="headerlink" href="#tlslite.messages.ServerHello.certificate_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the certificate type selected by server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">version</em>, <em class="sig-param">random</em>, <em class="sig-param">session_id</em>, <em class="sig-param">cipher_suite</em>, <em class="sig-param">certificate_type=None</em>, <em class="sig-param">tackExt=None</em>, <em class="sig-param">next_protos_advertised=None</em>, <em class="sig-param">extensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the object for deserialisation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.next_protos">
+<em class="property">property </em><code class="sig-name descname">next_protos</code><a class="headerlink" href="#tlslite.messages.ServerHello.next_protos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the advertised protocols in NPN extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of bytearrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.next_protos_advertised">
+<em class="property">property </em><code class="sig-name descname">next_protos_advertised</code><a class="headerlink" href="#tlslite.messages.ServerHello.next_protos_advertised" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the advertised protocols in NPN extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of bytearrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.tackExt">
+<em class="property">property </em><code class="sig-name descname">tackExt</code><a class="headerlink" href="#tlslite.messages.ServerHello.tackExt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the TACK extension.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ServerHello2">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ServerHello2</code><a class="headerlink" href="#tlslite.messages.ServerHello2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>SERVER-HELLO message from SSLv2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session_id_hit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – non zero if the client provided session ID was
+matched in server’s session cache</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.ServerHello.certificate_type" title="tlslite.messages.ServerHello.certificate_type"><strong>certificate_type</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – type of certificate sent</p></li>
+<li><p><strong>server_version</strong> (<em>tuple of ints</em>) – protocol version selected by server</p></li>
+<li><p><a class="reference internal" href="tlslite.constants.html#tlslite.constants.HandshakeType.certificate" title="tlslite.constants.HandshakeType.certificate"><strong>certificate</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – certificate sent by server</p></li>
+<li><p><strong>ciphers</strong> (<em>array of int</em>) – list of ciphers supported by server</p></li>
+<li><p><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – idendifier of negotiated session</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ServerHello2.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello2.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">session_id_hit</em>, <em class="sig-param">certificate_type</em>, <em class="sig-param">server_version</em>, <em class="sig-param">certificate</em>, <em class="sig-param">ciphers</em>, <em class="sig-param">session_id</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello2.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize fields of the SERVER-HELLO message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello2.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello2.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise object from on the wire data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHello2.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHello2.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise object to on the wire data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ServerHelloDone">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ServerHelloDone</code><a class="headerlink" href="#tlslite.messages.ServerHelloDone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<dl class="method">
+<dt id="tlslite.messages.ServerHelloDone.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHelloDone.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHelloDone.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHelloDone.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Human readable representation of object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHelloDone.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHelloDone.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHelloDone.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">p</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHelloDone.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerHelloDone.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerHelloDone.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.ServerKeyExchange">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">ServerKeyExchange</code><span class="sig-paren">(</span><em class="sig-param">cipherSuite</em>, <em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tlslite.messages.HandshakeMsg" title="tlslite.messages.HandshakeMsg"><code class="xref py py-class docutils literal notranslate"><span class="pre">tlslite.messages.HandshakeMsg</span></code></a></p>
+<p>Handling TLS Handshake protocol Server Key Exchange messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cipherSuite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of ciphersuite selected in Server Hello message</p></li>
+<li><p><strong>srp_N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – SRP protocol prime</p></li>
+<li><p><strong>srp_N_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of srp_N in bytes</p></li>
+<li><p><strong>srp_g</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – SRP protocol generator</p></li>
+<li><p><strong>srp_g_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of srp_g in bytes</p></li>
+<li><p><strong>srp_s</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – SRP protocol salt value</p></li>
+<li><p><strong>srp_B</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – SRP protocol server public value</p></li>
+<li><p><strong>srp_B_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of srp_B in bytes</p></li>
+<li><p><strong>dh_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – FFDHE protocol prime</p></li>
+<li><p><strong>dh_p_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of dh_p in bytes</p></li>
+<li><p><strong>dh_g</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – FFDHE protocol generator</p></li>
+<li><p><strong>dh_g_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of dh_g in bytes</p></li>
+<li><p><strong>dh_Ys</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – FFDH protocol server key share</p></li>
+<li><p><strong>dh_Ys_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of dh_Ys in bytes</p></li>
+<li><p><strong>curve_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Type of curve used (explicit, named, etc.)</p></li>
+<li><p><a class="reference internal" href="tlslite.constants.html#tlslite.constants.ECCurveType.named_curve" title="tlslite.constants.ECCurveType.named_curve"><strong>named_curve</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – TLS ID of named curve</p></li>
+<li><p><strong>ecdh_Ys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – ECDH protocol encoded point key share</p></li>
+<li><p><strong>signature</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – signature performed over the parameters by server</p></li>
+<li><p><strong>hashAlg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of hash algorithm used for signature</p></li>
+<li><p><strong>signAlg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of signature algorithm used for signature</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cipherSuite</em>, <em class="sig-param">version</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise Server Key Exchange for reading or writing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cipherSuite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of ciphersuite selected by server</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.createDH">
+<code class="sig-name descname">createDH</code><span class="sig-paren">(</span><em class="sig-param">dh_p</em>, <em class="sig-param">dh_g</em>, <em class="sig-param">dh_Ys</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.createDH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set FFDH protocol parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.createECDH">
+<code class="sig-name descname">createECDH</code><span class="sig-paren">(</span><em class="sig-param">curve_type</em>, <em class="sig-param">named_curve=None</em>, <em class="sig-param">point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.createECDH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set ECDH protocol parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.createSRP">
+<code class="sig-name descname">createSRP</code><span class="sig-paren">(</span><em class="sig-param">srp_N</em>, <em class="sig-param">srp_g</em>, <em class="sig-param">srp_s</em>, <em class="sig-param">srp_B</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.createSRP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set SRP protocol parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.hash">
+<code class="sig-name descname">hash</code><span class="sig-paren">(</span><em class="sig-param">clientRandom</em>, <em class="sig-param">serverRandom</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate hash of parameters to sign.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialise message from <code class="xref py py-class docutils literal notranslate"><span class="pre">Parser</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parser</strong> (<a class="reference internal" href="tlslite.utils.codec.html#tlslite.utils.codec.Parser" title="tlslite.utils.codec.Parser"><em>Parser</em></a>) – parser to read data from</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise complete message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.ServerKeyExchange.writeParams">
+<code class="sig-name descname">writeParams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.ServerKeyExchange.writeParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise the key exchange parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.messages.SessionTicketPayload">
+<em class="property">class </em><code class="sig-prename descclassname">tlslite.messages.</code><code class="sig-name descname">SessionTicketPayload</code><a class="headerlink" href="#tlslite.messages.SessionTicketPayload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Serialisation and deserialisation of server state for resumption.</p>
+<p>This is the internal (meant to be encrypted) representation of server
+state that is set to client in the NewSessionTicket message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – implementation detail for forward compatibility</p></li>
+<li><p><strong>master_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – master secret for TLS 1.2-, resumption
+master secret for TLS 1.3</p></li>
+<li><p><a class="reference internal" href="tlslite.constants.html#tlslite.constants.AlertDescription.protocol_version" title="tlslite.constants.AlertDescription.protocol_version"><strong>protocol_version</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – version of protocol that was previously
+negotiated in this session</p></li>
+<li><p><strong>cipher_suite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – numerical ID of ciphersuite that was negotiated
+previously</p></li>
+<li><p><strong>nonce</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – nonce for TLS 1.3 KDF</p></li>
+<li><p><strong>creation_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Unix time in seconds when was the ticket created</p></li>
+<li><p><a class="reference internal" href="#tlslite.messages.SessionTicketPayload.client_cert_chain" title="tlslite.messages.SessionTicketPayload.client_cert_chain"><strong>client_cert_chain</strong></a> (<a class="reference internal" href="tlslite.x509certchain.html#tlslite.x509certchain.X509CertChain" title="tlslite.x509certchain.X509CertChain"><em>X509CertChain</em></a>) – Client X509 Certificate Chain</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tlslite.messages.SessionTicketPayload.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SessionTicketPayload.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create instance of the object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SessionTicketPayload.client_cert_chain">
+<em class="property">property </em><code class="sig-name descname">client_cert_chain</code><a class="headerlink" href="#tlslite.messages.SessionTicketPayload.client_cert_chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for the client_cert_chain property.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SessionTicketPayload.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">master_secret</em>, <em class="sig-param">protocol_version</em>, <em class="sig-param">cipher_suite</em>, <em class="sig-param">creation_time</em>, <em class="sig-param">nonce=bytearray(b'')</em>, <em class="sig-param">client_cert_chain=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SessionTicketPayload.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise the object with cryptographic data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SessionTicketPayload.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">parser</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SessionTicketPayload.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.messages.SessionTicketPayload.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.messages.SessionTicketPayload.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.messagesocket.html" class="btn btn-neutral float-right" title="tlslite.messagesocket module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.mathtls.html" class="btn btn-neutral float-left" title="tlslite.mathtls module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
